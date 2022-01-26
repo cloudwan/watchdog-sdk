@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+import "google/type/latlng.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+option java_outer_classname = "AdminAreaProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha/admin_area;admin_area";
+
+message BBox {
+  google.type.LatLng south_west = 1;
+
+  google.type.LatLng north_east = 2;
+}
+
+message Geometry {
+  google.type.LatLng center = 1;
+
+  BBox bbox = 2;
+}
+
+message AdminHierarchy {
+  string continent = 1;
+
+  string country = 2;
+
+  string admin1 = 3;
+
+  string admin2 = 4;
+
+  string admin3 = 5;
+
+  string admin4 = 6;
+
+  string admin5 = 7;
+}
+
+// AdminArea Resource
+message AdminArea {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/AdminArea"
+    pattern : "adminAreas/{admin_area}"
+  };
+
+  // Name of AdminArea - uses stringified feature id
+  string name = 1;
+
+  // Display Name, e.g. United States
+  string display_name = 2;
+
+  // hierarchy is populated with parent areas
+  AdminHierarchy hierarchy = 3;
+
+  // Admin Area type
+  Type type = 4;
+
+  // Label geometry - optional, but when present it's better to use it, rather
+  // than geometry.
+  Geometry label_geometry = 5;
+
+  // Geometry - center and bounding box
+  Geometry geometry = 6;
+
+  // Metadata
+  ntt.types.Meta metadata = 7;
+
+  // Local names in some languages
+  // - key: language code in the iso-639-3 format
+  // - value: a name in the local language
+  map<string, string> local_language_names = 8;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+
+    CONTINENT = 1;
+
+    COUNTRY = 2;
+
+    ADMIN1 = 3;
+
+    ADMIN2 = 4;
+
+    ADMIN3 = 5;
+
+    ADMIN4 = 6;
+
+    ADMIN5 = 7;
+  }
+}

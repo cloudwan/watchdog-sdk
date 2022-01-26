@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/devices/proto/v1alpha2/devices.proto";
+
+import "edgelq-sdk/iam/proto/v1alpha2/iam.proto";
+
+import "google/api/annotations.proto";
+
+import "google/api/client.proto";
+
+import "google/protobuf/empty.proto";
+
+import "watchdog-sdk/proto/v1alpha2/activation_custom.proto";
+
+import "watchdog-sdk/proto/v1alpha2/activation_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/admin_area.proto";
+
+import "watchdog-sdk/proto/v1alpha2/admin_area_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/geo_resolver_custom.proto";
+
+import "watchdog-sdk/proto/v1alpha2/geo_resolver_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/internet_quality_rating.proto";
+
+import "watchdog-sdk/proto/v1alpha2/internet_quality_rating_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe_group.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe_group_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe_hardware_custom.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe_hardware_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_config.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_config_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_distribution.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_distribution_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_target.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_target_group.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_target_group_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probing_target_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/project.proto";
+
+import "watchdog-sdk/proto/v1alpha2/project_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/quality_profile.proto";
+
+import "watchdog-sdk/proto/v1alpha2/quality_profile_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/shared_token.proto";
+
+import "watchdog-sdk/proto/v1alpha2/shared_token_custom.proto";
+
+import "watchdog-sdk/proto/v1alpha2/shared_token_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/speed_test_custom.proto";
+
+import "watchdog-sdk/proto/v1alpha2/speed_test_service.proto";
+
+import "watchdog-sdk/proto/v1alpha2/tag.proto";
+
+import "watchdog-sdk/proto/v1alpha2/tag_service.proto";
+
+option java_outer_classname = "WatchdogProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/watchdog;watchdog_client";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";

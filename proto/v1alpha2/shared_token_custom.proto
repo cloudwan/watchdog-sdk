@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/api/credentials.proto";
+
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+
+import "watchdog-sdk/proto/v1alpha2/shared_token.proto";
+
+import "watchdog-sdk/proto/v1alpha2/shared_token_change.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_outer_classname = "SharedTokenCustomProto";
+
+option java_multiple_files = false;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/shared_token;shared_token_client";
+
+// Request message for method
+// [RegisterProbe][ntt.watchdog.v1alpha2.RegisterProbe]
+message RegisterProbeRequest {
+  //  reference of ntt.watchdog.v1alpha2.SharedToken
+  string name = 1;
+
+  // Key value pairs to be used to substitute placeholders in template values.
+  map<string, string> values = 2;
+
+  // The current probe status.
+  Probe.Status status = 3;
+}
+
+// Response message for method
+// [RegisterProbe][ntt.watchdog.v1alpha2.RegisterProbe]
+message RegisterProbeResponse {
+  // The service account generated for the request.
+  ntt.api.ServiceAccount service_account = 1;
+
+  // The name of probe generated for the request.
+  string probe = 2;
+}

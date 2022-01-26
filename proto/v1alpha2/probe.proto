@@ -1,0 +1,270 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/types/memo.proto";
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/field_behavior.proto";
+
+import "google/api/resource.proto";
+
+import "google/protobuf/timestamp.proto";
+
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_outer_classname = "ProbeProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe;probe";
+
+// Probe is a resource that represents a probing device.
+message Probe {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/Probe"
+    pattern : "projects/{project}/regions/{region}/probes/{probe}"
+  };
+
+  // Name of Probe
+  string name = 1;
+
+  // Display name for the probe
+  string display_name = 5;
+
+  // Lower Display Name - only used for dashboard filtering
+  string lower_display_name = 7;
+
+  // metadata is additional information of the probe.
+  ntt.types.Meta metadata = 2;
+
+  // spec describes the to-be state of the probe.
+  Spec spec = 3;
+
+  // status shows the current status of the probe.
+  Status status = 4;
+
+  // Memos
+  repeated ntt.types.Memo memo = 6;
+
+  // Spec describes the to-be state of the probe.
+  // Fields in this message are useful to keep manual input values of the
+  // metadata of the probe. Note that some fields could be moved to
+  // metadata.annotations later.
+  message Spec {
+    // Probe Group allows optional grouping of probes.
+    string probe_group = 11;
+
+    // device referes the device that assigned to the probe.
+    // When this field is empty, that means there is no
+    // asigned device yet.
+    // Devices resource is provided by the Devices service.
+    string device = 1;
+
+    // Controls whether this Probe is available for scheduling Probings.
+    // Manually set it to false to switch-off Probings undergoing maintenance.
+    bool enabled = 10;
+
+    // Address defines the expected address of the probe.
+    Location primary_location = 6;
+
+    LocationDiscoverySpec location_discovery = 8;
+
+    // Contact Information
+    ContactInformation contact_info = 9;
+
+    ActivationSpec activation = 12;
+
+    bool disable_speedtest = 13;
+
+    AccessTokenSpec access_token = 14;
+
+    message ActivationSpec {
+      ActivationType type = 1;
+
+      // auto-generated
+      string token = 2;
+
+      // send activation email upon creation
+      bool send_invitation_on_create = 3;
+
+      // reusable token - determines if same token may be reused to reactivate
+      // probe even after activation was successful without admin or asset
+      // manager intervention. Convenient, but less secure configuration option.
+      bool reusable_token = 4;
+
+      enum ActivationType {
+        ACTIVATION_TYPE_UNSPECIFIED = 0;
+
+        INDIVIDUAL_TOKEN = 1;
+
+        SHARED_TOKEN = 2;
+
+        SELF_ACTIVATION = 3;
+      }
+    }
+
+    message AccessTokenSpec {
+      bool enable = 1;
+
+      string access_token = 2;
+    }
+  }
+
+  // tatus describes the actual state of the Probe.
+  // Most fields are automatically resolved from the external_ip_address_v4,
+  // and clients don't need to fill up.
+  message Status {
+    // external_ip_address_v4 describes the actual external IPv4 address.
+    // The addresss is usually obtained from a STUN server by the probe agent
+    string external_ip_address_v4 = 1;
+
+    // external_ip_address_v6 describes the actual external IPv6 address.
+    // The addresss is usually obtained from a STUN server by the probe agent
+    string external_ip_address_v6 = 2;
+
+    // The hostname describes the hostname of the probe.
+    // The hostanme usually resolved from the external_ip_address_v4 by the
+    // service.
+    string external_hostname = 3;
+
+    // Asinfo describes the (ASN) details for the host
+    // This values usually resolved automatically by the service from the
+    // external_ip_address_v4.
+    ASInfo as_info = 4;
+
+    // carrier describes mobile network carrier information
+    Carrier carrier = 5;
+
+    // The address describes the place where the probe is placed at.
+    // Note that the address is not always accurate.
+    Location active_location = 7;
+
+    // software version
+    SoftwareVersion software_version = 9;
+
+    System system_info = 10;
+
+    ActivationState activation = 12
+        [ (google.api.field_behavior) = OUTPUT_ONLY ];
+
+    ConnectionStatus connection = 13;
+
+    // Last change of connection_status (edge activation)
+    google.protobuf.Timestamp connection_status_change_time = 14;
+
+    Bandwidth bandwidth = 15;
+
+    map<string, NetworkInterface> network_interfaces = 16;
+
+    message System {
+      string manufacturer = 1;
+
+      string model = 2;
+
+      string sku = 3;
+
+      string family = 4;
+
+      string serial_number = 5;
+
+      string platform = 6;
+
+      string architecture = 7;
+
+      OS os = 8;
+
+      string host_name = 9;
+
+      message OS {
+        string name = 1;
+
+        string version = 2;
+
+        string build_version = 3;
+
+        string kernel = 4;
+      }
+    }
+
+    message ActivationState {
+      Status status = 1;
+
+      // Session object stores required information about current activation
+      // session
+      Session current_session = 2;
+
+      // Managed Service account reference
+      string service_account = 3;
+
+      InvitationState last_invitation = 4;
+
+      message Session {
+        // current activation session cookie - allows avoiding collisions and
+        // ensure that only single client gets activated
+        string client_cookie = 1;
+
+        // current session lock deadline for client identified with its cookie.
+        // after lock timestamp is exceeded, new clients may override cookie.
+        google.protobuf.Timestamp lock_deadline = 2;
+      }
+
+      // activation invitation state
+      message InvitationState {
+        // sent date
+        google.protobuf.Timestamp sent_date = 1;
+
+        // sender TODO: make it a formal reference
+        string sender = 2;
+      }
+
+      enum Status {
+        ACTIVATION_STATUS_UNSPECIFIED = 0;
+
+        INACTIVE = 1;
+
+        PENDING_INVITATION = 5;
+
+        PENDING_APPROVAL = 2;
+
+        IN_PROGRESS = 3;
+
+        ACTIVE = 4;
+      }
+    }
+
+    // Internet speed
+    message Bandwidth {
+      double upload_mbps = 1;
+
+      double download_mbps = 2;
+
+      string test_server = 3;
+
+      google.protobuf.Timestamp last_reported = 4;
+    }
+
+    message NetworkInterface {
+      string interface_name = 1;
+
+      repeated string ip_address_v4 = 2;
+
+      repeated string external_ip_address_v4 = 3;
+
+      repeated string ip_address_v6 = 4;
+
+      repeated string external_ip_address_v6 = 5;
+    }
+
+    enum ConnectionStatus {
+      CONNECTION_STATUS_UNSPECIFIED = 0;
+
+      ONLINE = 1;
+
+      OFFLINE = 2;
+    }
+  }
+}

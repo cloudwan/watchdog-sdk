@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_outer_classname = "ProbeHardwareCustomProto";
+
+option java_multiple_files = false;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware;probe_hardware_client";
+
+// Request message for method
+// [ProbeHardwareGet][ntt.watchdog.v1alpha2.ProbeHardwareGet]
+message ProbeHardwareGetRequest {
+  string probe_name = 1;
+
+  string access_token = 2;
+}
+
+// Response message for method
+// [ProbeHardwareGet][ntt.watchdog.v1alpha2.ProbeHardwareGet]
+message ProbeHardwareGetResponse {
+  string serial_number = 1;
+
+  Probe.Status.ActivationState.Status activation_status = 2;
+
+  Probe.Status.ConnectionStatus connection_status = 3;
+}
+
+// Request message for method
+// [ProbeHardwareUpdate][ntt.watchdog.v1alpha2.ProbeHardwareUpdate]
+message ProbeHardwareUpdateRequest {
+  string probe_name = 1;
+
+  string serial_number = 2;
+
+  string access_token = 3;
+}
+
+// Response message for method
+// [ProbeHardwareUpdate][ntt.watchdog.v1alpha2.ProbeHardwareUpdate]
+message ProbeHardwareUpdateResponse { string serial_number = 1; }

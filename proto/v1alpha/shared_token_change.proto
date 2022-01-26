@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "google/api/resource.proto";
+
+import "google/protobuf/field_mask.proto";
+
+import "watchdog-sdk/proto/v1alpha/shared_token.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+option java_outer_classname = "SharedTokenChangeProto";
+
+option java_multiple_files = false;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha/shared_token;shared_token";
+
+// SharedTokenChange is used by Watch notifications Responses to describe change
+// of single SharedToken One of Added, Modified, Removed
+message SharedTokenChange {
+  // SharedToken change
+  oneof change_type {
+    // Added is returned when watched document is added, either created or
+    // enters Query view
+    Added added = 1;
+
+    // Modified is returned when watched document is modified
+    Modified modified = 2;
+
+    // Current is returned in stateless watch when document enters query view or
+    // is modified within.
+    Current current = 4;
+
+    // Removed is returned when SharedToken is deleted or leaves Query view
+    Removed removed = 3;
+  }
+
+  // SharedToken has been added to query view
+  message Added {
+    SharedToken shared_token = 1;
+
+    // Integer describing index of added SharedToken in resulting query view.
+    int32 view_index = 2;
+  }
+
+  // SharedToken changed some of it's fields - contains either full document or
+  // masked change
+  message Modified {
+    // Name of modified SharedToken
+    string name = 1;
+
+    // New version of SharedToken or masked difference, depending on
+    // mask_changes instrumentation of issued [WatchSharedTokenRequest] or
+    // [WatchSharedTokensRequest]
+    SharedToken shared_token = 2;
+
+    // Used when mask_changes is set, contains field paths of modified
+    // properties.
+    google.protobuf.FieldMask field_mask = 3;
+
+    // Previous view index specifies previous position of modified SharedToken.
+    // When modification doesn't affect sorted order, value will remain
+    // identical to [view_index].
+    int32 previous_view_index = 4;
+
+    // Integer specifying SharedToken new index in resulting query view.
+    int32 view_index = 5;
+  }
+
+  // SharedToken has been added or modified in a query view. Version used for
+  // stateless watching
+  message Current { SharedToken shared_token = 1; }
+
+  // Removed is returned when SharedToken is deleted or leaves Query view
+  message Removed {
+    string name = 1;
+
+    // Integer specifying removed SharedToken index. Not populated in stateless
+    // watch type.
+    int32 view_index = 2;
+  }
+}

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_outer_classname = "ProbeGroupProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group;probe_group";
+
+// ProbeGroup Resource
+message ProbeGroup {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/ProbeGroup"
+    pattern : "projects/{project}/probeGroups/{probe_group}"
+  };
+
+  // Name of ProbeGroup
+  string name = 1;
+
+  // Display Name of ProbeGroup
+  string display_name = 2;
+
+  // state of group
+  State state = 3;
+
+  // metadata is additional information of the probe group.
+  ntt.types.Meta metadata = 4;
+
+  // Group State
+  message State {
+    // total count of [Probes][ntt.watchdog.v1alpha2.Probe] associated with this
+    // group
+    int64 target_count = 1;
+
+    // Count per region
+    map<string, int64> regional_target_counts = 2;
+  }
+}

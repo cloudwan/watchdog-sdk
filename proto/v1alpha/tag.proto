@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+option java_outer_classname = "TagProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha/tag;tag";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+// Tag Resource
+message Tag {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/Tag"
+    pattern : "projects/{project}/tags/{tag}"
+  };
+
+  // Name of Tag. Id
+  string name = 1;
+
+  // User-friendly name of tag.
+  string display_name = 2;
+
+  // Tag state. Contains resource counters.
+  State state = 4;
+
+  // metadata is additional information of the tag.
+  ntt.types.Meta metadata = 5;
+
+  message State {
+    // Counter per using resource type, e.g. "watchdog.edgelq.com/Probe": 32
+    // indicates there are 32 agents associated with this tag via their
+    // `metadata.tag` field.
+    map<string, int64> resource_type_counters = 3;
+
+    // List of back-references to distributions pointing to this tag via target
+    // selector
+    repeated string distributions_via_target_selector = 4;
+
+    // List og back-references to distributions pointing to this tag via probe
+    // selector
+    repeated string distributions_via_probe_selector = 5;
+  }
+}

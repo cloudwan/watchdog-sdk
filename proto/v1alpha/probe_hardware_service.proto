@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "edgelq-sdk/iam/proto/v1alpha2/condition.proto";
+
+import "edgelq-sdk/iam/proto/v1alpha2/permission.proto";
+
+import "google/api/annotations.proto";
+
+import "google/api/client.proto";
+
+import "google/protobuf/empty.proto";
+
+import "google/protobuf/field_mask.proto";
+
+import "goten-sdk/runtime/api/view.proto";
+
+import "goten-sdk/runtime/api/watch_type.proto";
+
+import "watchdog-sdk/proto/v1alpha/probe_hardware_custom.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+option java_outer_classname = "ProbeHardwareServiceProto";
+
+option java_multiple_files = false;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha/probe_hardware;probe_hardware_client";
+
+// ProbeHardware service API for Watchdog
+service ProbeHardwareService {
+  option (google.api.default_host) = "watchdog.edgelq.com";
+
+  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
+
+  // ProbeHardwareGet
+  rpc ProbeHardwareGet(ProbeHardwareGetRequest)
+      returns (ProbeHardwareGetResponse) {
+    option (google.api.http) = {
+      get : "/v1alpha:probeHardwareGet"
+    };
+  }
+
+  // ProbeHardwareUpdate
+  rpc ProbeHardwareUpdate(ProbeHardwareUpdateRequest)
+      returns (ProbeHardwareUpdateResponse) {
+    option (google.api.http) = {
+      put : "/v1alpha:probeHardwareUpdate"
+    };
+  }
+}

@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+import "google/protobuf/duration.proto";
+
+import "watchdog-sdk/proto/v1alpha/common.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+option java_outer_classname = "ProbingConfigProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha/probing_config;probing_config";
+
+// A ProbingConfig defines a configuration for a Probe to check a probing
+// target. ProbingConfigs are usually automatically generaated from
+// ProbingDistributions.
+message ProbingConfig {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/ProbingConfig"
+    pattern : "projects/{project}/probingConfigs/{probing_config}"
+  };
+
+  // Name of ProbingConfig
+  string name = 1;
+
+  // Display name of ProbingConfig
+  string display_name = 5;
+
+  // metadata describes additional information of the probing config.
+  ntt.types.Meta metadata = 2;
+
+  // spec describes the to-be state of the probing config.
+  Spec spec = 3;
+
+  // status shows the current status of the probing config.
+  Status status = 4;
+
+  //  describes how to probe a target
+  message Spec {
+    // probe is the probe resource which is expexted to execute
+    // the probe config.
+    string probe = 1 [ (google.api.resource_reference) = {type : "Probe"} ];
+
+    // probing target defines a single probe destination target.
+    repeated ProbingSession probing_sessions = 2;
+
+    SpeedTest speedtest = 3;
+
+    // target session defines a target server instance.
+    repeated ProbingSession target_sessions = 4;
+
+    message SpeedTest {
+      // enabled defines whether to enable or disable the speedtest
+      bool enabled = 1;
+
+      // (deprecated) interval_minutes defines the periodic interval for
+      // repeating speedtest
+      int64 interval_minutes = 2;
+
+      // interval defines the periodic interval for repeating speedtest
+      google.protobuf.Duration interval = 4;
+
+      // servers list down all the available servers for speedtest. The agent
+      // chooses the active server nearest to it for running the test
+      // This might be a temporary api and we might have a discovery api later
+      repeated Server servers = 3;
+
+      // Server defines the information about a speedtest server
+      message Server {
+        // label or name of the server to use for speedtest
+        string name = 1;
+
+        // Could be a dns name or ip addresses. can provide both v4 and v6
+        // addresses
+        repeated string ip_addresses = 2;
+
+        // Location of the server. For now the agent would choose the nearest
+        // server
+        Location location = 3;
+
+        string target = 4;
+      }
+    }
+  }
+
+  message Status {}
+}
+
+// ProbingSession is target
+message ProbingSession {
+  // Name of ProbingTarget
+  string target = 1;
+
+  // Display name is a human readable representation of the target
+  string target_display_name = 6;
+
+  // group reference
+  string target_group = 17;
+
+  // mode defines the mode for this probe target - icmp/udp/http/tcp
+  ProbingMode mode = 2;
+
+  // ip_version defines which IP version should be used.
+  IpVersion ip_version = 4;
+
+  // address is the actual target for the probe - IP addreses/http endpoint
+  string address = 3;
+
+  // Additional Group Name to enrich data.
+  string group_name = 11;
+
+  // Additional Category Name to enrich data
+  string category = 12;
+
+  // Target location type
+  LocationType location_type = 14;
+
+  // Specific location if applicable
+  Location location = 15;
+
+  // (deprecated) Interval defines the interval of probing in seconds.
+  int64 interval_sec = 5;
+
+  // Interval defines probing interval
+  google.protobuf.Duration interval = 16;
+
+  // TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
+  // distribution overrides)
+  uint32 tos = 7;
+
+  // Window size. Don't set it (use default_settings or distribution overrides)
+  uint32 window_size = 9;
+
+  // Path Probing settings. Don't set it (use default_settings or distribution
+  // overrides)
+  PathProbe path_probing = 8;
+
+  // Speedtest specific settings
+  SpeedTestSettings speeedtest_settings = 18;
+
+  // HTTP Probing Settings
+  HTTPProbingConfig http_probing_config = 19;
+
+  // Proxy configuration (for speedtest and http)
+  ProxyConfiguration proxy_configuration = 20;
+}

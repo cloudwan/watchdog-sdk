@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "watchdog-sdk/proto/v1alpha/common.proto";
+
+import "watchdog-sdk/proto/v1alpha/probe.proto";
+
+import "watchdog-sdk/proto/v1alpha/probe_change.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+option java_outer_classname = "GeoResolverCustomProto";
+
+option java_multiple_files = false;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha/geo_resolver;geo_resolver_client";
+
+// Request message for method [ResolveGeoIP][ntt.watchdog.v1alpha.ResolveGeoIP]
+message ResolveGeoIPRequest {
+  // Name of Probe_Reference
+  string name = 1;
+
+  string address = 2;
+}
+
+// Response message for method [ResolveGeoIP][ntt.watchdog.v1alpha.ResolveGeoIP]
+message ResolveGeoIPResponse {
+  Location location = 8;
+
+  string isp = 4;
+
+  ASInfo as_info = 5;
+
+  Carrier carrier = 6;
+
+  string access_provider = 7;
+}
+
+// Request message for method
+// [BulkResolveGeoIP][ntt.watchdog.v1alpha.BulkResolveGeoIP]
+message BulkResolveGeoIPRequest {
+  // Name of Probe_Reference
+  string name = 1;
+
+  repeated string address = 2; // TODO: validation for ip address ?
+}
+
+// Response message for method
+// [BulkResolveGeoIP][ntt.watchdog.v1alpha.BulkResolveGeoIP]
+message BulkResolveGeoIPResponse {
+  repeated GeoIPData geo_ip_info = 1;
+
+  message GeoIPData {
+    Location location = 1;
+
+    string isp = 2;
+
+    ASInfo as_info = 3;
+
+    Carrier carrier = 4;
+
+    string access_provider = 5;
+
+    string ip_address = 6;
+  }
+}
+
+// Request message for method
+// [ResolveEnvironment][ntt.watchdog.v1alpha.ResolveEnvironment]
+message ResolveEnvironmentRequest {
+  string name = 1;
+
+  string address = 2;
+
+  repeated WLAN wlans = 3;
+}
+
+// Response message for method
+// [ResolveEnvironment][ntt.watchdog.v1alpha.ResolveEnvironment]
+message ResolveEnvironmentResponse {
+  Location location = 1;
+
+  ASInfo as_info = 2;
+
+  Carrier carrier = 3;
+}

@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_outer_classname = "ProbingTargetProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target;probing_target";
+
+// ProbingTarget Resource
+message ProbingTarget {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/ProbingTarget"
+    pattern : "projects/{project}/probingTargets/{probing_target}"
+  };
+
+  // Name of ProbingTarget
+  string name = 1;
+
+  // Display name is a human readable representation of the target
+  string display_name = 6;
+
+  // Metadata
+  ntt.types.Meta metadata = 13;
+
+  // group reference
+  string group = 17;
+
+  // mode defines the mode for this probe target - icmp/udp/http/tcp
+  ProbingMode mode = 2;
+
+  // ip_version defines which IP version should be used.
+  IpVersion ip_version = 4;
+
+  // address is the actual target for the probe - IP addreses/http endpoint
+  string address = 3;
+
+  // Additional Category Name to enrich data
+  string category = 12;
+
+  // Target location type
+  LocationType location_type = 14;
+
+  // Specific location if applicable
+  Location location = 15;
+
+  // per-target constraints
+  ProbingConstraint probing_constraint = 16;
+
+  // Default Probing Settings like interval, tos, window size, path probing
+  ProbingSettings default_probing_settings = 18;
+
+  // Additional configuration for http probing
+  HTTPProbingConfig http_probing_config = 19;
+
+  string agent = 20;
+
+  reserved 11;
+}

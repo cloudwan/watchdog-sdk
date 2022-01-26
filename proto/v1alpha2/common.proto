@@ -1,0 +1,361 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/api/resource.proto";
+
+import "google/protobuf/duration.proto";
+
+import "google/protobuf/wrappers.proto";
+
+import "google/type/latlng.proto";
+
+import "watchdog-sdk/proto/v1alpha2/admin_area.proto";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common;common";
+
+message SoftwareVersion {
+  string version = 1;
+
+  string commit_id = 2;
+
+  string build_date = 3;
+}
+
+message ContactInformation {
+  string full_name = 1;
+
+  string email = 3;
+
+  repeated PhoneNumber phones = 4;
+
+  message PhoneNumber {
+    string number = 1;
+
+    PhoneType type = 2;
+  }
+
+  enum PhoneType {
+    UNSPECIFIED = 0;
+
+    MOBILE = 1;
+
+    HOME = 2;
+
+    WORK = 3;
+  }
+}
+
+message Address {
+  // Postal code
+  string postal_code = 1;
+
+  // Country code example US, JP
+  string country_code = 2;
+
+  // Continent, e.g. North America, Asia
+  string continent = 9;
+
+  // Country name example United States, Japan
+  string country = 3;
+
+  // Probe Location Administrative Area level 1 name, e.g. California (state),
+  // Chiba (prefecture)
+  string admin_area1 = 4;
+
+  // Probe Location Administrative Area level 2 name, e.g. Santa Clara (county),
+  // Tateyama (town)
+  string admin_area2 = 5;
+
+  // Probe Location Administrative Area level 3 name, e.g. Sunnyvale (city)
+  string admin_area3 = 6;
+
+  // Probe Location Administrative Area level 4 name, e.g. Sunnyvale (city)
+  string admin_area4 = 8;
+
+  // Street Address
+  string street_address = 7;
+}
+
+// Location - address names the locations of Probes
+message Location {
+  // Address
+  Address address = 1;
+
+  // Admin Area Hierarchy
+  AdminHierarchy admin_hierarchy = 4;
+
+  // coordinates
+  google.type.LatLng coordinates = 2;
+
+  // location accuracy in meters
+  double accuracy = 3;
+}
+
+message ASInfo {
+  // AS Number string example AS7018
+  string asn = 1;
+
+  // AS Owner name example AT&T Services, Inc.
+  string name = 2;
+
+  // Domain name example att.com
+  string domain = 3;
+
+  // Routes exported from this ASN example 12.128.0.0/9
+  repeated string routes = 4;
+
+  // ASN Owner type example isp(AT&T) / hosting(google)/ business (Amazon)
+  string asn_type = 5;
+}
+
+message Carrier {
+  // Mobile network carrier name example AT&T
+  string name = 1;
+
+  // Mobile country code example 214
+  string mobile_country_code = 2;
+
+  // Mobile network code example 7
+  string mobile_network_code = 3;
+
+  // Mobile location area code example 2862
+  string location_area_code = 4;
+}
+
+message LocationDiscoverySpec {
+  // Location discovery type - use PREFER_PRIMARY if unspecified
+  Type type = 3;
+
+  // Discovered address won't be reported as Active, unless accuracy value is
+  // below or equal to this threshold When it's not set, 100m is used.
+  double required_accuracy = 2;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+
+    ONLY_PRIMARY = 1;
+
+    PREFER_PRIMARY = 2;
+
+    PREFER_DISCOVERED = 3;
+  }
+
+  reserved 1;
+}
+
+// ProbingConstraints provides definition for per-target or per-distribution
+// configuration
+message ProbingConstraint {
+  // Limits distribution of probing targets not to exceed given sample size in
+  // location. Zero values are ignored.
+  AdminHierachy max_sessions_per_agent_location = 1;
+
+  // Limits number of sessions from same ip address (to avoid blacklisting).
+  // Zero is ignored.
+  int32 max_sessions_per_agent_public_ip_address = 2;
+
+  message AdminHierachy {
+    int32 country = 1;
+
+    int32 admin1 = 2;
+
+    int32 admin2 = 3;
+
+    int32 admin3 = 4;
+
+    int32 admin4 = 5;
+  }
+}
+
+// Path Tracing settings
+message PathProbe {
+  bool enabled = 1;
+
+  ProbingMode mode = 2;
+
+  // interval
+  google.protobuf.Duration interval = 4;
+
+  // (deprecated) interval in seconds
+  int64 interval_sec = 3;
+
+  google.protobuf.UInt32Value attempts = 5;
+
+  google.protobuf.UInt32Value max_ttl = 6;
+}
+
+// ProbingSetting contains optional config per target
+message ProbingSettings {
+  // probing interval (optional). If not specified, default target interval is
+  // used. minimal allowed interval is 100ms, default value is 30s.
+  google.protobuf.Duration interval = 1;
+
+  // TOS for ipv4 or Traffic class for ipv6.
+  google.protobuf.UInt32Value tos = 2;
+
+  // if present overrides target window_size.
+  google.protobuf.UInt32Value window_size = 3;
+
+  // Path probing settings.
+  PathProbe path_probing = 4;
+
+  // Speedtest settings
+  SpeedTestSettings speeedtest_settings = 5;
+
+  // HTTP Probing Settings
+  HTTPProbingConfig http_probing_config = 6;
+
+  ProxyConfiguration proxy_configuration = 7;
+}
+
+message ProxyConfiguration {
+  ProxySetting proxy_setting = 1;
+
+  string http_proxy = 2;
+
+  string https_proxy = 3;
+
+  string no_proxy = 4;
+}
+
+// WLAN
+message WLAN {
+  string mac = 1;
+
+  int32 signal = 2;
+}
+
+message SpeedTestSettings {
+  // Duration for the speedtest. 0 implies default which is 10 seconds for NDT
+  google.protobuf.Duration duration = 1;
+
+  // Use tls or unencrypted. Default mode is to run unencrypted
+  bool use_tls = 2;
+
+  ServerSelection server_selection = 3;
+
+  enum ServerSelection {
+    NEAREST = 0;
+
+    ALL = 1;
+  }
+}
+
+message HTTPProbingConfig {
+  HTTPRequest http_request = 1;
+
+  HTTPAuth auth_config = 2;
+
+  message HTTPRequest {
+    string url = 1; // include http/https scheme in the string
+
+    // http headers to use in the probe requests as key value pairs
+    map<string, string> request_headers = 2;
+
+    HTTPRequestMethod request_method = 3;
+
+    uint32 expected_response_code = 4;
+
+    google.protobuf.Duration timeout = 5;
+
+    string request_body = 6;
+
+    AuthenticationMethod authentication_method = 7;
+
+    map<string, StringArray> url_form_encoded_body = 8;
+
+    message StringArray { repeated string value = 1; }
+  }
+
+  message HTTPAuth {
+    // For authentication method BASIC
+    string username = 1;
+
+    string password = 2;
+
+    // For EXTERNAL_TOKEN_REQUEST
+    HTTPRequest token_request = 3;
+
+    // For EXTERNAL_TOKEN_REQUEST, Header name where the token response is
+    // available
+    string token_response_header = 4;
+
+    // For EXTERNAL_TOKEN_REQUEST, Json key where the token response is
+    // available. For nested keys use a.b.c This or token_response_header needs
+    // to be provided for EXTERNAL_TOKEN_REQUEST
+    string token_response_body_key = 5;
+
+    // For EXTERNAL_TOKEN_REQUEST, specifies the header to use for sending token
+    string request_header_token_key = 6;
+
+    // For EXTERNAL_TOKEN_REQUEST, specifies the response body json key that
+    // holds token expiry
+    string token_response_body_expiry_key = 7;
+  }
+}
+
+enum IpVersion {
+  IP_VERSION_UNSPECIFIED = 0;
+
+  IPV4 = 1;
+
+  IPV6 = 2;
+}
+
+enum ProbingMode {
+  PROBING_MODE_UNSPECIFIED = 0;
+
+  ICMP = 1;
+
+  HTTP = 2;
+
+  UDP = 3;
+
+  TCP = 4;
+
+  SPEED_TEST = 5;
+}
+
+enum ProxySetting {
+  USE_SYSTEM_CONFIGURATION =
+      0; // Inherit proxy configuration from the system (default behavior)
+
+  DISABLE_PROXY = 1; // Do not use proxy for this probing distribution
+
+  OVERRIDE_SYSTEM_CONFIGURATION = 2; // Advanced override of proxy configuration
+}
+
+// Whether target is located in specific site, region or is globally distributed
+// (anycast)
+enum LocationType {
+  LOCATION_TYPE_UNSPECIFIED = 0;
+
+  SITE = 1;
+
+  REGION = 2;
+
+  ANYCAST = 3;
+}
+
+enum HTTPRequestMethod {
+  GET = 0;
+
+  POST = 1;
+
+  PUT = 2;
+
+  DELETE = 3;
+}
+
+enum AuthenticationMethod {
+  NO_AUTH = 0;
+
+  BASIC = 1;
+
+  EXTERNAL_TOKEN_REQUEST = 2; // OAUTH = 3;
+}

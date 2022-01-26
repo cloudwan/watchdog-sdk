@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha;
+
+import "edgelq-sdk/common/types/meta.proto";
+
+import "google/api/resource.proto";
+
+import "watchdog-sdk/proto/v1alpha/common.proto";
+
+option java_outer_classname = "SharedTokenProto";
+
+option java_multiple_files = true;
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha/shared_token;shared_token";
+
+option java_package = "com.ntt.watchdog.pb.v1alpha";
+
+// SharedToken Resource
+message SharedToken {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/SharedToken"
+    pattern : "projects/{project}/sharedTokens/{shared_token}"
+  };
+
+  // Name of SharedToken
+  string name = 1;
+
+  // Human readable name of SharedToken.
+  string display_name = 2;
+
+  // Maximium number of probes provisioned through the SharedToken.
+  // Any negative value is interpreted as no quota.
+  int32 quota = 3;
+
+  // probe_template describes pre defined values for probes to be generated.
+  // Note that some fieds will be overritten by the system.
+  // Template values may include place holders that will be substituted by the
+  // system with values from probes.
+  ProbeTemplate probe_template = 4;
+
+  // deduplication_field_paths ensures that if there is an existing Probe
+  // resource that matches all of the paths provided, the resource will be
+  // reused, instaed of creating a new Probe resource. When the existing Probe
+  // resource has a service account provisioned, it will be revoked.
+  repeated string deduplication_field_paths = 5;
+
+  // secret hods the string of the sahred token. Do disclose the value.
+  // This filed cannot be updated.
+  string secret = 6;
+
+  // Metadata
+  ntt.types.Meta metadata = 7;
+
+  bool associate_existing_probe_only = 8;
+
+  message ProbeTemplate {
+    Meta metadata = 1;
+
+    string display_name = 2;
+
+    Spec spec = 3; // repeated ntt.types.Memo memo = 4;
+
+    message Meta {
+      repeated string tags = 4;
+
+      map<string, string> labels = 5;
+
+      map<string, string> annotations = 6;
+    }
+
+    message Spec {
+      // Probe Group allows optional grouping of probes.
+      string probe_group = 11;
+
+      // Address defines the expected address of the probe.
+      Location primary_location = 6;
+
+      LocationDiscoverySpec location_discovery = 8;
+
+      // Contact Information
+      ContactInformation contact_info = 9;
+
+      bool disable_speedtest = 13;
+    }
+  }
+}
