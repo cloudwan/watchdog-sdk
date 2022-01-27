@@ -3,20 +3,14 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "google/api/resource.proto";
-
 import "google/protobuf/duration.proto";
-
 import "google/protobuf/wrappers.proto";
-
 import "google/type/latlng.proto";
-
 import "watchdog-sdk/proto/v1alpha2/admin_area.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_multiple_files = true;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common;common";
+option java_multiple_files = true;
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 message SoftwareVersion {
   string version = 1;

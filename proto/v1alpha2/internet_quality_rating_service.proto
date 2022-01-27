@@ -3,32 +3,20 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/iam/proto/v1alpha2/condition.proto";
-
 import "edgelq-sdk/iam/proto/v1alpha2/permission.proto";
-
 import "google/api/annotations.proto";
-
 import "google/api/client.proto";
-
 import "google/protobuf/empty.proto";
-
 import "google/protobuf/field_mask.proto";
-
 import "goten-sdk/runtime/api/view.proto";
-
 import "goten-sdk/runtime/api/watch_type.proto";
-
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating.proto";
-
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating_change.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "InternetQualityRatingServiceProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating;internet_quality_rating_client";
+option java_multiple_files = false;
+option java_outer_classname = "InternetQualityRatingServiceProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method
 // [GetInternetQualityRating][ntt.watchdog.v1alpha2.GetInternetQualityRating]
@@ -316,7 +304,6 @@ message DeleteInternetQualityRatingRequest {
 // InternetQualityRating service API for Watchdog
 service InternetQualityRatingService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // GetInternetQualityRating

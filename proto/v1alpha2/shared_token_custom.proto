@@ -3,20 +3,14 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/api/credentials.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
-
 import "watchdog-sdk/proto/v1alpha2/shared_token.proto";
-
 import "watchdog-sdk/proto/v1alpha2/shared_token_change.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "SharedTokenCustomProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/shared_token;shared_token_client";
+option java_multiple_files = false;
+option java_outer_classname = "SharedTokenCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method
 // [RegisterProbe][ntt.watchdog.v1alpha2.RegisterProbe]

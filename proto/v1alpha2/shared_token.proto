@@ -3,17 +3,12 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
-
 import "google/api/resource.proto";
-
 import "watchdog-sdk/proto/v1alpha2/common.proto";
 
-option java_outer_classname = "SharedTokenProto";
-
-option java_multiple_files = true;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/shared_token;shared_token";
-
+option java_multiple_files = true;
+option java_outer_classname = "SharedTokenProto";
 option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // SharedToken Resource

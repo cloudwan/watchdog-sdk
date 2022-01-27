@@ -3,18 +3,13 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "watchdog-sdk/proto/v1alpha2/common.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "GeoResolverCustomProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver;geo_resolver_client";
+option java_multiple_files = false;
+option java_outer_classname = "GeoResolverCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method [ResolveGeoIP][ntt.watchdog.v1alpha2.ResolveGeoIP]
 message ResolveGeoIPRequest {

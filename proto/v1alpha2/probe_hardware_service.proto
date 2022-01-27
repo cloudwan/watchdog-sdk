@@ -3,36 +3,24 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/iam/proto/v1alpha2/condition.proto";
-
 import "edgelq-sdk/iam/proto/v1alpha2/permission.proto";
-
 import "google/api/annotations.proto";
-
 import "google/api/client.proto";
-
 import "google/protobuf/empty.proto";
-
 import "google/protobuf/field_mask.proto";
-
 import "goten-sdk/runtime/api/view.proto";
-
 import "goten-sdk/runtime/api/watch_type.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe_hardware_custom.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "ProbeHardwareServiceProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware;probe_hardware_client";
+option java_multiple_files = false;
+option java_outer_classname = "ProbeHardwareServiceProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // ProbeHardware service API for Watchdog
 service ProbeHardwareService {
-  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
-
   option (google.api.default_host) = "watchdog.edgelq.com";
+  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // ProbeHardwareGet
   rpc ProbeHardwareGet(ProbeHardwareGetRequest)
