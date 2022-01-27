@@ -4,13 +4,10 @@ package ntt.watchdog.v1alpha2;
 
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "ProbeHardwareCustomProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware;probe_hardware_client";
+option java_multiple_files = false;
+option java_outer_classname = "ProbeHardwareCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method
 // [ProbeHardwareGet][ntt.watchdog.v1alpha2.ProbeHardwareGet]

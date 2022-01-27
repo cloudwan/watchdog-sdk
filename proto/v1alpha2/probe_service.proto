@@ -3,32 +3,20 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/iam/proto/v1alpha2/condition.proto";
-
 import "edgelq-sdk/iam/proto/v1alpha2/permission.proto";
-
 import "google/api/annotations.proto";
-
 import "google/api/client.proto";
-
 import "google/protobuf/empty.proto";
-
 import "google/protobuf/field_mask.proto";
-
 import "goten-sdk/runtime/api/view.proto";
-
 import "goten-sdk/runtime/api/watch_type.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "ProbeServiceProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe;probe_client";
+option java_multiple_files = false;
+option java_outer_classname = "ProbeServiceProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method [GetProbe][ntt.watchdog.v1alpha2.GetProbe]
 message GetProbeRequest {
@@ -366,9 +354,9 @@ message SearchProbesResponse {
 
 // Probe service API for Watchdog
 service ProbeService {
-  option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
+
+  option (google.api.default_host) = "watchdog.edgelq.com";
 
   // GetProbe
   rpc GetProbe(GetProbeRequest) returns (Probe) {

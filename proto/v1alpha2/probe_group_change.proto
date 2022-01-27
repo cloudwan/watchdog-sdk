@@ -3,18 +3,13 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "google/api/resource.proto";
-
 import "google/protobuf/field_mask.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe_group.proto";
 
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group;probe_group";
-
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
+option java_multiple_files = false;
 option java_outer_classname = "ProbeGroupChangeProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // ProbeGroupChange is used by Watch notifications Responses to describe change
 // of single ProbeGroup One of Added, Modified, Removed

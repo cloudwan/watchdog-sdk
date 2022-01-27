@@ -3,18 +3,13 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
-
 import "google/api/resource.proto";
-
 import "google/type/latlng.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "AdminAreaProto";
-
-option java_multiple_files = true;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area;admin_area";
+option java_multiple_files = true;
+option java_outer_classname = "AdminAreaProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 message BBox {
   google.type.LatLng south_west = 1;

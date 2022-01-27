@@ -3,18 +3,13 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "google/api/resource.proto";
-
 import "google/protobuf/field_mask.proto";
-
 import "watchdog-sdk/proto/v1alpha2/shared_token.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "SharedTokenChangeProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/shared_token;shared_token";
+option java_multiple_files = false;
+option java_outer_classname = "SharedTokenChangeProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // SharedTokenChange is used by Watch notifications Responses to describe change
 // of single SharedToken One of Added, Modified, Removed

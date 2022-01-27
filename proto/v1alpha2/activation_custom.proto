@@ -3,18 +3,13 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/iam/proto/v1alpha2/service_account_key.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
-
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "ActivationCustomProto";
-
-option java_multiple_files = false;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation;activation_client";
+option java_multiple_files = false;
+option java_outer_classname = "ActivationCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // Request message for method [Activation][ntt.watchdog.v1alpha2.Activation]
 message ActivationRequest {

@@ -3,16 +3,12 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
-
 import "google/api/resource.proto";
 
-option java_package = "com.ntt.watchdog.pb.v1alpha2";
-
-option java_outer_classname = "ProbeGroupProto";
-
-option java_multiple_files = true;
-
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group;probe_group";
+option java_multiple_files = true;
+option java_outer_classname = "ProbeGroupProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
 
 // ProbeGroup Resource
 message ProbeGroup {
