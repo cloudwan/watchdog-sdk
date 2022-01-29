@@ -366,7 +366,6 @@ message SearchProbingTargetGroupsResponse {
 // ProbingTargetGroup service API for Watchdog
 service ProbingTargetGroupService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // GetProbingTargetGroup

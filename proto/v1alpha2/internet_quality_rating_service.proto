@@ -304,7 +304,6 @@ message DeleteInternetQualityRatingRequest {
 // InternetQualityRating service API for Watchdog
 service InternetQualityRatingService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // GetInternetQualityRating

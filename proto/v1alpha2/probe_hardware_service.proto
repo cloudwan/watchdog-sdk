@@ -20,7 +20,6 @@ option java_package = "com.ntt.watchdog.pb.v1alpha2";
 // ProbeHardware service API for Watchdog
 service ProbeHardwareService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // ProbeHardwareGet

@@ -3,7 +3,7 @@ module github.com/cloudwan/watchdog-sdk
 go 1.16
 
 require (
-	github.com/cloudwan/edgelq-sdk v0.4.10
+	github.com/cloudwan/edgelq-sdk v0.4.11
 	github.com/cloudwan/goten-sdk v0.4.8
 	github.com/golang/protobuf v1.5.2
 	github.com/google/cel-go v0.5.1

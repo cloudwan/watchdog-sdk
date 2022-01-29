@@ -354,9 +354,8 @@ message SearchProbesResponse {
 
 // Probe service API for Watchdog
 service ProbeService {
-  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
-
   option (google.api.default_host) = "watchdog.edgelq.com";
+  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // GetProbe
   rpc GetProbe(GetProbeRequest) returns (Probe) {

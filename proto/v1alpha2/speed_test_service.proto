@@ -22,7 +22,6 @@ option java_package = "com.ntt.watchdog.pb.v1alpha2";
 // SpeedTest service API for Watchdog
 service SpeedTestService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // RunSpeedTest

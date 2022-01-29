@@ -301,7 +301,6 @@ message DeleteQualityProfileRequest {
 // QualityProfile service API for Watchdog
 service QualityProfileService {
   option (google.api.default_host) = "watchdog.edgelq.com";
-
   option (google.api.oauth_scopes) = "https://apis.edgelq.com";
 
   // GetQualityProfile
