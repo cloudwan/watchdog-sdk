@@ -462,6 +462,7 @@ func FullProbe_Spec_FieldMask() *Probe_Spec_FieldMask {
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorActivation})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDisableSpeedtest})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken})
+	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
 	return res
 }
 
@@ -505,7 +506,7 @@ func (fieldMask *Probe_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 9)
+	presentSelectors := make([]bool, 10)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -535,7 +536,7 @@ func (fieldMask *Probe_Spec_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Probe_Spec_FieldMask {
 	result := &Probe_Spec_FieldMask{}
-	removedSelectors := make([]bool, 9)
+	removedSelectors := make([]bool, 10)
 	otherSubMasks := map[ProbeSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		ProbeSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
@@ -795,6 +796,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 			case ProbeSpec_FieldPathSelectorAccessToken:
 				result.AccessToken = source.AccessToken
 				wholeAccessTokenAccepted = true
+			case ProbeSpec_FieldPathSelectorAgentType:
+				result.AgentType = source.AgentType
 			}
 		case *ProbeSpec_FieldSubPath:
 			switch tp.selector {
@@ -859,6 +862,7 @@ func FullProbe_Status_FieldMask() *Probe_Status_FieldMask {
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorConnectionStatusChangeTime})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorBandwidth})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorNetworkInterfaces})
+	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType})
 	return res
 }
 
@@ -902,7 +906,7 @@ func (fieldMask *Probe_Status_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 13)
+	presentSelectors := make([]bool, 14)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatus_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -932,7 +936,7 @@ func (fieldMask *Probe_Status_FieldMask) Reset() {
 
 func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask) *Probe_Status_FieldMask {
 	result := &Probe_Status_FieldMask{}
-	removedSelectors := make([]bool, 13)
+	removedSelectors := make([]bool, 14)
 	otherSubMasks := map[ProbeStatus_FieldPathSelector]gotenobject.FieldMask{
 		ProbeStatus_FieldPathSelectorAsInfo:          &common.ASInfo_FieldMask{},
 		ProbeStatus_FieldPathSelectorCarrier:         &common.Carrier_FieldMask{},
@@ -1186,6 +1190,8 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 			case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 				result.NetworkInterfaces = source.NetworkInterfaces
 				wholeNetworkInterfacesAccepted = true
+			case ProbeStatus_FieldPathSelectorAgentType:
+				result.AgentType = source.AgentType
 			}
 		case *ProbeStatus_FieldSubPath:
 			switch tp.selector {

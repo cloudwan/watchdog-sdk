@@ -2060,6 +2060,10 @@ func (b *filterCndBuilderSpec) AccessToken() *filterCndBuilderSpecAccessToken {
 	return &filterCndBuilderSpecAccessToken{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpec) AgentType() *filterCndBuilderSpecAgentType {
+	return &filterCndBuilderSpecAgentType{builder: b.builder}
+}
+
 type filterCndBuilderSpecProbeGroup struct {
 	builder *FilterBuilder
 }
@@ -4704,6 +4708,65 @@ func (b *filterCndBuilderSpecAccessTokenAccessToken) compare(op gotenfilter.Comp
 	})
 }
 
+type filterCndBuilderSpecAgentType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecAgentType) Eq(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) Neq(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) Gt(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) Gte(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) Lt(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) Lte(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecAgentType) In(values []Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecAgentType) NotIn(values []Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecAgentType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecAgentType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecAgentType) compare(op gotenfilter.CompareOperator, value Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().AgentType().WithValue(value),
+	})
+}
+
 type filterCndBuilderStatus struct {
 	builder *FilterBuilder
 }
@@ -4813,6 +4876,10 @@ func (b *filterCndBuilderStatus) Bandwidth() *filterCndBuilderStatusBandwidth {
 
 func (b *filterCndBuilderStatus) NetworkInterfaces() *filterCndBuilderStatusNetworkInterfaces {
 	return &filterCndBuilderStatusNetworkInterfaces{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatus) AgentType() *filterCndBuilderStatusAgentType {
+	return &filterCndBuilderStatusAgentType{builder: b.builder}
 }
 
 type filterCndBuilderStatusExternalIpAddressV4 struct {
@@ -9268,6 +9335,65 @@ func (b *mapFilterCndBuilderStatusNetworkInterfaces) compare(op gotenfilter.Comp
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().NetworkInterfaces().WithKey(b.key).WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusAgentType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusAgentType) Eq(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) Neq(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) Gt(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) Gte(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) Lt(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) Lte(value Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusAgentType) In(values []Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusAgentType) NotIn(values []Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusAgentType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusAgentType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusAgentType) compare(op gotenfilter.CompareOperator, value Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().AgentType().WithValue(value),
 	})
 }
 

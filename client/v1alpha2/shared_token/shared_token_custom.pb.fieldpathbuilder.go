@@ -211,6 +211,10 @@ func (RegisterProbeRequestPathSelectorStatus) NetworkInterfaces() RegisterProbeR
 	return RegisterProbeRequestPathSelectorStatusNetworkInterfaces{}
 }
 
+func (RegisterProbeRequestPathSelectorStatus) AgentType() RegisterProbeRequestPathSelectorStatusAgentType {
+	return RegisterProbeRequestPathSelectorStatusAgentType{}
+}
+
 type RegisterProbeRequestPathSelectorStatusExternalIpAddressV4 struct{}
 
 func (RegisterProbeRequestPathSelectorStatusExternalIpAddressV4) FieldPath() *RegisterProbeRequest_FieldSubPath {
@@ -1653,6 +1657,23 @@ func (s RegisterProbeRequestMapPathSelectorStatusNetworkInterfaces) WithValue(va
 }
 
 func (s RegisterProbeRequestMapPathSelectorStatusNetworkInterfaces) WithArrayOfValues(values []*probe.Probe_Status_NetworkInterface) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusAgentType struct{}
+
+func (RegisterProbeRequestPathSelectorStatusAgentType) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().AgentType().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusAgentType) WithValue(value probe.Probe_AgentType) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *RegisterProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
 }
 

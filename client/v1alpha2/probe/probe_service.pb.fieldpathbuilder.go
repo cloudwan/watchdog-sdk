@@ -877,6 +877,10 @@ func (BatchGetProbesResponsePathSelectorProbesSpec) AccessToken() BatchGetProbes
 	return BatchGetProbesResponsePathSelectorProbesSpecAccessToken{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesSpec) AgentType() BatchGetProbesResponsePathSelectorProbesSpecAgentType {
+	return BatchGetProbesResponsePathSelectorProbesSpecAgentType{}
+}
+
 type BatchGetProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -1727,6 +1731,23 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecAccessTokenAccessToken) With
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbesResponsePathSelectorProbesSpecAgentType struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecAgentType) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecAgentType) WithValue(value probe.Probe_AgentType) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
 type BatchGetProbesResponsePathSelectorProbesStatus struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesStatus) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -1794,6 +1815,10 @@ func (BatchGetProbesResponsePathSelectorProbesStatus) Bandwidth() BatchGetProbes
 
 func (BatchGetProbesResponsePathSelectorProbesStatus) NetworkInterfaces() BatchGetProbesResponsePathSelectorProbesStatusNetworkInterfaces {
 	return BatchGetProbesResponsePathSelectorProbesStatusNetworkInterfaces{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatus) AgentType() BatchGetProbesResponsePathSelectorProbesStatusAgentType {
+	return BatchGetProbesResponsePathSelectorProbesStatusAgentType{}
 }
 
 type BatchGetProbesResponsePathSelectorProbesStatusExternalIpAddressV4 struct{}
@@ -3241,6 +3266,23 @@ func (s BatchGetProbesResponseMapPathSelectorProbesStatusNetworkInterfaces) With
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbesResponsePathSelectorProbesStatusAgentType struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusAgentType) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusAgentType) WithValue(value probe.Probe_AgentType) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
 type BatchGetProbesResponsePathSelectorProbesMemo struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesMemo) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -4166,6 +4208,10 @@ func (ListProbesResponsePathSelectorProbesSpec) AccessToken() ListProbesResponse
 	return ListProbesResponsePathSelectorProbesSpecAccessToken{}
 }
 
+func (ListProbesResponsePathSelectorProbesSpec) AgentType() ListProbesResponsePathSelectorProbesSpecAgentType {
+	return ListProbesResponsePathSelectorProbesSpecAgentType{}
+}
+
 type ListProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (ListProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -5016,6 +5062,23 @@ func (s ListProbesResponsePathSelectorProbesSpecAccessTokenAccessToken) WithArra
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbesResponsePathSelectorProbesSpecAgentType struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecAgentType) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecAgentType) WithValue(value probe.Probe_AgentType) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
 type ListProbesResponsePathSelectorProbesStatus struct{}
 
 func (ListProbesResponsePathSelectorProbesStatus) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -5083,6 +5146,10 @@ func (ListProbesResponsePathSelectorProbesStatus) Bandwidth() ListProbesResponse
 
 func (ListProbesResponsePathSelectorProbesStatus) NetworkInterfaces() ListProbesResponsePathSelectorProbesStatusNetworkInterfaces {
 	return ListProbesResponsePathSelectorProbesStatusNetworkInterfaces{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatus) AgentType() ListProbesResponsePathSelectorProbesStatusAgentType {
+	return ListProbesResponsePathSelectorProbesStatusAgentType{}
 }
 
 type ListProbesResponsePathSelectorProbesStatusExternalIpAddressV4 struct{}
@@ -6530,6 +6597,23 @@ func (s ListProbesResponseMapPathSelectorProbesStatusNetworkInterfaces) WithArra
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbesResponsePathSelectorProbesStatusAgentType struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusAgentType) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusAgentType) WithValue(value probe.Probe_AgentType) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
 type ListProbesResponsePathSelectorProbesMemo struct{}
 
 func (ListProbesResponsePathSelectorProbesMemo) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -7831,6 +7915,10 @@ func (CreateProbeRequestPathSelectorProbeSpec) AccessToken() CreateProbeRequestP
 	return CreateProbeRequestPathSelectorProbeSpecAccessToken{}
 }
 
+func (CreateProbeRequestPathSelectorProbeSpec) AgentType() CreateProbeRequestPathSelectorProbeSpecAgentType {
+	return CreateProbeRequestPathSelectorProbeSpecAgentType{}
+}
+
 type CreateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
 
 func (CreateProbeRequestPathSelectorProbeSpecProbeGroup) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -8681,6 +8769,23 @@ func (s CreateProbeRequestPathSelectorProbeSpecAccessTokenAccessToken) WithArray
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbeRequestPathSelectorProbeSpecAgentType struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecAgentType) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type CreateProbeRequestPathSelectorProbeStatus struct{}
 
 func (CreateProbeRequestPathSelectorProbeStatus) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -8748,6 +8853,10 @@ func (CreateProbeRequestPathSelectorProbeStatus) Bandwidth() CreateProbeRequestP
 
 func (CreateProbeRequestPathSelectorProbeStatus) NetworkInterfaces() CreateProbeRequestPathSelectorProbeStatusNetworkInterfaces {
 	return CreateProbeRequestPathSelectorProbeStatusNetworkInterfaces{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatus) AgentType() CreateProbeRequestPathSelectorProbeStatusAgentType {
+	return CreateProbeRequestPathSelectorProbeStatusAgentType{}
 }
 
 type CreateProbeRequestPathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -10195,6 +10304,23 @@ func (s CreateProbeRequestMapPathSelectorProbeStatusNetworkInterfaces) WithArray
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbeRequestPathSelectorProbeStatusAgentType struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusAgentType) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type CreateProbeRequestPathSelectorProbeMemo struct{}
 
 func (CreateProbeRequestPathSelectorProbeMemo) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -10972,6 +11098,10 @@ func (UpdateProbeRequestPathSelectorProbeSpec) DisableSpeedtest() UpdateProbeReq
 
 func (UpdateProbeRequestPathSelectorProbeSpec) AccessToken() UpdateProbeRequestPathSelectorProbeSpecAccessToken {
 	return UpdateProbeRequestPathSelectorProbeSpecAccessToken{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpec) AgentType() UpdateProbeRequestPathSelectorProbeSpecAgentType {
+	return UpdateProbeRequestPathSelectorProbeSpecAgentType{}
 }
 
 type UpdateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
@@ -11824,6 +11954,23 @@ func (s UpdateProbeRequestPathSelectorProbeSpecAccessTokenAccessToken) WithArray
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequestPathSelectorProbeSpecAgentType struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecAgentType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequestPathSelectorProbeStatus struct{}
 
 func (UpdateProbeRequestPathSelectorProbeStatus) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -11891,6 +12038,10 @@ func (UpdateProbeRequestPathSelectorProbeStatus) Bandwidth() UpdateProbeRequestP
 
 func (UpdateProbeRequestPathSelectorProbeStatus) NetworkInterfaces() UpdateProbeRequestPathSelectorProbeStatusNetworkInterfaces {
 	return UpdateProbeRequestPathSelectorProbeStatusNetworkInterfaces{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatus) AgentType() UpdateProbeRequestPathSelectorProbeStatusAgentType {
+	return UpdateProbeRequestPathSelectorProbeStatusAgentType{}
 }
 
 type UpdateProbeRequestPathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -13338,6 +13489,23 @@ func (s UpdateProbeRequestMapPathSelectorProbeStatusNetworkInterfaces) WithArray
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequestPathSelectorProbeStatusAgentType struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusAgentType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequestPathSelectorProbeMemo struct{}
 
 func (UpdateProbeRequestPathSelectorProbeMemo) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -14139,6 +14307,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) DisableSpeedtest() 
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) AccessToken() UpdateProbeRequestPathSelectorCasConditionalStateSpecAccessToken {
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecAccessToken{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) AgentType() UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType{}
 }
 
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup struct{}
@@ -14991,6 +15163,23 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecAccessTokenAccessTo
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequestPathSelectorCasConditionalStateStatus struct{}
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -15058,6 +15247,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) Bandwidth() Updat
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) NetworkInterfaces() UpdateProbeRequestPathSelectorCasConditionalStateStatusNetworkInterfaces {
 	return UpdateProbeRequestPathSelectorCasConditionalStateStatusNetworkInterfaces{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) AgentType() UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType{}
 }
 
 type UpdateProbeRequestPathSelectorCasConditionalStateStatusExternalIpAddressV4 struct{}
@@ -16505,6 +16698,23 @@ func (s UpdateProbeRequestMapPathSelectorCasConditionalStateStatusNetworkInterfa
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequestPathSelectorCasConditionalStateMemo struct{}
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateMemo) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -17296,6 +17506,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) DisableSpeedtest()
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) AccessToken() UpdateProbeRequest_CASPathSelectorConditionalStateSpecAccessToken {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecAccessToken{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) AgentType() UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType{}
 }
 
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup struct{}
@@ -18148,6 +18362,23 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecAccessTokenAccessT
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequest_CASPathSelectorConditionalStateStatus struct{}
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
@@ -18215,6 +18446,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) Bandwidth() Upda
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) NetworkInterfaces() UpdateProbeRequest_CASPathSelectorConditionalStateStatusNetworkInterfaces {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusNetworkInterfaces{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) AgentType() UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType{}
 }
 
 type UpdateProbeRequest_CASPathSelectorConditionalStateStatusExternalIpAddressV4 struct{}
@@ -19662,6 +19897,23 @@ func (s UpdateProbeRequest_CASMapPathSelectorConditionalStateStatusNetworkInterf
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType) WithValue(value probe.Probe_AgentType) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbeRequest_CASPathSelectorConditionalStateMemo struct{}
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateMemo) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
@@ -20629,6 +20881,10 @@ func (SearchProbesResponsePathSelectorProbesSpec) AccessToken() SearchProbesResp
 	return SearchProbesResponsePathSelectorProbesSpecAccessToken{}
 }
 
+func (SearchProbesResponsePathSelectorProbesSpec) AgentType() SearchProbesResponsePathSelectorProbesSpecAgentType {
+	return SearchProbesResponsePathSelectorProbesSpecAgentType{}
+}
+
 type SearchProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (SearchProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *SearchProbesResponse_FieldSubPath {
@@ -21479,6 +21735,23 @@ func (s SearchProbesResponsePathSelectorProbesSpecAccessTokenAccessToken) WithAr
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 
+type SearchProbesResponsePathSelectorProbesSpecAgentType struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecAgentType) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecAgentType) WithValue(value probe.Probe_AgentType) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
 type SearchProbesResponsePathSelectorProbesStatus struct{}
 
 func (SearchProbesResponsePathSelectorProbesStatus) FieldPath() *SearchProbesResponse_FieldSubPath {
@@ -21546,6 +21819,10 @@ func (SearchProbesResponsePathSelectorProbesStatus) Bandwidth() SearchProbesResp
 
 func (SearchProbesResponsePathSelectorProbesStatus) NetworkInterfaces() SearchProbesResponsePathSelectorProbesStatusNetworkInterfaces {
 	return SearchProbesResponsePathSelectorProbesStatusNetworkInterfaces{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatus) AgentType() SearchProbesResponsePathSelectorProbesStatusAgentType {
+	return SearchProbesResponsePathSelectorProbesStatusAgentType{}
 }
 
 type SearchProbesResponsePathSelectorProbesStatusExternalIpAddressV4 struct{}
@@ -22990,6 +23267,23 @@ func (s SearchProbesResponseMapPathSelectorProbesStatusNetworkInterfaces) WithVa
 }
 
 func (s SearchProbesResponseMapPathSelectorProbesStatusNetworkInterfaces) WithArrayOfValues(values []*probe.Probe_Status_NetworkInterface) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusAgentType struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusAgentType) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusAgentType) WithValue(value probe.Probe_AgentType) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

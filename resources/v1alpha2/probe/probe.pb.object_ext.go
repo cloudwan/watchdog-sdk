@@ -295,6 +295,9 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 			}
 		}
 	}
+	if o.GetAgentType() != other.GetAgentType() {
+		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
+	}
 	return res
 }
 
@@ -334,6 +337,7 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 	result.Activation = o.Activation.Clone()
 	result.DisableSpeedtest = o.DisableSpeedtest
 	result.AccessToken = o.AccessToken.Clone()
+	result.AgentType = o.AgentType
 	return result
 }
 
@@ -398,6 +402,7 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 		}
 		o.AccessToken.Merge(source.GetAccessToken())
 	}
+	o.AgentType = source.GetAgentType()
 }
 
 func (o *Probe_Spec) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -520,6 +525,9 @@ func (o *Probe_Status) MakeDiffFieldMask(other *Probe_Status) *Probe_Status_Fiel
 	} else {
 		res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorNetworkInterfaces})
 	}
+	if o.GetAgentType() != other.GetAgentType() {
+		res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType})
+	}
 	return res
 }
 
@@ -548,6 +556,7 @@ func (o *Probe_Status) Clone() *Probe_Status {
 	for key, sourceValue := range o.NetworkInterfaces {
 		result.NetworkInterfaces[key] = sourceValue.Clone()
 	}
+	result.AgentType = o.AgentType
 	return result
 }
 
@@ -621,6 +630,7 @@ func (o *Probe_Status) Merge(source *Probe_Status) {
 			}
 		}
 	}
+	o.AgentType = source.GetAgentType()
 }
 
 func (o *Probe_Status) MergeRaw(source gotenobject.GotenObjectExt) {

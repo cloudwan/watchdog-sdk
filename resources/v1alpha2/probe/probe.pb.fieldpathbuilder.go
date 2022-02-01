@@ -705,6 +705,10 @@ func (ProbePathSelectorSpec) AccessToken() ProbePathSelectorSpecAccessToken {
 	return ProbePathSelectorSpecAccessToken{}
 }
 
+func (ProbePathSelectorSpec) AgentType() ProbePathSelectorSpecAgentType {
+	return ProbePathSelectorSpecAgentType{}
+}
+
 type ProbePathSelectorSpecProbeGroup struct{}
 
 func (ProbePathSelectorSpecProbeGroup) FieldPath() *Probe_FieldSubPath {
@@ -1555,6 +1559,23 @@ func (s ProbePathSelectorSpecAccessTokenAccessToken) WithArrayOfValues(values []
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
+type ProbePathSelectorSpecAgentType struct{}
+
+func (ProbePathSelectorSpecAgentType) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorSpec,
+		subPath:  NewProbeSpecFieldPathBuilder().AgentType().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorSpecAgentType) WithValue(value Probe_AgentType) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorSpecAgentType) WithArrayOfValues(values []Probe_AgentType) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
 type ProbePathSelectorStatus struct{}
 
 func (ProbePathSelectorStatus) FieldPath() *Probe_FieldTerminalPath {
@@ -1635,6 +1656,10 @@ func (ProbePathSelectorStatus) Bandwidth() ProbePathSelectorStatusBandwidth {
 
 func (ProbePathSelectorStatus) NetworkInterfaces() ProbePathSelectorStatusNetworkInterfaces {
 	return ProbePathSelectorStatusNetworkInterfaces{}
+}
+
+func (ProbePathSelectorStatus) AgentType() ProbePathSelectorStatusAgentType {
+	return ProbePathSelectorStatusAgentType{}
 }
 
 type ProbePathSelectorStatusExternalIpAddressV4 struct{}
@@ -3082,6 +3107,23 @@ func (s ProbeMapPathSelectorStatusNetworkInterfaces) WithArrayOfValues(values []
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
+type ProbePathSelectorStatusAgentType struct{}
+
+func (ProbePathSelectorStatusAgentType) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().AgentType().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusAgentType) WithValue(value Probe_AgentType) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusAgentType) WithArrayOfValues(values []Probe_AgentType) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
 type ProbePathSelectorMemo struct{}
 
 func (ProbePathSelectorMemo) FieldPath() *Probe_FieldTerminalPath {
@@ -3230,6 +3272,9 @@ func (ProbeSpecFieldPathBuilder) DisableSpeedtest() Probe_SpecPathSelectorDisabl
 }
 func (ProbeSpecFieldPathBuilder) AccessToken() Probe_SpecPathSelectorAccessToken {
 	return Probe_SpecPathSelectorAccessToken{}
+}
+func (ProbeSpecFieldPathBuilder) AgentType() Probe_SpecPathSelectorAgentType {
+	return Probe_SpecPathSelectorAgentType{}
 }
 
 type Probe_SpecPathSelectorProbeGroup struct{}
@@ -4135,6 +4180,20 @@ func (s Probe_SpecPathSelectorAccessTokenAccessToken) WithArrayOfValues(values [
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldSubPathArrayOfValues)
 }
 
+type Probe_SpecPathSelectorAgentType struct{}
+
+func (Probe_SpecPathSelectorAgentType) FieldPath() *ProbeSpec_FieldTerminalPath {
+	return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType}
+}
+
+func (s Probe_SpecPathSelectorAgentType) WithValue(value Probe_AgentType) *ProbeSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldTerminalPathValue)
+}
+
+func (s Probe_SpecPathSelectorAgentType) WithArrayOfValues(values []Probe_AgentType) *ProbeSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
+}
+
 type ProbeStatusFieldPathBuilder struct{}
 
 func NewProbeStatusFieldPathBuilder() ProbeStatusFieldPathBuilder {
@@ -4178,6 +4237,9 @@ func (ProbeStatusFieldPathBuilder) Bandwidth() Probe_StatusPathSelectorBandwidth
 }
 func (ProbeStatusFieldPathBuilder) NetworkInterfaces() Probe_StatusPathSelectorNetworkInterfaces {
 	return Probe_StatusPathSelectorNetworkInterfaces{}
+}
+func (ProbeStatusFieldPathBuilder) AgentType() Probe_StatusPathSelectorAgentType {
+	return Probe_StatusPathSelectorAgentType{}
 }
 
 type Probe_StatusPathSelectorExternalIpAddressV4 struct{}
@@ -5693,6 +5755,20 @@ func (s Probe_StatusMapPathSelectorNetworkInterfaces) WithValue(value *Probe_Sta
 
 func (s Probe_StatusMapPathSelectorNetworkInterfaces) WithArrayOfValues(values []*Probe_Status_NetworkInterface) *ProbeStatus_FieldPathMapArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldPathMapArrayOfValues)
+}
+
+type Probe_StatusPathSelectorAgentType struct{}
+
+func (Probe_StatusPathSelectorAgentType) FieldPath() *ProbeStatus_FieldTerminalPath {
+	return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType}
+}
+
+func (s Probe_StatusPathSelectorAgentType) WithValue(value Probe_AgentType) *ProbeStatus_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldTerminalPathValue)
+}
+
+func (s Probe_StatusPathSelectorAgentType) WithArrayOfValues(values []Probe_AgentType) *ProbeStatus_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldTerminalPathArrayOfValues)
 }
 
 type ProbeSpecActivationSpecFieldPathBuilder struct{}

@@ -1024,6 +1024,7 @@ const (
 	ProbeSpec_FieldPathSelectorActivation        ProbeSpec_FieldPathSelector = 6
 	ProbeSpec_FieldPathSelectorDisableSpeedtest  ProbeSpec_FieldPathSelector = 7
 	ProbeSpec_FieldPathSelectorAccessToken       ProbeSpec_FieldPathSelector = 8
+	ProbeSpec_FieldPathSelectorAgentType         ProbeSpec_FieldPathSelector = 9
 )
 
 func (s ProbeSpec_FieldPathSelector) String() string {
@@ -1046,6 +1047,8 @@ func (s ProbeSpec_FieldPathSelector) String() string {
 		return "disable_speedtest"
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return "access_token"
+	case ProbeSpec_FieldPathSelectorAgentType:
+		return "agent_type"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", s))
 	}
@@ -1075,6 +1078,8 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDisableSpeedtest}, nil
 		case "access_token", "accessToken", "access-token":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken}, nil
+		case "agent_type", "agentType", "agent-type":
+			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1185,6 +1190,8 @@ func (fp *ProbeSpec_FieldTerminalPath) Get(source *Probe_Spec) (values []interfa
 			if source.AccessToken != nil {
 				values = append(values, source.AccessToken)
 			}
+		case ProbeSpec_FieldPathSelectorAgentType:
+			values = append(values, source.AgentType)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1224,6 +1231,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetSingle(source *Probe_Spec) (interface{
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		res := source.GetAccessToken()
 		return res, res != nil
+	case ProbeSpec_FieldPathSelectorAgentType:
+		return source.GetAgentType(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1254,6 +1263,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetDefault() interface{} {
 		return false
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return (*Probe_Spec_AccessTokenSpec)(nil)
+	case ProbeSpec_FieldPathSelectorAgentType:
+		return Probe_UNKNOWN
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1280,6 +1291,8 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValue(item *Probe_Spec) {
 			item.DisableSpeedtest = false
 		case ProbeSpec_FieldPathSelectorAccessToken:
 			item.AccessToken = nil
+		case ProbeSpec_FieldPathSelectorAgentType:
+			item.AgentType = Probe_UNKNOWN
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1295,7 +1308,8 @@ func (fp *ProbeSpec_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpec_FieldPathSelectorProbeGroup ||
 		fp.selector == ProbeSpec_FieldPathSelectorDevice ||
 		fp.selector == ProbeSpec_FieldPathSelectorEnabled ||
-		fp.selector == ProbeSpec_FieldPathSelectorDisableSpeedtest
+		fp.selector == ProbeSpec_FieldPathSelectorDisableSpeedtest ||
+		fp.selector == ProbeSpec_FieldPathSelectorAgentType
 }
 
 func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_FieldPathValue {
@@ -1318,6 +1332,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_F
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(bool)}
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*Probe_Spec_AccessTokenSpec)}
+	case ProbeSpec_FieldPathSelectorAgentType:
+		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(Probe_AgentType)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1348,6 +1364,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIArrayOfValues(values interface{}) Pr
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]bool)}
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_AccessTokenSpec)}
+	case ProbeSpec_FieldPathSelectorAgentType:
+		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]Probe_AgentType)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1601,6 +1619,10 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) AsAccessTokenValue() (*Probe_Spec_A
 	res, ok := fpv.value.(*Probe_Spec_AccessTokenSpec)
 	return res, ok
 }
+func (fpv *ProbeSpec_FieldTerminalPathValue) AsAgentTypeValue() (Probe_AgentType, bool) {
+	res, ok := fpv.value.(Probe_AgentType)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
@@ -1626,6 +1648,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
 		(*target).DisableSpeedtest = fpv.value.(bool)
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		(*target).AccessToken = fpv.value.(*Probe_Spec_AccessTokenSpec)
+	case ProbeSpec_FieldPathSelectorAgentType:
+		(*target).AgentType = fpv.value.(Probe_AgentType)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1707,6 +1731,16 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) CompareWith(source *Probe_Spec) (in
 		}
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return 0, false
+	case ProbeSpec_FieldPathSelectorAgentType:
+		leftValue := fpv.value.(Probe_AgentType)
+		rightValue := source.GetAgentType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1973,6 +2007,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 		for _, v := range fpaov.values.([]*Probe_Spec_AccessTokenSpec) {
 			values = append(values, v)
 		}
+	case ProbeSpec_FieldPathSelectorAgentType:
+		for _, v := range fpaov.values.([]Probe_AgentType) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2010,6 +2048,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsDisableSpeedtestArrayOf
 }
 func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsAccessTokenArrayOfValues() ([]*Probe_Spec_AccessTokenSpec, bool) {
 	res, ok := fpaov.values.([]*Probe_Spec_AccessTokenSpec)
+	return res, ok
+}
+func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsAgentTypeArrayOfValues() ([]Probe_AgentType, bool) {
+	res, ok := fpaov.values.([]Probe_AgentType)
 	return res, ok
 }
 
@@ -2076,6 +2118,7 @@ const (
 	ProbeStatus_FieldPathSelectorConnectionStatusChangeTime ProbeStatus_FieldPathSelector = 10
 	ProbeStatus_FieldPathSelectorBandwidth                  ProbeStatus_FieldPathSelector = 11
 	ProbeStatus_FieldPathSelectorNetworkInterfaces          ProbeStatus_FieldPathSelector = 12
+	ProbeStatus_FieldPathSelectorAgentType                  ProbeStatus_FieldPathSelector = 13
 )
 
 func (s ProbeStatus_FieldPathSelector) String() string {
@@ -2106,6 +2149,8 @@ func (s ProbeStatus_FieldPathSelector) String() string {
 		return "bandwidth"
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		return "network_interfaces"
+	case ProbeStatus_FieldPathSelectorAgentType:
+		return "agent_type"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", s))
 	}
@@ -2143,6 +2188,8 @@ func BuildProbeStatus_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatus_FieldP
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorBandwidth}, nil
 		case "network_interfaces", "networkInterfaces", "network-interfaces":
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorNetworkInterfaces}, nil
+		case "agent_type", "agentType", "agent-type":
+			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2282,6 +2329,8 @@ func (fp *ProbeStatus_FieldTerminalPath) Get(source *Probe_Status) (values []int
 			if source.NetworkInterfaces != nil {
 				values = append(values, source.NetworkInterfaces)
 			}
+		case ProbeStatus_FieldPathSelectorAgentType:
+			values = append(values, source.AgentType)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 		}
@@ -2331,6 +2380,8 @@ func (fp *ProbeStatus_FieldTerminalPath) GetSingle(source *Probe_Status) (interf
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		res := source.GetNetworkInterfaces()
 		return res, res != nil
+	case ProbeStatus_FieldPathSelectorAgentType:
+		return source.GetAgentType(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2369,6 +2420,8 @@ func (fp *ProbeStatus_FieldTerminalPath) GetDefault() interface{} {
 		return (*Probe_Status_Bandwidth)(nil)
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		return (map[string]*Probe_Status_NetworkInterface)(nil)
+	case ProbeStatus_FieldPathSelectorAgentType:
+		return Probe_UNKNOWN
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2403,6 +2456,8 @@ func (fp *ProbeStatus_FieldTerminalPath) ClearValue(item *Probe_Status) {
 			item.Bandwidth = nil
 		case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 			item.NetworkInterfaces = nil
+		case ProbeStatus_FieldPathSelectorAgentType:
+			item.AgentType = Probe_UNKNOWN
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 		}
@@ -2419,7 +2474,8 @@ func (fp *ProbeStatus_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatus_FieldPathSelectorExternalIpAddressV6 ||
 		fp.selector == ProbeStatus_FieldPathSelectorExternalHostname ||
 		fp.selector == ProbeStatus_FieldPathSelectorConnection ||
-		fp.selector == ProbeStatus_FieldPathSelectorConnectionStatusChangeTime
+		fp.selector == ProbeStatus_FieldPathSelectorConnectionStatusChangeTime ||
+		fp.selector == ProbeStatus_FieldPathSelectorAgentType
 }
 
 func (fp *ProbeStatus_FieldTerminalPath) WithIValue(value interface{}) ProbeStatus_FieldPathValue {
@@ -2450,6 +2506,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIValue(value interface{}) ProbeStat
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*Probe_Status_Bandwidth)}
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(map[string]*Probe_Status_NetworkInterface)}
+	case ProbeStatus_FieldPathSelectorAgentType:
+		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(Probe_AgentType)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2488,6 +2546,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIArrayOfValues(values interface{}) 
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*Probe_Status_Bandwidth)}
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]map[string]*Probe_Status_NetworkInterface)}
+	case ProbeStatus_FieldPathSelectorAgentType:
+		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]Probe_AgentType)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2911,6 +2971,10 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) AsNetworkInterfacesValue() (map[s
 	res, ok := fpv.value.(map[string]*Probe_Status_NetworkInterface)
 	return res, ok
 }
+func (fpv *ProbeStatus_FieldTerminalPathValue) AsAgentTypeValue() (Probe_AgentType, bool) {
+	res, ok := fpv.value.(Probe_AgentType)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Status
 func (fpv *ProbeStatus_FieldTerminalPathValue) SetTo(target **Probe_Status) {
@@ -2944,6 +3008,8 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) SetTo(target **Probe_Status) {
 		(*target).Bandwidth = fpv.value.(*Probe_Status_Bandwidth)
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		(*target).NetworkInterfaces = fpv.value.(map[string]*Probe_Status_NetworkInterface)
+	case ProbeStatus_FieldPathSelectorAgentType:
+		(*target).AgentType = fpv.value.(Probe_AgentType)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpv.selector))
 	}
@@ -3032,6 +3098,16 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) CompareWith(source *Probe_Status)
 		return 0, false
 	case ProbeStatus_FieldPathSelectorNetworkInterfaces:
 		return 0, false
+	case ProbeStatus_FieldPathSelectorAgentType:
+		leftValue := fpv.value.(Probe_AgentType)
+		rightValue := source.GetAgentType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpv.selector))
 	}
@@ -3393,6 +3469,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) GetRawValues() (values 
 		for _, v := range fpaov.values.([]map[string]*Probe_Status_NetworkInterface) {
 			values = append(values, v)
 		}
+	case ProbeStatus_FieldPathSelectorAgentType:
+		for _, v := range fpaov.values.([]Probe_AgentType) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -3446,6 +3526,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsBandwidthArrayOfValue
 }
 func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsNetworkInterfacesArrayOfValues() ([]map[string]*Probe_Status_NetworkInterface, bool) {
 	res, ok := fpaov.values.([]map[string]*Probe_Status_NetworkInterface)
+	return res, ok
+}
+func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsAgentTypeArrayOfValues() ([]Probe_AgentType, bool) {
+	res, ok := fpaov.values.([]Probe_AgentType)
 	return res, ok
 }
 

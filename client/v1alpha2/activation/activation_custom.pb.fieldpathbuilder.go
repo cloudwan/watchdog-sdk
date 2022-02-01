@@ -802,6 +802,10 @@ func (ActivationRequestPathSelectorActivateProbeSpec) AccessToken() ActivationRe
 	return ActivationRequestPathSelectorActivateProbeSpecAccessToken{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpec) AgentType() ActivationRequestPathSelectorActivateProbeSpecAgentType {
+	return ActivationRequestPathSelectorActivateProbeSpecAgentType{}
+}
+
 type ActivationRequestPathSelectorActivateProbeSpecProbeGroup struct{}
 
 func (ActivationRequestPathSelectorActivateProbeSpecProbeGroup) FieldPath() *ActivationRequest_FieldSubPath {
@@ -1652,6 +1656,23 @@ func (s ActivationRequestPathSelectorActivateProbeSpecAccessTokenAccessToken) Wi
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
+type ActivationRequestPathSelectorActivateProbeSpecAgentType struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecAgentType) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
 type ActivationRequestPathSelectorActivateProbeStatus struct{}
 
 func (ActivationRequestPathSelectorActivateProbeStatus) FieldPath() *ActivationRequest_FieldSubPath {
@@ -1719,6 +1740,10 @@ func (ActivationRequestPathSelectorActivateProbeStatus) Bandwidth() ActivationRe
 
 func (ActivationRequestPathSelectorActivateProbeStatus) NetworkInterfaces() ActivationRequestPathSelectorActivateProbeStatusNetworkInterfaces {
 	return ActivationRequestPathSelectorActivateProbeStatusNetworkInterfaces{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatus) AgentType() ActivationRequestPathSelectorActivateProbeStatusAgentType {
+	return ActivationRequestPathSelectorActivateProbeStatusAgentType{}
 }
 
 type ActivationRequestPathSelectorActivateProbeStatusExternalIpAddressV4 struct{}
@@ -3166,6 +3191,23 @@ func (s ActivationRequestMapPathSelectorActivateProbeStatusNetworkInterfaces) Wi
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
+type ActivationRequestPathSelectorActivateProbeStatusAgentType struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusAgentType) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
 type ActivationRequestPathSelectorActivateProbeMemo struct{}
 
 func (ActivationRequestPathSelectorActivateProbeMemo) FieldPath() *ActivationRequest_FieldSubPath {
@@ -4067,6 +4109,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpec) AccessToken() ActivationR
 	return ActivationRequest_ActivatePathSelectorProbeSpecAccessToken{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpec) AgentType() ActivationRequest_ActivatePathSelectorProbeSpecAgentType {
+	return ActivationRequest_ActivatePathSelectorProbeSpecAgentType{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -4917,6 +4963,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecAccessTokenAccessToken) W
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
+type ActivationRequest_ActivatePathSelectorProbeSpecAgentType struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecAgentType) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
 type ActivationRequest_ActivatePathSelectorProbeStatus struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeStatus) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -4984,6 +5047,10 @@ func (ActivationRequest_ActivatePathSelectorProbeStatus) Bandwidth() ActivationR
 
 func (ActivationRequest_ActivatePathSelectorProbeStatus) NetworkInterfaces() ActivationRequest_ActivatePathSelectorProbeStatusNetworkInterfaces {
 	return ActivationRequest_ActivatePathSelectorProbeStatusNetworkInterfaces{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatus) AgentType() ActivationRequest_ActivatePathSelectorProbeStatusAgentType {
+	return ActivationRequest_ActivatePathSelectorProbeStatusAgentType{}
 }
 
 type ActivationRequest_ActivatePathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -6431,6 +6498,23 @@ func (s ActivationRequest_ActivateMapPathSelectorProbeStatusNetworkInterfaces) W
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
+type ActivationRequest_ActivatePathSelectorProbeStatusAgentType struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusAgentType) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
 type ActivationRequest_ActivatePathSelectorProbeMemo struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeMemo) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -7289,6 +7373,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpec) AccessToken() Activation
 	return ActivationResponsePathSelectorActivatedProbeSpecAccessToken{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpec) AgentType() ActivationResponsePathSelectorActivatedProbeSpecAgentType {
+	return ActivationResponsePathSelectorActivatedProbeSpecAgentType{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecProbeGroup struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecProbeGroup) FieldPath() *ActivationResponse_FieldSubPath {
@@ -8139,6 +8227,23 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecAccessTokenAccessToken) 
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
+type ActivationResponsePathSelectorActivatedProbeSpecAgentType struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecAgentType) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
 type ActivationResponsePathSelectorActivatedProbeStatus struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeStatus) FieldPath() *ActivationResponse_FieldSubPath {
@@ -8206,6 +8311,10 @@ func (ActivationResponsePathSelectorActivatedProbeStatus) Bandwidth() Activation
 
 func (ActivationResponsePathSelectorActivatedProbeStatus) NetworkInterfaces() ActivationResponsePathSelectorActivatedProbeStatusNetworkInterfaces {
 	return ActivationResponsePathSelectorActivatedProbeStatusNetworkInterfaces{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatus) AgentType() ActivationResponsePathSelectorActivatedProbeStatusAgentType {
+	return ActivationResponsePathSelectorActivatedProbeStatusAgentType{}
 }
 
 type ActivationResponsePathSelectorActivatedProbeStatusExternalIpAddressV4 struct{}
@@ -9650,6 +9759,23 @@ func (s ActivationResponseMapPathSelectorActivatedProbeStatusNetworkInterfaces) 
 }
 
 func (s ActivationResponseMapPathSelectorActivatedProbeStatusNetworkInterfaces) WithArrayOfValues(values []*probe.Probe_Status_NetworkInterface) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusAgentType struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusAgentType) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -11124,6 +11250,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpec) AccessToken() Activatio
 	return ActivationResponse_ActivatedPathSelectorProbeSpecAccessToken{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpec) AgentType() ActivationResponse_ActivatedPathSelectorProbeSpecAgentType {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecAgentType{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -11974,6 +12104,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecAccessTokenAccessToken)
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
+type ActivationResponse_ActivatedPathSelectorProbeSpecAgentType struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecAgentType) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecAgentType) WithValue(value probe.Probe_AgentType) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeStatus struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeStatus) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -12041,6 +12188,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeStatus) Bandwidth() Activatio
 
 func (ActivationResponse_ActivatedPathSelectorProbeStatus) NetworkInterfaces() ActivationResponse_ActivatedPathSelectorProbeStatusNetworkInterfaces {
 	return ActivationResponse_ActivatedPathSelectorProbeStatusNetworkInterfaces{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatus) AgentType() ActivationResponse_ActivatedPathSelectorProbeStatusAgentType {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusAgentType{}
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -13485,6 +13636,23 @@ func (s ActivationResponse_ActivatedMapPathSelectorProbeStatusNetworkInterfaces)
 }
 
 func (s ActivationResponse_ActivatedMapPathSelectorProbeStatusNetworkInterfaces) WithArrayOfValues(values []*probe.Probe_Status_NetworkInterface) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusAgentType struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusAgentType) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().AgentType().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusAgentType) WithValue(value probe.Probe_AgentType) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

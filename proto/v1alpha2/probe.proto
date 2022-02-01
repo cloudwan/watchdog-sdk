@@ -74,6 +74,8 @@ message Probe {
 
     AccessTokenSpec access_token = 14;
 
+    AgentType agent_type = 15;
+
     message ActivationSpec {
       ActivationType type = 1;
 
@@ -151,6 +153,8 @@ message Probe {
     Bandwidth bandwidth = 15;
 
     map<string, NetworkInterface> network_interfaces = 16;
+
+    AgentType agent_type = 17;
 
     message System {
       string manufacturer = 1;
@@ -258,5 +262,15 @@ message Probe {
 
       OFFLINE = 2;
     }
+  }
+
+  enum AgentType {
+    UNKNOWN = 0;
+
+    MOBILE_AGENT = 1;
+
+    HARDWARE_AGENT = 2;
+
+    CLOUD_AGENT = 3;
   }
 }
