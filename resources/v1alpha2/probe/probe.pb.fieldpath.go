@@ -1015,16 +1015,17 @@ type ProbeSpec_FieldPath interface {
 type ProbeSpec_FieldPathSelector int32
 
 const (
-	ProbeSpec_FieldPathSelectorProbeGroup        ProbeSpec_FieldPathSelector = 0
-	ProbeSpec_FieldPathSelectorDevice            ProbeSpec_FieldPathSelector = 1
-	ProbeSpec_FieldPathSelectorEnabled           ProbeSpec_FieldPathSelector = 2
-	ProbeSpec_FieldPathSelectorPrimaryLocation   ProbeSpec_FieldPathSelector = 3
-	ProbeSpec_FieldPathSelectorLocationDiscovery ProbeSpec_FieldPathSelector = 4
-	ProbeSpec_FieldPathSelectorContactInfo       ProbeSpec_FieldPathSelector = 5
-	ProbeSpec_FieldPathSelectorActivation        ProbeSpec_FieldPathSelector = 6
-	ProbeSpec_FieldPathSelectorDisableSpeedtest  ProbeSpec_FieldPathSelector = 7
-	ProbeSpec_FieldPathSelectorAccessToken       ProbeSpec_FieldPathSelector = 8
-	ProbeSpec_FieldPathSelectorAgentType         ProbeSpec_FieldPathSelector = 9
+	ProbeSpec_FieldPathSelectorProbeGroup         ProbeSpec_FieldPathSelector = 0
+	ProbeSpec_FieldPathSelectorDevice             ProbeSpec_FieldPathSelector = 1
+	ProbeSpec_FieldPathSelectorEnabled            ProbeSpec_FieldPathSelector = 2
+	ProbeSpec_FieldPathSelectorPrimaryLocation    ProbeSpec_FieldPathSelector = 3
+	ProbeSpec_FieldPathSelectorLocationDiscovery  ProbeSpec_FieldPathSelector = 4
+	ProbeSpec_FieldPathSelectorContactInfo        ProbeSpec_FieldPathSelector = 5
+	ProbeSpec_FieldPathSelectorActivation         ProbeSpec_FieldPathSelector = 6
+	ProbeSpec_FieldPathSelectorDisableSpeedtest   ProbeSpec_FieldPathSelector = 7
+	ProbeSpec_FieldPathSelectorAccessToken        ProbeSpec_FieldPathSelector = 8
+	ProbeSpec_FieldPathSelectorAgentType          ProbeSpec_FieldPathSelector = 9
+	ProbeSpec_FieldPathSelectorExternalIpCheckUri ProbeSpec_FieldPathSelector = 10
 )
 
 func (s ProbeSpec_FieldPathSelector) String() string {
@@ -1049,6 +1050,8 @@ func (s ProbeSpec_FieldPathSelector) String() string {
 		return "access_token"
 	case ProbeSpec_FieldPathSelectorAgentType:
 		return "agent_type"
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return "external_ip_check_uri"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", s))
 	}
@@ -1080,6 +1083,8 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken}, nil
 		case "agent_type", "agentType", "agent-type":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType}, nil
+		case "external_ip_check_uri", "externalIpCheckUri", "external-ip-check-uri":
+			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1192,6 +1197,10 @@ func (fp *ProbeSpec_FieldTerminalPath) Get(source *Probe_Spec) (values []interfa
 			}
 		case ProbeSpec_FieldPathSelectorAgentType:
 			values = append(values, source.AgentType)
+		case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+			for _, value := range source.GetExternalIpCheckUri() {
+				values = append(values, value)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1233,6 +1242,9 @@ func (fp *ProbeSpec_FieldTerminalPath) GetSingle(source *Probe_Spec) (interface{
 		return res, res != nil
 	case ProbeSpec_FieldPathSelectorAgentType:
 		return source.GetAgentType(), source != nil
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		res := source.GetExternalIpCheckUri()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1265,6 +1277,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetDefault() interface{} {
 		return (*Probe_Spec_AccessTokenSpec)(nil)
 	case ProbeSpec_FieldPathSelectorAgentType:
 		return Probe_UNKNOWN
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return ([]string)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1293,6 +1307,8 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValue(item *Probe_Spec) {
 			item.AccessToken = nil
 		case ProbeSpec_FieldPathSelectorAgentType:
 			item.AgentType = Probe_UNKNOWN
+		case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+			item.ExternalIpCheckUri = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1309,7 +1325,8 @@ func (fp *ProbeSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeSpec_FieldPathSelectorDevice ||
 		fp.selector == ProbeSpec_FieldPathSelectorEnabled ||
 		fp.selector == ProbeSpec_FieldPathSelectorDisableSpeedtest ||
-		fp.selector == ProbeSpec_FieldPathSelectorAgentType
+		fp.selector == ProbeSpec_FieldPathSelectorAgentType ||
+		fp.selector == ProbeSpec_FieldPathSelectorExternalIpCheckUri
 }
 
 func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_FieldPathValue {
@@ -1334,6 +1351,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_F
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*Probe_Spec_AccessTokenSpec)}
 	case ProbeSpec_FieldPathSelectorAgentType:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(Probe_AgentType)}
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1366,6 +1385,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIArrayOfValues(values interface{}) Pr
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_AccessTokenSpec)}
 	case ProbeSpec_FieldPathSelectorAgentType:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]Probe_AgentType)}
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([][]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1378,6 +1399,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithRawIArrayOfValues(values interface{})
 
 func (fp *ProbeSpec_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpec_FieldPathArrayItemValue {
 	switch fp.selector {
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return &ProbeSpec_FieldTerminalPathArrayItemValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1623,6 +1646,10 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) AsAgentTypeValue() (Probe_AgentType
 	res, ok := fpv.value.(Probe_AgentType)
 	return res, ok
 }
+func (fpv *ProbeSpec_FieldTerminalPathValue) AsExternalIpCheckUriValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
@@ -1650,6 +1677,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
 		(*target).AccessToken = fpv.value.(*Probe_Spec_AccessTokenSpec)
 	case ProbeSpec_FieldPathSelectorAgentType:
 		(*target).AgentType = fpv.value.(Probe_AgentType)
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		(*target).ExternalIpCheckUri = fpv.value.([]string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1741,6 +1770,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) CompareWith(source *Probe_Spec) (in
 		} else {
 			return 1, true
 		}
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1867,6 +1898,10 @@ var _ ProbeSpec_FieldPathArrayItemValue = (*ProbeSpec_FieldTerminalPathArrayItem
 // GetRawValue returns stored element value for array in object Probe_Spec as interface{}
 func (fpaiv *ProbeSpec_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
+}
+func (fpaiv *ProbeSpec_FieldTerminalPathArrayItemValue) AsExternalIpCheckUriItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
 }
 
 func (fpaiv *ProbeSpec_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec) (interface{}, bool) {
@@ -2011,6 +2046,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 		for _, v := range fpaov.values.([]Probe_AgentType) {
 			values = append(values, v)
 		}
+	case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2052,6 +2091,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsAccessTokenArrayOfValue
 }
 func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsAgentTypeArrayOfValues() ([]Probe_AgentType, bool) {
 	res, ok := fpaov.values.([]Probe_AgentType)
+	return res, ok
+}
+func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsExternalIpCheckUriArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 

@@ -2064,6 +2064,10 @@ func (b *filterCndBuilderSpec) AgentType() *filterCndBuilderSpecAgentType {
 	return &filterCndBuilderSpecAgentType{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpec) ExternalIpCheckUri() *filterCndBuilderSpecExternalIpCheckUri {
+	return &filterCndBuilderSpecExternalIpCheckUri{builder: b.builder}
+}
+
 type filterCndBuilderSpecProbeGroup struct {
 	builder *FilterBuilder
 }
@@ -4764,6 +4768,99 @@ func (b *filterCndBuilderSpecAgentType) compare(op gotenfilter.CompareOperator, 
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().AgentType().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecExternalIpCheckUri struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Eq(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Neq(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Gt(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Gte(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Lt(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Lte(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) In(values [][]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) NotIn(values [][]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) Contains(value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeValue,
+		FieldPath: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		Value:     NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().WithItemValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) ContainsAnyOf(values []string) *FilterBuilder {
+	pathSelector := NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri()
+	itemValues := make([]Probe_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAny,
+		FieldPath: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) ContainsAll(values []string) *FilterBuilder {
+	pathSelector := NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri()
+	itemValues := make([]Probe_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAll,
+		FieldPath: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderSpecExternalIpCheckUri) compare(op gotenfilter.CompareOperator, value []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().WithValue(value),
 	})
 }
 

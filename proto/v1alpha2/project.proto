@@ -48,6 +48,9 @@ message Project {
   // https://iso639-3.sil.org/sites/iso639-3/files/downloads/iso-639-3.tab
   Locale preferred_locale = 8;
 
+  // URI could be stun or http
+  repeated string external_ip_check_uri = 9;
+
   message Locale {
     // ISO 639-3 3 character language code
     string langugage_code = 1;

@@ -709,6 +709,10 @@ func (ProbePathSelectorSpec) AgentType() ProbePathSelectorSpecAgentType {
 	return ProbePathSelectorSpecAgentType{}
 }
 
+func (ProbePathSelectorSpec) ExternalIpCheckUri() ProbePathSelectorSpecExternalIpCheckUri {
+	return ProbePathSelectorSpecExternalIpCheckUri{}
+}
+
 type ProbePathSelectorSpecProbeGroup struct{}
 
 func (ProbePathSelectorSpecProbeGroup) FieldPath() *Probe_FieldSubPath {
@@ -1574,6 +1578,27 @@ func (s ProbePathSelectorSpecAgentType) WithValue(value Probe_AgentType) *Probe_
 
 func (s ProbePathSelectorSpecAgentType) WithArrayOfValues(values []Probe_AgentType) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorSpecExternalIpCheckUri struct{}
+
+func (ProbePathSelectorSpecExternalIpCheckUri) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorSpec,
+		subPath:  NewProbeSpecFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorSpecExternalIpCheckUri) WithValue(value []string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+func (s ProbePathSelectorSpecExternalIpCheckUri) WithItemValue(value string) *Probe_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*Probe_FieldSubPathArrayItemValue)
 }
 
 type ProbePathSelectorStatus struct{}
@@ -3276,6 +3301,9 @@ func (ProbeSpecFieldPathBuilder) AccessToken() Probe_SpecPathSelectorAccessToken
 func (ProbeSpecFieldPathBuilder) AgentType() Probe_SpecPathSelectorAgentType {
 	return Probe_SpecPathSelectorAgentType{}
 }
+func (ProbeSpecFieldPathBuilder) ExternalIpCheckUri() Probe_SpecPathSelectorExternalIpCheckUri {
+	return Probe_SpecPathSelectorExternalIpCheckUri{}
+}
 
 type Probe_SpecPathSelectorProbeGroup struct{}
 
@@ -4192,6 +4220,24 @@ func (s Probe_SpecPathSelectorAgentType) WithValue(value Probe_AgentType) *Probe
 
 func (s Probe_SpecPathSelectorAgentType) WithArrayOfValues(values []Probe_AgentType) *ProbeSpec_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_SpecPathSelectorExternalIpCheckUri struct{}
+
+func (Probe_SpecPathSelectorExternalIpCheckUri) FieldPath() *ProbeSpec_FieldTerminalPath {
+	return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri}
+}
+
+func (s Probe_SpecPathSelectorExternalIpCheckUri) WithValue(value []string) *ProbeSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldTerminalPathValue)
+}
+
+func (s Probe_SpecPathSelectorExternalIpCheckUri) WithArrayOfValues(values [][]string) *ProbeSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
+}
+
+func (s Probe_SpecPathSelectorExternalIpCheckUri) WithItemValue(value string) *ProbeSpec_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ProbeSpec_FieldTerminalPathArrayItemValue)
 }
 
 type ProbeStatusFieldPathBuilder struct{}

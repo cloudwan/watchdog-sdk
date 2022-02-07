@@ -80,6 +80,7 @@ const (
 	Project_FieldPathSelectorTeamsWebhookUrl            Project_FieldPathSelector = 5
 	Project_FieldPathSelectorInternetSummaryTargetGroup Project_FieldPathSelector = 6
 	Project_FieldPathSelectorPreferredLocale            Project_FieldPathSelector = 7
+	Project_FieldPathSelectorExternalIpCheckUri         Project_FieldPathSelector = 8
 )
 
 func (s Project_FieldPathSelector) String() string {
@@ -100,6 +101,8 @@ func (s Project_FieldPathSelector) String() string {
 		return "internet_summary_target_group"
 	case Project_FieldPathSelectorPreferredLocale:
 		return "preferred_locale"
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		return "external_ip_check_uri"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", s))
 	}
@@ -127,6 +130,8 @@ func BuildProject_FieldPath(fp gotenobject.RawFieldPath) (Project_FieldPath, err
 			return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorInternetSummaryTargetGroup}, nil
 		case "preferred_locale", "preferredLocale", "preferred-locale":
 			return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorPreferredLocale}, nil
+		case "external_ip_check_uri", "externalIpCheckUri", "external-ip-check-uri":
+			return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -217,6 +222,10 @@ func (fp *Project_FieldTerminalPath) Get(source *Project) (values []interface{})
 			if source.PreferredLocale != nil {
 				values = append(values, source.PreferredLocale)
 			}
+		case Project_FieldPathSelectorExternalIpCheckUri:
+			for _, value := range source.GetExternalIpCheckUri() {
+				values = append(values, value)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 		}
@@ -251,6 +260,9 @@ func (fp *Project_FieldTerminalPath) GetSingle(source *Project) (interface{}, bo
 	case Project_FieldPathSelectorPreferredLocale:
 		res := source.GetPreferredLocale()
 		return res, res != nil
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		res := source.GetExternalIpCheckUri()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 	}
@@ -279,6 +291,8 @@ func (fp *Project_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case Project_FieldPathSelectorPreferredLocale:
 		return (*Project_Locale)(nil)
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		return ([]string)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 	}
@@ -303,6 +317,8 @@ func (fp *Project_FieldTerminalPath) ClearValue(item *Project) {
 			item.InternetSummaryTargetGroup = ""
 		case Project_FieldPathSelectorPreferredLocale:
 			item.PreferredLocale = nil
+		case Project_FieldPathSelectorExternalIpCheckUri:
+			item.ExternalIpCheckUri = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 		}
@@ -319,7 +335,8 @@ func (fp *Project_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == Project_FieldPathSelectorProbeStatusExposureMode ||
 		fp.selector == Project_FieldPathSelectorSlackWebhookUrl ||
 		fp.selector == Project_FieldPathSelectorTeamsWebhookUrl ||
-		fp.selector == Project_FieldPathSelectorInternetSummaryTargetGroup
+		fp.selector == Project_FieldPathSelectorInternetSummaryTargetGroup ||
+		fp.selector == Project_FieldPathSelectorExternalIpCheckUri
 }
 
 func (fp *Project_FieldTerminalPath) WithIValue(value interface{}) Project_FieldPathValue {
@@ -340,6 +357,8 @@ func (fp *Project_FieldTerminalPath) WithIValue(value interface{}) Project_Field
 		return &Project_FieldTerminalPathValue{Project_FieldTerminalPath: *fp, value: value.(string)}
 	case Project_FieldPathSelectorPreferredLocale:
 		return &Project_FieldTerminalPathValue{Project_FieldTerminalPath: *fp, value: value.(*Project_Locale)}
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		return &Project_FieldTerminalPathValue{Project_FieldTerminalPath: *fp, value: value.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 	}
@@ -368,6 +387,8 @@ func (fp *Project_FieldTerminalPath) WithIArrayOfValues(values interface{}) Proj
 		return &Project_FieldTerminalPathArrayOfValues{Project_FieldTerminalPath: *fp, values: values.([]string)}
 	case Project_FieldPathSelectorPreferredLocale:
 		return &Project_FieldTerminalPathArrayOfValues{Project_FieldTerminalPath: *fp, values: values.([]*Project_Locale)}
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		return &Project_FieldTerminalPathArrayOfValues{Project_FieldTerminalPath: *fp, values: values.([][]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 	}
@@ -380,6 +401,8 @@ func (fp *Project_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) g
 
 func (fp *Project_FieldTerminalPath) WithIArrayItemValue(value interface{}) Project_FieldPathArrayItemValue {
 	switch fp.selector {
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		return &Project_FieldTerminalPathArrayItemValue{Project_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fp.selector))
 	}
@@ -591,6 +614,10 @@ func (fpv *Project_FieldTerminalPathValue) AsPreferredLocaleValue() (*Project_Lo
 	res, ok := fpv.value.(*Project_Locale)
 	return res, ok
 }
+func (fpv *Project_FieldTerminalPathValue) AsExternalIpCheckUriValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Project
 func (fpv *Project_FieldTerminalPathValue) SetTo(target **Project) {
@@ -614,6 +641,8 @@ func (fpv *Project_FieldTerminalPathValue) SetTo(target **Project) {
 		(*target).InternetSummaryTargetGroup = fpv.value.(string)
 	case Project_FieldPathSelectorPreferredLocale:
 		(*target).PreferredLocale = fpv.value.(*Project_Locale)
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		(*target).ExternalIpCheckUri = fpv.value.([]string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fpv.selector))
 	}
@@ -691,6 +720,8 @@ func (fpv *Project_FieldTerminalPathValue) CompareWith(source *Project) (int, bo
 			return 1, true
 		}
 	case Project_FieldPathSelectorPreferredLocale:
+		return 0, false
+	case Project_FieldPathSelectorExternalIpCheckUri:
 		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fpv.selector))
@@ -802,6 +833,10 @@ var _ Project_FieldPathArrayItemValue = (*Project_FieldTerminalPathArrayItemValu
 // GetRawValue returns stored element value for array in object Project as interface{}
 func (fpaiv *Project_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
+}
+func (fpaiv *Project_FieldTerminalPathArrayItemValue) AsExternalIpCheckUriItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
 }
 
 func (fpaiv *Project_FieldTerminalPathArrayItemValue) GetSingle(source *Project) (interface{}, bool) {
@@ -926,6 +961,10 @@ func (fpaov *Project_FieldTerminalPathArrayOfValues) GetRawValues() (values []in
 		for _, v := range fpaov.values.([]*Project_Locale) {
 			values = append(values, v)
 		}
+	case Project_FieldPathSelectorExternalIpCheckUri:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -959,6 +998,10 @@ func (fpaov *Project_FieldTerminalPathArrayOfValues) AsInternetSummaryTargetGrou
 }
 func (fpaov *Project_FieldTerminalPathArrayOfValues) AsPreferredLocaleArrayOfValues() ([]*Project_Locale, bool) {
 	res, ok := fpaov.values.([]*Project_Locale)
+	return res, ok
+}
+func (fpaov *Project_FieldTerminalPathArrayOfValues) AsExternalIpCheckUriArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 

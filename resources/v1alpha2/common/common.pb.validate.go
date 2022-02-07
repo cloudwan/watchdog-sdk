@@ -68,6 +68,13 @@ func (obj *ContactInformation) GotenValidate() error {
 	if err := gotenvalidate.ValidateEmail(string(obj.Email)); err != nil {
 		return gotenvalidate.NewValidationError("ContactInformation", "email", obj.Email, "field must contain a valid email address", err)
 	}
+	for idx, elem := range obj.Phones {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("ContactInformation", "phones", obj.Phones[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}

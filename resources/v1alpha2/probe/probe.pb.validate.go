@@ -79,6 +79,13 @@ func (obj *Probe) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Probe", "status", obj.Status, "nested object validation failed", err)
 		}
 	}
+	for idx, elem := range obj.Memo {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Probe", "memo", obj.Memo[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}

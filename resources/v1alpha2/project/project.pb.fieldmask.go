@@ -59,6 +59,7 @@ func FullProject_FieldMask() *Project_FieldMask {
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorTeamsWebhookUrl})
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorInternetSummaryTargetGroup})
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorPreferredLocale})
+	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri})
 	return res
 }
 
@@ -102,7 +103,7 @@ func (fieldMask *Project_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 8)
+	presentSelectors := make([]bool, 9)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*Project_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -132,7 +133,7 @@ func (fieldMask *Project_FieldMask) Reset() {
 
 func (fieldMask *Project_FieldMask) Subtract(other *Project_FieldMask) *Project_FieldMask {
 	result := &Project_FieldMask{}
-	removedSelectors := make([]bool, 8)
+	removedSelectors := make([]bool, 9)
 	otherSubMasks := map[Project_FieldPathSelector]gotenobject.FieldMask{
 		Project_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
 		Project_FieldPathSelectorMultiRegionPolicy: &policy.Policy_FieldMask{},
@@ -363,6 +364,8 @@ func (fieldMask *Project_FieldMask) Project(source *Project) *Project {
 			case Project_FieldPathSelectorPreferredLocale:
 				result.PreferredLocale = source.PreferredLocale
 				wholePreferredLocaleAccepted = true
+			case Project_FieldPathSelectorExternalIpCheckUri:
+				result.ExternalIpCheckUri = source.ExternalIpCheckUri
 			}
 		case *Project_FieldSubPath:
 			switch tp.selector {

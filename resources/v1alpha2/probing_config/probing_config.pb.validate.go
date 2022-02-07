@@ -86,9 +86,23 @@ func (obj *ProbingConfig_Spec) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
+	for idx, elem := range obj.ProbingSessions {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Spec", "probingSessions", obj.ProbingSessions[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if subobj, ok := interface{}(obj.Speedtest).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Spec", "speedtest", obj.Speedtest, "nested object validation failed", err)
+		}
+	}
+	for idx, elem := range obj.TargetSessions {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Spec", "targetSessions", obj.TargetSessions[idx], "nested object validation failed", err)
+			}
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
@@ -108,6 +122,13 @@ func (obj *ProbingConfig_Status) GotenValidate() error {
 func (obj *ProbingConfig_Spec_SpeedTest) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	for idx, elem := range obj.Servers {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("SpeedTest", "servers", obj.Servers[idx], "nested object validation failed", err)
+			}
+		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

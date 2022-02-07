@@ -463,6 +463,7 @@ func FullProbe_Spec_FieldMask() *Probe_Spec_FieldMask {
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDisableSpeedtest})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
+	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
 	return res
 }
 
@@ -506,7 +507,7 @@ func (fieldMask *Probe_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 10)
+	presentSelectors := make([]bool, 11)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -536,7 +537,7 @@ func (fieldMask *Probe_Spec_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Probe_Spec_FieldMask {
 	result := &Probe_Spec_FieldMask{}
-	removedSelectors := make([]bool, 10)
+	removedSelectors := make([]bool, 11)
 	otherSubMasks := map[ProbeSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		ProbeSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
@@ -798,6 +799,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 				wholeAccessTokenAccepted = true
 			case ProbeSpec_FieldPathSelectorAgentType:
 				result.AgentType = source.AgentType
+			case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
+				result.ExternalIpCheckUri = source.ExternalIpCheckUri
 			}
 		case *ProbeSpec_FieldSubPath:
 			switch tp.selector {

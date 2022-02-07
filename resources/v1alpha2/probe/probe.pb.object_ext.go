@@ -298,6 +298,18 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 	if o.GetAgentType() != other.GetAgentType() {
 		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
 	}
+
+	if len(o.GetExternalIpCheckUri()) == len(other.GetExternalIpCheckUri()) {
+		for i, lValue := range o.GetExternalIpCheckUri() {
+			rValue := other.GetExternalIpCheckUri()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
+	}
 	return res
 }
 
@@ -338,6 +350,10 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 	result.DisableSpeedtest = o.DisableSpeedtest
 	result.AccessToken = o.AccessToken.Clone()
 	result.AgentType = o.AgentType
+	result.ExternalIpCheckUri = make([]string, len(o.ExternalIpCheckUri))
+	for i, sourceValue := range o.ExternalIpCheckUri {
+		result.ExternalIpCheckUri[i] = sourceValue
+	}
 	return result
 }
 
@@ -403,6 +419,21 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 		o.AccessToken.Merge(source.GetAccessToken())
 	}
 	o.AgentType = source.GetAgentType()
+	for _, sourceValue := range source.GetExternalIpCheckUri() {
+		exists := false
+		for _, currentValue := range o.ExternalIpCheckUri {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.ExternalIpCheckUri = append(o.ExternalIpCheckUri, newDstElement)
+		}
+	}
+
 }
 
 func (o *Probe_Spec) MergeRaw(source gotenobject.GotenObjectExt) {

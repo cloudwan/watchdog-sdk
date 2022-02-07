@@ -59,6 +59,20 @@ func (obj *Profile) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Profile", "filter", obj.Filter, "nested object validation failed", err)
 		}
 	}
+	for idx, elem := range obj.MetricThresholds {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Profile", "metricThresholds", obj.MetricThresholds[idx], "nested object validation failed", err)
+			}
+		}
+	}
+	for idx, elem := range obj.Overrides {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Profile", "overrides", obj.Overrides[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -77,6 +91,13 @@ func (obj *Profile_Filter) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
+	for idx, elem := range obj.SourceLocations {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("Filter", "sourceLocations", obj.SourceLocations[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -94,6 +115,13 @@ func (obj *Profile_MetricThreshold) GotenValidate() error {
 func (obj *QualityProfile) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	for idx, elem := range obj.Profiles {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("QualityProfile", "profiles", obj.Profiles[idx], "nested object validation failed", err)
+			}
+		}
 	}
 	if subobj, ok := interface{}(obj.Metadata).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {

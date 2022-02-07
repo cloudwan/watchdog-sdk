@@ -101,6 +101,18 @@ func (o *Project) MakeDiffFieldMask(other *Project) *Project_FieldMask {
 			}
 		}
 	}
+
+	if len(o.GetExternalIpCheckUri()) == len(other.GetExternalIpCheckUri()) {
+		for i, lValue := range o.GetExternalIpCheckUri() {
+			rValue := other.GetExternalIpCheckUri()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri})
+	}
 	return res
 }
 
@@ -130,6 +142,10 @@ func (o *Project) Clone() *Project {
 	result.TeamsWebhookUrl = o.TeamsWebhookUrl
 	result.InternetSummaryTargetGroup = o.InternetSummaryTargetGroup
 	result.PreferredLocale = o.PreferredLocale.Clone()
+	result.ExternalIpCheckUri = make([]string, len(o.ExternalIpCheckUri))
+	for i, sourceValue := range o.ExternalIpCheckUri {
+		result.ExternalIpCheckUri[i] = sourceValue
+	}
 	return result
 }
 
@@ -172,6 +188,21 @@ func (o *Project) Merge(source *Project) {
 		}
 		o.PreferredLocale.Merge(source.GetPreferredLocale())
 	}
+	for _, sourceValue := range source.GetExternalIpCheckUri() {
+		exists := false
+		for _, currentValue := range o.ExternalIpCheckUri {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.ExternalIpCheckUri = append(o.ExternalIpCheckUri, newDstElement)
+		}
+	}
+
 }
 
 func (o *Project) MergeRaw(source gotenobject.GotenObjectExt) {

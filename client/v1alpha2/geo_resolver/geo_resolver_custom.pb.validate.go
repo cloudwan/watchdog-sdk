@@ -97,6 +97,13 @@ func (obj *BulkResolveGeoIPResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
+	for idx, elem := range obj.GeoIpInfo {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("BulkResolveGeoIPResponse", "geoIpInfo", obj.GeoIpInfo[idx], "nested object validation failed", err)
+			}
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -132,6 +139,13 @@ func (obj *ResolveEnvironmentRequest) GotenValidate() error {
 	}
 	if ip := net.ParseIP(string(obj.Address)); ip == nil {
 		return gotenvalidate.NewValidationError("ResolveEnvironmentRequest", "address", obj.Address, "field must contain a valid IP address", nil)
+	}
+	for idx, elem := range obj.Wlans {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("ResolveEnvironmentRequest", "wlans", obj.Wlans[idx], "nested object validation failed", err)
+			}
+		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

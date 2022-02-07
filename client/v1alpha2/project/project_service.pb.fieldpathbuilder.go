@@ -242,6 +242,10 @@ func (BatchGetProjectsResponsePathSelectorProjects) PreferredLocale() BatchGetPr
 	return BatchGetProjectsResponsePathSelectorProjectsPreferredLocale{}
 }
 
+func (BatchGetProjectsResponsePathSelectorProjects) ExternalIpCheckUri() BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri {
+	return BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri{}
+}
+
 type BatchGetProjectsResponsePathSelectorProjectsName struct{}
 
 func (BatchGetProjectsResponsePathSelectorProjectsName) FieldPath() *BatchGetProjectsResponse_FieldSubPath {
@@ -1013,6 +1017,27 @@ func (s BatchGetProjectsResponsePathSelectorProjectsPreferredLocaleLangugageCode
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProjectsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri struct{}
+
+func (BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri) FieldPath() *BatchGetProjectsResponse_FieldSubPath {
+	return &BatchGetProjectsResponse_FieldSubPath{
+		selector: BatchGetProjectsResponse_FieldPathSelectorProjects,
+		subPath:  project.NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithValue(value []string) *BatchGetProjectsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProjectsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithArrayOfValues(values [][]string) *BatchGetProjectsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProjectsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s BatchGetProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithItemValue(value string) *BatchGetProjectsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProjectsResponse_FieldSubPathArrayItemValue)
+}
+
 type BatchGetProjectsResponsePathSelectorMissing struct{}
 
 func (BatchGetProjectsResponsePathSelectorMissing) FieldPath() *BatchGetProjectsResponse_FieldTerminalPath {
@@ -1217,6 +1242,10 @@ func (ListProjectsResponsePathSelectorProjects) InternetSummaryTargetGroup() Lis
 
 func (ListProjectsResponsePathSelectorProjects) PreferredLocale() ListProjectsResponsePathSelectorProjectsPreferredLocale {
 	return ListProjectsResponsePathSelectorProjectsPreferredLocale{}
+}
+
+func (ListProjectsResponsePathSelectorProjects) ExternalIpCheckUri() ListProjectsResponsePathSelectorProjectsExternalIpCheckUri {
+	return ListProjectsResponsePathSelectorProjectsExternalIpCheckUri{}
 }
 
 type ListProjectsResponsePathSelectorProjectsName struct{}
@@ -1990,6 +2019,27 @@ func (s ListProjectsResponsePathSelectorProjectsPreferredLocaleLangugageCode) Wi
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProjectsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProjectsResponsePathSelectorProjectsExternalIpCheckUri struct{}
+
+func (ListProjectsResponsePathSelectorProjectsExternalIpCheckUri) FieldPath() *ListProjectsResponse_FieldSubPath {
+	return &ListProjectsResponse_FieldSubPath{
+		selector: ListProjectsResponse_FieldPathSelectorProjects,
+		subPath:  project.NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s ListProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithValue(value []string) *ListProjectsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProjectsResponse_FieldSubPathValue)
+}
+
+func (s ListProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithArrayOfValues(values [][]string) *ListProjectsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProjectsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s ListProjectsResponsePathSelectorProjectsExternalIpCheckUri) WithItemValue(value string) *ListProjectsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ListProjectsResponse_FieldSubPathArrayItemValue)
+}
+
 type ListProjectsResponsePathSelectorPrevPageToken struct{}
 
 func (ListProjectsResponsePathSelectorPrevPageToken) FieldPath() *ListProjectsResponse_FieldTerminalPath {
@@ -2553,6 +2603,10 @@ func (CreateProjectRequestPathSelectorProject) InternetSummaryTargetGroup() Crea
 
 func (CreateProjectRequestPathSelectorProject) PreferredLocale() CreateProjectRequestPathSelectorProjectPreferredLocale {
 	return CreateProjectRequestPathSelectorProjectPreferredLocale{}
+}
+
+func (CreateProjectRequestPathSelectorProject) ExternalIpCheckUri() CreateProjectRequestPathSelectorProjectExternalIpCheckUri {
+	return CreateProjectRequestPathSelectorProjectExternalIpCheckUri{}
 }
 
 type CreateProjectRequestPathSelectorProjectName struct{}
@@ -3326,6 +3380,27 @@ func (s CreateProjectRequestPathSelectorProjectPreferredLocaleLangugageCode) Wit
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProjectRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProjectRequestPathSelectorProjectExternalIpCheckUri struct{}
+
+func (CreateProjectRequestPathSelectorProjectExternalIpCheckUri) FieldPath() *CreateProjectRequest_FieldSubPath {
+	return &CreateProjectRequest_FieldSubPath{
+		selector: CreateProjectRequest_FieldPathSelectorProject,
+		subPath:  project.NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s CreateProjectRequestPathSelectorProjectExternalIpCheckUri) WithValue(value []string) *CreateProjectRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProjectRequest_FieldSubPathValue)
+}
+
+func (s CreateProjectRequestPathSelectorProjectExternalIpCheckUri) WithArrayOfValues(values [][]string) *CreateProjectRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProjectRequest_FieldSubPathArrayOfValues)
+}
+
+func (s CreateProjectRequestPathSelectorProjectExternalIpCheckUri) WithItemValue(value string) *CreateProjectRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*CreateProjectRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProjectRequestFieldPathBuilder struct{}
 
 func NewUpdateProjectRequestFieldPathBuilder() UpdateProjectRequestFieldPathBuilder {
@@ -3401,6 +3476,10 @@ func (UpdateProjectRequestPathSelectorProject) InternetSummaryTargetGroup() Upda
 
 func (UpdateProjectRequestPathSelectorProject) PreferredLocale() UpdateProjectRequestPathSelectorProjectPreferredLocale {
 	return UpdateProjectRequestPathSelectorProjectPreferredLocale{}
+}
+
+func (UpdateProjectRequestPathSelectorProject) ExternalIpCheckUri() UpdateProjectRequestPathSelectorProjectExternalIpCheckUri {
+	return UpdateProjectRequestPathSelectorProjectExternalIpCheckUri{}
 }
 
 type UpdateProjectRequestPathSelectorProjectName struct{}
@@ -4174,6 +4253,27 @@ func (s UpdateProjectRequestPathSelectorProjectPreferredLocaleLangugageCode) Wit
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProjectRequestPathSelectorProjectExternalIpCheckUri struct{}
+
+func (UpdateProjectRequestPathSelectorProjectExternalIpCheckUri) FieldPath() *UpdateProjectRequest_FieldSubPath {
+	return &UpdateProjectRequest_FieldSubPath{
+		selector: UpdateProjectRequest_FieldPathSelectorProject,
+		subPath:  project.NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s UpdateProjectRequestPathSelectorProjectExternalIpCheckUri) WithValue(value []string) *UpdateProjectRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProjectRequest_FieldSubPathValue)
+}
+
+func (s UpdateProjectRequestPathSelectorProjectExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProjectRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProjectRequestPathSelectorProjectExternalIpCheckUri) WithItemValue(value string) *UpdateProjectRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProjectRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProjectRequestPathSelectorUpdateMask struct{}
 
 func (UpdateProjectRequestPathSelectorUpdateMask) FieldPath() *UpdateProjectRequest_FieldTerminalPath {
@@ -4273,6 +4373,10 @@ func (UpdateProjectRequestPathSelectorCasConditionalState) InternetSummaryTarget
 
 func (UpdateProjectRequestPathSelectorCasConditionalState) PreferredLocale() UpdateProjectRequestPathSelectorCasConditionalStatePreferredLocale {
 	return UpdateProjectRequestPathSelectorCasConditionalStatePreferredLocale{}
+}
+
+func (UpdateProjectRequestPathSelectorCasConditionalState) ExternalIpCheckUri() UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri {
+	return UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri{}
 }
 
 type UpdateProjectRequestPathSelectorCasConditionalStateName struct{}
@@ -5046,6 +5150,27 @@ func (s UpdateProjectRequestPathSelectorCasConditionalStatePreferredLocaleLangug
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri struct{}
+
+func (UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri) FieldPath() *UpdateProjectRequest_FieldSubPath {
+	return &UpdateProjectRequest_FieldSubPath{
+		selector: UpdateProjectRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProjectRequestCASFieldPathBuilder().ConditionalState().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri) WithValue(value []string) *UpdateProjectRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProjectRequest_FieldSubPathValue)
+}
+
+func (s UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProjectRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProjectRequestPathSelectorCasConditionalStateExternalIpCheckUri) WithItemValue(value string) *UpdateProjectRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProjectRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProjectRequestPathSelectorCasFieldMask struct{}
 
 func (UpdateProjectRequestPathSelectorCasFieldMask) FieldPath() *UpdateProjectRequest_FieldSubPath {
@@ -5135,6 +5260,10 @@ func (UpdateProjectRequest_CASPathSelectorConditionalState) InternetSummaryTarge
 
 func (UpdateProjectRequest_CASPathSelectorConditionalState) PreferredLocale() UpdateProjectRequest_CASPathSelectorConditionalStatePreferredLocale {
 	return UpdateProjectRequest_CASPathSelectorConditionalStatePreferredLocale{}
+}
+
+func (UpdateProjectRequest_CASPathSelectorConditionalState) ExternalIpCheckUri() UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri {
+	return UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri{}
 }
 
 type UpdateProjectRequest_CASPathSelectorConditionalStateName struct{}
@@ -5906,6 +6035,27 @@ func (s UpdateProjectRequest_CASPathSelectorConditionalStatePreferredLocaleLangu
 
 func (s UpdateProjectRequest_CASPathSelectorConditionalStatePreferredLocaleLangugageCode) WithArrayOfValues(values []string) *UpdateProjectRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri struct{}
+
+func (UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri) FieldPath() *UpdateProjectRequestCAS_FieldSubPath {
+	return &UpdateProjectRequestCAS_FieldSubPath{
+		selector: UpdateProjectRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  project.NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+	}
+}
+
+func (s UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri) WithValue(value []string) *UpdateProjectRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProjectRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProjectRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProjectRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProjectRequest_CASPathSelectorConditionalStateExternalIpCheckUri) WithItemValue(value string) *UpdateProjectRequestCAS_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProjectRequestCAS_FieldSubPathArrayItemValue)
 }
 
 type UpdateProjectRequest_CASPathSelectorFieldMask struct{}

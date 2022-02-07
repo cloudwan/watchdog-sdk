@@ -49,6 +49,9 @@ func (ProjectFieldPathBuilder) InternetSummaryTargetGroup() ProjectPathSelectorI
 func (ProjectFieldPathBuilder) PreferredLocale() ProjectPathSelectorPreferredLocale {
 	return ProjectPathSelectorPreferredLocale{}
 }
+func (ProjectFieldPathBuilder) ExternalIpCheckUri() ProjectPathSelectorExternalIpCheckUri {
+	return ProjectPathSelectorExternalIpCheckUri{}
+}
 
 type ProjectPathSelectorName struct{}
 
@@ -843,6 +846,24 @@ func (s ProjectPathSelectorPreferredLocaleLangugageCode) WithValue(value string)
 
 func (s ProjectPathSelectorPreferredLocaleLangugageCode) WithArrayOfValues(values []string) *Project_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Project_FieldSubPathArrayOfValues)
+}
+
+type ProjectPathSelectorExternalIpCheckUri struct{}
+
+func (ProjectPathSelectorExternalIpCheckUri) FieldPath() *Project_FieldTerminalPath {
+	return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri}
+}
+
+func (s ProjectPathSelectorExternalIpCheckUri) WithValue(value []string) *Project_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*Project_FieldTerminalPathValue)
+}
+
+func (s ProjectPathSelectorExternalIpCheckUri) WithArrayOfValues(values [][]string) *Project_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Project_FieldTerminalPathArrayOfValues)
+}
+
+func (s ProjectPathSelectorExternalIpCheckUri) WithItemValue(value string) *Project_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*Project_FieldTerminalPathArrayItemValue)
 }
 
 type ProjectLocaleFieldPathBuilder struct{}
