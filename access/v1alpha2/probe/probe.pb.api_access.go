@@ -8,9 +8,11 @@ import (
 	"context"
 	"fmt"
 
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	gotenaccess "github.com/cloudwan/goten-sdk/runtime/access"
 	"github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
@@ -22,9 +24,11 @@ var (
 	_ = context.Context(nil)
 	_ = fmt.GoStringer(nil)
 
+	_ = grpc.ClientConnInterface(nil)
 	_ = codes.NotFound
 	_ = status.Status{}
 
+	_ = gotenaccess.Watcher(nil)
 	_ = watch_type.WatchType_STATEFUL
 	_ = gotenresource.ListQuery(nil)
 )
@@ -182,7 +186,7 @@ func (a *apiProbeAccess) SaveProbe(ctx context.Context, res *probe.Probe, opts .
 	saveOpts := gotenresource.MakeSaveOptions(opts)
 	previousRes := saveOpts.GetPreviousResource()
 
-	if previousRes == nil {
+	if previousRes == nil && !saveOpts.OnlyUpdate() && !saveOpts.OnlyCreate() {
 		var err error
 		previousRes, err = a.GetProbe(ctx, &probe.GetQuery{Reference: res.Name.AsReference()})
 		if err != nil {
@@ -192,9 +196,18 @@ func (a *apiProbeAccess) SaveProbe(ctx context.Context, res *probe.Probe, opts .
 		}
 	}
 
-	if previousRes != nil {
+	if saveOpts.OnlyUpdate() || previousRes != nil {
 		updateRequest := &probe_client.UpdateProbeRequest{
 			Probe: res,
+		}
+		if updateMask := saveOpts.GetUpdateMask(); updateMask != nil {
+			updateRequest.UpdateMask = updateMask.(*probe.Probe_FieldMask)
+		}
+		if mask, conditionalState := saveOpts.GetCAS(); mask != nil && conditionalState != nil {
+			updateRequest.Cas = &probe_client.UpdateProbeRequest_CAS{
+				ConditionalState: conditionalState.(*probe.Probe),
+				FieldMask:        mask.(*probe.Probe_FieldMask),
+			}
 		}
 		_, err := a.client.UpdateProbe(ctx, updateRequest)
 		if err != nil {
@@ -219,4 +232,10 @@ func (a *apiProbeAccess) DeleteProbe(ctx context.Context, ref *probe.Reference, 
 	}
 	_, err := a.client.DeleteProbe(ctx, request)
 	return err
+}
+
+func init() {
+	gotenaccess.GetRegistry().RegisterApiAccessConstructor(probe.GetDescriptor(), func(cc grpc.ClientConnInterface) gotenresource.Access {
+		return probe.AsAnyCastAccess(NewApiProbeAccess(probe_client.NewProbeServiceClient(cc)))
+	})
 }

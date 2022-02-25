@@ -36,15 +36,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"ProbingConfig", "ProbingConfigs", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&ProbingConfig_FieldTerminalPath{selector: ProbingConfig_FieldPathSelectorName},
-			"pattern", "probingConfigId",
-			[]string{"projectId", "regionId"},
-			[]gotenresource.NamePattern{NamePattern_Project_Region}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -56,19 +48,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewProbingConfig() *ProbingConfig {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &ProbingConfig{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewProbingConfig()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewProbingConfigName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -87,30 +71,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewProbingConfigCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewProbingConfigCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewProbingConfigChange() *ProbingConfigChange {
-	return &ProbingConfigChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &ProbingConfig_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewProbingConfigChange()
-}
-
-func (d *Descriptor) NewProbingConfigQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &ProbingConfigChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewProbingConfigQueryResultSnapshot()
-}
-func (d *Descriptor) NewProbingConfigQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -118,63 +101,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewProbingConfigQueryResultChange()
-}
-
-func (d *Descriptor) NewProbingConfigList(size, reserved int) ProbingConfigList {
-	return make(ProbingConfigList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(ProbingConfigList, size, reserved)
-}
-func (d *Descriptor) NewProbingConfigChangeList(size, reserved int) ProbingConfigChangeList {
-	return make(ProbingConfigChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(ProbingConfigChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewProbingConfigNameList(size, reserved int) ProbingConfigNameList {
-	return make(ProbingConfigNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(ProbingConfigNameList, size, reserved)
-}
-
-func (d *Descriptor) NewProbingConfigReferenceList(size, reserved int) ProbingConfigReferenceList {
-	return make(ProbingConfigReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(ProbingConfigReferenceList, size, reserved)
 }
-func (d *Descriptor) NewProbingConfigParentNameList(size, reserved int) ProbingConfigParentNameList {
-	return make(ProbingConfigParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(ProbingConfigParentNameList, size, reserved)
-}
-func (d *Descriptor) NewProbingConfigParentReferenceList(size, reserved int) ProbingConfigParentReferenceList {
-	return make(ProbingConfigParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(ProbingConfigParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewProbingConfigMap(reserved int) ProbingConfigMap {
-	return make(ProbingConfigMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(ProbingConfigMap, reserved)
-}
-func (d *Descriptor) NewProbingConfigChangeMap(reserved int) ProbingConfigChangeMap {
-	return make(ProbingConfigChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -193,10 +148,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseProbingConfig_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseProbingConfigName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initProbingConfigDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"ProbingConfig", "ProbingConfigs", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&ProbingConfig_FieldTerminalPath{selector: ProbingConfig_FieldPathSelectorName},
+			"pattern", "probingConfigId",
+			[]string{"projectId", "regionId"},
+			[]gotenresource.NamePattern{NamePattern_Project_Region}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initProbingConfigDescriptor()
 }

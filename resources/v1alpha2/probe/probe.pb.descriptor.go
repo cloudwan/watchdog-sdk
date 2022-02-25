@@ -40,15 +40,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"Probe", "Probes", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&Probe_FieldTerminalPath{selector: Probe_FieldPathSelectorName},
-			"pattern", "probeId",
-			[]string{"projectId", "regionId"},
-			[]gotenresource.NamePattern{NamePattern_Project_Region}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -60,19 +52,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewProbe() *Probe {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &Probe{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewProbe()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewProbeName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -91,30 +75,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewProbeCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewProbeCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewProbeChange() *ProbeChange {
-	return &ProbeChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &Probe_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewProbeChange()
-}
-
-func (d *Descriptor) NewProbeQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &ProbeChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewProbeQueryResultSnapshot()
-}
-func (d *Descriptor) NewProbeQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -122,63 +105,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewProbeQueryResultChange()
-}
-
-func (d *Descriptor) NewProbeList(size, reserved int) ProbeList {
-	return make(ProbeList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(ProbeList, size, reserved)
-}
-func (d *Descriptor) NewProbeChangeList(size, reserved int) ProbeChangeList {
-	return make(ProbeChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(ProbeChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewProbeNameList(size, reserved int) ProbeNameList {
-	return make(ProbeNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(ProbeNameList, size, reserved)
-}
-
-func (d *Descriptor) NewProbeReferenceList(size, reserved int) ProbeReferenceList {
-	return make(ProbeReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(ProbeReferenceList, size, reserved)
 }
-func (d *Descriptor) NewProbeParentNameList(size, reserved int) ProbeParentNameList {
-	return make(ProbeParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(ProbeParentNameList, size, reserved)
-}
-func (d *Descriptor) NewProbeParentReferenceList(size, reserved int) ProbeParentReferenceList {
-	return make(ProbeParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(ProbeParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewProbeMap(reserved int) ProbeMap {
-	return make(ProbeMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(ProbeMap, reserved)
-}
-func (d *Descriptor) NewProbeChangeMap(reserved int) ProbeChangeMap {
-	return make(ProbeChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -197,10 +152,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseProbe_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseProbeName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initProbeDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"Probe", "Probes", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&Probe_FieldTerminalPath{selector: Probe_FieldPathSelectorName},
+			"pattern", "probeId",
+			[]string{"projectId", "regionId"},
+			[]gotenresource.NamePattern{NamePattern_Project_Region}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initProbeDescriptor()
 }

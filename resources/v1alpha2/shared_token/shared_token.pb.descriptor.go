@@ -32,15 +32,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"SharedToken", "SharedTokens", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&SharedToken_FieldTerminalPath{selector: SharedToken_FieldPathSelectorName},
-			"pattern", "sharedTokenId",
-			[]string{"projectId", "regionId"},
-			[]gotenresource.NamePattern{NamePattern_Project_Region}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -52,19 +44,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewSharedToken() *SharedToken {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &SharedToken{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewSharedToken()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewSharedTokenName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -83,30 +67,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewSharedTokenCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewSharedTokenCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewSharedTokenChange() *SharedTokenChange {
-	return &SharedTokenChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &SharedToken_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewSharedTokenChange()
-}
-
-func (d *Descriptor) NewSharedTokenQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &SharedTokenChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewSharedTokenQueryResultSnapshot()
-}
-func (d *Descriptor) NewSharedTokenQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -114,63 +97,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewSharedTokenQueryResultChange()
-}
-
-func (d *Descriptor) NewSharedTokenList(size, reserved int) SharedTokenList {
-	return make(SharedTokenList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(SharedTokenList, size, reserved)
-}
-func (d *Descriptor) NewSharedTokenChangeList(size, reserved int) SharedTokenChangeList {
-	return make(SharedTokenChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(SharedTokenChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewSharedTokenNameList(size, reserved int) SharedTokenNameList {
-	return make(SharedTokenNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(SharedTokenNameList, size, reserved)
-}
-
-func (d *Descriptor) NewSharedTokenReferenceList(size, reserved int) SharedTokenReferenceList {
-	return make(SharedTokenReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(SharedTokenReferenceList, size, reserved)
 }
-func (d *Descriptor) NewSharedTokenParentNameList(size, reserved int) SharedTokenParentNameList {
-	return make(SharedTokenParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(SharedTokenParentNameList, size, reserved)
-}
-func (d *Descriptor) NewSharedTokenParentReferenceList(size, reserved int) SharedTokenParentReferenceList {
-	return make(SharedTokenParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(SharedTokenParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewSharedTokenMap(reserved int) SharedTokenMap {
-	return make(SharedTokenMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(SharedTokenMap, reserved)
-}
-func (d *Descriptor) NewSharedTokenChangeMap(reserved int) SharedTokenChangeMap {
-	return make(SharedTokenChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -189,10 +144,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseSharedToken_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseSharedTokenName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initSharedTokenDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"SharedToken", "SharedTokens", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&SharedToken_FieldTerminalPath{selector: SharedToken_FieldPathSelectorName},
+			"pattern", "sharedTokenId",
+			[]string{"projectId", "regionId"},
+			[]gotenresource.NamePattern{NamePattern_Project_Region}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initSharedTokenDescriptor()
 }

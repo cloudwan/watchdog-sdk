@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package ntt.watchdog.v1alpha2;
 
-import "edgelq-sdk/iam/proto/v1alpha2/condition.proto";
-import "edgelq-sdk/iam/proto/v1alpha2/permission.proto";
 import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/protobuf/empty.proto";

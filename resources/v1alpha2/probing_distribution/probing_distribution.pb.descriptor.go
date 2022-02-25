@@ -34,15 +34,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"ProbingDistribution", "ProbingDistributions", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&ProbingDistribution_FieldTerminalPath{selector: ProbingDistribution_FieldPathSelectorName},
-			"pattern", "probingDistributionId",
-			[]string{"projectId"},
-			[]gotenresource.NamePattern{NamePattern_Project}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -54,19 +46,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewProbingDistribution() *ProbingDistribution {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &ProbingDistribution{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewProbingDistribution()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewProbingDistributionName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -85,30 +69,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewProbingDistributionCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewProbingDistributionCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewProbingDistributionChange() *ProbingDistributionChange {
-	return &ProbingDistributionChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &ProbingDistribution_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewProbingDistributionChange()
-}
-
-func (d *Descriptor) NewProbingDistributionQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &ProbingDistributionChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewProbingDistributionQueryResultSnapshot()
-}
-func (d *Descriptor) NewProbingDistributionQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -116,63 +99,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewProbingDistributionQueryResultChange()
-}
-
-func (d *Descriptor) NewProbingDistributionList(size, reserved int) ProbingDistributionList {
-	return make(ProbingDistributionList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(ProbingDistributionList, size, reserved)
-}
-func (d *Descriptor) NewProbingDistributionChangeList(size, reserved int) ProbingDistributionChangeList {
-	return make(ProbingDistributionChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(ProbingDistributionChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewProbingDistributionNameList(size, reserved int) ProbingDistributionNameList {
-	return make(ProbingDistributionNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(ProbingDistributionNameList, size, reserved)
-}
-
-func (d *Descriptor) NewProbingDistributionReferenceList(size, reserved int) ProbingDistributionReferenceList {
-	return make(ProbingDistributionReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(ProbingDistributionReferenceList, size, reserved)
 }
-func (d *Descriptor) NewProbingDistributionParentNameList(size, reserved int) ProbingDistributionParentNameList {
-	return make(ProbingDistributionParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(ProbingDistributionParentNameList, size, reserved)
-}
-func (d *Descriptor) NewProbingDistributionParentReferenceList(size, reserved int) ProbingDistributionParentReferenceList {
-	return make(ProbingDistributionParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(ProbingDistributionParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewProbingDistributionMap(reserved int) ProbingDistributionMap {
-	return make(ProbingDistributionMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(ProbingDistributionMap, reserved)
-}
-func (d *Descriptor) NewProbingDistributionChangeMap(reserved int) ProbingDistributionChangeMap {
-	return make(ProbingDistributionChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -191,10 +146,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseProbingDistribution_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseProbingDistributionName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initProbingDistributionDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"ProbingDistribution", "ProbingDistributions", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&ProbingDistribution_FieldTerminalPath{selector: ProbingDistribution_FieldPathSelectorName},
+			"pattern", "probingDistributionId",
+			[]string{"projectId"},
+			[]gotenresource.NamePattern{NamePattern_Project}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initProbingDistributionDescriptor()
 }

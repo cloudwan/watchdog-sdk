@@ -28,15 +28,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"QualityProfile", "QualityProfiles", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&QualityProfile_FieldTerminalPath{selector: QualityProfile_FieldPathSelectorName},
-			"pattern", "qualityProfileId",
-			[]string{"projectId"},
-			[]gotenresource.NamePattern{NamePattern_Project}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -48,19 +40,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewQualityProfile() *QualityProfile {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &QualityProfile{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewQualityProfile()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewQualityProfileName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -79,30 +63,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewQualityProfileCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewQualityProfileCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewQualityProfileChange() *QualityProfileChange {
-	return &QualityProfileChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &QualityProfile_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewQualityProfileChange()
-}
-
-func (d *Descriptor) NewQualityProfileQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &QualityProfileChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewQualityProfileQueryResultSnapshot()
-}
-func (d *Descriptor) NewQualityProfileQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -110,63 +93,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewQualityProfileQueryResultChange()
-}
-
-func (d *Descriptor) NewQualityProfileList(size, reserved int) QualityProfileList {
-	return make(QualityProfileList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(QualityProfileList, size, reserved)
-}
-func (d *Descriptor) NewQualityProfileChangeList(size, reserved int) QualityProfileChangeList {
-	return make(QualityProfileChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(QualityProfileChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewQualityProfileNameList(size, reserved int) QualityProfileNameList {
-	return make(QualityProfileNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(QualityProfileNameList, size, reserved)
-}
-
-func (d *Descriptor) NewQualityProfileReferenceList(size, reserved int) QualityProfileReferenceList {
-	return make(QualityProfileReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(QualityProfileReferenceList, size, reserved)
 }
-func (d *Descriptor) NewQualityProfileParentNameList(size, reserved int) QualityProfileParentNameList {
-	return make(QualityProfileParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(QualityProfileParentNameList, size, reserved)
-}
-func (d *Descriptor) NewQualityProfileParentReferenceList(size, reserved int) QualityProfileParentReferenceList {
-	return make(QualityProfileParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(QualityProfileParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewQualityProfileMap(reserved int) QualityProfileMap {
-	return make(QualityProfileMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(QualityProfileMap, reserved)
-}
-func (d *Descriptor) NewQualityProfileChangeMap(reserved int) QualityProfileChangeMap {
-	return make(QualityProfileChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -185,10 +140,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseQualityProfile_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseQualityProfileName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initQualityProfileDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"QualityProfile", "QualityProfiles", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&QualityProfile_FieldTerminalPath{selector: QualityProfile_FieldPathSelectorName},
+			"pattern", "qualityProfileId",
+			[]string{"projectId"},
+			[]gotenresource.NamePattern{NamePattern_Project}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initQualityProfileDescriptor()
 }

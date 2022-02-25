@@ -8,9 +8,11 @@ import (
 	"context"
 	"fmt"
 
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	gotenaccess "github.com/cloudwan/goten-sdk/runtime/access"
 	"github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
@@ -22,9 +24,11 @@ var (
 	_ = context.Context(nil)
 	_ = fmt.GoStringer(nil)
 
+	_ = grpc.ClientConnInterface(nil)
 	_ = codes.NotFound
 	_ = status.Status{}
 
+	_ = gotenaccess.Watcher(nil)
 	_ = watch_type.WatchType_STATEFUL
 	_ = gotenresource.ListQuery(nil)
 )
@@ -156,7 +160,7 @@ func (a *apiProbingConfigAccess) SaveProbingConfig(ctx context.Context, res *pro
 	saveOpts := gotenresource.MakeSaveOptions(opts)
 	previousRes := saveOpts.GetPreviousResource()
 
-	if previousRes == nil {
+	if previousRes == nil && !saveOpts.OnlyUpdate() && !saveOpts.OnlyCreate() {
 		var err error
 		previousRes, err = a.GetProbingConfig(ctx, &probing_config.GetQuery{Reference: res.Name.AsReference()})
 		if err != nil {
@@ -166,9 +170,18 @@ func (a *apiProbingConfigAccess) SaveProbingConfig(ctx context.Context, res *pro
 		}
 	}
 
-	if previousRes != nil {
+	if saveOpts.OnlyUpdate() || previousRes != nil {
 		updateRequest := &probing_config_client.UpdateProbingConfigRequest{
 			ProbingConfig: res,
+		}
+		if updateMask := saveOpts.GetUpdateMask(); updateMask != nil {
+			updateRequest.UpdateMask = updateMask.(*probing_config.ProbingConfig_FieldMask)
+		}
+		if mask, conditionalState := saveOpts.GetCAS(); mask != nil && conditionalState != nil {
+			updateRequest.Cas = &probing_config_client.UpdateProbingConfigRequest_CAS{
+				ConditionalState: conditionalState.(*probing_config.ProbingConfig),
+				FieldMask:        mask.(*probing_config.ProbingConfig_FieldMask),
+			}
 		}
 		_, err := a.client.UpdateProbingConfig(ctx, updateRequest)
 		if err != nil {
@@ -193,4 +206,10 @@ func (a *apiProbingConfigAccess) DeleteProbingConfig(ctx context.Context, ref *p
 	}
 	_, err := a.client.DeleteProbingConfig(ctx, request)
 	return err
+}
+
+func init() {
+	gotenaccess.GetRegistry().RegisterApiAccessConstructor(probing_config.GetDescriptor(), func(cc grpc.ClientConnInterface) gotenresource.Access {
+		return probing_config.AsAnyCastAccess(NewApiProbingConfigAccess(probing_config_client.NewProbingConfigServiceClient(cc)))
+	})
 }

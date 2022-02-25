@@ -49,8 +49,8 @@ var (
 	_ = &project.Project{}
 )
 
-var tag_RegexpId = regexp.MustCompile("^(?P<tag_id>[\\w][\\w.-]{0,127})$")
-var regexPath_Project = regexp.MustCompile("^projects/(?P<project_id>-|[\\w][\\w.-]{0,127})/tags/(?P<tag_id>-|[\\w][\\w.-]{0,127})$")
+var tag_RegexpId = regexp.MustCompile("^(?P<tag_id>.{1,128})$")
+var regexPath_Project = regexp.MustCompile("^projects/(?P<project_id>-|[\\w][\\w.-]{0,127})/tags/(?P<tag_id>-|.{1,128})$")
 
 func (r *Tag) MaybePopulateDefaults() error {
 	tagInterface := interface{}(r)

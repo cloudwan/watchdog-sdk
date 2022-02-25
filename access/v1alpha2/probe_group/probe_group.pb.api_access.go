@@ -8,9 +8,11 @@ import (
 	"context"
 	"fmt"
 
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	gotenaccess "github.com/cloudwan/goten-sdk/runtime/access"
 	"github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
@@ -22,9 +24,11 @@ var (
 	_ = context.Context(nil)
 	_ = fmt.GoStringer(nil)
 
+	_ = grpc.ClientConnInterface(nil)
 	_ = codes.NotFound
 	_ = status.Status{}
 
+	_ = gotenaccess.Watcher(nil)
 	_ = watch_type.WatchType_STATEFUL
 	_ = gotenresource.ListQuery(nil)
 )
@@ -182,7 +186,7 @@ func (a *apiProbeGroupAccess) SaveProbeGroup(ctx context.Context, res *probe_gro
 	saveOpts := gotenresource.MakeSaveOptions(opts)
 	previousRes := saveOpts.GetPreviousResource()
 
-	if previousRes == nil {
+	if previousRes == nil && !saveOpts.OnlyUpdate() && !saveOpts.OnlyCreate() {
 		var err error
 		previousRes, err = a.GetProbeGroup(ctx, &probe_group.GetQuery{Reference: res.Name.AsReference()})
 		if err != nil {
@@ -192,9 +196,18 @@ func (a *apiProbeGroupAccess) SaveProbeGroup(ctx context.Context, res *probe_gro
 		}
 	}
 
-	if previousRes != nil {
+	if saveOpts.OnlyUpdate() || previousRes != nil {
 		updateRequest := &probe_group_client.UpdateProbeGroupRequest{
 			ProbeGroup: res,
+		}
+		if updateMask := saveOpts.GetUpdateMask(); updateMask != nil {
+			updateRequest.UpdateMask = updateMask.(*probe_group.ProbeGroup_FieldMask)
+		}
+		if mask, conditionalState := saveOpts.GetCAS(); mask != nil && conditionalState != nil {
+			updateRequest.Cas = &probe_group_client.UpdateProbeGroupRequest_CAS{
+				ConditionalState: conditionalState.(*probe_group.ProbeGroup),
+				FieldMask:        mask.(*probe_group.ProbeGroup_FieldMask),
+			}
 		}
 		_, err := a.client.UpdateProbeGroup(ctx, updateRequest)
 		if err != nil {
@@ -219,4 +232,10 @@ func (a *apiProbeGroupAccess) DeleteProbeGroup(ctx context.Context, ref *probe_g
 	}
 	_, err := a.client.DeleteProbeGroup(ctx, request)
 	return err
+}
+
+func init() {
+	gotenaccess.GetRegistry().RegisterApiAccessConstructor(probe_group.GetDescriptor(), func(cc grpc.ClientConnInterface) gotenresource.Access {
+		return probe_group.AsAnyCastAccess(NewApiProbeGroupAccess(probe_group_client.NewProbeGroupServiceClient(cc)))
+	})
 }

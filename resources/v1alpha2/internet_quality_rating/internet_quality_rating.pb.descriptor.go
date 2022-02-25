@@ -30,15 +30,7 @@ var (
 )
 
 var (
-	descriptor = &Descriptor{
-		typeName: gotenresource.NewTypeName(
-			"InternetQualityRating", "InternetQualityRatings", "watchdog.edgelq.com"),
-		nameDescriptor: gotenresource.NewNameDescriptor(
-			&InternetQualityRating_FieldTerminalPath{selector: InternetQualityRating_FieldPathSelectorName},
-			"pattern", "internetQualityRatingId",
-			[]string{"projectId", "regionId", "probeId"},
-			[]gotenresource.NamePattern{NamePattern_Project_Region_Probe}),
-	}
+	descriptor *Descriptor
 )
 
 type Descriptor struct {
@@ -50,19 +42,11 @@ func GetDescriptor() *Descriptor {
 	return descriptor
 }
 
-func (d *Descriptor) NewInternetQualityRating() *InternetQualityRating {
+func (d *Descriptor) NewResource() gotenresource.Resource {
 	return &InternetQualityRating{}
 }
 
-func (d *Descriptor) NewResource() gotenresource.Resource {
-	return d.NewInternetQualityRating()
-}
-
 func (d *Descriptor) NewResourceName() gotenresource.Name {
-	return NewNameBuilder().Name()
-}
-
-func (d *Descriptor) NewInternetQualityRatingName() *Name {
 	return NewNameBuilder().Name()
 }
 
@@ -81,30 +65,29 @@ func (d *Descriptor) NewSearchQuery() gotenresource.SearchQuery {
 func (d *Descriptor) NewWatchQuery() gotenresource.WatchQuery {
 	return &WatchQuery{}
 }
-func (d *Descriptor) NewInternetQualityRatingCursor() *PagerCursor {
+
+func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
 	return &PagerCursor{}
 }
 
-func (d *Descriptor) NewResourceCursor() gotenresource.Cursor {
-	return d.NewInternetQualityRatingCursor()
+func (d *Descriptor) NewResourceFilter() gotenresource.Filter {
+	return &Filter{}
 }
-func (d *Descriptor) NewInternetQualityRatingChange() *InternetQualityRatingChange {
-	return &InternetQualityRatingChange{}
+
+func (d *Descriptor) NewResourceOrderBy() gotenresource.OrderBy {
+	return &OrderBy{}
+}
+
+func (d *Descriptor) NewResourceFieldMask() gotenobject.FieldMask {
+	return &InternetQualityRating_FieldMask{}
 }
 
 func (d *Descriptor) NewResourceChange() gotenresource.ResourceChange {
-	return d.NewInternetQualityRatingChange()
-}
-
-func (d *Descriptor) NewInternetQualityRatingQueryResultSnapshot() *QueryResultSnapshot {
-	return &QueryResultSnapshot{}
+	return &InternetQualityRatingChange{}
 }
 
 func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot {
-	return d.NewInternetQualityRatingQueryResultSnapshot()
-}
-func (d *Descriptor) NewInternetQualityRatingQueryResultChange() *QueryResultChange {
-	return &QueryResultChange{}
+	return &QueryResultSnapshot{}
 }
 
 func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
@@ -112,63 +95,35 @@ func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryRes
 }
 
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
-	return d.NewInternetQualityRatingQueryResultChange()
-}
-
-func (d *Descriptor) NewInternetQualityRatingList(size, reserved int) InternetQualityRatingList {
-	return make(InternetQualityRatingList, size, reserved)
+	return &QueryResultChange{}
 }
 
 func (d *Descriptor) NewResourceList(size, reserved int) gotenresource.ResourceList {
 	return make(InternetQualityRatingList, size, reserved)
-}
-func (d *Descriptor) NewInternetQualityRatingChangeList(size, reserved int) InternetQualityRatingChangeList {
-	return make(InternetQualityRatingChangeList, size, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeList(size, reserved int) gotenresource.ResourceChangeList {
 	return make(InternetQualityRatingChangeList, size, reserved)
 }
 
-func (d *Descriptor) NewInternetQualityRatingNameList(size, reserved int) InternetQualityRatingNameList {
-	return make(InternetQualityRatingNameList, size, reserved)
-}
-
 func (d *Descriptor) NewNameList(size, reserved int) gotenresource.NameList {
 	return make(InternetQualityRatingNameList, size, reserved)
-}
-
-func (d *Descriptor) NewInternetQualityRatingReferenceList(size, reserved int) InternetQualityRatingReferenceList {
-	return make(InternetQualityRatingReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewReferenceList(size, reserved int) gotenresource.ReferenceList {
 	return make(InternetQualityRatingReferenceList, size, reserved)
 }
-func (d *Descriptor) NewInternetQualityRatingParentNameList(size, reserved int) InternetQualityRatingParentNameList {
-	return make(InternetQualityRatingParentNameList, size, reserved)
-}
 
 func (d *Descriptor) NewParentNameList(size, reserved int) gotenresource.ParentNameList {
 	return make(InternetQualityRatingParentNameList, size, reserved)
-}
-func (d *Descriptor) NewInternetQualityRatingParentReferenceList(size, reserved int) InternetQualityRatingParentReferenceList {
-	return make(InternetQualityRatingParentReferenceList, size, reserved)
 }
 
 func (d *Descriptor) NewParentReferenceList(size, reserved int) gotenresource.ParentReferenceList {
 	return make(InternetQualityRatingParentReferenceList, size, reserved)
 }
 
-func (d *Descriptor) NewInternetQualityRatingMap(reserved int) InternetQualityRatingMap {
-	return make(InternetQualityRatingMap, reserved)
-}
-
 func (d *Descriptor) NewResourceMap(reserved int) gotenresource.ResourceMap {
 	return make(InternetQualityRatingMap, reserved)
-}
-func (d *Descriptor) NewInternetQualityRatingChangeMap(reserved int) InternetQualityRatingChangeMap {
-	return make(InternetQualityRatingChangeMap, reserved)
 }
 
 func (d *Descriptor) NewResourceChangeMap(reserved int) gotenresource.ResourceChangeMap {
@@ -187,10 +142,23 @@ func (d *Descriptor) ParseFieldPath(raw string) (gotenobject.FieldPath, error) {
 	return ParseInternetQualityRating_FieldPath(raw)
 }
 
-func (d *Descriptor) ParseInternetQualityRatingName(nameStr string) (*Name, error) {
+func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
 	return ParseName(nameStr)
 }
 
-func (d *Descriptor) ParseResourceName(nameStr string) (gotenresource.Name, error) {
-	return ParseName(nameStr)
+func initInternetQualityRatingDescriptor() {
+	descriptor = &Descriptor{
+		typeName: gotenresource.NewTypeName(
+			"InternetQualityRating", "InternetQualityRatings", "watchdog.edgelq.com", "v1alpha2"),
+		nameDescriptor: gotenresource.NewNameDescriptor(
+			&InternetQualityRating_FieldTerminalPath{selector: InternetQualityRating_FieldPathSelectorName},
+			"pattern", "internetQualityRatingId",
+			[]string{"projectId", "regionId", "probeId"},
+			[]gotenresource.NamePattern{NamePattern_Project_Region_Probe}),
+	}
+	gotenresource.GetRegistry().RegisterDescriptor(descriptor)
+}
+
+func init() {
+	initInternetQualityRatingDescriptor()
 }

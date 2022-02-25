@@ -8,9 +8,11 @@ import (
 	"context"
 	"fmt"
 
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	gotenaccess "github.com/cloudwan/goten-sdk/runtime/access"
 	"github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
@@ -22,9 +24,11 @@ var (
 	_ = context.Context(nil)
 	_ = fmt.GoStringer(nil)
 
+	_ = grpc.ClientConnInterface(nil)
 	_ = codes.NotFound
 	_ = status.Status{}
 
+	_ = gotenaccess.Watcher(nil)
 	_ = watch_type.WatchType_STATEFUL
 	_ = gotenresource.ListQuery(nil)
 )
@@ -156,7 +160,7 @@ func (a *apiTagAccess) SaveTag(ctx context.Context, res *tag.Tag, opts ...gotenr
 	saveOpts := gotenresource.MakeSaveOptions(opts)
 	previousRes := saveOpts.GetPreviousResource()
 
-	if previousRes == nil {
+	if previousRes == nil && !saveOpts.OnlyUpdate() && !saveOpts.OnlyCreate() {
 		var err error
 		previousRes, err = a.GetTag(ctx, &tag.GetQuery{Reference: res.Name.AsReference()})
 		if err != nil {
@@ -166,9 +170,18 @@ func (a *apiTagAccess) SaveTag(ctx context.Context, res *tag.Tag, opts ...gotenr
 		}
 	}
 
-	if previousRes != nil {
+	if saveOpts.OnlyUpdate() || previousRes != nil {
 		updateRequest := &tag_client.UpdateTagRequest{
 			Tag: res,
+		}
+		if updateMask := saveOpts.GetUpdateMask(); updateMask != nil {
+			updateRequest.UpdateMask = updateMask.(*tag.Tag_FieldMask)
+		}
+		if mask, conditionalState := saveOpts.GetCAS(); mask != nil && conditionalState != nil {
+			updateRequest.Cas = &tag_client.UpdateTagRequest_CAS{
+				ConditionalState: conditionalState.(*tag.Tag),
+				FieldMask:        mask.(*tag.Tag_FieldMask),
+			}
 		}
 		_, err := a.client.UpdateTag(ctx, updateRequest)
 		if err != nil {
@@ -193,4 +206,10 @@ func (a *apiTagAccess) DeleteTag(ctx context.Context, ref *tag.Reference, opts .
 	}
 	_, err := a.client.DeleteTag(ctx, request)
 	return err
+}
+
+func init() {
+	gotenaccess.GetRegistry().RegisterApiAccessConstructor(tag.GetDescriptor(), func(cc grpc.ClientConnInterface) gotenresource.Access {
+		return tag.AsAnyCastAccess(NewApiTagAccess(tag_client.NewTagServiceClient(cc)))
+	})
 }

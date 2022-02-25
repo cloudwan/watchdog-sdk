@@ -8,9 +8,11 @@ import (
 	"context"
 	"fmt"
 
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	gotenaccess "github.com/cloudwan/goten-sdk/runtime/access"
 	"github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
@@ -22,9 +24,11 @@ var (
 	_ = context.Context(nil)
 	_ = fmt.GoStringer(nil)
 
+	_ = grpc.ClientConnInterface(nil)
 	_ = codes.NotFound
 	_ = status.Status{}
 
+	_ = gotenaccess.Watcher(nil)
 	_ = watch_type.WatchType_STATEFUL
 	_ = gotenresource.ListQuery(nil)
 )
@@ -156,7 +160,7 @@ func (a *apiQualityProfileAccess) SaveQualityProfile(ctx context.Context, res *q
 	saveOpts := gotenresource.MakeSaveOptions(opts)
 	previousRes := saveOpts.GetPreviousResource()
 
-	if previousRes == nil {
+	if previousRes == nil && !saveOpts.OnlyUpdate() && !saveOpts.OnlyCreate() {
 		var err error
 		previousRes, err = a.GetQualityProfile(ctx, &quality_profile.GetQuery{Reference: res.Name.AsReference()})
 		if err != nil {
@@ -166,9 +170,18 @@ func (a *apiQualityProfileAccess) SaveQualityProfile(ctx context.Context, res *q
 		}
 	}
 
-	if previousRes != nil {
+	if saveOpts.OnlyUpdate() || previousRes != nil {
 		updateRequest := &quality_profile_client.UpdateQualityProfileRequest{
 			QualityProfile: res,
+		}
+		if updateMask := saveOpts.GetUpdateMask(); updateMask != nil {
+			updateRequest.UpdateMask = updateMask.(*quality_profile.QualityProfile_FieldMask)
+		}
+		if mask, conditionalState := saveOpts.GetCAS(); mask != nil && conditionalState != nil {
+			updateRequest.Cas = &quality_profile_client.UpdateQualityProfileRequest_CAS{
+				ConditionalState: conditionalState.(*quality_profile.QualityProfile),
+				FieldMask:        mask.(*quality_profile.QualityProfile_FieldMask),
+			}
 		}
 		_, err := a.client.UpdateQualityProfile(ctx, updateRequest)
 		if err != nil {
@@ -193,4 +206,10 @@ func (a *apiQualityProfileAccess) DeleteQualityProfile(ctx context.Context, ref 
 	}
 	_, err := a.client.DeleteQualityProfile(ctx, request)
 	return err
+}
+
+func init() {
+	gotenaccess.GetRegistry().RegisterApiAccessConstructor(quality_profile.GetDescriptor(), func(cc grpc.ClientConnInterface) gotenresource.Access {
+		return quality_profile.AsAnyCastAccess(NewApiQualityProfileAccess(quality_profile_client.NewQualityProfileServiceClient(cc)))
+	})
 }
