@@ -46,7 +46,12 @@ func (a *apiProbeGroupAccess) GetProbeGroup(ctx context.Context, query *probe_gr
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetProbeGroup(ctx, request)
+	res, err := a.client.GetProbeGroup(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiProbeGroupAccess) BatchGetProbeGroups(ctx context.Context, refs []*probe_group.Reference, opts ...gotenresource.BatchGetOption) error {

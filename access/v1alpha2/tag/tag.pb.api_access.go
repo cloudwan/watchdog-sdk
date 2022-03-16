@@ -46,7 +46,12 @@ func (a *apiTagAccess) GetTag(ctx context.Context, query *tag.GetQuery) (*tag.Ta
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetTag(ctx, request)
+	res, err := a.client.GetTag(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiTagAccess) BatchGetTags(ctx context.Context, refs []*tag.Reference, opts ...gotenresource.BatchGetOption) error {

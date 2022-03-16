@@ -105,10 +105,14 @@ func (name *ParentName) GetProbeName() *probe.Name {
 }
 
 func (name *ParentName) IsSpecified() bool {
-	if name == nil {
+	if name == nil || name.Pattern == "" {
 		return false
 	}
-	return name.Pattern == NamePattern_Project_Region_Probe
+	switch name.Pattern {
+	case NamePattern_Project_Region_Probe:
+		return name.ProjectId != "" && name.RegionId != "" && name.ProbeId != ""
+	}
+	return false
 }
 
 func (name *ParentName) IsFullyQualified() bool {

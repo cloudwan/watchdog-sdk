@@ -46,7 +46,12 @@ func (a *apiInternetQualityRatingAccess) GetInternetQualityRating(ctx context.Co
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetInternetQualityRating(ctx, request)
+	res, err := a.client.GetInternetQualityRating(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiInternetQualityRatingAccess) BatchGetInternetQualityRatings(ctx context.Context, refs []*internet_quality_rating.Reference, opts ...gotenresource.BatchGetOption) error {

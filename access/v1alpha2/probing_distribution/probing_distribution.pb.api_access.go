@@ -46,7 +46,12 @@ func (a *apiProbingDistributionAccess) GetProbingDistribution(ctx context.Contex
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetProbingDistribution(ctx, request)
+	res, err := a.client.GetProbingDistribution(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiProbingDistributionAccess) BatchGetProbingDistributions(ctx context.Context, refs []*probing_distribution.Reference, opts ...gotenresource.BatchGetOption) error {

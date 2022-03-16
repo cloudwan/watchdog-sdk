@@ -46,7 +46,12 @@ func (a *apiQualityProfileAccess) GetQualityProfile(ctx context.Context, query *
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetQualityProfile(ctx, request)
+	res, err := a.client.GetQualityProfile(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiQualityProfileAccess) BatchGetQualityProfiles(ctx context.Context, refs []*quality_profile.Reference, opts ...gotenresource.BatchGetOption) error {

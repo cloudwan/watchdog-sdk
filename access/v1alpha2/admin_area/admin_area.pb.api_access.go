@@ -46,7 +46,12 @@ func (a *apiAdminAreaAccess) GetAdminArea(ctx context.Context, query *admin_area
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetAdminArea(ctx, request)
+	res, err := a.client.GetAdminArea(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiAdminAreaAccess) BatchGetAdminAreas(ctx context.Context, refs []*admin_area.Reference, opts ...gotenresource.BatchGetOption) error {

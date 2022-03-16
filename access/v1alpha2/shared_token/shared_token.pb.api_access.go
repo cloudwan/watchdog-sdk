@@ -46,7 +46,12 @@ func (a *apiSharedTokenAccess) GetSharedToken(ctx context.Context, query *shared
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetSharedToken(ctx, request)
+	res, err := a.client.GetSharedToken(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiSharedTokenAccess) BatchGetSharedTokens(ctx context.Context, refs []*shared_token.Reference, opts ...gotenresource.BatchGetOption) error {

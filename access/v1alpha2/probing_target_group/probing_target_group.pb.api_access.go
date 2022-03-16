@@ -46,7 +46,12 @@ func (a *apiProbingTargetGroupAccess) GetProbingTargetGroup(ctx context.Context,
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetProbingTargetGroup(ctx, request)
+	res, err := a.client.GetProbingTargetGroup(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiProbingTargetGroupAccess) BatchGetProbingTargetGroups(ctx context.Context, refs []*probing_target_group.Reference, opts ...gotenresource.BatchGetOption) error {

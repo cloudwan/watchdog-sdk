@@ -46,7 +46,12 @@ func (a *apiProbingConfigAccess) GetProbingConfig(ctx context.Context, query *pr
 		Name:      query.Reference,
 		FieldMask: query.Mask,
 	}
-	return a.client.GetProbingConfig(ctx, request)
+	res, err := a.client.GetProbingConfig(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	query.Reference.Resolve(res)
+	return res, nil
 }
 
 func (a *apiProbingConfigAccess) BatchGetProbingConfigs(ctx context.Context, refs []*probing_config.Reference, opts ...gotenresource.BatchGetOption) error {
