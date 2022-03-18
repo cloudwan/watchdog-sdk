@@ -59,7 +59,7 @@ func FullProject_FieldMask() *Project_FieldMask {
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorTeamsWebhookUrl})
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorInternetSummaryTargetGroup})
 	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorPreferredLocale})
-	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri})
+	res.Paths = append(res.Paths, &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUrl})
 	return res
 }
 
@@ -364,8 +364,8 @@ func (fieldMask *Project_FieldMask) Project(source *Project) *Project {
 			case Project_FieldPathSelectorPreferredLocale:
 				result.PreferredLocale = source.PreferredLocale
 				wholePreferredLocaleAccepted = true
-			case Project_FieldPathSelectorExternalIpCheckUri:
-				result.ExternalIpCheckUri = source.ExternalIpCheckUri
+			case Project_FieldPathSelectorExternalIpCheckUrl:
+				result.ExternalIpCheckUrl = source.ExternalIpCheckUrl
 			}
 		case *Project_FieldSubPath:
 			switch tp.selector {

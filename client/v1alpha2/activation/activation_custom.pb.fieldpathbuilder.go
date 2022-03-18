@@ -808,8 +808,8 @@ func (ActivationRequestPathSelectorActivateProbeSpec) AgentType() ActivationRequ
 	return ActivationRequestPathSelectorActivateProbeSpecAgentType{}
 }
 
-func (ActivationRequestPathSelectorActivateProbeSpec) ExternalIpCheckUri() ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri {
-	return ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri{}
+func (ActivationRequestPathSelectorActivateProbeSpec) ExternalIpCheckUrl() ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl {
+	return ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl{}
 }
 
 type ActivationRequestPathSelectorActivateProbeSpecProbeGroup struct{}
@@ -1679,24 +1679,24 @@ func (s ActivationRequestPathSelectorActivateProbeSpecAgentType) WithArrayOfValu
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri struct{}
+type ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl struct{}
 
-func (ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri) FieldPath() *ActivationRequest_FieldSubPath {
+func (ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) FieldPath() *ActivationRequest_FieldSubPath {
 	return &ActivationRequest_FieldSubPath{
 		selector: ActivationRequest_FieldPathSelectorActivate,
-		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri) WithValue(value []string) *ActivationRequest_FieldSubPathValue {
+func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) WithValue(value []string) *ActivationRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *ActivationRequest_FieldSubPathArrayOfValues {
+func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUri) WithItemValue(value string) *ActivationRequest_FieldSubPathArrayItemValue {
+func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequest_FieldSubPathArrayItemValue)
 }
 
@@ -4140,8 +4140,8 @@ func (ActivationRequest_ActivatePathSelectorProbeSpec) AgentType() ActivationReq
 	return ActivationRequest_ActivatePathSelectorProbeSpecAgentType{}
 }
 
-func (ActivationRequest_ActivatePathSelectorProbeSpec) ExternalIpCheckUri() ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri {
-	return ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri{}
+func (ActivationRequest_ActivatePathSelectorProbeSpec) ExternalIpCheckUrl() ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl {
+	return ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
 type ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup struct{}
@@ -5011,24 +5011,24 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecAgentType) WithArrayOfVal
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri struct{}
+type ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl struct{}
 
-func (ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri) FieldPath() *ActivationRequestActivate_FieldSubPath {
+func (ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) FieldPath() *ActivationRequestActivate_FieldSubPath {
 	return &ActivationRequestActivate_FieldSubPath{
 		selector: ActivationRequestActivate_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri) WithValue(value []string) *ActivationRequestActivate_FieldSubPathValue {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) WithValue(value []string) *ActivationRequestActivate_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUri) WithItemValue(value string) *ActivationRequestActivate_FieldSubPathArrayItemValue {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationRequestActivate_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequestActivate_FieldSubPathArrayItemValue)
 }
 
@@ -7429,8 +7429,8 @@ func (ActivationResponsePathSelectorActivatedProbeSpec) AgentType() ActivationRe
 	return ActivationResponsePathSelectorActivatedProbeSpecAgentType{}
 }
 
-func (ActivationResponsePathSelectorActivatedProbeSpec) ExternalIpCheckUri() ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri {
-	return ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri{}
+func (ActivationResponsePathSelectorActivatedProbeSpec) ExternalIpCheckUrl() ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl {
+	return ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl{}
 }
 
 type ActivationResponsePathSelectorActivatedProbeSpecProbeGroup struct{}
@@ -8300,24 +8300,24 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecAgentType) WithArrayOfVa
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri struct{}
+type ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl struct{}
 
-func (ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri) FieldPath() *ActivationResponse_FieldSubPath {
+func (ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) FieldPath() *ActivationResponse_FieldSubPath {
 	return &ActivationResponse_FieldSubPath{
 		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri) WithValue(value []string) *ActivationResponse_FieldSubPathValue {
+func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) WithValue(value []string) *ActivationResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *ActivationResponse_FieldSubPathArrayOfValues {
+func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUri) WithItemValue(value string) *ActivationResponse_FieldSubPathArrayItemValue {
+func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
 }
 
@@ -11331,8 +11331,8 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpec) AgentType() ActivationR
 	return ActivationResponse_ActivatedPathSelectorProbeSpecAgentType{}
 }
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpec) ExternalIpCheckUri() ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri {
-	return ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri{}
+func (ActivationResponse_ActivatedPathSelectorProbeSpec) ExternalIpCheckUrl() ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup struct{}
@@ -12202,24 +12202,24 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecAgentType) WithArrayOfV
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri struct{}
+type ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl struct{}
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri) FieldPath() *ActivationResponseActivated_FieldSubPath {
+func (ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) FieldPath() *ActivationResponseActivated_FieldSubPath {
 	return &ActivationResponseActivated_FieldSubPath{
 		selector: ActivationResponseActivated_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri) WithValue(value []string) *ActivationResponseActivated_FieldSubPathValue {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) WithValue(value []string) *ActivationResponseActivated_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUri) WithItemValue(value string) *ActivationResponseActivated_FieldSubPathArrayItemValue {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationResponseActivated_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
 }
 

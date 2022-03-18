@@ -711,8 +711,8 @@ func (ProbePathSelectorSpec) AgentType() ProbePathSelectorSpecAgentType {
 	return ProbePathSelectorSpecAgentType{}
 }
 
-func (ProbePathSelectorSpec) ExternalIpCheckUri() ProbePathSelectorSpecExternalIpCheckUri {
-	return ProbePathSelectorSpecExternalIpCheckUri{}
+func (ProbePathSelectorSpec) ExternalIpCheckUrl() ProbePathSelectorSpecExternalIpCheckUrl {
+	return ProbePathSelectorSpecExternalIpCheckUrl{}
 }
 
 type ProbePathSelectorSpecProbeGroup struct{}
@@ -1582,24 +1582,24 @@ func (s ProbePathSelectorSpecAgentType) WithArrayOfValues(values []Probe_AgentTy
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
-type ProbePathSelectorSpecExternalIpCheckUri struct{}
+type ProbePathSelectorSpecExternalIpCheckUrl struct{}
 
-func (ProbePathSelectorSpecExternalIpCheckUri) FieldPath() *Probe_FieldSubPath {
+func (ProbePathSelectorSpecExternalIpCheckUrl) FieldPath() *Probe_FieldSubPath {
 	return &Probe_FieldSubPath{
 		selector: Probe_FieldPathSelectorSpec,
-		subPath:  NewProbeSpecFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+		subPath:  NewProbeSpecFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ProbePathSelectorSpecExternalIpCheckUri) WithValue(value []string) *Probe_FieldSubPathValue {
+func (s ProbePathSelectorSpecExternalIpCheckUrl) WithValue(value []string) *Probe_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
 }
 
-func (s ProbePathSelectorSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *Probe_FieldSubPathArrayOfValues {
+func (s ProbePathSelectorSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
-func (s ProbePathSelectorSpecExternalIpCheckUri) WithItemValue(value string) *Probe_FieldSubPathArrayItemValue {
+func (s ProbePathSelectorSpecExternalIpCheckUrl) WithItemValue(value string) *Probe_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*Probe_FieldSubPathArrayItemValue)
 }
 
@@ -3303,8 +3303,8 @@ func (ProbeSpecFieldPathBuilder) AccessToken() Probe_SpecPathSelectorAccessToken
 func (ProbeSpecFieldPathBuilder) AgentType() Probe_SpecPathSelectorAgentType {
 	return Probe_SpecPathSelectorAgentType{}
 }
-func (ProbeSpecFieldPathBuilder) ExternalIpCheckUri() Probe_SpecPathSelectorExternalIpCheckUri {
-	return Probe_SpecPathSelectorExternalIpCheckUri{}
+func (ProbeSpecFieldPathBuilder) ExternalIpCheckUrl() Probe_SpecPathSelectorExternalIpCheckUrl {
+	return Probe_SpecPathSelectorExternalIpCheckUrl{}
 }
 
 type Probe_SpecPathSelectorProbeGroup struct{}
@@ -4224,21 +4224,21 @@ func (s Probe_SpecPathSelectorAgentType) WithArrayOfValues(values []Probe_AgentT
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
 }
 
-type Probe_SpecPathSelectorExternalIpCheckUri struct{}
+type Probe_SpecPathSelectorExternalIpCheckUrl struct{}
 
-func (Probe_SpecPathSelectorExternalIpCheckUri) FieldPath() *ProbeSpec_FieldTerminalPath {
-	return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri}
+func (Probe_SpecPathSelectorExternalIpCheckUrl) FieldPath() *ProbeSpec_FieldTerminalPath {
+	return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl}
 }
 
-func (s Probe_SpecPathSelectorExternalIpCheckUri) WithValue(value []string) *ProbeSpec_FieldTerminalPathValue {
+func (s Probe_SpecPathSelectorExternalIpCheckUrl) WithValue(value []string) *ProbeSpec_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldTerminalPathValue)
 }
 
-func (s Probe_SpecPathSelectorExternalIpCheckUri) WithArrayOfValues(values [][]string) *ProbeSpec_FieldTerminalPathArrayOfValues {
+func (s Probe_SpecPathSelectorExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ProbeSpec_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
 }
 
-func (s Probe_SpecPathSelectorExternalIpCheckUri) WithItemValue(value string) *ProbeSpec_FieldTerminalPathArrayItemValue {
+func (s Probe_SpecPathSelectorExternalIpCheckUrl) WithItemValue(value string) *ProbeSpec_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbeSpec_FieldTerminalPathArrayItemValue)
 }
 

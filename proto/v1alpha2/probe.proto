@@ -76,7 +76,7 @@ message Probe {
 
     AgentType agent_type = 15;
 
-    repeated string external_ip_check_uri = 16;
+    repeated string external_ip_check_url = 16;
 
     message ActivationSpec {
       ActivationType type = 1;

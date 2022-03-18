@@ -49,8 +49,8 @@ func (ProjectFieldPathBuilder) InternetSummaryTargetGroup() ProjectPathSelectorI
 func (ProjectFieldPathBuilder) PreferredLocale() ProjectPathSelectorPreferredLocale {
 	return ProjectPathSelectorPreferredLocale{}
 }
-func (ProjectFieldPathBuilder) ExternalIpCheckUri() ProjectPathSelectorExternalIpCheckUri {
-	return ProjectPathSelectorExternalIpCheckUri{}
+func (ProjectFieldPathBuilder) ExternalIpCheckUrl() ProjectPathSelectorExternalIpCheckUrl {
+	return ProjectPathSelectorExternalIpCheckUrl{}
 }
 
 type ProjectPathSelectorName struct{}
@@ -848,21 +848,21 @@ func (s ProjectPathSelectorPreferredLocaleLangugageCode) WithArrayOfValues(value
 	return s.FieldPath().WithIArrayOfValues(values).(*Project_FieldSubPathArrayOfValues)
 }
 
-type ProjectPathSelectorExternalIpCheckUri struct{}
+type ProjectPathSelectorExternalIpCheckUrl struct{}
 
-func (ProjectPathSelectorExternalIpCheckUri) FieldPath() *Project_FieldTerminalPath {
-	return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUri}
+func (ProjectPathSelectorExternalIpCheckUrl) FieldPath() *Project_FieldTerminalPath {
+	return &Project_FieldTerminalPath{selector: Project_FieldPathSelectorExternalIpCheckUrl}
 }
 
-func (s ProjectPathSelectorExternalIpCheckUri) WithValue(value []string) *Project_FieldTerminalPathValue {
+func (s ProjectPathSelectorExternalIpCheckUrl) WithValue(value []string) *Project_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*Project_FieldTerminalPathValue)
 }
 
-func (s ProjectPathSelectorExternalIpCheckUri) WithArrayOfValues(values [][]string) *Project_FieldTerminalPathArrayOfValues {
+func (s ProjectPathSelectorExternalIpCheckUrl) WithArrayOfValues(values [][]string) *Project_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Project_FieldTerminalPathArrayOfValues)
 }
 
-func (s ProjectPathSelectorExternalIpCheckUri) WithItemValue(value string) *Project_FieldTerminalPathArrayItemValue {
+func (s ProjectPathSelectorExternalIpCheckUrl) WithItemValue(value string) *Project_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*Project_FieldTerminalPathArrayItemValue)
 }
 

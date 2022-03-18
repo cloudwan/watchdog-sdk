@@ -299,16 +299,16 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
 	}
 
-	if len(o.GetExternalIpCheckUri()) == len(other.GetExternalIpCheckUri()) {
-		for i, lValue := range o.GetExternalIpCheckUri() {
-			rValue := other.GetExternalIpCheckUri()[i]
+	if len(o.GetExternalIpCheckUrl()) == len(other.GetExternalIpCheckUrl()) {
+		for i, lValue := range o.GetExternalIpCheckUrl() {
+			rValue := other.GetExternalIpCheckUrl()[i]
 			if lValue != rValue {
-				res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
+				res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl})
 				break
 			}
 		}
 	} else {
-		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
+		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl})
 	}
 	return res
 }
@@ -350,9 +350,9 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 	result.DisableSpeedtest = o.DisableSpeedtest
 	result.AccessToken = o.AccessToken.Clone()
 	result.AgentType = o.AgentType
-	result.ExternalIpCheckUri = make([]string, len(o.ExternalIpCheckUri))
-	for i, sourceValue := range o.ExternalIpCheckUri {
-		result.ExternalIpCheckUri[i] = sourceValue
+	result.ExternalIpCheckUrl = make([]string, len(o.ExternalIpCheckUrl))
+	for i, sourceValue := range o.ExternalIpCheckUrl {
+		result.ExternalIpCheckUrl[i] = sourceValue
 	}
 	return result
 }
@@ -419,9 +419,9 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 		o.AccessToken.Merge(source.GetAccessToken())
 	}
 	o.AgentType = source.GetAgentType()
-	for _, sourceValue := range source.GetExternalIpCheckUri() {
+	for _, sourceValue := range source.GetExternalIpCheckUrl() {
 		exists := false
-		for _, currentValue := range o.ExternalIpCheckUri {
+		for _, currentValue := range o.ExternalIpCheckUrl {
 			if currentValue == sourceValue {
 				exists = true
 				break
@@ -430,7 +430,7 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 		if !exists {
 			var newDstElement string
 			newDstElement = sourceValue
-			o.ExternalIpCheckUri = append(o.ExternalIpCheckUri, newDstElement)
+			o.ExternalIpCheckUrl = append(o.ExternalIpCheckUrl, newDstElement)
 		}
 	}
 

@@ -463,7 +463,7 @@ func FullProbe_Spec_FieldMask() *Probe_Spec_FieldMask {
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDisableSpeedtest})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
-	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUri})
+	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl})
 	return res
 }
 
@@ -799,8 +799,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 				wholeAccessTokenAccepted = true
 			case ProbeSpec_FieldPathSelectorAgentType:
 				result.AgentType = source.AgentType
-			case ProbeSpec_FieldPathSelectorExternalIpCheckUri:
-				result.ExternalIpCheckUri = source.ExternalIpCheckUri
+			case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
+				result.ExternalIpCheckUrl = source.ExternalIpCheckUrl
 			}
 		case *ProbeSpec_FieldSubPath:
 			switch tp.selector {

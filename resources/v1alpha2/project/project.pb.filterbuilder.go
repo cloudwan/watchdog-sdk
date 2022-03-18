@@ -202,8 +202,8 @@ func (b *filterCndBuilder) PreferredLocale() *filterCndBuilderPreferredLocale {
 	return &filterCndBuilderPreferredLocale{builder: b.builder}
 }
 
-func (b *filterCndBuilder) ExternalIpCheckUri() *filterCndBuilderExternalIpCheckUri {
-	return &filterCndBuilderExternalIpCheckUri{builder: b.builder}
+func (b *filterCndBuilder) ExternalIpCheckUrl() *filterCndBuilderExternalIpCheckUrl {
+	return &filterCndBuilderExternalIpCheckUrl{builder: b.builder}
 }
 
 type filterCndBuilderName struct {
@@ -2678,95 +2678,95 @@ func (b *filterCndBuilderPreferredLocaleLangugageCode) compare(op gotenfilter.Co
 	})
 }
 
-type filterCndBuilderExternalIpCheckUri struct {
+type filterCndBuilderExternalIpCheckUrl struct {
 	builder *FilterBuilder
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Eq(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Eq(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Eq, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Neq(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Neq(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Neq, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Gt(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Gt(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Gt, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Gte(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Gte(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Gte, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Lt(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Lt(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Lt, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Lte(value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Lte(value []string) *FilterBuilder {
 	return b.compare(gotenfilter.Lte, value)
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) In(values [][]string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) In(values [][]string) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIn{
-		Project_FieldPathArrayOfValues: NewProjectFieldPathBuilder().ExternalIpCheckUri().WithArrayOfValues(values),
+		Project_FieldPathArrayOfValues: NewProjectFieldPathBuilder().ExternalIpCheckUrl().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) NotIn(values [][]string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) NotIn(values [][]string) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionNotIn{
-		Project_FieldPathArrayOfValues: NewProjectFieldPathBuilder().ExternalIpCheckUri().WithArrayOfValues(values),
+		Project_FieldPathArrayOfValues: NewProjectFieldPathBuilder().ExternalIpCheckUrl().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) IsNull() *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) IsNull() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) IsNan() *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) IsNan() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) Contains(value string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) Contains(value string) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionContains{
 		Type:      gotenresource.ConditionContainsTypeValue,
-		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
-		Value:     NewProjectFieldPathBuilder().ExternalIpCheckUri().WithItemValue(value),
+		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
+		Value:     NewProjectFieldPathBuilder().ExternalIpCheckUrl().WithItemValue(value),
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) ContainsAnyOf(values []string) *FilterBuilder {
-	pathSelector := NewProjectFieldPathBuilder().ExternalIpCheckUri()
+func (b *filterCndBuilderExternalIpCheckUrl) ContainsAnyOf(values []string) *FilterBuilder {
+	pathSelector := NewProjectFieldPathBuilder().ExternalIpCheckUrl()
 	itemValues := make([]Project_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
 		itemValues = append(itemValues, pathSelector.WithItemValue(value))
 	}
 	return b.builder.addCond(&FilterConditionContains{
 		Type:      gotenresource.ConditionContainsTypeAny,
-		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
 		Values:    itemValues,
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) ContainsAll(values []string) *FilterBuilder {
-	pathSelector := NewProjectFieldPathBuilder().ExternalIpCheckUri()
+func (b *filterCndBuilderExternalIpCheckUrl) ContainsAll(values []string) *FilterBuilder {
+	pathSelector := NewProjectFieldPathBuilder().ExternalIpCheckUrl()
 	itemValues := make([]Project_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
 		itemValues = append(itemValues, pathSelector.WithItemValue(value))
 	}
 	return b.builder.addCond(&FilterConditionContains{
 		Type:      gotenresource.ConditionContainsTypeAll,
-		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUri().FieldPath(),
+		FieldPath: NewProjectFieldPathBuilder().ExternalIpCheckUrl().FieldPath(),
 		Values:    itemValues,
 	})
 }
 
-func (b *filterCndBuilderExternalIpCheckUri) compare(op gotenfilter.CompareOperator, value []string) *FilterBuilder {
+func (b *filterCndBuilderExternalIpCheckUrl) compare(op gotenfilter.CompareOperator, value []string) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:               op,
-		Project_FieldPathValue: NewProjectFieldPathBuilder().ExternalIpCheckUri().WithValue(value),
+		Project_FieldPathValue: NewProjectFieldPathBuilder().ExternalIpCheckUrl().WithValue(value),
 	})
 }

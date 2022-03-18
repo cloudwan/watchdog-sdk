@@ -883,8 +883,8 @@ func (BatchGetProbesResponsePathSelectorProbesSpec) AgentType() BatchGetProbesRe
 	return BatchGetProbesResponsePathSelectorProbesSpecAgentType{}
 }
 
-func (BatchGetProbesResponsePathSelectorProbesSpec) ExternalIpCheckUri() BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri {
-	return BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri{}
+func (BatchGetProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl {
+	return BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
 type BatchGetProbesResponsePathSelectorProbesSpecProbeGroup struct{}
@@ -1754,24 +1754,24 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri struct{}
+type BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl struct{}
 
-func (BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+func (BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) FieldPath() *BatchGetProbesResponse_FieldSubPath {
 	return &BatchGetProbesResponse_FieldSubPath{
 		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithValue(value []string) *BatchGetProbesResponse_FieldSubPathValue {
+func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithValue(value []string) *BatchGetProbesResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
-func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithItemValue(value string) *BatchGetProbesResponse_FieldSubPathArrayItemValue {
+func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *BatchGetProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbesResponse_FieldSubPathArrayItemValue)
 }
 
@@ -4239,8 +4239,8 @@ func (ListProbesResponsePathSelectorProbesSpec) AgentType() ListProbesResponsePa
 	return ListProbesResponsePathSelectorProbesSpecAgentType{}
 }
 
-func (ListProbesResponsePathSelectorProbesSpec) ExternalIpCheckUri() ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri {
-	return ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri{}
+func (ListProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl {
+	return ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
 type ListProbesResponsePathSelectorProbesSpecProbeGroup struct{}
@@ -5110,24 +5110,24 @@ func (s ListProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues(val
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri struct{}
+type ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl struct{}
 
-func (ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri) FieldPath() *ListProbesResponse_FieldSubPath {
+func (ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) FieldPath() *ListProbesResponse_FieldSubPath {
 	return &ListProbesResponse_FieldSubPath{
 		selector: ListProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithValue(value []string) *ListProbesResponse_FieldSubPathValue {
+func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithValue(value []string) *ListProbesResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
 }
 
-func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *ListProbesResponse_FieldSubPathArrayOfValues {
+func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
-func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithItemValue(value string) *ListProbesResponse_FieldSubPathArrayItemValue {
+func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *ListProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbesResponse_FieldSubPathArrayItemValue)
 }
 
@@ -7971,8 +7971,8 @@ func (CreateProbeRequestPathSelectorProbeSpec) AgentType() CreateProbeRequestPat
 	return CreateProbeRequestPathSelectorProbeSpecAgentType{}
 }
 
-func (CreateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUri() CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri {
-	return CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri{}
+func (CreateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUrl() CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl {
+	return CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
 type CreateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
@@ -8842,24 +8842,24 @@ func (s CreateProbeRequestPathSelectorProbeSpecAgentType) WithArrayOfValues(valu
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri struct{}
+type CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl struct{}
 
-func (CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) FieldPath() *CreateProbeRequest_FieldSubPath {
+func (CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) FieldPath() *CreateProbeRequest_FieldSubPath {
 	return &CreateProbeRequest_FieldSubPath{
 		selector: CreateProbeRequest_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithValue(value []string) *CreateProbeRequest_FieldSubPathValue {
+func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithValue(value []string) *CreateProbeRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
 }
 
-func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithItemValue(value string) *CreateProbeRequest_FieldSubPathArrayItemValue {
+func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *CreateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbeRequest_FieldSubPathArrayItemValue)
 }
 
@@ -11181,8 +11181,8 @@ func (UpdateProbeRequestPathSelectorProbeSpec) AgentType() UpdateProbeRequestPat
 	return UpdateProbeRequestPathSelectorProbeSpecAgentType{}
 }
 
-func (UpdateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUri() UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri {
-	return UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri{}
+func (UpdateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUrl() UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl {
+	return UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
 type UpdateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
@@ -12052,24 +12052,24 @@ func (s UpdateProbeRequestPathSelectorProbeSpecAgentType) WithArrayOfValues(valu
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri struct{}
+type UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl struct{}
 
-func (UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) FieldPath() *UpdateProbeRequest_FieldSubPath {
+func (UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) FieldPath() *UpdateProbeRequest_FieldSubPath {
 	return &UpdateProbeRequest_FieldSubPath{
 		selector: UpdateProbeRequest_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithValue(value []string) *UpdateProbeRequest_FieldSubPathValue {
+func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithValue(value []string) *UpdateProbeRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUri) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequest_FieldSubPathArrayItemValue)
 }
 
@@ -14415,8 +14415,8 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) AgentType() UpdateP
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType{}
 }
 
-func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) ExternalIpCheckUri() UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri {
-	return UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri{}
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) ExternalIpCheckUrl() UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl{}
 }
 
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup struct{}
@@ -15286,24 +15286,24 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecAgentType) WithArra
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri struct{}
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl struct{}
 
-func (UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri) FieldPath() *UpdateProbeRequest_FieldSubPath {
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl) FieldPath() *UpdateProbeRequest_FieldSubPath {
 	return &UpdateProbeRequest_FieldSubPath{
 		selector: UpdateProbeRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri) WithValue(value []string) *UpdateProbeRequest_FieldSubPathValue {
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl) WithValue(value []string) *UpdateProbeRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUri) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequest_FieldSubPathArrayItemValue)
 }
 
@@ -17639,8 +17639,8 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) AgentType() Update
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType{}
 }
 
-func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) ExternalIpCheckUri() UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri {
-	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri{}
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) ExternalIpCheckUrl() UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl{}
 }
 
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup struct{}
@@ -18510,24 +18510,24 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecAgentType) WithArr
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri struct{}
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl struct{}
 
-func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
 	return &UpdateProbeRequestCAS_FieldSubPath{
 		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri) WithValue(value []string) *UpdateProbeRequestCAS_FieldSubPathValue {
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl) WithValue(value []string) *UpdateProbeRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUri) WithItemValue(value string) *UpdateProbeRequestCAS_FieldSubPathArrayItemValue {
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequestCAS_FieldSubPathArrayItemValue)
 }
 
@@ -21037,8 +21037,8 @@ func (SearchProbesResponsePathSelectorProbesSpec) AgentType() SearchProbesRespon
 	return SearchProbesResponsePathSelectorProbesSpecAgentType{}
 }
 
-func (SearchProbesResponsePathSelectorProbesSpec) ExternalIpCheckUri() SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri {
-	return SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri{}
+func (SearchProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl {
+	return SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
 type SearchProbesResponsePathSelectorProbesSpecProbeGroup struct{}
@@ -21908,24 +21908,24 @@ func (s SearchProbesResponsePathSelectorProbesSpecAgentType) WithArrayOfValues(v
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri struct{}
+type SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl struct{}
 
-func (SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri) FieldPath() *SearchProbesResponse_FieldSubPath {
+func (SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) FieldPath() *SearchProbesResponse_FieldSubPath {
 	return &SearchProbesResponse_FieldSubPath{
 		selector: SearchProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUri().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ExternalIpCheckUrl().FieldPath(),
 	}
 }
 
-func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithValue(value []string) *SearchProbesResponse_FieldSubPathValue {
+func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithValue(value []string) *SearchProbesResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
 }
 
-func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithArrayOfValues(values [][]string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArrayOfValues(values [][]string) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 
-func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUri) WithItemValue(value string) *SearchProbesResponse_FieldSubPathArrayItemValue {
+func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *SearchProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbesResponse_FieldSubPathArrayItemValue)
 }
 
