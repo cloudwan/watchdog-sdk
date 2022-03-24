@@ -102,7 +102,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if sharedToken_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{SharedTokenId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as SharedToken name or id", name)
 	}

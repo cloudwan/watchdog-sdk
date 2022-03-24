@@ -106,7 +106,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if probingConfig_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{ProbingConfigId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as ProbingConfig name or id", name)
 	}

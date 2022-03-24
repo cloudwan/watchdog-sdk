@@ -99,7 +99,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if tag_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{TagId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as Tag name or id", name)
 	}

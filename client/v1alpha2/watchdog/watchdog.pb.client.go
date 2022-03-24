@@ -14,6 +14,7 @@ import (
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
+	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
 	probe_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe"
 	probe_group_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_group"
 	probe_hardware_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware"
@@ -54,6 +55,7 @@ type WatchdogClient interface {
 	admin_area_client.AdminAreaServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
+	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
 	probe_hardware_client.ProbeHardwareServiceClient
 	probe_client.ProbeServiceClient
@@ -73,6 +75,7 @@ type watchdogClient struct {
 	admin_area_client.AdminAreaServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
+	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
 	probe_hardware_client.ProbeHardwareServiceClient
 	probe_client.ProbeServiceClient
@@ -93,6 +96,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
 		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
+		PingTestServiceClient:              ping_test_client.NewPingTestServiceClient(cc),
 		ProbeGroupServiceClient:            probe_group_client.NewProbeGroupServiceClient(cc),
 		ProbeHardwareServiceClient:         probe_hardware_client.NewProbeHardwareServiceClient(cc),
 		ProbeServiceClient:                 probe_client.NewProbeServiceClient(cc),

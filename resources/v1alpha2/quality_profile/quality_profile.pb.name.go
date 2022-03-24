@@ -97,7 +97,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if qualityProfile_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{QualityProfileId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as QualityProfile name or id", name)
 	}

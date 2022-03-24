@@ -94,7 +94,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if adminArea_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{AdminAreaId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as AdminArea name or id", name)
 	}

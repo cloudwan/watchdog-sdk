@@ -110,7 +110,7 @@ func ParseNameOrId(nameOrId string) (*Name, error) {
 		return name, err
 	}
 	if probe_RegexpId.MatchString(nameOrId) {
-		return NewNameBuilder().SetId(nameOrId).Name(), nil
+		return &Name{ProbeId: nameOrId}, nil
 	} else {
 		return nil, fmt.Errorf("unable to parse '%s' as Probe name or id", name)
 	}
