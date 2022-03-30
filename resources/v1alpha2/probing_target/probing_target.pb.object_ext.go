@@ -139,6 +139,18 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 	if o.GetAgent().String() != other.GetAgent().String() {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent})
 	}
+
+	if len(o.GetAddresses()) == len(other.GetAddresses()) {
+		for i, lValue := range o.GetAddresses() {
+			rValue := other.GetAddresses()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses})
+	}
 	return res
 }
 
@@ -191,6 +203,10 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 		if err := result.Agent.ParseProtoString(data); err != nil {
 			panic(err)
 		}
+	}
+	result.Addresses = make([]string, len(o.Addresses))
+	for i, sourceValue := range o.Addresses {
+		result.Addresses[i] = sourceValue
 	}
 	return result
 }
@@ -272,6 +288,21 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 	} else {
 		o.Agent = nil
 	}
+	for _, sourceValue := range source.GetAddresses() {
+		exists := false
+		for _, currentValue := range o.Addresses {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.Addresses = append(o.Addresses, newDstElement)
+		}
+	}
+
 }
 
 func (o *ProbingTarget) MergeRaw(source gotenobject.GotenObjectExt) {

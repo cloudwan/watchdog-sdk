@@ -1026,6 +1026,7 @@ const (
 	ProbeSpec_FieldPathSelectorAccessToken        ProbeSpec_FieldPathSelector = 8
 	ProbeSpec_FieldPathSelectorAgentType          ProbeSpec_FieldPathSelector = 9
 	ProbeSpec_FieldPathSelectorExternalIpCheckUrl ProbeSpec_FieldPathSelector = 10
+	ProbeSpec_FieldPathSelectorTargetServers      ProbeSpec_FieldPathSelector = 11
 )
 
 func (s ProbeSpec_FieldPathSelector) String() string {
@@ -1052,6 +1053,8 @@ func (s ProbeSpec_FieldPathSelector) String() string {
 		return "agent_type"
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		return "external_ip_check_url"
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return "target_servers"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", s))
 	}
@@ -1085,6 +1088,8 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType}, nil
 		case "external_ip_check_url", "externalIpCheckUrl", "external-ip-check-url":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl}, nil
+		case "target_servers", "targetServers", "target-servers":
+			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorTargetServers}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1117,6 +1122,12 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 				return nil, err
 			} else {
 				return &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorAccessToken, subPath: subpath}, nil
+			}
+		case "target_servers", "targetServers", "target-servers":
+			if subpath, err := BuildProbeSpecTargetServers_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorTargetServers, subPath: subpath}, nil
 			}
 		}
 	}
@@ -1201,6 +1212,10 @@ func (fp *ProbeSpec_FieldTerminalPath) Get(source *Probe_Spec) (values []interfa
 			for _, value := range source.GetExternalIpCheckUrl() {
 				values = append(values, value)
 			}
+		case ProbeSpec_FieldPathSelectorTargetServers:
+			if source.TargetServers != nil {
+				values = append(values, source.TargetServers)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1245,6 +1260,9 @@ func (fp *ProbeSpec_FieldTerminalPath) GetSingle(source *Probe_Spec) (interface{
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		res := source.GetExternalIpCheckUrl()
 		return res, res != nil
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		res := source.GetTargetServers()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1279,6 +1297,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetDefault() interface{} {
 		return Probe_UNKNOWN
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		return ([]string)(nil)
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return (*Probe_Spec_TargetServers)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1309,6 +1329,8 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValue(item *Probe_Spec) {
 			item.AgentType = Probe_UNKNOWN
 		case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 			item.ExternalIpCheckUrl = nil
+		case ProbeSpec_FieldPathSelectorTargetServers:
+			item.TargetServers = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1353,6 +1375,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_F
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(Probe_AgentType)}
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.([]string)}
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1387,6 +1411,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIArrayOfValues(values interface{}) Pr
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]Probe_AgentType)}
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([][]string)}
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1440,6 +1466,10 @@ func (fps *ProbeSpec_FieldSubPath) AsAccessTokenSubPath() (ProbeSpecAccessTokenS
 	res, ok := fps.subPath.(ProbeSpecAccessTokenSpec_FieldPath)
 	return res, ok
 }
+func (fps *ProbeSpec_FieldSubPath) AsTargetServersSubPath() (ProbeSpecTargetServers_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeSpecTargetServers_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ProbeSpec_FieldSubPath) String() string {
@@ -1463,6 +1493,8 @@ func (fps *ProbeSpec_FieldSubPath) Get(source *Probe_Spec) (values []interface{}
 		values = append(values, asActivationSpecFieldPath.Get(source.GetActivation())...)
 	} else if asAccessTokenSpecFieldPath, ok := fps.AsAccessTokenSubPath(); ok {
 		values = append(values, asAccessTokenSpecFieldPath.Get(source.GetAccessToken())...)
+	} else if asTargetServersFieldPath, ok := fps.AsTargetServersSubPath(); ok {
+		values = append(values, asTargetServersFieldPath.Get(source.GetTargetServers())...)
 	} else {
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 	}
@@ -1501,6 +1533,11 @@ func (fps *ProbeSpec_FieldSubPath) GetSingle(source *Probe_Spec) (interface{}, b
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetAccessToken())
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		if source.GetTargetServers() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 	}
@@ -1528,6 +1565,8 @@ func (fps *ProbeSpec_FieldSubPath) ClearValue(item *Probe_Spec) {
 			fps.subPath.ClearValueRaw(item.Activation)
 		case ProbeSpec_FieldPathSelectorAccessToken:
 			fps.subPath.ClearValueRaw(item.AccessToken)
+		case ProbeSpec_FieldPathSelectorTargetServers:
+			fps.subPath.ClearValueRaw(item.TargetServers)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 		}
@@ -1650,6 +1689,10 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) AsExternalIpCheckUrlValue() ([]stri
 	res, ok := fpv.value.([]string)
 	return res, ok
 }
+func (fpv *ProbeSpec_FieldTerminalPathValue) AsTargetServersValue() (*Probe_Spec_TargetServers, bool) {
+	res, ok := fpv.value.(*Probe_Spec_TargetServers)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
@@ -1679,6 +1722,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
 		(*target).AgentType = fpv.value.(Probe_AgentType)
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		(*target).ExternalIpCheckUrl = fpv.value.([]string)
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		(*target).TargetServers = fpv.value.(*Probe_Spec_TargetServers)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1772,6 +1817,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) CompareWith(source *Probe_Spec) (in
 		}
 	case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 		return 0, false
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1808,6 +1855,10 @@ func (fpvs *ProbeSpec_FieldSubPathValue) AsAccessTokenPathValue() (ProbeSpecAcce
 	res, ok := fpvs.subPathValue.(ProbeSpecAccessTokenSpec_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbeSpec_FieldSubPathValue) AsTargetServersPathValue() (ProbeSpecTargetServers_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ProbeSpec_FieldSubPathValue) SetTo(target **Probe_Spec) {
 	if *target == nil {
@@ -1824,6 +1875,8 @@ func (fpvs *ProbeSpec_FieldSubPathValue) SetTo(target **Probe_Spec) {
 		fpvs.subPathValue.(ProbeSpecActivationSpec_FieldPathValue).SetTo(&(*target).Activation)
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		fpvs.subPathValue.(ProbeSpecAccessTokenSpec_FieldPathValue).SetTo(&(*target).AccessToken)
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue).SetTo(&(*target).TargetServers)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpvs.Selector()))
 	}
@@ -1850,6 +1903,8 @@ func (fpvs *ProbeSpec_FieldSubPathValue) CompareWith(source *Probe_Spec) (int, b
 		return fpvs.subPathValue.(ProbeSpecActivationSpec_FieldPathValue).CompareWith(source.GetActivation())
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return fpvs.subPathValue.(ProbeSpecAccessTokenSpec_FieldPathValue).CompareWith(source.GetAccessToken())
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue).CompareWith(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpvs.Selector()))
 	}
@@ -1952,6 +2007,10 @@ func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) AsAccessTokenPathItemValue()
 	res, ok := fpaivs.subPathItemValue.(ProbeSpecAccessTokenSpec_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) AsTargetServersPathItemValue() (ProbeSpecTargetServers_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeSpecTargetServers_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'Spec'
 func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) ContainsValue(source *Probe_Spec) bool {
@@ -1966,6 +2025,8 @@ func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) ContainsValue(source *Probe_
 		return fpaivs.subPathItemValue.(ProbeSpecActivationSpec_FieldPathArrayItemValue).ContainsValue(source.GetActivation())
 	case ProbeSpec_FieldPathSelectorAccessToken:
 		return fpaivs.subPathItemValue.(ProbeSpecAccessTokenSpec_FieldPathArrayItemValue).ContainsValue(source.GetAccessToken())
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		return fpaivs.subPathItemValue.(ProbeSpecTargetServers_FieldPathArrayItemValue).ContainsValue(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpaivs.Selector()))
 	}
@@ -2050,6 +2111,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 		for _, v := range fpaov.values.([][]string) {
 			values = append(values, v)
 		}
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		for _, v := range fpaov.values.([]*Probe_Spec_TargetServers) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2097,6 +2162,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsExternalIpCheckUrlArray
 	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
+func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsTargetServersArrayOfValues() ([]*Probe_Spec_TargetServers, bool) {
+	res, ok := fpaov.values.([]*Probe_Spec_TargetServers)
+	return res, ok
+}
 
 type ProbeSpec_FieldSubPathArrayOfValues struct {
 	ProbeSpec_FieldPath
@@ -2126,6 +2195,10 @@ func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsActivationPathArrayOfValues
 }
 func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsAccessTokenPathArrayOfValues() (ProbeSpecAccessTokenSpec_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecAccessTokenSpec_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsTargetServersPathArrayOfValues() (ProbeSpecTargetServers_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServers_FieldPathArrayOfValues)
 	return res, ok
 }
 
@@ -4543,6 +4616,1956 @@ func (fpaov *ProbeSpecAccessTokenSpec_FieldTerminalPathArrayOfValues) AsEnableAr
 }
 func (fpaov *ProbeSpecAccessTokenSpec_FieldTerminalPathArrayOfValues) AsAccessTokenArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeSpecTargetServers_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeSpecTargetServers_FieldPathSelector
+	Get(source *Probe_Spec_TargetServers) []interface{}
+	GetSingle(source *Probe_Spec_TargetServers) (interface{}, bool)
+	ClearValue(item *Probe_Spec_TargetServers)
+
+	// Those methods build corresponding ProbeSpecTargetServers_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeSpecTargetServers_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeSpecTargetServers_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeSpecTargetServers_FieldPathArrayItemValue
+}
+
+type ProbeSpecTargetServers_FieldPathSelector int32
+
+const (
+	ProbeSpecTargetServers_FieldPathSelectorIcmpTarget      ProbeSpecTargetServers_FieldPathSelector = 0
+	ProbeSpecTargetServers_FieldPathSelectorUdpTarget       ProbeSpecTargetServers_FieldPathSelector = 1
+	ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget ProbeSpecTargetServers_FieldPathSelector = 2
+)
+
+func (s ProbeSpecTargetServers_FieldPathSelector) String() string {
+	switch s {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return "icmp_target"
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return "udp_target"
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return "speed_test_target"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", s))
+	}
+}
+
+func BuildProbeSpecTargetServers_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpecTargetServers_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Spec_TargetServers")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "icmp_target", "icmpTarget", "icmp-target":
+			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget}, nil
+		case "udp_target", "udpTarget", "udp-target":
+			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget}, nil
+		case "speed_test_target", "speedTestTarget", "speed-test-target":
+			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "icmp_target", "icmpTarget", "icmp-target":
+			if subpath, err := BuildProbeSpecTargetServersIcmpTarget_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget, subPath: subpath}, nil
+			}
+		case "udp_target", "udpTarget", "udp-target":
+			if subpath, err := BuildProbeSpecTargetServersUdpTarget_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget, subPath: subpath}, nil
+			}
+		case "speed_test_target", "speedTestTarget", "speed-test-target":
+			if subpath, err := BuildProbeSpecTargetServersSpeedTestTarget_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget, subPath: subpath}, nil
+			}
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_TargetServers", fp)
+}
+
+func ParseProbeSpecTargetServers_FieldPath(rawField string) (ProbeSpecTargetServers_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeSpecTargetServers_FieldPath(fp)
+}
+
+func MustParseProbeSpecTargetServers_FieldPath(rawField string) ProbeSpecTargetServers_FieldPath {
+	fp, err := ParseProbeSpecTargetServers_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeSpecTargetServers_FieldTerminalPath struct {
+	selector ProbeSpecTargetServers_FieldPathSelector
+}
+
+var _ ProbeSpecTargetServers_FieldPath = (*ProbeSpecTargetServers_FieldTerminalPath)(nil)
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) Selector() ProbeSpecTargetServers_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Spec_TargetServers
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) Get(source *Probe_Spec_TargetServers) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+			if source.IcmpTarget != nil {
+				values = append(values, source.IcmpTarget)
+			}
+		case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+			if source.UdpTarget != nil {
+				values = append(values, source.UdpTarget)
+			}
+		case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+			if source.SpeedTestTarget != nil {
+				values = append(values, source.SpeedTestTarget)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Spec_TargetServers))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Spec_TargetServers
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetSingle(source *Probe_Spec_TargetServers) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		res := source.GetIcmpTarget()
+		return res, res != nil
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		res := source.GetUdpTarget()
+		return res, res != nil
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		res := source.GetSpeedTestTarget()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Spec_TargetServers))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return (*Probe_Spec_TargetServers_IcmpTarget)(nil)
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return (*Probe_Spec_TargetServers_UdpTarget)(nil)
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return (*Probe_Spec_TargetServers_SpeedTestTarget)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) ClearValue(item *Probe_Spec_TargetServers) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+			item.IcmpTarget = nil
+		case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+			item.UdpTarget = nil
+		case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+			item.SpeedTestTarget = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Spec_TargetServers))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) IsLeaf() bool {
+	return false
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServers_FieldPathValue {
+	switch fp.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers_IcmpTarget)}
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers_UdpTarget)}
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers_SpeedTestTarget)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeSpecTargetServers_FieldPathArrayOfValues {
+	fpaov := &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers_IcmpTarget)}
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers_UdpTarget)}
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers_SpeedTestTarget)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpecTargetServers_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+type ProbeSpecTargetServers_FieldSubPath struct {
+	selector ProbeSpecTargetServers_FieldPathSelector
+	subPath  gotenobject.FieldPath
+}
+
+var _ ProbeSpecTargetServers_FieldPath = (*ProbeSpecTargetServers_FieldSubPath)(nil)
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) Selector() ProbeSpecTargetServers_FieldPathSelector {
+	return fps.selector
+}
+func (fps *ProbeSpecTargetServers_FieldSubPath) AsIcmpTargetSubPath() (ProbeSpecTargetServersIcmpTarget_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeSpecTargetServersIcmpTarget_FieldPath)
+	return res, ok
+}
+func (fps *ProbeSpecTargetServers_FieldSubPath) AsUdpTargetSubPath() (ProbeSpecTargetServersUdpTarget_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeSpecTargetServersUdpTarget_FieldPath)
+	return res, ok
+}
+func (fps *ProbeSpecTargetServers_FieldSubPath) AsSpeedTestTargetSubPath() (ProbeSpecTargetServersSpeedTestTarget_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeSpecTargetServersSpeedTestTarget_FieldPath)
+	return res, ok
+}
+
+// String returns path representation in proto convention
+func (fps *ProbeSpecTargetServers_FieldSubPath) String() string {
+	return fps.selector.String() + "." + fps.subPath.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fps *ProbeSpecTargetServers_FieldSubPath) JSONString() string {
+	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
+}
+
+// Get returns all values pointed by selected field from source Probe_Spec_TargetServers
+func (fps *ProbeSpecTargetServers_FieldSubPath) Get(source *Probe_Spec_TargetServers) (values []interface{}) {
+	if asIcmpTargetFieldPath, ok := fps.AsIcmpTargetSubPath(); ok {
+		values = append(values, asIcmpTargetFieldPath.Get(source.GetIcmpTarget())...)
+	} else if asUdpTargetFieldPath, ok := fps.AsUdpTargetSubPath(); ok {
+		values = append(values, asUdpTargetFieldPath.Get(source.GetUdpTarget())...)
+	} else if asSpeedTestTargetFieldPath, ok := fps.AsSpeedTestTargetSubPath(); ok {
+		values = append(values, asSpeedTestTargetFieldPath.Get(source.GetSpeedTestTarget())...)
+	} else {
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fps.selector))
+	}
+	return
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*Probe_Spec_TargetServers))
+}
+
+// GetSingle returns value of selected field from source Probe_Spec_TargetServers
+func (fps *ProbeSpecTargetServers_FieldSubPath) GetSingle(source *Probe_Spec_TargetServers) (interface{}, bool) {
+	switch fps.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		if source.GetIcmpTarget() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetIcmpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		if source.GetUdpTarget() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetUdpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		if source.GetSpeedTestTarget() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetSpeedTestTarget())
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fps.selector))
+	}
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*Probe_Spec_TargetServers))
+}
+
+// GetDefault returns a default value of the field type
+func (fps *ProbeSpecTargetServers_FieldSubPath) GetDefault() interface{} {
+	return fps.subPath.GetDefault()
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) ClearValue(item *Probe_Spec_TargetServers) {
+	if item != nil {
+		switch fps.selector {
+		case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+			fps.subPath.ClearValueRaw(item.IcmpTarget)
+		case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+			fps.subPath.ClearValueRaw(item.UdpTarget)
+		case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+			fps.subPath.ClearValueRaw(item.SpeedTestTarget)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fps.selector))
+		}
+	}
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*Probe_Spec_TargetServers))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fps *ProbeSpecTargetServers_FieldSubPath) IsLeaf() bool {
+	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithIValue(value interface{}) ProbeSpecTargetServers_FieldPathValue {
+	return &ProbeSpecTargetServers_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fps.WithIValue(value)
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithIArrayOfValues(values interface{}) ProbeSpecTargetServers_FieldPathArrayOfValues {
+	return &ProbeSpecTargetServers_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fps.WithIArrayOfValues(values)
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithIArrayItemValue(value interface{}) ProbeSpecTargetServers_FieldPathArrayItemValue {
+	return &ProbeSpecTargetServers_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fps.WithIArrayItemValue(value)
+}
+
+// ProbeSpecTargetServers_FieldPathValue allows storing values for TargetServers fields according to their type
+type ProbeSpecTargetServers_FieldPathValue interface {
+	ProbeSpecTargetServers_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Spec_TargetServers)
+	CompareWith(*Probe_Spec_TargetServers) (cmp int, comparable bool)
+}
+
+func ParseProbeSpecTargetServers_FieldPathValue(pathStr, valueStr string) (ProbeSpecTargetServers_FieldPathValue, error) {
+	fp, err := ParseProbeSpecTargetServers_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TargetServers field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeSpecTargetServers_FieldPathValue), nil
+}
+
+func MustParseProbeSpecTargetServers_FieldPathValue(pathStr, valueStr string) ProbeSpecTargetServers_FieldPathValue {
+	fpv, err := ParseProbeSpecTargetServers_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeSpecTargetServers_FieldTerminalPathValue struct {
+	ProbeSpecTargetServers_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServers_FieldPathValue = (*ProbeSpecTargetServers_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'TargetServers' as interface{}
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) AsIcmpTargetValue() (*Probe_Spec_TargetServers_IcmpTarget, bool) {
+	res, ok := fpv.value.(*Probe_Spec_TargetServers_IcmpTarget)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) AsUdpTargetValue() (*Probe_Spec_TargetServers_UdpTarget, bool) {
+	res, ok := fpv.value.(*Probe_Spec_TargetServers_UdpTarget)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) AsSpeedTestTargetValue() (*Probe_Spec_TargetServers_SpeedTestTarget, bool) {
+	res, ok := fpv.value.(*Probe_Spec_TargetServers_SpeedTestTarget)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object TargetServers
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) SetTo(target **Probe_Spec_TargetServers) {
+	if *target == nil {
+		*target = new(Probe_Spec_TargetServers)
+	}
+	switch fpv.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		(*target).IcmpTarget = fpv.value.(*Probe_Spec_TargetServers_IcmpTarget)
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		(*target).UdpTarget = fpv.value.(*Probe_Spec_TargetServers_UdpTarget)
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		(*target).SpeedTestTarget = fpv.value.(*Probe_Spec_TargetServers_SpeedTestTarget)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_TargetServers)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecTargetServers_FieldTerminalPathValue' with the value under path in 'Probe_Spec_TargetServers'.
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) CompareWith(source *Probe_Spec_TargetServers) (int, bool) {
+	switch fpv.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return 0, false
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return 0, false
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Spec_TargetServers))
+}
+
+type ProbeSpecTargetServers_FieldSubPathValue struct {
+	ProbeSpecTargetServers_FieldPath
+	subPathValue gotenobject.FieldPathValue
+}
+
+var _ ProbeSpecTargetServers_FieldPathValue = (*ProbeSpecTargetServers_FieldSubPathValue)(nil)
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) AsIcmpTargetPathValue() (ProbeSpecTargetServersIcmpTarget_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeSpecTargetServersIcmpTarget_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) AsUdpTargetPathValue() (ProbeSpecTargetServersUdpTarget_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeSpecTargetServersUdpTarget_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) AsSpeedTestTargetPathValue() (ProbeSpecTargetServersSpeedTestTarget_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeSpecTargetServersSpeedTestTarget_FieldPathValue)
+	return res, ok
+}
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) SetTo(target **Probe_Spec_TargetServers) {
+	if *target == nil {
+		*target = new(Probe_Spec_TargetServers)
+	}
+	switch fpvs.Selector() {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		fpvs.subPathValue.(ProbeSpecTargetServersIcmpTarget_FieldPathValue).SetTo(&(*target).IcmpTarget)
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		fpvs.subPathValue.(ProbeSpecTargetServersUdpTarget_FieldPathValue).SetTo(&(*target).UdpTarget)
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		fpvs.subPathValue.(ProbeSpecTargetServersSpeedTestTarget_FieldPathValue).SetTo(&(*target).SpeedTestTarget)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_TargetServers)
+	fpvs.SetTo(&typedObject)
+}
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) GetRawValue() interface{} {
+	return fpvs.subPathValue.GetRawValue()
+}
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) CompareWith(source *Probe_Spec_TargetServers) (int, bool) {
+	switch fpvs.Selector() {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return fpvs.subPathValue.(ProbeSpecTargetServersIcmpTarget_FieldPathValue).CompareWith(source.GetIcmpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return fpvs.subPathValue.(ProbeSpecTargetServersUdpTarget_FieldPathValue).CompareWith(source.GetUdpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return fpvs.subPathValue.(ProbeSpecTargetServersSpeedTestTarget_FieldPathValue).CompareWith(source.GetSpeedTestTarget())
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *ProbeSpecTargetServers_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*Probe_Spec_TargetServers))
+}
+
+// ProbeSpecTargetServers_FieldPathArrayItemValue allows storing single item in Path-specific values for TargetServers according to their type
+// Present only for array (repeated) types.
+type ProbeSpecTargetServers_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeSpecTargetServers_FieldPath
+	ContainsValue(*Probe_Spec_TargetServers) bool
+}
+
+// ParseProbeSpecTargetServers_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeSpecTargetServers_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeSpecTargetServers_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeSpecTargetServers_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TargetServers field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeSpecTargetServers_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeSpecTargetServers_FieldPathArrayItemValue(pathStr, valueStr string) ProbeSpecTargetServers_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeSpecTargetServers_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeSpecTargetServers_FieldTerminalPathArrayItemValue struct {
+	ProbeSpecTargetServers_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServers_FieldPathArrayItemValue = (*ProbeSpecTargetServers_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Spec_TargetServers as interface{}
+func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec_TargetServers) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Spec_TargetServers))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'TargetServers'
+func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers) bool {
+	slice := fpaiv.ProbeSpecTargetServers_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+type ProbeSpecTargetServers_FieldSubPathArrayItemValue struct {
+	ProbeSpecTargetServers_FieldPath
+	subPathItemValue gotenobject.FieldPathArrayItemValue
+}
+
+// GetRawValue returns stored array item value
+func (fpaivs *ProbeSpecTargetServers_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaivs.subPathItemValue.GetRawItemValue()
+}
+func (fpaivs *ProbeSpecTargetServers_FieldSubPathArrayItemValue) AsIcmpTargetPathItemValue() (ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbeSpecTargetServers_FieldSubPathArrayItemValue) AsUdpTargetPathItemValue() (ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbeSpecTargetServers_FieldSubPathArrayItemValue) AsSpeedTestTargetPathItemValue() (ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue)
+	return res, ok
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'TargetServers'
+func (fpaivs *ProbeSpecTargetServers_FieldSubPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers) bool {
+	switch fpaivs.Selector() {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		return fpaivs.subPathItemValue.(ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue).ContainsValue(source.GetIcmpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		return fpaivs.subPathItemValue.(ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue).ContainsValue(source.GetUdpTarget())
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		return fpaivs.subPathItemValue.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue).ContainsValue(source.GetSpeedTestTarget())
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpaivs.Selector()))
+	}
+}
+
+// ProbeSpecTargetServers_FieldPathArrayOfValues allows storing slice of values for TargetServers fields according to their type
+type ProbeSpecTargetServers_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeSpecTargetServers_FieldPath
+}
+
+func ParseProbeSpecTargetServers_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeSpecTargetServers_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeSpecTargetServers_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TargetServers field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeSpecTargetServers_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeSpecTargetServers_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeSpecTargetServers_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeSpecTargetServers_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeSpecTargetServers_FieldTerminalPathArrayOfValues struct {
+	ProbeSpecTargetServers_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeSpecTargetServers_FieldPathArrayOfValues = (*ProbeSpecTargetServers_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		for _, v := range fpaov.values.([]*Probe_Spec_TargetServers_IcmpTarget) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		for _, v := range fpaov.values.([]*Probe_Spec_TargetServers_UdpTarget) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		for _, v := range fpaov.values.([]*Probe_Spec_TargetServers_SpeedTestTarget) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsIcmpTargetArrayOfValues() ([]*Probe_Spec_TargetServers_IcmpTarget, bool) {
+	res, ok := fpaov.values.([]*Probe_Spec_TargetServers_IcmpTarget)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsUdpTargetArrayOfValues() ([]*Probe_Spec_TargetServers_UdpTarget, bool) {
+	res, ok := fpaov.values.([]*Probe_Spec_TargetServers_UdpTarget)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsSpeedTestTargetArrayOfValues() ([]*Probe_Spec_TargetServers_SpeedTestTarget, bool) {
+	res, ok := fpaov.values.([]*Probe_Spec_TargetServers_SpeedTestTarget)
+	return res, ok
+}
+
+type ProbeSpecTargetServers_FieldSubPathArrayOfValues struct {
+	ProbeSpecTargetServers_FieldPath
+	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
+}
+
+var _ ProbeSpecTargetServers_FieldPathArrayOfValues = (*ProbeSpecTargetServers_FieldSubPathArrayOfValues)(nil)
+
+func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+	return fpsaov.subPathArrayOfValues.GetRawValues()
+}
+func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) AsIcmpTargetPathArrayOfValues() (ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) AsUdpTargetPathArrayOfValues() (ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) AsSpeedTestTargetPathArrayOfValues() (ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeSpecTargetServersIcmpTarget_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeSpecTargetServersIcmpTarget_FieldPathSelector
+	Get(source *Probe_Spec_TargetServers_IcmpTarget) []interface{}
+	GetSingle(source *Probe_Spec_TargetServers_IcmpTarget) (interface{}, bool)
+	ClearValue(item *Probe_Spec_TargetServers_IcmpTarget)
+
+	// Those methods build corresponding ProbeSpecTargetServersIcmpTarget_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue
+}
+
+type ProbeSpecTargetServersIcmpTarget_FieldPathSelector int32
+
+const (
+	ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled ProbeSpecTargetServersIcmpTarget_FieldPathSelector = 0
+)
+
+func (s ProbeSpecTargetServersIcmpTarget_FieldPathSelector) String() string {
+	switch s {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		return "enabled"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", s))
+	}
+}
+
+func BuildProbeSpecTargetServersIcmpTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpecTargetServersIcmpTarget_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Spec_TargetServers_IcmpTarget")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "enabled":
+			return &ProbeSpecTargetServersIcmpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_TargetServers_IcmpTarget", fp)
+}
+
+func ParseProbeSpecTargetServersIcmpTarget_FieldPath(rawField string) (ProbeSpecTargetServersIcmpTarget_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeSpecTargetServersIcmpTarget_FieldPath(fp)
+}
+
+func MustParseProbeSpecTargetServersIcmpTarget_FieldPath(rawField string) ProbeSpecTargetServersIcmpTarget_FieldPath {
+	fp, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeSpecTargetServersIcmpTarget_FieldTerminalPath struct {
+	selector ProbeSpecTargetServersIcmpTarget_FieldPathSelector
+}
+
+var _ ProbeSpecTargetServersIcmpTarget_FieldPath = (*ProbeSpecTargetServersIcmpTarget_FieldTerminalPath)(nil)
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) Selector() ProbeSpecTargetServersIcmpTarget_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Spec_TargetServers_IcmpTarget
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) Get(source *Probe_Spec_TargetServers_IcmpTarget) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+			values = append(values, source.Enabled)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Spec_TargetServers_IcmpTarget
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) GetSingle(source *Probe_Spec_TargetServers_IcmpTarget) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		return source.GetEnabled(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		return false
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) ClearValue(item *Probe_Spec_TargetServers_IcmpTarget) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+			item.Enabled = false
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathValue {
+	switch fp.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue{ProbeSpecTargetServersIcmpTarget_FieldTerminalPath: *fp, value: value.(bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues {
+	fpaov := &ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersIcmpTarget_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersIcmpTarget_FieldTerminalPath: *fp, values: values.([]bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbeSpecTargetServersIcmpTarget_FieldPathValue allows storing values for IcmpTarget fields according to their type
+type ProbeSpecTargetServersIcmpTarget_FieldPathValue interface {
+	ProbeSpecTargetServersIcmpTarget_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Spec_TargetServers_IcmpTarget)
+	CompareWith(*Probe_Spec_TargetServers_IcmpTarget) (cmp int, comparable bool)
+}
+
+func ParseProbeSpecTargetServersIcmpTarget_FieldPathValue(pathStr, valueStr string) (ProbeSpecTargetServersIcmpTarget_FieldPathValue, error) {
+	fp, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing IcmpTarget field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeSpecTargetServersIcmpTarget_FieldPathValue), nil
+}
+
+func MustParseProbeSpecTargetServersIcmpTarget_FieldPathValue(pathStr, valueStr string) ProbeSpecTargetServersIcmpTarget_FieldPathValue {
+	fpv, err := ParseProbeSpecTargetServersIcmpTarget_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue struct {
+	ProbeSpecTargetServersIcmpTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersIcmpTarget_FieldPathValue = (*ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'IcmpTarget' as interface{}
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) AsEnabledValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object IcmpTarget
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) SetTo(target **Probe_Spec_TargetServers_IcmpTarget) {
+	if *target == nil {
+		*target = new(Probe_Spec_TargetServers_IcmpTarget)
+	}
+	switch fpv.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		(*target).Enabled = fpv.value.(bool)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_TargetServers_IcmpTarget)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue' with the value under path in 'Probe_Spec_TargetServers_IcmpTarget'.
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) CompareWith(source *Probe_Spec_TargetServers_IcmpTarget) (int, bool) {
+	switch fpv.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnabled()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_IcmpTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+// ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue allows storing single item in Path-specific values for IcmpTarget according to their type
+// Present only for array (repeated) types.
+type ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeSpecTargetServersIcmpTarget_FieldPath
+	ContainsValue(*Probe_Spec_TargetServers_IcmpTarget) bool
+}
+
+// ParseProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing IcmpTarget field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue(pathStr, valueStr string) ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue struct {
+	ProbeSpecTargetServersIcmpTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersIcmpTarget_FieldPathArrayItemValue = (*ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Spec_TargetServers_IcmpTarget as interface{}
+func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec_TargetServers_IcmpTarget) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'IcmpTarget'
+func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_IcmpTarget) bool {
+	slice := fpaiv.ProbeSpecTargetServersIcmpTarget_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues allows storing slice of values for IcmpTarget fields according to their type
+type ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeSpecTargetServersIcmpTarget_FieldPath
+}
+
+func ParseProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing IcmpTarget field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues struct {
+	ProbeSpecTargetServersIcmpTarget_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeSpecTargetServersIcmpTarget_FieldPathArrayOfValues = (*ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayOfValues) AsEnabledArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeSpecTargetServersUdpTarget_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeSpecTargetServersUdpTarget_FieldPathSelector
+	Get(source *Probe_Spec_TargetServers_UdpTarget) []interface{}
+	GetSingle(source *Probe_Spec_TargetServers_UdpTarget) (interface{}, bool)
+	ClearValue(item *Probe_Spec_TargetServers_UdpTarget)
+
+	// Those methods build corresponding ProbeSpecTargetServersUdpTarget_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeSpecTargetServersUdpTarget_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue
+}
+
+type ProbeSpecTargetServersUdpTarget_FieldPathSelector int32
+
+const (
+	ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled ProbeSpecTargetServersUdpTarget_FieldPathSelector = 0
+	ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort    ProbeSpecTargetServersUdpTarget_FieldPathSelector = 1
+)
+
+func (s ProbeSpecTargetServersUdpTarget_FieldPathSelector) String() string {
+	switch s {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		return "enabled"
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		return "port"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", s))
+	}
+}
+
+func BuildProbeSpecTargetServersUdpTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpecTargetServersUdpTarget_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Spec_TargetServers_UdpTarget")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "enabled":
+			return &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled}, nil
+		case "port":
+			return &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_TargetServers_UdpTarget", fp)
+}
+
+func ParseProbeSpecTargetServersUdpTarget_FieldPath(rawField string) (ProbeSpecTargetServersUdpTarget_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeSpecTargetServersUdpTarget_FieldPath(fp)
+}
+
+func MustParseProbeSpecTargetServersUdpTarget_FieldPath(rawField string) ProbeSpecTargetServersUdpTarget_FieldPath {
+	fp, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeSpecTargetServersUdpTarget_FieldTerminalPath struct {
+	selector ProbeSpecTargetServersUdpTarget_FieldPathSelector
+}
+
+var _ ProbeSpecTargetServersUdpTarget_FieldPath = (*ProbeSpecTargetServersUdpTarget_FieldTerminalPath)(nil)
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) Selector() ProbeSpecTargetServersUdpTarget_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Spec_TargetServers_UdpTarget
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) Get(source *Probe_Spec_TargetServers_UdpTarget) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+			values = append(values, source.Enabled)
+		case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+			values = append(values, source.Port)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Spec_TargetServers_UdpTarget
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) GetSingle(source *Probe_Spec_TargetServers_UdpTarget) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		return source.GetEnabled(), source != nil
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		return source.GetPort(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		return false
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		return int32(0)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) ClearValue(item *Probe_Spec_TargetServers_UdpTarget) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+			item.Enabled = false
+		case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+			item.Port = int32(0)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled ||
+		fp.selector == ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersUdpTarget_FieldPathValue {
+	switch fp.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue{ProbeSpecTargetServersUdpTarget_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		return &ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue{ProbeSpecTargetServersUdpTarget_FieldTerminalPath: *fp, value: value.(int32)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues {
+	fpaov := &ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersUdpTarget_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersUdpTarget_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		return &ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersUdpTarget_FieldTerminalPath: *fp, values: values.([]int32)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbeSpecTargetServersUdpTarget_FieldPathValue allows storing values for UdpTarget fields according to their type
+type ProbeSpecTargetServersUdpTarget_FieldPathValue interface {
+	ProbeSpecTargetServersUdpTarget_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Spec_TargetServers_UdpTarget)
+	CompareWith(*Probe_Spec_TargetServers_UdpTarget) (cmp int, comparable bool)
+}
+
+func ParseProbeSpecTargetServersUdpTarget_FieldPathValue(pathStr, valueStr string) (ProbeSpecTargetServersUdpTarget_FieldPathValue, error) {
+	fp, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing UdpTarget field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeSpecTargetServersUdpTarget_FieldPathValue), nil
+}
+
+func MustParseProbeSpecTargetServersUdpTarget_FieldPathValue(pathStr, valueStr string) ProbeSpecTargetServersUdpTarget_FieldPathValue {
+	fpv, err := ParseProbeSpecTargetServersUdpTarget_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue struct {
+	ProbeSpecTargetServersUdpTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersUdpTarget_FieldPathValue = (*ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'UdpTarget' as interface{}
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) AsEnabledValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) AsPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object UdpTarget
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) SetTo(target **Probe_Spec_TargetServers_UdpTarget) {
+	if *target == nil {
+		*target = new(Probe_Spec_TargetServers_UdpTarget)
+	}
+	switch fpv.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		(*target).Enabled = fpv.value.(bool)
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		(*target).Port = fpv.value.(int32)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_TargetServers_UdpTarget)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue' with the value under path in 'Probe_Spec_TargetServers_UdpTarget'.
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) CompareWith(source *Probe_Spec_TargetServers_UdpTarget) (int, bool) {
+	switch fpv.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnabled()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetPort()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_UdpTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+// ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue allows storing single item in Path-specific values for UdpTarget according to their type
+// Present only for array (repeated) types.
+type ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeSpecTargetServersUdpTarget_FieldPath
+	ContainsValue(*Probe_Spec_TargetServers_UdpTarget) bool
+}
+
+// ParseProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing UdpTarget field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue(pathStr, valueStr string) ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue struct {
+	ProbeSpecTargetServersUdpTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersUdpTarget_FieldPathArrayItemValue = (*ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Spec_TargetServers_UdpTarget as interface{}
+func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec_TargetServers_UdpTarget) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'UdpTarget'
+func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_UdpTarget) bool {
+	slice := fpaiv.ProbeSpecTargetServersUdpTarget_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues allows storing slice of values for UdpTarget fields according to their type
+type ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeSpecTargetServersUdpTarget_FieldPath
+}
+
+func ParseProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing UdpTarget field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues struct {
+	ProbeSpecTargetServersUdpTarget_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeSpecTargetServersUdpTarget_FieldPathArrayOfValues = (*ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues) AsEnabledArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayOfValues) AsPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeSpecTargetServersSpeedTestTarget_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector
+	Get(source *Probe_Spec_TargetServers_SpeedTestTarget) []interface{}
+	GetSingle(source *Probe_Spec_TargetServers_SpeedTestTarget) (interface{}, bool)
+	ClearValue(item *Probe_Spec_TargetServers_SpeedTestTarget)
+
+	// Those methods build corresponding ProbeSpecTargetServersSpeedTestTarget_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue
+}
+
+type ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector int32
+
+const (
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 0
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort    ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 1
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls  ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 2
+)
+
+func (s ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector) String() string {
+	switch s {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		return "enabled"
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		return "port"
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		return "use_tls"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", s))
+	}
+}
+
+func BuildProbeSpecTargetServersSpeedTestTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpecTargetServersSpeedTestTarget_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Spec_TargetServers_SpeedTestTarget")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "enabled":
+			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled}, nil
+		case "port":
+			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort}, nil
+		case "use_tls", "useTls", "use-tls":
+			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_TargetServers_SpeedTestTarget", fp)
+}
+
+func ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(rawField string) (ProbeSpecTargetServersSpeedTestTarget_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeSpecTargetServersSpeedTestTarget_FieldPath(fp)
+}
+
+func MustParseProbeSpecTargetServersSpeedTestTarget_FieldPath(rawField string) ProbeSpecTargetServersSpeedTestTarget_FieldPath {
+	fp, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath struct {
+	selector ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector
+}
+
+var _ ProbeSpecTargetServersSpeedTestTarget_FieldPath = (*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath)(nil)
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) Selector() ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Spec_TargetServers_SpeedTestTarget
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) Get(source *Probe_Spec_TargetServers_SpeedTestTarget) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+			values = append(values, source.Enabled)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+			values = append(values, source.Port)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+			values = append(values, source.UseTls)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Spec_TargetServers_SpeedTestTarget
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetSingle(source *Probe_Spec_TargetServers_SpeedTestTarget) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		return source.GetEnabled(), source != nil
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		return source.GetPort(), source != nil
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		return source.GetUseTls(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		return false
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		return int32(0)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		return false
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) ClearValue(item *Probe_Spec_TargetServers_SpeedTestTarget) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+			item.Enabled = false
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+			item.Port = int32(0)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+			item.UseTls = false
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled ||
+		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort ||
+		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathValue {
+	switch fp.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(int32)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues {
+	fpaov := &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbeSpecTargetServersSpeedTestTarget_FieldPathValue allows storing values for SpeedTestTarget fields according to their type
+type ProbeSpecTargetServersSpeedTestTarget_FieldPathValue interface {
+	ProbeSpecTargetServersSpeedTestTarget_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Spec_TargetServers_SpeedTestTarget)
+	CompareWith(*Probe_Spec_TargetServers_SpeedTestTarget) (cmp int, comparable bool)
+}
+
+func ParseProbeSpecTargetServersSpeedTestTarget_FieldPathValue(pathStr, valueStr string) (ProbeSpecTargetServersSpeedTestTarget_FieldPathValue, error) {
+	fp, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing SpeedTestTarget field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeSpecTargetServersSpeedTestTarget_FieldPathValue), nil
+}
+
+func MustParseProbeSpecTargetServersSpeedTestTarget_FieldPathValue(pathStr, valueStr string) ProbeSpecTargetServersSpeedTestTarget_FieldPathValue {
+	fpv, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue struct {
+	ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersSpeedTestTarget_FieldPathValue = (*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'SpeedTestTarget' as interface{}
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsEnabledValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsUseTlsValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object SpeedTestTarget
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) SetTo(target **Probe_Spec_TargetServers_SpeedTestTarget) {
+	if *target == nil {
+		*target = new(Probe_Spec_TargetServers_SpeedTestTarget)
+	}
+	switch fpv.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		(*target).Enabled = fpv.value.(bool)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		(*target).Port = fpv.value.(int32)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		(*target).UseTls = fpv.value.(bool)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_TargetServers_SpeedTestTarget)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue' with the value under path in 'Probe_Spec_TargetServers_SpeedTestTarget'.
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) CompareWith(source *Probe_Spec_TargetServers_SpeedTestTarget) (int, bool) {
+	switch fpv.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnabled()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetPort()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetUseTls()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+// ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue allows storing single item in Path-specific values for SpeedTestTarget according to their type
+// Present only for array (repeated) types.
+type ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeSpecTargetServersSpeedTestTarget_FieldPath
+	ContainsValue(*Probe_Spec_TargetServers_SpeedTestTarget) bool
+}
+
+// ParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing SpeedTestTarget field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue(pathStr, valueStr string) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue struct {
+	ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayItemValue = (*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Spec_TargetServers_SpeedTestTarget as interface{}
+func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec_TargetServers_SpeedTestTarget) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'SpeedTestTarget'
+func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_SpeedTestTarget) bool {
+	slice := fpaiv.ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues allows storing slice of values for SpeedTestTarget fields according to their type
+type ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeSpecTargetServersSpeedTestTarget_FieldPath
+}
+
+func ParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing SpeedTestTarget field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues struct {
+	ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues = (*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsEnabledArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsUseTlsArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

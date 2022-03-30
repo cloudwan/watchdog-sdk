@@ -950,6 +950,10 @@ func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSession
 	return BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsProxyConfiguration{}
 }
 
+func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) Addresses() BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses {
+	return BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses{}
+}
+
 type BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsTarget struct{}
 
 func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsTarget) FieldPath() *BatchGetProbingConfigsResponse_FieldSubPath {
@@ -2566,6 +2570,27 @@ func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessi
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses struct{}
+
+func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) FieldPath() *BatchGetProbingConfigsResponse_FieldSubPath {
+	return &BatchGetProbingConfigsResponse_FieldSubPath{
+		selector: BatchGetProbingConfigsResponse_FieldPathSelectorProbingConfigs,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithValue(value []string) *BatchGetProbingConfigsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithItemValue(value string) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue)
+}
+
 type BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecSpeedtest struct{}
 
 func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecSpeedtest) FieldPath() *BatchGetProbingConfigsResponse_FieldSubPath {
@@ -3270,6 +3295,10 @@ func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions
 
 func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) ProxyConfiguration() BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsProxyConfiguration {
 	return BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsProxyConfiguration{}
+}
+
+func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) Addresses() BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses {
+	return BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses{}
 }
 
 type BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsTarget struct{}
@@ -4888,6 +4917,27 @@ func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessio
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses struct{}
+
+func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) FieldPath() *BatchGetProbingConfigsResponse_FieldSubPath {
+	return &BatchGetProbingConfigsResponse_FieldSubPath{
+		selector: BatchGetProbingConfigsResponse_FieldPathSelectorProbingConfigs,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithValue(value []string) *BatchGetProbingConfigsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithItemValue(value string) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue)
+}
+
 type BatchGetProbingConfigsResponsePathSelectorProbingConfigsStatus struct{}
 
 func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsStatus) FieldPath() *BatchGetProbingConfigsResponse_FieldSubPath {
@@ -5788,6 +5838,10 @@ func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) H
 
 func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) ProxyConfiguration() ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsProxyConfiguration {
 	return ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsProxyConfiguration{}
+}
+
+func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) Addresses() ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses {
+	return ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses{}
 }
 
 type ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsTarget struct{}
@@ -7406,6 +7460,27 @@ func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsP
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses struct{}
+
+func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) FieldPath() *ListProbingConfigsResponse_FieldSubPath {
+	return &ListProbingConfigsResponse_FieldSubPath{
+		selector: ListProbingConfigsResponse_FieldPathSelectorProbingConfigs,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithValue(value []string) *ListProbingConfigsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingConfigsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessionsAddresses) WithItemValue(value string) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingConfigsResponse_FieldSubPathArrayItemValue)
+}
+
 type ListProbingConfigsResponsePathSelectorProbingConfigsSpecSpeedtest struct{}
 
 func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecSpeedtest) FieldPath() *ListProbingConfigsResponse_FieldSubPath {
@@ -8110,6 +8185,10 @@ func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) Ht
 
 func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) ProxyConfiguration() ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsProxyConfiguration {
 	return ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsProxyConfiguration{}
+}
+
+func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) Addresses() ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses {
+	return ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses{}
 }
 
 type ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsTarget struct{}
@@ -9728,6 +9807,27 @@ func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsPr
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses struct{}
+
+func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) FieldPath() *ListProbingConfigsResponse_FieldSubPath {
+	return &ListProbingConfigsResponse_FieldSubPath{
+		selector: ListProbingConfigsResponse_FieldPathSelectorProbingConfigs,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithValue(value []string) *ListProbingConfigsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingConfigsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessionsAddresses) WithItemValue(value string) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingConfigsResponse_FieldSubPathArrayItemValue)
+}
+
 type ListProbingConfigsResponsePathSelectorProbingConfigsStatus struct{}
 
 func (ListProbingConfigsResponsePathSelectorProbingConfigsStatus) FieldPath() *ListProbingConfigsResponse_FieldSubPath {
@@ -11004,6 +11104,10 @@ func (CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Ht
 
 func (CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) ProxyConfiguration() CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsProxyConfiguration {
 	return CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsProxyConfiguration{}
+}
+
+func (CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Addresses() CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses {
+	return CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses{}
 }
 
 type CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsTarget struct{}
@@ -12622,6 +12726,27 @@ func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsPr
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses struct{}
+
+func (CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) FieldPath() *CreateProbingConfigRequest_FieldSubPath {
+	return &CreateProbingConfigRequest_FieldSubPath{
+		selector: CreateProbingConfigRequest_FieldPathSelectorProbingConfig,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithValue(value []string) *CreateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithItemValue(value string) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type CreateProbingConfigRequestPathSelectorProbingConfigSpecSpeedtest struct{}
 
 func (CreateProbingConfigRequestPathSelectorProbingConfigSpecSpeedtest) FieldPath() *CreateProbingConfigRequest_FieldSubPath {
@@ -13326,6 +13451,10 @@ func (CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Htt
 
 func (CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) ProxyConfiguration() CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsProxyConfiguration {
 	return CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsProxyConfiguration{}
+}
+
+func (CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Addresses() CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses {
+	return CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses{}
 }
 
 type CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsTarget struct{}
@@ -14944,6 +15073,27 @@ func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsPro
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses struct{}
+
+func (CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) FieldPath() *CreateProbingConfigRequest_FieldSubPath {
+	return &CreateProbingConfigRequest_FieldSubPath{
+		selector: CreateProbingConfigRequest_FieldPathSelectorProbingConfig,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithValue(value []string) *CreateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithItemValue(value string) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type CreateProbingConfigRequestPathSelectorProbingConfigStatus struct{}
 
 func (CreateProbingConfigRequestPathSelectorProbingConfigStatus) FieldPath() *CreateProbingConfigRequest_FieldSubPath {
@@ -15698,6 +15848,10 @@ func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Ht
 
 func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) ProxyConfiguration() UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsProxyConfiguration {
 	return UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Addresses() UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses {
+	return UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsTarget struct{}
@@ -17316,6 +17470,27 @@ func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsPr
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
+	return &UpdateProbingConfigRequest_FieldSubPath{
+		selector: UpdateProbingConfigRequest_FieldPathSelectorProbingConfig,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingConfigRequestPathSelectorProbingConfigSpecSpeedtest struct{}
 
 func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecSpeedtest) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
@@ -18020,6 +18195,10 @@ func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Htt
 
 func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) ProxyConfiguration() UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsProxyConfiguration {
 	return UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Addresses() UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses {
+	return UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsTarget struct{}
@@ -19638,6 +19817,27 @@ func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsPro
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
+	return &UpdateProbingConfigRequest_FieldSubPath{
+		selector: UpdateProbingConfigRequest_FieldPathSelectorProbingConfig,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingConfigRequestPathSelectorProbingConfigStatus struct{}
 
 func (UpdateProbingConfigRequestPathSelectorProbingConfigStatus) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
@@ -20416,6 +20616,10 @@ func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessio
 
 func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) ProxyConfiguration() UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsProxyConfiguration {
 	return UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) Addresses() UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses {
+	return UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsTarget struct{}
@@ -22034,6 +22238,27 @@ func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSess
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
+	return &UpdateProbingConfigRequest_FieldSubPath{
+		selector: UpdateProbingConfigRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingConfigRequestCASFieldPathBuilder().ConditionalState().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecSpeedtest struct{}
 
 func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecSpeedtest) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
@@ -22738,6 +22963,10 @@ func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSession
 
 func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) ProxyConfiguration() UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsProxyConfiguration {
 	return UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) Addresses() UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses {
+	return UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsTarget struct{}
@@ -24356,6 +24585,27 @@ func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessi
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
+	return &UpdateProbingConfigRequest_FieldSubPath{
+		selector: UpdateProbingConfigRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingConfigRequestCASFieldPathBuilder().ConditionalState().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingConfigRequestPathSelectorCasConditionalStateStatus struct{}
 
 func (UpdateProbingConfigRequestPathSelectorCasConditionalStateStatus) FieldPath() *UpdateProbingConfigRequest_FieldSubPath {
@@ -25124,6 +25374,10 @@ func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessi
 
 func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) ProxyConfiguration() UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsProxyConfiguration {
 	return UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) Addresses() UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses {
+	return UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsTarget struct{}
@@ -26742,6 +26996,27 @@ func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSes
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses) FieldPath() *UpdateProbingConfigRequestCAS_FieldSubPath {
+	return &UpdateProbingConfigRequestCAS_FieldSubPath{
+		selector: UpdateProbingConfigRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecSpeedtest struct{}
 
 func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecSpeedtest) FieldPath() *UpdateProbingConfigRequestCAS_FieldSubPath {
@@ -27446,6 +27721,10 @@ func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessio
 
 func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) ProxyConfiguration() UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsProxyConfiguration {
 	return UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsProxyConfiguration{}
+}
+
+func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) Addresses() UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses {
+	return UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses{}
 }
 
 type UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsTarget struct{}
@@ -29062,6 +29341,27 @@ func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSess
 
 func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsProxyConfigurationNoProxy) WithArrayOfValues(values []string) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses struct{}
+
+func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses) FieldPath() *UpdateProbingConfigRequestCAS_FieldSubPath {
+	return &UpdateProbingConfigRequestCAS_FieldSubPath{
+		selector: UpdateProbingConfigRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_config.NewProbingConfigFieldPathBuilder().Spec().TargetSessions().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses) WithValue(value []string) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses) WithArrayOfValues(values [][]string) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessionsAddresses) WithItemValue(value string) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue)
 }
 
 type UpdateProbingConfigRequest_CASPathSelectorConditionalStateStatus struct{}

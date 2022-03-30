@@ -310,6 +310,10 @@ func (BatchGetProbingTargetsResponsePathSelectorProbingTargets) Agent() BatchGet
 	return BatchGetProbingTargetsResponsePathSelectorProbingTargetsAgent{}
 }
 
+func (BatchGetProbingTargetsResponsePathSelectorProbingTargets) Addresses() BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses {
+	return BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses{}
+}
+
 type BatchGetProbingTargetsResponsePathSelectorProbingTargetsName struct{}
 
 func (BatchGetProbingTargetsResponsePathSelectorProbingTargetsName) FieldPath() *BatchGetProbingTargetsResponse_FieldSubPath {
@@ -3249,6 +3253,27 @@ func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsAgent) WithArray
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses struct{}
+
+func (BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses) FieldPath() *BatchGetProbingTargetsResponse_FieldSubPath {
+	return &BatchGetProbingTargetsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithValue(value []string) *BatchGetProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithArrayOfValues(values [][]string) *BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithItemValue(value string) *BatchGetProbingTargetsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingTargetsResponse_FieldSubPathArrayItemValue)
+}
+
 type BatchGetProbingTargetsResponsePathSelectorMissing struct{}
 
 func (BatchGetProbingTargetsResponsePathSelectorMissing) FieldPath() *BatchGetProbingTargetsResponse_FieldTerminalPath {
@@ -3494,6 +3519,10 @@ func (ListProbingTargetsResponsePathSelectorProbingTargets) HttpProbingConfig() 
 
 func (ListProbingTargetsResponsePathSelectorProbingTargets) Agent() ListProbingTargetsResponsePathSelectorProbingTargetsAgent {
 	return ListProbingTargetsResponsePathSelectorProbingTargetsAgent{}
+}
+
+func (ListProbingTargetsResponsePathSelectorProbingTargets) Addresses() ListProbingTargetsResponsePathSelectorProbingTargetsAddresses {
+	return ListProbingTargetsResponsePathSelectorProbingTargetsAddresses{}
 }
 
 type ListProbingTargetsResponsePathSelectorProbingTargetsName struct{}
@@ -6435,6 +6464,27 @@ func (s ListProbingTargetsResponsePathSelectorProbingTargetsAgent) WithArrayOfVa
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbingTargetsResponsePathSelectorProbingTargetsAddresses struct{}
+
+func (ListProbingTargetsResponsePathSelectorProbingTargetsAddresses) FieldPath() *ListProbingTargetsResponse_FieldSubPath {
+	return &ListProbingTargetsResponse_FieldSubPath{
+		selector: ListProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithValue(value []string) *ListProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithArrayOfValues(values [][]string) *ListProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s ListProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithItemValue(value string) *ListProbingTargetsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingTargetsResponse_FieldSubPathArrayItemValue)
+}
+
 type ListProbingTargetsResponsePathSelectorPrevPageToken struct{}
 
 func (ListProbingTargetsResponsePathSelectorPrevPageToken) FieldPath() *ListProbingTargetsResponse_FieldTerminalPath {
@@ -7056,6 +7106,10 @@ func (CreateProbingTargetRequestPathSelectorProbingTarget) HttpProbingConfig() C
 
 func (CreateProbingTargetRequestPathSelectorProbingTarget) Agent() CreateProbingTargetRequestPathSelectorProbingTargetAgent {
 	return CreateProbingTargetRequestPathSelectorProbingTargetAgent{}
+}
+
+func (CreateProbingTargetRequestPathSelectorProbingTarget) Addresses() CreateProbingTargetRequestPathSelectorProbingTargetAddresses {
+	return CreateProbingTargetRequestPathSelectorProbingTargetAddresses{}
 }
 
 type CreateProbingTargetRequestPathSelectorProbingTargetName struct{}
@@ -9997,6 +10051,27 @@ func (s CreateProbingTargetRequestPathSelectorProbingTargetAgent) WithArrayOfVal
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbingTargetRequestPathSelectorProbingTargetAddresses struct{}
+
+func (CreateProbingTargetRequestPathSelectorProbingTargetAddresses) FieldPath() *CreateProbingTargetRequest_FieldSubPath {
+	return &CreateProbingTargetRequest_FieldSubPath{
+		selector: CreateProbingTargetRequest_FieldPathSelectorProbingTarget,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetRequestPathSelectorProbingTargetAddresses) WithValue(value []string) *CreateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetRequestPathSelectorProbingTargetAddresses) WithArrayOfValues(values [][]string) *CreateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+func (s CreateProbingTargetRequestPathSelectorProbingTargetAddresses) WithItemValue(value string) *CreateProbingTargetRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingTargetRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingTargetRequestFieldPathBuilder struct{}
 
 func NewUpdateProbingTargetRequestFieldPathBuilder() UpdateProbingTargetRequestFieldPathBuilder {
@@ -10096,6 +10171,10 @@ func (UpdateProbingTargetRequestPathSelectorProbingTarget) HttpProbingConfig() U
 
 func (UpdateProbingTargetRequestPathSelectorProbingTarget) Agent() UpdateProbingTargetRequestPathSelectorProbingTargetAgent {
 	return UpdateProbingTargetRequestPathSelectorProbingTargetAgent{}
+}
+
+func (UpdateProbingTargetRequestPathSelectorProbingTarget) Addresses() UpdateProbingTargetRequestPathSelectorProbingTargetAddresses {
+	return UpdateProbingTargetRequestPathSelectorProbingTargetAddresses{}
 }
 
 type UpdateProbingTargetRequestPathSelectorProbingTargetName struct{}
@@ -13037,6 +13116,27 @@ func (s UpdateProbingTargetRequestPathSelectorProbingTargetAgent) WithArrayOfVal
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingTargetRequestPathSelectorProbingTargetAddresses struct{}
+
+func (UpdateProbingTargetRequestPathSelectorProbingTargetAddresses) FieldPath() *UpdateProbingTargetRequest_FieldSubPath {
+	return &UpdateProbingTargetRequest_FieldSubPath{
+		selector: UpdateProbingTargetRequest_FieldPathSelectorProbingTarget,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequestPathSelectorProbingTargetAddresses) WithValue(value []string) *UpdateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorProbingTargetAddresses) WithArrayOfValues(values [][]string) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorProbingTargetAddresses) WithItemValue(value string) *UpdateProbingTargetRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingTargetRequestPathSelectorUpdateMask struct{}
 
 func (UpdateProbingTargetRequestPathSelectorUpdateMask) FieldPath() *UpdateProbingTargetRequest_FieldTerminalPath {
@@ -13160,6 +13260,10 @@ func (UpdateProbingTargetRequestPathSelectorCasConditionalState) HttpProbingConf
 
 func (UpdateProbingTargetRequestPathSelectorCasConditionalState) Agent() UpdateProbingTargetRequestPathSelectorCasConditionalStateAgent {
 	return UpdateProbingTargetRequestPathSelectorCasConditionalStateAgent{}
+}
+
+func (UpdateProbingTargetRequestPathSelectorCasConditionalState) Addresses() UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses {
+	return UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses{}
 }
 
 type UpdateProbingTargetRequestPathSelectorCasConditionalStateName struct{}
@@ -16101,6 +16205,27 @@ func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateAgent) WithArra
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses struct{}
+
+func (UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses) FieldPath() *UpdateProbingTargetRequest_FieldSubPath {
+	return &UpdateProbingTargetRequest_FieldSubPath{
+		selector: UpdateProbingTargetRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetRequestCASFieldPathBuilder().ConditionalState().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses) WithValue(value []string) *UpdateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses) WithArrayOfValues(values [][]string) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateAddresses) WithItemValue(value string) *UpdateProbingTargetRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingTargetRequestPathSelectorCasFieldMask struct{}
 
 func (UpdateProbingTargetRequestPathSelectorCasFieldMask) FieldPath() *UpdateProbingTargetRequest_FieldSubPath {
@@ -16214,6 +16339,10 @@ func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) HttpProbingCon
 
 func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) Agent() UpdateProbingTargetRequest_CASPathSelectorConditionalStateAgent {
 	return UpdateProbingTargetRequest_CASPathSelectorConditionalStateAgent{}
+}
+
+func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) Addresses() UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses {
+	return UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses{}
 }
 
 type UpdateProbingTargetRequest_CASPathSelectorConditionalStateName struct{}
@@ -19155,6 +19284,27 @@ func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateAgent) WithArr
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses struct{}
+
+func (UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses) FieldPath() *UpdateProbingTargetRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses) WithValue(value []string) *UpdateProbingTargetRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses) WithArrayOfValues(values [][]string) *UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateAddresses) WithItemValue(value string) *UpdateProbingTargetRequestCAS_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetRequestCAS_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingTargetRequest_CASPathSelectorFieldMask struct{}
 
 func (UpdateProbingTargetRequest_CASPathSelectorFieldMask) FieldPath() *UpdateProbingTargetRequestCAS_FieldTerminalPath {
@@ -19442,6 +19592,10 @@ func (SearchProbingTargetsResponsePathSelectorProbingTargets) HttpProbingConfig(
 
 func (SearchProbingTargetsResponsePathSelectorProbingTargets) Agent() SearchProbingTargetsResponsePathSelectorProbingTargetsAgent {
 	return SearchProbingTargetsResponsePathSelectorProbingTargetsAgent{}
+}
+
+func (SearchProbingTargetsResponsePathSelectorProbingTargets) Addresses() SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses {
+	return SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses{}
 }
 
 type SearchProbingTargetsResponsePathSelectorProbingTargetsName struct{}
@@ -22381,6 +22535,27 @@ func (s SearchProbingTargetsResponsePathSelectorProbingTargetsAgent) WithValue(v
 
 func (s SearchProbingTargetsResponsePathSelectorProbingTargetsAgent) WithArrayOfValues(values []*probe.Reference) *SearchProbingTargetsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses struct{}
+
+func (SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses) FieldPath() *SearchProbingTargetsResponse_FieldSubPath {
+	return &SearchProbingTargetsResponse_FieldSubPath{
+		selector: SearchProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithValue(value []string) *SearchProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithArrayOfValues(values [][]string) *SearchProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s SearchProbingTargetsResponsePathSelectorProbingTargetsAddresses) WithItemValue(value string) *SearchProbingTargetsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingTargetsResponse_FieldSubPathArrayItemValue)
 }
 
 type SearchProbingTargetsResponsePathSelectorPrevPageToken struct{}

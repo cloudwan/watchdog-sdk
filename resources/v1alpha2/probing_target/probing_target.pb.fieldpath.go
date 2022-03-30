@@ -92,6 +92,7 @@ const (
 	ProbingTarget_FieldPathSelectorDefaultProbingSettings ProbingTarget_FieldPathSelector = 11
 	ProbingTarget_FieldPathSelectorHttpProbingConfig      ProbingTarget_FieldPathSelector = 12
 	ProbingTarget_FieldPathSelectorAgent                  ProbingTarget_FieldPathSelector = 13
+	ProbingTarget_FieldPathSelectorAddresses              ProbingTarget_FieldPathSelector = 14
 )
 
 func (s ProbingTarget_FieldPathSelector) String() string {
@@ -124,6 +125,8 @@ func (s ProbingTarget_FieldPathSelector) String() string {
 		return "http_probing_config"
 	case ProbingTarget_FieldPathSelectorAgent:
 		return "agent"
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return "addresses"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", s))
 	}
@@ -163,6 +166,8 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig}, nil
 		case "agent":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent}, nil
+		case "addresses":
+			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -285,6 +290,10 @@ func (fp *ProbingTarget_FieldTerminalPath) Get(source *ProbingTarget) (values []
 			if source.Agent != nil {
 				values = append(values, source.Agent)
 			}
+		case ProbingTarget_FieldPathSelectorAddresses:
+			for _, value := range source.GetAddresses() {
+				values = append(values, value)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 		}
@@ -335,6 +344,9 @@ func (fp *ProbingTarget_FieldTerminalPath) GetSingle(source *ProbingTarget) (int
 	case ProbingTarget_FieldPathSelectorAgent:
 		res := source.GetAgent()
 		return res, res != nil
+	case ProbingTarget_FieldPathSelectorAddresses:
+		res := source.GetAddresses()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -375,6 +387,8 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.HTTPProbingConfig)(nil)
 	case ProbingTarget_FieldPathSelectorAgent:
 		return (*probe.Reference)(nil)
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return ([]string)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -411,6 +425,8 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 			item.HttpProbingConfig = nil
 		case ProbingTarget_FieldPathSelectorAgent:
 			item.Agent = nil
+		case ProbingTarget_FieldPathSelectorAddresses:
+			item.Addresses = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 		}
@@ -431,7 +447,8 @@ func (fp *ProbingTarget_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingTarget_FieldPathSelectorAddress ||
 		fp.selector == ProbingTarget_FieldPathSelectorCategory ||
 		fp.selector == ProbingTarget_FieldPathSelectorLocationType ||
-		fp.selector == ProbingTarget_FieldPathSelectorAgent
+		fp.selector == ProbingTarget_FieldPathSelectorAgent ||
+		fp.selector == ProbingTarget_FieldPathSelectorAddresses
 }
 
 func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) ProbingTarget_FieldPathValue {
@@ -464,6 +481,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) Probing
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
 	case ProbingTarget_FieldPathSelectorAgent:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -504,6 +523,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
 	case ProbingTarget_FieldPathSelectorAgent:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([][]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -516,6 +537,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithRawIArrayOfValues(values interfac
 
 func (fp *ProbingTarget_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingTarget_FieldPathArrayItemValue {
 	switch fp.selector {
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return &ProbingTarget_FieldTerminalPathArrayItemValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -777,6 +800,10 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) AsAgentValue() (*probe.Referenc
 	res, ok := fpv.value.(*probe.Reference)
 	return res, ok
 }
+func (fpv *ProbingTarget_FieldTerminalPathValue) AsAddressesValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ProbingTarget
 func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
@@ -812,6 +839,8 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
 	case ProbingTarget_FieldPathSelectorAgent:
 		(*target).Agent = fpv.value.(*probe.Reference)
+	case ProbingTarget_FieldPathSelectorAddresses:
+		(*target).Addresses = fpv.value.([]string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpv.selector))
 	}
@@ -952,6 +981,8 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) CompareWith(source *ProbingTarg
 		} else {
 			return 1, true
 		}
+	case ProbingTarget_FieldPathSelectorAddresses:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpv.selector))
 	}
@@ -1078,6 +1109,10 @@ var _ ProbingTarget_FieldPathArrayItemValue = (*ProbingTarget_FieldTerminalPathA
 // GetRawValue returns stored element value for array in object ProbingTarget as interface{}
 func (fpaiv *ProbingTarget_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
+}
+func (fpaiv *ProbingTarget_FieldTerminalPathArrayItemValue) AsAddressesItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
 }
 
 func (fpaiv *ProbingTarget_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingTarget) (interface{}, bool) {
@@ -1238,6 +1273,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) GetRawValues() (value
 		for _, v := range fpaov.values.([]*probe.Reference) {
 			values = append(values, v)
 		}
+	case ProbingTarget_FieldPathSelectorAddresses:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1295,6 +1334,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsHttpProbingConfigAr
 }
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsAgentArrayOfValues() ([]*probe.Reference, bool) {
 	res, ok := fpaov.values.([]*probe.Reference)
+	return res, ok
+}
+func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsAddressesArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 

@@ -78,6 +78,8 @@ message Probe {
 
     repeated string external_ip_check_url = 16;
 
+    TargetServers target_servers = 17;
+
     message ActivationSpec {
       ActivationType type = 1;
 
@@ -107,6 +109,30 @@ message Probe {
       bool enable = 1;
 
       string access_token = 2;
+    }
+
+    message TargetServers {
+      IcmpTarget icmp_target = 1;
+
+      UdpTarget udp_target = 2;
+
+      SpeedTestTarget speed_test_target = 3;
+
+      message IcmpTarget { bool enabled = 1; }
+
+      message UdpTarget {
+        bool enabled = 1;
+
+        int32 port = 2;
+      }
+
+      message SpeedTestTarget {
+        bool enabled = 1;
+
+        int32 port = 2;
+
+        bool use_tls = 3;
+      }
     }
   }
 

@@ -310,6 +310,16 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 	} else {
 		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl})
 	}
+	{
+		subMask := o.GetTargetServers().MakeDiffFieldMask(other.GetTargetServers())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorTargetServers})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorTargetServers, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -354,6 +364,7 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 	for i, sourceValue := range o.ExternalIpCheckUrl {
 		result.ExternalIpCheckUrl[i] = sourceValue
 	}
+	result.TargetServers = o.TargetServers.Clone()
 	return result
 }
 
@@ -434,6 +445,12 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 		}
 	}
 
+	if source.GetTargetServers() != nil {
+		if o.TargetServers == nil {
+			o.TargetServers = new(Probe_Spec_TargetServers)
+		}
+		o.TargetServers.Merge(source.GetTargetServers())
+	}
 }
 
 func (o *Probe_Spec) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -786,6 +803,267 @@ func (o *Probe_Spec_AccessTokenSpec) Merge(source *Probe_Spec_AccessTokenSpec) {
 
 func (o *Probe_Spec_AccessTokenSpec) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*Probe_Spec_AccessTokenSpec))
+}
+
+func (o *Probe_Spec_TargetServers) GotenObjectExt() {}
+
+func (o *Probe_Spec_TargetServers) MakeFullFieldMask() *Probe_Spec_TargetServers_FieldMask {
+	return FullProbe_Spec_TargetServers_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Spec_TargetServers_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers) MakeDiffFieldMask(other *Probe_Spec_TargetServers) *Probe_Spec_TargetServers_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Spec_TargetServers_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Spec_TargetServers_FieldMask()
+	}
+
+	res := &Probe_Spec_TargetServers_FieldMask{}
+	{
+		subMask := o.GetIcmpTarget().MakeDiffFieldMask(other.GetIcmpTarget())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetUdpTarget().MakeDiffFieldMask(other.GetUdpTarget())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetSpeedTestTarget().MakeDiffFieldMask(other.GetSpeedTestTarget())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldSubPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget, subPath: subpath})
+			}
+		}
+	}
+	return res
+}
+
+func (o *Probe_Spec_TargetServers) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Spec_TargetServers))
+}
+
+func (o *Probe_Spec_TargetServers) Clone() *Probe_Spec_TargetServers {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Spec_TargetServers{}
+	result.IcmpTarget = o.IcmpTarget.Clone()
+	result.UdpTarget = o.UdpTarget.Clone()
+	result.SpeedTestTarget = o.SpeedTestTarget.Clone()
+	return result
+}
+
+func (o *Probe_Spec_TargetServers) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Spec_TargetServers) Merge(source *Probe_Spec_TargetServers) {
+	if source.GetIcmpTarget() != nil {
+		if o.IcmpTarget == nil {
+			o.IcmpTarget = new(Probe_Spec_TargetServers_IcmpTarget)
+		}
+		o.IcmpTarget.Merge(source.GetIcmpTarget())
+	}
+	if source.GetUdpTarget() != nil {
+		if o.UdpTarget == nil {
+			o.UdpTarget = new(Probe_Spec_TargetServers_UdpTarget)
+		}
+		o.UdpTarget.Merge(source.GetUdpTarget())
+	}
+	if source.GetSpeedTestTarget() != nil {
+		if o.SpeedTestTarget == nil {
+			o.SpeedTestTarget = new(Probe_Spec_TargetServers_SpeedTestTarget)
+		}
+		o.SpeedTestTarget.Merge(source.GetSpeedTestTarget())
+	}
+}
+
+func (o *Probe_Spec_TargetServers) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Spec_TargetServers))
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) GotenObjectExt() {}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) MakeFullFieldMask() *Probe_Spec_TargetServers_IcmpTarget_FieldMask {
+	return FullProbe_Spec_TargetServers_IcmpTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Spec_TargetServers_IcmpTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) MakeDiffFieldMask(other *Probe_Spec_TargetServers_IcmpTarget) *Probe_Spec_TargetServers_IcmpTarget_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Spec_TargetServers_IcmpTarget_FieldMask()
+	}
+
+	res := &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	if o.GetEnabled() != other.GetEnabled() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersIcmpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled})
+	}
+	return res
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) Clone() *Probe_Spec_TargetServers_IcmpTarget {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Spec_TargetServers_IcmpTarget{}
+	result.Enabled = o.Enabled
+	return result
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) Merge(source *Probe_Spec_TargetServers_IcmpTarget) {
+	o.Enabled = source.GetEnabled()
+}
+
+func (o *Probe_Spec_TargetServers_IcmpTarget) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) GotenObjectExt() {}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) MakeFullFieldMask() *Probe_Spec_TargetServers_UdpTarget_FieldMask {
+	return FullProbe_Spec_TargetServers_UdpTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Spec_TargetServers_UdpTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) MakeDiffFieldMask(other *Probe_Spec_TargetServers_UdpTarget) *Probe_Spec_TargetServers_UdpTarget_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Spec_TargetServers_UdpTarget_FieldMask()
+	}
+
+	res := &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	if o.GetEnabled() != other.GetEnabled() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled})
+	}
+	if o.GetPort() != other.GetPort() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort})
+	}
+	return res
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) Clone() *Probe_Spec_TargetServers_UdpTarget {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Spec_TargetServers_UdpTarget{}
+	result.Enabled = o.Enabled
+	result.Port = o.Port
+	return result
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) Merge(source *Probe_Spec_TargetServers_UdpTarget) {
+	o.Enabled = source.GetEnabled()
+	o.Port = source.GetPort()
+}
+
+func (o *Probe_Spec_TargetServers_UdpTarget) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) GotenObjectExt() {}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) MakeFullFieldMask() *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
+	return FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask()
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) MakeDiffFieldMask(other *Probe_Spec_TargetServers_SpeedTestTarget) *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask()
+	}
+
+	res := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	if o.GetEnabled() != other.GetEnabled() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled})
+	}
+	if o.GetPort() != other.GetPort() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort})
+	}
+	if o.GetUseTls() != other.GetUseTls() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls})
+	}
+	return res
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) Clone() *Probe_Spec_TargetServers_SpeedTestTarget {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Spec_TargetServers_SpeedTestTarget{}
+	result.Enabled = o.Enabled
+	result.Port = o.Port
+	result.UseTls = o.UseTls
+	return result
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) Merge(source *Probe_Spec_TargetServers_SpeedTestTarget) {
+	o.Enabled = source.GetEnabled()
+	o.Port = source.GetPort()
+	o.UseTls = source.GetUseTls()
+}
+
+func (o *Probe_Spec_TargetServers_SpeedTestTarget) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
 }
 
 func (o *Probe_Status_System) GotenObjectExt() {}

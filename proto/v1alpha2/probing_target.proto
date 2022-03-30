@@ -59,5 +59,9 @@ message ProbingTarget {
 
   string agent = 20;
 
+  // addresses list the list of IP addresses that this target is reachable on
+  // used for managed targets that might have dual stack
+  repeated string addresses = 21;
+
   reserved 11;
 }

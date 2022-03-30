@@ -736,6 +736,18 @@ func (o *ProbingSession) MakeDiffFieldMask(other *ProbingSession) *ProbingSessio
 			}
 		}
 	}
+
+	if len(o.GetAddresses()) == len(other.GetAddresses()) {
+		for i, lValue := range o.GetAddresses() {
+			rValue := other.GetAddresses()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
+	}
 	return res
 }
 
@@ -784,6 +796,10 @@ func (o *ProbingSession) Clone() *ProbingSession {
 	result.SpeeedtestSettings = o.SpeeedtestSettings.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
 	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
+	result.Addresses = make([]string, len(o.Addresses))
+	for i, sourceValue := range o.Addresses {
+		result.Addresses[i] = sourceValue
+	}
 	return result
 }
 
@@ -862,6 +878,21 @@ func (o *ProbingSession) Merge(source *ProbingSession) {
 		}
 		o.ProxyConfiguration.Merge(source.GetProxyConfiguration())
 	}
+	for _, sourceValue := range source.GetAddresses() {
+		exists := false
+		for _, currentValue := range o.Addresses {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.Addresses = append(o.Addresses, newDstElement)
+		}
+	}
+
 }
 
 func (o *ProbingSession) MergeRaw(source gotenobject.GotenObjectExt) {

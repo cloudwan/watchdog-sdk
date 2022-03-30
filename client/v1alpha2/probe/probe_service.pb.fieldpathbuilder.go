@@ -887,6 +887,10 @@ func (BatchGetProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() BatchGe
 	return BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesSpec) TargetServers() BatchGetProbesResponsePathSelectorProbesSpecTargetServers {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServers{}
+}
+
 type BatchGetProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -1773,6 +1777,212 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArra
 
 func (s BatchGetProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *BatchGetProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbesResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServers struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) IcmpTarget() BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) UdpTarget() BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) Enabled() BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Enabled() BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Port() BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithValue(value bool) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithValue(value int32) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Enabled() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetProbesResponsePathSelectorProbesStatus struct{}
@@ -4243,6 +4453,10 @@ func (ListProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() ListProbesR
 	return ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
+func (ListProbesResponsePathSelectorProbesSpec) TargetServers() ListProbesResponsePathSelectorProbesSpecTargetServers {
+	return ListProbesResponsePathSelectorProbesSpecTargetServers{}
+}
+
 type ListProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (ListProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -5129,6 +5343,212 @@ func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArrayOfV
 
 func (s ListProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *ListProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbesResponse_FieldSubPathArrayItemValue)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServers struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServers) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServers) IcmpTarget() ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServers) UdpTarget() ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) Enabled() ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled{}
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Enabled() ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Port() ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort{}
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithValue(value bool) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithValue(value int32) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Enabled() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
 type ListProbesResponsePathSelectorProbesStatus struct{}
@@ -7975,6 +8395,10 @@ func (CreateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUrl() CreateProbeR
 	return CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
+func (CreateProbeRequestPathSelectorProbeSpec) TargetServers() CreateProbeRequestPathSelectorProbeSpecTargetServers {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServers{}
+}
+
 type CreateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
 
 func (CreateProbeRequestPathSelectorProbeSpecProbeGroup) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -8861,6 +9285,212 @@ func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfVa
 
 func (s CreateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *CreateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbeRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServers struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServers) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServers) IcmpTarget() CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServers) UdpTarget() CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServers) SpeedTestTarget() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) Enabled() CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) Enabled() CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) Port() CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort{}
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Enabled() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Port() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
 type CreateProbeRequestPathSelectorProbeStatus struct{}
@@ -11185,6 +11815,10 @@ func (UpdateProbeRequestPathSelectorProbeSpec) ExternalIpCheckUrl() UpdateProbeR
 	return UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
+func (UpdateProbeRequestPathSelectorProbeSpec) TargetServers() UpdateProbeRequestPathSelectorProbeSpecTargetServers {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServers{}
+}
+
 type UpdateProbeRequestPathSelectorProbeSpecProbeGroup struct{}
 
 func (UpdateProbeRequestPathSelectorProbeSpecProbeGroup) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -12071,6 +12705,212 @@ func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithArrayOfVa
 
 func (s UpdateProbeRequestPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServers struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) IcmpTarget() UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) UdpTarget() UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) SpeedTestTarget() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) Enabled() UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) Enabled() UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTarget) Port() UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort{}
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Enabled() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbeRequestPathSelectorProbeStatus struct{}
@@ -14419,6 +15259,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) ExternalIpCheckUrl(
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl{}
 }
 
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) TargetServers() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers{}
+}
+
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup struct{}
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -15305,6 +16149,212 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl)
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) IcmpTarget() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) UdpTarget() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) SpeedTestTarget() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget) Enabled() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget) Enabled() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTarget) Port() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) Enabled() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbeRequestPathSelectorCasConditionalStateStatus struct{}
@@ -17643,6 +18693,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) ExternalIpCheckUrl
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl{}
 }
 
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) TargetServers() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers{}
+}
+
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup struct{}
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
@@ -18529,6 +19583,212 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecExternalIpCheckUrl) WithItemValue(value string) *UpdateProbeRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbeRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) IcmpTarget() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) UdpTarget() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) SpeedTestTarget() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget) Enabled() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget) Enabled() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTarget) Port() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled) WithValue(value bool) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort) WithValue(value int32) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) Enabled() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbeRequest_CASPathSelectorConditionalStateStatus struct{}
@@ -21041,6 +22301,10 @@ func (SearchProbesResponsePathSelectorProbesSpec) ExternalIpCheckUrl() SearchPro
 	return SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl{}
 }
 
+func (SearchProbesResponsePathSelectorProbesSpec) TargetServers() SearchProbesResponsePathSelectorProbesSpecTargetServers {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServers{}
+}
+
 type SearchProbesResponsePathSelectorProbesSpecProbeGroup struct{}
 
 func (SearchProbesResponsePathSelectorProbesSpecProbeGroup) FieldPath() *SearchProbesResponse_FieldSubPath {
@@ -21927,6 +23191,212 @@ func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithArrayO
 
 func (s SearchProbesResponsePathSelectorProbesSpecExternalIpCheckUrl) WithItemValue(value string) *SearchProbesResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbesResponse_FieldSubPathArrayItemValue)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServers struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServers) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServers) IcmpTarget() SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServers) UdpTarget() SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) Enabled() SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled{}
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Enabled() SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTarget) Port() SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort{}
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithValue(value bool) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithValue(value int32) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Enabled() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 
 type SearchProbesResponsePathSelectorProbesStatus struct{}

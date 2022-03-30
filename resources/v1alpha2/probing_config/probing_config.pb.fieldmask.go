@@ -1600,6 +1600,7 @@ func FullProbingSession_FieldMask() *ProbingSession_FieldMask {
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration})
+	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
 	return res
 }
 
@@ -1643,7 +1644,7 @@ func (fieldMask *ProbingSession_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 18)
+	presentSelectors := make([]bool, 19)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingSession_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1673,7 +1674,7 @@ func (fieldMask *ProbingSession_FieldMask) Reset() {
 
 func (fieldMask *ProbingSession_FieldMask) Subtract(other *ProbingSession_FieldMask) *ProbingSession_FieldMask {
 	result := &ProbingSession_FieldMask{}
-	removedSelectors := make([]bool, 18)
+	removedSelectors := make([]bool, 19)
 	otherSubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
 		ProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
@@ -1920,6 +1921,8 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 			case ProbingSession_FieldPathSelectorProxyConfiguration:
 				result.ProxyConfiguration = source.ProxyConfiguration
 				wholeProxyConfigurationAccepted = true
+			case ProbingSession_FieldPathSelectorAddresses:
+				result.Addresses = source.Addresses
 			}
 		case *ProbingSession_FieldSubPath:
 			switch tp.selector {

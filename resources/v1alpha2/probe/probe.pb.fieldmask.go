@@ -464,6 +464,7 @@ func FullProbe_Spec_FieldMask() *Probe_Spec_FieldMask {
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAccessToken})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorAgentType})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl})
+	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorTargetServers})
 	return res
 }
 
@@ -507,7 +508,7 @@ func (fieldMask *Probe_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 11)
+	presentSelectors := make([]bool, 12)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -537,13 +538,14 @@ func (fieldMask *Probe_Spec_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Probe_Spec_FieldMask {
 	result := &Probe_Spec_FieldMask{}
-	removedSelectors := make([]bool, 11)
+	removedSelectors := make([]bool, 12)
 	otherSubMasks := map[ProbeSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		ProbeSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
 		ProbeSpec_FieldPathSelectorContactInfo:       &common.ContactInformation_FieldMask{},
 		ProbeSpec_FieldPathSelectorActivation:        &Probe_Spec_ActivationSpec_FieldMask{},
 		ProbeSpec_FieldPathSelectorAccessToken:       &Probe_Spec_AccessTokenSpec_FieldMask{},
+		ProbeSpec_FieldPathSelectorTargetServers:     &Probe_Spec_TargetServers_FieldMask{},
 	}
 	mySubMasks := map[ProbeSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
@@ -551,6 +553,7 @@ func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Pr
 		ProbeSpec_FieldPathSelectorContactInfo:       &common.ContactInformation_FieldMask{},
 		ProbeSpec_FieldPathSelectorActivation:        &Probe_Spec_ActivationSpec_FieldMask{},
 		ProbeSpec_FieldPathSelectorAccessToken:       &Probe_Spec_AccessTokenSpec_FieldMask{},
+		ProbeSpec_FieldPathSelectorTargetServers:     &Probe_Spec_TargetServers_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -576,6 +579,8 @@ func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Pr
 						mySubMasks[ProbeSpec_FieldPathSelectorActivation] = FullProbe_Spec_ActivationSpec_FieldMask()
 					case ProbeSpec_FieldPathSelectorAccessToken:
 						mySubMasks[ProbeSpec_FieldPathSelectorAccessToken] = FullProbe_Spec_AccessTokenSpec_FieldMask()
+					case ProbeSpec_FieldPathSelectorTargetServers:
+						mySubMasks[ProbeSpec_FieldPathSelectorTargetServers] = FullProbe_Spec_TargetServers_FieldMask()
 					}
 				} else if tp, ok := path.(*ProbeSpec_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -769,6 +774,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 	wholeActivationAccepted := false
 	accessTokenMask := &Probe_Spec_AccessTokenSpec_FieldMask{}
 	wholeAccessTokenAccepted := false
+	targetServersMask := &Probe_Spec_TargetServers_FieldMask{}
+	wholeTargetServersAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -801,6 +808,9 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 				result.AgentType = source.AgentType
 			case ProbeSpec_FieldPathSelectorExternalIpCheckUrl:
 				result.ExternalIpCheckUrl = source.ExternalIpCheckUrl
+			case ProbeSpec_FieldPathSelectorTargetServers:
+				result.TargetServers = source.TargetServers
+				wholeTargetServersAccepted = true
 			}
 		case *ProbeSpec_FieldSubPath:
 			switch tp.selector {
@@ -814,6 +824,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 				activationMask.AppendPath(tp.subPath.(ProbeSpecActivationSpec_FieldPath))
 			case ProbeSpec_FieldPathSelectorAccessToken:
 				accessTokenMask.AppendPath(tp.subPath.(ProbeSpecAccessTokenSpec_FieldPath))
+			case ProbeSpec_FieldPathSelectorTargetServers:
+				targetServersMask.AppendPath(tp.subPath.(ProbeSpecTargetServers_FieldPath))
 			}
 		}
 	}
@@ -831,6 +843,9 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 	}
 	if wholeAccessTokenAccepted == false && len(accessTokenMask.Paths) > 0 {
 		result.AccessToken = accessTokenMask.Project(source.GetAccessToken())
+	}
+	if wholeTargetServersAccepted == false && len(targetServersMask.Paths) > 0 {
+		result.TargetServers = targetServersMask.Project(source.GetTargetServers())
 	}
 	return result
 }
@@ -1787,6 +1802,1094 @@ func (fieldMask *Probe_Spec_AccessTokenSpec_FieldMask) ProjectRaw(source gotenob
 }
 
 func (fieldMask *Probe_Spec_AccessTokenSpec_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type Probe_Spec_TargetServers_FieldMask struct {
+	Paths []ProbeSpecTargetServers_FieldPath
+}
+
+func FullProbe_Spec_TargetServers_FieldMask() *Probe_Spec_TargetServers_FieldMask {
+	res := &Probe_Spec_TargetServers_FieldMask{}
+	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget})
+	return res
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbeSpecTargetServers_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 3)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbeSpecTargetServers_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbeSpecTargetServers_FieldPath(raw)
+	})
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) ProtoMessage() {}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Subtract(other *Probe_Spec_TargetServers_FieldMask) *Probe_Spec_TargetServers_FieldMask {
+	result := &Probe_Spec_TargetServers_FieldMask{}
+	removedSelectors := make([]bool, 3)
+	otherSubMasks := map[ProbeSpecTargetServers_FieldPathSelector]gotenobject.FieldMask{
+		ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:      &Probe_Spec_TargetServers_IcmpTarget_FieldMask{},
+		ProbeSpecTargetServers_FieldPathSelectorUdpTarget:       &Probe_Spec_TargetServers_UdpTarget_FieldMask{},
+		ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget: &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{},
+	}
+	mySubMasks := map[ProbeSpecTargetServers_FieldPathSelector]gotenobject.FieldMask{
+		ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:      &Probe_Spec_TargetServers_IcmpTarget_FieldMask{},
+		ProbeSpecTargetServers_FieldPathSelectorUdpTarget:       &Probe_Spec_TargetServers_UdpTarget_FieldMask{},
+		ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget: &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{},
+	}
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbeSpecTargetServers_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		case *ProbeSpecTargetServers_FieldSubPath:
+			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
+				if tp, ok := path.(*ProbeSpecTargetServers_FieldTerminalPath); ok {
+					switch tp.selector {
+					case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+						mySubMasks[ProbeSpecTargetServers_FieldPathSelectorIcmpTarget] = FullProbe_Spec_TargetServers_IcmpTarget_FieldMask()
+					case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+						mySubMasks[ProbeSpecTargetServers_FieldPathSelectorUdpTarget] = FullProbe_Spec_TargetServers_UdpTarget_FieldMask()
+					case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+						mySubMasks[ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget] = FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask()
+					}
+				} else if tp, ok := path.(*ProbeSpecTargetServers_FieldSubPath); ok {
+					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
+				}
+			} else {
+				result.Paths = append(result.Paths, path)
+			}
+		}
+	}
+	for selector, mySubMask := range mySubMasks {
+		if mySubMask.PathsCount() > 0 {
+			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
+				result.Paths = append(result.Paths, &ProbeSpecTargetServers_FieldSubPath{selector: selector, subPath: allowedPath})
+			}
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*Probe_Spec_TargetServers_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) FilterInputFields() *Probe_Spec_TargetServers_FieldMask {
+	result := &Probe_Spec_TargetServers_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbeSpecTargetServers_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbeSpecTargetServers_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask Probe_Spec_TargetServers_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask Probe_Spec_TargetServers_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) AppendPath(path ProbeSpecTargetServers_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbeSpecTargetServers_FieldPath))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) GetPaths() []ProbeSpecTargetServers_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbeSpecTargetServers_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Set(target, source *Probe_Spec_TargetServers) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*Probe_Spec_TargetServers), source.(*Probe_Spec_TargetServers))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) Project(source *Probe_Spec_TargetServers) *Probe_Spec_TargetServers {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &Probe_Spec_TargetServers{}
+	icmpTargetMask := &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	wholeIcmpTargetAccepted := false
+	udpTargetMask := &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	wholeUdpTargetAccepted := false
+	speedTestTargetMask := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	wholeSpeedTestTargetAccepted := false
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbeSpecTargetServers_FieldTerminalPath:
+			switch tp.selector {
+			case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+				result.IcmpTarget = source.IcmpTarget
+				wholeIcmpTargetAccepted = true
+			case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+				result.UdpTarget = source.UdpTarget
+				wholeUdpTargetAccepted = true
+			case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+				result.SpeedTestTarget = source.SpeedTestTarget
+				wholeSpeedTestTargetAccepted = true
+			}
+		case *ProbeSpecTargetServers_FieldSubPath:
+			switch tp.selector {
+			case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+				icmpTargetMask.AppendPath(tp.subPath.(ProbeSpecTargetServersIcmpTarget_FieldPath))
+			case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+				udpTargetMask.AppendPath(tp.subPath.(ProbeSpecTargetServersUdpTarget_FieldPath))
+			case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+				speedTestTargetMask.AppendPath(tp.subPath.(ProbeSpecTargetServersSpeedTestTarget_FieldPath))
+			}
+		}
+	}
+	if wholeIcmpTargetAccepted == false && len(icmpTargetMask.Paths) > 0 {
+		result.IcmpTarget = icmpTargetMask.Project(source.GetIcmpTarget())
+	}
+	if wholeUdpTargetAccepted == false && len(udpTargetMask.Paths) > 0 {
+		result.UdpTarget = udpTargetMask.Project(source.GetUdpTarget())
+	}
+	if wholeSpeedTestTargetAccepted == false && len(speedTestTargetMask.Paths) > 0 {
+		result.SpeedTestTarget = speedTestTargetMask.Project(source.GetSpeedTestTarget())
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*Probe_Spec_TargetServers))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type Probe_Spec_TargetServers_IcmpTarget_FieldMask struct {
+	Paths []ProbeSpecTargetServersIcmpTarget_FieldPath
+}
+
+func FullProbe_Spec_TargetServers_IcmpTarget_FieldMask() *Probe_Spec_TargetServers_IcmpTarget_FieldMask {
+	res := &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersIcmpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled})
+	return res
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 1)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbeSpecTargetServersIcmpTarget_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbeSpecTargetServersIcmpTarget_FieldPath(raw)
+	})
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) ProtoMessage() {}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Subtract(other *Probe_Spec_TargetServers_IcmpTarget_FieldMask) *Probe_Spec_TargetServers_IcmpTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	removedSelectors := make([]bool, 1)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*Probe_Spec_TargetServers_IcmpTarget_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) FilterInputFields() *Probe_Spec_TargetServers_IcmpTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_IcmpTarget_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbeSpecTargetServersIcmpTarget_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask Probe_Spec_TargetServers_IcmpTarget_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask Probe_Spec_TargetServers_IcmpTarget_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) AppendPath(path ProbeSpecTargetServersIcmpTarget_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbeSpecTargetServersIcmpTarget_FieldPath))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) GetPaths() []ProbeSpecTargetServersIcmpTarget_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbeSpecTargetServersIcmpTarget_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Set(target, source *Probe_Spec_TargetServers_IcmpTarget) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*Probe_Spec_TargetServers_IcmpTarget), source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) Project(source *Probe_Spec_TargetServers_IcmpTarget) *Probe_Spec_TargetServers_IcmpTarget {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &Probe_Spec_TargetServers_IcmpTarget{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath:
+			switch tp.selector {
+			case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
+				result.Enabled = source.Enabled
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*Probe_Spec_TargetServers_IcmpTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_IcmpTarget_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type Probe_Spec_TargetServers_UdpTarget_FieldMask struct {
+	Paths []ProbeSpecTargetServersUdpTarget_FieldPath
+}
+
+func FullProbe_Spec_TargetServers_UdpTarget_FieldMask() *Probe_Spec_TargetServers_UdpTarget_FieldMask {
+	res := &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersUdpTarget_FieldTerminalPath{selector: ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort})
+	return res
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 2)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbeSpecTargetServersUdpTarget_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbeSpecTargetServersUdpTarget_FieldPath(raw)
+	})
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) ProtoMessage() {}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Subtract(other *Probe_Spec_TargetServers_UdpTarget_FieldMask) *Probe_Spec_TargetServers_UdpTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	removedSelectors := make([]bool, 2)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbeSpecTargetServersUdpTarget_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*Probe_Spec_TargetServers_UdpTarget_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) FilterInputFields() *Probe_Spec_TargetServers_UdpTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_UdpTarget_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbeSpecTargetServersUdpTarget_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask Probe_Spec_TargetServers_UdpTarget_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask Probe_Spec_TargetServers_UdpTarget_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) AppendPath(path ProbeSpecTargetServersUdpTarget_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbeSpecTargetServersUdpTarget_FieldPath))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) GetPaths() []ProbeSpecTargetServersUdpTarget_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbeSpecTargetServersUdpTarget_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Set(target, source *Probe_Spec_TargetServers_UdpTarget) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*Probe_Spec_TargetServers_UdpTarget), source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) Project(source *Probe_Spec_TargetServers_UdpTarget) *Probe_Spec_TargetServers_UdpTarget {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &Probe_Spec_TargetServers_UdpTarget{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbeSpecTargetServersUdpTarget_FieldTerminalPath:
+			switch tp.selector {
+			case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
+				result.Enabled = source.Enabled
+			case ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort:
+				result.Port = source.Port
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*Probe_Spec_TargetServers_UdpTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_UdpTarget_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type Probe_Spec_TargetServers_SpeedTestTarget_FieldMask struct {
+	Paths []ProbeSpecTargetServersSpeedTestTarget_FieldPath
+}
+
+func FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask() *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
+	res := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls})
+	return res
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 3)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(raw)
+	})
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) ProtoMessage() {}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Subtract(other *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	removedSelectors := make([]bool, 3)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*Probe_Spec_TargetServers_SpeedTestTarget_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) FilterInputFields() *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
+	result := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbeSpecTargetServersSpeedTestTarget_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) AppendPath(path ProbeSpecTargetServersSpeedTestTarget_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbeSpecTargetServersSpeedTestTarget_FieldPath))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) GetPaths() []ProbeSpecTargetServersSpeedTestTarget_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbeSpecTargetServersSpeedTestTarget_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Set(target, source *Probe_Spec_TargetServers_SpeedTestTarget) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*Probe_Spec_TargetServers_SpeedTestTarget), source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Project(source *Probe_Spec_TargetServers_SpeedTestTarget) *Probe_Spec_TargetServers_SpeedTestTarget {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &Probe_Spec_TargetServers_SpeedTestTarget{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath:
+			switch tp.selector {
+			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
+				result.Enabled = source.Enabled
+			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+				result.Port = source.Port
+			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+				result.UseTls = source.UseTls
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*Probe_Spec_TargetServers_SpeedTestTarget))
+}
+
+func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

@@ -272,6 +272,10 @@ func (b *filterCndBuilder) Agent() *filterCndBuilderAgent {
 	return &filterCndBuilderAgent{builder: b.builder}
 }
 
+func (b *filterCndBuilder) Addresses() *filterCndBuilderAddresses {
+	return &filterCndBuilderAddresses{builder: b.builder}
+}
+
 type filterCndBuilderName struct {
 	builder *FilterBuilder
 }
@@ -9209,5 +9213,98 @@ func (b *filterCndBuilderAgent) compare(op gotenfilter.CompareOperator, value *p
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().Agent().WithValue(value),
+	})
+}
+
+type filterCndBuilderAddresses struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderAddresses) Eq(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderAddresses) Neq(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderAddresses) Gt(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderAddresses) Gte(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderAddresses) Lt(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderAddresses) Lte(value []string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderAddresses) In(values [][]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().Addresses().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderAddresses) NotIn(values [][]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().Addresses().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderAddresses) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderAddresses) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderAddresses) Contains(value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeValue,
+		FieldPath: NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+		Value:     NewProbingTargetFieldPathBuilder().Addresses().WithItemValue(value),
+	})
+}
+
+func (b *filterCndBuilderAddresses) ContainsAnyOf(values []string) *FilterBuilder {
+	pathSelector := NewProbingTargetFieldPathBuilder().Addresses()
+	itemValues := make([]ProbingTarget_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAny,
+		FieldPath: NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderAddresses) ContainsAll(values []string) *FilterBuilder {
+	pathSelector := NewProbingTargetFieldPathBuilder().Addresses()
+	itemValues := make([]ProbingTarget_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAll,
+		FieldPath: NewProbingTargetFieldPathBuilder().Addresses().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderAddresses) compare(op gotenfilter.CompareOperator, value []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().Addresses().WithValue(value),
 	})
 }

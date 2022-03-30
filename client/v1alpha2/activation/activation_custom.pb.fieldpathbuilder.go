@@ -812,6 +812,10 @@ func (ActivationRequestPathSelectorActivateProbeSpec) ExternalIpCheckUrl() Activ
 	return ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpec) TargetServers() ActivationRequestPathSelectorActivateProbeSpecTargetServers {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServers{}
+}
+
 type ActivationRequestPathSelectorActivateProbeSpecProbeGroup struct{}
 
 func (ActivationRequestPathSelectorActivateProbeSpecProbeGroup) FieldPath() *ActivationRequest_FieldSubPath {
@@ -1698,6 +1702,212 @@ func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) WithAr
 
 func (s ActivationRequestPathSelectorActivateProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequest_FieldSubPathArrayItemValue)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServers struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) IcmpTarget() ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) UdpTarget() ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) SpeedTestTarget() ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) Enabled() ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget) Enabled() ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTarget) Port() ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort{}
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) Enabled() ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) Port() ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget) UseTls() ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
 type ActivationRequestPathSelectorActivateProbeStatus struct{}
@@ -4144,6 +4354,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpec) ExternalIpCheckUrl() Acti
 	return ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpec) TargetServers() ActivationRequest_ActivatePathSelectorProbeSpecTargetServers {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServers{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -5030,6 +5244,212 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) WithA
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationRequestActivate_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequestActivate_FieldSubPathArrayItemValue)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServers struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) IcmpTarget() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) UdpTarget() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) SpeedTestTarget() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) Enabled() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget) Enabled() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTarget) Port() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) Enabled() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) Port() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
 type ActivationRequest_ActivatePathSelectorProbeStatus struct{}
@@ -7433,6 +7853,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpec) ExternalIpCheckUrl() Act
 	return ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpec) TargetServers() ActivationResponsePathSelectorActivatedProbeSpecTargetServers {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServers{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecProbeGroup struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecProbeGroup) FieldPath() *ActivationResponse_FieldSubPath {
@@ -8319,6 +8743,212 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) With
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServers struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) IcmpTarget() ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) UdpTarget() ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) SpeedTestTarget() ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) Enabled() ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget) Enabled() ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTarget) Port() ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) Enabled() ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) Port() ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget) UseTls() ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponsePathSelectorActivatedProbeStatus struct{}
@@ -11335,6 +11965,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpec) ExternalIpCheckUrl() Ac
 	return ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpec) TargetServers() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -12221,6 +12855,212 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) Wit
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecExternalIpCheckUrl) WithItemValue(value string) *ActivationResponseActivated_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) WithValue(value *probe.Probe_Spec_TargetServers) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) IcmpTarget() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) UdpTarget() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) SpeedTestTarget() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) WithValue(value *probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) Enabled() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget) WithValue(value *probe.Probe_Spec_TargetServers_UdpTarget) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_UdpTarget) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget) Enabled() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTarget) Port() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort) WithValue(value int32) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersUdpTargetPort) WithArrayOfValues(values []int32) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) WithValue(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) WithArrayOfValues(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) Enabled() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) Port() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeStatus struct{}

@@ -120,6 +120,11 @@ func (obj *Probe_Spec) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Spec", "accessToken", obj.AccessToken, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.TargetServers).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("Spec", "targetServers", obj.TargetServers, "nested object validation failed", err)
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -181,6 +186,63 @@ func (obj *Probe_Spec_ActivationSpec) GotenValidate() error {
 func (obj *Probe_Spec_AccessTokenSpec) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Spec_TargetServers) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if subobj, ok := interface{}(obj.IcmpTarget).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("TargetServers", "icmpTarget", obj.IcmpTarget, "nested object validation failed", err)
+		}
+	}
+	if subobj, ok := interface{}(obj.UdpTarget).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("TargetServers", "udpTarget", obj.UdpTarget, "nested object validation failed", err)
+		}
+	}
+	if subobj, ok := interface{}(obj.SpeedTestTarget).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("TargetServers", "speedTestTarget", obj.SpeedTestTarget, "nested object validation failed", err)
+		}
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Spec_TargetServers_IcmpTarget) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Spec_TargetServers_UdpTarget) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if !(obj.Port >= 0 && obj.Port <= 65535) {
+		return gotenvalidate.NewValidationError("UdpTarget", "port", obj.Port, "field must be in range [0, 65535]", nil)
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Spec_TargetServers_SpeedTestTarget) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if !(obj.Port >= 0 && obj.Port <= 65535) {
+		return gotenvalidate.NewValidationError("SpeedTestTarget", "port", obj.Port, "field must be in range [0, 65535]", nil)
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

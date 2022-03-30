@@ -3432,6 +3432,7 @@ const (
 	ProbingSession_FieldPathSelectorSpeeedtestSettings ProbingSession_FieldPathSelector = 15
 	ProbingSession_FieldPathSelectorHttpProbingConfig  ProbingSession_FieldPathSelector = 16
 	ProbingSession_FieldPathSelectorProxyConfiguration ProbingSession_FieldPathSelector = 17
+	ProbingSession_FieldPathSelectorAddresses          ProbingSession_FieldPathSelector = 18
 )
 
 func (s ProbingSession_FieldPathSelector) String() string {
@@ -3472,6 +3473,8 @@ func (s ProbingSession_FieldPathSelector) String() string {
 		return "http_probing_config"
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		return "proxy_configuration"
+	case ProbingSession_FieldPathSelectorAddresses:
+		return "addresses"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", s))
 	}
@@ -3519,6 +3522,8 @@ func BuildProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingSession_
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig}, nil
 		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration}, nil
+		case "addresses":
+			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -3649,6 +3654,10 @@ func (fp *ProbingSession_FieldTerminalPath) Get(source *ProbingSession) (values 
 			if source.ProxyConfiguration != nil {
 				values = append(values, source.ProxyConfiguration)
 			}
+		case ProbingSession_FieldPathSelectorAddresses:
+			for _, value := range source.GetAddresses() {
+				values = append(values, value)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 		}
@@ -3707,6 +3716,9 @@ func (fp *ProbingSession_FieldTerminalPath) GetSingle(source *ProbingSession) (i
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		res := source.GetProxyConfiguration()
 		return res, res != nil
+	case ProbingSession_FieldPathSelectorAddresses:
+		res := source.GetAddresses()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -3755,6 +3767,8 @@ func (fp *ProbingSession_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.HTTPProbingConfig)(nil)
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		return (*common.ProxyConfiguration)(nil)
+	case ProbingSession_FieldPathSelectorAddresses:
+		return ([]string)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -3799,6 +3813,8 @@ func (fp *ProbingSession_FieldTerminalPath) ClearValue(item *ProbingSession) {
 			item.HttpProbingConfig = nil
 		case ProbingSession_FieldPathSelectorProxyConfiguration:
 			item.ProxyConfiguration = nil
+		case ProbingSession_FieldPathSelectorAddresses:
+			item.Addresses = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 		}
@@ -3823,7 +3839,8 @@ func (fp *ProbingSession_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingSession_FieldPathSelectorIntervalSec ||
 		fp.selector == ProbingSession_FieldPathSelectorInterval ||
 		fp.selector == ProbingSession_FieldPathSelectorTos ||
-		fp.selector == ProbingSession_FieldPathSelectorWindowSize
+		fp.selector == ProbingSession_FieldPathSelectorWindowSize ||
+		fp.selector == ProbingSession_FieldPathSelectorAddresses
 }
 
 func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) ProbingSession_FieldPathValue {
@@ -3864,6 +3881,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) Probin
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.ProxyConfiguration)}
+	case ProbingSession_FieldPathSelectorAddresses:
+		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -3912,6 +3931,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithIArrayOfValues(values interface{
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.ProxyConfiguration)}
+	case ProbingSession_FieldPathSelectorAddresses:
+		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([][]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -3924,6 +3945,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithRawIArrayOfValues(values interfa
 
 func (fp *ProbingSession_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingSession_FieldPathArrayItemValue {
 	switch fp.selector {
+	case ProbingSession_FieldPathSelectorAddresses:
+		return &ProbingSession_FieldTerminalPathArrayItemValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -4201,6 +4224,10 @@ func (fpv *ProbingSession_FieldTerminalPathValue) AsProxyConfigurationValue() (*
 	res, ok := fpv.value.(*common.ProxyConfiguration)
 	return res, ok
 }
+func (fpv *ProbingSession_FieldTerminalPathValue) AsAddressesValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ProbingSession
 func (fpv *ProbingSession_FieldTerminalPathValue) SetTo(target **ProbingSession) {
@@ -4244,6 +4271,8 @@ func (fpv *ProbingSession_FieldTerminalPathValue) SetTo(target **ProbingSession)
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		(*target).ProxyConfiguration = fpv.value.(*common.ProxyConfiguration)
+	case ProbingSession_FieldPathSelectorAddresses:
+		(*target).Addresses = fpv.value.([]string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpv.selector))
 	}
@@ -4424,6 +4453,8 @@ func (fpv *ProbingSession_FieldTerminalPathValue) CompareWith(source *ProbingSes
 		return 0, false
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
 		return 0, false
+	case ProbingSession_FieldPathSelectorAddresses:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpv.selector))
 	}
@@ -4550,6 +4581,10 @@ var _ ProbingSession_FieldPathArrayItemValue = (*ProbingSession_FieldTerminalPat
 // GetRawValue returns stored element value for array in object ProbingSession as interface{}
 func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
+}
+func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) AsAddressesItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
 }
 
 func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingSession) (interface{}, bool) {
@@ -4726,6 +4761,10 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) GetRawValues() (valu
 		for _, v := range fpaov.values.([]*common.ProxyConfiguration) {
 			values = append(values, v)
 		}
+	case ProbingSession_FieldPathSelectorAddresses:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -4799,6 +4838,10 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsHttpProbingConfigA
 }
 func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsProxyConfigurationArrayOfValues() ([]*common.ProxyConfiguration, bool) {
 	res, ok := fpaov.values.([]*common.ProxyConfiguration)
+	return res, ok
+}
+func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsAddressesArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 
