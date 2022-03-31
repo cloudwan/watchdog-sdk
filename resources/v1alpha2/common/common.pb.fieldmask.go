@@ -3930,6 +3930,8 @@ func FullSpeedTestSettings_FieldMask() *SpeedTestSettings_FieldMask {
 	res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorDuration})
 	res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorUseTls})
 	res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorServerSelection})
+	res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTcpPort})
+	res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTlsPort})
 	return res
 }
 
@@ -3973,7 +3975,7 @@ func (fieldMask *SpeedTestSettings_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*SpeedTestSettings_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -4003,7 +4005,7 @@ func (fieldMask *SpeedTestSettings_FieldMask) Reset() {
 
 func (fieldMask *SpeedTestSettings_FieldMask) Subtract(other *SpeedTestSettings_FieldMask) *SpeedTestSettings_FieldMask {
 	result := &SpeedTestSettings_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -4163,6 +4165,10 @@ func (fieldMask *SpeedTestSettings_FieldMask) Project(source *SpeedTestSettings)
 				result.UseTls = source.UseTls
 			case SpeedTestSettings_FieldPathSelectorServerSelection:
 				result.ServerSelection = source.ServerSelection
+			case SpeedTestSettings_FieldPathSelectorTcpPort:
+				result.TcpPort = source.TcpPort
+			case SpeedTestSettings_FieldPathSelectorTlsPort:
+				result.TlsPort = source.TlsPort
 			}
 		}
 	}

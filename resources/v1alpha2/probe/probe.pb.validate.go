@@ -241,8 +241,11 @@ func (obj *Probe_Spec_TargetServers_SpeedTestTarget) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	if !(obj.Port >= 0 && obj.Port <= 65535) {
-		return gotenvalidate.NewValidationError("SpeedTestTarget", "port", obj.Port, "field must be in range [0, 65535]", nil)
+	if !(obj.TcpPort >= 0 && obj.TcpPort <= 65535) {
+		return gotenvalidate.NewValidationError("SpeedTestTarget", "tcpPort", obj.TcpPort, "field must be in range [0, 65535]", nil)
+	}
+	if !(obj.TlsPort >= 0 && obj.TlsPort <= 65535) {
+		return gotenvalidate.NewValidationError("SpeedTestTarget", "tlsPort", obj.TlsPort, "field must be in range [0, 65535]", nil)
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

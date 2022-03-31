@@ -1028,11 +1028,14 @@ func (o *Probe_Spec_TargetServers_SpeedTestTarget) MakeDiffFieldMask(other *Prob
 	if o.GetEnabled() != other.GetEnabled() {
 		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled})
 	}
-	if o.GetPort() != other.GetPort() {
-		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort})
-	}
 	if o.GetUseTls() != other.GetUseTls() {
 		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls})
+	}
+	if o.GetTcpPort() != other.GetTcpPort() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort})
+	}
+	if o.GetTlsPort() != other.GetTlsPort() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort})
 	}
 	return res
 }
@@ -1047,8 +1050,9 @@ func (o *Probe_Spec_TargetServers_SpeedTestTarget) Clone() *Probe_Spec_TargetSer
 	}
 	result := &Probe_Spec_TargetServers_SpeedTestTarget{}
 	result.Enabled = o.Enabled
-	result.Port = o.Port
 	result.UseTls = o.UseTls
+	result.TcpPort = o.TcpPort
+	result.TlsPort = o.TlsPort
 	return result
 }
 
@@ -1058,8 +1062,9 @@ func (o *Probe_Spec_TargetServers_SpeedTestTarget) CloneRaw() gotenobject.GotenO
 
 func (o *Probe_Spec_TargetServers_SpeedTestTarget) Merge(source *Probe_Spec_TargetServers_SpeedTestTarget) {
 	o.Enabled = source.GetEnabled()
-	o.Port = source.GetPort()
 	o.UseTls = source.GetUseTls()
+	o.TcpPort = source.GetTcpPort()
+	o.TlsPort = source.GetTlsPort()
 }
 
 func (o *Probe_Spec_TargetServers_SpeedTestTarget) MergeRaw(source gotenobject.GotenObjectExt) {

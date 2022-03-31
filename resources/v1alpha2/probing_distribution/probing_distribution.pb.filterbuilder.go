@@ -3434,6 +3434,14 @@ func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettings) ServerSelection(
 	return &filterCndBuilderSpecProbingSettingsSpeeedtestSettingsServerSelection{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettings) TcpPort() *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort {
+	return &filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettings) TlsPort() *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort {
+	return &filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort{builder: b.builder}
+}
+
 type filterCndBuilderSpecProbingSettingsSpeeedtestSettingsDuration struct {
 	builder *FilterBuilder
 }
@@ -3608,6 +3616,124 @@ func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsServerSelection) c
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                           op,
 		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().ServerSelection().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTcpPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TcpPort().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbingSettingsSpeeedtestSettingsTlsPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Spec().ProbingSettings().SpeeedtestSettings().TlsPort().WithValue(value),
 	})
 }
 

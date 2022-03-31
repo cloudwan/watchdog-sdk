@@ -1160,6 +1160,14 @@ func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) Serv
 	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection{}
 }
 
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) TcpPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort{}
+}
+
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) TlsPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort{}
+}
+
 type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration struct{}
 
 func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration) FieldPath() *ProbingDistribution_FieldSubPath {
@@ -1208,6 +1216,40 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServ
 }
 
 func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort struct{}
+
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorSpec,
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().TcpPort().FieldPath(),
+	}
+}
+
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort struct{}
+
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorSpec,
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().TlsPort().FieldPath(),
+	}
+}
+
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -2562,6 +2604,14 @@ func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) Ser
 	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection{}
 }
 
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) TcpPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort{}
+}
+
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) TlsPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort{}
+}
+
 type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration struct{}
 
 func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration) FieldPath() *ProbingDistributionSpec_FieldSubPath {
@@ -2610,6 +2660,40 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsSer
 }
 
 func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort struct{}
+
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+	return &ProbingDistributionSpec_FieldSubPath{
+		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TcpPort().FieldPath(),
+	}
+}
+
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
+}
+
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort struct{}
+
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+	return &ProbingDistributionSpec_FieldSubPath{
+		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TlsPort().FieldPath(),
+	}
+}
+
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
+}
+
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 

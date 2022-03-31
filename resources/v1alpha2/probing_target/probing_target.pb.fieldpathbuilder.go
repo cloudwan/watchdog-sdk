@@ -1647,6 +1647,14 @@ func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettings) ServerS
 	return ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsServerSelection{}
 }
 
+func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettings) TcpPort() ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort {
+	return ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort{}
+}
+
+func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettings) TlsPort() ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort {
+	return ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort{}
+}
+
 type ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsDuration struct{}
 
 func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsDuration) FieldPath() *ProbingTarget_FieldSubPath {
@@ -1695,6 +1703,40 @@ func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsServerS
 }
 
 func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort struct{}
+
+func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings,
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TcpPort().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort struct{}
+
+func (ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings,
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TlsPort().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorDefaultProbingSettingsSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 

@@ -5311,12 +5311,16 @@ func (b *filterCndBuilderSpecTargetServersSpeedTestTarget) Enabled() *filterCndB
 	return &filterCndBuilderSpecTargetServersSpeedTestTargetEnabled{builder: b.builder}
 }
 
-func (b *filterCndBuilderSpecTargetServersSpeedTestTarget) Port() *filterCndBuilderSpecTargetServersSpeedTestTargetPort {
-	return &filterCndBuilderSpecTargetServersSpeedTestTargetPort{builder: b.builder}
-}
-
 func (b *filterCndBuilderSpecTargetServersSpeedTestTarget) UseTls() *filterCndBuilderSpecTargetServersSpeedTestTargetUseTls {
 	return &filterCndBuilderSpecTargetServersSpeedTestTargetUseTls{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTarget) TcpPort() *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort {
+	return &filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTarget) TlsPort() *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort {
+	return &filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort{builder: b.builder}
 }
 
 type filterCndBuilderSpecTargetServersSpeedTestTargetEnabled struct {
@@ -5378,65 +5382,6 @@ func (b *filterCndBuilderSpecTargetServersSpeedTestTargetEnabled) compare(op got
 	})
 }
 
-type filterCndBuilderSpecTargetServersSpeedTestTargetPort struct {
-	builder *FilterBuilder
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Eq(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Eq, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Neq(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Neq, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Gt(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Gt, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Gte(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Gte, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Lt(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Lt, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) Lte(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Lte, value)
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) In(values []int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) NotIn(values []int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionNotIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) IsNull() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) IsNan() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderSpecTargetServersSpeedTestTargetPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionCompare{
-		Operator:             op,
-		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().WithValue(value),
-	})
-}
-
 type filterCndBuilderSpecTargetServersSpeedTestTargetUseTls struct {
 	builder *FilterBuilder
 }
@@ -5493,6 +5438,124 @@ func (b *filterCndBuilderSpecTargetServersSpeedTestTargetUseTls) compare(op gote
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().UseTls().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTcpPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().WithValue(value),
 	})
 }
 

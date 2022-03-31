@@ -233,6 +233,10 @@ message SpeedTestSettings {
 
   ServerSelection server_selection = 3;
 
+  int32 tcp_port = 4;
+
+  int32 tls_port = 5;
+
   enum ServerSelection {
     NEAREST = 0;
 

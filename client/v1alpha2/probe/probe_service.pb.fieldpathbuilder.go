@@ -1926,12 +1926,16 @@ func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) 
 	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
-	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
 	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TcpPort() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TlsPort() BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -1951,23 +1955,6 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
-
-func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *BatchGetProbesResponse_FieldSubPath {
-	return &BatchGetProbesResponse_FieldSubPath{
-		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *BatchGetProbesResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
-}
-
-func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
-}
-
 type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -1982,6 +1969,40 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget
 }
 
 func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5492,12 +5513,16 @@ func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Enab
 	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
-	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
 	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TcpPort() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TlsPort() ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -5517,23 +5542,6 @@ func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnab
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
-
-func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *ListProbesResponse_FieldSubPath {
-	return &ListProbesResponse_FieldSubPath{
-		selector: ListProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *ListProbesResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
-}
-
-func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
-}
-
 type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -5548,6 +5556,40 @@ func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseT
 }
 
 func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -9434,12 +9476,16 @@ func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Enabl
 	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Port() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort {
-	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
 	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) TcpPort() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) TlsPort() CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -9459,23 +9505,6 @@ func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabl
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
-
-func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *CreateProbeRequest_FieldSubPath {
-	return &CreateProbeRequest_FieldSubPath{
-		selector: CreateProbeRequest_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *CreateProbeRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
-}
-
-func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
-}
-
 type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -9490,6 +9519,40 @@ func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTl
 }
 
 func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -12854,12 +12917,16 @@ func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Enabl
 	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort {
-	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls {
 	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) TcpPort() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget) TlsPort() UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -12879,23 +12946,6 @@ func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetEnabl
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort struct{}
-
-func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
-	return &UpdateProbeRequest_FieldSubPath{
-		selector: UpdateProbeRequest_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
-}
-
 type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -12910,6 +12960,40 @@ func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTl
 }
 
 func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -16298,12 +16382,16 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTes
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort {
-	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls {
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) TcpPort() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget) TlsPort() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -16323,23 +16411,6 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedT
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort struct{}
-
-func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
-	return &UpdateProbeRequest_FieldSubPath{
-		selector: UpdateProbeRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
-}
-
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -16354,6 +16425,40 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedT
 }
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -19732,12 +19837,16 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTe
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) Port() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort {
-	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) UseTls() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) TcpPort() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget) TlsPort() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -19757,23 +19866,6 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeed
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort struct{}
-
-func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
-	return &UpdateProbeRequestCAS_FieldSubPath{
-		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *UpdateProbeRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
-}
-
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
@@ -19788,6 +19880,40 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeed
 }
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -23340,12 +23466,16 @@ func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) En
 	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) Port() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort {
-	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort{}
-}
-
 func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) UseTls() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls {
 	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TcpPort() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort{}
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget) TlsPort() SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -23365,23 +23495,6 @@ func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetEn
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 
-type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort struct{}
-
-func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) FieldPath() *SearchProbesResponse_FieldSubPath {
-	return &SearchProbesResponse_FieldSubPath{
-		selector: SearchProbesResponse_FieldPathSelectorProbes,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().Port().FieldPath(),
-	}
-}
-
-func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithValue(value int32) *SearchProbesResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
-}
-
-func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
-}
-
 type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls struct{}
 
 func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) FieldPath() *SearchProbesResponse_FieldSubPath {
@@ -23396,6 +23509,40 @@ func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUs
 }
 
 func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithValue(value int32) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

@@ -6134,18 +6134,21 @@ type ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector int32
 
 const (
 	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 0
-	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort    ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 1
-	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls  ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 2
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls  ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 1
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 2
+	ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector = 3
 )
 
 func (s ProbeSpecTargetServersSpeedTestTarget_FieldPathSelector) String() string {
 	switch s {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		return "enabled"
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		return "port"
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		return "use_tls"
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		return "tcp_port"
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		return "tls_port"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", s))
 	}
@@ -6159,10 +6162,12 @@ func BuildProbeSpecTargetServersSpeedTestTarget_FieldPath(fp gotenobject.RawFiel
 		switch fp[0] {
 		case "enabled":
 			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled}, nil
-		case "port":
-			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort}, nil
 		case "use_tls", "useTls", "use-tls":
 			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls}, nil
+		case "tcp_port", "tcpPort", "tcp-port":
+			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort}, nil
+		case "tls_port", "tlsPort", "tls-port":
+			return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_TargetServers_SpeedTestTarget", fp)
@@ -6210,10 +6215,12 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) Get(source *P
 		switch fp.selector {
 		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 			values = append(values, source.Enabled)
-		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-			values = append(values, source.Port)
 		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 			values = append(values, source.UseTls)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+			values = append(values, source.TcpPort)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+			values = append(values, source.TlsPort)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 		}
@@ -6230,10 +6237,12 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetSingle(sou
 	switch fp.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		return source.GetEnabled(), source != nil
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		return source.GetPort(), source != nil
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		return source.GetUseTls(), source != nil
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		return source.GetTcpPort(), source != nil
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		return source.GetTlsPort(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 	}
@@ -6248,10 +6257,12 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) GetDefault() 
 	switch fp.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		return false
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		return int32(0)
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		return false
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		return int32(0)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 	}
@@ -6262,10 +6273,12 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) ClearValue(it
 		switch fp.selector {
 		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 			item.Enabled = false
-		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-			item.Port = int32(0)
 		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 			item.UseTls = false
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+			item.TcpPort = int32(0)
+		case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+			item.TlsPort = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 		}
@@ -6279,18 +6292,21 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) ClearValueRaw
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled ||
-		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort ||
-		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls
+		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls ||
+		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort ||
+		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort
 }
 
 func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(bool)}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(int32)}
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(int32)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 	}
@@ -6305,10 +6321,12 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIArrayOfV
 	switch fp.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]bool)}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]int32)}
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		return &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues{ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fp.selector))
 	}
@@ -6373,12 +6391,16 @@ func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsEnabl
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
-func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsPortValue() (int32, bool) {
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsUseTlsValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsTcpPortValue() (int32, bool) {
 	res, ok := fpv.value.(int32)
 	return res, ok
 }
-func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsUseTlsValue() (bool, bool) {
-	res, ok := fpv.value.(bool)
+func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) AsTlsPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
 	return res, ok
 }
 
@@ -6390,10 +6412,12 @@ func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) SetTo(t
 	switch fpv.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 		(*target).Enabled = fpv.value.(bool)
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
-		(*target).Port = fpv.value.(int32)
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
 		(*target).UseTls = fpv.value.(bool)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
+		(*target).TcpPort = fpv.value.(int32)
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		(*target).TlsPort = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers_SpeedTestTarget: %d", fpv.selector))
 	}
@@ -6417,9 +6441,19 @@ func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) Compare
 		} else {
 			return 1, true
 		}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetUseTls()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
 		leftValue := fpv.value.(int32)
-		rightValue := source.GetPort()
+		rightValue := source.GetTcpPort()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -6427,12 +6461,12 @@ func (fpv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathValue) Compare
 		} else {
 			return 1, true
 		}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
-		leftValue := fpv.value.(bool)
-		rightValue := source.GetUseTls()
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTlsPort()
 		if (leftValue) == (rightValue) {
 			return 0, true
-		} else if !(leftValue) && (rightValue) {
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -6545,12 +6579,16 @@ func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValue
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorPort:
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
-	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
-		for _, v := range fpaov.values.([]bool) {
+	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
+		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
 	}
@@ -6560,12 +6598,16 @@ func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValue
 	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
-func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsPortArrayOfValues() ([]int32, bool) {
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsUseTlsArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsTcpPortArrayOfValues() ([]int32, bool) {
 	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
-func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsUseTlsArrayOfValues() ([]bool, bool) {
-	res, ok := fpaov.values.([]bool)
+func (fpaov *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayOfValues) AsTlsPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 

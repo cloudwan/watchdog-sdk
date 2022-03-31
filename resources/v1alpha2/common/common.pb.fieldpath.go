@@ -8027,6 +8027,8 @@ const (
 	SpeedTestSettings_FieldPathSelectorDuration        SpeedTestSettings_FieldPathSelector = 0
 	SpeedTestSettings_FieldPathSelectorUseTls          SpeedTestSettings_FieldPathSelector = 1
 	SpeedTestSettings_FieldPathSelectorServerSelection SpeedTestSettings_FieldPathSelector = 2
+	SpeedTestSettings_FieldPathSelectorTcpPort         SpeedTestSettings_FieldPathSelector = 3
+	SpeedTestSettings_FieldPathSelectorTlsPort         SpeedTestSettings_FieldPathSelector = 4
 )
 
 func (s SpeedTestSettings_FieldPathSelector) String() string {
@@ -8037,6 +8039,10 @@ func (s SpeedTestSettings_FieldPathSelector) String() string {
 		return "use_tls"
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		return "server_selection"
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		return "tcp_port"
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		return "tls_port"
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", s))
 	}
@@ -8054,6 +8060,10 @@ func BuildSpeedTestSettings_FieldPath(fp gotenobject.RawFieldPath) (SpeedTestSet
 			return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorUseTls}, nil
 		case "server_selection", "serverSelection", "server-selection":
 			return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorServerSelection}, nil
+		case "tcp_port", "tcpPort", "tcp-port":
+			return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTcpPort}, nil
+		case "tls_port", "tlsPort", "tls-port":
+			return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTlsPort}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object SpeedTestSettings", fp)
@@ -8107,6 +8117,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) Get(source *SpeedTestSettings) (v
 			values = append(values, source.UseTls)
 		case SpeedTestSettings_FieldPathSelectorServerSelection:
 			values = append(values, source.ServerSelection)
+		case SpeedTestSettings_FieldPathSelectorTcpPort:
+			values = append(values, source.TcpPort)
+		case SpeedTestSettings_FieldPathSelectorTlsPort:
+			values = append(values, source.TlsPort)
 		default:
 			panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 		}
@@ -8128,6 +8142,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) GetSingle(source *SpeedTestSettin
 		return source.GetUseTls(), source != nil
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		return source.GetServerSelection(), source != nil
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		return source.GetTcpPort(), source != nil
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		return source.GetTlsPort(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 	}
@@ -8146,6 +8164,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) GetDefault() interface{} {
 		return false
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		return SpeedTestSettings_NEAREST
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		return int32(0)
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 	}
@@ -8160,6 +8182,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) ClearValue(item *SpeedTestSetting
 			item.UseTls = false
 		case SpeedTestSettings_FieldPathSelectorServerSelection:
 			item.ServerSelection = SpeedTestSettings_NEAREST
+		case SpeedTestSettings_FieldPathSelectorTcpPort:
+			item.TcpPort = int32(0)
+		case SpeedTestSettings_FieldPathSelectorTlsPort:
+			item.TlsPort = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 		}
@@ -8174,7 +8200,9 @@ func (fp *SpeedTestSettings_FieldTerminalPath) ClearValueRaw(item proto.Message)
 func (fp *SpeedTestSettings_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == SpeedTestSettings_FieldPathSelectorDuration ||
 		fp.selector == SpeedTestSettings_FieldPathSelectorUseTls ||
-		fp.selector == SpeedTestSettings_FieldPathSelectorServerSelection
+		fp.selector == SpeedTestSettings_FieldPathSelectorServerSelection ||
+		fp.selector == SpeedTestSettings_FieldPathSelectorTcpPort ||
+		fp.selector == SpeedTestSettings_FieldPathSelectorTlsPort
 }
 
 func (fp *SpeedTestSettings_FieldTerminalPath) WithIValue(value interface{}) SpeedTestSettings_FieldPathValue {
@@ -8185,6 +8213,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) WithIValue(value interface{}) Spe
 		return &SpeedTestSettings_FieldTerminalPathValue{SpeedTestSettings_FieldTerminalPath: *fp, value: value.(bool)}
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		return &SpeedTestSettings_FieldTerminalPathValue{SpeedTestSettings_FieldTerminalPath: *fp, value: value.(SpeedTestSettings_ServerSelection)}
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		return &SpeedTestSettings_FieldTerminalPathValue{SpeedTestSettings_FieldTerminalPath: *fp, value: value.(int32)}
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		return &SpeedTestSettings_FieldTerminalPathValue{SpeedTestSettings_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 	}
@@ -8203,6 +8235,10 @@ func (fp *SpeedTestSettings_FieldTerminalPath) WithIArrayOfValues(values interfa
 		return &SpeedTestSettings_FieldTerminalPathArrayOfValues{SpeedTestSettings_FieldTerminalPath: *fp, values: values.([]bool)}
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		return &SpeedTestSettings_FieldTerminalPathArrayOfValues{SpeedTestSettings_FieldTerminalPath: *fp, values: values.([]SpeedTestSettings_ServerSelection)}
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		return &SpeedTestSettings_FieldTerminalPathArrayOfValues{SpeedTestSettings_FieldTerminalPath: *fp, values: values.([]int32)}
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		return &SpeedTestSettings_FieldTerminalPathArrayOfValues{SpeedTestSettings_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fp.selector))
 	}
@@ -8275,6 +8311,14 @@ func (fpv *SpeedTestSettings_FieldTerminalPathValue) AsServerSelectionValue() (S
 	res, ok := fpv.value.(SpeedTestSettings_ServerSelection)
 	return res, ok
 }
+func (fpv *SpeedTestSettings_FieldTerminalPathValue) AsTcpPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *SpeedTestSettings_FieldTerminalPathValue) AsTlsPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object SpeedTestSettings
 func (fpv *SpeedTestSettings_FieldTerminalPathValue) SetTo(target **SpeedTestSettings) {
@@ -8288,6 +8332,10 @@ func (fpv *SpeedTestSettings_FieldTerminalPathValue) SetTo(target **SpeedTestSet
 		(*target).UseTls = fpv.value.(bool)
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		(*target).ServerSelection = fpv.value.(SpeedTestSettings_ServerSelection)
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		(*target).TcpPort = fpv.value.(int32)
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		(*target).TlsPort = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for SpeedTestSettings: %d", fpv.selector))
 	}
@@ -8333,6 +8381,26 @@ func (fpv *SpeedTestSettings_FieldTerminalPathValue) CompareWith(source *SpeedTe
 	case SpeedTestSettings_FieldPathSelectorServerSelection:
 		leftValue := fpv.value.(SpeedTestSettings_ServerSelection)
 		rightValue := source.GetServerSelection()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTcpPort()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTlsPort()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -8456,6 +8524,14 @@ func (fpaov *SpeedTestSettings_FieldTerminalPathArrayOfValues) GetRawValues() (v
 		for _, v := range fpaov.values.([]SpeedTestSettings_ServerSelection) {
 			values = append(values, v)
 		}
+	case SpeedTestSettings_FieldPathSelectorTcpPort:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case SpeedTestSettings_FieldPathSelectorTlsPort:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -8469,6 +8545,14 @@ func (fpaov *SpeedTestSettings_FieldTerminalPathArrayOfValues) AsUseTlsArrayOfVa
 }
 func (fpaov *SpeedTestSettings_FieldTerminalPathArrayOfValues) AsServerSelectionArrayOfValues() ([]SpeedTestSettings_ServerSelection, bool) {
 	res, ok := fpaov.values.([]SpeedTestSettings_ServerSelection)
+	return res, ok
+}
+func (fpaov *SpeedTestSettings_FieldTerminalPathArrayOfValues) AsTcpPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *SpeedTestSettings_FieldTerminalPathArrayOfValues) AsTlsPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
