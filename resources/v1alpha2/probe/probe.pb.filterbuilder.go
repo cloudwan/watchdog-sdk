@@ -5642,6 +5642,10 @@ func (b *filterCndBuilderStatus) ActiveLocation() *filterCndBuilderStatusActiveL
 	return &filterCndBuilderStatusActiveLocation{builder: b.builder}
 }
 
+func (b *filterCndBuilderStatus) DiscoveredLocation() *filterCndBuilderStatusDiscoveredLocation {
+	return &filterCndBuilderStatusDiscoveredLocation{builder: b.builder}
+}
+
 func (b *filterCndBuilderStatus) SoftwareVersion() *filterCndBuilderStatusSoftwareVersion {
 	return &filterCndBuilderStatusSoftwareVersion{builder: b.builder}
 }
@@ -7886,6 +7890,1325 @@ func (b *filterCndBuilderStatusActiveLocationAccuracy) compare(op gotenfilter.Co
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().ActiveLocation().Accuracy().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocation struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Eq(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Neq(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Gt(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Gte(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Lt(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Lte(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) In(values []*common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) NotIn(values []*common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) compare(op gotenfilter.CompareOperator, value *common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Address() *filterCndBuilderStatusDiscoveredLocationAddress {
+	return &filterCndBuilderStatusDiscoveredLocationAddress{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) AdminHierarchy() *filterCndBuilderStatusDiscoveredLocationAdminHierarchy {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchy{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Coordinates() *filterCndBuilderStatusDiscoveredLocationCoordinates {
+	return &filterCndBuilderStatusDiscoveredLocationCoordinates{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocation) Accuracy() *filterCndBuilderStatusDiscoveredLocationAccuracy {
+	return &filterCndBuilderStatusDiscoveredLocationAccuracy{builder: b.builder}
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddress struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Eq(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Neq(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Gt(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Gte(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Lt(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Lte(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) In(values []*common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) NotIn(values []*common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) compare(op gotenfilter.CompareOperator, value *common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) PostalCode() *filterCndBuilderStatusDiscoveredLocationAddressPostalCode {
+	return &filterCndBuilderStatusDiscoveredLocationAddressPostalCode{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) CountryCode() *filterCndBuilderStatusDiscoveredLocationAddressCountryCode {
+	return &filterCndBuilderStatusDiscoveredLocationAddressCountryCode{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Continent() *filterCndBuilderStatusDiscoveredLocationAddressContinent {
+	return &filterCndBuilderStatusDiscoveredLocationAddressContinent{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) Country() *filterCndBuilderStatusDiscoveredLocationAddressCountry {
+	return &filterCndBuilderStatusDiscoveredLocationAddressCountry{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) AdminArea1() *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1 {
+	return &filterCndBuilderStatusDiscoveredLocationAddressAdminArea1{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) AdminArea2() *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2 {
+	return &filterCndBuilderStatusDiscoveredLocationAddressAdminArea2{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) AdminArea3() *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3 {
+	return &filterCndBuilderStatusDiscoveredLocationAddressAdminArea3{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) AdminArea4() *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4 {
+	return &filterCndBuilderStatusDiscoveredLocationAddressAdminArea4{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddress) StreetAddress() *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress {
+	return &filterCndBuilderStatusDiscoveredLocationAddressStreetAddress{builder: b.builder}
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressPostalCode struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressPostalCode) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressCountryCode struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountryCode) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressContinent struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressContinent) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressCountry struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressCountry) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressAdminArea1 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea1) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressAdminArea2 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea2) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressAdminArea3 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea3) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressAdminArea4 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressAdminArea4) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAddressStreetAddress struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAddressStreetAddress) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Eq(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Neq(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Gt(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Gte(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Lt(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Lte(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) In(values []*admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) NotIn(values []*admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) compare(op gotenfilter.CompareOperator, value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Continent() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Country() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Admin1() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Admin2() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Admin3() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Admin4() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchy) Admin5() *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return &filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5{builder: b.builder}
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyContinent) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyCountry) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin1) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin2) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin3) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin4) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAdminHierarchyAdmin5) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationCoordinates struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Eq(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Neq(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Gt(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Gte(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Lt(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) Lte(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) In(values []*latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) NotIn(values []*latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationCoordinates) compare(op gotenfilter.CompareOperator, value *latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusDiscoveredLocationAccuracy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Eq(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Neq(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Gt(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Gte(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Lt(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) Lte(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) In(values []float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) NotIn(values []float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusDiscoveredLocationAccuracy) compare(op gotenfilter.CompareOperator, value float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().WithValue(value),
 	})
 }
 

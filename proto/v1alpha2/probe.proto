@@ -169,6 +169,8 @@ message Probe {
     // Note that the address is not always accurate.
     Location active_location = 7;
 
+    Location discovered_location = 11;
+
     // software version
     SoftwareVersion software_version = 9;
 

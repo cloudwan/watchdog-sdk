@@ -667,6 +667,16 @@ func (o *ResolveEnvironmentResponse) MakeDiffFieldMask(other *ResolveEnvironment
 			}
 		}
 	}
+	{
+		subMask := o.GetDiscoveredLocation().MakeDiffFieldMask(other.GetDiscoveredLocation())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldSubPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -682,6 +692,7 @@ func (o *ResolveEnvironmentResponse) Clone() *ResolveEnvironmentResponse {
 	result.Location = o.Location.Clone()
 	result.AsInfo = o.AsInfo.Clone()
 	result.Carrier = o.Carrier.Clone()
+	result.DiscoveredLocation = o.DiscoveredLocation.Clone()
 	return result
 }
 
@@ -707,6 +718,12 @@ func (o *ResolveEnvironmentResponse) Merge(source *ResolveEnvironmentResponse) {
 			o.Carrier = new(common.Carrier)
 		}
 		o.Carrier.Merge(source.GetCarrier())
+	}
+	if source.GetDiscoveredLocation() != nil {
+		if o.DiscoveredLocation == nil {
+			o.DiscoveredLocation = new(common.Location)
+		}
+		o.DiscoveredLocation.Merge(source.GetDiscoveredLocation())
 	}
 }
 

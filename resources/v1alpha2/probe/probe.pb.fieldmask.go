@@ -873,6 +873,7 @@ func FullProbe_Status_FieldMask() *Probe_Status_FieldMask {
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAsInfo})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorCarrier})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorActiveLocation})
+	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorDiscoveredLocation})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorSoftwareVersion})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorSystemInfo})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorActivation})
@@ -924,7 +925,7 @@ func (fieldMask *Probe_Status_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 14)
+	presentSelectors := make([]bool, 15)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatus_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -954,24 +955,26 @@ func (fieldMask *Probe_Status_FieldMask) Reset() {
 
 func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask) *Probe_Status_FieldMask {
 	result := &Probe_Status_FieldMask{}
-	removedSelectors := make([]bool, 14)
+	removedSelectors := make([]bool, 15)
 	otherSubMasks := map[ProbeStatus_FieldPathSelector]gotenobject.FieldMask{
-		ProbeStatus_FieldPathSelectorAsInfo:          &common.ASInfo_FieldMask{},
-		ProbeStatus_FieldPathSelectorCarrier:         &common.Carrier_FieldMask{},
-		ProbeStatus_FieldPathSelectorActiveLocation:  &common.Location_FieldMask{},
-		ProbeStatus_FieldPathSelectorSoftwareVersion: &common.SoftwareVersion_FieldMask{},
-		ProbeStatus_FieldPathSelectorSystemInfo:      &Probe_Status_System_FieldMask{},
-		ProbeStatus_FieldPathSelectorActivation:      &Probe_Status_ActivationState_FieldMask{},
-		ProbeStatus_FieldPathSelectorBandwidth:       &Probe_Status_Bandwidth_FieldMask{},
+		ProbeStatus_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
+		ProbeStatus_FieldPathSelectorCarrier:            &common.Carrier_FieldMask{},
+		ProbeStatus_FieldPathSelectorActiveLocation:     &common.Location_FieldMask{},
+		ProbeStatus_FieldPathSelectorDiscoveredLocation: &common.Location_FieldMask{},
+		ProbeStatus_FieldPathSelectorSoftwareVersion:    &common.SoftwareVersion_FieldMask{},
+		ProbeStatus_FieldPathSelectorSystemInfo:         &Probe_Status_System_FieldMask{},
+		ProbeStatus_FieldPathSelectorActivation:         &Probe_Status_ActivationState_FieldMask{},
+		ProbeStatus_FieldPathSelectorBandwidth:          &Probe_Status_Bandwidth_FieldMask{},
 	}
 	mySubMasks := map[ProbeStatus_FieldPathSelector]gotenobject.FieldMask{
-		ProbeStatus_FieldPathSelectorAsInfo:          &common.ASInfo_FieldMask{},
-		ProbeStatus_FieldPathSelectorCarrier:         &common.Carrier_FieldMask{},
-		ProbeStatus_FieldPathSelectorActiveLocation:  &common.Location_FieldMask{},
-		ProbeStatus_FieldPathSelectorSoftwareVersion: &common.SoftwareVersion_FieldMask{},
-		ProbeStatus_FieldPathSelectorSystemInfo:      &Probe_Status_System_FieldMask{},
-		ProbeStatus_FieldPathSelectorActivation:      &Probe_Status_ActivationState_FieldMask{},
-		ProbeStatus_FieldPathSelectorBandwidth:       &Probe_Status_Bandwidth_FieldMask{},
+		ProbeStatus_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
+		ProbeStatus_FieldPathSelectorCarrier:            &common.Carrier_FieldMask{},
+		ProbeStatus_FieldPathSelectorActiveLocation:     &common.Location_FieldMask{},
+		ProbeStatus_FieldPathSelectorDiscoveredLocation: &common.Location_FieldMask{},
+		ProbeStatus_FieldPathSelectorSoftwareVersion:    &common.SoftwareVersion_FieldMask{},
+		ProbeStatus_FieldPathSelectorSystemInfo:         &Probe_Status_System_FieldMask{},
+		ProbeStatus_FieldPathSelectorActivation:         &Probe_Status_ActivationState_FieldMask{},
+		ProbeStatus_FieldPathSelectorBandwidth:          &Probe_Status_Bandwidth_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -993,6 +996,8 @@ func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask)
 						mySubMasks[ProbeStatus_FieldPathSelectorCarrier] = common.FullCarrier_FieldMask()
 					case ProbeStatus_FieldPathSelectorActiveLocation:
 						mySubMasks[ProbeStatus_FieldPathSelectorActiveLocation] = common.FullLocation_FieldMask()
+					case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+						mySubMasks[ProbeStatus_FieldPathSelectorDiscoveredLocation] = common.FullLocation_FieldMask()
 					case ProbeStatus_FieldPathSelectorSoftwareVersion:
 						mySubMasks[ProbeStatus_FieldPathSelectorSoftwareVersion] = common.FullSoftwareVersion_FieldMask()
 					case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -1159,6 +1164,8 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 	wholeCarrierAccepted := false
 	activeLocationMask := &common.Location_FieldMask{}
 	wholeActiveLocationAccepted := false
+	discoveredLocationMask := &common.Location_FieldMask{}
+	wholeDiscoveredLocationAccepted := false
 	softwareVersionMask := &common.SoftwareVersion_FieldMask{}
 	wholeSoftwareVersionAccepted := false
 	systemInfoMask := &Probe_Status_System_FieldMask{}
@@ -1189,6 +1196,9 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 			case ProbeStatus_FieldPathSelectorActiveLocation:
 				result.ActiveLocation = source.ActiveLocation
 				wholeActiveLocationAccepted = true
+			case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+				result.DiscoveredLocation = source.DiscoveredLocation
+				wholeDiscoveredLocationAccepted = true
 			case ProbeStatus_FieldPathSelectorSoftwareVersion:
 				result.SoftwareVersion = source.SoftwareVersion
 				wholeSoftwareVersionAccepted = true
@@ -1219,6 +1229,8 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 				carrierMask.AppendPath(tp.subPath.(common.Carrier_FieldPath))
 			case ProbeStatus_FieldPathSelectorActiveLocation:
 				activeLocationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
+			case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+				discoveredLocationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
 			case ProbeStatus_FieldPathSelectorSoftwareVersion:
 				softwareVersionMask.AppendPath(tp.subPath.(common.SoftwareVersion_FieldPath))
 			case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -1243,6 +1255,9 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 	}
 	if wholeActiveLocationAccepted == false && len(activeLocationMask.Paths) > 0 {
 		result.ActiveLocation = activeLocationMask.Project(source.GetActiveLocation())
+	}
+	if wholeDiscoveredLocationAccepted == false && len(discoveredLocationMask.Paths) > 0 {
+		result.DiscoveredLocation = discoveredLocationMask.Project(source.GetDiscoveredLocation())
 	}
 	if wholeSoftwareVersionAccepted == false && len(softwareVersionMask.Paths) > 0 {
 		result.SoftwareVersion = softwareVersionMask.Project(source.GetSoftwareVersion())

@@ -149,6 +149,11 @@ func (obj *Probe_Status) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Status", "activeLocation", obj.ActiveLocation, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.DiscoveredLocation).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("Status", "discoveredLocation", obj.DiscoveredLocation, "nested object validation failed", err)
+		}
+	}
 	if subobj, ok := interface{}(obj.SoftwareVersion).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Status", "softwareVersion", obj.SoftwareVersion, "nested object validation failed", err)

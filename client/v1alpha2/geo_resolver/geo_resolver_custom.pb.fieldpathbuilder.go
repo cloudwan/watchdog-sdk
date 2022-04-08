@@ -2582,6 +2582,9 @@ func (ResolveEnvironmentResponseFieldPathBuilder) AsInfo() ResolveEnvironmentRes
 func (ResolveEnvironmentResponseFieldPathBuilder) Carrier() ResolveEnvironmentResponsePathSelectorCarrier {
 	return ResolveEnvironmentResponsePathSelectorCarrier{}
 }
+func (ResolveEnvironmentResponseFieldPathBuilder) DiscoveredLocation() ResolveEnvironmentResponsePathSelectorDiscoveredLocation {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocation{}
+}
 
 type ResolveEnvironmentResponsePathSelectorLocation struct{}
 
@@ -3283,5 +3286,455 @@ func (s ResolveEnvironmentResponsePathSelectorCarrierLocationAreaCode) WithValue
 }
 
 func (s ResolveEnvironmentResponsePathSelectorCarrierLocationAreaCode) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocation struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) FieldPath() *ResolveEnvironmentResponse_FieldTerminalPath {
+	return &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithValue(value *common.Location) *ResolveEnvironmentResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldTerminalPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues)
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithSubPath(subPath common.Location_FieldPath) *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation, subPath: subPath}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithSubValue(subPathValue common.Location_FieldPathValue) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return &ResolveEnvironmentResponse_FieldSubPathValue{ResolveEnvironmentResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithSubArrayOfValues(subPathArrayOfValues common.Location_FieldPathArrayOfValues) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return &ResolveEnvironmentResponse_FieldSubPathArrayOfValues{ResolveEnvironmentResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocation) WithSubArrayItemValue(subPathArrayItemValue common.Location_FieldPathArrayItemValue) *ResolveEnvironmentResponse_FieldSubPathArrayItemValue {
+	return &ResolveEnvironmentResponse_FieldSubPathArrayItemValue{ResolveEnvironmentResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) Address() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) AdminHierarchy() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) Coordinates() ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocation) Accuracy() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy{}
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) WithValue(value *common.Address) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) PostalCode() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) CountryCode() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) Continent() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) Country() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) AdminArea1() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) AdminArea2() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) AdminArea3() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) AdminArea4() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddress) StreetAddress() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress{}
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Country().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress) WithValue(value string) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Continent() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Country() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Admin1() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Admin2() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Admin3() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Admin4() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchy) Admin5() ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5 {
+	return ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Coordinates().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy struct{}
+
+func (ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy) FieldPath() *ResolveEnvironmentResponse_FieldSubPath {
+	return &ResolveEnvironmentResponse_FieldSubPath{
+		selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Accuracy().FieldPath(),
+	}
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy) WithValue(value float64) *ResolveEnvironmentResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentResponse_FieldSubPathValue)
+}
+
+func (s ResolveEnvironmentResponsePathSelectorDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ResolveEnvironmentResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentResponse_FieldSubPathArrayOfValues)
 }

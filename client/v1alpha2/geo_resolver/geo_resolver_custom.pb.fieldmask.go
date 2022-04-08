@@ -1811,6 +1811,7 @@ func FullResolveEnvironmentResponse_FieldMask() *ResolveEnvironmentResponse_Fiel
 	res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorLocation})
 	res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorAsInfo})
 	res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorCarrier})
+	res.Paths = append(res.Paths, &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation})
 	return res
 }
 
@@ -1854,7 +1855,7 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ResolveEnvironmentResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1884,16 +1885,18 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Reset() {
 
 func (fieldMask *ResolveEnvironmentResponse_FieldMask) Subtract(other *ResolveEnvironmentResponse_FieldMask) *ResolveEnvironmentResponse_FieldMask {
 	result := &ResolveEnvironmentResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[ResolveEnvironmentResponse_FieldPathSelector]gotenobject.FieldMask{
-		ResolveEnvironmentResponse_FieldPathSelectorLocation: &common.Location_FieldMask{},
-		ResolveEnvironmentResponse_FieldPathSelectorAsInfo:   &common.ASInfo_FieldMask{},
-		ResolveEnvironmentResponse_FieldPathSelectorCarrier:  &common.Carrier_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorLocation:           &common.Location_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorCarrier:            &common.Carrier_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation: &common.Location_FieldMask{},
 	}
 	mySubMasks := map[ResolveEnvironmentResponse_FieldPathSelector]gotenobject.FieldMask{
-		ResolveEnvironmentResponse_FieldPathSelectorLocation: &common.Location_FieldMask{},
-		ResolveEnvironmentResponse_FieldPathSelectorAsInfo:   &common.ASInfo_FieldMask{},
-		ResolveEnvironmentResponse_FieldPathSelectorCarrier:  &common.Carrier_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorLocation:           &common.Location_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorCarrier:            &common.Carrier_FieldMask{},
+		ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation: &common.Location_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -1915,6 +1918,8 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Subtract(other *ResolveEn
 						mySubMasks[ResolveEnvironmentResponse_FieldPathSelectorAsInfo] = common.FullASInfo_FieldMask()
 					case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 						mySubMasks[ResolveEnvironmentResponse_FieldPathSelectorCarrier] = common.FullCarrier_FieldMask()
+					case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+						mySubMasks[ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation] = common.FullLocation_FieldMask()
 					}
 				} else if tp, ok := path.(*ResolveEnvironmentResponse_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -2073,6 +2078,8 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Project(source *ResolveEn
 	wholeAsInfoAccepted := false
 	carrierMask := &common.Carrier_FieldMask{}
 	wholeCarrierAccepted := false
+	discoveredLocationMask := &common.Location_FieldMask{}
+	wholeDiscoveredLocationAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -2087,6 +2094,9 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Project(source *ResolveEn
 			case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 				result.Carrier = source.Carrier
 				wholeCarrierAccepted = true
+			case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+				result.DiscoveredLocation = source.DiscoveredLocation
+				wholeDiscoveredLocationAccepted = true
 			}
 		case *ResolveEnvironmentResponse_FieldSubPath:
 			switch tp.selector {
@@ -2096,6 +2106,8 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Project(source *ResolveEn
 				asInfoMask.AppendPath(tp.subPath.(common.ASInfo_FieldPath))
 			case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 				carrierMask.AppendPath(tp.subPath.(common.Carrier_FieldPath))
+			case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+				discoveredLocationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
 			}
 		}
 	}
@@ -2107,6 +2119,9 @@ func (fieldMask *ResolveEnvironmentResponse_FieldMask) Project(source *ResolveEn
 	}
 	if wholeCarrierAccepted == false && len(carrierMask.Paths) > 0 {
 		result.Carrier = carrierMask.Project(source.GetCarrier())
+	}
+	if wholeDiscoveredLocationAccepted == false && len(discoveredLocationMask.Paths) > 0 {
+		result.DiscoveredLocation = discoveredLocationMask.Project(source.GetDiscoveredLocation())
 	}
 	return result
 }

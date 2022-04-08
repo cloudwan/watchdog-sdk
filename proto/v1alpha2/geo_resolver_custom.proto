@@ -81,4 +81,6 @@ message ResolveEnvironmentResponse {
   ASInfo as_info = 2;
 
   Carrier carrier = 3;
+
+  Location discovered_location = 4;
 }

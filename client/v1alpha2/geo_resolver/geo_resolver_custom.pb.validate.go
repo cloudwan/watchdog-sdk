@@ -171,6 +171,11 @@ func (obj *ResolveEnvironmentResponse) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ResolveEnvironmentResponse", "carrier", obj.Carrier, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.DiscoveredLocation).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ResolveEnvironmentResponse", "discoveredLocation", obj.DiscoveredLocation, "nested object validation failed", err)
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}

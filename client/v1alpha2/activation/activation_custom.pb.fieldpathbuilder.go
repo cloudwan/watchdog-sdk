@@ -1972,6 +1972,10 @@ func (ActivationRequestPathSelectorActivateProbeStatus) ActiveLocation() Activat
 	return ActivationRequestPathSelectorActivateProbeStatusActiveLocation{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeStatus) DiscoveredLocation() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation{}
+}
+
 func (ActivationRequestPathSelectorActivateProbeStatus) SoftwareVersion() ActivationRequestPathSelectorActivateProbeStatusSoftwareVersion {
 	return ActivationRequestPathSelectorActivateProbeStatusSoftwareVersion{}
 }
@@ -2716,6 +2720,443 @@ func (s ActivationRequestPathSelectorActivateProbeStatusActiveLocationAccuracy) 
 }
 
 func (s ActivationRequestPathSelectorActivateProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) WithValue(value *common.Location) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) Address() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) AdminHierarchy() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) Coordinates() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocation) Accuracy() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) PostalCode() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) CountryCode() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) Continent() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) Country() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) AdminArea1() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) AdminArea2() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) AdminArea3() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) AdminArea4() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddress) StreetAddress() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Continent() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Country() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Admin1() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Admin2() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Admin3() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Admin4() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchy) Admin5() ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5535,6 +5976,10 @@ func (ActivationRequest_ActivatePathSelectorProbeStatus) ActiveLocation() Activa
 	return ActivationRequest_ActivatePathSelectorProbeStatusActiveLocation{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeStatus) DiscoveredLocation() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation{}
+}
+
 func (ActivationRequest_ActivatePathSelectorProbeStatus) SoftwareVersion() ActivationRequest_ActivatePathSelectorProbeStatusSoftwareVersion {
 	return ActivationRequest_ActivatePathSelectorProbeStatusSoftwareVersion{}
 }
@@ -6279,6 +6724,443 @@ func (s ActivationRequest_ActivatePathSelectorProbeStatusActiveLocationAccuracy)
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) WithValue(value *common.Location) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) Address() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) AdminHierarchy() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) Coordinates() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocation) Accuracy() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) PostalCode() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) CountryCode() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) Continent() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) Country() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) AdminArea1() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) AdminArea2() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) AdminArea3() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) AdminArea4() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddress) StreetAddress() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Continent() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Country() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin1() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin2() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin3() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin4() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin5() ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -9055,6 +9937,10 @@ func (ActivationResponsePathSelectorActivatedProbeStatus) ActiveLocation() Activ
 	return ActivationResponsePathSelectorActivatedProbeStatusActiveLocation{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeStatus) DiscoveredLocation() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation{}
+}
+
 func (ActivationResponsePathSelectorActivatedProbeStatus) SoftwareVersion() ActivationResponsePathSelectorActivatedProbeStatusSoftwareVersion {
 	return ActivationResponsePathSelectorActivatedProbeStatusSoftwareVersion{}
 }
@@ -9799,6 +10685,443 @@ func (s ActivationResponsePathSelectorActivatedProbeStatusActiveLocationAccuracy
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) WithValue(value *common.Location) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) Address() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) AdminHierarchy() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) Coordinates() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocation) Accuracy() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) PostalCode() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) CountryCode() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) Continent() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) Country() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) AdminArea1() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) AdminArea2() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) AdminArea3() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) AdminArea4() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddress) StreetAddress() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Continent() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Country() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Admin1() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Admin2() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Admin3() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Admin4() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchy) Admin5() ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -13188,6 +14511,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeStatus) ActiveLocation() Acti
 	return ActivationResponse_ActivatedPathSelectorProbeStatusActiveLocation{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeStatus) DiscoveredLocation() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorProbeStatus) SoftwareVersion() ActivationResponse_ActivatedPathSelectorProbeStatusSoftwareVersion {
 	return ActivationResponse_ActivatedPathSelectorProbeStatusSoftwareVersion{}
 }
@@ -13932,6 +15259,443 @@ func (s ActivationResponse_ActivatedPathSelectorProbeStatusActiveLocationAccurac
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) WithValue(value *common.Location) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) Address() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) AdminHierarchy() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) Coordinates() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocation) Accuracy() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) PostalCode() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) CountryCode() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) Continent() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) Country() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea1() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea2() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea3() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea4() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddress) StreetAddress() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Continent() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Country() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin1() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin2() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin3() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin4() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin5() ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

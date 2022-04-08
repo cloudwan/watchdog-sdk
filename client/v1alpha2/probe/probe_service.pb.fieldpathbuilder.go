@@ -2047,6 +2047,10 @@ func (BatchGetProbesResponsePathSelectorProbesStatus) ActiveLocation() BatchGetP
 	return BatchGetProbesResponsePathSelectorProbesStatusActiveLocation{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesStatus) DiscoveredLocation() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation{}
+}
+
 func (BatchGetProbesResponsePathSelectorProbesStatus) SoftwareVersion() BatchGetProbesResponsePathSelectorProbesStatusSoftwareVersion {
 	return BatchGetProbesResponsePathSelectorProbesStatusSoftwareVersion{}
 }
@@ -2791,6 +2795,443 @@ func (s BatchGetProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) Wi
 }
 
 func (s BatchGetProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithValue(value *common.Location) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) Address() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) AdminHierarchy() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) Coordinates() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocation) Accuracy() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithValue(value *common.Address) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) PostalCode() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) CountryCode() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Continent() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Country() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea1() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea2() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea3() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea4() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) StreetAddress() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Continent() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Country() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin1() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin2() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin3() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin4() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin5() BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithValue(value float64) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5634,6 +6075,10 @@ func (ListProbesResponsePathSelectorProbesStatus) ActiveLocation() ListProbesRes
 	return ListProbesResponsePathSelectorProbesStatusActiveLocation{}
 }
 
+func (ListProbesResponsePathSelectorProbesStatus) DiscoveredLocation() ListProbesResponsePathSelectorProbesStatusDiscoveredLocation {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocation{}
+}
+
 func (ListProbesResponsePathSelectorProbesStatus) SoftwareVersion() ListProbesResponsePathSelectorProbesStatusSoftwareVersion {
 	return ListProbesResponsePathSelectorProbesStatusSoftwareVersion{}
 }
@@ -6378,6 +6823,443 @@ func (s ListProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) WithVa
 }
 
 func (s ListProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocation struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithValue(value *common.Location) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) Address() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) AdminHierarchy() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) Coordinates() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocation) Accuracy() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy{}
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithValue(value *common.Address) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) PostalCode() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) CountryCode() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Continent() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Country() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea1() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea2() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea3() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea4() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) StreetAddress() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Continent() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Country() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin1() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin2() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin3() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin4() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin5() ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy struct{}
+
+func (ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithValue(value float64) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -9597,6 +10479,10 @@ func (CreateProbeRequestPathSelectorProbeStatus) ActiveLocation() CreateProbeReq
 	return CreateProbeRequestPathSelectorProbeStatusActiveLocation{}
 }
 
+func (CreateProbeRequestPathSelectorProbeStatus) DiscoveredLocation() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation{}
+}
+
 func (CreateProbeRequestPathSelectorProbeStatus) SoftwareVersion() CreateProbeRequestPathSelectorProbeStatusSoftwareVersion {
 	return CreateProbeRequestPathSelectorProbeStatusSoftwareVersion{}
 }
@@ -10341,6 +11227,443 @@ func (s CreateProbeRequestPathSelectorProbeStatusActiveLocationAccuracy) WithVal
 }
 
 func (s CreateProbeRequestPathSelectorProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) WithValue(value *common.Location) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Address() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) AdminHierarchy() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Coordinates() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Accuracy() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) PostalCode() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) CountryCode() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) Continent() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) Country() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea1() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea2() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea3() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea4() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) StreetAddress() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Continent() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Country() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin1() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin2() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin3() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin4() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin5() CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -13038,6 +14361,10 @@ func (UpdateProbeRequestPathSelectorProbeStatus) ActiveLocation() UpdateProbeReq
 	return UpdateProbeRequestPathSelectorProbeStatusActiveLocation{}
 }
 
+func (UpdateProbeRequestPathSelectorProbeStatus) DiscoveredLocation() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation{}
+}
+
 func (UpdateProbeRequestPathSelectorProbeStatus) SoftwareVersion() UpdateProbeRequestPathSelectorProbeStatusSoftwareVersion {
 	return UpdateProbeRequestPathSelectorProbeStatusSoftwareVersion{}
 }
@@ -13782,6 +15109,443 @@ func (s UpdateProbeRequestPathSelectorProbeStatusActiveLocationAccuracy) WithVal
 }
 
 func (s UpdateProbeRequestPathSelectorProbeStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) WithValue(value *common.Location) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Address() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) AdminHierarchy() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Coordinates() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocation) Accuracy() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy{}
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) WithValue(value *common.Address) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) PostalCode() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) CountryCode() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) Continent() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) Country() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea1() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea2() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea3() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) AdminArea4() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddress) StreetAddress() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Continent() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Country() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin1() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin2() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin3() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin4() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchy) Admin5() UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy struct{}
+
+func (UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) WithValue(value float64) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -16503,6 +18267,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) ActiveLocation() 
 	return UpdateProbeRequestPathSelectorCasConditionalStateStatusActiveLocation{}
 }
 
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) DiscoveredLocation() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation{}
+}
+
 func (UpdateProbeRequestPathSelectorCasConditionalStateStatus) SoftwareVersion() UpdateProbeRequestPathSelectorCasConditionalStateStatusSoftwareVersion {
 	return UpdateProbeRequestPathSelectorCasConditionalStateStatusSoftwareVersion{}
 }
@@ -17247,6 +19015,443 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusActiveLocationAcc
 }
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) WithValue(value *common.Location) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) Address() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) AdminHierarchy() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) Coordinates() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocation) Accuracy() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) WithValue(value *common.Address) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) PostalCode() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) CountryCode() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) Continent() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) Country() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) AdminArea1() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) AdminArea2() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) AdminArea3() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) AdminArea4() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddress) StreetAddress() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Continent() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Country() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin1() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin2() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin3() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin4() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin5() UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy) WithValue(value float64) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -19958,6 +22163,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) ActiveLocation()
 	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusActiveLocation{}
 }
 
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) DiscoveredLocation() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation{}
+}
+
 func (UpdateProbeRequest_CASPathSelectorConditionalStateStatus) SoftwareVersion() UpdateProbeRequest_CASPathSelectorConditionalStateStatusSoftwareVersion {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusSoftwareVersion{}
 }
@@ -20702,6 +22911,443 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusActiveLocationAc
 }
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) WithValue(value *common.Location) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) Address() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) AdminHierarchy() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) Coordinates() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocation) Accuracy() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) WithValue(value *common.Address) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) PostalCode() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) CountryCode() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) Continent() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) Country() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) AdminArea1() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) AdminArea2() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) AdminArea3() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) AdminArea4() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddress) StreetAddress() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Continent() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Country() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin1() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin2() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin3() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin4() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchy) Admin5() UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy) WithValue(value float64) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -23587,6 +26233,10 @@ func (SearchProbesResponsePathSelectorProbesStatus) ActiveLocation() SearchProbe
 	return SearchProbesResponsePathSelectorProbesStatusActiveLocation{}
 }
 
+func (SearchProbesResponsePathSelectorProbesStatus) DiscoveredLocation() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation{}
+}
+
 func (SearchProbesResponsePathSelectorProbesStatus) SoftwareVersion() SearchProbesResponsePathSelectorProbesStatusSoftwareVersion {
 	return SearchProbesResponsePathSelectorProbesStatusSoftwareVersion{}
 }
@@ -24331,6 +26981,443 @@ func (s SearchProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) With
 }
 
 func (s SearchProbesResponsePathSelectorProbesStatusActiveLocationAccuracy) WithArrayOfValues(values []float64) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithValue(value *common.Location) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) WithArrayOfValues(values []*common.Location) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) Address() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) AdminHierarchy() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) Coordinates() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocation) Accuracy() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy{}
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithValue(value *common.Address) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) WithArrayOfValues(values []*common.Address) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) PostalCode() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) CountryCode() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Continent() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) Country() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea1() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea2() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea3() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) AdminArea4() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddress) StreetAddress() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress{}
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressPostalCode) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountryCode) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Continent().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressContinent) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().Country().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressCountry) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea1) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea2) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea3) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressAdminArea4) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAddressStreetAddress) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Continent() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Country() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin1() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin2() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin3() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin4() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4{}
+}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchy) Admin5() SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 {
+	return SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5{}
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5 struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Coordinates().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithValue(value *latlng.LatLng) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy struct{}
+
+func (SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().DiscoveredLocation().Accuracy().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithValue(value float64) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesStatusDiscoveredLocationAccuracy) WithArrayOfValues(values []float64) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

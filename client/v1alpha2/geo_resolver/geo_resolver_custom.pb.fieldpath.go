@@ -3798,9 +3798,10 @@ type ResolveEnvironmentResponse_FieldPath interface {
 type ResolveEnvironmentResponse_FieldPathSelector int32
 
 const (
-	ResolveEnvironmentResponse_FieldPathSelectorLocation ResolveEnvironmentResponse_FieldPathSelector = 0
-	ResolveEnvironmentResponse_FieldPathSelectorAsInfo   ResolveEnvironmentResponse_FieldPathSelector = 1
-	ResolveEnvironmentResponse_FieldPathSelectorCarrier  ResolveEnvironmentResponse_FieldPathSelector = 2
+	ResolveEnvironmentResponse_FieldPathSelectorLocation           ResolveEnvironmentResponse_FieldPathSelector = 0
+	ResolveEnvironmentResponse_FieldPathSelectorAsInfo             ResolveEnvironmentResponse_FieldPathSelector = 1
+	ResolveEnvironmentResponse_FieldPathSelectorCarrier            ResolveEnvironmentResponse_FieldPathSelector = 2
+	ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation ResolveEnvironmentResponse_FieldPathSelector = 3
 )
 
 func (s ResolveEnvironmentResponse_FieldPathSelector) String() string {
@@ -3811,6 +3812,8 @@ func (s ResolveEnvironmentResponse_FieldPathSelector) String() string {
 		return "as_info"
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return "carrier"
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return "discovered_location"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", s))
 	}
@@ -3828,6 +3831,8 @@ func BuildResolveEnvironmentResponse_FieldPath(fp gotenobject.RawFieldPath) (Res
 			return &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorAsInfo}, nil
 		case "carrier":
 			return &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorCarrier}, nil
+		case "discovered_location", "discoveredLocation", "discovered-location":
+			return &ResolveEnvironmentResponse_FieldTerminalPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -3848,6 +3853,12 @@ func BuildResolveEnvironmentResponse_FieldPath(fp gotenobject.RawFieldPath) (Res
 				return nil, err
 			} else {
 				return &ResolveEnvironmentResponse_FieldSubPath{selector: ResolveEnvironmentResponse_FieldPathSelectorCarrier, subPath: subpath}, nil
+			}
+		case "discovered_location", "discoveredLocation", "discovered-location":
+			if subpath, err := common.BuildLocation_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ResolveEnvironmentResponse_FieldSubPath{selector: ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation, subPath: subpath}, nil
 			}
 		}
 	}
@@ -3906,6 +3917,10 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) Get(source *ResolveEnvir
 			if source.Carrier != nil {
 				values = append(values, source.Carrier)
 			}
+		case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+			if source.DiscoveredLocation != nil {
+				values = append(values, source.DiscoveredLocation)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 		}
@@ -3929,6 +3944,9 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) GetSingle(source *Resolv
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		res := source.GetCarrier()
 		return res, res != nil
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		res := source.GetDiscoveredLocation()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 	}
@@ -3947,6 +3965,8 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) GetDefault() interface{}
 		return (*common.ASInfo)(nil)
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return (*common.Carrier)(nil)
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return (*common.Location)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 	}
@@ -3961,6 +3981,8 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) ClearValue(item *Resolve
 			item.AsInfo = nil
 		case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 			item.Carrier = nil
+		case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+			item.DiscoveredLocation = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 		}
@@ -3984,6 +4006,8 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) WithIValue(value interfa
 		return &ResolveEnvironmentResponse_FieldTerminalPathValue{ResolveEnvironmentResponse_FieldTerminalPath: *fp, value: value.(*common.ASInfo)}
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return &ResolveEnvironmentResponse_FieldTerminalPathValue{ResolveEnvironmentResponse_FieldTerminalPath: *fp, value: value.(*common.Carrier)}
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return &ResolveEnvironmentResponse_FieldTerminalPathValue{ResolveEnvironmentResponse_FieldTerminalPath: *fp, value: value.(*common.Location)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 	}
@@ -4002,6 +4026,8 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) WithIArrayOfValues(value
 		return &ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues{ResolveEnvironmentResponse_FieldTerminalPath: *fp, values: values.([]*common.ASInfo)}
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return &ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues{ResolveEnvironmentResponse_FieldTerminalPath: *fp, values: values.([]*common.Carrier)}
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return &ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues{ResolveEnvironmentResponse_FieldTerminalPath: *fp, values: values.([]*common.Location)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fp.selector))
 	}
@@ -4045,6 +4071,10 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) AsCarrierSubPath() (common.C
 	res, ok := fps.subPath.(common.Carrier_FieldPath)
 	return res, ok
 }
+func (fps *ResolveEnvironmentResponse_FieldSubPath) AsDiscoveredLocationSubPath() (common.Location_FieldPath, bool) {
+	res, ok := fps.subPath.(common.Location_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ResolveEnvironmentResponse_FieldSubPath) String() string {
@@ -4064,6 +4094,8 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) Get(source *ResolveEnvironme
 		values = append(values, asASInfoFieldPath.Get(source.GetAsInfo())...)
 	} else if asCarrierFieldPath, ok := fps.AsCarrierSubPath(); ok {
 		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
+	} else if asLocationFieldPath, ok := fps.AsDiscoveredLocationSubPath(); ok {
+		values = append(values, asLocationFieldPath.Get(source.GetDiscoveredLocation())...)
 	} else {
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fps.selector))
 	}
@@ -4092,6 +4124,11 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) GetSingle(source *ResolveEnv
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetCarrier())
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		if source.GetDiscoveredLocation() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetDiscoveredLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fps.selector))
 	}
@@ -4115,6 +4152,8 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) ClearValue(item *ResolveEnvi
 			fps.subPath.ClearValueRaw(item.AsInfo)
 		case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 			fps.subPath.ClearValueRaw(item.Carrier)
+		case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+			fps.subPath.ClearValueRaw(item.DiscoveredLocation)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fps.selector))
 		}
@@ -4205,6 +4244,10 @@ func (fpv *ResolveEnvironmentResponse_FieldTerminalPathValue) AsCarrierValue() (
 	res, ok := fpv.value.(*common.Carrier)
 	return res, ok
 }
+func (fpv *ResolveEnvironmentResponse_FieldTerminalPathValue) AsDiscoveredLocationValue() (*common.Location, bool) {
+	res, ok := fpv.value.(*common.Location)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ResolveEnvironmentResponse
 func (fpv *ResolveEnvironmentResponse_FieldTerminalPathValue) SetTo(target **ResolveEnvironmentResponse) {
@@ -4218,6 +4261,8 @@ func (fpv *ResolveEnvironmentResponse_FieldTerminalPathValue) SetTo(target **Res
 		(*target).AsInfo = fpv.value.(*common.ASInfo)
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		(*target).Carrier = fpv.value.(*common.Carrier)
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		(*target).DiscoveredLocation = fpv.value.(*common.Location)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fpv.selector))
 	}
@@ -4236,6 +4281,8 @@ func (fpv *ResolveEnvironmentResponse_FieldTerminalPathValue) CompareWith(source
 	case ResolveEnvironmentResponse_FieldPathSelectorAsInfo:
 		return 0, false
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
+		return 0, false
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
 		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fpv.selector))
@@ -4265,6 +4312,10 @@ func (fpvs *ResolveEnvironmentResponse_FieldSubPathValue) AsCarrierPathValue() (
 	res, ok := fpvs.subPathValue.(common.Carrier_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ResolveEnvironmentResponse_FieldSubPathValue) AsDiscoveredLocationPathValue() (common.Location_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ResolveEnvironmentResponse_FieldSubPathValue) SetTo(target **ResolveEnvironmentResponse) {
 	if *target == nil {
@@ -4277,6 +4328,8 @@ func (fpvs *ResolveEnvironmentResponse_FieldSubPathValue) SetTo(target **Resolve
 		fpvs.subPathValue.(common.ASInfo_FieldPathValue).SetTo(&(*target).AsInfo)
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		fpvs.subPathValue.(common.Carrier_FieldPathValue).SetTo(&(*target).Carrier)
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).DiscoveredLocation)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fpvs.Selector()))
 	}
@@ -4299,6 +4352,8 @@ func (fpvs *ResolveEnvironmentResponse_FieldSubPathValue) CompareWith(source *Re
 		return fpvs.subPathValue.(common.ASInfo_FieldPathValue).CompareWith(source.GetAsInfo())
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return fpvs.subPathValue.(common.Carrier_FieldPathValue).CompareWith(source.GetCarrier())
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetDiscoveredLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fpvs.Selector()))
 	}
@@ -4389,6 +4444,10 @@ func (fpaivs *ResolveEnvironmentResponse_FieldSubPathArrayItemValue) AsCarrierPa
 	res, ok := fpaivs.subPathItemValue.(common.Carrier_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ResolveEnvironmentResponse_FieldSubPathArrayItemValue) AsDiscoveredLocationPathItemValue() (common.Location_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'ResolveEnvironmentResponse'
 func (fpaivs *ResolveEnvironmentResponse_FieldSubPathArrayItemValue) ContainsValue(source *ResolveEnvironmentResponse) bool {
@@ -4399,6 +4458,8 @@ func (fpaivs *ResolveEnvironmentResponse_FieldSubPathArrayItemValue) ContainsVal
 		return fpaivs.subPathItemValue.(common.ASInfo_FieldPathArrayItemValue).ContainsValue(source.GetAsInfo())
 	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
 		return fpaivs.subPathItemValue.(common.Carrier_FieldPathArrayItemValue).ContainsValue(source.GetCarrier())
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetDiscoveredLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fpaivs.Selector()))
 	}
@@ -4451,6 +4512,10 @@ func (fpaov *ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues) GetRawVa
 		for _, v := range fpaov.values.([]*common.Carrier) {
 			values = append(values, v)
 		}
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		for _, v := range fpaov.values.([]*common.Location) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -4464,6 +4529,10 @@ func (fpaov *ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues) AsAsInfo
 }
 func (fpaov *ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues) AsCarrierArrayOfValues() ([]*common.Carrier, bool) {
 	res, ok := fpaov.values.([]*common.Carrier)
+	return res, ok
+}
+func (fpaov *ResolveEnvironmentResponse_FieldTerminalPathArrayOfValues) AsDiscoveredLocationArrayOfValues() ([]*common.Location, bool) {
+	res, ok := fpaov.values.([]*common.Location)
 	return res, ok
 }
 
@@ -4487,5 +4556,9 @@ func (fpsaov *ResolveEnvironmentResponse_FieldSubPathArrayOfValues) AsAsInfoPath
 }
 func (fpsaov *ResolveEnvironmentResponse_FieldSubPathArrayOfValues) AsCarrierPathArrayOfValues() (common.Carrier_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.Carrier_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ResolveEnvironmentResponse_FieldSubPathArrayOfValues) AsDiscoveredLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
 	return res, ok
 }

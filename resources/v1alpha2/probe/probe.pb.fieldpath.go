@@ -2227,14 +2227,15 @@ const (
 	ProbeStatus_FieldPathSelectorAsInfo                     ProbeStatus_FieldPathSelector = 3
 	ProbeStatus_FieldPathSelectorCarrier                    ProbeStatus_FieldPathSelector = 4
 	ProbeStatus_FieldPathSelectorActiveLocation             ProbeStatus_FieldPathSelector = 5
-	ProbeStatus_FieldPathSelectorSoftwareVersion            ProbeStatus_FieldPathSelector = 6
-	ProbeStatus_FieldPathSelectorSystemInfo                 ProbeStatus_FieldPathSelector = 7
-	ProbeStatus_FieldPathSelectorActivation                 ProbeStatus_FieldPathSelector = 8
-	ProbeStatus_FieldPathSelectorConnection                 ProbeStatus_FieldPathSelector = 9
-	ProbeStatus_FieldPathSelectorConnectionStatusChangeTime ProbeStatus_FieldPathSelector = 10
-	ProbeStatus_FieldPathSelectorBandwidth                  ProbeStatus_FieldPathSelector = 11
-	ProbeStatus_FieldPathSelectorNetworkInterfaces          ProbeStatus_FieldPathSelector = 12
-	ProbeStatus_FieldPathSelectorAgentType                  ProbeStatus_FieldPathSelector = 13
+	ProbeStatus_FieldPathSelectorDiscoveredLocation         ProbeStatus_FieldPathSelector = 6
+	ProbeStatus_FieldPathSelectorSoftwareVersion            ProbeStatus_FieldPathSelector = 7
+	ProbeStatus_FieldPathSelectorSystemInfo                 ProbeStatus_FieldPathSelector = 8
+	ProbeStatus_FieldPathSelectorActivation                 ProbeStatus_FieldPathSelector = 9
+	ProbeStatus_FieldPathSelectorConnection                 ProbeStatus_FieldPathSelector = 10
+	ProbeStatus_FieldPathSelectorConnectionStatusChangeTime ProbeStatus_FieldPathSelector = 11
+	ProbeStatus_FieldPathSelectorBandwidth                  ProbeStatus_FieldPathSelector = 12
+	ProbeStatus_FieldPathSelectorNetworkInterfaces          ProbeStatus_FieldPathSelector = 13
+	ProbeStatus_FieldPathSelectorAgentType                  ProbeStatus_FieldPathSelector = 14
 )
 
 func (s ProbeStatus_FieldPathSelector) String() string {
@@ -2251,6 +2252,8 @@ func (s ProbeStatus_FieldPathSelector) String() string {
 		return "carrier"
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		return "active_location"
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		return "discovered_location"
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return "software_version"
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -2290,6 +2293,8 @@ func BuildProbeStatus_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatus_FieldP
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorCarrier}, nil
 		case "active_location", "activeLocation", "active-location":
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorActiveLocation}, nil
+		case "discovered_location", "discoveredLocation", "discovered-location":
+			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorDiscoveredLocation}, nil
 		case "software_version", "softwareVersion", "software-version":
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorSoftwareVersion}, nil
 		case "system_info", "systemInfo", "system-info":
@@ -2326,6 +2331,12 @@ func BuildProbeStatus_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatus_FieldP
 				return nil, err
 			} else {
 				return &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorActiveLocation, subPath: subpath}, nil
+			}
+		case "discovered_location", "discoveredLocation", "discovered-location":
+			if subpath, err := common.BuildLocation_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorDiscoveredLocation, subPath: subpath}, nil
 			}
 		case "software_version", "softwareVersion", "software-version":
 			if subpath, err := common.BuildSoftwareVersion_FieldPath(fp[1:]); err != nil {
@@ -2419,6 +2430,10 @@ func (fp *ProbeStatus_FieldTerminalPath) Get(source *Probe_Status) (values []int
 			if source.ActiveLocation != nil {
 				values = append(values, source.ActiveLocation)
 			}
+		case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+			if source.DiscoveredLocation != nil {
+				values = append(values, source.DiscoveredLocation)
+			}
 		case ProbeStatus_FieldPathSelectorSoftwareVersion:
 			if source.SoftwareVersion != nil {
 				values = append(values, source.SoftwareVersion)
@@ -2476,6 +2491,9 @@ func (fp *ProbeStatus_FieldTerminalPath) GetSingle(source *Probe_Status) (interf
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		res := source.GetActiveLocation()
 		return res, res != nil
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		res := source.GetDiscoveredLocation()
+		return res, res != nil
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		res := source.GetSoftwareVersion()
 		return res, res != nil
@@ -2522,6 +2540,8 @@ func (fp *ProbeStatus_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.Carrier)(nil)
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		return (*common.Location)(nil)
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		return (*common.Location)(nil)
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return (*common.SoftwareVersion)(nil)
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -2558,6 +2578,8 @@ func (fp *ProbeStatus_FieldTerminalPath) ClearValue(item *Probe_Status) {
 			item.Carrier = nil
 		case ProbeStatus_FieldPathSelectorActiveLocation:
 			item.ActiveLocation = nil
+		case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+			item.DiscoveredLocation = nil
 		case ProbeStatus_FieldPathSelectorSoftwareVersion:
 			item.SoftwareVersion = nil
 		case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -2608,6 +2630,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIValue(value interface{}) ProbeStat
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*common.Carrier)}
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*common.Location)}
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*common.Location)}
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*common.SoftwareVersion)}
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -2647,6 +2671,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIArrayOfValues(values interface{}) 
 	case ProbeStatus_FieldPathSelectorCarrier:
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*common.Carrier)}
 	case ProbeStatus_FieldPathSelectorActiveLocation:
+		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*common.Location)}
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*common.Location)}
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*common.SoftwareVersion)}
@@ -2835,6 +2861,10 @@ func (fps *ProbeStatus_FieldSubPath) AsActiveLocationSubPath() (common.Location_
 	res, ok := fps.subPath.(common.Location_FieldPath)
 	return res, ok
 }
+func (fps *ProbeStatus_FieldSubPath) AsDiscoveredLocationSubPath() (common.Location_FieldPath, bool) {
+	res, ok := fps.subPath.(common.Location_FieldPath)
+	return res, ok
+}
 func (fps *ProbeStatus_FieldSubPath) AsSoftwareVersionSubPath() (common.SoftwareVersion_FieldPath, bool) {
 	res, ok := fps.subPath.(common.SoftwareVersion_FieldPath)
 	return res, ok
@@ -2870,6 +2900,8 @@ func (fps *ProbeStatus_FieldSubPath) Get(source *Probe_Status) (values []interfa
 		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
 	} else if asLocationFieldPath, ok := fps.AsActiveLocationSubPath(); ok {
 		values = append(values, asLocationFieldPath.Get(source.GetActiveLocation())...)
+	} else if asLocationFieldPath, ok := fps.AsDiscoveredLocationSubPath(); ok {
+		values = append(values, asLocationFieldPath.Get(source.GetDiscoveredLocation())...)
 	} else if asSoftwareVersionFieldPath, ok := fps.AsSoftwareVersionSubPath(); ok {
 		values = append(values, asSoftwareVersionFieldPath.Get(source.GetSoftwareVersion())...)
 	} else if asSystemFieldPath, ok := fps.AsSystemInfoSubPath(); ok {
@@ -2906,6 +2938,11 @@ func (fps *ProbeStatus_FieldSubPath) GetSingle(source *Probe_Status) (interface{
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetActiveLocation())
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		if source.GetDiscoveredLocation() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetDiscoveredLocation())
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		if source.GetSoftwareVersion() == nil {
 			return nil, false
@@ -2949,6 +2986,8 @@ func (fps *ProbeStatus_FieldSubPath) ClearValue(item *Probe_Status) {
 			fps.subPath.ClearValueRaw(item.Carrier)
 		case ProbeStatus_FieldPathSelectorActiveLocation:
 			fps.subPath.ClearValueRaw(item.ActiveLocation)
+		case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+			fps.subPath.ClearValueRaw(item.DiscoveredLocation)
 		case ProbeStatus_FieldPathSelectorSoftwareVersion:
 			fps.subPath.ClearValueRaw(item.SoftwareVersion)
 		case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -3059,6 +3098,10 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) AsActiveLocationValue() (*common.
 	res, ok := fpv.value.(*common.Location)
 	return res, ok
 }
+func (fpv *ProbeStatus_FieldTerminalPathValue) AsDiscoveredLocationValue() (*common.Location, bool) {
+	res, ok := fpv.value.(*common.Location)
+	return res, ok
+}
 func (fpv *ProbeStatus_FieldTerminalPathValue) AsSoftwareVersionValue() (*common.SoftwareVersion, bool) {
 	res, ok := fpv.value.(*common.SoftwareVersion)
 	return res, ok
@@ -3110,6 +3153,8 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) SetTo(target **Probe_Status) {
 		(*target).Carrier = fpv.value.(*common.Carrier)
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		(*target).ActiveLocation = fpv.value.(*common.Location)
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		(*target).DiscoveredLocation = fpv.value.(*common.Location)
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		(*target).SoftwareVersion = fpv.value.(*common.SoftwareVersion)
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -3174,6 +3219,8 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) CompareWith(source *Probe_Status)
 	case ProbeStatus_FieldPathSelectorCarrier:
 		return 0, false
 	case ProbeStatus_FieldPathSelectorActiveLocation:
+		return 0, false
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
 		return 0, false
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return 0, false
@@ -3303,6 +3350,10 @@ func (fpvs *ProbeStatus_FieldSubPathValue) AsActiveLocationPathValue() (common.L
 	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbeStatus_FieldSubPathValue) AsDiscoveredLocationPathValue() (common.Location_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
+	return res, ok
+}
 func (fpvs *ProbeStatus_FieldSubPathValue) AsSoftwareVersionPathValue() (common.SoftwareVersion_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(common.SoftwareVersion_FieldPathValue)
 	return res, ok
@@ -3331,6 +3382,8 @@ func (fpvs *ProbeStatus_FieldSubPathValue) SetTo(target **Probe_Status) {
 		fpvs.subPathValue.(common.Carrier_FieldPathValue).SetTo(&(*target).Carrier)
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).ActiveLocation)
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).DiscoveredLocation)
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		fpvs.subPathValue.(common.SoftwareVersion_FieldPathValue).SetTo(&(*target).SoftwareVersion)
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -3361,6 +3414,8 @@ func (fpvs *ProbeStatus_FieldSubPathValue) CompareWith(source *Probe_Status) (in
 		return fpvs.subPathValue.(common.Carrier_FieldPathValue).CompareWith(source.GetCarrier())
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetActiveLocation())
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetDiscoveredLocation())
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return fpvs.subPathValue.(common.SoftwareVersion_FieldPathValue).CompareWith(source.GetSoftwareVersion())
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -3459,6 +3514,10 @@ func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) AsActiveLocationPathItemVa
 	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) AsDiscoveredLocationPathItemValue() (common.Location_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
+	return res, ok
+}
 func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) AsSoftwareVersionPathItemValue() (common.SoftwareVersion_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(common.SoftwareVersion_FieldPathArrayItemValue)
 	return res, ok
@@ -3485,6 +3544,8 @@ func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) ContainsValue(source *Prob
 		return fpaivs.subPathItemValue.(common.Carrier_FieldPathArrayItemValue).ContainsValue(source.GetCarrier())
 	case ProbeStatus_FieldPathSelectorActiveLocation:
 		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetActiveLocation())
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetDiscoveredLocation())
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		return fpaivs.subPathItemValue.(common.SoftwareVersion_FieldPathArrayItemValue).ContainsValue(source.GetSoftwareVersion())
 	case ProbeStatus_FieldPathSelectorSystemInfo:
@@ -3557,6 +3618,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) GetRawValues() (values 
 		for _, v := range fpaov.values.([]*common.Location) {
 			values = append(values, v)
 		}
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		for _, v := range fpaov.values.([]*common.Location) {
+			values = append(values, v)
+		}
 	case ProbeStatus_FieldPathSelectorSoftwareVersion:
 		for _, v := range fpaov.values.([]*common.SoftwareVersion) {
 			values = append(values, v)
@@ -3613,6 +3678,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsCarrierArrayOfValues(
 	return res, ok
 }
 func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsActiveLocationArrayOfValues() ([]*common.Location, bool) {
+	res, ok := fpaov.values.([]*common.Location)
+	return res, ok
+}
+func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsDiscoveredLocationArrayOfValues() ([]*common.Location, bool) {
 	res, ok := fpaov.values.([]*common.Location)
 	return res, ok
 }
@@ -3689,6 +3758,10 @@ func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsCarrierPathArrayOfValues(
 	return res, ok
 }
 func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsActiveLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsDiscoveredLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
 	return res, ok
 }

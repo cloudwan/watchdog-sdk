@@ -516,6 +516,16 @@ func (o *Probe_Status) MakeDiffFieldMask(other *Probe_Status) *Probe_Status_Fiel
 		}
 	}
 	{
+		subMask := o.GetDiscoveredLocation().MakeDiffFieldMask(other.GetDiscoveredLocation())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorDiscoveredLocation})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorDiscoveredLocation, subPath: subpath})
+			}
+		}
+	}
+	{
 		subMask := o.GetSoftwareVersion().MakeDiffFieldMask(other.GetSoftwareVersion())
 		if subMask.IsFull() {
 			res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorSoftwareVersion})
@@ -594,6 +604,7 @@ func (o *Probe_Status) Clone() *Probe_Status {
 	result.AsInfo = o.AsInfo.Clone()
 	result.Carrier = o.Carrier.Clone()
 	result.ActiveLocation = o.ActiveLocation.Clone()
+	result.DiscoveredLocation = o.DiscoveredLocation.Clone()
 	result.SoftwareVersion = o.SoftwareVersion.Clone()
 	result.SystemInfo = o.SystemInfo.Clone()
 	result.Activation = o.Activation.Clone()
@@ -633,6 +644,12 @@ func (o *Probe_Status) Merge(source *Probe_Status) {
 			o.ActiveLocation = new(common.Location)
 		}
 		o.ActiveLocation.Merge(source.GetActiveLocation())
+	}
+	if source.GetDiscoveredLocation() != nil {
+		if o.DiscoveredLocation == nil {
+			o.DiscoveredLocation = new(common.Location)
+		}
+		o.DiscoveredLocation.Merge(source.GetDiscoveredLocation())
 	}
 	if source.GetSoftwareVersion() != nil {
 		if o.SoftwareVersion == nil {
