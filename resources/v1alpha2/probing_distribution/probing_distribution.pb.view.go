@@ -44,7 +44,7 @@ func ResourceViewFieldMask(viewName view.View, extraMask *ProbingDistribution_Fi
 	case view.View_FULL:
 		return nil
 	case view.View_BASIC:
-		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name", "spec.probe_selector", "spec.target_selector", "status.total_number")
+		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name", "spec.probe_selector", "spec.target_selector", "status.total_number", "status.selected_target_count")
 		break
 	case view.View_NAME:
 		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name")

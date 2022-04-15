@@ -717,6 +717,7 @@ func FullProbingDistribution_Status_FieldMask() *ProbingDistribution_Status_Fiel
 	res := &ProbingDistribution_Status_FieldMask{}
 	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalNumber})
 	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts})
+	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount})
 	return res
 }
 
@@ -760,7 +761,7 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 2)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingDistributionStatus_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -790,7 +791,7 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) Reset() {
 
 func (fieldMask *ProbingDistribution_Status_FieldMask) Subtract(other *ProbingDistribution_Status_FieldMask) *ProbingDistribution_Status_FieldMask {
 	result := &ProbingDistribution_Status_FieldMask{}
-	removedSelectors := make([]bool, 2)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -951,6 +952,8 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) Project(source *ProbingDi
 			case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 				result.RegionalCounts = source.RegionalCounts
 				wholeRegionalCountsAccepted = true
+			case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+				result.SelectedTargetCount = source.SelectedTargetCount
 			}
 		case *ProbingDistributionStatus_FieldPathMap:
 			switch tp.selector {

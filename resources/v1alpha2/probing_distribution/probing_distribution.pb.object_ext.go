@@ -337,6 +337,9 @@ func (o *ProbingDistribution_Status) MakeDiffFieldMask(other *ProbingDistributio
 	} else {
 		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts})
 	}
+	if o.GetSelectedTargetCount() != other.GetSelectedTargetCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount})
+	}
 	return res
 }
 
@@ -354,6 +357,7 @@ func (o *ProbingDistribution_Status) Clone() *ProbingDistribution_Status {
 	for key, sourceValue := range o.RegionalCounts {
 		result.RegionalCounts[key] = sourceValue
 	}
+	result.SelectedTargetCount = o.SelectedTargetCount
 	return result
 }
 
@@ -371,6 +375,7 @@ func (o *ProbingDistribution_Status) Merge(source *ProbingDistribution_Status) {
 			o.RegionalCounts[key] = sourceValue
 		}
 	}
+	o.SelectedTargetCount = source.GetSelectedTargetCount()
 }
 
 func (o *ProbingDistribution_Status) MergeRaw(source gotenobject.GotenObjectExt) {

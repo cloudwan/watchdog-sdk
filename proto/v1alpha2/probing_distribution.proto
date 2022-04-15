@@ -83,5 +83,8 @@ message ProbingDistribution {
 
     // number of assigned probes per each region.
     map<string, int64> regional_counts = 2;
+
+    // selected target count
+    int64 selected_target_count = 3;
   }
 }

@@ -1637,8 +1637,9 @@ type ProbingDistributionStatus_FieldPath interface {
 type ProbingDistributionStatus_FieldPathSelector int32
 
 const (
-	ProbingDistributionStatus_FieldPathSelectorTotalNumber    ProbingDistributionStatus_FieldPathSelector = 0
-	ProbingDistributionStatus_FieldPathSelectorRegionalCounts ProbingDistributionStatus_FieldPathSelector = 1
+	ProbingDistributionStatus_FieldPathSelectorTotalNumber         ProbingDistributionStatus_FieldPathSelector = 0
+	ProbingDistributionStatus_FieldPathSelectorRegionalCounts      ProbingDistributionStatus_FieldPathSelector = 1
+	ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount ProbingDistributionStatus_FieldPathSelector = 2
 )
 
 func (s ProbingDistributionStatus_FieldPathSelector) String() string {
@@ -1647,6 +1648,8 @@ func (s ProbingDistributionStatus_FieldPathSelector) String() string {
 		return "total_number"
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		return "regional_counts"
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		return "selected_target_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", s))
 	}
@@ -1662,6 +1665,8 @@ func BuildProbingDistributionStatus_FieldPath(fp gotenobject.RawFieldPath) (Prob
 			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalNumber}, nil
 		case "regional_counts", "regionalCounts", "regional-counts":
 			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts}, nil
+		case "selected_target_count", "selectedTargetCount", "selected-target-count":
+			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1719,6 +1724,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) Get(source *ProbingDistri
 			values = append(values, source.TotalNumber)
 		case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 			values = append(values, source.RegionalCounts)
+		case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+			values = append(values, source.SelectedTargetCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 		}
@@ -1738,6 +1745,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) GetSingle(source *Probing
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		res := source.GetRegionalCounts()
 		return res, res != nil
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		return source.GetSelectedTargetCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1754,6 +1763,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) GetDefault() interface{} 
 		return int64(0)
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		return (map[string]int64)(nil)
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		return int64(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1766,6 +1777,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) ClearValue(item *ProbingD
 			item.TotalNumber = int64(0)
 		case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 			item.RegionalCounts = nil
+		case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+			item.SelectedTargetCount = int64(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 		}
@@ -1779,7 +1792,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) ClearValueRaw(item proto.
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbingDistributionStatus_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbingDistributionStatus_FieldPathSelectorTotalNumber ||
-		fp.selector == ProbingDistributionStatus_FieldPathSelectorRegionalCounts
+		fp.selector == ProbingDistributionStatus_FieldPathSelectorRegionalCounts ||
+		fp.selector == ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount
 }
 
 func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIValue(value interface{}) ProbingDistributionStatus_FieldPathValue {
@@ -1788,6 +1802,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIValue(value interfac
 		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(int64)}
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(map[string]int64)}
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(int64)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1804,6 +1820,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIArrayOfValues(values
 		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]int64)}
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]map[string]int64)}
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]int64)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -2000,6 +2018,10 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsRegionalCountsVal
 	res, ok := fpv.value.(map[string]int64)
 	return res, ok
 }
+func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsSelectedTargetCountValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Status
 func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) SetTo(target **ProbingDistribution_Status) {
@@ -2011,6 +2033,8 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) SetTo(target **Prob
 		(*target).TotalNumber = fpv.value.(int64)
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		(*target).RegionalCounts = fpv.value.(map[string]int64)
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		(*target).SelectedTargetCount = fpv.value.(int64)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpv.selector))
 	}
@@ -2036,6 +2060,16 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) CompareWith(source 
 		}
 	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
 		return 0, false
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetSelectedTargetCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpv.selector))
 	}
@@ -2207,6 +2241,10 @@ func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) GetRawVal
 		for _, v := range fpaov.values.([]map[string]int64) {
 			values = append(values, v)
 		}
+	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2216,6 +2254,10 @@ func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsTotalNu
 }
 func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsRegionalCountsArrayOfValues() ([]map[string]int64, bool) {
 	res, ok := fpaov.values.([]map[string]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsSelectedTargetCountArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
 	return res, ok
 }
 

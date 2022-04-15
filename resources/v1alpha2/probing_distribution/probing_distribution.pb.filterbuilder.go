@@ -6005,6 +6005,10 @@ func (b *filterCndBuilderStatus) RegionalCounts() *filterCndBuilderStatusRegiona
 	return &filterCndBuilderStatusRegionalCounts{builder: b.builder}
 }
 
+func (b *filterCndBuilderStatus) SelectedTargetCount() *filterCndBuilderStatusSelectedTargetCount {
+	return &filterCndBuilderStatusSelectedTargetCount{builder: b.builder}
+}
+
 type filterCndBuilderStatusTotalNumber struct {
 	builder *FilterBuilder
 }
@@ -6184,5 +6188,64 @@ func (b *mapFilterCndBuilderStatusRegionalCounts) compare(op gotenfilter.Compare
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                           op,
 		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusSelectedTargetCount struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Eq(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Neq(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Gt(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Gte(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Lt(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) Lte(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) In(values []int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) NotIn(values []int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusSelectedTargetCount) compare(op gotenfilter.CompareOperator, value int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().WithValue(value),
 	})
 }
