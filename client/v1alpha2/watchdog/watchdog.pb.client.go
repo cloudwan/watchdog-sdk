@@ -12,6 +12,7 @@ import (
 import (
 	activation_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation"
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
+	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
 	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
@@ -53,6 +54,7 @@ var (
 type WatchdogClient interface {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
+	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
 	ping_test_client.PingTestServiceClient
@@ -73,6 +75,7 @@ type WatchdogClient interface {
 type watchdogClient struct {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
+	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
 	ping_test_client.PingTestServiceClient
@@ -94,6 +97,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 	return &watchdogClient{
 		ActivationServiceClient:            activation_client.NewActivationServiceClient(cc),
 		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
+		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
 		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
 		PingTestServiceClient:              ping_test_client.NewPingTestServiceClient(cc),

@@ -2097,6 +2097,20 @@ compare.</p>
 
 </div>
 
+
+
+<div class="operation">
+<h5 id="operation-RunDNSQueryTest">RunDNSQueryTest</h5>
+
+<pre class="signature">rpc RunDNSQueryTest(<a href="#message-RunDNSQueryTestRequest">RunDNSQueryTestRequest</a>) returns (<a href="#message-RunDNSQueryTestResponse">RunDNSQueryTestResponse</a>)</pre>
+
+<div class="description">
+<p>RunDNSQueryTest</p>
+
+</div>
+
+</div>
+
  
 
 <h4>Messages</h4>
@@ -4082,6 +4096,164 @@ It summarizes the results at that time</p>
 <td class="type"><pre>double</pre></td>
 </tr>
 <tr><td class="description"><p>Percent</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunDNSQueryTestRequest">RunDNSQueryTestRequest</h5>
+
+<p>Request message for method
+[RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">query</th>
+<td class="type"><pre><a href="#message-DNSQuery">DNSQuery</a></pre></td>
+</tr>
+<tr><td class="description"><p>Query</p>
+<p>If unspecified,
+(name, qtype, qclass) = (&quot;.&quot;, A, IN) will be picked respectively</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">server</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Name server's address</p>
+<p>If unspecified, agent will pick the first entry from /etc/resolv.conf
+If failed, fall back to choose 8.8.8.8</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">port</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>Name server's port number</p>
+<p>If unspecified, agent will pick 53</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">tcp</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>Whether use TCP or UDP to send DNS query</p>
+<p>If unspecified, agent will use UDP</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">no_recursion_desired</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>Whether skip recusion desired option to send DNS query</p>
+<p>If unspecified, agent will set the option</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">reverse</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>Whether reverse the DNS query</p>
+<p>If unspecified, agent will skip the option</p>
+<p>Specifying true means</p>
+<ul>
+<li>overwrite the qestion's class to PTR</li>
+<li>and make the query's name reversed (eg. 8.8.4.4
+to 4.4.8.8.in-addr.arpa.)</li>
+</ul>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunDNSQueryTestResponse">RunDNSQueryTestResponse</h5>
+
+<p>Response message for method
+[RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">id</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>Message identifier</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">rcode</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Message respoonse code
+The notifion would follow
+<a href="https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6">https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6</a></p>
+</td></tr>
+
+<tr>
+<th rowspan="2">flags</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>Flags in the message
+A list of elements are as follows
+qr: Query Response
+aa: Authoritative Answer
+tc: Truncated Response
+rd: Recursion Desired
+ra: Recursion Available
+z: Zero
+ad: Authentic Data
+cd: Checking Disabled</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">queries</th>
+<td class="type"><pre>repeated <a href="#message-DNSQuery">DNSQuery</a></pre></td>
+</tr>
+<tr><td class="description"><p>Query section</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">answers</th>
+<td class="type"><pre>repeated <a href="#message-DNSResourceRecord">DNSResourceRecord</a></pre></td>
+</tr>
+<tr><td class="description"><p>Answer section</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ns</th>
+<td class="type"><pre>repeated <a href="#message-DNSResourceRecord">DNSResourceRecord</a></pre></td>
+</tr>
+<tr><td class="description"><p>Authority section</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">extras</th>
+<td class="type"><pre>repeated <a href="#message-DNSResourceRecord">DNSResourceRecord</a></pre></td>
+</tr>
+<tr><td class="description"><p>Additional section</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">rtt</th>
+<td class="type"><pre>.google.protobuf.Duration</pre></td>
+</tr>
+<tr><td class="description"><p>RTT to exchange the message</p>
 </td></tr>
  
 </tbody>
@@ -13310,6 +13482,95 @@ watch type.</p>
 
 
 
+<h5 id="message-DNSQuery">DNSQuery</h5>
+
+<p>Query message</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Record name to query</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">qtype</th>
+<td class="type"><pre><a href="#enum-DNSResourceRecordType">DNSResourceRecordType</a></pre></td>
+</tr>
+<tr><td class="description"><p>Record type to query</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">qclass</th>
+<td class="type"><pre><a href="#enum-DNSClass">DNSClass</a></pre></td>
+</tr>
+<tr><td class="description"><p>DNS class to query</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-DNSResourceRecord">DNSResourceRecord</h5>
+
+<p>Resource record</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Record name</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">rrtype</th>
+<td class="type"><pre><a href="#enum-DNSResourceRecordType">DNSResourceRecordType</a></pre></td>
+</tr>
+<tr><td class="description"><p>Record type</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">class</th>
+<td class="type"><pre><a href="#enum-DNSClass">DNSClass</a></pre></td>
+</tr>
+<tr><td class="description"><p>DNS class of the record</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ttl</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>Record TTL</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">rdlength</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>Rdata length</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">rdata</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>Rdata</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="message-Geometry">Geometry</h5>
 
 
@@ -14852,7 +15113,7 @@ used. minimal allowed interval is 100ms, default value is 30s.</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">speeedtest_settings</th>
+<th rowspan="2">speedtest_settings</th>
 <td class="type"><pre><a href="#message-SpeedTestSettings">SpeedTestSettings</a></pre></td>
 </tr>
 <tr><td class="description"><p>Speedtest settings</p>
@@ -15767,6 +16028,54 @@ stateless watch type.</p>
 
 
 
+<h5 id="message-RunDNSQueryTestRequestToProbe">RunDNSQueryTestRequestToProbe</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">query</th>
+<td class="type"><pre><a href="#message-DNSQuery">DNSQuery</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">server</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">port</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">tcp</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">no_recursion_desired</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">reverse</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="message-RunPingTestRequestToProbe">RunPingTestRequestToProbe</h5>
 
 
@@ -16351,6 +16660,180 @@ type.</p>
 
 <tr>
 <th>WORK</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-DNSClass">DNSClass</h5>
+
+<p>DNS class
+<a href="https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-2">https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-2</a></p>
+<p>Field numbers follow IANA code</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>DNS_CLASS_UNSPECIFIED</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>IN</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>CH</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>HS</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-DNSResourceRecordType">DNSResourceRecordType</h5>
+
+<p>Resource record type
+<a href="https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4">https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4</a></p>
+<p>Field numbers follow IANA code</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>A</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>NS</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>CNAME</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>SOA</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MB</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MG</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MR</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>NULL</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>WKS</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>PTR</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>HINFO</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MINFO</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MX</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>TXT</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>AAAA</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>SRV</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>OPT</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>ANY</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>URI</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

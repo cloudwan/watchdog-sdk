@@ -199,7 +199,7 @@ message ProbingSettings {
   PathProbe path_probing = 4;
 
   // Speedtest settings
-  SpeedTestSettings speeedtest_settings = 5;
+  SpeedTestSettings speedtest_settings = 5;
 
   // HTTP Probing Settings
   HTTPProbingConfig http_probing_config = 6;
@@ -297,6 +297,39 @@ message HTTPProbingConfig {
   }
 }
 
+// Query message
+message DNSQuery {
+  // Record name to query
+  string name = 1;
+
+  // Record type to query
+  DNSResourceRecordType qtype = 2;
+
+  // DNS class to query
+  DNSClass qclass = 3;
+}
+
+// Resource record
+message DNSResourceRecord {
+  // Record name
+  string name = 1;
+
+  // Record type
+  DNSResourceRecordType rrtype = 2;
+
+  // DNS class of the record
+  DNSClass class = 3;
+
+  // Record TTL
+  uint32 ttl = 4;
+
+  // Rdata length
+  uint32 rdlength = 5;
+
+  // Rdata
+  repeated string rdata = 6;
+}
+
 enum IpVersion {
   IP_VERSION_UNSPECIFIED = 0;
 
@@ -356,4 +389,64 @@ enum AuthenticationMethod {
   BASIC = 1;
 
   EXTERNAL_TOKEN_REQUEST = 2; // OAUTH = 3;
+}
+
+// DNS class
+// https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-2
+//
+// Field numbers follow IANA code
+enum DNSClass {
+  DNS_CLASS_UNSPECIFIED = 0;
+
+  IN = 1;
+
+  CH = 3;
+
+  HS = 4;
+}
+
+// Resource record type
+// https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
+//
+// Field numbers follow IANA code
+enum DNSResourceRecordType {
+  DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED = 0;
+
+  A = 1;
+
+  NS = 2;
+
+  CNAME = 5;
+
+  SOA = 6;
+
+  MB = 7;
+
+  MG = 8;
+
+  MR = 9;
+
+  NULL = 10;
+
+  WKS = 11;
+
+  PTR = 12;
+
+  HINFO = 13;
+
+  MINFO = 14;
+
+  MX = 15;
+
+  TXT = 16;
+
+  AAAA = 28;
+
+  SRV = 33;
+
+  OPT = 41;
+
+  ANY = 255;
+
+  URI = 256;
 }

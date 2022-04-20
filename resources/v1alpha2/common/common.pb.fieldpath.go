@@ -6207,7 +6207,7 @@ const (
 	ProbingSettings_FieldPathSelectorTos                ProbingSettings_FieldPathSelector = 1
 	ProbingSettings_FieldPathSelectorWindowSize         ProbingSettings_FieldPathSelector = 2
 	ProbingSettings_FieldPathSelectorPathProbing        ProbingSettings_FieldPathSelector = 3
-	ProbingSettings_FieldPathSelectorSpeeedtestSettings ProbingSettings_FieldPathSelector = 4
+	ProbingSettings_FieldPathSelectorSpeedtestSettings  ProbingSettings_FieldPathSelector = 4
 	ProbingSettings_FieldPathSelectorHttpProbingConfig  ProbingSettings_FieldPathSelector = 5
 	ProbingSettings_FieldPathSelectorProxyConfiguration ProbingSettings_FieldPathSelector = 6
 )
@@ -6222,8 +6222,8 @@ func (s ProbingSettings_FieldPathSelector) String() string {
 		return "window_size"
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return "path_probing"
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		return "speeedtest_settings"
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		return "speedtest_settings"
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return "http_probing_config"
 	case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6247,8 +6247,8 @@ func BuildProbingSettings_FieldPath(fp gotenobject.RawFieldPath) (ProbingSetting
 			return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorWindowSize}, nil
 		case "path_probing", "pathProbing", "path-probing":
 			return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorPathProbing}, nil
-		case "speeedtest_settings", "speeedtestSettings", "speeedtest-settings":
-			return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings}, nil
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
+			return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings}, nil
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorHttpProbingConfig}, nil
 		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
@@ -6262,11 +6262,11 @@ func BuildProbingSettings_FieldPath(fp gotenobject.RawFieldPath) (ProbingSetting
 			} else {
 				return &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorPathProbing, subPath: subpath}, nil
 			}
-		case "speeedtest_settings", "speeedtestSettings", "speeedtest-settings":
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
 			if subpath, err := BuildSpeedTestSettings_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings, subPath: subpath}, nil
+				return &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings, subPath: subpath}, nil
 			}
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			if subpath, err := BuildHTTPProbingConfig_FieldPath(fp[1:]); err != nil {
@@ -6341,9 +6341,9 @@ func (fp *ProbingSettings_FieldTerminalPath) Get(source *ProbingSettings) (value
 			if source.PathProbing != nil {
 				values = append(values, source.PathProbing)
 			}
-		case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-			if source.SpeeedtestSettings != nil {
-				values = append(values, source.SpeeedtestSettings)
+		case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+			if source.SpeedtestSettings != nil {
+				values = append(values, source.SpeedtestSettings)
 			}
 		case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 			if source.HttpProbingConfig != nil {
@@ -6379,8 +6379,8 @@ func (fp *ProbingSettings_FieldTerminalPath) GetSingle(source *ProbingSettings) 
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		res := source.GetPathProbing()
 		return res, res != nil
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		res := source.GetSpeeedtestSettings()
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		res := source.GetSpeedtestSettings()
 		return res, res != nil
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		res := source.GetHttpProbingConfig()
@@ -6408,7 +6408,7 @@ func (fp *ProbingSettings_FieldTerminalPath) GetDefault() interface{} {
 		return (*wrappers.UInt32Value)(nil)
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return (*PathProbe)(nil)
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
 		return (*SpeedTestSettings)(nil)
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return (*HTTPProbingConfig)(nil)
@@ -6430,8 +6430,8 @@ func (fp *ProbingSettings_FieldTerminalPath) ClearValue(item *ProbingSettings) {
 			item.WindowSize = nil
 		case ProbingSettings_FieldPathSelectorPathProbing:
 			item.PathProbing = nil
-		case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-			item.SpeeedtestSettings = nil
+		case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+			item.SpeedtestSettings = nil
 		case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 			item.HttpProbingConfig = nil
 		case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6463,7 +6463,7 @@ func (fp *ProbingSettings_FieldTerminalPath) WithIValue(value interface{}) Probi
 		return &ProbingSettings_FieldTerminalPathValue{ProbingSettings_FieldTerminalPath: *fp, value: value.(*wrappers.UInt32Value)}
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return &ProbingSettings_FieldTerminalPathValue{ProbingSettings_FieldTerminalPath: *fp, value: value.(*PathProbe)}
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
 		return &ProbingSettings_FieldTerminalPathValue{ProbingSettings_FieldTerminalPath: *fp, value: value.(*SpeedTestSettings)}
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return &ProbingSettings_FieldTerminalPathValue{ProbingSettings_FieldTerminalPath: *fp, value: value.(*HTTPProbingConfig)}
@@ -6489,7 +6489,7 @@ func (fp *ProbingSettings_FieldTerminalPath) WithIArrayOfValues(values interface
 		return &ProbingSettings_FieldTerminalPathArrayOfValues{ProbingSettings_FieldTerminalPath: *fp, values: values.([]*wrappers.UInt32Value)}
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return &ProbingSettings_FieldTerminalPathArrayOfValues{ProbingSettings_FieldTerminalPath: *fp, values: values.([]*PathProbe)}
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
 		return &ProbingSettings_FieldTerminalPathArrayOfValues{ProbingSettings_FieldTerminalPath: *fp, values: values.([]*SpeedTestSettings)}
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return &ProbingSettings_FieldTerminalPathArrayOfValues{ProbingSettings_FieldTerminalPath: *fp, values: values.([]*HTTPProbingConfig)}
@@ -6530,7 +6530,7 @@ func (fps *ProbingSettings_FieldSubPath) AsPathProbingSubPath() (PathProbe_Field
 	res, ok := fps.subPath.(PathProbe_FieldPath)
 	return res, ok
 }
-func (fps *ProbingSettings_FieldSubPath) AsSpeeedtestSettingsSubPath() (SpeedTestSettings_FieldPath, bool) {
+func (fps *ProbingSettings_FieldSubPath) AsSpeedtestSettingsSubPath() (SpeedTestSettings_FieldPath, bool) {
 	res, ok := fps.subPath.(SpeedTestSettings_FieldPath)
 	return res, ok
 }
@@ -6557,8 +6557,8 @@ func (fps *ProbingSettings_FieldSubPath) JSONString() string {
 func (fps *ProbingSettings_FieldSubPath) Get(source *ProbingSettings) (values []interface{}) {
 	if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
 		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeeedtestSettings())...)
+	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
+		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
 	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
 		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
 	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
@@ -6581,11 +6581,11 @@ func (fps *ProbingSettings_FieldSubPath) GetSingle(source *ProbingSettings) (int
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetPathProbing())
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		if source.GetSpeeedtestSettings() == nil {
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		if source.GetSpeedtestSettings() == nil {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetSpeeedtestSettings())
+		return fps.subPath.GetSingleRaw(source.GetSpeedtestSettings())
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		if source.GetHttpProbingConfig() == nil {
 			return nil, false
@@ -6615,8 +6615,8 @@ func (fps *ProbingSettings_FieldSubPath) ClearValue(item *ProbingSettings) {
 		switch fps.selector {
 		case ProbingSettings_FieldPathSelectorPathProbing:
 			fps.subPath.ClearValueRaw(item.PathProbing)
-		case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-			fps.subPath.ClearValueRaw(item.SpeeedtestSettings)
+		case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+			fps.subPath.ClearValueRaw(item.SpeedtestSettings)
 		case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
 		case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6715,7 +6715,7 @@ func (fpv *ProbingSettings_FieldTerminalPathValue) AsPathProbingValue() (*PathPr
 	res, ok := fpv.value.(*PathProbe)
 	return res, ok
 }
-func (fpv *ProbingSettings_FieldTerminalPathValue) AsSpeeedtestSettingsValue() (*SpeedTestSettings, bool) {
+func (fpv *ProbingSettings_FieldTerminalPathValue) AsSpeedtestSettingsValue() (*SpeedTestSettings, bool) {
 	res, ok := fpv.value.(*SpeedTestSettings)
 	return res, ok
 }
@@ -6742,8 +6742,8 @@ func (fpv *ProbingSettings_FieldTerminalPathValue) SetTo(target **ProbingSetting
 		(*target).WindowSize = fpv.value.(*wrappers.UInt32Value)
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		(*target).PathProbing = fpv.value.(*PathProbe)
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		(*target).SpeeedtestSettings = fpv.value.(*SpeedTestSettings)
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		(*target).SpeedtestSettings = fpv.value.(*SpeedTestSettings)
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		(*target).HttpProbingConfig = fpv.value.(*HTTPProbingConfig)
 	case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6786,7 +6786,7 @@ func (fpv *ProbingSettings_FieldTerminalPathValue) CompareWith(source *ProbingSe
 		return 0, false
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return 0, false
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
 		return 0, false
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return 0, false
@@ -6812,7 +6812,7 @@ func (fpvs *ProbingSettings_FieldSubPathValue) AsPathProbingPathValue() (PathPro
 	res, ok := fpvs.subPathValue.(PathProbe_FieldPathValue)
 	return res, ok
 }
-func (fpvs *ProbingSettings_FieldSubPathValue) AsSpeeedtestSettingsPathValue() (SpeedTestSettings_FieldPathValue, bool) {
+func (fpvs *ProbingSettings_FieldSubPathValue) AsSpeedtestSettingsPathValue() (SpeedTestSettings_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(SpeedTestSettings_FieldPathValue)
 	return res, ok
 }
@@ -6832,8 +6832,8 @@ func (fpvs *ProbingSettings_FieldSubPathValue) SetTo(target **ProbingSettings) {
 	switch fpvs.Selector() {
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		fpvs.subPathValue.(PathProbe_FieldPathValue).SetTo(&(*target).PathProbing)
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		fpvs.subPathValue.(SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeeedtestSettings)
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		fpvs.subPathValue.(SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeedtestSettings)
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		fpvs.subPathValue.(HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
 	case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6856,8 +6856,8 @@ func (fpvs *ProbingSettings_FieldSubPathValue) CompareWith(source *ProbingSettin
 	switch fpvs.Selector() {
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return fpvs.subPathValue.(PathProbe_FieldPathValue).CompareWith(source.GetPathProbing())
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		return fpvs.subPathValue.(SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeeedtestSettings())
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		return fpvs.subPathValue.(SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeedtestSettings())
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return fpvs.subPathValue.(HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
 	case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -6944,7 +6944,7 @@ func (fpaivs *ProbingSettings_FieldSubPathArrayItemValue) AsPathProbingPathItemV
 	res, ok := fpaivs.subPathItemValue.(PathProbe_FieldPathArrayItemValue)
 	return res, ok
 }
-func (fpaivs *ProbingSettings_FieldSubPathArrayItemValue) AsSpeeedtestSettingsPathItemValue() (SpeedTestSettings_FieldPathArrayItemValue, bool) {
+func (fpaivs *ProbingSettings_FieldSubPathArrayItemValue) AsSpeedtestSettingsPathItemValue() (SpeedTestSettings_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(SpeedTestSettings_FieldPathArrayItemValue)
 	return res, ok
 }
@@ -6962,8 +6962,8 @@ func (fpaivs *ProbingSettings_FieldSubPathArrayItemValue) ContainsValue(source *
 	switch fpaivs.Selector() {
 	case ProbingSettings_FieldPathSelectorPathProbing:
 		return fpaivs.subPathItemValue.(PathProbe_FieldPathArrayItemValue).ContainsValue(source.GetPathProbing())
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-		return fpaivs.subPathItemValue.(SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeeedtestSettings())
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		return fpaivs.subPathItemValue.(SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeedtestSettings())
 	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 		return fpaivs.subPathItemValue.(HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
 	case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -7024,7 +7024,7 @@ func (fpaov *ProbingSettings_FieldTerminalPathArrayOfValues) GetRawValues() (val
 		for _, v := range fpaov.values.([]*PathProbe) {
 			values = append(values, v)
 		}
-	case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
 		for _, v := range fpaov.values.([]*SpeedTestSettings) {
 			values = append(values, v)
 		}
@@ -7055,7 +7055,7 @@ func (fpaov *ProbingSettings_FieldTerminalPathArrayOfValues) AsPathProbingArrayO
 	res, ok := fpaov.values.([]*PathProbe)
 	return res, ok
 }
-func (fpaov *ProbingSettings_FieldTerminalPathArrayOfValues) AsSpeeedtestSettingsArrayOfValues() ([]*SpeedTestSettings, bool) {
+func (fpaov *ProbingSettings_FieldTerminalPathArrayOfValues) AsSpeedtestSettingsArrayOfValues() ([]*SpeedTestSettings, bool) {
 	res, ok := fpaov.values.([]*SpeedTestSettings)
 	return res, ok
 }
@@ -7082,7 +7082,7 @@ func (fpsaov *ProbingSettings_FieldSubPathArrayOfValues) AsPathProbingPathArrayO
 	res, ok := fpsaov.subPathArrayOfValues.(PathProbe_FieldPathArrayOfValues)
 	return res, ok
 }
-func (fpsaov *ProbingSettings_FieldSubPathArrayOfValues) AsSpeeedtestSettingsPathArrayOfValues() (SpeedTestSettings_FieldPathArrayOfValues, bool) {
+func (fpsaov *ProbingSettings_FieldSubPathArrayOfValues) AsSpeedtestSettingsPathArrayOfValues() (SpeedTestSettings_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(SpeedTestSettings_FieldPathArrayOfValues)
 	return res, ok
 }
@@ -11300,6 +11300,1043 @@ func (fpaov *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfVal
 	return
 }
 func (fpaov *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues) AsValueArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type DNSQuery_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() DNSQuery_FieldPathSelector
+	Get(source *DNSQuery) []interface{}
+	GetSingle(source *DNSQuery) (interface{}, bool)
+	ClearValue(item *DNSQuery)
+
+	// Those methods build corresponding DNSQuery_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) DNSQuery_FieldPathValue
+	WithIArrayOfValues(values interface{}) DNSQuery_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) DNSQuery_FieldPathArrayItemValue
+}
+
+type DNSQuery_FieldPathSelector int32
+
+const (
+	DNSQuery_FieldPathSelectorName   DNSQuery_FieldPathSelector = 0
+	DNSQuery_FieldPathSelectorQtype  DNSQuery_FieldPathSelector = 1
+	DNSQuery_FieldPathSelectorQclass DNSQuery_FieldPathSelector = 2
+)
+
+func (s DNSQuery_FieldPathSelector) String() string {
+	switch s {
+	case DNSQuery_FieldPathSelectorName:
+		return "name"
+	case DNSQuery_FieldPathSelectorQtype:
+		return "qtype"
+	case DNSQuery_FieldPathSelectorQclass:
+		return "qclass"
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", s))
+	}
+}
+
+func BuildDNSQuery_FieldPath(fp gotenobject.RawFieldPath) (DNSQuery_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object DNSQuery")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "name":
+			return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorName}, nil
+		case "qtype":
+			return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQtype}, nil
+		case "qclass":
+			return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQclass}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object DNSQuery", fp)
+}
+
+func ParseDNSQuery_FieldPath(rawField string) (DNSQuery_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildDNSQuery_FieldPath(fp)
+}
+
+func MustParseDNSQuery_FieldPath(rawField string) DNSQuery_FieldPath {
+	fp, err := ParseDNSQuery_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type DNSQuery_FieldTerminalPath struct {
+	selector DNSQuery_FieldPathSelector
+}
+
+var _ DNSQuery_FieldPath = (*DNSQuery_FieldTerminalPath)(nil)
+
+func (fp *DNSQuery_FieldTerminalPath) Selector() DNSQuery_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *DNSQuery_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *DNSQuery_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source DNSQuery
+func (fp *DNSQuery_FieldTerminalPath) Get(source *DNSQuery) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case DNSQuery_FieldPathSelectorName:
+			values = append(values, source.Name)
+		case DNSQuery_FieldPathSelectorQtype:
+			values = append(values, source.Qtype)
+		case DNSQuery_FieldPathSelectorQclass:
+			values = append(values, source.Qclass)
+		default:
+			panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *DNSQuery_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*DNSQuery))
+}
+
+// GetSingle returns value pointed by specific field of from source DNSQuery
+func (fp *DNSQuery_FieldTerminalPath) GetSingle(source *DNSQuery) (interface{}, bool) {
+	switch fp.selector {
+	case DNSQuery_FieldPathSelectorName:
+		return source.GetName(), source != nil
+	case DNSQuery_FieldPathSelectorQtype:
+		return source.GetQtype(), source != nil
+	case DNSQuery_FieldPathSelectorQclass:
+		return source.GetQclass(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+	}
+}
+
+func (fp *DNSQuery_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*DNSQuery))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *DNSQuery_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case DNSQuery_FieldPathSelectorName:
+		return ""
+	case DNSQuery_FieldPathSelectorQtype:
+		return DNSResourceRecordType_DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED
+	case DNSQuery_FieldPathSelectorQclass:
+		return DNSClass_DNS_CLASS_UNSPECIFIED
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+	}
+}
+
+func (fp *DNSQuery_FieldTerminalPath) ClearValue(item *DNSQuery) {
+	if item != nil {
+		switch fp.selector {
+		case DNSQuery_FieldPathSelectorName:
+			item.Name = ""
+		case DNSQuery_FieldPathSelectorQtype:
+			item.Qtype = DNSResourceRecordType_DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED
+		case DNSQuery_FieldPathSelectorQclass:
+			item.Qclass = DNSClass_DNS_CLASS_UNSPECIFIED
+		default:
+			panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *DNSQuery_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*DNSQuery))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *DNSQuery_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == DNSQuery_FieldPathSelectorName ||
+		fp.selector == DNSQuery_FieldPathSelectorQtype ||
+		fp.selector == DNSQuery_FieldPathSelectorQclass
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithIValue(value interface{}) DNSQuery_FieldPathValue {
+	switch fp.selector {
+	case DNSQuery_FieldPathSelectorName:
+		return &DNSQuery_FieldTerminalPathValue{DNSQuery_FieldTerminalPath: *fp, value: value.(string)}
+	case DNSQuery_FieldPathSelectorQtype:
+		return &DNSQuery_FieldTerminalPathValue{DNSQuery_FieldTerminalPath: *fp, value: value.(DNSResourceRecordType)}
+	case DNSQuery_FieldPathSelectorQclass:
+		return &DNSQuery_FieldTerminalPathValue{DNSQuery_FieldTerminalPath: *fp, value: value.(DNSClass)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+	}
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithIArrayOfValues(values interface{}) DNSQuery_FieldPathArrayOfValues {
+	fpaov := &DNSQuery_FieldTerminalPathArrayOfValues{DNSQuery_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case DNSQuery_FieldPathSelectorName:
+		return &DNSQuery_FieldTerminalPathArrayOfValues{DNSQuery_FieldTerminalPath: *fp, values: values.([]string)}
+	case DNSQuery_FieldPathSelectorQtype:
+		return &DNSQuery_FieldTerminalPathArrayOfValues{DNSQuery_FieldTerminalPath: *fp, values: values.([]DNSResourceRecordType)}
+	case DNSQuery_FieldPathSelectorQclass:
+		return &DNSQuery_FieldTerminalPathArrayOfValues{DNSQuery_FieldTerminalPath: *fp, values: values.([]DNSClass)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithIArrayItemValue(value interface{}) DNSQuery_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fp.selector))
+	}
+}
+
+func (fp *DNSQuery_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// DNSQuery_FieldPathValue allows storing values for DNSQuery fields according to their type
+type DNSQuery_FieldPathValue interface {
+	DNSQuery_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **DNSQuery)
+	CompareWith(*DNSQuery) (cmp int, comparable bool)
+}
+
+func ParseDNSQuery_FieldPathValue(pathStr, valueStr string) (DNSQuery_FieldPathValue, error) {
+	fp, err := ParseDNSQuery_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSQuery field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(DNSQuery_FieldPathValue), nil
+}
+
+func MustParseDNSQuery_FieldPathValue(pathStr, valueStr string) DNSQuery_FieldPathValue {
+	fpv, err := ParseDNSQuery_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type DNSQuery_FieldTerminalPathValue struct {
+	DNSQuery_FieldTerminalPath
+	value interface{}
+}
+
+var _ DNSQuery_FieldPathValue = (*DNSQuery_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'DNSQuery' as interface{}
+func (fpv *DNSQuery_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *DNSQuery_FieldTerminalPathValue) AsNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *DNSQuery_FieldTerminalPathValue) AsQtypeValue() (DNSResourceRecordType, bool) {
+	res, ok := fpv.value.(DNSResourceRecordType)
+	return res, ok
+}
+func (fpv *DNSQuery_FieldTerminalPathValue) AsQclassValue() (DNSClass, bool) {
+	res, ok := fpv.value.(DNSClass)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object DNSQuery
+func (fpv *DNSQuery_FieldTerminalPathValue) SetTo(target **DNSQuery) {
+	if *target == nil {
+		*target = new(DNSQuery)
+	}
+	switch fpv.selector {
+	case DNSQuery_FieldPathSelectorName:
+		(*target).Name = fpv.value.(string)
+	case DNSQuery_FieldPathSelectorQtype:
+		(*target).Qtype = fpv.value.(DNSResourceRecordType)
+	case DNSQuery_FieldPathSelectorQclass:
+		(*target).Qclass = fpv.value.(DNSClass)
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fpv.selector))
+	}
+}
+
+func (fpv *DNSQuery_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*DNSQuery)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'DNSQuery_FieldTerminalPathValue' with the value under path in 'DNSQuery'.
+func (fpv *DNSQuery_FieldTerminalPathValue) CompareWith(source *DNSQuery) (int, bool) {
+	switch fpv.selector {
+	case DNSQuery_FieldPathSelectorName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSQuery_FieldPathSelectorQtype:
+		leftValue := fpv.value.(DNSResourceRecordType)
+		rightValue := source.GetQtype()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSQuery_FieldPathSelectorQclass:
+		leftValue := fpv.value.(DNSClass)
+		rightValue := source.GetQclass()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSQuery: %d", fpv.selector))
+	}
+}
+
+func (fpv *DNSQuery_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*DNSQuery))
+}
+
+// DNSQuery_FieldPathArrayItemValue allows storing single item in Path-specific values for DNSQuery according to their type
+// Present only for array (repeated) types.
+type DNSQuery_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	DNSQuery_FieldPath
+	ContainsValue(*DNSQuery) bool
+}
+
+// ParseDNSQuery_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseDNSQuery_FieldPathArrayItemValue(pathStr, valueStr string) (DNSQuery_FieldPathArrayItemValue, error) {
+	fp, err := ParseDNSQuery_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSQuery field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(DNSQuery_FieldPathArrayItemValue), nil
+}
+
+func MustParseDNSQuery_FieldPathArrayItemValue(pathStr, valueStr string) DNSQuery_FieldPathArrayItemValue {
+	fpaiv, err := ParseDNSQuery_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type DNSQuery_FieldTerminalPathArrayItemValue struct {
+	DNSQuery_FieldTerminalPath
+	value interface{}
+}
+
+var _ DNSQuery_FieldPathArrayItemValue = (*DNSQuery_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object DNSQuery as interface{}
+func (fpaiv *DNSQuery_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *DNSQuery_FieldTerminalPathArrayItemValue) GetSingle(source *DNSQuery) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *DNSQuery_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*DNSQuery))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'DNSQuery'
+func (fpaiv *DNSQuery_FieldTerminalPathArrayItemValue) ContainsValue(source *DNSQuery) bool {
+	slice := fpaiv.DNSQuery_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// DNSQuery_FieldPathArrayOfValues allows storing slice of values for DNSQuery fields according to their type
+type DNSQuery_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	DNSQuery_FieldPath
+}
+
+func ParseDNSQuery_FieldPathArrayOfValues(pathStr, valuesStr string) (DNSQuery_FieldPathArrayOfValues, error) {
+	fp, err := ParseDNSQuery_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSQuery field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(DNSQuery_FieldPathArrayOfValues), nil
+}
+
+func MustParseDNSQuery_FieldPathArrayOfValues(pathStr, valuesStr string) DNSQuery_FieldPathArrayOfValues {
+	fpaov, err := ParseDNSQuery_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type DNSQuery_FieldTerminalPathArrayOfValues struct {
+	DNSQuery_FieldTerminalPath
+	values interface{}
+}
+
+var _ DNSQuery_FieldPathArrayOfValues = (*DNSQuery_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *DNSQuery_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case DNSQuery_FieldPathSelectorName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case DNSQuery_FieldPathSelectorQtype:
+		for _, v := range fpaov.values.([]DNSResourceRecordType) {
+			values = append(values, v)
+		}
+	case DNSQuery_FieldPathSelectorQclass:
+		for _, v := range fpaov.values.([]DNSClass) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *DNSQuery_FieldTerminalPathArrayOfValues) AsNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *DNSQuery_FieldTerminalPathArrayOfValues) AsQtypeArrayOfValues() ([]DNSResourceRecordType, bool) {
+	res, ok := fpaov.values.([]DNSResourceRecordType)
+	return res, ok
+}
+func (fpaov *DNSQuery_FieldTerminalPathArrayOfValues) AsQclassArrayOfValues() ([]DNSClass, bool) {
+	res, ok := fpaov.values.([]DNSClass)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type DNSResourceRecord_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() DNSResourceRecord_FieldPathSelector
+	Get(source *DNSResourceRecord) []interface{}
+	GetSingle(source *DNSResourceRecord) (interface{}, bool)
+	ClearValue(item *DNSResourceRecord)
+
+	// Those methods build corresponding DNSResourceRecord_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) DNSResourceRecord_FieldPathValue
+	WithIArrayOfValues(values interface{}) DNSResourceRecord_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) DNSResourceRecord_FieldPathArrayItemValue
+}
+
+type DNSResourceRecord_FieldPathSelector int32
+
+const (
+	DNSResourceRecord_FieldPathSelectorName     DNSResourceRecord_FieldPathSelector = 0
+	DNSResourceRecord_FieldPathSelectorRrtype   DNSResourceRecord_FieldPathSelector = 1
+	DNSResourceRecord_FieldPathSelectorClass    DNSResourceRecord_FieldPathSelector = 2
+	DNSResourceRecord_FieldPathSelectorTtl      DNSResourceRecord_FieldPathSelector = 3
+	DNSResourceRecord_FieldPathSelectorRdlength DNSResourceRecord_FieldPathSelector = 4
+	DNSResourceRecord_FieldPathSelectorRdata    DNSResourceRecord_FieldPathSelector = 5
+)
+
+func (s DNSResourceRecord_FieldPathSelector) String() string {
+	switch s {
+	case DNSResourceRecord_FieldPathSelectorName:
+		return "name"
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		return "rrtype"
+	case DNSResourceRecord_FieldPathSelectorClass:
+		return "class"
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		return "ttl"
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		return "rdlength"
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return "rdata"
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", s))
+	}
+}
+
+func BuildDNSResourceRecord_FieldPath(fp gotenobject.RawFieldPath) (DNSResourceRecord_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object DNSResourceRecord")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "name":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorName}, nil
+		case "rrtype":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRrtype}, nil
+		case "class":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorClass}, nil
+		case "ttl":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorTtl}, nil
+		case "rdlength":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdlength}, nil
+		case "rdata":
+			return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdata}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object DNSResourceRecord", fp)
+}
+
+func ParseDNSResourceRecord_FieldPath(rawField string) (DNSResourceRecord_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildDNSResourceRecord_FieldPath(fp)
+}
+
+func MustParseDNSResourceRecord_FieldPath(rawField string) DNSResourceRecord_FieldPath {
+	fp, err := ParseDNSResourceRecord_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type DNSResourceRecord_FieldTerminalPath struct {
+	selector DNSResourceRecord_FieldPathSelector
+}
+
+var _ DNSResourceRecord_FieldPath = (*DNSResourceRecord_FieldTerminalPath)(nil)
+
+func (fp *DNSResourceRecord_FieldTerminalPath) Selector() DNSResourceRecord_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *DNSResourceRecord_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *DNSResourceRecord_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source DNSResourceRecord
+func (fp *DNSResourceRecord_FieldTerminalPath) Get(source *DNSResourceRecord) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case DNSResourceRecord_FieldPathSelectorName:
+			values = append(values, source.Name)
+		case DNSResourceRecord_FieldPathSelectorRrtype:
+			values = append(values, source.Rrtype)
+		case DNSResourceRecord_FieldPathSelectorClass:
+			values = append(values, source.Class)
+		case DNSResourceRecord_FieldPathSelectorTtl:
+			values = append(values, source.Ttl)
+		case DNSResourceRecord_FieldPathSelectorRdlength:
+			values = append(values, source.Rdlength)
+		case DNSResourceRecord_FieldPathSelectorRdata:
+			for _, value := range source.GetRdata() {
+				values = append(values, value)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*DNSResourceRecord))
+}
+
+// GetSingle returns value pointed by specific field of from source DNSResourceRecord
+func (fp *DNSResourceRecord_FieldTerminalPath) GetSingle(source *DNSResourceRecord) (interface{}, bool) {
+	switch fp.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		return source.GetName(), source != nil
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		return source.GetRrtype(), source != nil
+	case DNSResourceRecord_FieldPathSelectorClass:
+		return source.GetClass(), source != nil
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		return source.GetTtl(), source != nil
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		return source.GetRdlength(), source != nil
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		res := source.GetRdata()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+	}
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*DNSResourceRecord))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *DNSResourceRecord_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		return ""
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		return DNSResourceRecordType_DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED
+	case DNSResourceRecord_FieldPathSelectorClass:
+		return DNSClass_DNS_CLASS_UNSPECIFIED
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		return uint32(0)
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		return uint32(0)
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return ([]string)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+	}
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) ClearValue(item *DNSResourceRecord) {
+	if item != nil {
+		switch fp.selector {
+		case DNSResourceRecord_FieldPathSelectorName:
+			item.Name = ""
+		case DNSResourceRecord_FieldPathSelectorRrtype:
+			item.Rrtype = DNSResourceRecordType_DNS_RESOURCE_RECORD_TYPE_UNSPECIFIED
+		case DNSResourceRecord_FieldPathSelectorClass:
+			item.Class = DNSClass_DNS_CLASS_UNSPECIFIED
+		case DNSResourceRecord_FieldPathSelectorTtl:
+			item.Ttl = uint32(0)
+		case DNSResourceRecord_FieldPathSelectorRdlength:
+			item.Rdlength = uint32(0)
+		case DNSResourceRecord_FieldPathSelectorRdata:
+			item.Rdata = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*DNSResourceRecord))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *DNSResourceRecord_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == DNSResourceRecord_FieldPathSelectorName ||
+		fp.selector == DNSResourceRecord_FieldPathSelectorRrtype ||
+		fp.selector == DNSResourceRecord_FieldPathSelectorClass ||
+		fp.selector == DNSResourceRecord_FieldPathSelectorTtl ||
+		fp.selector == DNSResourceRecord_FieldPathSelectorRdlength ||
+		fp.selector == DNSResourceRecord_FieldPathSelectorRdata
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithIValue(value interface{}) DNSResourceRecord_FieldPathValue {
+	switch fp.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(string)}
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(DNSResourceRecordType)}
+	case DNSResourceRecord_FieldPathSelectorClass:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(DNSClass)}
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(uint32)}
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(uint32)}
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return &DNSResourceRecord_FieldTerminalPathValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+	}
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithIArrayOfValues(values interface{}) DNSResourceRecord_FieldPathArrayOfValues {
+	fpaov := &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([]string)}
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([]DNSResourceRecordType)}
+	case DNSResourceRecord_FieldPathSelectorClass:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([]DNSClass)}
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([]uint32)}
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([]uint32)}
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return &DNSResourceRecord_FieldTerminalPathArrayOfValues{DNSResourceRecord_FieldTerminalPath: *fp, values: values.([][]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithIArrayItemValue(value interface{}) DNSResourceRecord_FieldPathArrayItemValue {
+	switch fp.selector {
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return &DNSResourceRecord_FieldTerminalPathArrayItemValue{DNSResourceRecord_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fp.selector))
+	}
+}
+
+func (fp *DNSResourceRecord_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// DNSResourceRecord_FieldPathValue allows storing values for DNSResourceRecord fields according to their type
+type DNSResourceRecord_FieldPathValue interface {
+	DNSResourceRecord_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **DNSResourceRecord)
+	CompareWith(*DNSResourceRecord) (cmp int, comparable bool)
+}
+
+func ParseDNSResourceRecord_FieldPathValue(pathStr, valueStr string) (DNSResourceRecord_FieldPathValue, error) {
+	fp, err := ParseDNSResourceRecord_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSResourceRecord field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(DNSResourceRecord_FieldPathValue), nil
+}
+
+func MustParseDNSResourceRecord_FieldPathValue(pathStr, valueStr string) DNSResourceRecord_FieldPathValue {
+	fpv, err := ParseDNSResourceRecord_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type DNSResourceRecord_FieldTerminalPathValue struct {
+	DNSResourceRecord_FieldTerminalPath
+	value interface{}
+}
+
+var _ DNSResourceRecord_FieldPathValue = (*DNSResourceRecord_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'DNSResourceRecord' as interface{}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsRrtypeValue() (DNSResourceRecordType, bool) {
+	res, ok := fpv.value.(DNSResourceRecordType)
+	return res, ok
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsClassValue() (DNSClass, bool) {
+	res, ok := fpv.value.(DNSClass)
+	return res, ok
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsTtlValue() (uint32, bool) {
+	res, ok := fpv.value.(uint32)
+	return res, ok
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsRdlengthValue() (uint32, bool) {
+	res, ok := fpv.value.(uint32)
+	return res, ok
+}
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) AsRdataValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object DNSResourceRecord
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) SetTo(target **DNSResourceRecord) {
+	if *target == nil {
+		*target = new(DNSResourceRecord)
+	}
+	switch fpv.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		(*target).Name = fpv.value.(string)
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		(*target).Rrtype = fpv.value.(DNSResourceRecordType)
+	case DNSResourceRecord_FieldPathSelectorClass:
+		(*target).Class = fpv.value.(DNSClass)
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		(*target).Ttl = fpv.value.(uint32)
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		(*target).Rdlength = fpv.value.(uint32)
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		(*target).Rdata = fpv.value.([]string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fpv.selector))
+	}
+}
+
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*DNSResourceRecord)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'DNSResourceRecord_FieldTerminalPathValue' with the value under path in 'DNSResourceRecord'.
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) CompareWith(source *DNSResourceRecord) (int, bool) {
+	switch fpv.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		leftValue := fpv.value.(DNSResourceRecordType)
+		rightValue := source.GetRrtype()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSResourceRecord_FieldPathSelectorClass:
+		leftValue := fpv.value.(DNSClass)
+		rightValue := source.GetClass()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		leftValue := fpv.value.(uint32)
+		rightValue := source.GetTtl()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		leftValue := fpv.value.(uint32)
+		rightValue := source.GetRdlength()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for DNSResourceRecord: %d", fpv.selector))
+	}
+}
+
+func (fpv *DNSResourceRecord_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*DNSResourceRecord))
+}
+
+// DNSResourceRecord_FieldPathArrayItemValue allows storing single item in Path-specific values for DNSResourceRecord according to their type
+// Present only for array (repeated) types.
+type DNSResourceRecord_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	DNSResourceRecord_FieldPath
+	ContainsValue(*DNSResourceRecord) bool
+}
+
+// ParseDNSResourceRecord_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseDNSResourceRecord_FieldPathArrayItemValue(pathStr, valueStr string) (DNSResourceRecord_FieldPathArrayItemValue, error) {
+	fp, err := ParseDNSResourceRecord_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSResourceRecord field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(DNSResourceRecord_FieldPathArrayItemValue), nil
+}
+
+func MustParseDNSResourceRecord_FieldPathArrayItemValue(pathStr, valueStr string) DNSResourceRecord_FieldPathArrayItemValue {
+	fpaiv, err := ParseDNSResourceRecord_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type DNSResourceRecord_FieldTerminalPathArrayItemValue struct {
+	DNSResourceRecord_FieldTerminalPath
+	value interface{}
+}
+
+var _ DNSResourceRecord_FieldPathArrayItemValue = (*DNSResourceRecord_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object DNSResourceRecord as interface{}
+func (fpaiv *DNSResourceRecord_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+func (fpaiv *DNSResourceRecord_FieldTerminalPathArrayItemValue) AsRdataItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
+}
+
+func (fpaiv *DNSResourceRecord_FieldTerminalPathArrayItemValue) GetSingle(source *DNSResourceRecord) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *DNSResourceRecord_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*DNSResourceRecord))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'DNSResourceRecord'
+func (fpaiv *DNSResourceRecord_FieldTerminalPathArrayItemValue) ContainsValue(source *DNSResourceRecord) bool {
+	slice := fpaiv.DNSResourceRecord_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// DNSResourceRecord_FieldPathArrayOfValues allows storing slice of values for DNSResourceRecord fields according to their type
+type DNSResourceRecord_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	DNSResourceRecord_FieldPath
+}
+
+func ParseDNSResourceRecord_FieldPathArrayOfValues(pathStr, valuesStr string) (DNSResourceRecord_FieldPathArrayOfValues, error) {
+	fp, err := ParseDNSResourceRecord_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DNSResourceRecord field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(DNSResourceRecord_FieldPathArrayOfValues), nil
+}
+
+func MustParseDNSResourceRecord_FieldPathArrayOfValues(pathStr, valuesStr string) DNSResourceRecord_FieldPathArrayOfValues {
+	fpaov, err := ParseDNSResourceRecord_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type DNSResourceRecord_FieldTerminalPathArrayOfValues struct {
+	DNSResourceRecord_FieldTerminalPath
+	values interface{}
+}
+
+var _ DNSResourceRecord_FieldPathArrayOfValues = (*DNSResourceRecord_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case DNSResourceRecord_FieldPathSelectorName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case DNSResourceRecord_FieldPathSelectorRrtype:
+		for _, v := range fpaov.values.([]DNSResourceRecordType) {
+			values = append(values, v)
+		}
+	case DNSResourceRecord_FieldPathSelectorClass:
+		for _, v := range fpaov.values.([]DNSClass) {
+			values = append(values, v)
+		}
+	case DNSResourceRecord_FieldPathSelectorTtl:
+		for _, v := range fpaov.values.([]uint32) {
+			values = append(values, v)
+		}
+	case DNSResourceRecord_FieldPathSelectorRdlength:
+		for _, v := range fpaov.values.([]uint32) {
+			values = append(values, v)
+		}
+	case DNSResourceRecord_FieldPathSelectorRdata:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsRrtypeArrayOfValues() ([]DNSResourceRecordType, bool) {
+	res, ok := fpaov.values.([]DNSResourceRecordType)
+	return res, ok
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsClassArrayOfValues() ([]DNSClass, bool) {
+	res, ok := fpaov.values.([]DNSClass)
+	return res, ok
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsTtlArrayOfValues() ([]uint32, bool) {
+	res, ok := fpaov.values.([]uint32)
+	return res, ok
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsRdlengthArrayOfValues() ([]uint32, bool) {
+	res, ok := fpaov.values.([]uint32)
+	return res, ok
+}
+func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsRdataArrayOfValues() ([][]string, bool) {
 	res, ok := fpaov.values.([][]string)
 	return res, ok
 }

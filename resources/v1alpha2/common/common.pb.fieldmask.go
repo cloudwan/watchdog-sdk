@@ -3069,7 +3069,7 @@ func FullProbingSettings_FieldMask() *ProbingSettings_FieldMask {
 	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorTos})
 	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorWindowSize})
 	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorPathProbing})
-	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings})
+	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings})
 	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorHttpProbingConfig})
 	res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorProxyConfiguration})
 	return res
@@ -3148,13 +3148,13 @@ func (fieldMask *ProbingSettings_FieldMask) Subtract(other *ProbingSettings_Fiel
 	removedSelectors := make([]bool, 7)
 	otherSubMasks := map[ProbingSettings_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSettings_FieldPathSelectorPathProbing:        &PathProbe_FieldMask{},
-		ProbingSettings_FieldPathSelectorSpeeedtestSettings: &SpeedTestSettings_FieldMask{},
+		ProbingSettings_FieldPathSelectorSpeedtestSettings:  &SpeedTestSettings_FieldMask{},
 		ProbingSettings_FieldPathSelectorHttpProbingConfig:  &HTTPProbingConfig_FieldMask{},
 		ProbingSettings_FieldPathSelectorProxyConfiguration: &ProxyConfiguration_FieldMask{},
 	}
 	mySubMasks := map[ProbingSettings_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSettings_FieldPathSelectorPathProbing:        &PathProbe_FieldMask{},
-		ProbingSettings_FieldPathSelectorSpeeedtestSettings: &SpeedTestSettings_FieldMask{},
+		ProbingSettings_FieldPathSelectorSpeedtestSettings:  &SpeedTestSettings_FieldMask{},
 		ProbingSettings_FieldPathSelectorHttpProbingConfig:  &HTTPProbingConfig_FieldMask{},
 		ProbingSettings_FieldPathSelectorProxyConfiguration: &ProxyConfiguration_FieldMask{},
 	}
@@ -3174,8 +3174,8 @@ func (fieldMask *ProbingSettings_FieldMask) Subtract(other *ProbingSettings_Fiel
 					switch tp.selector {
 					case ProbingSettings_FieldPathSelectorPathProbing:
 						mySubMasks[ProbingSettings_FieldPathSelectorPathProbing] = FullPathProbe_FieldMask()
-					case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-						mySubMasks[ProbingSettings_FieldPathSelectorSpeeedtestSettings] = FullSpeedTestSettings_FieldMask()
+					case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+						mySubMasks[ProbingSettings_FieldPathSelectorSpeedtestSettings] = FullSpeedTestSettings_FieldMask()
 					case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 						mySubMasks[ProbingSettings_FieldPathSelectorHttpProbingConfig] = FullHTTPProbingConfig_FieldMask()
 					case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -3334,8 +3334,8 @@ func (fieldMask *ProbingSettings_FieldMask) Project(source *ProbingSettings) *Pr
 	result := &ProbingSettings{}
 	pathProbingMask := &PathProbe_FieldMask{}
 	wholePathProbingAccepted := false
-	speeedtestSettingsMask := &SpeedTestSettings_FieldMask{}
-	wholeSpeeedtestSettingsAccepted := false
+	speedtestSettingsMask := &SpeedTestSettings_FieldMask{}
+	wholeSpeedtestSettingsAccepted := false
 	httpProbingConfigMask := &HTTPProbingConfig_FieldMask{}
 	wholeHttpProbingConfigAccepted := false
 	proxyConfigurationMask := &ProxyConfiguration_FieldMask{}
@@ -3354,9 +3354,9 @@ func (fieldMask *ProbingSettings_FieldMask) Project(source *ProbingSettings) *Pr
 			case ProbingSettings_FieldPathSelectorPathProbing:
 				result.PathProbing = source.PathProbing
 				wholePathProbingAccepted = true
-			case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-				result.SpeeedtestSettings = source.SpeeedtestSettings
-				wholeSpeeedtestSettingsAccepted = true
+			case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+				result.SpeedtestSettings = source.SpeedtestSettings
+				wholeSpeedtestSettingsAccepted = true
 			case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 				result.HttpProbingConfig = source.HttpProbingConfig
 				wholeHttpProbingConfigAccepted = true
@@ -3368,8 +3368,8 @@ func (fieldMask *ProbingSettings_FieldMask) Project(source *ProbingSettings) *Pr
 			switch tp.selector {
 			case ProbingSettings_FieldPathSelectorPathProbing:
 				pathProbingMask.AppendPath(tp.subPath.(PathProbe_FieldPath))
-			case ProbingSettings_FieldPathSelectorSpeeedtestSettings:
-				speeedtestSettingsMask.AppendPath(tp.subPath.(SpeedTestSettings_FieldPath))
+			case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+				speedtestSettingsMask.AppendPath(tp.subPath.(SpeedTestSettings_FieldPath))
 			case ProbingSettings_FieldPathSelectorHttpProbingConfig:
 				httpProbingConfigMask.AppendPath(tp.subPath.(HTTPProbingConfig_FieldPath))
 			case ProbingSettings_FieldPathSelectorProxyConfiguration:
@@ -3380,8 +3380,8 @@ func (fieldMask *ProbingSettings_FieldMask) Project(source *ProbingSettings) *Pr
 	if wholePathProbingAccepted == false && len(pathProbingMask.Paths) > 0 {
 		result.PathProbing = pathProbingMask.Project(source.GetPathProbing())
 	}
-	if wholeSpeeedtestSettingsAccepted == false && len(speeedtestSettingsMask.Paths) > 0 {
-		result.SpeeedtestSettings = speeedtestSettingsMask.Project(source.GetSpeeedtestSettings())
+	if wholeSpeedtestSettingsAccepted == false && len(speedtestSettingsMask.Paths) > 0 {
+		result.SpeedtestSettings = speedtestSettingsMask.Project(source.GetSpeedtestSettings())
 	}
 	if wholeHttpProbingConfigAccepted == false && len(httpProbingConfigMask.Paths) > 0 {
 		result.HttpProbingConfig = httpProbingConfigMask.Project(source.GetHttpProbingConfig())
@@ -5349,6 +5349,533 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) ProjectRaw
 }
 
 func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type DNSQuery_FieldMask struct {
+	Paths []DNSQuery_FieldPath
+}
+
+func FullDNSQuery_FieldMask() *DNSQuery_FieldMask {
+	res := &DNSQuery_FieldMask{}
+	res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorName})
+	res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQtype})
+	res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQclass})
+	return res
+}
+
+func (fieldMask *DNSQuery_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *DNSQuery_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *DNSQuery_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseDNSQuery_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *DNSQuery_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 3)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*DNSQuery_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *DNSQuery_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseDNSQuery_FieldPath(raw)
+	})
+}
+
+func (fieldMask *DNSQuery_FieldMask) ProtoMessage() {}
+
+func (fieldMask *DNSQuery_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *DNSQuery_FieldMask) Subtract(other *DNSQuery_FieldMask) *DNSQuery_FieldMask {
+	result := &DNSQuery_FieldMask{}
+	removedSelectors := make([]bool, 3)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *DNSQuery_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *DNSQuery_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*DNSQuery_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *DNSQuery_FieldMask) FilterInputFields() *DNSQuery_FieldMask {
+	result := &DNSQuery_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *DNSQuery_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *DNSQuery_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]DNSQuery_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseDNSQuery_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask DNSQuery_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *DNSQuery_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *DNSQuery_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask DNSQuery_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *DNSQuery_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *DNSQuery_FieldMask) AppendPath(path DNSQuery_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *DNSQuery_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(DNSQuery_FieldPath))
+}
+
+func (fieldMask *DNSQuery_FieldMask) GetPaths() []DNSQuery_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *DNSQuery_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *DNSQuery_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseDNSQuery_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *DNSQuery_FieldMask) Set(target, source *DNSQuery) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *DNSQuery_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*DNSQuery), source.(*DNSQuery))
+}
+
+func (fieldMask *DNSQuery_FieldMask) Project(source *DNSQuery) *DNSQuery {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &DNSQuery{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *DNSQuery_FieldTerminalPath:
+			switch tp.selector {
+			case DNSQuery_FieldPathSelectorName:
+				result.Name = source.Name
+			case DNSQuery_FieldPathSelectorQtype:
+				result.Qtype = source.Qtype
+			case DNSQuery_FieldPathSelectorQclass:
+				result.Qclass = source.Qclass
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *DNSQuery_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*DNSQuery))
+}
+
+func (fieldMask *DNSQuery_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type DNSResourceRecord_FieldMask struct {
+	Paths []DNSResourceRecord_FieldPath
+}
+
+func FullDNSResourceRecord_FieldMask() *DNSResourceRecord_FieldMask {
+	res := &DNSResourceRecord_FieldMask{}
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorName})
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRrtype})
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorClass})
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorTtl})
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdlength})
+	res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdata})
+	return res
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *DNSResourceRecord_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseDNSResourceRecord_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 6)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*DNSResourceRecord_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseDNSResourceRecord_FieldPath(raw)
+	})
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) ProtoMessage() {}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Subtract(other *DNSResourceRecord_FieldMask) *DNSResourceRecord_FieldMask {
+	result := &DNSResourceRecord_FieldMask{}
+	removedSelectors := make([]bool, 6)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *DNSResourceRecord_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*DNSResourceRecord_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *DNSResourceRecord_FieldMask) FilterInputFields() *DNSResourceRecord_FieldMask {
+	result := &DNSResourceRecord_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *DNSResourceRecord_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]DNSResourceRecord_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseDNSResourceRecord_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask DNSResourceRecord_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask DNSResourceRecord_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) AppendPath(path DNSResourceRecord_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(DNSResourceRecord_FieldPath))
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) GetPaths() []DNSResourceRecord_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseDNSResourceRecord_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Set(target, source *DNSResourceRecord) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*DNSResourceRecord), source.(*DNSResourceRecord))
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) Project(source *DNSResourceRecord) *DNSResourceRecord {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &DNSResourceRecord{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *DNSResourceRecord_FieldTerminalPath:
+			switch tp.selector {
+			case DNSResourceRecord_FieldPathSelectorName:
+				result.Name = source.Name
+			case DNSResourceRecord_FieldPathSelectorRrtype:
+				result.Rrtype = source.Rrtype
+			case DNSResourceRecord_FieldPathSelectorClass:
+				result.Class = source.Class
+			case DNSResourceRecord_FieldPathSelectorTtl:
+				result.Ttl = source.Ttl
+			case DNSResourceRecord_FieldPathSelectorRdlength:
+				result.Rdlength = source.Rdlength
+			case DNSResourceRecord_FieldPathSelectorRdata:
+				result.Rdata = source.Rdata
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*DNSResourceRecord))
+}
+
+func (fieldMask *DNSResourceRecord_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

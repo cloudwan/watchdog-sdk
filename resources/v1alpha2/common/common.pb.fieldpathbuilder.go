@@ -1428,8 +1428,8 @@ func (ProbingSettingsFieldPathBuilder) WindowSize() ProbingSettingsPathSelectorW
 func (ProbingSettingsFieldPathBuilder) PathProbing() ProbingSettingsPathSelectorPathProbing {
 	return ProbingSettingsPathSelectorPathProbing{}
 }
-func (ProbingSettingsFieldPathBuilder) SpeeedtestSettings() ProbingSettingsPathSelectorSpeeedtestSettings {
-	return ProbingSettingsPathSelectorSpeeedtestSettings{}
+func (ProbingSettingsFieldPathBuilder) SpeedtestSettings() ProbingSettingsPathSelectorSpeedtestSettings {
+	return ProbingSettingsPathSelectorSpeedtestSettings{}
 }
 func (ProbingSettingsFieldPathBuilder) HttpProbingConfig() ProbingSettingsPathSelectorHttpProbingConfig {
 	return ProbingSettingsPathSelectorHttpProbingConfig{}
@@ -1636,138 +1636,138 @@ func (s ProbingSettingsPathSelectorPathProbingMaxTtl) WithArrayOfValues(values [
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettings struct{}
+type ProbingSettingsPathSelectorSpeedtestSettings struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) FieldPath() *ProbingSettings_FieldTerminalPath {
-	return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings}
+func (ProbingSettingsPathSelectorSpeedtestSettings) FieldPath() *ProbingSettings_FieldTerminalPath {
+	return &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettings) WithValue(value *SpeedTestSettings) *ProbingSettings_FieldTerminalPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettings) WithValue(value *SpeedTestSettings) *ProbingSettings_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldTerminalPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettings) WithArrayOfValues(values []*SpeedTestSettings) *ProbingSettings_FieldTerminalPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettings) WithArrayOfValues(values []*SpeedTestSettings) *ProbingSettings_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldTerminalPathArrayOfValues)
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) WithSubPath(subPath SpeedTestSettings_FieldPath) *ProbingSettings_FieldSubPath {
-	return &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings, subPath: subPath}
+func (ProbingSettingsPathSelectorSpeedtestSettings) WithSubPath(subPath SpeedTestSettings_FieldPath) *ProbingSettings_FieldSubPath {
+	return &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings, subPath: subPath}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettings) WithSubValue(subPathValue SpeedTestSettings_FieldPathValue) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettings) WithSubValue(subPathValue SpeedTestSettings_FieldPathValue) *ProbingSettings_FieldSubPathValue {
 	return &ProbingSettings_FieldSubPathValue{ProbingSettings_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettings) WithSubArrayOfValues(subPathArrayOfValues SpeedTestSettings_FieldPathArrayOfValues) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettings) WithSubArrayOfValues(subPathArrayOfValues SpeedTestSettings_FieldPathArrayOfValues) *ProbingSettings_FieldSubPathArrayOfValues {
 	return &ProbingSettings_FieldSubPathArrayOfValues{ProbingSettings_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettings) WithSubArrayItemValue(subPathArrayItemValue SpeedTestSettings_FieldPathArrayItemValue) *ProbingSettings_FieldSubPathArrayItemValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettings) WithSubArrayItemValue(subPathArrayItemValue SpeedTestSettings_FieldPathArrayItemValue) *ProbingSettings_FieldSubPathArrayItemValue {
 	return &ProbingSettings_FieldSubPathArrayItemValue{ProbingSettings_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) Duration() ProbingSettingsPathSelectorSpeeedtestSettingsDuration {
-	return ProbingSettingsPathSelectorSpeeedtestSettingsDuration{}
+func (ProbingSettingsPathSelectorSpeedtestSettings) Duration() ProbingSettingsPathSelectorSpeedtestSettingsDuration {
+	return ProbingSettingsPathSelectorSpeedtestSettingsDuration{}
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) UseTls() ProbingSettingsPathSelectorSpeeedtestSettingsUseTls {
-	return ProbingSettingsPathSelectorSpeeedtestSettingsUseTls{}
+func (ProbingSettingsPathSelectorSpeedtestSettings) UseTls() ProbingSettingsPathSelectorSpeedtestSettingsUseTls {
+	return ProbingSettingsPathSelectorSpeedtestSettingsUseTls{}
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) ServerSelection() ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection {
-	return ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection{}
+func (ProbingSettingsPathSelectorSpeedtestSettings) ServerSelection() ProbingSettingsPathSelectorSpeedtestSettingsServerSelection {
+	return ProbingSettingsPathSelectorSpeedtestSettingsServerSelection{}
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) TcpPort() ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort {
-	return ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort{}
+func (ProbingSettingsPathSelectorSpeedtestSettings) TcpPort() ProbingSettingsPathSelectorSpeedtestSettingsTcpPort {
+	return ProbingSettingsPathSelectorSpeedtestSettingsTcpPort{}
 }
 
-func (ProbingSettingsPathSelectorSpeeedtestSettings) TlsPort() ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort {
-	return ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort{}
+func (ProbingSettingsPathSelectorSpeedtestSettings) TlsPort() ProbingSettingsPathSelectorSpeedtestSettingsTlsPort {
+	return ProbingSettingsPathSelectorSpeedtestSettingsTlsPort{}
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettingsDuration struct{}
+type ProbingSettingsPathSelectorSpeedtestSettingsDuration struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettingsDuration) FieldPath() *ProbingSettings_FieldSubPath {
+func (ProbingSettingsPathSelectorSpeedtestSettingsDuration) FieldPath() *ProbingSettings_FieldSubPath {
 	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings,
+		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
 		subPath:  NewSpeedTestSettingsFieldPathBuilder().Duration().FieldPath(),
 	}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingSettings_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettingsUseTls struct{}
+type ProbingSettingsPathSelectorSpeedtestSettingsUseTls struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettingsUseTls) FieldPath() *ProbingSettings_FieldSubPath {
+func (ProbingSettingsPathSelectorSpeedtestSettingsUseTls) FieldPath() *ProbingSettings_FieldSubPath {
 	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings,
+		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
 		subPath:  NewSpeedTestSettingsFieldPathBuilder().UseTls().FieldPath(),
 	}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsUseTls) WithValue(value bool) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsUseTls) WithValue(value bool) *ProbingSettings_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection struct{}
+type ProbingSettingsPathSelectorSpeedtestSettingsServerSelection struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection) FieldPath() *ProbingSettings_FieldSubPath {
+func (ProbingSettingsPathSelectorSpeedtestSettingsServerSelection) FieldPath() *ProbingSettings_FieldSubPath {
 	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings,
+		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
 		subPath:  NewSpeedTestSettingsFieldPathBuilder().ServerSelection().FieldPath(),
 	}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection) WithValue(value SpeedTestSettings_ServerSelection) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsServerSelection) WithValue(value SpeedTestSettings_ServerSelection) *ProbingSettings_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsServerSelection) WithArrayOfValues(values []SpeedTestSettings_ServerSelection) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsServerSelection) WithArrayOfValues(values []SpeedTestSettings_ServerSelection) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort struct{}
+type ProbingSettingsPathSelectorSpeedtestSettingsTcpPort struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort) FieldPath() *ProbingSettings_FieldSubPath {
+func (ProbingSettingsPathSelectorSpeedtestSettingsTcpPort) FieldPath() *ProbingSettings_FieldSubPath {
 	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings,
+		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
 		subPath:  NewSpeedTestSettingsFieldPathBuilder().TcpPort().FieldPath(),
 	}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsTcpPort) WithValue(value int32) *ProbingSettings_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
-type ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort struct{}
+type ProbingSettingsPathSelectorSpeedtestSettingsTlsPort struct{}
 
-func (ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort) FieldPath() *ProbingSettings_FieldSubPath {
+func (ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) FieldPath() *ProbingSettings_FieldSubPath {
 	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings,
+		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
 		subPath:  NewSpeedTestSettingsFieldPathBuilder().TlsPort().FieldPath(),
 	}
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingSettings_FieldSubPathValue {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingSettings_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
 }
 
-func (s ProbingSettingsPathSelectorSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
+func (s ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
@@ -3946,4 +3946,173 @@ func (s HTTPProbingConfig_HTTPRequest_StringArrayPathSelectorValue) WithArrayOfV
 
 func (s HTTPProbingConfig_HTTPRequest_StringArrayPathSelectorValue) WithItemValue(value string) *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue)
+}
+
+type DNSQueryFieldPathBuilder struct{}
+
+func NewDNSQueryFieldPathBuilder() DNSQueryFieldPathBuilder {
+	return DNSQueryFieldPathBuilder{}
+}
+func (DNSQueryFieldPathBuilder) Name() DNSQueryPathSelectorName {
+	return DNSQueryPathSelectorName{}
+}
+func (DNSQueryFieldPathBuilder) Qtype() DNSQueryPathSelectorQtype {
+	return DNSQueryPathSelectorQtype{}
+}
+func (DNSQueryFieldPathBuilder) Qclass() DNSQueryPathSelectorQclass {
+	return DNSQueryPathSelectorQclass{}
+}
+
+type DNSQueryPathSelectorName struct{}
+
+func (DNSQueryPathSelectorName) FieldPath() *DNSQuery_FieldTerminalPath {
+	return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorName}
+}
+
+func (s DNSQueryPathSelectorName) WithValue(value string) *DNSQuery_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSQuery_FieldTerminalPathValue)
+}
+
+func (s DNSQueryPathSelectorName) WithArrayOfValues(values []string) *DNSQuery_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSQuery_FieldTerminalPathArrayOfValues)
+}
+
+type DNSQueryPathSelectorQtype struct{}
+
+func (DNSQueryPathSelectorQtype) FieldPath() *DNSQuery_FieldTerminalPath {
+	return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQtype}
+}
+
+func (s DNSQueryPathSelectorQtype) WithValue(value DNSResourceRecordType) *DNSQuery_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSQuery_FieldTerminalPathValue)
+}
+
+func (s DNSQueryPathSelectorQtype) WithArrayOfValues(values []DNSResourceRecordType) *DNSQuery_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSQuery_FieldTerminalPathArrayOfValues)
+}
+
+type DNSQueryPathSelectorQclass struct{}
+
+func (DNSQueryPathSelectorQclass) FieldPath() *DNSQuery_FieldTerminalPath {
+	return &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQclass}
+}
+
+func (s DNSQueryPathSelectorQclass) WithValue(value DNSClass) *DNSQuery_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSQuery_FieldTerminalPathValue)
+}
+
+func (s DNSQueryPathSelectorQclass) WithArrayOfValues(values []DNSClass) *DNSQuery_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSQuery_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordFieldPathBuilder struct{}
+
+func NewDNSResourceRecordFieldPathBuilder() DNSResourceRecordFieldPathBuilder {
+	return DNSResourceRecordFieldPathBuilder{}
+}
+func (DNSResourceRecordFieldPathBuilder) Name() DNSResourceRecordPathSelectorName {
+	return DNSResourceRecordPathSelectorName{}
+}
+func (DNSResourceRecordFieldPathBuilder) Rrtype() DNSResourceRecordPathSelectorRrtype {
+	return DNSResourceRecordPathSelectorRrtype{}
+}
+func (DNSResourceRecordFieldPathBuilder) Class() DNSResourceRecordPathSelectorClass {
+	return DNSResourceRecordPathSelectorClass{}
+}
+func (DNSResourceRecordFieldPathBuilder) Ttl() DNSResourceRecordPathSelectorTtl {
+	return DNSResourceRecordPathSelectorTtl{}
+}
+func (DNSResourceRecordFieldPathBuilder) Rdlength() DNSResourceRecordPathSelectorRdlength {
+	return DNSResourceRecordPathSelectorRdlength{}
+}
+func (DNSResourceRecordFieldPathBuilder) Rdata() DNSResourceRecordPathSelectorRdata {
+	return DNSResourceRecordPathSelectorRdata{}
+}
+
+type DNSResourceRecordPathSelectorName struct{}
+
+func (DNSResourceRecordPathSelectorName) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorName}
+}
+
+func (s DNSResourceRecordPathSelectorName) WithValue(value string) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorName) WithArrayOfValues(values []string) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordPathSelectorRrtype struct{}
+
+func (DNSResourceRecordPathSelectorRrtype) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRrtype}
+}
+
+func (s DNSResourceRecordPathSelectorRrtype) WithValue(value DNSResourceRecordType) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorRrtype) WithArrayOfValues(values []DNSResourceRecordType) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordPathSelectorClass struct{}
+
+func (DNSResourceRecordPathSelectorClass) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorClass}
+}
+
+func (s DNSResourceRecordPathSelectorClass) WithValue(value DNSClass) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorClass) WithArrayOfValues(values []DNSClass) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordPathSelectorTtl struct{}
+
+func (DNSResourceRecordPathSelectorTtl) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorTtl}
+}
+
+func (s DNSResourceRecordPathSelectorTtl) WithValue(value uint32) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorTtl) WithArrayOfValues(values []uint32) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordPathSelectorRdlength struct{}
+
+func (DNSResourceRecordPathSelectorRdlength) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdlength}
+}
+
+func (s DNSResourceRecordPathSelectorRdlength) WithValue(value uint32) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorRdlength) WithArrayOfValues(values []uint32) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+type DNSResourceRecordPathSelectorRdata struct{}
+
+func (DNSResourceRecordPathSelectorRdata) FieldPath() *DNSResourceRecord_FieldTerminalPath {
+	return &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdata}
+}
+
+func (s DNSResourceRecordPathSelectorRdata) WithValue(value []string) *DNSResourceRecord_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DNSResourceRecord_FieldTerminalPathValue)
+}
+
+func (s DNSResourceRecordPathSelectorRdata) WithArrayOfValues(values [][]string) *DNSResourceRecord_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DNSResourceRecord_FieldTerminalPathArrayOfValues)
+}
+
+func (s DNSResourceRecordPathSelectorRdata) WithItemValue(value string) *DNSResourceRecord_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*DNSResourceRecord_FieldTerminalPathArrayItemValue)
 }

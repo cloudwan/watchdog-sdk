@@ -911,12 +911,12 @@ func (o *ProbingSettings) MakeDiffFieldMask(other *ProbingSettings) *ProbingSett
 		}
 	}
 	{
-		subMask := o.GetSpeeedtestSettings().MakeDiffFieldMask(other.GetSpeeedtestSettings())
+		subMask := o.GetSpeedtestSettings().MakeDiffFieldMask(other.GetSpeedtestSettings())
 		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings})
+			res.Paths = append(res.Paths, &ProbingSettings_FieldTerminalPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings})
 		} else {
 			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeeedtestSettings, subPath: subpath})
+				res.Paths = append(res.Paths, &ProbingSettings_FieldSubPath{selector: ProbingSettings_FieldPathSelectorSpeedtestSettings, subPath: subpath})
 			}
 		}
 	}
@@ -956,7 +956,7 @@ func (o *ProbingSettings) Clone() *ProbingSettings {
 	result.Tos = proto.Clone(o.Tos).(*wrappers.UInt32Value)
 	result.WindowSize = proto.Clone(o.WindowSize).(*wrappers.UInt32Value)
 	result.PathProbing = o.PathProbing.Clone()
-	result.SpeeedtestSettings = o.SpeeedtestSettings.Clone()
+	result.SpeedtestSettings = o.SpeedtestSettings.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
 	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
 	return result
@@ -991,11 +991,11 @@ func (o *ProbingSettings) Merge(source *ProbingSettings) {
 		}
 		o.PathProbing.Merge(source.GetPathProbing())
 	}
-	if source.GetSpeeedtestSettings() != nil {
-		if o.SpeeedtestSettings == nil {
-			o.SpeeedtestSettings = new(SpeedTestSettings)
+	if source.GetSpeedtestSettings() != nil {
+		if o.SpeedtestSettings == nil {
+			o.SpeedtestSettings = new(SpeedTestSettings)
 		}
-		o.SpeeedtestSettings.Merge(source.GetSpeeedtestSettings())
+		o.SpeedtestSettings.Merge(source.GetSpeedtestSettings())
 	}
 	if source.GetHttpProbingConfig() != nil {
 		if o.HttpProbingConfig == nil {
@@ -1588,4 +1588,165 @@ func (o *HTTPProbingConfig_HTTPRequest_StringArray) Merge(source *HTTPProbingCon
 
 func (o *HTTPProbingConfig_HTTPRequest_StringArray) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
+}
+
+func (o *DNSQuery) GotenObjectExt() {}
+
+func (o *DNSQuery) MakeFullFieldMask() *DNSQuery_FieldMask {
+	return FullDNSQuery_FieldMask()
+}
+
+func (o *DNSQuery) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullDNSQuery_FieldMask()
+}
+
+func (o *DNSQuery) MakeDiffFieldMask(other *DNSQuery) *DNSQuery_FieldMask {
+	if o == nil && other == nil {
+		return &DNSQuery_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullDNSQuery_FieldMask()
+	}
+
+	res := &DNSQuery_FieldMask{}
+	if o.GetName() != other.GetName() {
+		res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorName})
+	}
+	if o.GetQtype() != other.GetQtype() {
+		res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQtype})
+	}
+	if o.GetQclass() != other.GetQclass() {
+		res.Paths = append(res.Paths, &DNSQuery_FieldTerminalPath{selector: DNSQuery_FieldPathSelectorQclass})
+	}
+	return res
+}
+
+func (o *DNSQuery) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*DNSQuery))
+}
+
+func (o *DNSQuery) Clone() *DNSQuery {
+	if o == nil {
+		return nil
+	}
+	result := &DNSQuery{}
+	result.Name = o.Name
+	result.Qtype = o.Qtype
+	result.Qclass = o.Qclass
+	return result
+}
+
+func (o *DNSQuery) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *DNSQuery) Merge(source *DNSQuery) {
+	o.Name = source.GetName()
+	o.Qtype = source.GetQtype()
+	o.Qclass = source.GetQclass()
+}
+
+func (o *DNSQuery) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*DNSQuery))
+}
+
+func (o *DNSResourceRecord) GotenObjectExt() {}
+
+func (o *DNSResourceRecord) MakeFullFieldMask() *DNSResourceRecord_FieldMask {
+	return FullDNSResourceRecord_FieldMask()
+}
+
+func (o *DNSResourceRecord) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullDNSResourceRecord_FieldMask()
+}
+
+func (o *DNSResourceRecord) MakeDiffFieldMask(other *DNSResourceRecord) *DNSResourceRecord_FieldMask {
+	if o == nil && other == nil {
+		return &DNSResourceRecord_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullDNSResourceRecord_FieldMask()
+	}
+
+	res := &DNSResourceRecord_FieldMask{}
+	if o.GetName() != other.GetName() {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorName})
+	}
+	if o.GetRrtype() != other.GetRrtype() {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRrtype})
+	}
+	if o.GetClass() != other.GetClass() {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorClass})
+	}
+	if o.GetTtl() != other.GetTtl() {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorTtl})
+	}
+	if o.GetRdlength() != other.GetRdlength() {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdlength})
+	}
+
+	if len(o.GetRdata()) == len(other.GetRdata()) {
+		for i, lValue := range o.GetRdata() {
+			rValue := other.GetRdata()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdata})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &DNSResourceRecord_FieldTerminalPath{selector: DNSResourceRecord_FieldPathSelectorRdata})
+	}
+	return res
+}
+
+func (o *DNSResourceRecord) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*DNSResourceRecord))
+}
+
+func (o *DNSResourceRecord) Clone() *DNSResourceRecord {
+	if o == nil {
+		return nil
+	}
+	result := &DNSResourceRecord{}
+	result.Name = o.Name
+	result.Rrtype = o.Rrtype
+	result.Class = o.Class
+	result.Ttl = o.Ttl
+	result.Rdlength = o.Rdlength
+	result.Rdata = make([]string, len(o.Rdata))
+	for i, sourceValue := range o.Rdata {
+		result.Rdata[i] = sourceValue
+	}
+	return result
+}
+
+func (o *DNSResourceRecord) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *DNSResourceRecord) Merge(source *DNSResourceRecord) {
+	o.Name = source.GetName()
+	o.Rrtype = source.GetRrtype()
+	o.Class = source.GetClass()
+	o.Ttl = source.GetTtl()
+	o.Rdlength = source.GetRdlength()
+	for _, sourceValue := range source.GetRdata() {
+		exists := false
+		for _, currentValue := range o.Rdata {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.Rdata = append(o.Rdata, newDstElement)
+		}
+	}
+
+}
+
+func (o *DNSResourceRecord) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*DNSResourceRecord))
 }

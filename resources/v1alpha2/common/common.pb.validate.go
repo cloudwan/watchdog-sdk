@@ -233,9 +233,9 @@ func (obj *ProbingSettings) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ProbingSettings", "pathProbing", obj.PathProbing, "nested object validation failed", err)
 		}
 	}
-	if subobj, ok := interface{}(obj.SpeeedtestSettings).(gotenvalidate.Validator); ok {
+	if subobj, ok := interface{}(obj.SpeedtestSettings).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSettings", "speeedtestSettings", obj.SpeeedtestSettings, "nested object validation failed", err)
+			return gotenvalidate.NewValidationError("ProbingSettings", "speedtestSettings", obj.SpeedtestSettings, "nested object validation failed", err)
 		}
 	}
 	if subobj, ok := interface{}(obj.HttpProbingConfig).(gotenvalidate.Validator); ok {
@@ -329,6 +329,24 @@ func (obj *HTTPProbingConfig_HTTPAuth) GotenValidate() error {
 	return nil
 }
 func (obj *HTTPProbingConfig_HTTPRequest_StringArray) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *DNSQuery) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *DNSResourceRecord) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}

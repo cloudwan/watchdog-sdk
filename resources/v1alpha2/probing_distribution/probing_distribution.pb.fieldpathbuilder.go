@@ -925,8 +925,8 @@ func (ProbingDistributionPathSelectorSpecProbingSettings) PathProbing() ProbingD
 	return ProbingDistributionPathSelectorSpecProbingSettingsPathProbing{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettings) SpeeedtestSettings() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings{}
+func (ProbingDistributionPathSelectorSpecProbingSettings) SpeedtestSettings() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings{}
 }
 
 func (ProbingDistributionPathSelectorSpecProbingSettings) HttpProbingConfig() ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfig {
@@ -1131,125 +1131,125 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsPathProbingMaxTtl) Wit
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) Duration() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration{}
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) Duration() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) UseTls() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls{}
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) UseTls() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) ServerSelection() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection{}
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) ServerSelection() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) TcpPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort{}
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) TcpPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettings) TlsPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort{}
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) TlsPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort {
+	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort{}
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().Duration().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().Duration().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().UseTls().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().UseTls().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls) WithValue(value bool) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) WithValue(value bool) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().ServerSelection().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().ServerSelection().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().TcpPort().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().TcpPort().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort struct{}
+type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort struct{}
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) FieldPath() *ProbingDistribution_FieldSubPath {
+func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) FieldPath() *ProbingDistribution_FieldSubPath {
 	return &ProbingDistribution_FieldSubPath{
 		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeeedtestSettings().TlsPort().FieldPath(),
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().TlsPort().FieldPath(),
 	}
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
 }
 
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
+func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -2390,8 +2390,8 @@ func (ProbingDistribution_SpecPathSelectorProbingSettings) PathProbing() Probing
 	return ProbingDistribution_SpecPathSelectorProbingSettingsPathProbing{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettings) SpeeedtestSettings() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings{}
+func (ProbingDistribution_SpecPathSelectorProbingSettings) SpeedtestSettings() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings{}
 }
 
 func (ProbingDistribution_SpecPathSelectorProbingSettings) HttpProbingConfig() ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfig {
@@ -2596,125 +2596,125 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsPathProbingMaxTtl) Wi
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) Duration() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration{}
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) Duration() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) UseTls() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls{}
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) UseTls() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) ServerSelection() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection{}
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) ServerSelection() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) TcpPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort{}
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) TcpPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettings) TlsPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort{}
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) TlsPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort {
+	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort{}
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().Duration().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().Duration().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().UseTls().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls) WithValue(value bool) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) WithValue(value bool) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().ServerSelection().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().ServerSelection().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TcpPort().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().TcpPort().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort struct{}
+type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort struct{}
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
+func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
 	return &ProbingDistributionSpec_FieldSubPath{
 		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeeedtestSettings().TlsPort().FieldPath(),
+		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
 	}
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
 }
 
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
+func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 

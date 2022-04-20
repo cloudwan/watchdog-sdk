@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/protobuf/duration.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test;dns_query_test_client";
+option java_multiple_files = false;
+option java_outer_classname = "DNSQueryTestCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method
+// [RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]
+message RunDNSQueryTestRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  // Query
+  //
+  // If unspecified,
+  // (name, qtype, qclass) = (".", A, IN) will be picked respectively
+  DNSQuery query = 2;
+
+  // Name server's address
+  //
+  // If unspecified, agent will pick the first entry from /etc/resolv.conf
+  // If failed, fall back to choose 8.8.8.8
+  string server = 3;
+
+  // Name server's port number
+  //
+  // If unspecified, agent will pick 53
+  uint32 port = 4;
+
+  // Whether use TCP or UDP to send DNS query
+  //
+  // If unspecified, agent will use UDP
+  bool tcp = 5;
+
+  // Whether skip recusion desired option to send DNS query
+  //
+  // If unspecified, agent will set the option
+  bool no_recursion_desired = 6;
+
+  // Whether reverse the DNS query
+  //
+  // If unspecified, agent will skip the option
+  //
+  // Specifying true means
+  // - overwrite the qestion's class to PTR
+  // - and make the query's name reversed (eg. 8.8.4.4
+  // to 4.4.8.8.in-addr.arpa.)
+  bool reverse = 7;
+}
+
+// Response message for method
+// [RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]
+message RunDNSQueryTestResponse {
+  // Message identifier
+  uint32 id = 1;
+
+  // Message respoonse code
+  // The notifion would follow
+  // https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+  string rcode = 2;
+
+  // Flags in the message
+  // A list of elements are as follows
+  // qr: Query Response
+  // aa: Authoritative Answer
+  // tc: Truncated Response
+  // rd: Recursion Desired
+  // ra: Recursion Available
+  //  z: Zero
+  // ad: Authentic Data
+  // cd: Checking Disabled
+  repeated string flags = 3;
+
+  // Query section
+  repeated DNSQuery queries = 4;
+
+  // Answer section
+  repeated DNSResourceRecord answers = 5;
+
+  // Authority section
+  repeated DNSResourceRecord ns = 6;
+
+  // Additional section
+  repeated DNSResourceRecord extras = 7;
+
+  // RTT to exchange the message
+  google.protobuf.Duration rtt = 8;
+}
+
+message RunDNSQueryTestRequestToProbe {
+  DNSQuery query = 1;
+
+  string server = 2;
+
+  uint32 port = 3;
+
+  bool tcp = 4;
+
+  bool no_recursion_desired = 5;
+
+  bool reverse = 6;
+}
