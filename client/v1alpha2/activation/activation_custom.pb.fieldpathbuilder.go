@@ -3778,6 +3778,10 @@ func (ActivationRequestPathSelectorActivateProbeStatusBandwidth) TestServer() Ac
 	return ActivationRequestPathSelectorActivateProbeStatusBandwidthTestServer{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeStatusBandwidth) ServerIpAddress() ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress {
+	return ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress{}
+}
+
 func (ActivationRequestPathSelectorActivateProbeStatusBandwidth) LastReported() ActivationRequestPathSelectorActivateProbeStatusBandwidthLastReported {
 	return ActivationRequestPathSelectorActivateProbeStatusBandwidthLastReported{}
 }
@@ -3830,6 +3834,23 @@ func (s ActivationRequestPathSelectorActivateProbeStatusBandwidthTestServer) Wit
 }
 
 func (s ActivationRequestPathSelectorActivateProbeStatusBandwidthTestServer) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7782,6 +7803,10 @@ func (ActivationRequest_ActivatePathSelectorProbeStatusBandwidth) TestServer() A
 	return ActivationRequest_ActivatePathSelectorProbeStatusBandwidthTestServer{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeStatusBandwidth) ServerIpAddress() ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress {
+	return ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress{}
+}
+
 func (ActivationRequest_ActivatePathSelectorProbeStatusBandwidth) LastReported() ActivationRequest_ActivatePathSelectorProbeStatusBandwidthLastReported {
 	return ActivationRequest_ActivatePathSelectorProbeStatusBandwidthLastReported{}
 }
@@ -7834,6 +7859,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeStatusBandwidthTestServer) Wi
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeStatusBandwidthTestServer) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -11743,6 +11785,10 @@ func (ActivationResponsePathSelectorActivatedProbeStatusBandwidth) TestServer() 
 	return ActivationResponsePathSelectorActivatedProbeStatusBandwidthTestServer{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeStatusBandwidth) ServerIpAddress() ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress {
+	return ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress{}
+}
+
 func (ActivationResponsePathSelectorActivatedProbeStatusBandwidth) LastReported() ActivationResponsePathSelectorActivatedProbeStatusBandwidthLastReported {
 	return ActivationResponsePathSelectorActivatedProbeStatusBandwidthLastReported{}
 }
@@ -11795,6 +11841,23 @@ func (s ActivationResponsePathSelectorActivatedProbeStatusBandwidthTestServer) W
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeStatusBandwidthTestServer) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -16317,6 +16380,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeStatusBandwidth) TestServer()
 	return ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthTestServer{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeStatusBandwidth) ServerIpAddress() ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorProbeStatusBandwidth) LastReported() ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthLastReported {
 	return ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthLastReported{}
 }
@@ -16369,6 +16436,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthTestServer) 
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthTestServer) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

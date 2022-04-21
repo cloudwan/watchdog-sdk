@@ -3694,6 +3694,10 @@ func (ProbePathSelectorStatusBandwidth) TestServer() ProbePathSelectorStatusBand
 	return ProbePathSelectorStatusBandwidthTestServer{}
 }
 
+func (ProbePathSelectorStatusBandwidth) ServerIpAddress() ProbePathSelectorStatusBandwidthServerIpAddress {
+	return ProbePathSelectorStatusBandwidthServerIpAddress{}
+}
+
 func (ProbePathSelectorStatusBandwidth) LastReported() ProbePathSelectorStatusBandwidthLastReported {
 	return ProbePathSelectorStatusBandwidthLastReported{}
 }
@@ -3746,6 +3750,23 @@ func (s ProbePathSelectorStatusBandwidthTestServer) WithValue(value string) *Pro
 }
 
 func (s ProbePathSelectorStatusBandwidthTestServer) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorStatusBandwidthServerIpAddress struct{}
+
+func (ProbePathSelectorStatusBandwidthServerIpAddress) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusBandwidthServerIpAddress) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
@@ -7067,6 +7088,10 @@ func (Probe_StatusPathSelectorBandwidth) TestServer() Probe_StatusPathSelectorBa
 	return Probe_StatusPathSelectorBandwidthTestServer{}
 }
 
+func (Probe_StatusPathSelectorBandwidth) ServerIpAddress() Probe_StatusPathSelectorBandwidthServerIpAddress {
+	return Probe_StatusPathSelectorBandwidthServerIpAddress{}
+}
+
 func (Probe_StatusPathSelectorBandwidth) LastReported() Probe_StatusPathSelectorBandwidthLastReported {
 	return Probe_StatusPathSelectorBandwidthLastReported{}
 }
@@ -7119,6 +7144,23 @@ func (s Probe_StatusPathSelectorBandwidthTestServer) WithValue(value string) *Pr
 }
 
 func (s Probe_StatusPathSelectorBandwidthTestServer) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
+}
+
+type Probe_StatusPathSelectorBandwidthServerIpAddress struct{}
+
+func (Probe_StatusPathSelectorBandwidthServerIpAddress) FieldPath() *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{
+		selector: ProbeStatus_FieldPathSelectorBandwidth,
+		subPath:  NewProbeStatusBandwidthFieldPathBuilder().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s Probe_StatusPathSelectorBandwidthServerIpAddress) WithValue(value string) *ProbeStatus_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldSubPathValue)
+}
+
+func (s Probe_StatusPathSelectorBandwidthServerIpAddress) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
 }
 
@@ -8153,6 +8195,9 @@ func (ProbeStatusBandwidthFieldPathBuilder) DownloadMbps() Probe_Status_Bandwidt
 func (ProbeStatusBandwidthFieldPathBuilder) TestServer() Probe_Status_BandwidthPathSelectorTestServer {
 	return Probe_Status_BandwidthPathSelectorTestServer{}
 }
+func (ProbeStatusBandwidthFieldPathBuilder) ServerIpAddress() Probe_Status_BandwidthPathSelectorServerIpAddress {
+	return Probe_Status_BandwidthPathSelectorServerIpAddress{}
+}
 func (ProbeStatusBandwidthFieldPathBuilder) LastReported() Probe_Status_BandwidthPathSelectorLastReported {
 	return Probe_Status_BandwidthPathSelectorLastReported{}
 }
@@ -8196,6 +8241,20 @@ func (s Probe_Status_BandwidthPathSelectorTestServer) WithValue(value string) *P
 }
 
 func (s Probe_Status_BandwidthPathSelectorTestServer) WithArrayOfValues(values []string) *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusBandwidth_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_BandwidthPathSelectorServerIpAddress struct{}
+
+func (Probe_Status_BandwidthPathSelectorServerIpAddress) FieldPath() *ProbeStatusBandwidth_FieldTerminalPath {
+	return &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorServerIpAddress}
+}
+
+func (s Probe_Status_BandwidthPathSelectorServerIpAddress) WithValue(value string) *ProbeStatusBandwidth_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusBandwidth_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_BandwidthPathSelectorServerIpAddress) WithArrayOfValues(values []string) *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusBandwidth_FieldTerminalPathArrayOfValues)
 }
 

@@ -8336,10 +8336,11 @@ type ProbeStatusBandwidth_FieldPath interface {
 type ProbeStatusBandwidth_FieldPathSelector int32
 
 const (
-	ProbeStatusBandwidth_FieldPathSelectorUploadMbps   ProbeStatusBandwidth_FieldPathSelector = 0
-	ProbeStatusBandwidth_FieldPathSelectorDownloadMbps ProbeStatusBandwidth_FieldPathSelector = 1
-	ProbeStatusBandwidth_FieldPathSelectorTestServer   ProbeStatusBandwidth_FieldPathSelector = 2
-	ProbeStatusBandwidth_FieldPathSelectorLastReported ProbeStatusBandwidth_FieldPathSelector = 3
+	ProbeStatusBandwidth_FieldPathSelectorUploadMbps      ProbeStatusBandwidth_FieldPathSelector = 0
+	ProbeStatusBandwidth_FieldPathSelectorDownloadMbps    ProbeStatusBandwidth_FieldPathSelector = 1
+	ProbeStatusBandwidth_FieldPathSelectorTestServer      ProbeStatusBandwidth_FieldPathSelector = 2
+	ProbeStatusBandwidth_FieldPathSelectorServerIpAddress ProbeStatusBandwidth_FieldPathSelector = 3
+	ProbeStatusBandwidth_FieldPathSelectorLastReported    ProbeStatusBandwidth_FieldPathSelector = 4
 )
 
 func (s ProbeStatusBandwidth_FieldPathSelector) String() string {
@@ -8350,6 +8351,8 @@ func (s ProbeStatusBandwidth_FieldPathSelector) String() string {
 		return "download_mbps"
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 		return "test_server"
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		return "server_ip_address"
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		return "last_reported"
 	default:
@@ -8369,6 +8372,8 @@ func BuildProbeStatusBandwidth_FieldPath(fp gotenobject.RawFieldPath) (ProbeStat
 			return &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorDownloadMbps}, nil
 		case "test_server", "testServer", "test-server":
 			return &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorTestServer}, nil
+		case "server_ip_address", "serverIpAddress", "server-ip-address":
+			return &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorServerIpAddress}, nil
 		case "last_reported", "lastReported", "last-reported":
 			return &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorLastReported}, nil
 		}
@@ -8422,6 +8427,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) Get(source *Probe_Status_Bandw
 			values = append(values, source.DownloadMbps)
 		case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 			values = append(values, source.TestServer)
+		case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+			values = append(values, source.ServerIpAddress)
 		case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 			if source.LastReported != nil {
 				values = append(values, source.LastReported)
@@ -8446,6 +8453,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) GetSingle(source *Probe_Status
 		return source.GetDownloadMbps(), source != nil
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 		return source.GetTestServer(), source != nil
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		return source.GetServerIpAddress(), source != nil
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		res := source.GetLastReported()
 		return res, res != nil
@@ -8467,6 +8476,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) GetDefault() interface{} {
 		return float64(0)
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 		return ""
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		return ""
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		return (*timestamp.Timestamp)(nil)
 	default:
@@ -8483,6 +8494,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) ClearValue(item *Probe_Status_
 			item.DownloadMbps = float64(0)
 		case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 			item.TestServer = ""
+		case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+			item.ServerIpAddress = ""
 		case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 			item.LastReported = nil
 		default:
@@ -8500,6 +8513,7 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeStatusBandwidth_FieldPathSelectorUploadMbps ||
 		fp.selector == ProbeStatusBandwidth_FieldPathSelectorDownloadMbps ||
 		fp.selector == ProbeStatusBandwidth_FieldPathSelectorTestServer ||
+		fp.selector == ProbeStatusBandwidth_FieldPathSelectorServerIpAddress ||
 		fp.selector == ProbeStatusBandwidth_FieldPathSelectorLastReported
 }
 
@@ -8510,6 +8524,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) WithIValue(value interface{}) 
 	case ProbeStatusBandwidth_FieldPathSelectorDownloadMbps:
 		return &ProbeStatusBandwidth_FieldTerminalPathValue{ProbeStatusBandwidth_FieldTerminalPath: *fp, value: value.(float64)}
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
+		return &ProbeStatusBandwidth_FieldTerminalPathValue{ProbeStatusBandwidth_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
 		return &ProbeStatusBandwidth_FieldTerminalPathValue{ProbeStatusBandwidth_FieldTerminalPath: *fp, value: value.(string)}
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		return &ProbeStatusBandwidth_FieldTerminalPathValue{ProbeStatusBandwidth_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
@@ -8530,6 +8546,8 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) WithIArrayOfValues(values inte
 	case ProbeStatusBandwidth_FieldPathSelectorDownloadMbps:
 		return &ProbeStatusBandwidth_FieldTerminalPathArrayOfValues{ProbeStatusBandwidth_FieldTerminalPath: *fp, values: values.([]float64)}
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
+		return &ProbeStatusBandwidth_FieldTerminalPathArrayOfValues{ProbeStatusBandwidth_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
 		return &ProbeStatusBandwidth_FieldTerminalPathArrayOfValues{ProbeStatusBandwidth_FieldTerminalPath: *fp, values: values.([]string)}
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		return &ProbeStatusBandwidth_FieldTerminalPathArrayOfValues{ProbeStatusBandwidth_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
@@ -8605,6 +8623,10 @@ func (fpv *ProbeStatusBandwidth_FieldTerminalPathValue) AsTestServerValue() (str
 	res, ok := fpv.value.(string)
 	return res, ok
 }
+func (fpv *ProbeStatusBandwidth_FieldTerminalPathValue) AsServerIpAddressValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 func (fpv *ProbeStatusBandwidth_FieldTerminalPathValue) AsLastReportedValue() (*timestamp.Timestamp, bool) {
 	res, ok := fpv.value.(*timestamp.Timestamp)
 	return res, ok
@@ -8622,6 +8644,8 @@ func (fpv *ProbeStatusBandwidth_FieldTerminalPathValue) SetTo(target **Probe_Sta
 		(*target).DownloadMbps = fpv.value.(float64)
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 		(*target).TestServer = fpv.value.(string)
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		(*target).ServerIpAddress = fpv.value.(string)
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		(*target).LastReported = fpv.value.(*timestamp.Timestamp)
 	default:
@@ -8660,6 +8684,16 @@ func (fpv *ProbeStatusBandwidth_FieldTerminalPathValue) CompareWith(source *Prob
 	case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 		leftValue := fpv.value.(string)
 		rightValue := source.GetTestServer()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetServerIpAddress()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -8802,6 +8836,10 @@ func (fpaov *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
+	case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
 			values = append(values, v)
@@ -8818,6 +8856,10 @@ func (fpaov *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues) AsDownloadMbps
 	return res, ok
 }
 func (fpaov *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues) AsTestServerArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbeStatusBandwidth_FieldTerminalPathArrayOfValues) AsServerIpAddressArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
 	return res, ok
 }

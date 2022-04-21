@@ -1991,6 +1991,10 @@ func (RegisterProbeRequestPathSelectorStatusBandwidth) TestServer() RegisterProb
 	return RegisterProbeRequestPathSelectorStatusBandwidthTestServer{}
 }
 
+func (RegisterProbeRequestPathSelectorStatusBandwidth) ServerIpAddress() RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress {
+	return RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress{}
+}
+
 func (RegisterProbeRequestPathSelectorStatusBandwidth) LastReported() RegisterProbeRequestPathSelectorStatusBandwidthLastReported {
 	return RegisterProbeRequestPathSelectorStatusBandwidthLastReported{}
 }
@@ -2043,6 +2047,23 @@ func (s RegisterProbeRequestPathSelectorStatusBandwidthTestServer) WithValue(val
 }
 
 func (s RegisterProbeRequestPathSelectorStatusBandwidthTestServer) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress struct{}
+
+func (RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().Bandwidth().ServerIpAddress().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress) WithValue(value string) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusBandwidthServerIpAddress) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
 }
 

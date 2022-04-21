@@ -11090,6 +11090,10 @@ func (b *filterCndBuilderStatusBandwidth) TestServer() *filterCndBuilderStatusBa
 	return &filterCndBuilderStatusBandwidthTestServer{builder: b.builder}
 }
 
+func (b *filterCndBuilderStatusBandwidth) ServerIpAddress() *filterCndBuilderStatusBandwidthServerIpAddress {
+	return &filterCndBuilderStatusBandwidthServerIpAddress{builder: b.builder}
+}
+
 func (b *filterCndBuilderStatusBandwidth) LastReported() *filterCndBuilderStatusBandwidthLastReported {
 	return &filterCndBuilderStatusBandwidthLastReported{builder: b.builder}
 }
@@ -11268,6 +11272,65 @@ func (b *filterCndBuilderStatusBandwidthTestServer) compare(op gotenfilter.Compa
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().Bandwidth().TestServer().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusBandwidthServerIpAddress struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusBandwidthServerIpAddress) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().Bandwidth().ServerIpAddress().WithValue(value),
 	})
 }
 

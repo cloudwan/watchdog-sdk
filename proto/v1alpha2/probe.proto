@@ -274,6 +274,8 @@ message Probe {
 
       string test_server = 3;
 
+      string server_ip_address = 5;
+
       google.protobuf.Timestamp last_reported = 4;
     }
 

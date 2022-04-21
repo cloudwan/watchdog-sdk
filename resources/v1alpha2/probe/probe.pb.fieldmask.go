@@ -3548,6 +3548,7 @@ func FullProbe_Status_Bandwidth_FieldMask() *Probe_Status_Bandwidth_FieldMask {
 	res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorUploadMbps})
 	res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorDownloadMbps})
 	res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorTestServer})
+	res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorServerIpAddress})
 	res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorLastReported})
 	return res
 }
@@ -3592,7 +3593,7 @@ func (fieldMask *Probe_Status_Bandwidth_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatusBandwidth_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3622,7 +3623,7 @@ func (fieldMask *Probe_Status_Bandwidth_FieldMask) Reset() {
 
 func (fieldMask *Probe_Status_Bandwidth_FieldMask) Subtract(other *Probe_Status_Bandwidth_FieldMask) *Probe_Status_Bandwidth_FieldMask {
 	result := &Probe_Status_Bandwidth_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 5)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -3782,6 +3783,8 @@ func (fieldMask *Probe_Status_Bandwidth_FieldMask) Project(source *Probe_Status_
 				result.DownloadMbps = source.DownloadMbps
 			case ProbeStatusBandwidth_FieldPathSelectorTestServer:
 				result.TestServer = source.TestServer
+			case ProbeStatusBandwidth_FieldPathSelectorServerIpAddress:
+				result.ServerIpAddress = source.ServerIpAddress
 			case ProbeStatusBandwidth_FieldPathSelectorLastReported:
 				result.LastReported = source.LastReported
 			}

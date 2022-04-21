@@ -1327,6 +1327,9 @@ func (o *Probe_Status_Bandwidth) MakeDiffFieldMask(other *Probe_Status_Bandwidth
 	if o.GetTestServer() != other.GetTestServer() {
 		res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorTestServer})
 	}
+	if o.GetServerIpAddress() != other.GetServerIpAddress() {
+		res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorServerIpAddress})
+	}
 	if !proto.Equal(o.GetLastReported(), other.GetLastReported()) {
 		res.Paths = append(res.Paths, &ProbeStatusBandwidth_FieldTerminalPath{selector: ProbeStatusBandwidth_FieldPathSelectorLastReported})
 	}
@@ -1345,6 +1348,7 @@ func (o *Probe_Status_Bandwidth) Clone() *Probe_Status_Bandwidth {
 	result.UploadMbps = o.UploadMbps
 	result.DownloadMbps = o.DownloadMbps
 	result.TestServer = o.TestServer
+	result.ServerIpAddress = o.ServerIpAddress
 	result.LastReported = proto.Clone(o.LastReported).(*timestamp.Timestamp)
 	return result
 }
@@ -1357,6 +1361,7 @@ func (o *Probe_Status_Bandwidth) Merge(source *Probe_Status_Bandwidth) {
 	o.UploadMbps = source.GetUploadMbps()
 	o.DownloadMbps = source.GetDownloadMbps()
 	o.TestServer = source.GetTestServer()
+	o.ServerIpAddress = source.GetServerIpAddress()
 	if source.GetLastReported() != nil {
 		if o.LastReported == nil {
 			o.LastReported = new(timestamp.Timestamp)

@@ -187,8 +187,8 @@ func (obj *PathProbe) GotenValidate() error {
 		}
 
 		if obj.Interval != nil {
-			if !(d >= time.Duration(60000000000)) {
-				return gotenvalidate.NewValidationError("PathProbe", "interval", d, "field must be greater or equal to 1m0s", nil)
+			if !(d >= time.Duration(300000000000)) {
+				return gotenvalidate.NewValidationError("PathProbe", "interval", d, "field must be greater or equal to 5m0s", nil)
 			}
 		}
 	}
@@ -274,6 +274,18 @@ func (obj *WLAN) GotenValidate() error {
 func (obj *SpeedTestSettings) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	if obj.Duration != nil && obj.Duration.CheckValid() != nil {
+		err := obj.Duration.CheckValid()
+		return gotenvalidate.NewValidationError("SpeedTestSettings", "duration", obj.Duration, "could not validate duration", err)
+	} else {
+		d := obj.Duration.AsDuration()
+
+		if obj.Duration != nil {
+			if !(d >= time.Duration(1000000000) && d <= time.Duration(10000000000)) {
+				return gotenvalidate.NewValidationError("SpeedTestSettings", "duration", d, "field must be in range [1s, 10s]", nil)
+			}
+		}
 	}
 	if !(obj.TcpPort >= 0 && obj.TcpPort <= 65535) {
 		return gotenvalidate.NewValidationError("SpeedTestSettings", "tcpPort", obj.TcpPort, "field must be in range [0, 65535]", nil)
