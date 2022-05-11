@@ -136,7 +136,7 @@ message ProbingSession {
   PathProbe path_probing = 8;
 
   // Speedtest specific settings
-  SpeedTestSettings speeedtest_settings = 18;
+  SpeedTestSettings speedtest_settings = 18;
 
   // HTTP Probing Settings
   HTTPProbingConfig http_probing_config = 19;

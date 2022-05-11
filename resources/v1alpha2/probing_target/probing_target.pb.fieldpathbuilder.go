@@ -116,6 +116,9 @@ func (ProbingTargetFieldPathBuilder) Agent() ProbingTargetPathSelectorAgent {
 func (ProbingTargetFieldPathBuilder) Addresses() ProbingTargetPathSelectorAddresses {
 	return ProbingTargetPathSelectorAddresses{}
 }
+func (ProbingTargetFieldPathBuilder) TargetType() ProbingTargetPathSelectorTargetType {
+	return ProbingTargetPathSelectorTargetType{}
+}
 
 type ProbingTargetPathSelectorName struct{}
 
@@ -3152,4 +3155,18 @@ func (s ProbingTargetPathSelectorAddresses) WithArrayOfValues(values [][]string)
 
 func (s ProbingTargetPathSelectorAddresses) WithItemValue(value string) *ProbingTarget_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingTarget_FieldTerminalPathArrayItemValue)
+}
+
+type ProbingTargetPathSelectorTargetType struct{}
+
+func (ProbingTargetPathSelectorTargetType) FieldPath() *ProbingTarget_FieldTerminalPath {
+	return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType}
+}
+
+func (s ProbingTargetPathSelectorTargetType) WithValue(value ProbingTarget_TargetType) *ProbingTarget_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldTerminalPathValue)
+}
+
+func (s ProbingTargetPathSelectorTargetType) WithArrayOfValues(values []ProbingTarget_TargetType) *ProbingTarget_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldTerminalPathArrayOfValues)
 }

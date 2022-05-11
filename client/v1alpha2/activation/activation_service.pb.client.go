@@ -13,6 +13,7 @@ import (
 
 // proto imports
 import (
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	empty "github.com/golang/protobuf/ptypes/empty"
 )
 
@@ -26,6 +27,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &empty.Empty{}
+	_ = &probe.Probe{}
 )
 
 // This is a compile-time assertion to ensure that this generated file

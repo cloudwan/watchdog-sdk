@@ -7472,6 +7472,12 @@ index can be computed from offset and limit provided in a request</p>
 <tr><td class="description"><p>addresses list the list of IP addresses that this target is reachable on
 used for managed targets that might have dual stack</p>
 </td></tr>
+
+<tr>
+<th rowspan="2">target_type</th>
+<td class="type"><pre><a href="#enum-ProbingTarget.TargetType">ProbingTarget.TargetType</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -8366,7 +8372,35 @@ index can be computed from offset and limit provided in a request</p>
 </tbody>
 </table>
 
-  
+ 
+<h4>Enums</h4>
+
+
+
+<h5 id="enum-ProbingTarget.TargetType">ProbingTarget.TargetType</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>UNMANAGED_TARGET</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>MANAGED_TARGET</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+ 
+ 
 
 
 
@@ -15048,7 +15082,7 @@ overrides)</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">speeedtest_settings</th>
+<th rowspan="2">speedtest_settings</th>
 <td class="type"><pre><a href="#message-SpeedTestSettings">SpeedTestSettings</a></pre></td>
 </tr>
 <tr><td class="description"><p>Speedtest specific settings</p>

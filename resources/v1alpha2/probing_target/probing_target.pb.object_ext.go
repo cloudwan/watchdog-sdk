@@ -151,6 +151,9 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 	} else {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses})
 	}
+	if o.GetTargetType() != other.GetTargetType() {
+		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType})
+	}
 	return res
 }
 
@@ -208,6 +211,7 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 	for i, sourceValue := range o.Addresses {
 		result.Addresses[i] = sourceValue
 	}
+	result.TargetType = o.TargetType
 	return result
 }
 
@@ -303,6 +307,7 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 		}
 	}
 
+	o.TargetType = source.GetTargetType()
 }
 
 func (o *ProbingTarget) MergeRaw(source gotenobject.GotenObjectExt) {

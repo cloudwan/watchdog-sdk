@@ -1597,7 +1597,7 @@ func FullProbingSession_FieldMask() *ProbingSession_FieldMask {
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTos})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings})
+	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
@@ -1678,14 +1678,14 @@ func (fieldMask *ProbingSession_FieldMask) Subtract(other *ProbingSession_FieldM
 	otherSubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
 		ProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
-		ProbingSession_FieldPathSelectorSpeeedtestSettings: &common.SpeedTestSettings_FieldMask{},
+		ProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
 		ProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
 		ProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
 	}
 	mySubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
 		ProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
-		ProbingSession_FieldPathSelectorSpeeedtestSettings: &common.SpeedTestSettings_FieldMask{},
+		ProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
 		ProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
 		ProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
 	}
@@ -1707,8 +1707,8 @@ func (fieldMask *ProbingSession_FieldMask) Subtract(other *ProbingSession_FieldM
 						mySubMasks[ProbingSession_FieldPathSelectorLocation] = common.FullLocation_FieldMask()
 					case ProbingSession_FieldPathSelectorPathProbing:
 						mySubMasks[ProbingSession_FieldPathSelectorPathProbing] = common.FullPathProbe_FieldMask()
-					case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-						mySubMasks[ProbingSession_FieldPathSelectorSpeeedtestSettings] = common.FullSpeedTestSettings_FieldMask()
+					case ProbingSession_FieldPathSelectorSpeedtestSettings:
+						mySubMasks[ProbingSession_FieldPathSelectorSpeedtestSettings] = common.FullSpeedTestSettings_FieldMask()
 					case ProbingSession_FieldPathSelectorHttpProbingConfig:
 						mySubMasks[ProbingSession_FieldPathSelectorHttpProbingConfig] = common.FullHTTPProbingConfig_FieldMask()
 					case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -1869,8 +1869,8 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 	wholeLocationAccepted := false
 	pathProbingMask := &common.PathProbe_FieldMask{}
 	wholePathProbingAccepted := false
-	speeedtestSettingsMask := &common.SpeedTestSettings_FieldMask{}
-	wholeSpeeedtestSettingsAccepted := false
+	speedtestSettingsMask := &common.SpeedTestSettings_FieldMask{}
+	wholeSpeedtestSettingsAccepted := false
 	httpProbingConfigMask := &common.HTTPProbingConfig_FieldMask{}
 	wholeHttpProbingConfigAccepted := false
 	proxyConfigurationMask := &common.ProxyConfiguration_FieldMask{}
@@ -1912,9 +1912,9 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 			case ProbingSession_FieldPathSelectorPathProbing:
 				result.PathProbing = source.PathProbing
 				wholePathProbingAccepted = true
-			case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-				result.SpeeedtestSettings = source.SpeeedtestSettings
-				wholeSpeeedtestSettingsAccepted = true
+			case ProbingSession_FieldPathSelectorSpeedtestSettings:
+				result.SpeedtestSettings = source.SpeedtestSettings
+				wholeSpeedtestSettingsAccepted = true
 			case ProbingSession_FieldPathSelectorHttpProbingConfig:
 				result.HttpProbingConfig = source.HttpProbingConfig
 				wholeHttpProbingConfigAccepted = true
@@ -1930,8 +1930,8 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 				locationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
 			case ProbingSession_FieldPathSelectorPathProbing:
 				pathProbingMask.AppendPath(tp.subPath.(common.PathProbe_FieldPath))
-			case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-				speeedtestSettingsMask.AppendPath(tp.subPath.(common.SpeedTestSettings_FieldPath))
+			case ProbingSession_FieldPathSelectorSpeedtestSettings:
+				speedtestSettingsMask.AppendPath(tp.subPath.(common.SpeedTestSettings_FieldPath))
 			case ProbingSession_FieldPathSelectorHttpProbingConfig:
 				httpProbingConfigMask.AppendPath(tp.subPath.(common.HTTPProbingConfig_FieldPath))
 			case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -1945,8 +1945,8 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 	if wholePathProbingAccepted == false && len(pathProbingMask.Paths) > 0 {
 		result.PathProbing = pathProbingMask.Project(source.GetPathProbing())
 	}
-	if wholeSpeeedtestSettingsAccepted == false && len(speeedtestSettingsMask.Paths) > 0 {
-		result.SpeeedtestSettings = speeedtestSettingsMask.Project(source.GetSpeeedtestSettings())
+	if wholeSpeedtestSettingsAccepted == false && len(speedtestSettingsMask.Paths) > 0 {
+		result.SpeedtestSettings = speedtestSettingsMask.Project(source.GetSpeedtestSettings())
 	}
 	if wholeHttpProbingConfigAccepted == false && len(httpProbingConfigMask.Paths) > 0 {
 		result.HttpProbingConfig = httpProbingConfigMask.Project(source.GetHttpProbingConfig())

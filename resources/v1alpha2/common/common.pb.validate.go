@@ -282,8 +282,8 @@ func (obj *SpeedTestSettings) GotenValidate() error {
 		d := obj.Duration.AsDuration()
 
 		if obj.Duration != nil {
-			if !(d >= time.Duration(1000000000) && d <= time.Duration(10000000000)) {
-				return gotenvalidate.NewValidationError("SpeedTestSettings", "duration", d, "field must be in range [1s, 10s]", nil)
+			if !(d >= time.Duration(0) && d <= time.Duration(10000000000)) {
+				return gotenvalidate.NewValidationError("SpeedTestSettings", "duration", d, "field must be in range [0s, 10s]", nil)
 			}
 		}
 	}

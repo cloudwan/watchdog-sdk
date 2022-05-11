@@ -5,7 +5,8 @@
 package watchdog_client
 
 import (
-	"google.golang.org/grpc"
+	gotenclient "github.com/cloudwan/goten-sdk/runtime/client"
+	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 )
 
 // proto imports
@@ -44,7 +45,8 @@ import (
 
 // Reference imports to suppress errors if they are not otherwise used.
 var (
-	_ = grpc.ClientConn{}
+	_ = gotenclient.MethodDescriptor(nil)
+	_ = gotenresource.WildcardId
 )
 
 // make sure we're using proto imports
@@ -75,67 +77,82 @@ var (
 	_ = &tag_client.GetTagRequest{}
 )
 
-type WatchdogClient interface {
-	activation_client.ActivationServiceClient
-	admin_area_client.AdminAreaServiceClient
-	dns_query_test_client.DNSQueryTestServiceClient
-	geo_resolver_client.GeoResolverServiceClient
-	internet_quality_rating_client.InternetQualityRatingServiceClient
-	ping_test_client.PingTestServiceClient
-	probe_group_client.ProbeGroupServiceClient
-	probe_hardware_client.ProbeHardwareServiceClient
-	probe_client.ProbeServiceClient
-	probing_config_client.ProbingConfigServiceClient
-	probing_distribution_client.ProbingDistributionServiceClient
-	probing_target_group_client.ProbingTargetGroupServiceClient
-	probing_target_client.ProbingTargetServiceClient
-	project_client.ProjectServiceClient
-	quality_profile_client.QualityProfileServiceClient
-	shared_token_client.SharedTokenServiceClient
-	speed_test_client.SpeedTestServiceClient
-	tag_client.TagServiceClient
+var (
+	descriptorInitialized bool
+	watchdogDescriptor    *WatchdogDescriptor
+)
+
+type WatchdogDescriptor struct{}
+
+func (d *WatchdogDescriptor) GetServiceName() string {
+	return "watchdog"
 }
 
-type watchdogClient struct {
-	activation_client.ActivationServiceClient
-	admin_area_client.AdminAreaServiceClient
-	dns_query_test_client.DNSQueryTestServiceClient
-	geo_resolver_client.GeoResolverServiceClient
-	internet_quality_rating_client.InternetQualityRatingServiceClient
-	ping_test_client.PingTestServiceClient
-	probe_group_client.ProbeGroupServiceClient
-	probe_hardware_client.ProbeHardwareServiceClient
-	probe_client.ProbeServiceClient
-	probing_config_client.ProbingConfigServiceClient
-	probing_distribution_client.ProbingDistributionServiceClient
-	probing_target_group_client.ProbingTargetGroupServiceClient
-	probing_target_client.ProbingTargetServiceClient
-	project_client.ProjectServiceClient
-	quality_profile_client.QualityProfileServiceClient
-	shared_token_client.SharedTokenServiceClient
-	speed_test_client.SpeedTestServiceClient
-	tag_client.TagServiceClient
+func (d *WatchdogDescriptor) GetServiceDomain() string {
+	return "watchdog.edgelq.com"
 }
 
-func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
-	return &watchdogClient{
-		ActivationServiceClient:            activation_client.NewActivationServiceClient(cc),
-		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
-		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
-		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
-		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
-		PingTestServiceClient:              ping_test_client.NewPingTestServiceClient(cc),
-		ProbeGroupServiceClient:            probe_group_client.NewProbeGroupServiceClient(cc),
-		ProbeHardwareServiceClient:         probe_hardware_client.NewProbeHardwareServiceClient(cc),
-		ProbeServiceClient:                 probe_client.NewProbeServiceClient(cc),
-		ProbingConfigServiceClient:         probing_config_client.NewProbingConfigServiceClient(cc),
-		ProbingDistributionServiceClient:   probing_distribution_client.NewProbingDistributionServiceClient(cc),
-		ProbingTargetGroupServiceClient:    probing_target_group_client.NewProbingTargetGroupServiceClient(cc),
-		ProbingTargetServiceClient:         probing_target_client.NewProbingTargetServiceClient(cc),
-		ProjectServiceClient:               project_client.NewProjectServiceClient(cc),
-		QualityProfileServiceClient:        quality_profile_client.NewQualityProfileServiceClient(cc),
-		SharedTokenServiceClient:           shared_token_client.NewSharedTokenServiceClient(cc),
-		SpeedTestServiceClient:             speed_test_client.NewSpeedTestServiceClient(cc),
-		TagServiceClient:                   tag_client.NewTagServiceClient(cc),
+func (d *WatchdogDescriptor) GetVersion() string {
+	return "v1alpha2"
+}
+
+func (d *WatchdogDescriptor) GetNextVersion() string {
+
+	return ""
+}
+
+func (d *WatchdogDescriptor) AllResourceDescriptors() []gotenresource.Descriptor {
+	return []gotenresource.Descriptor{
+		admin_area.GetDescriptor(),
+		internet_quality_rating.GetDescriptor(),
+		probe.GetDescriptor(),
+		probe_group.GetDescriptor(),
+		probing_config.GetDescriptor(),
+		probing_distribution.GetDescriptor(),
+		probing_target.GetDescriptor(),
+		probing_target_group.GetDescriptor(),
+		project.GetDescriptor(),
+		quality_profile.GetDescriptor(),
+		shared_token.GetDescriptor(),
+		tag.GetDescriptor(),
+	}
+}
+
+func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
+	return []gotenclient.ApiDescriptor{
+		activation_client.GetActivationServiceDescriptor(),
+		admin_area_client.GetAdminAreaServiceDescriptor(),
+		dns_query_test_client.GetDNSQueryTestServiceDescriptor(),
+		geo_resolver_client.GetGeoResolverServiceDescriptor(),
+		internet_quality_rating_client.GetInternetQualityRatingServiceDescriptor(),
+		ping_test_client.GetPingTestServiceDescriptor(),
+		probe_group_client.GetProbeGroupServiceDescriptor(),
+		probe_hardware_client.GetProbeHardwareServiceDescriptor(),
+		probe_client.GetProbeServiceDescriptor(),
+		probing_config_client.GetProbingConfigServiceDescriptor(),
+		probing_distribution_client.GetProbingDistributionServiceDescriptor(),
+		probing_target_group_client.GetProbingTargetGroupServiceDescriptor(),
+		probing_target_client.GetProbingTargetServiceDescriptor(),
+		project_client.GetProjectServiceDescriptor(),
+		quality_profile_client.GetQualityProfileServiceDescriptor(),
+		shared_token_client.GetSharedTokenServiceDescriptor(),
+		speed_test_client.GetSpeedTestServiceDescriptor(),
+		tag_client.GetTagServiceDescriptor(),
+	}
+}
+
+func GetWatchdogDescriptor() *WatchdogDescriptor {
+	return watchdogDescriptor
+}
+
+func initDescriptor() {
+	watchdogDescriptor = &WatchdogDescriptor{}
+	gotenclient.GetRegistry().RegisterSvcDescriptor(watchdogDescriptor)
+}
+
+func init() {
+	if !descriptorInitialized {
+		initDescriptor()
+		descriptorInitialized = true
 	}
 }

@@ -72,6 +72,7 @@ func FullProbingTarget_FieldMask() *ProbingTarget_FieldMask {
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses})
+	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType})
 	return res
 }
 
@@ -115,7 +116,7 @@ func (fieldMask *ProbingTarget_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 15)
+	presentSelectors := make([]bool, 16)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingTarget_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -145,7 +146,7 @@ func (fieldMask *ProbingTarget_FieldMask) Reset() {
 
 func (fieldMask *ProbingTarget_FieldMask) Subtract(other *ProbingTarget_FieldMask) *ProbingTarget_FieldMask {
 	result := &ProbingTarget_FieldMask{}
-	removedSelectors := make([]bool, 15)
+	removedSelectors := make([]bool, 16)
 	otherSubMasks := map[ProbingTarget_FieldPathSelector]gotenobject.FieldMask{
 		ProbingTarget_FieldPathSelectorMetadata:               &ntt_meta.Meta_FieldMask{},
 		ProbingTarget_FieldPathSelectorLocation:               &common.Location_FieldMask{},
@@ -404,6 +405,8 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 				result.Agent = source.Agent
 			case ProbingTarget_FieldPathSelectorAddresses:
 				result.Addresses = source.Addresses
+			case ProbingTarget_FieldPathSelectorTargetType:
+				result.TargetType = source.TargetType
 			}
 		case *ProbingTarget_FieldSubPath:
 			switch tp.selector {

@@ -3429,7 +3429,7 @@ const (
 	ProbingSession_FieldPathSelectorTos                ProbingSession_FieldPathSelector = 12
 	ProbingSession_FieldPathSelectorWindowSize         ProbingSession_FieldPathSelector = 13
 	ProbingSession_FieldPathSelectorPathProbing        ProbingSession_FieldPathSelector = 14
-	ProbingSession_FieldPathSelectorSpeeedtestSettings ProbingSession_FieldPathSelector = 15
+	ProbingSession_FieldPathSelectorSpeedtestSettings  ProbingSession_FieldPathSelector = 15
 	ProbingSession_FieldPathSelectorHttpProbingConfig  ProbingSession_FieldPathSelector = 16
 	ProbingSession_FieldPathSelectorProxyConfiguration ProbingSession_FieldPathSelector = 17
 	ProbingSession_FieldPathSelectorAddresses          ProbingSession_FieldPathSelector = 18
@@ -3467,8 +3467,8 @@ func (s ProbingSession_FieldPathSelector) String() string {
 		return "window_size"
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return "path_probing"
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		return "speeedtest_settings"
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		return "speedtest_settings"
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return "http_probing_config"
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -3516,8 +3516,8 @@ func BuildProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingSession_
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize}, nil
 		case "path_probing", "pathProbing", "path-probing":
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing}, nil
-		case "speeedtest_settings", "speeedtestSettings", "speeedtest-settings":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings}, nil
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
+			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings}, nil
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig}, nil
 		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
@@ -3539,11 +3539,11 @@ func BuildProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingSession_
 			} else {
 				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorPathProbing, subPath: subpath}, nil
 			}
-		case "speeedtest_settings", "speeedtestSettings", "speeedtest-settings":
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
 			if subpath, err := common.BuildSpeedTestSettings_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings, subPath: subpath}, nil
+				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath}, nil
 			}
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			if subpath, err := common.BuildHTTPProbingConfig_FieldPath(fp[1:]); err != nil {
@@ -3642,9 +3642,9 @@ func (fp *ProbingSession_FieldTerminalPath) Get(source *ProbingSession) (values 
 			if source.PathProbing != nil {
 				values = append(values, source.PathProbing)
 			}
-		case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-			if source.SpeeedtestSettings != nil {
-				values = append(values, source.SpeeedtestSettings)
+		case ProbingSession_FieldPathSelectorSpeedtestSettings:
+			if source.SpeedtestSettings != nil {
+				values = append(values, source.SpeedtestSettings)
 			}
 		case ProbingSession_FieldPathSelectorHttpProbingConfig:
 			if source.HttpProbingConfig != nil {
@@ -3707,8 +3707,8 @@ func (fp *ProbingSession_FieldTerminalPath) GetSingle(source *ProbingSession) (i
 	case ProbingSession_FieldPathSelectorPathProbing:
 		res := source.GetPathProbing()
 		return res, res != nil
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		res := source.GetSpeeedtestSettings()
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		res := source.GetSpeedtestSettings()
 		return res, res != nil
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		res := source.GetHttpProbingConfig()
@@ -3761,7 +3761,7 @@ func (fp *ProbingSession_FieldTerminalPath) GetDefault() interface{} {
 		return uint32(0)
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return (*common.PathProbe)(nil)
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
 		return (*common.SpeedTestSettings)(nil)
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return (*common.HTTPProbingConfig)(nil)
@@ -3807,8 +3807,8 @@ func (fp *ProbingSession_FieldTerminalPath) ClearValue(item *ProbingSession) {
 			item.WindowSize = uint32(0)
 		case ProbingSession_FieldPathSelectorPathProbing:
 			item.PathProbing = nil
-		case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-			item.SpeeedtestSettings = nil
+		case ProbingSession_FieldPathSelectorSpeedtestSettings:
+			item.SpeedtestSettings = nil
 		case ProbingSession_FieldPathSelectorHttpProbingConfig:
 			item.HttpProbingConfig = nil
 		case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -3875,7 +3875,7 @@ func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) Probin
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(uint32)}
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.PathProbe)}
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.SpeedTestSettings)}
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
@@ -3925,7 +3925,7 @@ func (fp *ProbingSession_FieldTerminalPath) WithIArrayOfValues(values interface{
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]uint32)}
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.PathProbe)}
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.SpeedTestSettings)}
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
@@ -3974,7 +3974,7 @@ func (fps *ProbingSession_FieldSubPath) AsPathProbingSubPath() (common.PathProbe
 	res, ok := fps.subPath.(common.PathProbe_FieldPath)
 	return res, ok
 }
-func (fps *ProbingSession_FieldSubPath) AsSpeeedtestSettingsSubPath() (common.SpeedTestSettings_FieldPath, bool) {
+func (fps *ProbingSession_FieldSubPath) AsSpeedtestSettingsSubPath() (common.SpeedTestSettings_FieldPath, bool) {
 	res, ok := fps.subPath.(common.SpeedTestSettings_FieldPath)
 	return res, ok
 }
@@ -4003,8 +4003,8 @@ func (fps *ProbingSession_FieldSubPath) Get(source *ProbingSession) (values []in
 		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
 	} else if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
 		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeeedtestSettings())...)
+	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
+		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
 	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
 		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
 	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
@@ -4032,11 +4032,11 @@ func (fps *ProbingSession_FieldSubPath) GetSingle(source *ProbingSession) (inter
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		if source.GetSpeeedtestSettings() == nil {
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		if source.GetSpeedtestSettings() == nil {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetSpeeedtestSettings())
+		return fps.subPath.GetSingleRaw(source.GetSpeedtestSettings())
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		if source.GetHttpProbingConfig() == nil {
 			return nil, false
@@ -4068,8 +4068,8 @@ func (fps *ProbingSession_FieldSubPath) ClearValue(item *ProbingSession) {
 			fps.subPath.ClearValueRaw(item.Location)
 		case ProbingSession_FieldPathSelectorPathProbing:
 			fps.subPath.ClearValueRaw(item.PathProbing)
-		case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-			fps.subPath.ClearValueRaw(item.SpeeedtestSettings)
+		case ProbingSession_FieldPathSelectorSpeedtestSettings:
+			fps.subPath.ClearValueRaw(item.SpeedtestSettings)
 		case ProbingSession_FieldPathSelectorHttpProbingConfig:
 			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
 		case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -4212,7 +4212,7 @@ func (fpv *ProbingSession_FieldTerminalPathValue) AsPathProbingValue() (*common.
 	res, ok := fpv.value.(*common.PathProbe)
 	return res, ok
 }
-func (fpv *ProbingSession_FieldTerminalPathValue) AsSpeeedtestSettingsValue() (*common.SpeedTestSettings, bool) {
+func (fpv *ProbingSession_FieldTerminalPathValue) AsSpeedtestSettingsValue() (*common.SpeedTestSettings, bool) {
 	res, ok := fpv.value.(*common.SpeedTestSettings)
 	return res, ok
 }
@@ -4265,8 +4265,8 @@ func (fpv *ProbingSession_FieldTerminalPathValue) SetTo(target **ProbingSession)
 		(*target).WindowSize = fpv.value.(uint32)
 	case ProbingSession_FieldPathSelectorPathProbing:
 		(*target).PathProbing = fpv.value.(*common.PathProbe)
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		(*target).SpeeedtestSettings = fpv.value.(*common.SpeedTestSettings)
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		(*target).SpeedtestSettings = fpv.value.(*common.SpeedTestSettings)
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -4447,7 +4447,7 @@ func (fpv *ProbingSession_FieldTerminalPathValue) CompareWith(source *ProbingSes
 		}
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return 0, false
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
 		return 0, false
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return 0, false
@@ -4479,7 +4479,7 @@ func (fpvs *ProbingSession_FieldSubPathValue) AsPathProbingPathValue() (common.P
 	res, ok := fpvs.subPathValue.(common.PathProbe_FieldPathValue)
 	return res, ok
 }
-func (fpvs *ProbingSession_FieldSubPathValue) AsSpeeedtestSettingsPathValue() (common.SpeedTestSettings_FieldPathValue, bool) {
+func (fpvs *ProbingSession_FieldSubPathValue) AsSpeedtestSettingsPathValue() (common.SpeedTestSettings_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue)
 	return res, ok
 }
@@ -4501,8 +4501,8 @@ func (fpvs *ProbingSession_FieldSubPathValue) SetTo(target **ProbingSession) {
 		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
 	case ProbingSession_FieldPathSelectorPathProbing:
 		fpvs.subPathValue.(common.PathProbe_FieldPathValue).SetTo(&(*target).PathProbing)
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeeedtestSettings)
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeedtestSettings)
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -4527,8 +4527,8 @@ func (fpvs *ProbingSession_FieldSubPathValue) CompareWith(source *ProbingSession
 		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return fpvs.subPathValue.(common.PathProbe_FieldPathValue).CompareWith(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		return fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeeedtestSettings())
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		return fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeedtestSettings())
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -4623,7 +4623,7 @@ func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsPathProbingPathItemVa
 	res, ok := fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue)
 	return res, ok
 }
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsSpeeedtestSettingsPathItemValue() (common.SpeedTestSettings_FieldPathArrayItemValue, bool) {
+func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsSpeedtestSettingsPathItemValue() (common.SpeedTestSettings_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue)
 	return res, ok
 }
@@ -4643,8 +4643,8 @@ func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) ContainsValue(source *P
 		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
 	case ProbingSession_FieldPathSelectorPathProbing:
 		return fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue).ContainsValue(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
-		return fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeeedtestSettings())
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
+		return fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeedtestSettings())
 	case ProbingSession_FieldPathSelectorHttpProbingConfig:
 		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
 	case ProbingSession_FieldPathSelectorProxyConfiguration:
@@ -4749,7 +4749,7 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) GetRawValues() (valu
 		for _, v := range fpaov.values.([]*common.PathProbe) {
 			values = append(values, v)
 		}
-	case ProbingSession_FieldPathSelectorSpeeedtestSettings:
+	case ProbingSession_FieldPathSelectorSpeedtestSettings:
 		for _, v := range fpaov.values.([]*common.SpeedTestSettings) {
 			values = append(values, v)
 		}
@@ -4828,7 +4828,7 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsPathProbingArrayOf
 	res, ok := fpaov.values.([]*common.PathProbe)
 	return res, ok
 }
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsSpeeedtestSettingsArrayOfValues() ([]*common.SpeedTestSettings, bool) {
+func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsSpeedtestSettingsArrayOfValues() ([]*common.SpeedTestSettings, bool) {
 	res, ok := fpaov.values.([]*common.SpeedTestSettings)
 	return res, ok
 }
@@ -4863,7 +4863,7 @@ func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsPathProbingPathArrayOf
 	res, ok := fpsaov.subPathArrayOfValues.(common.PathProbe_FieldPathArrayOfValues)
 	return res, ok
 }
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsSpeeedtestSettingsPathArrayOfValues() (common.SpeedTestSettings_FieldPathArrayOfValues, bool) {
+func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsSpeedtestSettingsPathArrayOfValues() (common.SpeedTestSettings_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.SpeedTestSettings_FieldPathArrayOfValues)
 	return res, ok
 }

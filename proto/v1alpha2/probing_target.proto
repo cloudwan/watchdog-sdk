@@ -63,5 +63,13 @@ message ProbingTarget {
   // used for managed targets that might have dual stack
   repeated string addresses = 21;
 
+  TargetType target_type = 22;
+
+  enum TargetType {
+    UNMANAGED_TARGET = 0;
+
+    MANAGED_TARGET = 1;
+  }
+
   reserved 11;
 }

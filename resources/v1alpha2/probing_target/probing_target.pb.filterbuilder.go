@@ -276,6 +276,10 @@ func (b *filterCndBuilder) Addresses() *filterCndBuilderAddresses {
 	return &filterCndBuilderAddresses{builder: b.builder}
 }
 
+func (b *filterCndBuilder) TargetType() *filterCndBuilderTargetType {
+	return &filterCndBuilderTargetType{builder: b.builder}
+}
+
 type filterCndBuilderName struct {
 	builder *FilterBuilder
 }
@@ -9432,5 +9436,64 @@ func (b *filterCndBuilderAddresses) compare(op gotenfilter.CompareOperator, valu
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().Addresses().WithValue(value),
+	})
+}
+
+type filterCndBuilderTargetType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderTargetType) Eq(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderTargetType) Neq(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderTargetType) Gt(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderTargetType) Gte(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderTargetType) Lt(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderTargetType) Lte(value ProbingTarget_TargetType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderTargetType) In(values []ProbingTarget_TargetType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().TargetType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderTargetType) NotIn(values []ProbingTarget_TargetType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().TargetType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderTargetType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().TargetType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderTargetType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().TargetType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderTargetType) compare(op gotenfilter.CompareOperator, value ProbingTarget_TargetType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().TargetType().WithValue(value),
 	})
 }

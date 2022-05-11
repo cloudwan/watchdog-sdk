@@ -707,12 +707,12 @@ func (o *ProbingSession) MakeDiffFieldMask(other *ProbingSession) *ProbingSessio
 		}
 	}
 	{
-		subMask := o.GetSpeeedtestSettings().MakeDiffFieldMask(other.GetSpeeedtestSettings())
+		subMask := o.GetSpeedtestSettings().MakeDiffFieldMask(other.GetSpeedtestSettings())
 		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings})
+			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings})
 		} else {
 			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeeedtestSettings, subPath: subpath})
+				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath})
 			}
 		}
 	}
@@ -793,7 +793,7 @@ func (o *ProbingSession) Clone() *ProbingSession {
 	result.Tos = o.Tos
 	result.WindowSize = o.WindowSize
 	result.PathProbing = o.PathProbing.Clone()
-	result.SpeeedtestSettings = o.SpeeedtestSettings.Clone()
+	result.SpeedtestSettings = o.SpeedtestSettings.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
 	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
 	result.Addresses = make([]string, len(o.Addresses))
@@ -860,11 +860,11 @@ func (o *ProbingSession) Merge(source *ProbingSession) {
 		}
 		o.PathProbing.Merge(source.GetPathProbing())
 	}
-	if source.GetSpeeedtestSettings() != nil {
-		if o.SpeeedtestSettings == nil {
-			o.SpeeedtestSettings = new(common.SpeedTestSettings)
+	if source.GetSpeedtestSettings() != nil {
+		if o.SpeedtestSettings == nil {
+			o.SpeedtestSettings = new(common.SpeedTestSettings)
 		}
-		o.SpeeedtestSettings.Merge(source.GetSpeeedtestSettings())
+		o.SpeedtestSettings.Merge(source.GetSpeedtestSettings())
 	}
 	if source.GetHttpProbingConfig() != nil {
 		if o.HttpProbingConfig == nil {

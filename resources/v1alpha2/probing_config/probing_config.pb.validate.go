@@ -166,9 +166,9 @@ func (obj *ProbingSession) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ProbingSession", "pathProbing", obj.PathProbing, "nested object validation failed", err)
 		}
 	}
-	if subobj, ok := interface{}(obj.SpeeedtestSettings).(gotenvalidate.Validator); ok {
+	if subobj, ok := interface{}(obj.SpeedtestSettings).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "speeedtestSettings", obj.SpeeedtestSettings, "nested object validation failed", err)
+			return gotenvalidate.NewValidationError("ProbingSession", "speedtestSettings", obj.SpeedtestSettings, "nested object validation failed", err)
 		}
 	}
 	if subobj, ok := interface{}(obj.HttpProbingConfig).(gotenvalidate.Validator); ok {
