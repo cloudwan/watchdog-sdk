@@ -542,16 +542,13 @@ type BatchGetInternetQualityRatingsRequest_FieldPath interface {
 type BatchGetInternetQualityRatingsRequest_FieldPathSelector int32
 
 const (
-	BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent    BatchGetInternetQualityRatingsRequest_FieldPathSelector = 0
-	BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames     BatchGetInternetQualityRatingsRequest_FieldPathSelector = 1
-	BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask BatchGetInternetQualityRatingsRequest_FieldPathSelector = 2
-	BatchGetInternetQualityRatingsRequest_FieldPathSelectorView      BatchGetInternetQualityRatingsRequest_FieldPathSelector = 3
+	BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames     BatchGetInternetQualityRatingsRequest_FieldPathSelector = 0
+	BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask BatchGetInternetQualityRatingsRequest_FieldPathSelector = 1
+	BatchGetInternetQualityRatingsRequest_FieldPathSelectorView      BatchGetInternetQualityRatingsRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetInternetQualityRatingsRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetInternetQualityRatingsRequest_FieldPath(fp gotenobject.RawFiel
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) JSONString() 
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) Get(source *BatchGetInternetQualityRatingsRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) GetRaw(source
 // GetSingle returns value pointed by specific field of from source BatchGetInternetQualityRatingsRequest
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) GetSingle(source *BatchGetInternetQualityRatingsRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) GetSingleRaw(
 // GetDefault returns a default value of the field type
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		return (*internet_quality_rating.Reference)(nil)
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		return ([]*internet_quality_rating.Reference)(nil)
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) GetDefault() 
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) ClearValue(item *BatchGetInternetQualityRatingsRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) ClearValueRaw
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetInternetQualityRatingsRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetInternetQualityRatingsRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		return &BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue{BatchGetInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.Reference)}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		return &BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue{BatchGetInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.([]*internet_quality_rating.Reference)}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) WithRawIValue
 func (fp *BatchGetInternetQualityRatingsRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetInternetQualityRatingsRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{BatchGetInternetQualityRatingsRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		return &BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{BatchGetInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.Reference)}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		return &BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{BatchGetInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([][]*internet_quality_rating.Reference)}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetInternetQualityRatingsRequest_FieldPathValue = (*BatchGetInternetQ
 func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) AsParentValue() (*internet_quality_rating.Reference, bool) {
-	res, ok := fpv.value.(*internet_quality_rating.Reference)
-	return res, ok
-}
 func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) AsNamesValue() ([]*internet_quality_rating.Reference, bool) {
 	res, ok := fpv.value.([]*internet_quality_rating.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) SetTo(t
 		*target = new(BatchGetInternetQualityRatingsRequest)
 	}
 	switch fpv.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*internet_quality_rating.Reference)
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*internet_quality_rating.Reference)
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) SetToRa
 // CompareWith compares value in the 'BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue' with the value under path in 'BatchGetInternetQualityRatingsRequest'.
 func (fpv *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue) CompareWith(source *BatchGetInternetQualityRatingsRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*internet_quality_rating.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetInternetQualityRatingsRequest_FieldPathArrayOfValues = (*BatchGetI
 
 func (fpaov *BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*internet_quality_rating.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*internet_quality_rating.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValue
 		}
 	}
 	return
-}
-func (fpaov *BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*internet_quality_rating.Reference, bool) {
-	res, ok := fpaov.values.([]*internet_quality_rating.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*internet_quality_rating.Reference, bool) {
 	res, ok := fpaov.values.([][]*internet_quality_rating.Reference)

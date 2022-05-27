@@ -57,15 +57,15 @@ func (d *ProbeHardwareGetDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ProbeHardwareGetDescriptor) IsCollectionSubject() bool {
-	return true
-}
-
-func (d *ProbeHardwareGetDescriptor) IsPluralSubject() bool {
+func (d *ProbeHardwareGetDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *ProbeHardwareGetDescriptor) HasSubjectResource() bool {
+func (d *ProbeHardwareGetDescriptor) IsPlural() bool {
+	return false
+}
+
+func (d *ProbeHardwareGetDescriptor) HasResource() bool {
 	return false
 }
 
@@ -105,7 +105,7 @@ func (d *ProbeHardwareGetDescriptor) GetApiDescriptor() gotenclient.ApiDescripto
 	return probeHardwareServiceDescriptor
 }
 
-func (d *ProbeHardwareGetDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ProbeHardwareGetDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return nil
 }
 
@@ -117,27 +117,27 @@ func (d *ProbeHardwareGetDescriptor) GetServerMsgReflectHandle() gotenclient.Met
 	return &ProbeHardwareGetDescriptorServerMsgHandle{}
 }
 
-func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareGetDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareGetDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -171,15 +171,15 @@ func (d *ProbeHardwareUpdateDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ProbeHardwareUpdateDescriptor) IsCollectionSubject() bool {
-	return true
-}
-
-func (d *ProbeHardwareUpdateDescriptor) IsPluralSubject() bool {
+func (d *ProbeHardwareUpdateDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *ProbeHardwareUpdateDescriptor) HasSubjectResource() bool {
+func (d *ProbeHardwareUpdateDescriptor) IsPlural() bool {
+	return false
+}
+
+func (d *ProbeHardwareUpdateDescriptor) HasResource() bool {
 	return false
 }
 
@@ -219,7 +219,7 @@ func (d *ProbeHardwareUpdateDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return probeHardwareServiceDescriptor
 }
 
-func (d *ProbeHardwareUpdateDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ProbeHardwareUpdateDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return nil
 }
 
@@ -231,27 +231,27 @@ func (d *ProbeHardwareUpdateDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &ProbeHardwareUpdateDescriptorServerMsgHandle{}
 }
 
-func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareUpdateDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ProbeHardwareUpdateDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 

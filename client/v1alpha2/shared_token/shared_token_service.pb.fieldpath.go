@@ -542,16 +542,13 @@ type BatchGetSharedTokensRequest_FieldPath interface {
 type BatchGetSharedTokensRequest_FieldPathSelector int32
 
 const (
-	BatchGetSharedTokensRequest_FieldPathSelectorParent    BatchGetSharedTokensRequest_FieldPathSelector = 0
-	BatchGetSharedTokensRequest_FieldPathSelectorNames     BatchGetSharedTokensRequest_FieldPathSelector = 1
-	BatchGetSharedTokensRequest_FieldPathSelectorFieldMask BatchGetSharedTokensRequest_FieldPathSelector = 2
-	BatchGetSharedTokensRequest_FieldPathSelectorView      BatchGetSharedTokensRequest_FieldPathSelector = 3
+	BatchGetSharedTokensRequest_FieldPathSelectorNames     BatchGetSharedTokensRequest_FieldPathSelector = 0
+	BatchGetSharedTokensRequest_FieldPathSelectorFieldMask BatchGetSharedTokensRequest_FieldPathSelector = 1
+	BatchGetSharedTokensRequest_FieldPathSelectorView      BatchGetSharedTokensRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetSharedTokensRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetSharedTokensRequest_FieldPath(fp gotenobject.RawFieldPath) (Ba
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetSharedTokensRequest_FieldTerminalPath{selector: BatchGetSharedTokensRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetSharedTokensRequest_FieldTerminalPath{selector: BatchGetSharedTokensRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) JSONString() string {
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) Get(source *BatchGetSharedTokensRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) GetRaw(source proto.Mes
 // GetSingle returns value pointed by specific field of from source BatchGetSharedTokensRequest
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) GetSingle(source *BatchGetSharedTokensRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) GetSingleRaw(source pro
 // GetDefault returns a default value of the field type
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		return (*shared_token.Reference)(nil)
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		return ([]*shared_token.Reference)(nil)
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) GetDefault() interface{
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) ClearValue(item *BatchGetSharedTokensRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) ClearValueRaw(item prot
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetSharedTokensRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		return &BatchGetSharedTokensRequest_FieldTerminalPathValue{BatchGetSharedTokensRequest_FieldTerminalPath: *fp, value: value.(*shared_token.Reference)}
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		return &BatchGetSharedTokensRequest_FieldTerminalPathValue{BatchGetSharedTokensRequest_FieldTerminalPath: *fp, value: value.([]*shared_token.Reference)}
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) WithRawIValue(value int
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetSharedTokensRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues{BatchGetSharedTokensRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		return &BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues{BatchGetSharedTokensRequest_FieldTerminalPath: *fp, values: values.([]*shared_token.Reference)}
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		return &BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues{BatchGetSharedTokensRequest_FieldTerminalPath: *fp, values: values.([][]*shared_token.Reference)}
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetSharedTokensRequest_FieldPathValue = (*BatchGetSharedTokensRequest
 func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) AsParentValue() (*shared_token.Reference, bool) {
-	res, ok := fpv.value.(*shared_token.Reference)
-	return res, ok
-}
 func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) AsNamesValue() ([]*shared_token.Reference, bool) {
 	res, ok := fpv.value.([]*shared_token.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) SetTo(target **Ba
 		*target = new(BatchGetSharedTokensRequest)
 	}
 	switch fpv.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*shared_token.Reference)
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*shared_token.Reference)
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) SetToRaw(target p
 // CompareWith compares value in the 'BatchGetSharedTokensRequest_FieldTerminalPathValue' with the value under path in 'BatchGetSharedTokensRequest'.
 func (fpv *BatchGetSharedTokensRequest_FieldTerminalPathValue) CompareWith(source *BatchGetSharedTokensRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*shared_token.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetSharedTokensRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetSharedTokensRequest_FieldPathArrayOfValues = (*BatchGetSharedToken
 
 func (fpaov *BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetSharedTokensRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*shared_token.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*shared_token.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues) GetRawV
 		}
 	}
 	return
-}
-func (fpaov *BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*shared_token.Reference, bool) {
-	res, ok := fpaov.values.([]*shared_token.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*shared_token.Reference, bool) {
 	res, ok := fpaov.values.([][]*shared_token.Reference)

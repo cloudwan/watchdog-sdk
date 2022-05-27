@@ -318,7 +318,6 @@ type BatchGetProbesRequest_FieldMask struct {
 
 func FullBatchGetProbesRequest_FieldMask() *BatchGetProbesRequest_FieldMask {
 	res := &BatchGetProbesRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetProbesRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetProbesRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetProbesRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetProbesRequest_FieldMask) Subtract(other *BatchGetProbesRequest_FieldMask) *BatchGetProbesRequest_FieldMask {
 	result := &BatchGetProbesRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetProbesRequest_FieldMask) Project(source *BatchGetProbes
 		switch tp := p.(type) {
 		case *BatchGetProbesRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetProbesRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetProbesRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetProbesRequest_FieldPathSelectorFieldMask:

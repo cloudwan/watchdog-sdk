@@ -318,7 +318,6 @@ type BatchGetProbingConfigsRequest_FieldMask struct {
 
 func FullBatchGetProbingConfigsRequest_FieldMask() *BatchGetProbingConfigsRequest_FieldMask {
 	res := &BatchGetProbingConfigsRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetProbingConfigsRequest_FieldTerminalPath{selector: BatchGetProbingConfigsRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetProbingConfigsRequest_FieldTerminalPath{selector: BatchGetProbingConfigsRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetProbingConfigsRequest_FieldTerminalPath{selector: BatchGetProbingConfigsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetProbingConfigsRequest_FieldTerminalPath{selector: BatchGetProbingConfigsRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetProbingConfigsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetProbingConfigsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetProbingConfigsRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetProbingConfigsRequest_FieldMask) Subtract(other *BatchGetProbingConfigsRequest_FieldMask) *BatchGetProbingConfigsRequest_FieldMask {
 	result := &BatchGetProbingConfigsRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetProbingConfigsRequest_FieldMask) Project(source *BatchG
 		switch tp := p.(type) {
 		case *BatchGetProbingConfigsRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetProbingConfigsRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetProbingConfigsRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetProbingConfigsRequest_FieldPathSelectorFieldMask:

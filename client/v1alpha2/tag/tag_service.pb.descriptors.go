@@ -69,15 +69,15 @@ func (d *GetTagDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetTagDescriptor) IsCollectionSubject() bool {
+func (d *GetTagDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetTagDescriptor) IsPluralSubject() bool {
+func (d *GetTagDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetTagDescriptor) HasSubjectResource() bool {
+func (d *GetTagDescriptor) HasResource() bool {
 	return true
 }
 
@@ -117,7 +117,7 @@ func (d *GetTagDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *GetTagDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetTagDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -129,77 +129,84 @@ func (d *GetTagDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgHand
 	return &GetTagDescriptorServerMsgHandle{}
 }
 
-func (h *GetTagDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetTagDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetTagRequest) *tag.Name
+		OverrideExtractResourceName(*GetTagRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*tag.Name)(nil)
 }
 
-func (h *GetTagDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetTagDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetTagRequest) []*tag.Name
+		OverrideExtractResourceNames(*GetTagRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetTagDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetTagDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetTagRequest) *tag.ParentName
+		OverrideExtractCollectionName(*GetTagRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetTagDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetTagDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*tag.Tag) *tag.Name
+		OverrideExtractResourceName(*tag.Tag) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*tag.Name)(nil)
 }
 
-func (h *GetTagDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetTagDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*tag.Tag) []*tag.Name
+		OverrideExtractResourceNames(*tag.Tag) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetTagDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetTagDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*tag.Tag) *tag.ParentName
+		OverrideExtractCollectionName(*tag.Tag) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -234,15 +241,15 @@ func (d *BatchGetTagsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetTagsDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetTagsDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetTagsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetTagsDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetTagsDescriptor) HasSubjectResource() bool {
+func (d *BatchGetTagsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -282,7 +289,7 @@ func (d *BatchGetTagsDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *BatchGetTagsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetTagsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -294,86 +301,92 @@ func (d *BatchGetTagsDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &BatchGetTagsDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetTagsRequest) *tag.Name
+		OverrideExtractResourceName(*BatchGetTagsRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetTagsRequest) []*tag.Name
+		OverrideExtractResourceNames(*BatchGetTagsRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(tag.TagNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(tag.TagNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (tag.TagNameList)(nil)
 }
 
-func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetTagsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetTagsRequest) *tag.ParentName
+		OverrideExtractCollectionName(*BatchGetTagsRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetTagsResponse) *tag.Name
+		OverrideExtractResourceName(*BatchGetTagsResponse) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetTagsResponse) []*tag.Name
+		OverrideExtractResourceNames(*BatchGetTagsResponse) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetTags()
-	list := make(tag.TagNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetTags(); len(resources) > 0 {
+			list := make(tag.TagNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (tag.TagNameList)(nil)
 }
 
-func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetTagsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetTagsResponse) *tag.ParentName
+		OverrideExtractCollectionName(*BatchGetTagsResponse) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -408,15 +421,15 @@ func (d *ListTagsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListTagsDescriptor) IsCollectionSubject() bool {
+func (d *ListTagsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListTagsDescriptor) IsPluralSubject() bool {
+func (d *ListTagsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListTagsDescriptor) HasSubjectResource() bool {
+func (d *ListTagsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -456,7 +469,7 @@ func (d *ListTagsDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *ListTagsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListTagsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -468,79 +481,88 @@ func (d *ListTagsDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgHa
 	return &ListTagsDescriptorServerMsgHandle{}
 }
 
-func (h *ListTagsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListTagsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListTagsRequest) *tag.Name
+		OverrideExtractResourceName(*ListTagsRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListTagsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListTagsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListTagsRequest) []*tag.Name
+		OverrideExtractResourceNames(*ListTagsRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListTagsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListTagsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListTagsRequest) *tag.ParentName
+		OverrideExtractCollectionName(*ListTagsRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*tag.ParentName)(nil)
 }
 
-func (h *ListTagsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListTagsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListTagsResponse) *tag.Name
+		OverrideExtractResourceName(*ListTagsResponse) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListTagsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListTagsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListTagsResponse) []*tag.Name
+		OverrideExtractResourceNames(*ListTagsResponse) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetTags()
-	list := make(tag.TagNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetTags(); len(resources) > 0 {
+			list := make(tag.TagNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (tag.TagNameList)(nil)
 }
 
-func (h *ListTagsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListTagsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListTagsResponse) *tag.ParentName
+		OverrideExtractCollectionName(*ListTagsResponse) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -575,15 +597,15 @@ func (d *WatchTagDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchTagDescriptor) IsCollectionSubject() bool {
+func (d *WatchTagDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchTagDescriptor) IsPluralSubject() bool {
+func (d *WatchTagDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchTagDescriptor) HasSubjectResource() bool {
+func (d *WatchTagDescriptor) HasResource() bool {
 	return true
 }
 
@@ -623,7 +645,7 @@ func (d *WatchTagDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *WatchTagDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchTagDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -635,89 +657,93 @@ func (d *WatchTagDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgHa
 	return &WatchTagDescriptorServerMsgHandle{}
 }
 
-func (h *WatchTagDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchTagRequest) *tag.Name
+		OverrideExtractResourceName(*WatchTagRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*tag.Name)(nil)
-}
-
-func (h *WatchTagDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchTagRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchTagRequest) []*tag.Name
-	})
-	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchTagDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchTagRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchTagRequest) *tag.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchTagDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchTagResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchTagResponse) *tag.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *tag.TagChange_Added_:
-			return tResChange.Added.GetTag().GetName()
-		case *tag.TagChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *tag.TagChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *tag.TagChange_Current_:
-			return tResChange.Current.GetTag().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*tag.Name)(nil)
 }
 
-func (h *WatchTagDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchTagResponse)
+func (h *WatchTagDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchTagResponse) []*tag.Name
+		OverrideExtractResourceNames(*WatchTagRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchTagDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchTagRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchTagRequest) *tag.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchTagDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchTagResponse) *tag.ParentName
+		OverrideExtractResourceName(*WatchTagResponse) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *tag.TagChange_Added_:
+				return tResChange.Added.GetTag().GetName()
+			case *tag.TagChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *tag.TagChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *tag.TagChange_Current_:
+				return tResChange.Current.GetTag().GetName()
+			}
+		}
+	}
+	return (*tag.Name)(nil)
+}
+
+func (h *WatchTagDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchTagResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchTagResponse) []*tag.Name
+	})
+	if ok {
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchTagDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchTagResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchTagResponse) *tag.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -752,15 +778,15 @@ func (d *WatchTagsDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchTagsDescriptor) IsCollectionSubject() bool {
+func (d *WatchTagsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchTagsDescriptor) IsPluralSubject() bool {
+func (d *WatchTagsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchTagsDescriptor) HasSubjectResource() bool {
+func (d *WatchTagsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -800,7 +826,7 @@ func (d *WatchTagsDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *WatchTagsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchTagsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -812,91 +838,97 @@ func (d *WatchTagsDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgH
 	return &WatchTagsDescriptorServerMsgHandle{}
 }
 
-func (h *WatchTagsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchTagsRequest) *tag.Name
+		OverrideExtractResourceName(*WatchTagsRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchTagsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchTagsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchTagsRequest) []*tag.Name
+		OverrideExtractResourceNames(*WatchTagsRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchTagsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchTagsRequest) *tag.ParentName
+		OverrideExtractCollectionName(*WatchTagsRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*tag.ParentName)(nil)
 }
 
-func (h *WatchTagsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchTagsResponse) *tag.Name
+		OverrideExtractResourceName(*WatchTagsResponse) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchTagsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchTagsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchTagsResponse) []*tag.Name
+		OverrideExtractResourceNames(*WatchTagsResponse) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetTagChanges()
-	list := make(tag.TagNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *tag.TagChange_Added_:
-			list = append(list, tResChange.Added.GetTag().GetName())
-		case *tag.TagChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *tag.TagChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *tag.TagChange_Current_:
-			list = append(list, tResChange.Current.GetTag().GetName())
+	{
+		if resChanges := typedMsg.GetTagChanges(); len(resChanges) > 0 {
+			list := make(tag.TagNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *tag.TagChange_Added_:
+					list = append(list, tResChange.Added.GetTag().GetName())
+				case *tag.TagChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *tag.TagChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *tag.TagChange_Current_:
+					list = append(list, tResChange.Current.GetTag().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (tag.TagNameList)(nil)
 }
 
-func (h *WatchTagsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchTagsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchTagsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchTagsResponse) *tag.ParentName
+		OverrideExtractCollectionName(*WatchTagsResponse) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -931,15 +963,15 @@ func (d *CreateTagDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateTagDescriptor) IsCollectionSubject() bool {
+func (d *CreateTagDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateTagDescriptor) IsPluralSubject() bool {
+func (d *CreateTagDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateTagDescriptor) HasSubjectResource() bool {
+func (d *CreateTagDescriptor) HasResource() bool {
 	return true
 }
 
@@ -979,7 +1011,7 @@ func (d *CreateTagDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *CreateTagDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateTagDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -991,77 +1023,90 @@ func (d *CreateTagDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgH
 	return &CreateTagDescriptorServerMsgHandle{}
 }
 
-func (h *CreateTagDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateTagDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateTagRequest) *tag.Name
+		OverrideExtractResourceName(*CreateTagRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetTag().GetName()
+	{
+		res := typedMsg.GetTag()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*tag.Name)(nil)
 }
 
-func (h *CreateTagDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateTagDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateTagRequest) []*tag.Name
+		OverrideExtractResourceNames(*CreateTagRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateTagDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateTagDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateTagRequest) *tag.ParentName
+		OverrideExtractCollectionName(*CreateTagRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*tag.ParentName)(nil)
 }
 
-func (h *CreateTagDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateTagDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*tag.Tag) *tag.Name
+		OverrideExtractResourceName(*tag.Tag) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*tag.Name)(nil)
 }
 
-func (h *CreateTagDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateTagDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*tag.Tag) []*tag.Name
+		OverrideExtractResourceNames(*tag.Tag) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateTagDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateTagDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*tag.Tag) *tag.ParentName
+		OverrideExtractCollectionName(*tag.Tag) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1096,15 +1141,15 @@ func (d *UpdateTagDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateTagDescriptor) IsCollectionSubject() bool {
+func (d *UpdateTagDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateTagDescriptor) IsPluralSubject() bool {
+func (d *UpdateTagDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateTagDescriptor) HasSubjectResource() bool {
+func (d *UpdateTagDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1144,7 +1189,7 @@ func (d *UpdateTagDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *UpdateTagDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateTagDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -1156,74 +1201,85 @@ func (d *UpdateTagDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgH
 	return &UpdateTagDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateTagDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateTagDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateTagRequest) *tag.Name
+		OverrideExtractResourceName(*UpdateTagRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetTag().GetName()
+	{
+		res := typedMsg.GetTag()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*tag.Name)(nil)
 }
 
-func (h *UpdateTagDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateTagDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateTagRequest) []*tag.Name
+		OverrideExtractResourceNames(*UpdateTagRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateTagDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateTagDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateTagRequest) *tag.ParentName
+		OverrideExtractCollectionName(*UpdateTagRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateTagDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateTagDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*tag.Tag) *tag.Name
+		OverrideExtractResourceName(*tag.Tag) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*tag.Name)(nil)
 }
 
-func (h *UpdateTagDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateTagDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*tag.Tag) []*tag.Name
+		OverrideExtractResourceNames(*tag.Tag) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateTagDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateTagDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*tag.Tag)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*tag.Tag) *tag.ParentName
+		OverrideExtractCollectionName(*tag.Tag) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1258,15 +1314,15 @@ func (d *DeleteTagDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteTagDescriptor) IsCollectionSubject() bool {
+func (d *DeleteTagDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteTagDescriptor) IsPluralSubject() bool {
+func (d *DeleteTagDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteTagDescriptor) HasSubjectResource() bool {
+func (d *DeleteTagDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1306,7 +1362,7 @@ func (d *DeleteTagDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return tagServiceDescriptor
 }
 
-func (d *DeleteTagDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteTagDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return tag.GetDescriptor()
 }
 
@@ -1318,77 +1374,79 @@ func (d *DeleteTagDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgH
 	return &DeleteTagDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteTagDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteTagDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteTagRequest) *tag.Name
+		OverrideExtractResourceName(*DeleteTagRequest) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*tag.Name)(nil)
 }
 
-func (h *DeleteTagDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteTagDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteTagRequest) []*tag.Name
+		OverrideExtractResourceNames(*DeleteTagRequest) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteTagDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteTagDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteTagRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteTagRequest) *tag.ParentName
+		OverrideExtractCollectionName(*DeleteTagRequest) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteTagDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteTagDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *tag.Name
+		OverrideExtractResourceName(*empty.Empty) *tag.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteTagDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteTagDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*tag.Name
+		OverrideExtractResourceNames(*empty.Empty) []*tag.Name
 	})
 	if ok {
-		return tag.TagNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return tag.TagNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteTagDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteTagDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *tag.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *tag.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

@@ -21,6 +21,7 @@ import (
 	probe_hardware_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware"
 	probing_config_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_config"
 	probing_distribution_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_distribution"
+	probing_session_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_session"
 	probing_target_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_target"
 	probing_target_group_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_target_group"
 	project_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/project"
@@ -34,6 +35,7 @@ import (
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	probing_config "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_config"
 	probing_distribution "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_distribution"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
 	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
@@ -61,6 +63,8 @@ var (
 	_ = &probing_config_client.GetProbingConfigRequest{}
 	_ = &probing_distribution.ProbingDistribution{}
 	_ = &probing_distribution_client.GetProbingDistributionRequest{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_session_client.GetProbingSessionRequest{}
 	_ = &probing_target.ProbingTarget{}
 	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &probing_target_group_client.GetProbingTargetGroupRequest{}
@@ -87,6 +91,7 @@ type WatchdogClient interface {
 	probe_client.ProbeServiceClient
 	probing_config_client.ProbingConfigServiceClient
 	probing_distribution_client.ProbingDistributionServiceClient
+	probing_session_client.ProbingSessionServiceClient
 	probing_target_group_client.ProbingTargetGroupServiceClient
 	probing_target_client.ProbingTargetServiceClient
 	project_client.ProjectServiceClient
@@ -108,6 +113,7 @@ type watchdogClient struct {
 	probe_client.ProbeServiceClient
 	probing_config_client.ProbingConfigServiceClient
 	probing_distribution_client.ProbingDistributionServiceClient
+	probing_session_client.ProbingSessionServiceClient
 	probing_target_group_client.ProbingTargetGroupServiceClient
 	probing_target_client.ProbingTargetServiceClient
 	project_client.ProjectServiceClient
@@ -130,6 +136,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		ProbeServiceClient:                 probe_client.NewProbeServiceClient(cc),
 		ProbingConfigServiceClient:         probing_config_client.NewProbingConfigServiceClient(cc),
 		ProbingDistributionServiceClient:   probing_distribution_client.NewProbingDistributionServiceClient(cc),
+		ProbingSessionServiceClient:        probing_session_client.NewProbingSessionServiceClient(cc),
 		ProbingTargetGroupServiceClient:    probing_target_group_client.NewProbingTargetGroupServiceClient(cc),
 		ProbingTargetServiceClient:         probing_target_client.NewProbingTargetServiceClient(cc),
 		ProjectServiceClient:               project_client.NewProjectServiceClient(cc),

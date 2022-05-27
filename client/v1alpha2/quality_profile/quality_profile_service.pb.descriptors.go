@@ -69,15 +69,15 @@ func (d *GetQualityProfileDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetQualityProfileDescriptor) IsCollectionSubject() bool {
+func (d *GetQualityProfileDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetQualityProfileDescriptor) IsPluralSubject() bool {
+func (d *GetQualityProfileDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetQualityProfileDescriptor) HasSubjectResource() bool {
+func (d *GetQualityProfileDescriptor) HasResource() bool {
 	return true
 }
 
@@ -117,7 +117,7 @@ func (d *GetQualityProfileDescriptor) GetApiDescriptor() gotenclient.ApiDescript
 	return qualityProfileServiceDescriptor
 }
 
-func (d *GetQualityProfileDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetQualityProfileDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -129,77 +129,84 @@ func (d *GetQualityProfileDescriptor) GetServerMsgReflectHandle() gotenclient.Me
 	return &GetQualityProfileDescriptorServerMsgHandle{}
 }
 
-func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetQualityProfileRequest) *quality_profile.Name
+		OverrideExtractResourceName(*GetQualityProfileRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*quality_profile.Name)(nil)
 }
 
-func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetQualityProfileRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*GetQualityProfileRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetQualityProfileDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetQualityProfileRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*GetQualityProfileRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*quality_profile.QualityProfile) *quality_profile.Name
+		OverrideExtractResourceName(*quality_profile.QualityProfile) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*quality_profile.Name)(nil)
 }
 
-func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
+		OverrideExtractResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetQualityProfileDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
+		OverrideExtractCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -234,15 +241,15 @@ func (d *BatchGetQualityProfilesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetQualityProfilesDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetQualityProfilesDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetQualityProfilesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetQualityProfilesDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetQualityProfilesDescriptor) HasSubjectResource() bool {
+func (d *BatchGetQualityProfilesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -282,7 +289,7 @@ func (d *BatchGetQualityProfilesDescriptor) GetApiDescriptor() gotenclient.ApiDe
 	return qualityProfileServiceDescriptor
 }
 
-func (d *BatchGetQualityProfilesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetQualityProfilesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -294,86 +301,92 @@ func (d *BatchGetQualityProfilesDescriptor) GetServerMsgReflectHandle() gotencli
 	return &BatchGetQualityProfilesDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetQualityProfilesRequest) *quality_profile.Name
+		OverrideExtractResourceName(*BatchGetQualityProfilesRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetQualityProfilesRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*BatchGetQualityProfilesRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(quality_profile.QualityProfileNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(quality_profile.QualityProfileNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (quality_profile.QualityProfileNameList)(nil)
 }
 
-func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetQualityProfilesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetQualityProfilesRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*BatchGetQualityProfilesRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetQualityProfilesResponse) *quality_profile.Name
+		OverrideExtractResourceName(*BatchGetQualityProfilesResponse) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetQualityProfilesResponse) []*quality_profile.Name
+		OverrideExtractResourceNames(*BatchGetQualityProfilesResponse) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetQualityProfiles()
-	list := make(quality_profile.QualityProfileNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetQualityProfiles(); len(resources) > 0 {
+			list := make(quality_profile.QualityProfileNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (quality_profile.QualityProfileNameList)(nil)
 }
 
-func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetQualityProfilesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetQualityProfilesResponse) *quality_profile.ParentName
+		OverrideExtractCollectionName(*BatchGetQualityProfilesResponse) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -408,15 +421,15 @@ func (d *ListQualityProfilesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListQualityProfilesDescriptor) IsCollectionSubject() bool {
+func (d *ListQualityProfilesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListQualityProfilesDescriptor) IsPluralSubject() bool {
+func (d *ListQualityProfilesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListQualityProfilesDescriptor) HasSubjectResource() bool {
+func (d *ListQualityProfilesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -456,7 +469,7 @@ func (d *ListQualityProfilesDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return qualityProfileServiceDescriptor
 }
 
-func (d *ListQualityProfilesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListQualityProfilesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -468,79 +481,88 @@ func (d *ListQualityProfilesDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &ListQualityProfilesDescriptorServerMsgHandle{}
 }
 
-func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListQualityProfilesRequest) *quality_profile.Name
+		OverrideExtractResourceName(*ListQualityProfilesRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListQualityProfilesRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*ListQualityProfilesRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListQualityProfilesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListQualityProfilesRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*ListQualityProfilesRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*quality_profile.ParentName)(nil)
 }
 
-func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListQualityProfilesResponse) *quality_profile.Name
+		OverrideExtractResourceName(*ListQualityProfilesResponse) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListQualityProfilesResponse) []*quality_profile.Name
+		OverrideExtractResourceNames(*ListQualityProfilesResponse) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetQualityProfiles()
-	list := make(quality_profile.QualityProfileNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetQualityProfiles(); len(resources) > 0 {
+			list := make(quality_profile.QualityProfileNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (quality_profile.QualityProfileNameList)(nil)
 }
 
-func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListQualityProfilesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListQualityProfilesResponse) *quality_profile.ParentName
+		OverrideExtractCollectionName(*ListQualityProfilesResponse) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -575,15 +597,15 @@ func (d *WatchQualityProfileDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchQualityProfileDescriptor) IsCollectionSubject() bool {
+func (d *WatchQualityProfileDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchQualityProfileDescriptor) IsPluralSubject() bool {
+func (d *WatchQualityProfileDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchQualityProfileDescriptor) HasSubjectResource() bool {
+func (d *WatchQualityProfileDescriptor) HasResource() bool {
 	return true
 }
 
@@ -623,7 +645,7 @@ func (d *WatchQualityProfileDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return qualityProfileServiceDescriptor
 }
 
-func (d *WatchQualityProfileDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchQualityProfileDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -635,89 +657,93 @@ func (d *WatchQualityProfileDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &WatchQualityProfileDescriptorServerMsgHandle{}
 }
 
-func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchQualityProfileRequest) *quality_profile.Name
+		OverrideExtractResourceName(*WatchQualityProfileRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*quality_profile.Name)(nil)
-}
-
-func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchQualityProfileRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchQualityProfileRequest) []*quality_profile.Name
-	})
-	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchQualityProfileRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchQualityProfileRequest) *quality_profile.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchQualityProfileResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchQualityProfileResponse) *quality_profile.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *quality_profile.QualityProfileChange_Added_:
-			return tResChange.Added.GetQualityProfile().GetName()
-		case *quality_profile.QualityProfileChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *quality_profile.QualityProfileChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *quality_profile.QualityProfileChange_Current_:
-			return tResChange.Current.GetQualityProfile().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*quality_profile.Name)(nil)
 }
 
-func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchQualityProfileResponse)
+func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchQualityProfileResponse) []*quality_profile.Name
+		OverrideExtractResourceNames(*WatchQualityProfileRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfileDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchQualityProfileRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchQualityProfileRequest) *quality_profile.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfileResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchQualityProfileResponse) *quality_profile.ParentName
+		OverrideExtractResourceName(*WatchQualityProfileResponse) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *quality_profile.QualityProfileChange_Added_:
+				return tResChange.Added.GetQualityProfile().GetName()
+			case *quality_profile.QualityProfileChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *quality_profile.QualityProfileChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *quality_profile.QualityProfileChange_Current_:
+				return tResChange.Current.GetQualityProfile().GetName()
+			}
+		}
+	}
+	return (*quality_profile.Name)(nil)
+}
+
+func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchQualityProfileResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchQualityProfileResponse) []*quality_profile.Name
+	})
+	if ok {
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchQualityProfileDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchQualityProfileResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchQualityProfileResponse) *quality_profile.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -752,15 +778,15 @@ func (d *WatchQualityProfilesDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchQualityProfilesDescriptor) IsCollectionSubject() bool {
+func (d *WatchQualityProfilesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchQualityProfilesDescriptor) IsPluralSubject() bool {
+func (d *WatchQualityProfilesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchQualityProfilesDescriptor) HasSubjectResource() bool {
+func (d *WatchQualityProfilesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -800,7 +826,7 @@ func (d *WatchQualityProfilesDescriptor) GetApiDescriptor() gotenclient.ApiDescr
 	return qualityProfileServiceDescriptor
 }
 
-func (d *WatchQualityProfilesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchQualityProfilesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -812,91 +838,97 @@ func (d *WatchQualityProfilesDescriptor) GetServerMsgReflectHandle() gotenclient
 	return &WatchQualityProfilesDescriptorServerMsgHandle{}
 }
 
-func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchQualityProfilesRequest) *quality_profile.Name
+		OverrideExtractResourceName(*WatchQualityProfilesRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchQualityProfilesRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*WatchQualityProfilesRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfilesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfilesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchQualityProfilesRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*WatchQualityProfilesRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*quality_profile.ParentName)(nil)
 }
 
-func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchQualityProfilesResponse) *quality_profile.Name
+		OverrideExtractResourceName(*WatchQualityProfilesResponse) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchQualityProfilesResponse) []*quality_profile.Name
+		OverrideExtractResourceNames(*WatchQualityProfilesResponse) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetQualityProfileChanges()
-	list := make(quality_profile.QualityProfileNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *quality_profile.QualityProfileChange_Added_:
-			list = append(list, tResChange.Added.GetQualityProfile().GetName())
-		case *quality_profile.QualityProfileChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *quality_profile.QualityProfileChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *quality_profile.QualityProfileChange_Current_:
-			list = append(list, tResChange.Current.GetQualityProfile().GetName())
+	{
+		if resChanges := typedMsg.GetQualityProfileChanges(); len(resChanges) > 0 {
+			list := make(quality_profile.QualityProfileNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *quality_profile.QualityProfileChange_Added_:
+					list = append(list, tResChange.Added.GetQualityProfile().GetName())
+				case *quality_profile.QualityProfileChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *quality_profile.QualityProfileChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *quality_profile.QualityProfileChange_Current_:
+					list = append(list, tResChange.Current.GetQualityProfile().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (quality_profile.QualityProfileNameList)(nil)
 }
 
-func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchQualityProfilesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchQualityProfilesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchQualityProfilesResponse) *quality_profile.ParentName
+		OverrideExtractCollectionName(*WatchQualityProfilesResponse) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -931,15 +963,15 @@ func (d *CreateQualityProfileDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateQualityProfileDescriptor) IsCollectionSubject() bool {
+func (d *CreateQualityProfileDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateQualityProfileDescriptor) IsPluralSubject() bool {
+func (d *CreateQualityProfileDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateQualityProfileDescriptor) HasSubjectResource() bool {
+func (d *CreateQualityProfileDescriptor) HasResource() bool {
 	return true
 }
 
@@ -979,7 +1011,7 @@ func (d *CreateQualityProfileDescriptor) GetApiDescriptor() gotenclient.ApiDescr
 	return qualityProfileServiceDescriptor
 }
 
-func (d *CreateQualityProfileDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateQualityProfileDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -991,77 +1023,90 @@ func (d *CreateQualityProfileDescriptor) GetServerMsgReflectHandle() gotenclient
 	return &CreateQualityProfileDescriptorServerMsgHandle{}
 }
 
-func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateQualityProfileRequest) *quality_profile.Name
+		OverrideExtractResourceName(*CreateQualityProfileRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetQualityProfile().GetName()
+	{
+		res := typedMsg.GetQualityProfile()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*quality_profile.Name)(nil)
 }
 
-func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateQualityProfileRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*CreateQualityProfileRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateQualityProfileDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateQualityProfileRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*CreateQualityProfileRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*quality_profile.ParentName)(nil)
 }
 
-func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*quality_profile.QualityProfile) *quality_profile.Name
+		OverrideExtractResourceName(*quality_profile.QualityProfile) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*quality_profile.Name)(nil)
 }
 
-func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
+		OverrideExtractResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateQualityProfileDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
+		OverrideExtractCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1096,15 +1141,15 @@ func (d *UpdateQualityProfileDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateQualityProfileDescriptor) IsCollectionSubject() bool {
+func (d *UpdateQualityProfileDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateQualityProfileDescriptor) IsPluralSubject() bool {
+func (d *UpdateQualityProfileDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateQualityProfileDescriptor) HasSubjectResource() bool {
+func (d *UpdateQualityProfileDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1144,7 +1189,7 @@ func (d *UpdateQualityProfileDescriptor) GetApiDescriptor() gotenclient.ApiDescr
 	return qualityProfileServiceDescriptor
 }
 
-func (d *UpdateQualityProfileDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateQualityProfileDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -1156,74 +1201,85 @@ func (d *UpdateQualityProfileDescriptor) GetServerMsgReflectHandle() gotenclient
 	return &UpdateQualityProfileDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateQualityProfileRequest) *quality_profile.Name
+		OverrideExtractResourceName(*UpdateQualityProfileRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetQualityProfile().GetName()
+	{
+		res := typedMsg.GetQualityProfile()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*quality_profile.Name)(nil)
 }
 
-func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateQualityProfileRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*UpdateQualityProfileRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateQualityProfileDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateQualityProfileRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*UpdateQualityProfileRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*quality_profile.QualityProfile) *quality_profile.Name
+		OverrideExtractResourceName(*quality_profile.QualityProfile) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*quality_profile.Name)(nil)
 }
 
-func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
+		OverrideExtractResourceNames(*quality_profile.QualityProfile) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateQualityProfileDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*quality_profile.QualityProfile)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
+		OverrideExtractCollectionName(*quality_profile.QualityProfile) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1258,15 +1314,15 @@ func (d *DeleteQualityProfileDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteQualityProfileDescriptor) IsCollectionSubject() bool {
+func (d *DeleteQualityProfileDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteQualityProfileDescriptor) IsPluralSubject() bool {
+func (d *DeleteQualityProfileDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteQualityProfileDescriptor) HasSubjectResource() bool {
+func (d *DeleteQualityProfileDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1306,7 +1362,7 @@ func (d *DeleteQualityProfileDescriptor) GetApiDescriptor() gotenclient.ApiDescr
 	return qualityProfileServiceDescriptor
 }
 
-func (d *DeleteQualityProfileDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteQualityProfileDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return quality_profile.GetDescriptor()
 }
 
@@ -1318,77 +1374,79 @@ func (d *DeleteQualityProfileDescriptor) GetServerMsgReflectHandle() gotenclient
 	return &DeleteQualityProfileDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteQualityProfileRequest) *quality_profile.Name
+		OverrideExtractResourceName(*DeleteQualityProfileRequest) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*quality_profile.Name)(nil)
 }
 
-func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteQualityProfileRequest) []*quality_profile.Name
+		OverrideExtractResourceNames(*DeleteQualityProfileRequest) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteQualityProfileDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteQualityProfileRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteQualityProfileRequest) *quality_profile.ParentName
+		OverrideExtractCollectionName(*DeleteQualityProfileRequest) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *quality_profile.Name
+		OverrideExtractResourceName(*empty.Empty) *quality_profile.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*quality_profile.Name
+		OverrideExtractResourceNames(*empty.Empty) []*quality_profile.Name
 	})
 	if ok {
-		return quality_profile.QualityProfileNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return quality_profile.QualityProfileNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteQualityProfileDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *quality_profile.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *quality_profile.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

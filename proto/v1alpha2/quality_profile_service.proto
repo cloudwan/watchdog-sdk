@@ -34,9 +34,6 @@ message GetQualityProfileRequest {
 // Request message for method
 // [BatchGetQualityProfiles][ntt.watchdog.v1alpha2.BatchGetQualityProfiles]
 message BatchGetQualityProfilesRequest {
-  // Optional parent ntt.watchdog.v1alpha2.QualityProfile
-  string parent = 1;
-
   // Names of QualityProfiles
   repeated string names = 2;
 
@@ -47,6 +44,8 @@ message BatchGetQualityProfilesRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetQualityProfilesResponse
@@ -312,7 +311,7 @@ service QualityProfileService {
   rpc BatchGetQualityProfiles(BatchGetQualityProfilesRequest)
       returns (BatchGetQualityProfilesResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/qualityProfiles:batchGet"
+      get : "/v1alpha2/qualityProfiles:batchGet"
     };
   }
 

@@ -542,16 +542,13 @@ type BatchGetProbingTargetsRequest_FieldPath interface {
 type BatchGetProbingTargetsRequest_FieldPathSelector int32
 
 const (
-	BatchGetProbingTargetsRequest_FieldPathSelectorParent    BatchGetProbingTargetsRequest_FieldPathSelector = 0
-	BatchGetProbingTargetsRequest_FieldPathSelectorNames     BatchGetProbingTargetsRequest_FieldPathSelector = 1
-	BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask BatchGetProbingTargetsRequest_FieldPathSelector = 2
-	BatchGetProbingTargetsRequest_FieldPathSelectorView      BatchGetProbingTargetsRequest_FieldPathSelector = 3
+	BatchGetProbingTargetsRequest_FieldPathSelectorNames     BatchGetProbingTargetsRequest_FieldPathSelector = 0
+	BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask BatchGetProbingTargetsRequest_FieldPathSelector = 1
+	BatchGetProbingTargetsRequest_FieldPathSelectorView      BatchGetProbingTargetsRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetProbingTargetsRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetProbingTargetsRequest_FieldPath(fp gotenobject.RawFieldPath) (
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetProbingTargetsRequest_FieldTerminalPath{selector: BatchGetProbingTargetsRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetProbingTargetsRequest_FieldTerminalPath{selector: BatchGetProbingTargetsRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) JSONString() string {
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) Get(source *BatchGetProbingTargetsRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) GetRaw(source proto.M
 // GetSingle returns value pointed by specific field of from source BatchGetProbingTargetsRequest
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) GetSingle(source *BatchGetProbingTargetsRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) GetSingleRaw(source p
 // GetDefault returns a default value of the field type
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		return (*probing_target.Reference)(nil)
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		return ([]*probing_target.Reference)(nil)
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) GetDefault() interfac
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) ClearValue(item *BatchGetProbingTargetsRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) ClearValueRaw(item pr
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetProbingTargetsRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetProbingTargetsRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetProbingTargetsRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetProbingTargetsRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetProbingTargetsRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		return &BatchGetProbingTargetsRequest_FieldTerminalPathValue{BatchGetProbingTargetsRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		return &BatchGetProbingTargetsRequest_FieldTerminalPathValue{BatchGetProbingTargetsRequest_FieldTerminalPath: *fp, value: value.([]*probing_target.Reference)}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) WithRawIValue(value i
 func (fp *BatchGetProbingTargetsRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetProbingTargetsRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingTargetsRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		return &BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingTargetsRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		return &BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingTargetsRequest_FieldTerminalPath: *fp, values: values.([][]*probing_target.Reference)}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetProbingTargetsRequest_FieldPathValue = (*BatchGetProbingTargetsReq
 func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) AsParentValue() (*probing_target.Reference, bool) {
-	res, ok := fpv.value.(*probing_target.Reference)
-	return res, ok
-}
 func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) AsNamesValue() ([]*probing_target.Reference, bool) {
 	res, ok := fpv.value.([]*probing_target.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) SetTo(target **
 		*target = new(BatchGetProbingTargetsRequest)
 	}
 	switch fpv.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*probing_target.Reference)
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*probing_target.Reference)
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) SetToRaw(target
 // CompareWith compares value in the 'BatchGetProbingTargetsRequest_FieldTerminalPathValue' with the value under path in 'BatchGetProbingTargetsRequest'.
 func (fpv *BatchGetProbingTargetsRequest_FieldTerminalPathValue) CompareWith(source *BatchGetProbingTargetsRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*probing_target.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetProbingTargetsRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetProbingTargetsRequest_FieldPathArrayOfValues = (*BatchGetProbingTa
 
 func (fpaov *BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetProbingTargetsRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*probing_target.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetProbingTargetsRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*probing_target.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues) GetRa
 		}
 	}
 	return
-}
-func (fpaov *BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*probing_target.Reference, bool) {
-	res, ok := fpaov.values.([]*probing_target.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetProbingTargetsRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*probing_target.Reference, bool) {
 	res, ok := fpaov.values.([][]*probing_target.Reference)

@@ -699,15 +699,15 @@ func (ProbingConfigPathSelectorSpecProbingSessions) FieldPath() *ProbingConfig_F
 	}
 }
 
-func (s ProbingConfigPathSelectorSpecProbingSessions) WithValue(value []*ProbingSession) *ProbingConfig_FieldSubPathValue {
+func (s ProbingConfigPathSelectorSpecProbingSessions) WithValue(value []*ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingConfig_FieldSubPathValue)
 }
 
-func (s ProbingConfigPathSelectorSpecProbingSessions) WithArrayOfValues(values [][]*ProbingSession) *ProbingConfig_FieldSubPathArrayOfValues {
+func (s ProbingConfigPathSelectorSpecProbingSessions) WithArrayOfValues(values [][]*ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfig_FieldSubPathArrayOfValues)
 }
 
-func (s ProbingConfigPathSelectorSpecProbingSessions) WithItemValue(value *ProbingSession) *ProbingConfig_FieldSubPathArrayItemValue {
+func (s ProbingConfigPathSelectorSpecProbingSessions) WithItemValue(value *ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingConfig_FieldSubPathArrayItemValue)
 }
 
@@ -3088,15 +3088,15 @@ func (ProbingConfigPathSelectorSpecTargetSessions) FieldPath() *ProbingConfig_Fi
 	}
 }
 
-func (s ProbingConfigPathSelectorSpecTargetSessions) WithValue(value []*ProbingSession) *ProbingConfig_FieldSubPathValue {
+func (s ProbingConfigPathSelectorSpecTargetSessions) WithValue(value []*ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingConfig_FieldSubPathValue)
 }
 
-func (s ProbingConfigPathSelectorSpecTargetSessions) WithArrayOfValues(values [][]*ProbingSession) *ProbingConfig_FieldSubPathArrayOfValues {
+func (s ProbingConfigPathSelectorSpecTargetSessions) WithArrayOfValues(values [][]*ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfig_FieldSubPathArrayOfValues)
 }
 
-func (s ProbingConfigPathSelectorSpecTargetSessions) WithItemValue(value *ProbingSession) *ProbingConfig_FieldSubPathArrayItemValue {
+func (s ProbingConfigPathSelectorSpecTargetSessions) WithItemValue(value *ProbingConfig_ProbingSession) *ProbingConfig_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingConfig_FieldSubPathArrayItemValue)
 }
 
@@ -4885,6 +4885,1771 @@ func (s ProbingConfigPathSelectorStatus) WithSubArrayItemValue(subPathArrayItemV
 	return &ProbingConfig_FieldSubPathArrayItemValue{ProbingConfig_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
+type ProbingConfigProbingSessionFieldPathBuilder struct{}
+
+func NewProbingConfigProbingSessionFieldPathBuilder() ProbingConfigProbingSessionFieldPathBuilder {
+	return ProbingConfigProbingSessionFieldPathBuilder{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Target() ProbingConfig_ProbingSessionPathSelectorTarget {
+	return ProbingConfig_ProbingSessionPathSelectorTarget{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) TargetDisplayName() ProbingConfig_ProbingSessionPathSelectorTargetDisplayName {
+	return ProbingConfig_ProbingSessionPathSelectorTargetDisplayName{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) TargetGroup() ProbingConfig_ProbingSessionPathSelectorTargetGroup {
+	return ProbingConfig_ProbingSessionPathSelectorTargetGroup{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Mode() ProbingConfig_ProbingSessionPathSelectorMode {
+	return ProbingConfig_ProbingSessionPathSelectorMode{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) IpVersion() ProbingConfig_ProbingSessionPathSelectorIpVersion {
+	return ProbingConfig_ProbingSessionPathSelectorIpVersion{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Address() ProbingConfig_ProbingSessionPathSelectorAddress {
+	return ProbingConfig_ProbingSessionPathSelectorAddress{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) GroupName() ProbingConfig_ProbingSessionPathSelectorGroupName {
+	return ProbingConfig_ProbingSessionPathSelectorGroupName{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Category() ProbingConfig_ProbingSessionPathSelectorCategory {
+	return ProbingConfig_ProbingSessionPathSelectorCategory{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) LocationType() ProbingConfig_ProbingSessionPathSelectorLocationType {
+	return ProbingConfig_ProbingSessionPathSelectorLocationType{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Location() ProbingConfig_ProbingSessionPathSelectorLocation {
+	return ProbingConfig_ProbingSessionPathSelectorLocation{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) IntervalSec() ProbingConfig_ProbingSessionPathSelectorIntervalSec {
+	return ProbingConfig_ProbingSessionPathSelectorIntervalSec{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Interval() ProbingConfig_ProbingSessionPathSelectorInterval {
+	return ProbingConfig_ProbingSessionPathSelectorInterval{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Tos() ProbingConfig_ProbingSessionPathSelectorTos {
+	return ProbingConfig_ProbingSessionPathSelectorTos{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) WindowSize() ProbingConfig_ProbingSessionPathSelectorWindowSize {
+	return ProbingConfig_ProbingSessionPathSelectorWindowSize{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) PathProbing() ProbingConfig_ProbingSessionPathSelectorPathProbing {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbing{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) SpeedtestSettings() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) HttpProbingConfig() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) ProxyConfiguration() ProbingConfig_ProbingSessionPathSelectorProxyConfiguration {
+	return ProbingConfig_ProbingSessionPathSelectorProxyConfiguration{}
+}
+func (ProbingConfigProbingSessionFieldPathBuilder) Addresses() ProbingConfig_ProbingSessionPathSelectorAddresses {
+	return ProbingConfig_ProbingSessionPathSelectorAddresses{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorTarget struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorTarget) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTarget}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTarget) WithValue(value *probing_target.Name) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTarget) WithArrayOfValues(values []*probing_target.Name) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorTargetDisplayName struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorTargetDisplayName) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTargetDisplayName) WithValue(value string) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTargetDisplayName) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorTargetGroup struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorTargetGroup) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetGroup}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTargetGroup) WithValue(value *probing_target_group.Reference) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTargetGroup) WithArrayOfValues(values []*probing_target_group.Reference) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorMode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorMode) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorMode}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorMode) WithValue(value common.ProbingMode) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorMode) WithArrayOfValues(values []common.ProbingMode) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorIpVersion struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorIpVersion) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIpVersion}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorIpVersion) WithValue(value common.IpVersion) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorAddress struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorAddress) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddress}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorAddress) WithValue(value string) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorAddress) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorGroupName struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorGroupName) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorGroupName}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorGroupName) WithValue(value string) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorGroupName) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorCategory struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorCategory) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorCategory}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorCategory) WithValue(value string) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorCategory) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationType struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationType) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocationType}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationType) WithValue(value common.LocationType) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationType) WithArrayOfValues(values []common.LocationType) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocation struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocation) WithValue(value *common.Location) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocation) WithArrayOfValues(values []*common.Location) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) WithSubPath(subPath common.Location_FieldPath) *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation, subPath: subPath}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocation) WithSubValue(subPathValue common.Location_FieldPathValue) *ProbingConfigProbingSession_FieldSubPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocation) WithSubArrayOfValues(subPathArrayOfValues common.Location_FieldPathArrayOfValues) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocation) WithSubArrayItemValue(subPathArrayItemValue common.Location_FieldPathArrayItemValue) *ProbingConfigProbingSession_FieldSubPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) Address() ProbingConfig_ProbingSessionPathSelectorLocationAddress {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddress{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) AdminHierarchy() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) Coordinates() ProbingConfig_ProbingSessionPathSelectorLocationCoordinates {
+	return ProbingConfig_ProbingSessionPathSelectorLocationCoordinates{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocation) Accuracy() ProbingConfig_ProbingSessionPathSelectorLocationAccuracy {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAccuracy{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddress struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddress) WithValue(value *common.Address) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddress) WithArrayOfValues(values []*common.Address) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) PostalCode() ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) CountryCode() ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) Continent() ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) Country() ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) AdminArea1() ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) AdminArea2() ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) AdminArea3() ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) AdminArea4() ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddress) StreetAddress() ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressPostalCode) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressCountryCode) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressContinent) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Country().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressCountry) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea1) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea2) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea3) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressAdminArea4) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAddressStreetAddress) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Continent() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Country() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Admin1() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Admin2() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Admin3() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Admin4() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchy) Admin5() ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5 {
+	return ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5 struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationCoordinates struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationCoordinates) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Coordinates().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationCoordinates) WithValue(value *latlng.LatLng) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorLocationAccuracy struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorLocationAccuracy) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Accuracy().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAccuracy) WithValue(value float64) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorLocationAccuracy) WithArrayOfValues(values []float64) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorIntervalSec struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorIntervalSec) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIntervalSec}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorIntervalSec) WithValue(value int64) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorIntervalSec) WithArrayOfValues(values []int64) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorInterval struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorInterval) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorInterval}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorInterval) WithValue(value *duration.Duration) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorInterval) WithArrayOfValues(values []*duration.Duration) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorTos struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorTos) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTos}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTos) WithValue(value uint32) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorTos) WithArrayOfValues(values []uint32) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorWindowSize struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorWindowSize) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorWindowSize}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorWindowSize) WithValue(value uint32) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorWindowSize) WithArrayOfValues(values []uint32) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbing struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbing) WithValue(value *common.PathProbe) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbing) WithArrayOfValues(values []*common.PathProbe) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) WithSubPath(subPath common.PathProbe_FieldPath) *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing, subPath: subPath}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbing) WithSubValue(subPathValue common.PathProbe_FieldPathValue) *ProbingConfigProbingSession_FieldSubPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbing) WithSubArrayOfValues(subPathArrayOfValues common.PathProbe_FieldPathArrayOfValues) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbing) WithSubArrayItemValue(subPathArrayItemValue common.PathProbe_FieldPathArrayItemValue) *ProbingConfigProbingSession_FieldSubPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) Enabled() ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) Mode() ProbingConfig_ProbingSessionPathSelectorPathProbingMode {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingMode{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) Interval() ProbingConfig_ProbingSessionPathSelectorPathProbingInterval {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingInterval{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) IntervalSec() ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) Attempts() ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbing) MaxTtl() ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl {
+	return ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().Enabled().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled) WithValue(value bool) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingEnabled) WithArrayOfValues(values []bool) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingMode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingMode) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().Mode().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingMode) WithValue(value common.ProbingMode) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingMode) WithArrayOfValues(values []common.ProbingMode) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingInterval struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingInterval) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().Interval().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingInterval) WithValue(value *duration.Duration) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingInterval) WithArrayOfValues(values []*duration.Duration) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().IntervalSec().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec) WithValue(value int64) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingIntervalSec) WithArrayOfValues(values []int64) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().Attempts().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts) WithValue(value *wrappers.UInt32Value) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingAttempts) WithArrayOfValues(values []*wrappers.UInt32Value) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing,
+		subPath:  common.NewPathProbeFieldPathBuilder().MaxTtl().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl) WithValue(value *wrappers.UInt32Value) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorPathProbingMaxTtl) WithArrayOfValues(values []*wrappers.UInt32Value) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithSubPath(subPath common.SpeedTestSettings_FieldPath) *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subPath}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithSubValue(subPathValue common.SpeedTestSettings_FieldPathValue) *ProbingConfigProbingSession_FieldSubPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithSubArrayOfValues(subPathArrayOfValues common.SpeedTestSettings_FieldPathArrayOfValues) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) WithSubArrayItemValue(subPathArrayItemValue common.SpeedTestSettings_FieldPathArrayItemValue) *ProbingConfigProbingSession_FieldSubPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) Duration() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) UseTls() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) ServerSelection() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) TcpPort() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettings) TlsPort() ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort {
+	return ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings,
+		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().Duration().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings,
+		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().UseTls().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls) WithValue(value bool) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings,
+		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().ServerSelection().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings,
+		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().TcpPort().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort) WithValue(value int32) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings,
+		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().TlsPort().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithValue(value *common.HTTPProbingConfig) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithArrayOfValues(values []*common.HTTPProbingConfig) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithSubPath(subPath common.HTTPProbingConfig_FieldPath) *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subPath}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithSubValue(subPathValue common.HTTPProbingConfig_FieldPathValue) *ProbingConfigProbingSession_FieldSubPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithSubArrayOfValues(subPathArrayOfValues common.HTTPProbingConfig_FieldPathArrayOfValues) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) WithSubArrayItemValue(subPathArrayItemValue common.HTTPProbingConfig_FieldPathArrayItemValue) *ProbingConfigProbingSession_FieldSubPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) HttpRequest() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfig) AuthConfig() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) WithValue(value *common.HTTPProbingConfig_HTTPRequest) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) Url() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestHeaders() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestMethod() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) ExpectedResponseCode() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) Timeout() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestBody() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) AuthenticationMethod() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().Url().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestHeaders().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithValue(value map[string]string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithArrayOfValues(values []map[string]string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithKey(key string) ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders {
+	return ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders{key: key}
+}
+
+type ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders struct {
+	key string
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestMethod().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) WithValue(value common.HTTPRequestMethod) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) WithArrayOfValues(values []common.HTTPRequestMethod) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().ExpectedResponseCode().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) WithValue(value uint32) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) WithArrayOfValues(values []uint32) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().Timeout().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) WithValue(value *duration.Duration) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) WithArrayOfValues(values []*duration.Duration) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestBody().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().AuthenticationMethod().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) WithValue(value common.AuthenticationMethod) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
+	return ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
+}
+
+type ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
+	key string
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) WithValue(value *common.HTTPProbingConfig_HTTPAuth) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPAuth) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) Username() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) Password() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenRequest() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseHeader() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseBodyKey() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) RequestHeaderTokenKey() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseBodyExpiryKey() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().Username().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().Password().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) WithValue(value *common.HTTPProbingConfig_HTTPRequest) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) Url() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestHeaders() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestMethod() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) ExpectedResponseCode() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) Timeout() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestBody() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
+	return ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().Url().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithValue(value map[string]string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithArrayOfValues(values []map[string]string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithKey(key string) ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders {
+	return ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders{key: key}
+}
+
+type ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders struct {
+	key string
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) WithValue(value common.HTTPRequestMethod) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) WithArrayOfValues(values []common.HTTPRequestMethod) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) WithValue(value uint32) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) WithArrayOfValues(values []uint32) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().Timeout().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) WithValue(value *duration.Duration) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) WithArrayOfValues(values []*duration.Duration) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestBody().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithValue(value common.AuthenticationMethod) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
+	return ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
+}
+
+type ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
+	key string
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseHeader().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseBodyKey().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().RequestHeaderTokenKey().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig,
+		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorProxyConfiguration struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithValue(value *common.ProxyConfiguration) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithArrayOfValues(values []*common.ProxyConfiguration) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithSubPath(subPath common.ProxyConfiguration_FieldPath) *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration, subPath: subPath}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithSubValue(subPathValue common.ProxyConfiguration_FieldPathValue) *ProbingConfigProbingSession_FieldSubPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithSubArrayOfValues(subPathArrayOfValues common.ProxyConfiguration_FieldPathArrayOfValues) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) WithSubArrayItemValue(subPathArrayItemValue common.ProxyConfiguration_FieldPathArrayItemValue) *ProbingConfigProbingSession_FieldSubPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{ProbingConfigProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) ProxySetting() ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting {
+	return ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) HttpProxy() ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy {
+	return ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) HttpsProxy() ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy {
+	return ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy{}
+}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfiguration) NoProxy() ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy {
+	return ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy{}
+}
+
+type ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().ProxySetting().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting) WithValue(value common.ProxySetting) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationProxySetting) WithArrayOfValues(values []common.ProxySetting) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpProxy) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationHttpsProxy) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy) FieldPath() *ProbingConfigProbingSession_FieldSubPath {
+	return &ProbingConfigProbingSession_FieldSubPath{
+		selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().NoProxy().FieldPath(),
+	}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy) WithValue(value string) *ProbingConfigProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorProxyConfigurationNoProxy) WithArrayOfValues(values []string) *ProbingConfigProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingConfig_ProbingSessionPathSelectorAddresses struct{}
+
+func (ProbingConfig_ProbingSessionPathSelectorAddresses) FieldPath() *ProbingConfigProbingSession_FieldTerminalPath {
+	return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddresses}
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorAddresses) WithValue(value []string) *ProbingConfigProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingConfigProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorAddresses) WithArrayOfValues(values [][]string) *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (s ProbingConfig_ProbingSessionPathSelectorAddresses) WithItemValue(value string) *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ProbingConfigProbingSession_FieldTerminalPathArrayItemValue)
+}
+
 type ProbingConfigSpecFieldPathBuilder struct{}
 
 func NewProbingConfigSpecFieldPathBuilder() ProbingConfigSpecFieldPathBuilder {
@@ -4923,30 +6688,30 @@ func (ProbingConfig_SpecPathSelectorProbingSessions) FieldPath() *ProbingConfigS
 	return &ProbingConfigSpec_FieldTerminalPath{selector: ProbingConfigSpec_FieldPathSelectorProbingSessions}
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithValue(value []*ProbingSession) *ProbingConfigSpec_FieldTerminalPathValue {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithValue(value []*ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingConfigSpec_FieldTerminalPathValue)
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithArrayOfValues(values [][]*ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayOfValues {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithArrayOfValues(values [][]*ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigSpec_FieldTerminalPathArrayOfValues)
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithItemValue(value *ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayItemValue {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithItemValue(value *ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingConfigSpec_FieldTerminalPathArrayItemValue)
 }
-func (ProbingConfig_SpecPathSelectorProbingSessions) WithSubPath(subPath ProbingSession_FieldPath) *ProbingConfigSpec_FieldSubPath {
+func (ProbingConfig_SpecPathSelectorProbingSessions) WithSubPath(subPath ProbingConfigProbingSession_FieldPath) *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{selector: ProbingConfigSpec_FieldPathSelectorProbingSessions, subPath: subPath}
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubValue(subPathValue ProbingSession_FieldPathValue) *ProbingConfigSpec_FieldSubPathValue {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubValue(subPathValue ProbingConfigProbingSession_FieldPathValue) *ProbingConfigSpec_FieldSubPathValue {
 	return &ProbingConfigSpec_FieldSubPathValue{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubArrayOfValues(subPathArrayOfValues ProbingSession_FieldPathArrayOfValues) *ProbingConfigSpec_FieldSubPathArrayOfValues {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubArrayOfValues(subPathArrayOfValues ProbingConfigProbingSession_FieldPathArrayOfValues) *ProbingConfigSpec_FieldSubPathArrayOfValues {
 	return &ProbingConfigSpec_FieldSubPathArrayOfValues{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubArrayItemValue(subPathArrayItemValue ProbingSession_FieldPathArrayItemValue) *ProbingConfigSpec_FieldSubPathArrayItemValue {
+func (s ProbingConfig_SpecPathSelectorProbingSessions) WithSubArrayItemValue(subPathArrayItemValue ProbingConfigProbingSession_FieldPathArrayItemValue) *ProbingConfigSpec_FieldSubPathArrayItemValue {
 	return &ProbingConfigSpec_FieldSubPathArrayItemValue{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
@@ -5031,7 +6796,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsTarget struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsTarget) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Target().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Target().FieldPath(),
 	}
 }
 
@@ -5048,7 +6813,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsTargetDisplayName struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsTargetDisplayName) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().TargetDisplayName().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().TargetDisplayName().FieldPath(),
 	}
 }
 
@@ -5065,7 +6830,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsTargetGroup struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsTargetGroup) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().TargetGroup().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().TargetGroup().FieldPath(),
 	}
 }
 
@@ -5082,7 +6847,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsMode struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsMode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Mode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Mode().FieldPath(),
 	}
 }
 
@@ -5099,7 +6864,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsIpVersion struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsIpVersion) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().IpVersion().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().IpVersion().FieldPath(),
 	}
 }
 
@@ -5116,7 +6881,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsAddress struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Address().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Address().FieldPath(),
 	}
 }
 
@@ -5133,7 +6898,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsGroupName struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsGroupName) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().GroupName().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().GroupName().FieldPath(),
 	}
 }
 
@@ -5150,7 +6915,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsCategory struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsCategory) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Category().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Category().FieldPath(),
 	}
 }
 
@@ -5167,7 +6932,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationType struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationType) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().LocationType().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().LocationType().FieldPath(),
 	}
 }
 
@@ -5184,7 +6949,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocation struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocation) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().FieldPath(),
 	}
 }
 
@@ -5217,7 +6982,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddress struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().FieldPath(),
 	}
 }
 
@@ -5270,7 +7035,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressPostalCode stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressPostalCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().PostalCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().PostalCode().FieldPath(),
 	}
 }
 
@@ -5287,7 +7052,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressCountryCode str
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressCountryCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().CountryCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().CountryCode().FieldPath(),
 	}
 }
 
@@ -5304,7 +7069,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressContinent struc
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressContinent) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().Continent().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().Continent().FieldPath(),
 	}
 }
 
@@ -5321,7 +7086,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressCountry struct{
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressCountry) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().Country().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().Country().FieldPath(),
 	}
 }
 
@@ -5338,7 +7103,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea1 stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea1) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea1().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea1().FieldPath(),
 	}
 }
 
@@ -5355,7 +7120,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea2 stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea2) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea2().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea2().FieldPath(),
 	}
 }
 
@@ -5372,7 +7137,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea3 stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea3) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea3().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea3().FieldPath(),
 	}
 }
 
@@ -5389,7 +7154,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea4 stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressAdminArea4) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea4().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea4().FieldPath(),
 	}
 }
 
@@ -5406,7 +7171,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressStreetAddress s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAddressStreetAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().StreetAddress().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().StreetAddress().FieldPath(),
 	}
 }
 
@@ -5423,7 +7188,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchy struct{
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().FieldPath(),
 	}
 }
 
@@ -5468,7 +7233,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyContinen
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyContinent) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Continent().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Continent().FieldPath(),
 	}
 }
 
@@ -5485,7 +7250,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyCountry 
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyCountry) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Country().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Country().FieldPath(),
 	}
 }
 
@@ -5502,7 +7267,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin1 s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin1) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin1().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin1().FieldPath(),
 	}
 }
 
@@ -5519,7 +7284,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin2 s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin2) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin2().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin2().FieldPath(),
 	}
 }
 
@@ -5536,7 +7301,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin3 s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin3) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin3().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin3().FieldPath(),
 	}
 }
 
@@ -5553,7 +7318,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin4 s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin4) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin4().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin4().FieldPath(),
 	}
 }
 
@@ -5570,7 +7335,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin5 s
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAdminHierarchyAdmin5) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin5().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin5().FieldPath(),
 	}
 }
 
@@ -5587,7 +7352,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationCoordinates struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationCoordinates) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Coordinates().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Coordinates().FieldPath(),
 	}
 }
 
@@ -5604,7 +7369,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsLocationAccuracy struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsLocationAccuracy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Accuracy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Accuracy().FieldPath(),
 	}
 }
 
@@ -5621,7 +7386,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsIntervalSec struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsIntervalSec) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().IntervalSec().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().IntervalSec().FieldPath(),
 	}
 }
 
@@ -5638,7 +7403,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsInterval struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsInterval) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Interval().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Interval().FieldPath(),
 	}
 }
 
@@ -5655,7 +7420,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsTos struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsTos) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Tos().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Tos().FieldPath(),
 	}
 }
 
@@ -5672,7 +7437,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsWindowSize struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsWindowSize) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().WindowSize().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().WindowSize().FieldPath(),
 	}
 }
 
@@ -5689,7 +7454,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbing struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbing) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().FieldPath(),
 	}
 }
 
@@ -5730,7 +7495,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingEnabled struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingEnabled) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Enabled().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Enabled().FieldPath(),
 	}
 }
 
@@ -5747,7 +7512,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingMode struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingMode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Mode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Mode().FieldPath(),
 	}
 }
 
@@ -5764,7 +7529,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingInterval struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingInterval) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Interval().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Interval().FieldPath(),
 	}
 }
 
@@ -5781,7 +7546,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingIntervalSec struct{
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingIntervalSec) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().IntervalSec().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().IntervalSec().FieldPath(),
 	}
 }
 
@@ -5798,7 +7563,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingAttempts struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingAttempts) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Attempts().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Attempts().FieldPath(),
 	}
 }
 
@@ -5815,7 +7580,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsPathProbingMaxTtl struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsPathProbingMaxTtl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().MaxTtl().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().MaxTtl().FieldPath(),
 	}
 }
 
@@ -5832,7 +7597,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettings struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettings) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().FieldPath(),
 	}
 }
 
@@ -5869,7 +7634,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsDuration stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsDuration) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().Duration().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().Duration().FieldPath(),
 	}
 }
 
@@ -5886,7 +7651,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsUseTls struct
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsUseTls) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
 	}
 }
 
@@ -5903,7 +7668,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsServerSelecti
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsServerSelection) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().ServerSelection().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().ServerSelection().FieldPath(),
 	}
 }
 
@@ -5920,7 +7685,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsTcpPort struc
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsTcpPort) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().TcpPort().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().TcpPort().FieldPath(),
 	}
 }
 
@@ -5937,7 +7702,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsTlsPort struc
 func (ProbingConfig_SpecPathSelectorProbingSessionsSpeedtestSettingsTlsPort) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
 	}
 }
 
@@ -5954,7 +7719,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfig struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfig) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().FieldPath(),
 	}
 }
 
@@ -5979,7 +7744,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequest s
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequest) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().FieldPath(),
 	}
 }
 
@@ -6028,7 +7793,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestUr
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Url().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Url().FieldPath(),
 	}
 }
 
@@ -6045,7 +7810,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRe
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().FieldPath(),
 	}
 }
 
@@ -6068,7 +7833,7 @@ type ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigHttpReques
 func (s ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -6085,7 +7850,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRe
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRequestMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestMethod().FieldPath(),
 	}
 }
 
@@ -6102,7 +7867,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestEx
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestExpectedResponseCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().ExpectedResponseCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().ExpectedResponseCode().FieldPath(),
 	}
 }
 
@@ -6119,7 +7884,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestTi
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestTimeout) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Timeout().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Timeout().FieldPath(),
 	}
 }
 
@@ -6136,7 +7901,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRe
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestRequestBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestBody().FieldPath(),
 	}
 }
 
@@ -6153,7 +7918,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestAu
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestAuthenticationMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().AuthenticationMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().AuthenticationMethod().FieldPath(),
 	}
 }
 
@@ -6170,7 +7935,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestUr
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
 	}
 }
 
@@ -6193,7 +7958,7 @@ type ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigHttpReques
 func (s ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -6210,7 +7975,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfig st
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfig) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().FieldPath(),
 	}
 }
 
@@ -6255,7 +8020,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigUse
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigUsername) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Username().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Username().FieldPath(),
 	}
 }
 
@@ -6272,7 +8037,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigPas
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigPassword) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Password().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Password().FieldPath(),
 	}
 }
 
@@ -6289,7 +8054,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequest) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().FieldPath(),
 	}
 }
 
@@ -6338,7 +8103,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestUrl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Url().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Url().FieldPath(),
 	}
 }
 
@@ -6355,7 +8120,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
 	}
 }
 
@@ -6378,7 +8143,7 @@ type ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigAuthConfig
 func (s ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -6395,7 +8160,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestRequestMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
 	}
 }
 
@@ -6412,7 +8177,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
 	}
 }
 
@@ -6429,7 +8194,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestTimeout) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Timeout().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Timeout().FieldPath(),
 	}
 }
 
@@ -6446,7 +8211,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestRequestBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestBody().FieldPath(),
 	}
 }
 
@@ -6463,7 +8228,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
 	}
 }
 
@@ -6480,7 +8245,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
 	}
 }
 
@@ -6503,7 +8268,7 @@ type ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigAuthConfig
 func (s ProbingConfig_SpecMapPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -6520,7 +8285,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenResponseHeader) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseHeader().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseHeader().FieldPath(),
 	}
 }
 
@@ -6537,7 +8302,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenResponseBodyKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyKey().FieldPath(),
 	}
 }
 
@@ -6554,7 +8319,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigReq
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigRequestHeaderTokenKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().RequestHeaderTokenKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().RequestHeaderTokenKey().FieldPath(),
 	}
 }
 
@@ -6571,7 +8336,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTok
 func (ProbingConfig_SpecPathSelectorProbingSessionsHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
 	}
 }
 
@@ -6588,7 +8353,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsProxyConfiguration struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsProxyConfiguration) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().FieldPath(),
 	}
 }
 
@@ -6621,7 +8386,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationProxySetting
 func (ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationProxySetting) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
 	}
 }
 
@@ -6638,7 +8403,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationHttpProxy st
 func (ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationHttpProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
 	}
 }
 
@@ -6655,7 +8420,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationHttpsProxy s
 func (ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationHttpsProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
 	}
 }
 
@@ -6672,7 +8437,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationNoProxy stru
 func (ProbingConfig_SpecPathSelectorProbingSessionsProxyConfigurationNoProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
 	}
 }
 
@@ -6689,7 +8454,7 @@ type ProbingConfig_SpecPathSelectorProbingSessionsAddresses struct{}
 func (ProbingConfig_SpecPathSelectorProbingSessionsAddresses) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorProbingSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Addresses().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Addresses().FieldPath(),
 	}
 }
 
@@ -7337,30 +9102,30 @@ func (ProbingConfig_SpecPathSelectorTargetSessions) FieldPath() *ProbingConfigSp
 	return &ProbingConfigSpec_FieldTerminalPath{selector: ProbingConfigSpec_FieldPathSelectorTargetSessions}
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithValue(value []*ProbingSession) *ProbingConfigSpec_FieldTerminalPathValue {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithValue(value []*ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingConfigSpec_FieldTerminalPathValue)
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithArrayOfValues(values [][]*ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayOfValues {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithArrayOfValues(values [][]*ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigSpec_FieldTerminalPathArrayOfValues)
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithItemValue(value *ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayItemValue {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithItemValue(value *ProbingConfig_ProbingSession) *ProbingConfigSpec_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingConfigSpec_FieldTerminalPathArrayItemValue)
 }
-func (ProbingConfig_SpecPathSelectorTargetSessions) WithSubPath(subPath ProbingSession_FieldPath) *ProbingConfigSpec_FieldSubPath {
+func (ProbingConfig_SpecPathSelectorTargetSessions) WithSubPath(subPath ProbingConfigProbingSession_FieldPath) *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{selector: ProbingConfigSpec_FieldPathSelectorTargetSessions, subPath: subPath}
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubValue(subPathValue ProbingSession_FieldPathValue) *ProbingConfigSpec_FieldSubPathValue {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubValue(subPathValue ProbingConfigProbingSession_FieldPathValue) *ProbingConfigSpec_FieldSubPathValue {
 	return &ProbingConfigSpec_FieldSubPathValue{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubArrayOfValues(subPathArrayOfValues ProbingSession_FieldPathArrayOfValues) *ProbingConfigSpec_FieldSubPathArrayOfValues {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubArrayOfValues(subPathArrayOfValues ProbingConfigProbingSession_FieldPathArrayOfValues) *ProbingConfigSpec_FieldSubPathArrayOfValues {
 	return &ProbingConfigSpec_FieldSubPathArrayOfValues{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubArrayItemValue(subPathArrayItemValue ProbingSession_FieldPathArrayItemValue) *ProbingConfigSpec_FieldSubPathArrayItemValue {
+func (s ProbingConfig_SpecPathSelectorTargetSessions) WithSubArrayItemValue(subPathArrayItemValue ProbingConfigProbingSession_FieldPathArrayItemValue) *ProbingConfigSpec_FieldSubPathArrayItemValue {
 	return &ProbingConfigSpec_FieldSubPathArrayItemValue{ProbingConfigSpec_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
@@ -7445,7 +9210,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsTarget struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsTarget) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Target().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Target().FieldPath(),
 	}
 }
 
@@ -7462,7 +9227,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsTargetDisplayName struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsTargetDisplayName) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().TargetDisplayName().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().TargetDisplayName().FieldPath(),
 	}
 }
 
@@ -7479,7 +9244,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsTargetGroup struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsTargetGroup) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().TargetGroup().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().TargetGroup().FieldPath(),
 	}
 }
 
@@ -7496,7 +9261,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsMode struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsMode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Mode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Mode().FieldPath(),
 	}
 }
 
@@ -7513,7 +9278,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsIpVersion struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsIpVersion) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().IpVersion().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().IpVersion().FieldPath(),
 	}
 }
 
@@ -7530,7 +9295,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsAddress struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Address().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Address().FieldPath(),
 	}
 }
 
@@ -7547,7 +9312,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsGroupName struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsGroupName) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().GroupName().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().GroupName().FieldPath(),
 	}
 }
 
@@ -7564,7 +9329,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsCategory struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsCategory) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Category().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Category().FieldPath(),
 	}
 }
 
@@ -7581,7 +9346,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationType struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationType) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().LocationType().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().LocationType().FieldPath(),
 	}
 }
 
@@ -7598,7 +9363,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocation struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocation) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().FieldPath(),
 	}
 }
 
@@ -7631,7 +9396,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddress struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().FieldPath(),
 	}
 }
 
@@ -7684,7 +9449,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressPostalCode struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressPostalCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().PostalCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().PostalCode().FieldPath(),
 	}
 }
 
@@ -7701,7 +9466,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressCountryCode stru
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressCountryCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().CountryCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().CountryCode().FieldPath(),
 	}
 }
 
@@ -7718,7 +9483,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressContinent struct
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressContinent) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().Continent().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().Continent().FieldPath(),
 	}
 }
 
@@ -7735,7 +9500,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressCountry struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressCountry) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().Country().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().Country().FieldPath(),
 	}
 }
 
@@ -7752,7 +9517,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea1 struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea1) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea1().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea1().FieldPath(),
 	}
 }
 
@@ -7769,7 +9534,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea2 struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea2) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea2().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea2().FieldPath(),
 	}
 }
 
@@ -7786,7 +9551,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea3 struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea3) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea3().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea3().FieldPath(),
 	}
 }
 
@@ -7803,7 +9568,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea4 struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressAdminArea4) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().AdminArea4().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().AdminArea4().FieldPath(),
 	}
 }
 
@@ -7820,7 +9585,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressStreetAddress st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAddressStreetAddress) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Address().StreetAddress().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Address().StreetAddress().FieldPath(),
 	}
 }
 
@@ -7837,7 +9602,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchy struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().FieldPath(),
 	}
 }
 
@@ -7882,7 +9647,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyContinent
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyContinent) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Continent().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Continent().FieldPath(),
 	}
 }
 
@@ -7899,7 +9664,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyCountry s
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyCountry) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Country().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Country().FieldPath(),
 	}
 }
 
@@ -7916,7 +9681,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin1 st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin1) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin1().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin1().FieldPath(),
 	}
 }
 
@@ -7933,7 +9698,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin2 st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin2) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin2().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin2().FieldPath(),
 	}
 }
 
@@ -7950,7 +9715,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin3 st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin3) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin3().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin3().FieldPath(),
 	}
 }
 
@@ -7967,7 +9732,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin4 st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin4) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin4().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin4().FieldPath(),
 	}
 }
 
@@ -7984,7 +9749,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin5 st
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAdminHierarchyAdmin5) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin5().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().AdminHierarchy().Admin5().FieldPath(),
 	}
 }
 
@@ -8001,7 +9766,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationCoordinates struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationCoordinates) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Coordinates().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Coordinates().FieldPath(),
 	}
 }
 
@@ -8018,7 +9783,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsLocationAccuracy struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsLocationAccuracy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Location().Accuracy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Location().Accuracy().FieldPath(),
 	}
 }
 
@@ -8035,7 +9800,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsIntervalSec struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsIntervalSec) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().IntervalSec().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().IntervalSec().FieldPath(),
 	}
 }
 
@@ -8052,7 +9817,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsInterval struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsInterval) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Interval().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Interval().FieldPath(),
 	}
 }
 
@@ -8069,7 +9834,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsTos struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsTos) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Tos().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Tos().FieldPath(),
 	}
 }
 
@@ -8086,7 +9851,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsWindowSize struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsWindowSize) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().WindowSize().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().WindowSize().FieldPath(),
 	}
 }
 
@@ -8103,7 +9868,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbing struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbing) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().FieldPath(),
 	}
 }
 
@@ -8144,7 +9909,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingEnabled struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingEnabled) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Enabled().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Enabled().FieldPath(),
 	}
 }
 
@@ -8161,7 +9926,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingMode struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingMode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Mode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Mode().FieldPath(),
 	}
 }
 
@@ -8178,7 +9943,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingInterval struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingInterval) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Interval().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Interval().FieldPath(),
 	}
 }
 
@@ -8195,7 +9960,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingIntervalSec struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingIntervalSec) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().IntervalSec().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().IntervalSec().FieldPath(),
 	}
 }
 
@@ -8212,7 +9977,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingAttempts struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingAttempts) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().Attempts().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().Attempts().FieldPath(),
 	}
 }
 
@@ -8229,7 +9994,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsPathProbingMaxTtl struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsPathProbingMaxTtl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().PathProbing().MaxTtl().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().PathProbing().MaxTtl().FieldPath(),
 	}
 }
 
@@ -8246,7 +10011,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettings struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettings) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().FieldPath(),
 	}
 }
 
@@ -8283,7 +10048,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsDuration struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsDuration) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().Duration().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().Duration().FieldPath(),
 	}
 }
 
@@ -8300,7 +10065,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsUseTls struct{
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsUseTls) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
 	}
 }
 
@@ -8317,7 +10082,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsServerSelectio
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsServerSelection) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().ServerSelection().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().ServerSelection().FieldPath(),
 	}
 }
 
@@ -8334,7 +10099,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsTcpPort struct
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsTcpPort) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().TcpPort().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().TcpPort().FieldPath(),
 	}
 }
 
@@ -8351,7 +10116,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsTlsPort struct
 func (ProbingConfig_SpecPathSelectorTargetSessionsSpeedtestSettingsTlsPort) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
 	}
 }
 
@@ -8368,7 +10133,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfig struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfig) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().FieldPath(),
 	}
 }
 
@@ -8393,7 +10158,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequest st
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequest) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().FieldPath(),
 	}
 }
 
@@ -8442,7 +10207,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestUrl
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Url().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Url().FieldPath(),
 	}
 }
 
@@ -8459,7 +10224,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestReq
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().FieldPath(),
 	}
 }
 
@@ -8482,7 +10247,7 @@ type ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigHttpRequest
 func (s ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -8499,7 +10264,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestReq
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestRequestMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestMethod().FieldPath(),
 	}
 }
 
@@ -8516,7 +10281,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestExp
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestExpectedResponseCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().ExpectedResponseCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().ExpectedResponseCode().FieldPath(),
 	}
 }
 
@@ -8533,7 +10298,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestTim
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestTimeout) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Timeout().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().Timeout().FieldPath(),
 	}
 }
 
@@ -8550,7 +10315,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestReq
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestRequestBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().RequestBody().FieldPath(),
 	}
 }
 
@@ -8567,7 +10332,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestAut
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestAuthenticationMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().AuthenticationMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().AuthenticationMethod().FieldPath(),
 	}
 }
 
@@ -8584,7 +10349,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestUrl
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
 	}
 }
 
@@ -8607,7 +10372,7 @@ type ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigHttpRequest
 func (s ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -8624,7 +10389,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfig str
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfig) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().FieldPath(),
 	}
 }
 
@@ -8669,7 +10434,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigUser
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigUsername) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Username().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Username().FieldPath(),
 	}
 }
 
@@ -8686,7 +10451,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigPass
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigPassword) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Password().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().Password().FieldPath(),
 	}
 }
 
@@ -8703,7 +10468,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequest) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().FieldPath(),
 	}
 }
 
@@ -8752,7 +10517,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestUrl) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Url().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Url().FieldPath(),
 	}
 }
 
@@ -8769,7 +10534,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
 	}
 }
 
@@ -8792,7 +10557,7 @@ type ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigAuthConfigT
 func (s ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -8809,7 +10574,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestRequestMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
 	}
 }
 
@@ -8826,7 +10591,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
 	}
 }
 
@@ -8843,7 +10608,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestTimeout) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Timeout().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().Timeout().FieldPath(),
 	}
 }
 
@@ -8860,7 +10625,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestRequestBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().RequestBody().FieldPath(),
 	}
 }
 
@@ -8877,7 +10642,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
 	}
 }
 
@@ -8894,7 +10659,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
 	}
 }
 
@@ -8917,7 +10682,7 @@ type ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigAuthConfigT
 func (s ProbingConfig_SpecMapPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
 	}
 }
 
@@ -8934,7 +10699,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenResponseHeader) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseHeader().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseHeader().FieldPath(),
 	}
 }
 
@@ -8951,7 +10716,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenResponseBodyKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyKey().FieldPath(),
 	}
 }
 
@@ -8968,7 +10733,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigRequ
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigRequestHeaderTokenKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().RequestHeaderTokenKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().RequestHeaderTokenKey().FieldPath(),
 	}
 }
 
@@ -8985,7 +10750,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigToke
 func (ProbingConfig_SpecPathSelectorTargetSessionsHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
 	}
 }
 
@@ -9002,7 +10767,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsProxyConfiguration struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsProxyConfiguration) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().FieldPath(),
 	}
 }
 
@@ -9035,7 +10800,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationProxySetting 
 func (ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationProxySetting) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
 	}
 }
 
@@ -9052,7 +10817,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationHttpProxy str
 func (ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationHttpProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
 	}
 }
 
@@ -9069,7 +10834,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationHttpsProxy st
 func (ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationHttpsProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
 	}
 }
 
@@ -9086,7 +10851,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationNoProxy struc
 func (ProbingConfig_SpecPathSelectorTargetSessionsProxyConfigurationNoProxy) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
 	}
 }
 
@@ -9103,7 +10868,7 @@ type ProbingConfig_SpecPathSelectorTargetSessionsAddresses struct{}
 func (ProbingConfig_SpecPathSelectorTargetSessionsAddresses) FieldPath() *ProbingConfigSpec_FieldSubPath {
 	return &ProbingConfigSpec_FieldSubPath{
 		selector: ProbingConfigSpec_FieldPathSelectorTargetSessions,
-		subPath:  NewProbingSessionFieldPathBuilder().Addresses().FieldPath(),
+		subPath:  NewProbingConfigProbingSessionFieldPathBuilder().Addresses().FieldPath(),
 	}
 }
 
@@ -10238,1769 +12003,4 @@ func (s ProbingConfig_Spec_SpeedTest_ServerPathSelectorTarget) WithValue(value *
 
 func (s ProbingConfig_Spec_SpeedTest_ServerPathSelectorTarget) WithArrayOfValues(values []*probing_target.Name) *ProbingConfigSpecSpeedTestServer_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingConfigSpecSpeedTestServer_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionFieldPathBuilder struct{}
-
-func NewProbingSessionFieldPathBuilder() ProbingSessionFieldPathBuilder {
-	return ProbingSessionFieldPathBuilder{}
-}
-func (ProbingSessionFieldPathBuilder) Target() ProbingSessionPathSelectorTarget {
-	return ProbingSessionPathSelectorTarget{}
-}
-func (ProbingSessionFieldPathBuilder) TargetDisplayName() ProbingSessionPathSelectorTargetDisplayName {
-	return ProbingSessionPathSelectorTargetDisplayName{}
-}
-func (ProbingSessionFieldPathBuilder) TargetGroup() ProbingSessionPathSelectorTargetGroup {
-	return ProbingSessionPathSelectorTargetGroup{}
-}
-func (ProbingSessionFieldPathBuilder) Mode() ProbingSessionPathSelectorMode {
-	return ProbingSessionPathSelectorMode{}
-}
-func (ProbingSessionFieldPathBuilder) IpVersion() ProbingSessionPathSelectorIpVersion {
-	return ProbingSessionPathSelectorIpVersion{}
-}
-func (ProbingSessionFieldPathBuilder) Address() ProbingSessionPathSelectorAddress {
-	return ProbingSessionPathSelectorAddress{}
-}
-func (ProbingSessionFieldPathBuilder) GroupName() ProbingSessionPathSelectorGroupName {
-	return ProbingSessionPathSelectorGroupName{}
-}
-func (ProbingSessionFieldPathBuilder) Category() ProbingSessionPathSelectorCategory {
-	return ProbingSessionPathSelectorCategory{}
-}
-func (ProbingSessionFieldPathBuilder) LocationType() ProbingSessionPathSelectorLocationType {
-	return ProbingSessionPathSelectorLocationType{}
-}
-func (ProbingSessionFieldPathBuilder) Location() ProbingSessionPathSelectorLocation {
-	return ProbingSessionPathSelectorLocation{}
-}
-func (ProbingSessionFieldPathBuilder) IntervalSec() ProbingSessionPathSelectorIntervalSec {
-	return ProbingSessionPathSelectorIntervalSec{}
-}
-func (ProbingSessionFieldPathBuilder) Interval() ProbingSessionPathSelectorInterval {
-	return ProbingSessionPathSelectorInterval{}
-}
-func (ProbingSessionFieldPathBuilder) Tos() ProbingSessionPathSelectorTos {
-	return ProbingSessionPathSelectorTos{}
-}
-func (ProbingSessionFieldPathBuilder) WindowSize() ProbingSessionPathSelectorWindowSize {
-	return ProbingSessionPathSelectorWindowSize{}
-}
-func (ProbingSessionFieldPathBuilder) PathProbing() ProbingSessionPathSelectorPathProbing {
-	return ProbingSessionPathSelectorPathProbing{}
-}
-func (ProbingSessionFieldPathBuilder) SpeedtestSettings() ProbingSessionPathSelectorSpeedtestSettings {
-	return ProbingSessionPathSelectorSpeedtestSettings{}
-}
-func (ProbingSessionFieldPathBuilder) HttpProbingConfig() ProbingSessionPathSelectorHttpProbingConfig {
-	return ProbingSessionPathSelectorHttpProbingConfig{}
-}
-func (ProbingSessionFieldPathBuilder) ProxyConfiguration() ProbingSessionPathSelectorProxyConfiguration {
-	return ProbingSessionPathSelectorProxyConfiguration{}
-}
-func (ProbingSessionFieldPathBuilder) Addresses() ProbingSessionPathSelectorAddresses {
-	return ProbingSessionPathSelectorAddresses{}
-}
-
-type ProbingSessionPathSelectorTarget struct{}
-
-func (ProbingSessionPathSelectorTarget) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTarget}
-}
-
-func (s ProbingSessionPathSelectorTarget) WithValue(value *probing_target.Name) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorTarget) WithArrayOfValues(values []*probing_target.Name) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorTargetDisplayName struct{}
-
-func (ProbingSessionPathSelectorTargetDisplayName) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetDisplayName}
-}
-
-func (s ProbingSessionPathSelectorTargetDisplayName) WithValue(value string) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorTargetDisplayName) WithArrayOfValues(values []string) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorTargetGroup struct{}
-
-func (ProbingSessionPathSelectorTargetGroup) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetGroup}
-}
-
-func (s ProbingSessionPathSelectorTargetGroup) WithValue(value *probing_target_group.Reference) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorTargetGroup) WithArrayOfValues(values []*probing_target_group.Reference) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorMode struct{}
-
-func (ProbingSessionPathSelectorMode) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorMode}
-}
-
-func (s ProbingSessionPathSelectorMode) WithValue(value common.ProbingMode) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorMode) WithArrayOfValues(values []common.ProbingMode) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorIpVersion struct{}
-
-func (ProbingSessionPathSelectorIpVersion) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIpVersion}
-}
-
-func (s ProbingSessionPathSelectorIpVersion) WithValue(value common.IpVersion) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorAddress struct{}
-
-func (ProbingSessionPathSelectorAddress) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddress}
-}
-
-func (s ProbingSessionPathSelectorAddress) WithValue(value string) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorAddress) WithArrayOfValues(values []string) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorGroupName struct{}
-
-func (ProbingSessionPathSelectorGroupName) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorGroupName}
-}
-
-func (s ProbingSessionPathSelectorGroupName) WithValue(value string) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorGroupName) WithArrayOfValues(values []string) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorCategory struct{}
-
-func (ProbingSessionPathSelectorCategory) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorCategory}
-}
-
-func (s ProbingSessionPathSelectorCategory) WithValue(value string) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorCategory) WithArrayOfValues(values []string) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationType struct{}
-
-func (ProbingSessionPathSelectorLocationType) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocationType}
-}
-
-func (s ProbingSessionPathSelectorLocationType) WithValue(value common.LocationType) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationType) WithArrayOfValues(values []common.LocationType) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocation struct{}
-
-func (ProbingSessionPathSelectorLocation) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocation}
-}
-
-func (s ProbingSessionPathSelectorLocation) WithValue(value *common.Location) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocation) WithArrayOfValues(values []*common.Location) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorLocation) WithSubPath(subPath common.Location_FieldPath) *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorLocation, subPath: subPath}
-}
-
-func (s ProbingSessionPathSelectorLocation) WithSubValue(subPathValue common.Location_FieldPathValue) *ProbingSession_FieldSubPathValue {
-	return &ProbingSession_FieldSubPathValue{ProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s ProbingSessionPathSelectorLocation) WithSubArrayOfValues(subPathArrayOfValues common.Location_FieldPathArrayOfValues) *ProbingSession_FieldSubPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{ProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s ProbingSessionPathSelectorLocation) WithSubArrayItemValue(subPathArrayItemValue common.Location_FieldPathArrayItemValue) *ProbingSession_FieldSubPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{ProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (ProbingSessionPathSelectorLocation) Address() ProbingSessionPathSelectorLocationAddress {
-	return ProbingSessionPathSelectorLocationAddress{}
-}
-
-func (ProbingSessionPathSelectorLocation) AdminHierarchy() ProbingSessionPathSelectorLocationAdminHierarchy {
-	return ProbingSessionPathSelectorLocationAdminHierarchy{}
-}
-
-func (ProbingSessionPathSelectorLocation) Coordinates() ProbingSessionPathSelectorLocationCoordinates {
-	return ProbingSessionPathSelectorLocationCoordinates{}
-}
-
-func (ProbingSessionPathSelectorLocation) Accuracy() ProbingSessionPathSelectorLocationAccuracy {
-	return ProbingSessionPathSelectorLocationAccuracy{}
-}
-
-type ProbingSessionPathSelectorLocationAddress struct{}
-
-func (ProbingSessionPathSelectorLocationAddress) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddress) WithValue(value *common.Address) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddress) WithArrayOfValues(values []*common.Address) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorLocationAddress) PostalCode() ProbingSessionPathSelectorLocationAddressPostalCode {
-	return ProbingSessionPathSelectorLocationAddressPostalCode{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) CountryCode() ProbingSessionPathSelectorLocationAddressCountryCode {
-	return ProbingSessionPathSelectorLocationAddressCountryCode{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) Continent() ProbingSessionPathSelectorLocationAddressContinent {
-	return ProbingSessionPathSelectorLocationAddressContinent{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) Country() ProbingSessionPathSelectorLocationAddressCountry {
-	return ProbingSessionPathSelectorLocationAddressCountry{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) AdminArea1() ProbingSessionPathSelectorLocationAddressAdminArea1 {
-	return ProbingSessionPathSelectorLocationAddressAdminArea1{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) AdminArea2() ProbingSessionPathSelectorLocationAddressAdminArea2 {
-	return ProbingSessionPathSelectorLocationAddressAdminArea2{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) AdminArea3() ProbingSessionPathSelectorLocationAddressAdminArea3 {
-	return ProbingSessionPathSelectorLocationAddressAdminArea3{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) AdminArea4() ProbingSessionPathSelectorLocationAddressAdminArea4 {
-	return ProbingSessionPathSelectorLocationAddressAdminArea4{}
-}
-
-func (ProbingSessionPathSelectorLocationAddress) StreetAddress() ProbingSessionPathSelectorLocationAddressStreetAddress {
-	return ProbingSessionPathSelectorLocationAddressStreetAddress{}
-}
-
-type ProbingSessionPathSelectorLocationAddressPostalCode struct{}
-
-func (ProbingSessionPathSelectorLocationAddressPostalCode) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().PostalCode().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressPostalCode) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressPostalCode) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressCountryCode struct{}
-
-func (ProbingSessionPathSelectorLocationAddressCountryCode) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().CountryCode().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressCountryCode) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressCountryCode) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressContinent struct{}
-
-func (ProbingSessionPathSelectorLocationAddressContinent) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().Continent().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressContinent) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressContinent) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressCountry struct{}
-
-func (ProbingSessionPathSelectorLocationAddressCountry) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().Country().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressCountry) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressCountry) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressAdminArea1 struct{}
-
-func (ProbingSessionPathSelectorLocationAddressAdminArea1) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea1().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea1) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea1) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressAdminArea2 struct{}
-
-func (ProbingSessionPathSelectorLocationAddressAdminArea2) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea2().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea2) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea2) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressAdminArea3 struct{}
-
-func (ProbingSessionPathSelectorLocationAddressAdminArea3) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea3().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea3) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea3) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressAdminArea4 struct{}
-
-func (ProbingSessionPathSelectorLocationAddressAdminArea4) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea4().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea4) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressAdminArea4) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAddressStreetAddress struct{}
-
-func (ProbingSessionPathSelectorLocationAddressStreetAddress) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Address().StreetAddress().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAddressStreetAddress) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAddressStreetAddress) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchy struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Continent() ProbingSessionPathSelectorLocationAdminHierarchyContinent {
-	return ProbingSessionPathSelectorLocationAdminHierarchyContinent{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Country() ProbingSessionPathSelectorLocationAdminHierarchyCountry {
-	return ProbingSessionPathSelectorLocationAdminHierarchyCountry{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Admin1() ProbingSessionPathSelectorLocationAdminHierarchyAdmin1 {
-	return ProbingSessionPathSelectorLocationAdminHierarchyAdmin1{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Admin2() ProbingSessionPathSelectorLocationAdminHierarchyAdmin2 {
-	return ProbingSessionPathSelectorLocationAdminHierarchyAdmin2{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Admin3() ProbingSessionPathSelectorLocationAdminHierarchyAdmin3 {
-	return ProbingSessionPathSelectorLocationAdminHierarchyAdmin3{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Admin4() ProbingSessionPathSelectorLocationAdminHierarchyAdmin4 {
-	return ProbingSessionPathSelectorLocationAdminHierarchyAdmin4{}
-}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchy) Admin5() ProbingSessionPathSelectorLocationAdminHierarchyAdmin5 {
-	return ProbingSessionPathSelectorLocationAdminHierarchyAdmin5{}
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyContinent struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyContinent) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Continent().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyCountry struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyCountry) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Country().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyAdmin1 struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin1().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyAdmin2 struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin2().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyAdmin3 struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin3().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyAdmin4 struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin4().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAdminHierarchyAdmin5 struct{}
-
-func (ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin5().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationCoordinates struct{}
-
-func (ProbingSessionPathSelectorLocationCoordinates) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Coordinates().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationCoordinates) WithValue(value *latlng.LatLng) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorLocationAccuracy struct{}
-
-func (ProbingSessionPathSelectorLocationAccuracy) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorLocation,
-		subPath:  common.NewLocationFieldPathBuilder().Accuracy().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorLocationAccuracy) WithValue(value float64) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorLocationAccuracy) WithArrayOfValues(values []float64) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorIntervalSec struct{}
-
-func (ProbingSessionPathSelectorIntervalSec) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIntervalSec}
-}
-
-func (s ProbingSessionPathSelectorIntervalSec) WithValue(value int64) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorIntervalSec) WithArrayOfValues(values []int64) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorInterval struct{}
-
-func (ProbingSessionPathSelectorInterval) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorInterval}
-}
-
-func (s ProbingSessionPathSelectorInterval) WithValue(value *duration.Duration) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorInterval) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorTos struct{}
-
-func (ProbingSessionPathSelectorTos) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTos}
-}
-
-func (s ProbingSessionPathSelectorTos) WithValue(value uint32) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorTos) WithArrayOfValues(values []uint32) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorWindowSize struct{}
-
-func (ProbingSessionPathSelectorWindowSize) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize}
-}
-
-func (s ProbingSessionPathSelectorWindowSize) WithValue(value uint32) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorWindowSize) WithArrayOfValues(values []uint32) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbing struct{}
-
-func (ProbingSessionPathSelectorPathProbing) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing}
-}
-
-func (s ProbingSessionPathSelectorPathProbing) WithValue(value *common.PathProbe) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbing) WithArrayOfValues(values []*common.PathProbe) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorPathProbing) WithSubPath(subPath common.PathProbe_FieldPath) *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorPathProbing, subPath: subPath}
-}
-
-func (s ProbingSessionPathSelectorPathProbing) WithSubValue(subPathValue common.PathProbe_FieldPathValue) *ProbingSession_FieldSubPathValue {
-	return &ProbingSession_FieldSubPathValue{ProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s ProbingSessionPathSelectorPathProbing) WithSubArrayOfValues(subPathArrayOfValues common.PathProbe_FieldPathArrayOfValues) *ProbingSession_FieldSubPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{ProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s ProbingSessionPathSelectorPathProbing) WithSubArrayItemValue(subPathArrayItemValue common.PathProbe_FieldPathArrayItemValue) *ProbingSession_FieldSubPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{ProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (ProbingSessionPathSelectorPathProbing) Enabled() ProbingSessionPathSelectorPathProbingEnabled {
-	return ProbingSessionPathSelectorPathProbingEnabled{}
-}
-
-func (ProbingSessionPathSelectorPathProbing) Mode() ProbingSessionPathSelectorPathProbingMode {
-	return ProbingSessionPathSelectorPathProbingMode{}
-}
-
-func (ProbingSessionPathSelectorPathProbing) Interval() ProbingSessionPathSelectorPathProbingInterval {
-	return ProbingSessionPathSelectorPathProbingInterval{}
-}
-
-func (ProbingSessionPathSelectorPathProbing) IntervalSec() ProbingSessionPathSelectorPathProbingIntervalSec {
-	return ProbingSessionPathSelectorPathProbingIntervalSec{}
-}
-
-func (ProbingSessionPathSelectorPathProbing) Attempts() ProbingSessionPathSelectorPathProbingAttempts {
-	return ProbingSessionPathSelectorPathProbingAttempts{}
-}
-
-func (ProbingSessionPathSelectorPathProbing) MaxTtl() ProbingSessionPathSelectorPathProbingMaxTtl {
-	return ProbingSessionPathSelectorPathProbingMaxTtl{}
-}
-
-type ProbingSessionPathSelectorPathProbingEnabled struct{}
-
-func (ProbingSessionPathSelectorPathProbingEnabled) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().Enabled().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingEnabled) WithValue(value bool) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingEnabled) WithArrayOfValues(values []bool) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbingMode struct{}
-
-func (ProbingSessionPathSelectorPathProbingMode) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().Mode().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingMode) WithValue(value common.ProbingMode) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingMode) WithArrayOfValues(values []common.ProbingMode) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbingInterval struct{}
-
-func (ProbingSessionPathSelectorPathProbingInterval) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().Interval().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingInterval) WithValue(value *duration.Duration) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingInterval) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbingIntervalSec struct{}
-
-func (ProbingSessionPathSelectorPathProbingIntervalSec) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().IntervalSec().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingIntervalSec) WithValue(value int64) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingIntervalSec) WithArrayOfValues(values []int64) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbingAttempts struct{}
-
-func (ProbingSessionPathSelectorPathProbingAttempts) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().Attempts().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingAttempts) WithValue(value *wrappers.UInt32Value) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingAttempts) WithArrayOfValues(values []*wrappers.UInt32Value) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorPathProbingMaxTtl struct{}
-
-func (ProbingSessionPathSelectorPathProbingMaxTtl) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorPathProbing,
-		subPath:  common.NewPathProbeFieldPathBuilder().MaxTtl().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorPathProbingMaxTtl) WithValue(value *wrappers.UInt32Value) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorPathProbingMaxTtl) WithArrayOfValues(values []*wrappers.UInt32Value) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpeedtestSettings struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettings) WithValue(value *common.SpeedTestSettings) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettings) WithArrayOfValues(values []*common.SpeedTestSettings) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) WithSubPath(subPath common.SpeedTestSettings_FieldPath) *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subPath}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettings) WithSubValue(subPathValue common.SpeedTestSettings_FieldPathValue) *ProbingSession_FieldSubPathValue {
-	return &ProbingSession_FieldSubPathValue{ProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettings) WithSubArrayOfValues(subPathArrayOfValues common.SpeedTestSettings_FieldPathArrayOfValues) *ProbingSession_FieldSubPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{ProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettings) WithSubArrayItemValue(subPathArrayItemValue common.SpeedTestSettings_FieldPathArrayItemValue) *ProbingSession_FieldSubPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{ProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) Duration() ProbingSessionPathSelectorSpeedtestSettingsDuration {
-	return ProbingSessionPathSelectorSpeedtestSettingsDuration{}
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) UseTls() ProbingSessionPathSelectorSpeedtestSettingsUseTls {
-	return ProbingSessionPathSelectorSpeedtestSettingsUseTls{}
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) ServerSelection() ProbingSessionPathSelectorSpeedtestSettingsServerSelection {
-	return ProbingSessionPathSelectorSpeedtestSettingsServerSelection{}
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) TcpPort() ProbingSessionPathSelectorSpeedtestSettingsTcpPort {
-	return ProbingSessionPathSelectorSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingSessionPathSelectorSpeedtestSettings) TlsPort() ProbingSessionPathSelectorSpeedtestSettingsTlsPort {
-	return ProbingSessionPathSelectorSpeedtestSettingsTlsPort{}
-}
-
-type ProbingSessionPathSelectorSpeedtestSettingsDuration struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettingsDuration) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().Duration().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsDuration) WithValue(value *duration.Duration) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpeedtestSettingsUseTls struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettingsUseTls) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsUseTls) WithValue(value bool) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpeedtestSettingsServerSelection struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettingsServerSelection) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().ServerSelection().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsServerSelection) WithValue(value common.SpeedTestSettings_ServerSelection) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsServerSelection) WithArrayOfValues(values []common.SpeedTestSettings_ServerSelection) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpeedtestSettingsTcpPort struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettingsTcpPort) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().TcpPort().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsTcpPort) WithValue(value int32) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpeedtestSettingsTlsPort struct{}
-
-func (ProbingSessionPathSelectorSpeedtestSettingsTlsPort) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfig struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfig) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfig) WithValue(value *common.HTTPProbingConfig) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfig) WithArrayOfValues(values []*common.HTTPProbingConfig) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfig) WithSubPath(subPath common.HTTPProbingConfig_FieldPath) *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subPath}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfig) WithSubValue(subPathValue common.HTTPProbingConfig_FieldPathValue) *ProbingSession_FieldSubPathValue {
-	return &ProbingSession_FieldSubPathValue{ProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfig) WithSubArrayOfValues(subPathArrayOfValues common.HTTPProbingConfig_FieldPathArrayOfValues) *ProbingSession_FieldSubPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{ProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfig) WithSubArrayItemValue(subPathArrayItemValue common.HTTPProbingConfig_FieldPathArrayItemValue) *ProbingSession_FieldSubPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{ProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfig) HttpRequest() ProbingSessionPathSelectorHttpProbingConfigHttpRequest {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequest{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfig) AuthConfig() ProbingSessionPathSelectorHttpProbingConfigAuthConfig {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfig{}
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequest struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequest) WithValue(value *common.HTTPProbingConfig_HTTPRequest) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequest) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) Url() ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestHeaders() ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestMethod() ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) ExpectedResponseCode() ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) Timeout() ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) RequestBody() ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) AuthenticationMethod() ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{}
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().Url().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrl) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestHeaders().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithValue(value map[string]string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithArrayOfValues(values []map[string]string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithKey(key string) ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders {
-	return ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders{key: key}
-}
-
-type ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestHeaders().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestRequestHeaders) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestMethod().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) WithValue(value common.HTTPRequestMethod) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestMethod) WithArrayOfValues(values []common.HTTPRequestMethod) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().ExpectedResponseCode().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) WithValue(value uint32) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestExpectedResponseCode) WithArrayOfValues(values []uint32) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().Timeout().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) WithValue(value *duration.Duration) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestTimeout) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().RequestBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestRequestBody) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().AuthenticationMethod().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) WithValue(value common.AuthenticationMethod) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfig struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfig) WithValue(value *common.HTTPProbingConfig_HTTPAuth) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfig) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPAuth) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) Username() ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) Password() ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenRequest() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseHeader() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseBodyKey() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) RequestHeaderTokenKey() ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfig) TokenResponseBodyExpiryKey() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey{}
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().Username().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigUsername) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().Password().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigPassword) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) WithValue(value *common.HTTPProbingConfig_HTTPRequest) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) Url() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestHeaders() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestMethod() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) ExpectedResponseCode() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) Timeout() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) RequestBody() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().Url().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestHeaders().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithValue(value map[string]string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithArrayOfValues(values []map[string]string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithKey(key string) ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders {
-	return ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders{key: key}
-}
-
-type ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestHeaders().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestHeaders) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestMethod().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) WithValue(value common.HTTPRequestMethod) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestMethod) WithArrayOfValues(values []common.HTTPRequestMethod) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().ExpectedResponseCode().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) WithValue(value uint32) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestExpectedResponseCode) WithArrayOfValues(values []uint32) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().Timeout().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) WithValue(value *duration.Duration) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestTimeout) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().RequestBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestRequestBody) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().AuthenticationMethod().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithValue(value common.AuthenticationMethod) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseHeader().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseHeader) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseBodyKey().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyKey) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().RequestHeaderTokenKey().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigRequestHeaderTokenKey) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey struct{}
-
-func (ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenResponseBodyExpiryKey().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorProxyConfiguration struct{}
-
-func (ProbingSessionPathSelectorProxyConfiguration) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration}
-}
-
-func (s ProbingSessionPathSelectorProxyConfiguration) WithValue(value *common.ProxyConfiguration) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorProxyConfiguration) WithArrayOfValues(values []*common.ProxyConfiguration) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorProxyConfiguration) WithSubPath(subPath common.ProxyConfiguration_FieldPath) *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration, subPath: subPath}
-}
-
-func (s ProbingSessionPathSelectorProxyConfiguration) WithSubValue(subPathValue common.ProxyConfiguration_FieldPathValue) *ProbingSession_FieldSubPathValue {
-	return &ProbingSession_FieldSubPathValue{ProbingSession_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s ProbingSessionPathSelectorProxyConfiguration) WithSubArrayOfValues(subPathArrayOfValues common.ProxyConfiguration_FieldPathArrayOfValues) *ProbingSession_FieldSubPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{ProbingSession_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s ProbingSessionPathSelectorProxyConfiguration) WithSubArrayItemValue(subPathArrayItemValue common.ProxyConfiguration_FieldPathArrayItemValue) *ProbingSession_FieldSubPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{ProbingSession_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (ProbingSessionPathSelectorProxyConfiguration) ProxySetting() ProbingSessionPathSelectorProxyConfigurationProxySetting {
-	return ProbingSessionPathSelectorProxyConfigurationProxySetting{}
-}
-
-func (ProbingSessionPathSelectorProxyConfiguration) HttpProxy() ProbingSessionPathSelectorProxyConfigurationHttpProxy {
-	return ProbingSessionPathSelectorProxyConfigurationHttpProxy{}
-}
-
-func (ProbingSessionPathSelectorProxyConfiguration) HttpsProxy() ProbingSessionPathSelectorProxyConfigurationHttpsProxy {
-	return ProbingSessionPathSelectorProxyConfigurationHttpsProxy{}
-}
-
-func (ProbingSessionPathSelectorProxyConfiguration) NoProxy() ProbingSessionPathSelectorProxyConfigurationNoProxy {
-	return ProbingSessionPathSelectorProxyConfigurationNoProxy{}
-}
-
-type ProbingSessionPathSelectorProxyConfigurationProxySetting struct{}
-
-func (ProbingSessionPathSelectorProxyConfigurationProxySetting) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorProxyConfiguration,
-		subPath:  common.NewProxyConfigurationFieldPathBuilder().ProxySetting().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationProxySetting) WithValue(value common.ProxySetting) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationProxySetting) WithArrayOfValues(values []common.ProxySetting) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorProxyConfigurationHttpProxy struct{}
-
-func (ProbingSessionPathSelectorProxyConfigurationHttpProxy) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorProxyConfiguration,
-		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpProxy().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationHttpProxy) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationHttpProxy) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorProxyConfigurationHttpsProxy struct{}
-
-func (ProbingSessionPathSelectorProxyConfigurationHttpsProxy) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorProxyConfiguration,
-		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpsProxy().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationHttpsProxy) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationHttpsProxy) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorProxyConfigurationNoProxy struct{}
-
-func (ProbingSessionPathSelectorProxyConfigurationNoProxy) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorProxyConfiguration,
-		subPath:  common.NewProxyConfigurationFieldPathBuilder().NoProxy().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationNoProxy) WithValue(value string) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorProxyConfigurationNoProxy) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorAddresses struct{}
-
-func (ProbingSessionPathSelectorAddresses) FieldPath() *ProbingSession_FieldTerminalPath {
-	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses}
-}
-
-func (s ProbingSessionPathSelectorAddresses) WithValue(value []string) *ProbingSession_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
-}
-
-func (s ProbingSessionPathSelectorAddresses) WithArrayOfValues(values [][]string) *ProbingSession_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
-}
-
-func (s ProbingSessionPathSelectorAddresses) WithItemValue(value string) *ProbingSession_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*ProbingSession_FieldTerminalPathArrayItemValue)
 }

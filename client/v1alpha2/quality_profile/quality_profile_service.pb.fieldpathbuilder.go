@@ -98,9 +98,6 @@ type BatchGetQualityProfilesRequestFieldPathBuilder struct{}
 func NewBatchGetQualityProfilesRequestFieldPathBuilder() BatchGetQualityProfilesRequestFieldPathBuilder {
 	return BatchGetQualityProfilesRequestFieldPathBuilder{}
 }
-func (BatchGetQualityProfilesRequestFieldPathBuilder) Parent() BatchGetQualityProfilesRequestPathSelectorParent {
-	return BatchGetQualityProfilesRequestPathSelectorParent{}
-}
 func (BatchGetQualityProfilesRequestFieldPathBuilder) Names() BatchGetQualityProfilesRequestPathSelectorNames {
 	return BatchGetQualityProfilesRequestPathSelectorNames{}
 }
@@ -109,20 +106,6 @@ func (BatchGetQualityProfilesRequestFieldPathBuilder) FieldMask() BatchGetQualit
 }
 func (BatchGetQualityProfilesRequestFieldPathBuilder) View() BatchGetQualityProfilesRequestPathSelectorView {
 	return BatchGetQualityProfilesRequestPathSelectorView{}
-}
-
-type BatchGetQualityProfilesRequestPathSelectorParent struct{}
-
-func (BatchGetQualityProfilesRequestPathSelectorParent) FieldPath() *BatchGetQualityProfilesRequest_FieldTerminalPath {
-	return &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetQualityProfilesRequestPathSelectorParent) WithValue(value *quality_profile.Reference) *BatchGetQualityProfilesRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetQualityProfilesRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetQualityProfilesRequestPathSelectorParent) WithArrayOfValues(values []*quality_profile.Reference) *BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetQualityProfilesRequestPathSelectorNames struct{}

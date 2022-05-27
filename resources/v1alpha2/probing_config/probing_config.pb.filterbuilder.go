@@ -2044,37 +2044,37 @@ type filterCndBuilderSpecProbingSessions struct {
 	builder *FilterBuilder
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Eq(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Eq(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Eq, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Neq(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Neq(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Neq, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Gt(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Gt(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Gt, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Gte(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Gte(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Gte, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Lt(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Lt(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Lt, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Lte(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Lte(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Lte, value)
 }
 
-func (b *filterCndBuilderSpecProbingSessions) In(values [][]*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) In(values [][]*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIn{
 		ProbingConfig_FieldPathArrayOfValues: NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecProbingSessions) NotIn(values [][]*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) NotIn(values [][]*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionNotIn{
 		ProbingConfig_FieldPathArrayOfValues: NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().WithArrayOfValues(values),
 	})
@@ -2092,7 +2092,7 @@ func (b *filterCndBuilderSpecProbingSessions) IsNan() *FilterBuilder {
 	})
 }
 
-func (b *filterCndBuilderSpecProbingSessions) Contains(value *ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) Contains(value *ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionContains{
 		Type:      gotenresource.ConditionContainsTypeValue,
 		FieldPath: NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().FieldPath(),
@@ -2100,7 +2100,7 @@ func (b *filterCndBuilderSpecProbingSessions) Contains(value *ProbingSession) *F
 	})
 }
 
-func (b *filterCndBuilderSpecProbingSessions) ContainsAnyOf(values []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) ContainsAnyOf(values []*ProbingConfig_ProbingSession) *FilterBuilder {
 	pathSelector := NewProbingConfigFieldPathBuilder().Spec().ProbingSessions()
 	itemValues := make([]ProbingConfig_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
@@ -2113,7 +2113,7 @@ func (b *filterCndBuilderSpecProbingSessions) ContainsAnyOf(values []*ProbingSes
 	})
 }
 
-func (b *filterCndBuilderSpecProbingSessions) ContainsAll(values []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) ContainsAll(values []*ProbingConfig_ProbingSession) *FilterBuilder {
 	pathSelector := NewProbingConfigFieldPathBuilder().Spec().ProbingSessions()
 	itemValues := make([]ProbingConfig_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
@@ -2126,7 +2126,7 @@ func (b *filterCndBuilderSpecProbingSessions) ContainsAll(values []*ProbingSessi
 	})
 }
 
-func (b *filterCndBuilderSpecProbingSessions) compare(op gotenfilter.CompareOperator, value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecProbingSessions) compare(op gotenfilter.CompareOperator, value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingConfig_FieldPathValue: NewProbingConfigFieldPathBuilder().Spec().ProbingSessions().WithValue(value),
@@ -9295,37 +9295,37 @@ type filterCndBuilderSpecTargetSessions struct {
 	builder *FilterBuilder
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Eq(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Eq(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Eq, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Neq(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Neq(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Neq, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Gt(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Gt(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Gt, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Gte(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Gte(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Gte, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Lt(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Lt(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Lt, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Lte(value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Lte(value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.compare(gotenfilter.Lte, value)
 }
 
-func (b *filterCndBuilderSpecTargetSessions) In(values [][]*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) In(values [][]*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIn{
 		ProbingConfig_FieldPathArrayOfValues: NewProbingConfigFieldPathBuilder().Spec().TargetSessions().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecTargetSessions) NotIn(values [][]*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) NotIn(values [][]*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionNotIn{
 		ProbingConfig_FieldPathArrayOfValues: NewProbingConfigFieldPathBuilder().Spec().TargetSessions().WithArrayOfValues(values),
 	})
@@ -9343,7 +9343,7 @@ func (b *filterCndBuilderSpecTargetSessions) IsNan() *FilterBuilder {
 	})
 }
 
-func (b *filterCndBuilderSpecTargetSessions) Contains(value *ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) Contains(value *ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionContains{
 		Type:      gotenresource.ConditionContainsTypeValue,
 		FieldPath: NewProbingConfigFieldPathBuilder().Spec().TargetSessions().FieldPath(),
@@ -9351,7 +9351,7 @@ func (b *filterCndBuilderSpecTargetSessions) Contains(value *ProbingSession) *Fi
 	})
 }
 
-func (b *filterCndBuilderSpecTargetSessions) ContainsAnyOf(values []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) ContainsAnyOf(values []*ProbingConfig_ProbingSession) *FilterBuilder {
 	pathSelector := NewProbingConfigFieldPathBuilder().Spec().TargetSessions()
 	itemValues := make([]ProbingConfig_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
@@ -9364,7 +9364,7 @@ func (b *filterCndBuilderSpecTargetSessions) ContainsAnyOf(values []*ProbingSess
 	})
 }
 
-func (b *filterCndBuilderSpecTargetSessions) ContainsAll(values []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) ContainsAll(values []*ProbingConfig_ProbingSession) *FilterBuilder {
 	pathSelector := NewProbingConfigFieldPathBuilder().Spec().TargetSessions()
 	itemValues := make([]ProbingConfig_FieldPathArrayItemValue, 0, len(values))
 	for _, value := range values {
@@ -9377,7 +9377,7 @@ func (b *filterCndBuilderSpecTargetSessions) ContainsAll(values []*ProbingSessio
 	})
 }
 
-func (b *filterCndBuilderSpecTargetSessions) compare(op gotenfilter.CompareOperator, value []*ProbingSession) *FilterBuilder {
+func (b *filterCndBuilderSpecTargetSessions) compare(op gotenfilter.CompareOperator, value []*ProbingConfig_ProbingSession) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingConfig_FieldPathValue: NewProbingConfigFieldPathBuilder().Spec().TargetSessions().WithValue(value),

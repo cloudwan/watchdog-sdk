@@ -29,6 +29,8 @@ import "watchdog-sdk/proto/v1alpha2/probing_config.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_config_service.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_distribution.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_distribution_service.proto";
+import "watchdog-sdk/proto/v1alpha2/probing_session.proto";
+import "watchdog-sdk/proto/v1alpha2/probing_session_service.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_target.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_target_group.proto";
 import "watchdog-sdk/proto/v1alpha2/probing_target_group_service.proto";

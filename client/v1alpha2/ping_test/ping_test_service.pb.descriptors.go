@@ -60,15 +60,15 @@ func (d *RunPingTestDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *RunPingTestDescriptor) IsCollectionSubject() bool {
+func (d *RunPingTestDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *RunPingTestDescriptor) IsPluralSubject() bool {
+func (d *RunPingTestDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *RunPingTestDescriptor) HasSubjectResource() bool {
+func (d *RunPingTestDescriptor) HasResource() bool {
 	return true
 }
 
@@ -108,7 +108,7 @@ func (d *RunPingTestDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return pingTestServiceDescriptor
 }
 
-func (d *RunPingTestDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *RunPingTestDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -120,77 +120,79 @@ func (d *RunPingTestDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMs
 	return &RunPingTestDescriptorServerMsgHandle{}
 }
 
-func (h *RunPingTestDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunPingTestDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunPingTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunPingTestRequest) *probe.Name
+		OverrideExtractResourceName(*RunPingTestRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *RunPingTestDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunPingTestDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunPingTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunPingTestRequest) []*probe.Name
+		OverrideExtractResourceNames(*RunPingTestRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunPingTestDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunPingTestDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunPingTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunPingTestRequest) *probe.ParentName
+		OverrideExtractCollectionName(*RunPingTestRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunPingTestDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunPingTestDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunPingTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunPingTestResponse) *probe.Name
+		OverrideExtractResourceName(*RunPingTestResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunPingTestDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunPingTestDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunPingTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunPingTestResponse) []*probe.Name
+		OverrideExtractResourceNames(*RunPingTestResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunPingTestDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunPingTestDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunPingTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunPingTestResponse) *probe.ParentName
+		OverrideExtractCollectionName(*RunPingTestResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

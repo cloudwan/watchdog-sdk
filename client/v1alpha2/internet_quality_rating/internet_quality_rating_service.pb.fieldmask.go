@@ -318,7 +318,6 @@ type BatchGetInternetQualityRatingsRequest_FieldMask struct {
 
 func FullBatchGetInternetQualityRatingsRequest_FieldMask() *BatchGetInternetQualityRatingsRequest_FieldMask {
 	res := &BatchGetInternetQualityRatingsRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetInternetQualityRatingsRequest_FieldMask) IsFull() bool 
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetInternetQualityRatingsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetInternetQualityRatingsRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetInternetQualityRatingsRequest_FieldMask) Subtract(other *BatchGetInternetQualityRatingsRequest_FieldMask) *BatchGetInternetQualityRatingsRequest_FieldMask {
 	result := &BatchGetInternetQualityRatingsRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetInternetQualityRatingsRequest_FieldMask) Project(source
 		switch tp := p.(type) {
 		case *BatchGetInternetQualityRatingsRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetInternetQualityRatingsRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetInternetQualityRatingsRequest_FieldPathSelectorFieldMask:

@@ -70,15 +70,15 @@ func (d *GetSharedTokenDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetSharedTokenDescriptor) IsCollectionSubject() bool {
+func (d *GetSharedTokenDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetSharedTokenDescriptor) IsPluralSubject() bool {
+func (d *GetSharedTokenDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetSharedTokenDescriptor) HasSubjectResource() bool {
+func (d *GetSharedTokenDescriptor) HasResource() bool {
 	return true
 }
 
@@ -118,7 +118,7 @@ func (d *GetSharedTokenDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor 
 	return sharedTokenServiceDescriptor
 }
 
-func (d *GetSharedTokenDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetSharedTokenDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -130,77 +130,84 @@ func (d *GetSharedTokenDescriptor) GetServerMsgReflectHandle() gotenclient.Metho
 	return &GetSharedTokenDescriptorServerMsgHandle{}
 }
 
-func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetSharedTokenRequest) *shared_token.Name
+		OverrideExtractResourceName(*GetSharedTokenRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*shared_token.Name)(nil)
 }
 
-func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetSharedTokenRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*GetSharedTokenRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetSharedTokenDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetSharedTokenRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*GetSharedTokenRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*shared_token.SharedToken) *shared_token.Name
+		OverrideExtractResourceName(*shared_token.SharedToken) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*shared_token.Name)(nil)
 }
 
-func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*shared_token.SharedToken) []*shared_token.Name
+		OverrideExtractResourceNames(*shared_token.SharedToken) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetSharedTokenDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*shared_token.SharedToken) *shared_token.ParentName
+		OverrideExtractCollectionName(*shared_token.SharedToken) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -235,15 +242,15 @@ func (d *BatchGetSharedTokensDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetSharedTokensDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetSharedTokensDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetSharedTokensDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetSharedTokensDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetSharedTokensDescriptor) HasSubjectResource() bool {
+func (d *BatchGetSharedTokensDescriptor) HasResource() bool {
 	return true
 }
 
@@ -283,7 +290,7 @@ func (d *BatchGetSharedTokensDescriptor) GetApiDescriptor() gotenclient.ApiDescr
 	return sharedTokenServiceDescriptor
 }
 
-func (d *BatchGetSharedTokensDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetSharedTokensDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -295,86 +302,92 @@ func (d *BatchGetSharedTokensDescriptor) GetServerMsgReflectHandle() gotenclient
 	return &BatchGetSharedTokensDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetSharedTokensRequest) *shared_token.Name
+		OverrideExtractResourceName(*BatchGetSharedTokensRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetSharedTokensRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*BatchGetSharedTokensRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(shared_token.SharedTokenNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(shared_token.SharedTokenNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (shared_token.SharedTokenNameList)(nil)
 }
 
-func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetSharedTokensDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetSharedTokensRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*BatchGetSharedTokensRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetSharedTokensResponse) *shared_token.Name
+		OverrideExtractResourceName(*BatchGetSharedTokensResponse) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetSharedTokensResponse) []*shared_token.Name
+		OverrideExtractResourceNames(*BatchGetSharedTokensResponse) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetSharedTokens()
-	list := make(shared_token.SharedTokenNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetSharedTokens(); len(resources) > 0 {
+			list := make(shared_token.SharedTokenNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (shared_token.SharedTokenNameList)(nil)
 }
 
-func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetSharedTokensDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetSharedTokensResponse) *shared_token.ParentName
+		OverrideExtractCollectionName(*BatchGetSharedTokensResponse) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -409,15 +422,15 @@ func (d *ListSharedTokensDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListSharedTokensDescriptor) IsCollectionSubject() bool {
+func (d *ListSharedTokensDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListSharedTokensDescriptor) IsPluralSubject() bool {
+func (d *ListSharedTokensDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListSharedTokensDescriptor) HasSubjectResource() bool {
+func (d *ListSharedTokensDescriptor) HasResource() bool {
 	return true
 }
 
@@ -457,7 +470,7 @@ func (d *ListSharedTokensDescriptor) GetApiDescriptor() gotenclient.ApiDescripto
 	return sharedTokenServiceDescriptor
 }
 
-func (d *ListSharedTokensDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListSharedTokensDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -469,79 +482,88 @@ func (d *ListSharedTokensDescriptor) GetServerMsgReflectHandle() gotenclient.Met
 	return &ListSharedTokensDescriptorServerMsgHandle{}
 }
 
-func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListSharedTokensRequest) *shared_token.Name
+		OverrideExtractResourceName(*ListSharedTokensRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListSharedTokensRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*ListSharedTokensRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListSharedTokensDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListSharedTokensRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*ListSharedTokensRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*shared_token.ParentName)(nil)
 }
 
-func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListSharedTokensResponse) *shared_token.Name
+		OverrideExtractResourceName(*ListSharedTokensResponse) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListSharedTokensResponse) []*shared_token.Name
+		OverrideExtractResourceNames(*ListSharedTokensResponse) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetSharedTokens()
-	list := make(shared_token.SharedTokenNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetSharedTokens(); len(resources) > 0 {
+			list := make(shared_token.SharedTokenNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (shared_token.SharedTokenNameList)(nil)
 }
 
-func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListSharedTokensDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListSharedTokensResponse) *shared_token.ParentName
+		OverrideExtractCollectionName(*ListSharedTokensResponse) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -576,15 +598,15 @@ func (d *WatchSharedTokenDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchSharedTokenDescriptor) IsCollectionSubject() bool {
+func (d *WatchSharedTokenDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchSharedTokenDescriptor) IsPluralSubject() bool {
+func (d *WatchSharedTokenDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchSharedTokenDescriptor) HasSubjectResource() bool {
+func (d *WatchSharedTokenDescriptor) HasResource() bool {
 	return true
 }
 
@@ -624,7 +646,7 @@ func (d *WatchSharedTokenDescriptor) GetApiDescriptor() gotenclient.ApiDescripto
 	return sharedTokenServiceDescriptor
 }
 
-func (d *WatchSharedTokenDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchSharedTokenDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -636,89 +658,93 @@ func (d *WatchSharedTokenDescriptor) GetServerMsgReflectHandle() gotenclient.Met
 	return &WatchSharedTokenDescriptorServerMsgHandle{}
 }
 
-func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchSharedTokenRequest) *shared_token.Name
+		OverrideExtractResourceName(*WatchSharedTokenRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*shared_token.Name)(nil)
-}
-
-func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchSharedTokenRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchSharedTokenRequest) []*shared_token.Name
-	})
-	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchSharedTokenRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchSharedTokenRequest) *shared_token.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchSharedTokenResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchSharedTokenResponse) *shared_token.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *shared_token.SharedTokenChange_Added_:
-			return tResChange.Added.GetSharedToken().GetName()
-		case *shared_token.SharedTokenChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *shared_token.SharedTokenChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *shared_token.SharedTokenChange_Current_:
-			return tResChange.Current.GetSharedToken().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*shared_token.Name)(nil)
 }
 
-func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchSharedTokenResponse)
+func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchSharedTokenResponse) []*shared_token.Name
+		OverrideExtractResourceNames(*WatchSharedTokenRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokenDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchSharedTokenRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchSharedTokenRequest) *shared_token.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokenResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchSharedTokenResponse) *shared_token.ParentName
+		OverrideExtractResourceName(*WatchSharedTokenResponse) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *shared_token.SharedTokenChange_Added_:
+				return tResChange.Added.GetSharedToken().GetName()
+			case *shared_token.SharedTokenChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *shared_token.SharedTokenChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *shared_token.SharedTokenChange_Current_:
+				return tResChange.Current.GetSharedToken().GetName()
+			}
+		}
+	}
+	return (*shared_token.Name)(nil)
+}
+
+func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchSharedTokenResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchSharedTokenResponse) []*shared_token.Name
+	})
+	if ok {
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchSharedTokenDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchSharedTokenResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchSharedTokenResponse) *shared_token.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -753,15 +779,15 @@ func (d *WatchSharedTokensDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchSharedTokensDescriptor) IsCollectionSubject() bool {
+func (d *WatchSharedTokensDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchSharedTokensDescriptor) IsPluralSubject() bool {
+func (d *WatchSharedTokensDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchSharedTokensDescriptor) HasSubjectResource() bool {
+func (d *WatchSharedTokensDescriptor) HasResource() bool {
 	return true
 }
 
@@ -801,7 +827,7 @@ func (d *WatchSharedTokensDescriptor) GetApiDescriptor() gotenclient.ApiDescript
 	return sharedTokenServiceDescriptor
 }
 
-func (d *WatchSharedTokensDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchSharedTokensDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -813,91 +839,97 @@ func (d *WatchSharedTokensDescriptor) GetServerMsgReflectHandle() gotenclient.Me
 	return &WatchSharedTokensDescriptorServerMsgHandle{}
 }
 
-func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchSharedTokensRequest) *shared_token.Name
+		OverrideExtractResourceName(*WatchSharedTokensRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchSharedTokensRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*WatchSharedTokensRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokensDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokensRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchSharedTokensRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*WatchSharedTokensRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*shared_token.ParentName)(nil)
 }
 
-func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchSharedTokensResponse) *shared_token.Name
+		OverrideExtractResourceName(*WatchSharedTokensResponse) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchSharedTokensResponse) []*shared_token.Name
+		OverrideExtractResourceNames(*WatchSharedTokensResponse) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetSharedTokenChanges()
-	list := make(shared_token.SharedTokenNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *shared_token.SharedTokenChange_Added_:
-			list = append(list, tResChange.Added.GetSharedToken().GetName())
-		case *shared_token.SharedTokenChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *shared_token.SharedTokenChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *shared_token.SharedTokenChange_Current_:
-			list = append(list, tResChange.Current.GetSharedToken().GetName())
+	{
+		if resChanges := typedMsg.GetSharedTokenChanges(); len(resChanges) > 0 {
+			list := make(shared_token.SharedTokenNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *shared_token.SharedTokenChange_Added_:
+					list = append(list, tResChange.Added.GetSharedToken().GetName())
+				case *shared_token.SharedTokenChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *shared_token.SharedTokenChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *shared_token.SharedTokenChange_Current_:
+					list = append(list, tResChange.Current.GetSharedToken().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (shared_token.SharedTokenNameList)(nil)
 }
 
-func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchSharedTokensDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchSharedTokensResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchSharedTokensResponse) *shared_token.ParentName
+		OverrideExtractCollectionName(*WatchSharedTokensResponse) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -932,15 +964,15 @@ func (d *CreateSharedTokenDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateSharedTokenDescriptor) IsCollectionSubject() bool {
+func (d *CreateSharedTokenDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateSharedTokenDescriptor) IsPluralSubject() bool {
+func (d *CreateSharedTokenDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateSharedTokenDescriptor) HasSubjectResource() bool {
+func (d *CreateSharedTokenDescriptor) HasResource() bool {
 	return true
 }
 
@@ -980,7 +1012,7 @@ func (d *CreateSharedTokenDescriptor) GetApiDescriptor() gotenclient.ApiDescript
 	return sharedTokenServiceDescriptor
 }
 
-func (d *CreateSharedTokenDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateSharedTokenDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -992,77 +1024,90 @@ func (d *CreateSharedTokenDescriptor) GetServerMsgReflectHandle() gotenclient.Me
 	return &CreateSharedTokenDescriptorServerMsgHandle{}
 }
 
-func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateSharedTokenRequest) *shared_token.Name
+		OverrideExtractResourceName(*CreateSharedTokenRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetSharedToken().GetName()
+	{
+		res := typedMsg.GetSharedToken()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*shared_token.Name)(nil)
 }
 
-func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateSharedTokenRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*CreateSharedTokenRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateSharedTokenDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateSharedTokenRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*CreateSharedTokenRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*shared_token.ParentName)(nil)
 }
 
-func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*shared_token.SharedToken) *shared_token.Name
+		OverrideExtractResourceName(*shared_token.SharedToken) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*shared_token.Name)(nil)
 }
 
-func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*shared_token.SharedToken) []*shared_token.Name
+		OverrideExtractResourceNames(*shared_token.SharedToken) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateSharedTokenDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*shared_token.SharedToken) *shared_token.ParentName
+		OverrideExtractCollectionName(*shared_token.SharedToken) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1097,15 +1142,15 @@ func (d *UpdateSharedTokenDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateSharedTokenDescriptor) IsCollectionSubject() bool {
+func (d *UpdateSharedTokenDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateSharedTokenDescriptor) IsPluralSubject() bool {
+func (d *UpdateSharedTokenDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateSharedTokenDescriptor) HasSubjectResource() bool {
+func (d *UpdateSharedTokenDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1145,7 +1190,7 @@ func (d *UpdateSharedTokenDescriptor) GetApiDescriptor() gotenclient.ApiDescript
 	return sharedTokenServiceDescriptor
 }
 
-func (d *UpdateSharedTokenDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateSharedTokenDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -1157,74 +1202,85 @@ func (d *UpdateSharedTokenDescriptor) GetServerMsgReflectHandle() gotenclient.Me
 	return &UpdateSharedTokenDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateSharedTokenRequest) *shared_token.Name
+		OverrideExtractResourceName(*UpdateSharedTokenRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetSharedToken().GetName()
+	{
+		res := typedMsg.GetSharedToken()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*shared_token.Name)(nil)
 }
 
-func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateSharedTokenRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*UpdateSharedTokenRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateSharedTokenDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateSharedTokenRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*UpdateSharedTokenRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*shared_token.SharedToken) *shared_token.Name
+		OverrideExtractResourceName(*shared_token.SharedToken) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*shared_token.Name)(nil)
 }
 
-func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*shared_token.SharedToken) []*shared_token.Name
+		OverrideExtractResourceNames(*shared_token.SharedToken) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateSharedTokenDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*shared_token.SharedToken)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*shared_token.SharedToken) *shared_token.ParentName
+		OverrideExtractCollectionName(*shared_token.SharedToken) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1259,15 +1315,15 @@ func (d *DeleteSharedTokenDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteSharedTokenDescriptor) IsCollectionSubject() bool {
+func (d *DeleteSharedTokenDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteSharedTokenDescriptor) IsPluralSubject() bool {
+func (d *DeleteSharedTokenDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteSharedTokenDescriptor) HasSubjectResource() bool {
+func (d *DeleteSharedTokenDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1307,7 +1363,7 @@ func (d *DeleteSharedTokenDescriptor) GetApiDescriptor() gotenclient.ApiDescript
 	return sharedTokenServiceDescriptor
 }
 
-func (d *DeleteSharedTokenDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteSharedTokenDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -1319,77 +1375,79 @@ func (d *DeleteSharedTokenDescriptor) GetServerMsgReflectHandle() gotenclient.Me
 	return &DeleteSharedTokenDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteSharedTokenRequest) *shared_token.Name
+		OverrideExtractResourceName(*DeleteSharedTokenRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*shared_token.Name)(nil)
 }
 
-func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteSharedTokenRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*DeleteSharedTokenRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteSharedTokenDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteSharedTokenRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteSharedTokenRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*DeleteSharedTokenRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *shared_token.Name
+		OverrideExtractResourceName(*empty.Empty) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*shared_token.Name
+		OverrideExtractResourceNames(*empty.Empty) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteSharedTokenDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *shared_token.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1424,15 +1482,15 @@ func (d *RegisterProbeDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *RegisterProbeDescriptor) IsCollectionSubject() bool {
+func (d *RegisterProbeDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *RegisterProbeDescriptor) IsPluralSubject() bool {
+func (d *RegisterProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *RegisterProbeDescriptor) HasSubjectResource() bool {
+func (d *RegisterProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1472,7 +1530,7 @@ func (d *RegisterProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return sharedTokenServiceDescriptor
 }
 
-func (d *RegisterProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *RegisterProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return shared_token.GetDescriptor()
 }
 
@@ -1484,77 +1542,79 @@ func (d *RegisterProbeDescriptor) GetServerMsgReflectHandle() gotenclient.Method
 	return &RegisterProbeDescriptorServerMsgHandle{}
 }
 
-func (h *RegisterProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RegisterProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RegisterProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RegisterProbeRequest) *shared_token.Name
+		OverrideExtractResourceName(*RegisterProbeRequest) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*shared_token.Name)(nil)
 }
 
-func (h *RegisterProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RegisterProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RegisterProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RegisterProbeRequest) []*shared_token.Name
+		OverrideExtractResourceNames(*RegisterProbeRequest) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RegisterProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RegisterProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RegisterProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RegisterProbeRequest) *shared_token.ParentName
+		OverrideExtractCollectionName(*RegisterProbeRequest) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RegisterProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RegisterProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RegisterProbeResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RegisterProbeResponse) *shared_token.Name
+		OverrideExtractResourceName(*RegisterProbeResponse) *shared_token.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RegisterProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RegisterProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RegisterProbeResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RegisterProbeResponse) []*shared_token.Name
+		OverrideExtractResourceNames(*RegisterProbeResponse) []*shared_token.Name
 	})
 	if ok {
-		return shared_token.SharedTokenNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return shared_token.SharedTokenNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RegisterProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RegisterProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RegisterProbeResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RegisterProbeResponse) *shared_token.ParentName
+		OverrideExtractCollectionName(*RegisterProbeResponse) *shared_token.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

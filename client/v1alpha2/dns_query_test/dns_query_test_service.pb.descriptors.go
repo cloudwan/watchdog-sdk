@@ -60,15 +60,15 @@ func (d *RunDNSQueryTestDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *RunDNSQueryTestDescriptor) IsCollectionSubject() bool {
+func (d *RunDNSQueryTestDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *RunDNSQueryTestDescriptor) IsPluralSubject() bool {
+func (d *RunDNSQueryTestDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *RunDNSQueryTestDescriptor) HasSubjectResource() bool {
+func (d *RunDNSQueryTestDescriptor) HasResource() bool {
 	return true
 }
 
@@ -108,7 +108,7 @@ func (d *RunDNSQueryTestDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return dnsQueryTestServiceDescriptor
 }
 
-func (d *RunDNSQueryTestDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *RunDNSQueryTestDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -120,77 +120,79 @@ func (d *RunDNSQueryTestDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &RunDNSQueryTestDescriptorServerMsgHandle{}
 }
 
-func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunDNSQueryTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunDNSQueryTestRequest) *probe.Name
+		OverrideExtractResourceName(*RunDNSQueryTestRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunDNSQueryTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunDNSQueryTestRequest) []*probe.Name
+		OverrideExtractResourceNames(*RunDNSQueryTestRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunDNSQueryTestDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunDNSQueryTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunDNSQueryTestRequest) *probe.ParentName
+		OverrideExtractCollectionName(*RunDNSQueryTestRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunDNSQueryTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunDNSQueryTestResponse) *probe.Name
+		OverrideExtractResourceName(*RunDNSQueryTestResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunDNSQueryTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunDNSQueryTestResponse) []*probe.Name
+		OverrideExtractResourceNames(*RunDNSQueryTestResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunDNSQueryTestDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunDNSQueryTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunDNSQueryTestResponse) *probe.ParentName
+		OverrideExtractCollectionName(*RunDNSQueryTestResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

@@ -140,9 +140,6 @@ type BatchGetTagsRequestFieldPathBuilder struct{}
 func NewBatchGetTagsRequestFieldPathBuilder() BatchGetTagsRequestFieldPathBuilder {
 	return BatchGetTagsRequestFieldPathBuilder{}
 }
-func (BatchGetTagsRequestFieldPathBuilder) Parent() BatchGetTagsRequestPathSelectorParent {
-	return BatchGetTagsRequestPathSelectorParent{}
-}
 func (BatchGetTagsRequestFieldPathBuilder) Names() BatchGetTagsRequestPathSelectorNames {
 	return BatchGetTagsRequestPathSelectorNames{}
 }
@@ -151,20 +148,6 @@ func (BatchGetTagsRequestFieldPathBuilder) FieldMask() BatchGetTagsRequestPathSe
 }
 func (BatchGetTagsRequestFieldPathBuilder) View() BatchGetTagsRequestPathSelectorView {
 	return BatchGetTagsRequestPathSelectorView{}
-}
-
-type BatchGetTagsRequestPathSelectorParent struct{}
-
-func (BatchGetTagsRequestPathSelectorParent) FieldPath() *BatchGetTagsRequest_FieldTerminalPath {
-	return &BatchGetTagsRequest_FieldTerminalPath{selector: BatchGetTagsRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetTagsRequestPathSelectorParent) WithValue(value *tag.Reference) *BatchGetTagsRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetTagsRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetTagsRequestPathSelectorParent) WithArrayOfValues(values []*tag.Reference) *BatchGetTagsRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetTagsRequestPathSelectorNames struct{}

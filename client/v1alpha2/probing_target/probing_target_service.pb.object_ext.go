@@ -152,9 +152,6 @@ func (o *BatchGetProbingTargetsRequest) MakeDiffFieldMask(other *BatchGetProbing
 	}
 
 	res := &BatchGetProbingTargetsRequest_FieldMask{}
-	if o.GetParent().String() != other.GetParent().String() {
-		res.Paths = append(res.Paths, &BatchGetProbingTargetsRequest_FieldTerminalPath{selector: BatchGetProbingTargetsRequest_FieldPathSelectorParent})
-	}
 
 	if len(o.GetNames()) == len(other.GetNames()) {
 		for i, lValue := range o.GetNames() {
@@ -185,16 +182,6 @@ func (o *BatchGetProbingTargetsRequest) Clone() *BatchGetProbingTargetsRequest {
 		return nil
 	}
 	result := &BatchGetProbingTargetsRequest{}
-	if o.Parent == nil {
-		result.Parent = nil
-	} else if data, err := o.Parent.ProtoString(); err != nil {
-		panic(err)
-	} else {
-		result.Parent = &probing_target.Reference{}
-		if err := result.Parent.ParseProtoString(data); err != nil {
-			panic(err)
-		}
-	}
 	result.Names = make([]*probing_target.Reference, len(o.Names))
 	for i, sourceValue := range o.Names {
 		if sourceValue == nil {
@@ -218,18 +205,6 @@ func (o *BatchGetProbingTargetsRequest) CloneRaw() gotenobject.GotenObjectExt {
 }
 
 func (o *BatchGetProbingTargetsRequest) Merge(source *BatchGetProbingTargetsRequest) {
-	if source.GetParent() != nil {
-		if data, err := source.GetParent().ProtoString(); err != nil {
-			panic(err)
-		} else {
-			o.Parent = &probing_target.Reference{}
-			if err := o.Parent.ParseProtoString(data); err != nil {
-				panic(err)
-			}
-		}
-	} else {
-		o.Parent = nil
-	}
 	for _, sourceValue := range source.GetNames() {
 		exists := false
 		for _, currentValue := range o.Names {

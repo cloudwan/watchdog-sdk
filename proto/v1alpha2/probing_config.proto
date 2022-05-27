@@ -35,6 +35,70 @@ message ProbingConfig {
   // status shows the current status of the probing config.
   Status status = 4;
 
+  // ProbingSession is target
+  message ProbingSession {
+    // Name of ProbingTarget
+    string target = 1;
+
+    // Display name is a human readable representation of the target
+    string target_display_name = 6;
+
+    // group reference
+    string target_group = 17;
+
+    // mode defines the mode for this probe target - icmp/udp/http/tcp
+    ProbingMode mode = 2;
+
+    // ip_version defines which IP version should be used.
+    IpVersion ip_version = 4;
+
+    // address is the actual target for the probe - IP addreses/http endpoint
+    string address = 3;
+
+    // Additional Group Name to enrich data.
+    string group_name = 11;
+
+    // Additional Category Name to enrich data
+    string category = 12;
+
+    // Target location type
+    LocationType location_type = 14;
+
+    // Specific location if applicable
+    Location location = 15;
+
+    // (deprecated) Interval defines the interval of probing in seconds.
+    int64 interval_sec = 5;
+
+    // Interval defines probing interval
+    google.protobuf.Duration interval = 16;
+
+    // TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
+    // distribution overrides)
+    uint32 tos = 7;
+
+    // Window size. Don't set it (use default_settings or distribution
+    // overrides)
+    uint32 window_size = 9;
+
+    // Path Probing settings. Don't set it (use default_settings or distribution
+    // overrides)
+    PathProbe path_probing = 8;
+
+    // Speedtest specific settings
+    SpeedTestSettings speedtest_settings = 18;
+
+    // HTTP Probing Settings
+    HTTPProbingConfig http_probing_config = 19;
+
+    // Proxy configuration (for speedtest and http)
+    ProxyConfiguration proxy_configuration = 20;
+
+    // addresses list the list of IP addresses that this target is reachable on
+    // used for managed targets that might have dual stack
+    repeated string addresses = 21;
+  }
+
   //  describes how to probe a target
   message Spec {
     // probe is the probe resource which is expexted to execute
@@ -84,67 +148,4 @@ message ProbingConfig {
   }
 
   message Status {}
-}
-
-// ProbingSession is target
-message ProbingSession {
-  // Name of ProbingTarget
-  string target = 1;
-
-  // Display name is a human readable representation of the target
-  string target_display_name = 6;
-
-  // group reference
-  string target_group = 17;
-
-  // mode defines the mode for this probe target - icmp/udp/http/tcp
-  ProbingMode mode = 2;
-
-  // ip_version defines which IP version should be used.
-  IpVersion ip_version = 4;
-
-  // address is the actual target for the probe - IP addreses/http endpoint
-  string address = 3;
-
-  // Additional Group Name to enrich data.
-  string group_name = 11;
-
-  // Additional Category Name to enrich data
-  string category = 12;
-
-  // Target location type
-  LocationType location_type = 14;
-
-  // Specific location if applicable
-  Location location = 15;
-
-  // (deprecated) Interval defines the interval of probing in seconds.
-  int64 interval_sec = 5;
-
-  // Interval defines probing interval
-  google.protobuf.Duration interval = 16;
-
-  // TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
-  // distribution overrides)
-  uint32 tos = 7;
-
-  // Window size. Don't set it (use default_settings or distribution overrides)
-  uint32 window_size = 9;
-
-  // Path Probing settings. Don't set it (use default_settings or distribution
-  // overrides)
-  PathProbe path_probing = 8;
-
-  // Speedtest specific settings
-  SpeedTestSettings speedtest_settings = 18;
-
-  // HTTP Probing Settings
-  HTTPProbingConfig http_probing_config = 19;
-
-  // Proxy configuration (for speedtest and http)
-  ProxyConfiguration proxy_configuration = 20;
-
-  // addresses list the list of IP addresses that this target is reachable on
-  // used for managed targets that might have dual stack
-  repeated string addresses = 21;
 }

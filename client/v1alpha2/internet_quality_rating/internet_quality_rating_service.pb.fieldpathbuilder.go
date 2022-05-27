@@ -134,9 +134,6 @@ type BatchGetInternetQualityRatingsRequestFieldPathBuilder struct{}
 func NewBatchGetInternetQualityRatingsRequestFieldPathBuilder() BatchGetInternetQualityRatingsRequestFieldPathBuilder {
 	return BatchGetInternetQualityRatingsRequestFieldPathBuilder{}
 }
-func (BatchGetInternetQualityRatingsRequestFieldPathBuilder) Parent() BatchGetInternetQualityRatingsRequestPathSelectorParent {
-	return BatchGetInternetQualityRatingsRequestPathSelectorParent{}
-}
 func (BatchGetInternetQualityRatingsRequestFieldPathBuilder) Names() BatchGetInternetQualityRatingsRequestPathSelectorNames {
 	return BatchGetInternetQualityRatingsRequestPathSelectorNames{}
 }
@@ -145,20 +142,6 @@ func (BatchGetInternetQualityRatingsRequestFieldPathBuilder) FieldMask() BatchGe
 }
 func (BatchGetInternetQualityRatingsRequestFieldPathBuilder) View() BatchGetInternetQualityRatingsRequestPathSelectorView {
 	return BatchGetInternetQualityRatingsRequestPathSelectorView{}
-}
-
-type BatchGetInternetQualityRatingsRequestPathSelectorParent struct{}
-
-func (BatchGetInternetQualityRatingsRequestPathSelectorParent) FieldPath() *BatchGetInternetQualityRatingsRequest_FieldTerminalPath {
-	return &BatchGetInternetQualityRatingsRequest_FieldTerminalPath{selector: BatchGetInternetQualityRatingsRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetInternetQualityRatingsRequestPathSelectorParent) WithValue(value *internet_quality_rating.Reference) *BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetInternetQualityRatingsRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetInternetQualityRatingsRequestPathSelectorParent) WithArrayOfValues(values []*internet_quality_rating.Reference) *BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetInternetQualityRatingsRequestPathSelectorNames struct{}

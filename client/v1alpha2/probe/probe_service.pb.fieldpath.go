@@ -542,16 +542,13 @@ type BatchGetProbesRequest_FieldPath interface {
 type BatchGetProbesRequest_FieldPathSelector int32
 
 const (
-	BatchGetProbesRequest_FieldPathSelectorParent    BatchGetProbesRequest_FieldPathSelector = 0
-	BatchGetProbesRequest_FieldPathSelectorNames     BatchGetProbesRequest_FieldPathSelector = 1
-	BatchGetProbesRequest_FieldPathSelectorFieldMask BatchGetProbesRequest_FieldPathSelector = 2
-	BatchGetProbesRequest_FieldPathSelectorView      BatchGetProbesRequest_FieldPathSelector = 3
+	BatchGetProbesRequest_FieldPathSelectorNames     BatchGetProbesRequest_FieldPathSelector = 0
+	BatchGetProbesRequest_FieldPathSelectorFieldMask BatchGetProbesRequest_FieldPathSelector = 1
+	BatchGetProbesRequest_FieldPathSelectorView      BatchGetProbesRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetProbesRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetProbesRequest_FieldPath(fp gotenobject.RawFieldPath) (BatchGet
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetProbesRequest_FieldTerminalPath{selector: BatchGetProbesRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) JSONString() string {
 func (fp *BatchGetProbesRequest_FieldTerminalPath) Get(source *BatchGetProbesRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetProbesRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetProbesRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) GetRaw(source proto.Message) 
 // GetSingle returns value pointed by specific field of from source BatchGetProbesRequest
 func (fp *BatchGetProbesRequest_FieldTerminalPath) GetSingle(source *BatchGetProbesRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) GetSingleRaw(source proto.Mes
 // GetDefault returns a default value of the field type
 func (fp *BatchGetProbesRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		return (*probe.Reference)(nil)
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		return ([]*probe.Reference)(nil)
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) GetDefault() interface{} {
 func (fp *BatchGetProbesRequest_FieldTerminalPath) ClearValue(item *BatchGetProbesRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetProbesRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetProbesRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) ClearValueRaw(item proto.Mess
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetProbesRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetProbesRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetProbesRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetProbesRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetProbesRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetProbesRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetProbesRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetProbesRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		return &BatchGetProbesRequest_FieldTerminalPathValue{BatchGetProbesRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		return &BatchGetProbesRequest_FieldTerminalPathValue{BatchGetProbesRequest_FieldTerminalPath: *fp, value: value.([]*probe.Reference)}
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetProbesRequest_FieldTerminalPath) WithRawIValue(value interface
 func (fp *BatchGetProbesRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetProbesRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetProbesRequest_FieldTerminalPathArrayOfValues{BatchGetProbesRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		return &BatchGetProbesRequest_FieldTerminalPathArrayOfValues{BatchGetProbesRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		return &BatchGetProbesRequest_FieldTerminalPathArrayOfValues{BatchGetProbesRequest_FieldTerminalPath: *fp, values: values.([][]*probe.Reference)}
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetProbesRequest_FieldPathValue = (*BatchGetProbesRequest_FieldTermin
 func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) AsParentValue() (*probe.Reference, bool) {
-	res, ok := fpv.value.(*probe.Reference)
-	return res, ok
-}
 func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) AsNamesValue() ([]*probe.Reference, bool) {
 	res, ok := fpv.value.([]*probe.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) SetTo(target **BatchGet
 		*target = new(BatchGetProbesRequest)
 	}
 	switch fpv.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*probe.Reference)
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*probe.Reference)
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) SetToRaw(target proto.M
 // CompareWith compares value in the 'BatchGetProbesRequest_FieldTerminalPathValue' with the value under path in 'BatchGetProbesRequest'.
 func (fpv *BatchGetProbesRequest_FieldTerminalPathValue) CompareWith(source *BatchGetProbesRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*probe.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetProbesRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetProbesRequest_FieldPathArrayOfValues = (*BatchGetProbesRequest_Fie
 
 func (fpaov *BatchGetProbesRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetProbesRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*probe.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetProbesRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*probe.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetProbesRequest_FieldTerminalPathArrayOfValues) GetRawValues(
 		}
 	}
 	return
-}
-func (fpaov *BatchGetProbesRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*probe.Reference, bool) {
-	res, ok := fpaov.values.([]*probe.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetProbesRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*probe.Reference, bool) {
 	res, ok := fpaov.values.([][]*probe.Reference)

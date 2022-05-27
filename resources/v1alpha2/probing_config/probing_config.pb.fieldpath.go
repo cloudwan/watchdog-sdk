@@ -871,6 +871,1487 @@ func (fpsaov *ProbingConfig_FieldSubPathArrayOfValues) AsStatusPathArrayOfValues
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbingConfigProbingSession_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbingConfigProbingSession_FieldPathSelector
+	Get(source *ProbingConfig_ProbingSession) []interface{}
+	GetSingle(source *ProbingConfig_ProbingSession) (interface{}, bool)
+	ClearValue(item *ProbingConfig_ProbingSession)
+
+	// Those methods build corresponding ProbingConfigProbingSession_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbingConfigProbingSession_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbingConfigProbingSession_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbingConfigProbingSession_FieldPathArrayItemValue
+}
+
+type ProbingConfigProbingSession_FieldPathSelector int32
+
+const (
+	ProbingConfigProbingSession_FieldPathSelectorTarget             ProbingConfigProbingSession_FieldPathSelector = 0
+	ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName  ProbingConfigProbingSession_FieldPathSelector = 1
+	ProbingConfigProbingSession_FieldPathSelectorTargetGroup        ProbingConfigProbingSession_FieldPathSelector = 2
+	ProbingConfigProbingSession_FieldPathSelectorMode               ProbingConfigProbingSession_FieldPathSelector = 3
+	ProbingConfigProbingSession_FieldPathSelectorIpVersion          ProbingConfigProbingSession_FieldPathSelector = 4
+	ProbingConfigProbingSession_FieldPathSelectorAddress            ProbingConfigProbingSession_FieldPathSelector = 5
+	ProbingConfigProbingSession_FieldPathSelectorGroupName          ProbingConfigProbingSession_FieldPathSelector = 6
+	ProbingConfigProbingSession_FieldPathSelectorCategory           ProbingConfigProbingSession_FieldPathSelector = 7
+	ProbingConfigProbingSession_FieldPathSelectorLocationType       ProbingConfigProbingSession_FieldPathSelector = 8
+	ProbingConfigProbingSession_FieldPathSelectorLocation           ProbingConfigProbingSession_FieldPathSelector = 9
+	ProbingConfigProbingSession_FieldPathSelectorIntervalSec        ProbingConfigProbingSession_FieldPathSelector = 10
+	ProbingConfigProbingSession_FieldPathSelectorInterval           ProbingConfigProbingSession_FieldPathSelector = 11
+	ProbingConfigProbingSession_FieldPathSelectorTos                ProbingConfigProbingSession_FieldPathSelector = 12
+	ProbingConfigProbingSession_FieldPathSelectorWindowSize         ProbingConfigProbingSession_FieldPathSelector = 13
+	ProbingConfigProbingSession_FieldPathSelectorPathProbing        ProbingConfigProbingSession_FieldPathSelector = 14
+	ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings  ProbingConfigProbingSession_FieldPathSelector = 15
+	ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig  ProbingConfigProbingSession_FieldPathSelector = 16
+	ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration ProbingConfigProbingSession_FieldPathSelector = 17
+	ProbingConfigProbingSession_FieldPathSelectorAddresses          ProbingConfigProbingSession_FieldPathSelector = 18
+)
+
+func (s ProbingConfigProbingSession_FieldPathSelector) String() string {
+	switch s {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		return "target"
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		return "target_display_name"
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		return "target_group"
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		return "mode"
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		return "ip_version"
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		return "address"
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		return "group_name"
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		return "category"
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		return "location_type"
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return "location"
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		return "interval_sec"
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		return "interval"
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		return "tos"
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		return "window_size"
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return "path_probing"
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return "speedtest_settings"
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return "http_probing_config"
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return "proxy_configuration"
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return "addresses"
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", s))
+	}
+}
+
+func BuildProbingConfigProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingConfigProbingSession_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object ProbingConfig_ProbingSession")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "target":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTarget}, nil
+		case "target_display_name", "targetDisplayName", "target-display-name":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName}, nil
+		case "target_group", "targetGroup", "target-group":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetGroup}, nil
+		case "mode":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorMode}, nil
+		case "ip_version", "ipVersion", "ip-version":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIpVersion}, nil
+		case "address":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddress}, nil
+		case "group_name", "groupName", "group-name":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorGroupName}, nil
+		case "category":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorCategory}, nil
+		case "location_type", "locationType", "location-type":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocationType}, nil
+		case "location":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation}, nil
+		case "interval_sec", "intervalSec", "interval-sec":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIntervalSec}, nil
+		case "interval":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorInterval}, nil
+		case "tos":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTos}, nil
+		case "window_size", "windowSize", "window-size":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorWindowSize}, nil
+		case "path_probing", "pathProbing", "path-probing":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing}, nil
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings}, nil
+		case "http_probing_config", "httpProbingConfig", "http-probing-config":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig}, nil
+		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration}, nil
+		case "addresses":
+			return &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddresses}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "location":
+			if subpath, err := common.BuildLocation_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation, subPath: subpath}, nil
+			}
+		case "path_probing", "pathProbing", "path-probing":
+			if subpath, err := common.BuildPathProbe_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing, subPath: subpath}, nil
+			}
+		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
+			if subpath, err := common.BuildSpeedTestSettings_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath}, nil
+			}
+		case "http_probing_config", "httpProbingConfig", "http-probing-config":
+			if subpath, err := common.BuildHTTPProbingConfig_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subpath}, nil
+			}
+		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
+			if subpath, err := common.BuildProxyConfiguration_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration, subPath: subpath}, nil
+			}
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ProbingConfig_ProbingSession", fp)
+}
+
+func ParseProbingConfigProbingSession_FieldPath(rawField string) (ProbingConfigProbingSession_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbingConfigProbingSession_FieldPath(fp)
+}
+
+func MustParseProbingConfigProbingSession_FieldPath(rawField string) ProbingConfigProbingSession_FieldPath {
+	fp, err := ParseProbingConfigProbingSession_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbingConfigProbingSession_FieldTerminalPath struct {
+	selector ProbingConfigProbingSession_FieldPathSelector
+}
+
+var _ ProbingConfigProbingSession_FieldPath = (*ProbingConfigProbingSession_FieldTerminalPath)(nil)
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) Selector() ProbingConfigProbingSession_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source ProbingConfig_ProbingSession
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) Get(source *ProbingConfig_ProbingSession) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbingConfigProbingSession_FieldPathSelectorTarget:
+			if source.Target != nil {
+				values = append(values, source.Target)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+			values = append(values, source.TargetDisplayName)
+		case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+			if source.TargetGroup != nil {
+				values = append(values, source.TargetGroup)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorMode:
+			values = append(values, source.Mode)
+		case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+			values = append(values, source.IpVersion)
+		case ProbingConfigProbingSession_FieldPathSelectorAddress:
+			values = append(values, source.Address)
+		case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+			values = append(values, source.GroupName)
+		case ProbingConfigProbingSession_FieldPathSelectorCategory:
+			values = append(values, source.Category)
+		case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+			values = append(values, source.LocationType)
+		case ProbingConfigProbingSession_FieldPathSelectorLocation:
+			if source.Location != nil {
+				values = append(values, source.Location)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+			values = append(values, source.IntervalSec)
+		case ProbingConfigProbingSession_FieldPathSelectorInterval:
+			if source.Interval != nil {
+				values = append(values, source.Interval)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorTos:
+			values = append(values, source.Tos)
+		case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+			values = append(values, source.WindowSize)
+		case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+			if source.PathProbing != nil {
+				values = append(values, source.PathProbing)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+			if source.SpeedtestSettings != nil {
+				values = append(values, source.SpeedtestSettings)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+			if source.HttpProbingConfig != nil {
+				values = append(values, source.HttpProbingConfig)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+			if source.ProxyConfiguration != nil {
+				values = append(values, source.ProxyConfiguration)
+			}
+		case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+			for _, value := range source.GetAddresses() {
+				values = append(values, value)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*ProbingConfig_ProbingSession))
+}
+
+// GetSingle returns value pointed by specific field of from source ProbingConfig_ProbingSession
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) GetSingle(source *ProbingConfig_ProbingSession) (interface{}, bool) {
+	switch fp.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		res := source.GetTarget()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		return source.GetTargetDisplayName(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		res := source.GetTargetGroup()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		return source.GetMode(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		return source.GetIpVersion(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		return source.GetAddress(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		return source.GetGroupName(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		return source.GetCategory(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		return source.GetLocationType(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		res := source.GetLocation()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		return source.GetIntervalSec(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		res := source.GetInterval()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		return source.GetTos(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		return source.GetWindowSize(), source != nil
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		res := source.GetPathProbing()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		res := source.GetSpeedtestSettings()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		res := source.GetHttpProbingConfig()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		res := source.GetProxyConfiguration()
+		return res, res != nil
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		res := source.GetAddresses()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*ProbingConfig_ProbingSession))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		return (*probing_target.Name)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		return ""
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		return (*probing_target_group.Reference)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		return common.IpVersion_IP_VERSION_UNSPECIFIED
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		return ""
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		return ""
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		return ""
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		return common.LocationType_LOCATION_TYPE_UNSPECIFIED
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return (*common.Location)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		return int64(0)
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		return (*duration.Duration)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		return uint32(0)
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		return uint32(0)
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return (*common.PathProbe)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return (*common.SpeedTestSettings)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return (*common.HTTPProbingConfig)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return (*common.ProxyConfiguration)(nil)
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return ([]string)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) ClearValue(item *ProbingConfig_ProbingSession) {
+	if item != nil {
+		switch fp.selector {
+		case ProbingConfigProbingSession_FieldPathSelectorTarget:
+			item.Target = nil
+		case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+			item.TargetDisplayName = ""
+		case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+			item.TargetGroup = nil
+		case ProbingConfigProbingSession_FieldPathSelectorMode:
+			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
+		case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+		case ProbingConfigProbingSession_FieldPathSelectorAddress:
+			item.Address = ""
+		case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+			item.GroupName = ""
+		case ProbingConfigProbingSession_FieldPathSelectorCategory:
+			item.Category = ""
+		case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+			item.LocationType = common.LocationType_LOCATION_TYPE_UNSPECIFIED
+		case ProbingConfigProbingSession_FieldPathSelectorLocation:
+			item.Location = nil
+		case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+			item.IntervalSec = int64(0)
+		case ProbingConfigProbingSession_FieldPathSelectorInterval:
+			item.Interval = nil
+		case ProbingConfigProbingSession_FieldPathSelectorTos:
+			item.Tos = uint32(0)
+		case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+			item.WindowSize = uint32(0)
+		case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+			item.PathProbing = nil
+		case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+			item.SpeedtestSettings = nil
+		case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+			item.HttpProbingConfig = nil
+		case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+			item.ProxyConfiguration = nil
+		case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+			item.Addresses = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*ProbingConfig_ProbingSession))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbingConfigProbingSession_FieldPathSelectorTarget ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorTargetGroup ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorMode ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorIpVersion ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorAddress ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorGroupName ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorCategory ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorLocationType ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorIntervalSec ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorInterval ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorTos ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorWindowSize ||
+		fp.selector == ProbingConfigProbingSession_FieldPathSelectorAddresses
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithIValue(value interface{}) ProbingConfigProbingSession_FieldPathValue {
+	switch fp.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*probing_target.Name)}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*probing_target_group.Reference)}
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(common.LocationType)}
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*common.Location)}
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(uint32)}
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(uint32)}
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*common.PathProbe)}
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*common.SpeedTestSettings)}
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(*common.ProxyConfiguration)}
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return &ProbingConfigProbingSession_FieldTerminalPathValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbingConfigProbingSession_FieldPathArrayOfValues {
+	fpaov := &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*probing_target.Name)}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*probing_target_group.Reference)}
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]common.LocationType)}
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*common.Location)}
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]uint32)}
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]uint32)}
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*common.PathProbe)}
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*common.SpeedTestSettings)}
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([]*common.ProxyConfiguration)}
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayOfValues{ProbingConfigProbingSession_FieldTerminalPath: *fp, values: values.([][]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingConfigProbingSession_FieldPathArrayItemValue {
+	switch fp.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return &ProbingConfigProbingSession_FieldTerminalPathArrayItemValue{ProbingConfigProbingSession_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingConfigProbingSession_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+type ProbingConfigProbingSession_FieldSubPath struct {
+	selector ProbingConfigProbingSession_FieldPathSelector
+	subPath  gotenobject.FieldPath
+}
+
+var _ ProbingConfigProbingSession_FieldPath = (*ProbingConfigProbingSession_FieldSubPath)(nil)
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) Selector() ProbingConfigProbingSession_FieldPathSelector {
+	return fps.selector
+}
+func (fps *ProbingConfigProbingSession_FieldSubPath) AsLocationSubPath() (common.Location_FieldPath, bool) {
+	res, ok := fps.subPath.(common.Location_FieldPath)
+	return res, ok
+}
+func (fps *ProbingConfigProbingSession_FieldSubPath) AsPathProbingSubPath() (common.PathProbe_FieldPath, bool) {
+	res, ok := fps.subPath.(common.PathProbe_FieldPath)
+	return res, ok
+}
+func (fps *ProbingConfigProbingSession_FieldSubPath) AsSpeedtestSettingsSubPath() (common.SpeedTestSettings_FieldPath, bool) {
+	res, ok := fps.subPath.(common.SpeedTestSettings_FieldPath)
+	return res, ok
+}
+func (fps *ProbingConfigProbingSession_FieldSubPath) AsHttpProbingConfigSubPath() (common.HTTPProbingConfig_FieldPath, bool) {
+	res, ok := fps.subPath.(common.HTTPProbingConfig_FieldPath)
+	return res, ok
+}
+func (fps *ProbingConfigProbingSession_FieldSubPath) AsProxyConfigurationSubPath() (common.ProxyConfiguration_FieldPath, bool) {
+	res, ok := fps.subPath.(common.ProxyConfiguration_FieldPath)
+	return res, ok
+}
+
+// String returns path representation in proto convention
+func (fps *ProbingConfigProbingSession_FieldSubPath) String() string {
+	return fps.selector.String() + "." + fps.subPath.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fps *ProbingConfigProbingSession_FieldSubPath) JSONString() string {
+	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
+}
+
+// Get returns all values pointed by selected field from source ProbingConfig_ProbingSession
+func (fps *ProbingConfigProbingSession_FieldSubPath) Get(source *ProbingConfig_ProbingSession) (values []interface{}) {
+	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
+		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
+	} else if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
+		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
+	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
+		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
+	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
+		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
+	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
+		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
+	} else {
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fps.selector))
+	}
+	return
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*ProbingConfig_ProbingSession))
+}
+
+// GetSingle returns value of selected field from source ProbingConfig_ProbingSession
+func (fps *ProbingConfigProbingSession_FieldSubPath) GetSingle(source *ProbingConfig_ProbingSession) (interface{}, bool) {
+	switch fps.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		if source.GetLocation() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetLocation())
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		if source.GetPathProbing() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetPathProbing())
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		if source.GetSpeedtestSettings() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetSpeedtestSettings())
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		if source.GetHttpProbingConfig() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetHttpProbingConfig())
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		if source.GetProxyConfiguration() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetProxyConfiguration())
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fps.selector))
+	}
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*ProbingConfig_ProbingSession))
+}
+
+// GetDefault returns a default value of the field type
+func (fps *ProbingConfigProbingSession_FieldSubPath) GetDefault() interface{} {
+	return fps.subPath.GetDefault()
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) ClearValue(item *ProbingConfig_ProbingSession) {
+	if item != nil {
+		switch fps.selector {
+		case ProbingConfigProbingSession_FieldPathSelectorLocation:
+			fps.subPath.ClearValueRaw(item.Location)
+		case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+			fps.subPath.ClearValueRaw(item.PathProbing)
+		case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+			fps.subPath.ClearValueRaw(item.SpeedtestSettings)
+		case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
+		case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+			fps.subPath.ClearValueRaw(item.ProxyConfiguration)
+		default:
+			panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fps.selector))
+		}
+	}
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*ProbingConfig_ProbingSession))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fps *ProbingConfigProbingSession_FieldSubPath) IsLeaf() bool {
+	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithIValue(value interface{}) ProbingConfigProbingSession_FieldPathValue {
+	return &ProbingConfigProbingSession_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fps.WithIValue(value)
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithIArrayOfValues(values interface{}) ProbingConfigProbingSession_FieldPathArrayOfValues {
+	return &ProbingConfigProbingSession_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fps.WithIArrayOfValues(values)
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithIArrayItemValue(value interface{}) ProbingConfigProbingSession_FieldPathArrayItemValue {
+	return &ProbingConfigProbingSession_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+}
+
+func (fps *ProbingConfigProbingSession_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fps.WithIArrayItemValue(value)
+}
+
+// ProbingConfigProbingSession_FieldPathValue allows storing values for ProbingSession fields according to their type
+type ProbingConfigProbingSession_FieldPathValue interface {
+	ProbingConfigProbingSession_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **ProbingConfig_ProbingSession)
+	CompareWith(*ProbingConfig_ProbingSession) (cmp int, comparable bool)
+}
+
+func ParseProbingConfigProbingSession_FieldPathValue(pathStr, valueStr string) (ProbingConfigProbingSession_FieldPathValue, error) {
+	fp, err := ParseProbingConfigProbingSession_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbingConfigProbingSession_FieldPathValue), nil
+}
+
+func MustParseProbingConfigProbingSession_FieldPathValue(pathStr, valueStr string) ProbingConfigProbingSession_FieldPathValue {
+	fpv, err := ParseProbingConfigProbingSession_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbingConfigProbingSession_FieldTerminalPathValue struct {
+	ProbingConfigProbingSession_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbingConfigProbingSession_FieldPathValue = (*ProbingConfigProbingSession_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'ProbingSession' as interface{}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsTargetValue() (*probing_target.Name, bool) {
+	res, ok := fpv.value.(*probing_target.Name)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsTargetDisplayNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsTargetGroupValue() (*probing_target_group.Reference, bool) {
+	res, ok := fpv.value.(*probing_target_group.Reference)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsModeValue() (common.ProbingMode, bool) {
+	res, ok := fpv.value.(common.ProbingMode)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsAddressValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsGroupNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsCategoryValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsLocationTypeValue() (common.LocationType, bool) {
+	res, ok := fpv.value.(common.LocationType)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsLocationValue() (*common.Location, bool) {
+	res, ok := fpv.value.(*common.Location)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsIntervalSecValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsIntervalValue() (*duration.Duration, bool) {
+	res, ok := fpv.value.(*duration.Duration)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsTosValue() (uint32, bool) {
+	res, ok := fpv.value.(uint32)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsWindowSizeValue() (uint32, bool) {
+	res, ok := fpv.value.(uint32)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsPathProbingValue() (*common.PathProbe, bool) {
+	res, ok := fpv.value.(*common.PathProbe)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsSpeedtestSettingsValue() (*common.SpeedTestSettings, bool) {
+	res, ok := fpv.value.(*common.SpeedTestSettings)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsHttpProbingConfigValue() (*common.HTTPProbingConfig, bool) {
+	res, ok := fpv.value.(*common.HTTPProbingConfig)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsProxyConfigurationValue() (*common.ProxyConfiguration, bool) {
+	res, ok := fpv.value.(*common.ProxyConfiguration)
+	return res, ok
+}
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) AsAddressesValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object ProbingSession
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) SetTo(target **ProbingConfig_ProbingSession) {
+	if *target == nil {
+		*target = new(ProbingConfig_ProbingSession)
+	}
+	switch fpv.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		(*target).Target = fpv.value.(*probing_target.Name)
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		(*target).TargetDisplayName = fpv.value.(string)
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		(*target).TargetGroup = fpv.value.(*probing_target_group.Reference)
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		(*target).Mode = fpv.value.(common.ProbingMode)
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		(*target).IpVersion = fpv.value.(common.IpVersion)
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		(*target).Address = fpv.value.(string)
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		(*target).GroupName = fpv.value.(string)
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		(*target).Category = fpv.value.(string)
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		(*target).LocationType = fpv.value.(common.LocationType)
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		(*target).Location = fpv.value.(*common.Location)
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		(*target).IntervalSec = fpv.value.(int64)
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		(*target).Interval = fpv.value.(*duration.Duration)
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		(*target).Tos = fpv.value.(uint32)
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		(*target).WindowSize = fpv.value.(uint32)
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		(*target).PathProbing = fpv.value.(*common.PathProbe)
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		(*target).SpeedtestSettings = fpv.value.(*common.SpeedTestSettings)
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		(*target).ProxyConfiguration = fpv.value.(*common.ProxyConfiguration)
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		(*target).Addresses = fpv.value.([]string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*ProbingConfig_ProbingSession)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbingConfigProbingSession_FieldTerminalPathValue' with the value under path in 'ProbingConfig_ProbingSession'.
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) CompareWith(source *ProbingConfig_ProbingSession) (int, bool) {
+	switch fpv.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		leftValue := fpv.value.(*probing_target.Name)
+		rightValue := source.GetTarget()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetTargetDisplayName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		leftValue := fpv.value.(*probing_target_group.Reference)
+		rightValue := source.GetTargetGroup()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		leftValue := fpv.value.(common.ProbingMode)
+		rightValue := source.GetMode()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetIpVersion()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetAddress()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetGroupName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetCategory()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		leftValue := fpv.value.(common.LocationType)
+		rightValue := source.GetLocationType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return 0, false
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetIntervalSec()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		leftValue := fpv.value.(*duration.Duration)
+		rightValue := source.GetInterval()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsDuration() == rightValue.AsDuration() {
+			return 0, true
+		} else if leftValue.AsDuration() < rightValue.AsDuration() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		leftValue := fpv.value.(uint32)
+		rightValue := source.GetTos()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		leftValue := fpv.value.(uint32)
+		rightValue := source.GetWindowSize()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return 0, false
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return 0, false
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return 0, false
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return 0, false
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbingConfigProbingSession_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*ProbingConfig_ProbingSession))
+}
+
+type ProbingConfigProbingSession_FieldSubPathValue struct {
+	ProbingConfigProbingSession_FieldPath
+	subPathValue gotenobject.FieldPathValue
+}
+
+var _ ProbingConfigProbingSession_FieldPathValue = (*ProbingConfigProbingSession_FieldSubPathValue)(nil)
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) AsLocationPathValue() (common.Location_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) AsPathProbingPathValue() (common.PathProbe_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.PathProbe_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) AsSpeedtestSettingsPathValue() (common.SpeedTestSettings_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) AsHttpProbingConfigPathValue() (common.HTTPProbingConfig_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue)
+	return res, ok
+}
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) AsProxyConfigurationPathValue() (common.ProxyConfiguration_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue)
+	return res, ok
+}
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) SetTo(target **ProbingConfig_ProbingSession) {
+	if *target == nil {
+		*target = new(ProbingConfig_ProbingSession)
+	}
+	switch fpvs.Selector() {
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		fpvs.subPathValue.(common.PathProbe_FieldPathValue).SetTo(&(*target).PathProbing)
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeedtestSettings)
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).SetTo(&(*target).ProxyConfiguration)
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*ProbingConfig_ProbingSession)
+	fpvs.SetTo(&typedObject)
+}
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) GetRawValue() interface{} {
+	return fpvs.subPathValue.GetRawValue()
+}
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) CompareWith(source *ProbingConfig_ProbingSession) (int, bool) {
+	switch fpvs.Selector() {
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return fpvs.subPathValue.(common.PathProbe_FieldPathValue).CompareWith(source.GetPathProbing())
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeedtestSettings())
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).CompareWith(source.GetProxyConfiguration())
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *ProbingConfigProbingSession_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*ProbingConfig_ProbingSession))
+}
+
+// ProbingConfigProbingSession_FieldPathArrayItemValue allows storing single item in Path-specific values for ProbingSession according to their type
+// Present only for array (repeated) types.
+type ProbingConfigProbingSession_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbingConfigProbingSession_FieldPath
+	ContainsValue(*ProbingConfig_ProbingSession) bool
+}
+
+// ParseProbingConfigProbingSession_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbingConfigProbingSession_FieldPathArrayItemValue(pathStr, valueStr string) (ProbingConfigProbingSession_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbingConfigProbingSession_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbingConfigProbingSession_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbingConfigProbingSession_FieldPathArrayItemValue(pathStr, valueStr string) ProbingConfigProbingSession_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbingConfigProbingSession_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbingConfigProbingSession_FieldTerminalPathArrayItemValue struct {
+	ProbingConfigProbingSession_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbingConfigProbingSession_FieldPathArrayItemValue = (*ProbingConfigProbingSession_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object ProbingConfig_ProbingSession as interface{}
+func (fpaiv *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+func (fpaiv *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue) AsAddressesItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
+}
+
+func (fpaiv *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingConfig_ProbingSession) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*ProbingConfig_ProbingSession))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'ProbingSession'
+func (fpaiv *ProbingConfigProbingSession_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingConfig_ProbingSession) bool {
+	slice := fpaiv.ProbingConfigProbingSession_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+type ProbingConfigProbingSession_FieldSubPathArrayItemValue struct {
+	ProbingConfigProbingSession_FieldPath
+	subPathItemValue gotenobject.FieldPathArrayItemValue
+}
+
+// GetRawValue returns stored array item value
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaivs.subPathItemValue.GetRawItemValue()
+}
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) AsLocationPathItemValue() (common.Location_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) AsPathProbingPathItemValue() (common.PathProbe_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) AsSpeedtestSettingsPathItemValue() (common.SpeedTestSettings_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) AsHttpProbingConfigPathItemValue() (common.HTTPProbingConfig_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) AsProxyConfigurationPathItemValue() (common.ProxyConfiguration_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue)
+	return res, ok
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'ProbingSession'
+func (fpaivs *ProbingConfigProbingSession_FieldSubPathArrayItemValue) ContainsValue(source *ProbingConfig_ProbingSession) bool {
+	switch fpaivs.Selector() {
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		return fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue).ContainsValue(source.GetPathProbing())
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		return fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeedtestSettings())
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		return fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue).ContainsValue(source.GetProxyConfiguration())
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fpaivs.Selector()))
+	}
+}
+
+// ProbingConfigProbingSession_FieldPathArrayOfValues allows storing slice of values for ProbingSession fields according to their type
+type ProbingConfigProbingSession_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbingConfigProbingSession_FieldPath
+}
+
+func ParseProbingConfigProbingSession_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbingConfigProbingSession_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbingConfigProbingSession_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbingConfigProbingSession_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbingConfigProbingSession_FieldPathArrayOfValues(pathStr, valuesStr string) ProbingConfigProbingSession_FieldPathArrayOfValues {
+	fpaov, err := ParseProbingConfigProbingSession_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbingConfigProbingSession_FieldTerminalPathArrayOfValues struct {
+	ProbingConfigProbingSession_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbingConfigProbingSession_FieldPathArrayOfValues = (*ProbingConfigProbingSession_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorTarget:
+		for _, v := range fpaov.values.([]*probing_target.Name) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+		for _, v := range fpaov.values.([]*probing_target_group.Reference) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorMode:
+		for _, v := range fpaov.values.([]common.ProbingMode) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorAddress:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorCategory:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+		for _, v := range fpaov.values.([]common.LocationType) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		for _, v := range fpaov.values.([]*common.Location) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorInterval:
+		for _, v := range fpaov.values.([]*duration.Duration) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorTos:
+		for _, v := range fpaov.values.([]uint32) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+		for _, v := range fpaov.values.([]uint32) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		for _, v := range fpaov.values.([]*common.PathProbe) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		for _, v := range fpaov.values.([]*common.SpeedTestSettings) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		for _, v := range fpaov.values.([]*common.HTTPProbingConfig) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		for _, v := range fpaov.values.([]*common.ProxyConfiguration) {
+			values = append(values, v)
+		}
+	case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Name, bool) {
+	res, ok := fpaov.values.([]*probing_target.Name)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsTargetDisplayNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsTargetGroupArrayOfValues() ([]*probing_target_group.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_target_group.Reference)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsModeArrayOfValues() ([]common.ProbingMode, bool) {
+	res, ok := fpaov.values.([]common.ProbingMode)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsAddressArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsGroupNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsCategoryArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsLocationTypeArrayOfValues() ([]common.LocationType, bool) {
+	res, ok := fpaov.values.([]common.LocationType)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsLocationArrayOfValues() ([]*common.Location, bool) {
+	res, ok := fpaov.values.([]*common.Location)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsIntervalSecArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsIntervalArrayOfValues() ([]*duration.Duration, bool) {
+	res, ok := fpaov.values.([]*duration.Duration)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsTosArrayOfValues() ([]uint32, bool) {
+	res, ok := fpaov.values.([]uint32)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsWindowSizeArrayOfValues() ([]uint32, bool) {
+	res, ok := fpaov.values.([]uint32)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsPathProbingArrayOfValues() ([]*common.PathProbe, bool) {
+	res, ok := fpaov.values.([]*common.PathProbe)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsSpeedtestSettingsArrayOfValues() ([]*common.SpeedTestSettings, bool) {
+	res, ok := fpaov.values.([]*common.SpeedTestSettings)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsHttpProbingConfigArrayOfValues() ([]*common.HTTPProbingConfig, bool) {
+	res, ok := fpaov.values.([]*common.HTTPProbingConfig)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsProxyConfigurationArrayOfValues() ([]*common.ProxyConfiguration, bool) {
+	res, ok := fpaov.values.([]*common.ProxyConfiguration)
+	return res, ok
+}
+func (fpaov *ProbingConfigProbingSession_FieldTerminalPathArrayOfValues) AsAddressesArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+
+type ProbingConfigProbingSession_FieldSubPathArrayOfValues struct {
+	ProbingConfigProbingSession_FieldPath
+	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
+}
+
+var _ ProbingConfigProbingSession_FieldPathArrayOfValues = (*ProbingConfigProbingSession_FieldSubPathArrayOfValues)(nil)
+
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+	return fpsaov.subPathArrayOfValues.GetRawValues()
+}
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) AsLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) AsPathProbingPathArrayOfValues() (common.PathProbe_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.PathProbe_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) AsSpeedtestSettingsPathArrayOfValues() (common.SpeedTestSettings_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.SpeedTestSettings_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) AsHttpProbingConfigPathArrayOfValues() (common.HTTPProbingConfig_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.HTTPProbingConfig_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingConfigProbingSession_FieldSubPathArrayOfValues) AsProxyConfigurationPathArrayOfValues() (common.ProxyConfiguration_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.ProxyConfiguration_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
 type ProbingConfigSpec_FieldPath interface {
 	gotenobject.FieldPath
 	Selector() ProbingConfigSpec_FieldPathSelector
@@ -927,7 +2408,7 @@ func BuildProbingConfigSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbingConfi
 	} else {
 		switch fp[0] {
 		case "probing_sessions", "probingSessions", "probing-sessions":
-			if subpath, err := BuildProbingSession_FieldPath(fp[1:]); err != nil {
+			if subpath, err := BuildProbingConfigProbingSession_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
 				return &ProbingConfigSpec_FieldSubPath{selector: ProbingConfigSpec_FieldPathSelectorProbingSessions, subPath: subpath}, nil
@@ -939,7 +2420,7 @@ func BuildProbingConfigSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbingConfi
 				return &ProbingConfigSpec_FieldSubPath{selector: ProbingConfigSpec_FieldPathSelectorSpeedtest, subPath: subpath}, nil
 			}
 		case "target_sessions", "targetSessions", "target-sessions":
-			if subpath, err := BuildProbingSession_FieldPath(fp[1:]); err != nil {
+			if subpath, err := BuildProbingConfigProbingSession_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
 				return &ProbingConfigSpec_FieldSubPath{selector: ProbingConfigSpec_FieldPathSelectorTargetSessions, subPath: subpath}, nil
@@ -1046,11 +2527,11 @@ func (fp *ProbingConfigSpec_FieldTerminalPath) GetDefault() interface{} {
 	case ProbingConfigSpec_FieldPathSelectorProbe:
 		return (*probe.Reference)(nil)
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		return ([]*ProbingSession)(nil)
+		return ([]*ProbingConfig_ProbingSession)(nil)
 	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 		return (*ProbingConfig_Spec_SpeedTest)(nil)
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		return ([]*ProbingSession)(nil)
+		return ([]*ProbingConfig_ProbingSession)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fp.selector))
 	}
@@ -1087,11 +2568,11 @@ func (fp *ProbingConfigSpec_FieldTerminalPath) WithIValue(value interface{}) Pro
 	case ProbingConfigSpec_FieldPathSelectorProbe:
 		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.([]*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.([]*ProbingConfig_ProbingSession)}
 	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*ProbingConfig_Spec_SpeedTest)}
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.([]*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.([]*ProbingConfig_ProbingSession)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fp.selector))
 	}
@@ -1107,11 +2588,11 @@ func (fp *ProbingConfigSpec_FieldTerminalPath) WithIArrayOfValues(values interfa
 	case ProbingConfigSpec_FieldPathSelectorProbe:
 		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([][]*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([][]*ProbingConfig_ProbingSession)}
 	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([]*ProbingConfig_Spec_SpeedTest)}
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([][]*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathArrayOfValues{ProbingConfigSpec_FieldTerminalPath: *fp, values: values.([][]*ProbingConfig_ProbingSession)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fp.selector))
 	}
@@ -1125,9 +2606,9 @@ func (fp *ProbingConfigSpec_FieldTerminalPath) WithRawIArrayOfValues(values inte
 func (fp *ProbingConfigSpec_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingConfigSpec_FieldPathArrayItemValue {
 	switch fp.selector {
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		return &ProbingConfigSpec_FieldTerminalPathArrayItemValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathArrayItemValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*ProbingConfig_ProbingSession)}
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		return &ProbingConfigSpec_FieldTerminalPathArrayItemValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*ProbingSession)}
+		return &ProbingConfigSpec_FieldTerminalPathArrayItemValue{ProbingConfigSpec_FieldTerminalPath: *fp, value: value.(*ProbingConfig_ProbingSession)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fp.selector))
 	}
@@ -1147,16 +2628,16 @@ var _ ProbingConfigSpec_FieldPath = (*ProbingConfigSpec_FieldSubPath)(nil)
 func (fps *ProbingConfigSpec_FieldSubPath) Selector() ProbingConfigSpec_FieldPathSelector {
 	return fps.selector
 }
-func (fps *ProbingConfigSpec_FieldSubPath) AsProbingSessionsSubPath() (ProbingSession_FieldPath, bool) {
-	res, ok := fps.subPath.(ProbingSession_FieldPath)
+func (fps *ProbingConfigSpec_FieldSubPath) AsProbingSessionsSubPath() (ProbingConfigProbingSession_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbingConfigProbingSession_FieldPath)
 	return res, ok
 }
 func (fps *ProbingConfigSpec_FieldSubPath) AsSpeedtestSubPath() (ProbingConfigSpecSpeedTest_FieldPath, bool) {
 	res, ok := fps.subPath.(ProbingConfigSpecSpeedTest_FieldPath)
 	return res, ok
 }
-func (fps *ProbingConfigSpec_FieldSubPath) AsTargetSessionsSubPath() (ProbingSession_FieldPath, bool) {
-	res, ok := fps.subPath.(ProbingSession_FieldPath)
+func (fps *ProbingConfigSpec_FieldSubPath) AsTargetSessionsSubPath() (ProbingConfigProbingSession_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbingConfigProbingSession_FieldPath)
 	return res, ok
 }
 
@@ -1319,16 +2800,16 @@ func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsProbeValue() (*probe.Refe
 	res, ok := fpv.value.(*probe.Reference)
 	return res, ok
 }
-func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsProbingSessionsValue() ([]*ProbingSession, bool) {
-	res, ok := fpv.value.([]*ProbingSession)
+func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsProbingSessionsValue() ([]*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpv.value.([]*ProbingConfig_ProbingSession)
 	return res, ok
 }
 func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsSpeedtestValue() (*ProbingConfig_Spec_SpeedTest, bool) {
 	res, ok := fpv.value.(*ProbingConfig_Spec_SpeedTest)
 	return res, ok
 }
-func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsTargetSessionsValue() ([]*ProbingSession, bool) {
-	res, ok := fpv.value.([]*ProbingSession)
+func (fpv *ProbingConfigSpec_FieldTerminalPathValue) AsTargetSessionsValue() ([]*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpv.value.([]*ProbingConfig_ProbingSession)
 	return res, ok
 }
 
@@ -1341,11 +2822,11 @@ func (fpv *ProbingConfigSpec_FieldTerminalPathValue) SetTo(target **ProbingConfi
 	case ProbingConfigSpec_FieldPathSelectorProbe:
 		(*target).Probe = fpv.value.(*probe.Reference)
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		(*target).ProbingSessions = fpv.value.([]*ProbingSession)
+		(*target).ProbingSessions = fpv.value.([]*ProbingConfig_ProbingSession)
 	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 		(*target).Speedtest = fpv.value.(*ProbingConfig_Spec_SpeedTest)
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		(*target).TargetSessions = fpv.value.([]*ProbingSession)
+		(*target).TargetSessions = fpv.value.([]*ProbingConfig_ProbingSession)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fpv.selector))
 	}
@@ -1400,16 +2881,16 @@ type ProbingConfigSpec_FieldSubPathValue struct {
 
 var _ ProbingConfigSpec_FieldPathValue = (*ProbingConfigSpec_FieldSubPathValue)(nil)
 
-func (fpvs *ProbingConfigSpec_FieldSubPathValue) AsProbingSessionsPathValue() (ProbingSession_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(ProbingSession_FieldPathValue)
+func (fpvs *ProbingConfigSpec_FieldSubPathValue) AsProbingSessionsPathValue() (ProbingConfigProbingSession_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbingConfigProbingSession_FieldPathValue)
 	return res, ok
 }
 func (fpvs *ProbingConfigSpec_FieldSubPathValue) AsSpeedtestPathValue() (ProbingConfigSpecSpeedTest_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(ProbingConfigSpecSpeedTest_FieldPathValue)
 	return res, ok
 }
-func (fpvs *ProbingConfigSpec_FieldSubPathValue) AsTargetSessionsPathValue() (ProbingSession_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(ProbingSession_FieldPathValue)
+func (fpvs *ProbingConfigSpec_FieldSubPathValue) AsTargetSessionsPathValue() (ProbingConfigProbingSession_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbingConfigProbingSession_FieldPathValue)
 	return res, ok
 }
 
@@ -1495,12 +2976,12 @@ var _ ProbingConfigSpec_FieldPathArrayItemValue = (*ProbingConfigSpec_FieldTermi
 func (fpaiv *ProbingConfigSpec_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
 }
-func (fpaiv *ProbingConfigSpec_FieldTerminalPathArrayItemValue) AsProbingSessionsItemValue() (*ProbingSession, bool) {
-	res, ok := fpaiv.value.(*ProbingSession)
+func (fpaiv *ProbingConfigSpec_FieldTerminalPathArrayItemValue) AsProbingSessionsItemValue() (*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpaiv.value.(*ProbingConfig_ProbingSession)
 	return res, ok
 }
-func (fpaiv *ProbingConfigSpec_FieldTerminalPathArrayItemValue) AsTargetSessionsItemValue() (*ProbingSession, bool) {
-	res, ok := fpaiv.value.(*ProbingSession)
+func (fpaiv *ProbingConfigSpec_FieldTerminalPathArrayItemValue) AsTargetSessionsItemValue() (*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpaiv.value.(*ProbingConfig_ProbingSession)
 	return res, ok
 }
 
@@ -1532,16 +3013,16 @@ type ProbingConfigSpec_FieldSubPathArrayItemValue struct {
 func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaivs.subPathItemValue.GetRawItemValue()
 }
-func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) AsProbingSessionsPathItemValue() (ProbingSession_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(ProbingSession_FieldPathArrayItemValue)
+func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) AsProbingSessionsPathItemValue() (ProbingConfigProbingSession_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbingConfigProbingSession_FieldPathArrayItemValue)
 	return res, ok
 }
 func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) AsSpeedtestPathItemValue() (ProbingConfigSpecSpeedTest_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(ProbingConfigSpecSpeedTest_FieldPathArrayItemValue)
 	return res, ok
 }
-func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) AsTargetSessionsPathItemValue() (ProbingSession_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(ProbingSession_FieldPathArrayItemValue)
+func (fpaivs *ProbingConfigSpec_FieldSubPathArrayItemValue) AsTargetSessionsPathItemValue() (ProbingConfigProbingSession_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbingConfigProbingSession_FieldPathArrayItemValue)
 	return res, ok
 }
 
@@ -1599,7 +3080,7 @@ func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) GetRawValues() (v
 			values = append(values, v)
 		}
 	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-		for _, v := range fpaov.values.([][]*ProbingSession) {
+		for _, v := range fpaov.values.([][]*ProbingConfig_ProbingSession) {
 			values = append(values, v)
 		}
 	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
@@ -1607,7 +3088,7 @@ func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) GetRawValues() (v
 			values = append(values, v)
 		}
 	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-		for _, v := range fpaov.values.([][]*ProbingSession) {
+		for _, v := range fpaov.values.([][]*ProbingConfig_ProbingSession) {
 			values = append(values, v)
 		}
 	}
@@ -1617,16 +3098,16 @@ func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsProbeArrayOfVal
 	res, ok := fpaov.values.([]*probe.Reference)
 	return res, ok
 }
-func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsProbingSessionsArrayOfValues() ([][]*ProbingSession, bool) {
-	res, ok := fpaov.values.([][]*ProbingSession)
+func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsProbingSessionsArrayOfValues() ([][]*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpaov.values.([][]*ProbingConfig_ProbingSession)
 	return res, ok
 }
 func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsSpeedtestArrayOfValues() ([]*ProbingConfig_Spec_SpeedTest, bool) {
 	res, ok := fpaov.values.([]*ProbingConfig_Spec_SpeedTest)
 	return res, ok
 }
-func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsTargetSessionsArrayOfValues() ([][]*ProbingSession, bool) {
-	res, ok := fpaov.values.([][]*ProbingSession)
+func (fpaov *ProbingConfigSpec_FieldTerminalPathArrayOfValues) AsTargetSessionsArrayOfValues() ([][]*ProbingConfig_ProbingSession, bool) {
+	res, ok := fpaov.values.([][]*ProbingConfig_ProbingSession)
 	return res, ok
 }
 
@@ -1640,16 +3121,16 @@ var _ ProbingConfigSpec_FieldPathArrayOfValues = (*ProbingConfigSpec_FieldSubPat
 func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
 	return fpsaov.subPathArrayOfValues.GetRawValues()
 }
-func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) AsProbingSessionsPathArrayOfValues() (ProbingSession_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(ProbingSession_FieldPathArrayOfValues)
+func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) AsProbingSessionsPathArrayOfValues() (ProbingConfigProbingSession_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbingConfigProbingSession_FieldPathArrayOfValues)
 	return res, ok
 }
 func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) AsSpeedtestPathArrayOfValues() (ProbingConfigSpecSpeedTest_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(ProbingConfigSpecSpeedTest_FieldPathArrayOfValues)
 	return res, ok
 }
-func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) AsTargetSessionsPathArrayOfValues() (ProbingSession_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(ProbingSession_FieldPathArrayOfValues)
+func (fpsaov *ProbingConfigSpec_FieldSubPathArrayOfValues) AsTargetSessionsPathArrayOfValues() (ProbingConfigProbingSession_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbingConfigProbingSession_FieldPathArrayOfValues)
 	return res, ok
 }
 
@@ -3392,1486 +4873,5 @@ func (fpsaov *ProbingConfigSpecSpeedTestServer_FieldSubPathArrayOfValues) GetRaw
 }
 func (fpsaov *ProbingConfigSpecSpeedTestServer_FieldSubPathArrayOfValues) AsLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
-	return res, ok
-}
-
-// FieldPath provides implementation to handle
-// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type ProbingSession_FieldPath interface {
-	gotenobject.FieldPath
-	Selector() ProbingSession_FieldPathSelector
-	Get(source *ProbingSession) []interface{}
-	GetSingle(source *ProbingSession) (interface{}, bool)
-	ClearValue(item *ProbingSession)
-
-	// Those methods build corresponding ProbingSession_FieldPathValue
-	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) ProbingSession_FieldPathValue
-	WithIArrayOfValues(values interface{}) ProbingSession_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) ProbingSession_FieldPathArrayItemValue
-}
-
-type ProbingSession_FieldPathSelector int32
-
-const (
-	ProbingSession_FieldPathSelectorTarget             ProbingSession_FieldPathSelector = 0
-	ProbingSession_FieldPathSelectorTargetDisplayName  ProbingSession_FieldPathSelector = 1
-	ProbingSession_FieldPathSelectorTargetGroup        ProbingSession_FieldPathSelector = 2
-	ProbingSession_FieldPathSelectorMode               ProbingSession_FieldPathSelector = 3
-	ProbingSession_FieldPathSelectorIpVersion          ProbingSession_FieldPathSelector = 4
-	ProbingSession_FieldPathSelectorAddress            ProbingSession_FieldPathSelector = 5
-	ProbingSession_FieldPathSelectorGroupName          ProbingSession_FieldPathSelector = 6
-	ProbingSession_FieldPathSelectorCategory           ProbingSession_FieldPathSelector = 7
-	ProbingSession_FieldPathSelectorLocationType       ProbingSession_FieldPathSelector = 8
-	ProbingSession_FieldPathSelectorLocation           ProbingSession_FieldPathSelector = 9
-	ProbingSession_FieldPathSelectorIntervalSec        ProbingSession_FieldPathSelector = 10
-	ProbingSession_FieldPathSelectorInterval           ProbingSession_FieldPathSelector = 11
-	ProbingSession_FieldPathSelectorTos                ProbingSession_FieldPathSelector = 12
-	ProbingSession_FieldPathSelectorWindowSize         ProbingSession_FieldPathSelector = 13
-	ProbingSession_FieldPathSelectorPathProbing        ProbingSession_FieldPathSelector = 14
-	ProbingSession_FieldPathSelectorSpeedtestSettings  ProbingSession_FieldPathSelector = 15
-	ProbingSession_FieldPathSelectorHttpProbingConfig  ProbingSession_FieldPathSelector = 16
-	ProbingSession_FieldPathSelectorProxyConfiguration ProbingSession_FieldPathSelector = 17
-	ProbingSession_FieldPathSelectorAddresses          ProbingSession_FieldPathSelector = 18
-)
-
-func (s ProbingSession_FieldPathSelector) String() string {
-	switch s {
-	case ProbingSession_FieldPathSelectorTarget:
-		return "target"
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		return "target_display_name"
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		return "target_group"
-	case ProbingSession_FieldPathSelectorMode:
-		return "mode"
-	case ProbingSession_FieldPathSelectorIpVersion:
-		return "ip_version"
-	case ProbingSession_FieldPathSelectorAddress:
-		return "address"
-	case ProbingSession_FieldPathSelectorGroupName:
-		return "group_name"
-	case ProbingSession_FieldPathSelectorCategory:
-		return "category"
-	case ProbingSession_FieldPathSelectorLocationType:
-		return "location_type"
-	case ProbingSession_FieldPathSelectorLocation:
-		return "location"
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		return "interval_sec"
-	case ProbingSession_FieldPathSelectorInterval:
-		return "interval"
-	case ProbingSession_FieldPathSelectorTos:
-		return "tos"
-	case ProbingSession_FieldPathSelectorWindowSize:
-		return "window_size"
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return "path_probing"
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return "speedtest_settings"
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return "http_probing_config"
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return "proxy_configuration"
-	case ProbingSession_FieldPathSelectorAddresses:
-		return "addresses"
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", s))
-	}
-}
-
-func BuildProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingSession_FieldPath, error) {
-	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object ProbingSession")
-	}
-	if len(fp) == 1 {
-		switch fp[0] {
-		case "target":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTarget}, nil
-		case "target_display_name", "targetDisplayName", "target-display-name":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetDisplayName}, nil
-		case "target_group", "targetGroup", "target-group":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetGroup}, nil
-		case "mode":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorMode}, nil
-		case "ip_version", "ipVersion", "ip-version":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIpVersion}, nil
-		case "address":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddress}, nil
-		case "group_name", "groupName", "group-name":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorGroupName}, nil
-		case "category":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorCategory}, nil
-		case "location_type", "locationType", "location-type":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocationType}, nil
-		case "location":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocation}, nil
-		case "interval_sec", "intervalSec", "interval-sec":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIntervalSec}, nil
-		case "interval":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorInterval}, nil
-		case "tos":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTos}, nil
-		case "window_size", "windowSize", "window-size":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize}, nil
-		case "path_probing", "pathProbing", "path-probing":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing}, nil
-		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings}, nil
-		case "http_probing_config", "httpProbingConfig", "http-probing-config":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig}, nil
-		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration}, nil
-		case "addresses":
-			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses}, nil
-		}
-	} else {
-		switch fp[0] {
-		case "location":
-			if subpath, err := common.BuildLocation_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorLocation, subPath: subpath}, nil
-			}
-		case "path_probing", "pathProbing", "path-probing":
-			if subpath, err := common.BuildPathProbe_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorPathProbing, subPath: subpath}, nil
-			}
-		case "speedtest_settings", "speedtestSettings", "speedtest-settings":
-			if subpath, err := common.BuildSpeedTestSettings_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath}, nil
-			}
-		case "http_probing_config", "httpProbingConfig", "http-probing-config":
-			if subpath, err := common.BuildHTTPProbingConfig_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subpath}, nil
-			}
-		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
-			if subpath, err := common.BuildProxyConfiguration_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration, subPath: subpath}, nil
-			}
-		}
-	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ProbingSession", fp)
-}
-
-func ParseProbingSession_FieldPath(rawField string) (ProbingSession_FieldPath, error) {
-	fp, err := gotenobject.ParseRawFieldPath(rawField)
-	if err != nil {
-		return nil, err
-	}
-	return BuildProbingSession_FieldPath(fp)
-}
-
-func MustParseProbingSession_FieldPath(rawField string) ProbingSession_FieldPath {
-	fp, err := ParseProbingSession_FieldPath(rawField)
-	if err != nil {
-		panic(err)
-	}
-	return fp
-}
-
-type ProbingSession_FieldTerminalPath struct {
-	selector ProbingSession_FieldPathSelector
-}
-
-var _ ProbingSession_FieldPath = (*ProbingSession_FieldTerminalPath)(nil)
-
-func (fp *ProbingSession_FieldTerminalPath) Selector() ProbingSession_FieldPathSelector {
-	return fp.selector
-}
-
-// String returns path representation in proto convention
-func (fp *ProbingSession_FieldTerminalPath) String() string {
-	return fp.selector.String()
-}
-
-// JSONString returns path representation is JSON convention
-func (fp *ProbingSession_FieldTerminalPath) JSONString() string {
-	return strcase.ToLowerCamel(fp.String())
-}
-
-// Get returns all values pointed by specific field from source ProbingSession
-func (fp *ProbingSession_FieldTerminalPath) Get(source *ProbingSession) (values []interface{}) {
-	if source != nil {
-		switch fp.selector {
-		case ProbingSession_FieldPathSelectorTarget:
-			if source.Target != nil {
-				values = append(values, source.Target)
-			}
-		case ProbingSession_FieldPathSelectorTargetDisplayName:
-			values = append(values, source.TargetDisplayName)
-		case ProbingSession_FieldPathSelectorTargetGroup:
-			if source.TargetGroup != nil {
-				values = append(values, source.TargetGroup)
-			}
-		case ProbingSession_FieldPathSelectorMode:
-			values = append(values, source.Mode)
-		case ProbingSession_FieldPathSelectorIpVersion:
-			values = append(values, source.IpVersion)
-		case ProbingSession_FieldPathSelectorAddress:
-			values = append(values, source.Address)
-		case ProbingSession_FieldPathSelectorGroupName:
-			values = append(values, source.GroupName)
-		case ProbingSession_FieldPathSelectorCategory:
-			values = append(values, source.Category)
-		case ProbingSession_FieldPathSelectorLocationType:
-			values = append(values, source.LocationType)
-		case ProbingSession_FieldPathSelectorLocation:
-			if source.Location != nil {
-				values = append(values, source.Location)
-			}
-		case ProbingSession_FieldPathSelectorIntervalSec:
-			values = append(values, source.IntervalSec)
-		case ProbingSession_FieldPathSelectorInterval:
-			if source.Interval != nil {
-				values = append(values, source.Interval)
-			}
-		case ProbingSession_FieldPathSelectorTos:
-			values = append(values, source.Tos)
-		case ProbingSession_FieldPathSelectorWindowSize:
-			values = append(values, source.WindowSize)
-		case ProbingSession_FieldPathSelectorPathProbing:
-			if source.PathProbing != nil {
-				values = append(values, source.PathProbing)
-			}
-		case ProbingSession_FieldPathSelectorSpeedtestSettings:
-			if source.SpeedtestSettings != nil {
-				values = append(values, source.SpeedtestSettings)
-			}
-		case ProbingSession_FieldPathSelectorHttpProbingConfig:
-			if source.HttpProbingConfig != nil {
-				values = append(values, source.HttpProbingConfig)
-			}
-		case ProbingSession_FieldPathSelectorProxyConfiguration:
-			if source.ProxyConfiguration != nil {
-				values = append(values, source.ProxyConfiguration)
-			}
-		case ProbingSession_FieldPathSelectorAddresses:
-			for _, value := range source.GetAddresses() {
-				values = append(values, value)
-			}
-		default:
-			panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-		}
-	}
-	return
-}
-
-func (fp *ProbingSession_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*ProbingSession))
-}
-
-// GetSingle returns value pointed by specific field of from source ProbingSession
-func (fp *ProbingSession_FieldTerminalPath) GetSingle(source *ProbingSession) (interface{}, bool) {
-	switch fp.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		res := source.GetTarget()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		return source.GetTargetDisplayName(), source != nil
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		res := source.GetTargetGroup()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorMode:
-		return source.GetMode(), source != nil
-	case ProbingSession_FieldPathSelectorIpVersion:
-		return source.GetIpVersion(), source != nil
-	case ProbingSession_FieldPathSelectorAddress:
-		return source.GetAddress(), source != nil
-	case ProbingSession_FieldPathSelectorGroupName:
-		return source.GetGroupName(), source != nil
-	case ProbingSession_FieldPathSelectorCategory:
-		return source.GetCategory(), source != nil
-	case ProbingSession_FieldPathSelectorLocationType:
-		return source.GetLocationType(), source != nil
-	case ProbingSession_FieldPathSelectorLocation:
-		res := source.GetLocation()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		return source.GetIntervalSec(), source != nil
-	case ProbingSession_FieldPathSelectorInterval:
-		res := source.GetInterval()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorTos:
-		return source.GetTos(), source != nil
-	case ProbingSession_FieldPathSelectorWindowSize:
-		return source.GetWindowSize(), source != nil
-	case ProbingSession_FieldPathSelectorPathProbing:
-		res := source.GetPathProbing()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		res := source.GetSpeedtestSettings()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		res := source.GetHttpProbingConfig()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		res := source.GetProxyConfiguration()
-		return res, res != nil
-	case ProbingSession_FieldPathSelectorAddresses:
-		res := source.GetAddresses()
-		return res, res != nil
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-	}
-}
-
-func (fp *ProbingSession_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*ProbingSession))
-}
-
-// GetDefault returns a default value of the field type
-func (fp *ProbingSession_FieldTerminalPath) GetDefault() interface{} {
-	switch fp.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		return (*probing_target.Name)(nil)
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		return ""
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		return (*probing_target_group.Reference)(nil)
-	case ProbingSession_FieldPathSelectorMode:
-		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
-	case ProbingSession_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
-	case ProbingSession_FieldPathSelectorAddress:
-		return ""
-	case ProbingSession_FieldPathSelectorGroupName:
-		return ""
-	case ProbingSession_FieldPathSelectorCategory:
-		return ""
-	case ProbingSession_FieldPathSelectorLocationType:
-		return common.LocationType_LOCATION_TYPE_UNSPECIFIED
-	case ProbingSession_FieldPathSelectorLocation:
-		return (*common.Location)(nil)
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		return int64(0)
-	case ProbingSession_FieldPathSelectorInterval:
-		return (*duration.Duration)(nil)
-	case ProbingSession_FieldPathSelectorTos:
-		return uint32(0)
-	case ProbingSession_FieldPathSelectorWindowSize:
-		return uint32(0)
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return (*common.PathProbe)(nil)
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return (*common.SpeedTestSettings)(nil)
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return (*common.HTTPProbingConfig)(nil)
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return (*common.ProxyConfiguration)(nil)
-	case ProbingSession_FieldPathSelectorAddresses:
-		return ([]string)(nil)
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-	}
-}
-
-func (fp *ProbingSession_FieldTerminalPath) ClearValue(item *ProbingSession) {
-	if item != nil {
-		switch fp.selector {
-		case ProbingSession_FieldPathSelectorTarget:
-			item.Target = nil
-		case ProbingSession_FieldPathSelectorTargetDisplayName:
-			item.TargetDisplayName = ""
-		case ProbingSession_FieldPathSelectorTargetGroup:
-			item.TargetGroup = nil
-		case ProbingSession_FieldPathSelectorMode:
-			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
-		case ProbingSession_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
-		case ProbingSession_FieldPathSelectorAddress:
-			item.Address = ""
-		case ProbingSession_FieldPathSelectorGroupName:
-			item.GroupName = ""
-		case ProbingSession_FieldPathSelectorCategory:
-			item.Category = ""
-		case ProbingSession_FieldPathSelectorLocationType:
-			item.LocationType = common.LocationType_LOCATION_TYPE_UNSPECIFIED
-		case ProbingSession_FieldPathSelectorLocation:
-			item.Location = nil
-		case ProbingSession_FieldPathSelectorIntervalSec:
-			item.IntervalSec = int64(0)
-		case ProbingSession_FieldPathSelectorInterval:
-			item.Interval = nil
-		case ProbingSession_FieldPathSelectorTos:
-			item.Tos = uint32(0)
-		case ProbingSession_FieldPathSelectorWindowSize:
-			item.WindowSize = uint32(0)
-		case ProbingSession_FieldPathSelectorPathProbing:
-			item.PathProbing = nil
-		case ProbingSession_FieldPathSelectorSpeedtestSettings:
-			item.SpeedtestSettings = nil
-		case ProbingSession_FieldPathSelectorHttpProbingConfig:
-			item.HttpProbingConfig = nil
-		case ProbingSession_FieldPathSelectorProxyConfiguration:
-			item.ProxyConfiguration = nil
-		case ProbingSession_FieldPathSelectorAddresses:
-			item.Addresses = nil
-		default:
-			panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-		}
-	}
-}
-
-func (fp *ProbingSession_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*ProbingSession))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fp *ProbingSession_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == ProbingSession_FieldPathSelectorTarget ||
-		fp.selector == ProbingSession_FieldPathSelectorTargetDisplayName ||
-		fp.selector == ProbingSession_FieldPathSelectorTargetGroup ||
-		fp.selector == ProbingSession_FieldPathSelectorMode ||
-		fp.selector == ProbingSession_FieldPathSelectorIpVersion ||
-		fp.selector == ProbingSession_FieldPathSelectorAddress ||
-		fp.selector == ProbingSession_FieldPathSelectorGroupName ||
-		fp.selector == ProbingSession_FieldPathSelectorCategory ||
-		fp.selector == ProbingSession_FieldPathSelectorLocationType ||
-		fp.selector == ProbingSession_FieldPathSelectorIntervalSec ||
-		fp.selector == ProbingSession_FieldPathSelectorInterval ||
-		fp.selector == ProbingSession_FieldPathSelectorTos ||
-		fp.selector == ProbingSession_FieldPathSelectorWindowSize ||
-		fp.selector == ProbingSession_FieldPathSelectorAddresses
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) ProbingSession_FieldPathValue {
-	switch fp.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*probing_target.Name)}
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*probing_target_group.Reference)}
-	case ProbingSession_FieldPathSelectorMode:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
-	case ProbingSession_FieldPathSelectorIpVersion:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
-	case ProbingSession_FieldPathSelectorAddress:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
-	case ProbingSession_FieldPathSelectorGroupName:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
-	case ProbingSession_FieldPathSelectorCategory:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
-	case ProbingSession_FieldPathSelectorLocationType:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(common.LocationType)}
-	case ProbingSession_FieldPathSelectorLocation:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.Location)}
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(int64)}
-	case ProbingSession_FieldPathSelectorInterval:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case ProbingSession_FieldPathSelectorTos:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(uint32)}
-	case ProbingSession_FieldPathSelectorWindowSize:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(uint32)}
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.PathProbe)}
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.SpeedTestSettings)}
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*common.ProxyConfiguration)}
-	case ProbingSession_FieldPathSelectorAddresses:
-		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.([]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-	}
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fp.WithIValue(value)
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbingSession_FieldPathArrayOfValues {
-	fpaov := &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp}
-	switch fp.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*probing_target.Name)}
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*probing_target_group.Reference)}
-	case ProbingSession_FieldPathSelectorMode:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
-	case ProbingSession_FieldPathSelectorIpVersion:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
-	case ProbingSession_FieldPathSelectorAddress:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
-	case ProbingSession_FieldPathSelectorGroupName:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
-	case ProbingSession_FieldPathSelectorCategory:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]string)}
-	case ProbingSession_FieldPathSelectorLocationType:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]common.LocationType)}
-	case ProbingSession_FieldPathSelectorLocation:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.Location)}
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]int64)}
-	case ProbingSession_FieldPathSelectorInterval:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case ProbingSession_FieldPathSelectorTos:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]uint32)}
-	case ProbingSession_FieldPathSelectorWindowSize:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]uint32)}
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.PathProbe)}
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.SpeedTestSettings)}
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*common.ProxyConfiguration)}
-	case ProbingSession_FieldPathSelectorAddresses:
-		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([][]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-	}
-	return fpaov
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fp.WithIArrayOfValues(values)
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingSession_FieldPathArrayItemValue {
-	switch fp.selector {
-	case ProbingSession_FieldPathSelectorAddresses:
-		return &ProbingSession_FieldTerminalPathArrayItemValue{ProbingSession_FieldTerminalPath: *fp, value: value.(string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
-	}
-}
-
-func (fp *ProbingSession_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fp.WithIArrayItemValue(value)
-}
-
-type ProbingSession_FieldSubPath struct {
-	selector ProbingSession_FieldPathSelector
-	subPath  gotenobject.FieldPath
-}
-
-var _ ProbingSession_FieldPath = (*ProbingSession_FieldSubPath)(nil)
-
-func (fps *ProbingSession_FieldSubPath) Selector() ProbingSession_FieldPathSelector {
-	return fps.selector
-}
-func (fps *ProbingSession_FieldSubPath) AsLocationSubPath() (common.Location_FieldPath, bool) {
-	res, ok := fps.subPath.(common.Location_FieldPath)
-	return res, ok
-}
-func (fps *ProbingSession_FieldSubPath) AsPathProbingSubPath() (common.PathProbe_FieldPath, bool) {
-	res, ok := fps.subPath.(common.PathProbe_FieldPath)
-	return res, ok
-}
-func (fps *ProbingSession_FieldSubPath) AsSpeedtestSettingsSubPath() (common.SpeedTestSettings_FieldPath, bool) {
-	res, ok := fps.subPath.(common.SpeedTestSettings_FieldPath)
-	return res, ok
-}
-func (fps *ProbingSession_FieldSubPath) AsHttpProbingConfigSubPath() (common.HTTPProbingConfig_FieldPath, bool) {
-	res, ok := fps.subPath.(common.HTTPProbingConfig_FieldPath)
-	return res, ok
-}
-func (fps *ProbingSession_FieldSubPath) AsProxyConfigurationSubPath() (common.ProxyConfiguration_FieldPath, bool) {
-	res, ok := fps.subPath.(common.ProxyConfiguration_FieldPath)
-	return res, ok
-}
-
-// String returns path representation in proto convention
-func (fps *ProbingSession_FieldSubPath) String() string {
-	return fps.selector.String() + "." + fps.subPath.String()
-}
-
-// JSONString returns path representation is JSON convention
-func (fps *ProbingSession_FieldSubPath) JSONString() string {
-	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
-}
-
-// Get returns all values pointed by selected field from source ProbingSession
-func (fps *ProbingSession_FieldSubPath) Get(source *ProbingSession) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
-		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
-	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
-		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
-	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
-		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
-	} else {
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fps.selector))
-	}
-	return
-}
-
-func (fps *ProbingSession_FieldSubPath) GetRaw(source proto.Message) []interface{} {
-	return fps.Get(source.(*ProbingSession))
-}
-
-// GetSingle returns value of selected field from source ProbingSession
-func (fps *ProbingSession_FieldSubPath) GetSingle(source *ProbingSession) (interface{}, bool) {
-	switch fps.selector {
-	case ProbingSession_FieldPathSelectorLocation:
-		if source.GetLocation() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetLocation())
-	case ProbingSession_FieldPathSelectorPathProbing:
-		if source.GetPathProbing() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		if source.GetSpeedtestSettings() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetSpeedtestSettings())
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		if source.GetHttpProbingConfig() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetHttpProbingConfig())
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		if source.GetProxyConfiguration() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetProxyConfiguration())
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fps.selector))
-	}
-}
-
-func (fps *ProbingSession_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fps.GetSingle(source.(*ProbingSession))
-}
-
-// GetDefault returns a default value of the field type
-func (fps *ProbingSession_FieldSubPath) GetDefault() interface{} {
-	return fps.subPath.GetDefault()
-}
-
-func (fps *ProbingSession_FieldSubPath) ClearValue(item *ProbingSession) {
-	if item != nil {
-		switch fps.selector {
-		case ProbingSession_FieldPathSelectorLocation:
-			fps.subPath.ClearValueRaw(item.Location)
-		case ProbingSession_FieldPathSelectorPathProbing:
-			fps.subPath.ClearValueRaw(item.PathProbing)
-		case ProbingSession_FieldPathSelectorSpeedtestSettings:
-			fps.subPath.ClearValueRaw(item.SpeedtestSettings)
-		case ProbingSession_FieldPathSelectorHttpProbingConfig:
-			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
-		case ProbingSession_FieldPathSelectorProxyConfiguration:
-			fps.subPath.ClearValueRaw(item.ProxyConfiguration)
-		default:
-			panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fps.selector))
-		}
-	}
-}
-
-func (fps *ProbingSession_FieldSubPath) ClearValueRaw(item proto.Message) {
-	fps.ClearValue(item.(*ProbingSession))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fps *ProbingSession_FieldSubPath) IsLeaf() bool {
-	return fps.subPath.IsLeaf()
-}
-
-func (fps *ProbingSession_FieldSubPath) WithIValue(value interface{}) ProbingSession_FieldPathValue {
-	return &ProbingSession_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
-}
-
-func (fps *ProbingSession_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fps.WithIValue(value)
-}
-
-func (fps *ProbingSession_FieldSubPath) WithIArrayOfValues(values interface{}) ProbingSession_FieldPathArrayOfValues {
-	return &ProbingSession_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
-}
-
-func (fps *ProbingSession_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fps.WithIArrayOfValues(values)
-}
-
-func (fps *ProbingSession_FieldSubPath) WithIArrayItemValue(value interface{}) ProbingSession_FieldPathArrayItemValue {
-	return &ProbingSession_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
-}
-
-func (fps *ProbingSession_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fps.WithIArrayItemValue(value)
-}
-
-// ProbingSession_FieldPathValue allows storing values for ProbingSession fields according to their type
-type ProbingSession_FieldPathValue interface {
-	ProbingSession_FieldPath
-	gotenobject.FieldPathValue
-	SetTo(target **ProbingSession)
-	CompareWith(*ProbingSession) (cmp int, comparable bool)
-}
-
-func ParseProbingSession_FieldPathValue(pathStr, valueStr string) (ProbingSession_FieldPathValue, error) {
-	fp, err := ParseProbingSession_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path value from %s: %v", valueStr, err)
-	}
-	return fpv.(ProbingSession_FieldPathValue), nil
-}
-
-func MustParseProbingSession_FieldPathValue(pathStr, valueStr string) ProbingSession_FieldPathValue {
-	fpv, err := ParseProbingSession_FieldPathValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpv
-}
-
-type ProbingSession_FieldTerminalPathValue struct {
-	ProbingSession_FieldTerminalPath
-	value interface{}
-}
-
-var _ ProbingSession_FieldPathValue = (*ProbingSession_FieldTerminalPathValue)(nil)
-
-// GetRawValue returns raw value stored under selected path for 'ProbingSession' as interface{}
-func (fpv *ProbingSession_FieldTerminalPathValue) GetRawValue() interface{} {
-	return fpv.value
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsTargetValue() (*probing_target.Name, bool) {
-	res, ok := fpv.value.(*probing_target.Name)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsTargetDisplayNameValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsTargetGroupValue() (*probing_target_group.Reference, bool) {
-	res, ok := fpv.value.(*probing_target_group.Reference)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsModeValue() (common.ProbingMode, bool) {
-	res, ok := fpv.value.(common.ProbingMode)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
-	res, ok := fpv.value.(common.IpVersion)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsAddressValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsGroupNameValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsCategoryValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsLocationTypeValue() (common.LocationType, bool) {
-	res, ok := fpv.value.(common.LocationType)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsLocationValue() (*common.Location, bool) {
-	res, ok := fpv.value.(*common.Location)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsIntervalSecValue() (int64, bool) {
-	res, ok := fpv.value.(int64)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsIntervalValue() (*duration.Duration, bool) {
-	res, ok := fpv.value.(*duration.Duration)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsTosValue() (uint32, bool) {
-	res, ok := fpv.value.(uint32)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsWindowSizeValue() (uint32, bool) {
-	res, ok := fpv.value.(uint32)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsPathProbingValue() (*common.PathProbe, bool) {
-	res, ok := fpv.value.(*common.PathProbe)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsSpeedtestSettingsValue() (*common.SpeedTestSettings, bool) {
-	res, ok := fpv.value.(*common.SpeedTestSettings)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsHttpProbingConfigValue() (*common.HTTPProbingConfig, bool) {
-	res, ok := fpv.value.(*common.HTTPProbingConfig)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsProxyConfigurationValue() (*common.ProxyConfiguration, bool) {
-	res, ok := fpv.value.(*common.ProxyConfiguration)
-	return res, ok
-}
-func (fpv *ProbingSession_FieldTerminalPathValue) AsAddressesValue() ([]string, bool) {
-	res, ok := fpv.value.([]string)
-	return res, ok
-}
-
-// SetTo stores value for selected field for object ProbingSession
-func (fpv *ProbingSession_FieldTerminalPathValue) SetTo(target **ProbingSession) {
-	if *target == nil {
-		*target = new(ProbingSession)
-	}
-	switch fpv.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		(*target).Target = fpv.value.(*probing_target.Name)
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		(*target).TargetDisplayName = fpv.value.(string)
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		(*target).TargetGroup = fpv.value.(*probing_target_group.Reference)
-	case ProbingSession_FieldPathSelectorMode:
-		(*target).Mode = fpv.value.(common.ProbingMode)
-	case ProbingSession_FieldPathSelectorIpVersion:
-		(*target).IpVersion = fpv.value.(common.IpVersion)
-	case ProbingSession_FieldPathSelectorAddress:
-		(*target).Address = fpv.value.(string)
-	case ProbingSession_FieldPathSelectorGroupName:
-		(*target).GroupName = fpv.value.(string)
-	case ProbingSession_FieldPathSelectorCategory:
-		(*target).Category = fpv.value.(string)
-	case ProbingSession_FieldPathSelectorLocationType:
-		(*target).LocationType = fpv.value.(common.LocationType)
-	case ProbingSession_FieldPathSelectorLocation:
-		(*target).Location = fpv.value.(*common.Location)
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		(*target).IntervalSec = fpv.value.(int64)
-	case ProbingSession_FieldPathSelectorInterval:
-		(*target).Interval = fpv.value.(*duration.Duration)
-	case ProbingSession_FieldPathSelectorTos:
-		(*target).Tos = fpv.value.(uint32)
-	case ProbingSession_FieldPathSelectorWindowSize:
-		(*target).WindowSize = fpv.value.(uint32)
-	case ProbingSession_FieldPathSelectorPathProbing:
-		(*target).PathProbing = fpv.value.(*common.PathProbe)
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		(*target).SpeedtestSettings = fpv.value.(*common.SpeedTestSettings)
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		(*target).ProxyConfiguration = fpv.value.(*common.ProxyConfiguration)
-	case ProbingSession_FieldPathSelectorAddresses:
-		(*target).Addresses = fpv.value.([]string)
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpv.selector))
-	}
-}
-
-func (fpv *ProbingSession_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*ProbingSession)
-	fpv.SetTo(&typedObject)
-}
-
-// CompareWith compares value in the 'ProbingSession_FieldTerminalPathValue' with the value under path in 'ProbingSession'.
-func (fpv *ProbingSession_FieldTerminalPathValue) CompareWith(source *ProbingSession) (int, bool) {
-	switch fpv.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		leftValue := fpv.value.(*probing_target.Name)
-		rightValue := source.GetTarget()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetTargetDisplayName()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		leftValue := fpv.value.(*probing_target_group.Reference)
-		rightValue := source.GetTargetGroup()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorMode:
-		leftValue := fpv.value.(common.ProbingMode)
-		rightValue := source.GetMode()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorIpVersion:
-		leftValue := fpv.value.(common.IpVersion)
-		rightValue := source.GetIpVersion()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorAddress:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetAddress()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorGroupName:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetGroupName()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorCategory:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetCategory()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorLocationType:
-		leftValue := fpv.value.(common.LocationType)
-		rightValue := source.GetLocationType()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorLocation:
-		return 0, false
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		leftValue := fpv.value.(int64)
-		rightValue := source.GetIntervalSec()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorInterval:
-		leftValue := fpv.value.(*duration.Duration)
-		rightValue := source.GetInterval()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.AsDuration() == rightValue.AsDuration() {
-			return 0, true
-		} else if leftValue.AsDuration() < rightValue.AsDuration() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorTos:
-		leftValue := fpv.value.(uint32)
-		rightValue := source.GetTos()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorWindowSize:
-		leftValue := fpv.value.(uint32)
-		rightValue := source.GetWindowSize()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return 0, false
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return 0, false
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return 0, false
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return 0, false
-	case ProbingSession_FieldPathSelectorAddresses:
-		return 0, false
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpv.selector))
-	}
-}
-
-func (fpv *ProbingSession_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*ProbingSession))
-}
-
-type ProbingSession_FieldSubPathValue struct {
-	ProbingSession_FieldPath
-	subPathValue gotenobject.FieldPathValue
-}
-
-var _ ProbingSession_FieldPathValue = (*ProbingSession_FieldSubPathValue)(nil)
-
-func (fpvs *ProbingSession_FieldSubPathValue) AsLocationPathValue() (common.Location_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
-	return res, ok
-}
-func (fpvs *ProbingSession_FieldSubPathValue) AsPathProbingPathValue() (common.PathProbe_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.PathProbe_FieldPathValue)
-	return res, ok
-}
-func (fpvs *ProbingSession_FieldSubPathValue) AsSpeedtestSettingsPathValue() (common.SpeedTestSettings_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue)
-	return res, ok
-}
-func (fpvs *ProbingSession_FieldSubPathValue) AsHttpProbingConfigPathValue() (common.HTTPProbingConfig_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue)
-	return res, ok
-}
-func (fpvs *ProbingSession_FieldSubPathValue) AsProxyConfigurationPathValue() (common.ProxyConfiguration_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue)
-	return res, ok
-}
-
-func (fpvs *ProbingSession_FieldSubPathValue) SetTo(target **ProbingSession) {
-	if *target == nil {
-		*target = new(ProbingSession)
-	}
-	switch fpvs.Selector() {
-	case ProbingSession_FieldPathSelectorLocation:
-		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
-	case ProbingSession_FieldPathSelectorPathProbing:
-		fpvs.subPathValue.(common.PathProbe_FieldPathValue).SetTo(&(*target).PathProbing)
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).SetTo(&(*target).SpeedtestSettings)
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).SetTo(&(*target).ProxyConfiguration)
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpvs.Selector()))
-	}
-}
-
-func (fpvs *ProbingSession_FieldSubPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*ProbingSession)
-	fpvs.SetTo(&typedObject)
-}
-
-func (fpvs *ProbingSession_FieldSubPathValue) GetRawValue() interface{} {
-	return fpvs.subPathValue.GetRawValue()
-}
-
-func (fpvs *ProbingSession_FieldSubPathValue) CompareWith(source *ProbingSession) (int, bool) {
-	switch fpvs.Selector() {
-	case ProbingSession_FieldPathSelectorLocation:
-		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return fpvs.subPathValue.(common.PathProbe_FieldPathValue).CompareWith(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return fpvs.subPathValue.(common.SpeedTestSettings_FieldPathValue).CompareWith(source.GetSpeedtestSettings())
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).CompareWith(source.GetProxyConfiguration())
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpvs.Selector()))
-	}
-}
-
-func (fpvs *ProbingSession_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpvs.CompareWith(source.(*ProbingSession))
-}
-
-// ProbingSession_FieldPathArrayItemValue allows storing single item in Path-specific values for ProbingSession according to their type
-// Present only for array (repeated) types.
-type ProbingSession_FieldPathArrayItemValue interface {
-	gotenobject.FieldPathArrayItemValue
-	ProbingSession_FieldPath
-	ContainsValue(*ProbingSession) bool
-}
-
-// ParseProbingSession_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseProbingSession_FieldPathArrayItemValue(pathStr, valueStr string) (ProbingSession_FieldPathArrayItemValue, error) {
-	fp, err := ParseProbingSession_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path array item value from %s: %v", valueStr, err)
-	}
-	return fpaiv.(ProbingSession_FieldPathArrayItemValue), nil
-}
-
-func MustParseProbingSession_FieldPathArrayItemValue(pathStr, valueStr string) ProbingSession_FieldPathArrayItemValue {
-	fpaiv, err := ParseProbingSession_FieldPathArrayItemValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaiv
-}
-
-type ProbingSession_FieldTerminalPathArrayItemValue struct {
-	ProbingSession_FieldTerminalPath
-	value interface{}
-}
-
-var _ ProbingSession_FieldPathArrayItemValue = (*ProbingSession_FieldTerminalPathArrayItemValue)(nil)
-
-// GetRawValue returns stored element value for array in object ProbingSession as interface{}
-func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
-	return fpaiv.value
-}
-func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) AsAddressesItemValue() (string, bool) {
-	res, ok := fpaiv.value.(string)
-	return res, ok
-}
-
-func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingSession) (interface{}, bool) {
-	return nil, false
-}
-
-func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*ProbingSession))
-}
-
-// Contains returns a boolean indicating if value that is being held is present in given 'ProbingSession'
-func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingSession) bool {
-	slice := fpaiv.ProbingSession_FieldTerminalPath.Get(source)
-	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
-			return true
-		}
-	}
-	return false
-}
-
-type ProbingSession_FieldSubPathArrayItemValue struct {
-	ProbingSession_FieldPath
-	subPathItemValue gotenobject.FieldPathArrayItemValue
-}
-
-// GetRawValue returns stored array item value
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
-	return fpaivs.subPathItemValue.GetRawItemValue()
-}
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsLocationPathItemValue() (common.Location_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsPathProbingPathItemValue() (common.PathProbe_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsSpeedtestSettingsPathItemValue() (common.SpeedTestSettings_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsHttpProbingConfigPathItemValue() (common.HTTPProbingConfig_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) AsProxyConfigurationPathItemValue() (common.ProxyConfiguration_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue)
-	return res, ok
-}
-
-// Contains returns a boolean indicating if value that is being held is present in given 'ProbingSession'
-func (fpaivs *ProbingSession_FieldSubPathArrayItemValue) ContainsValue(source *ProbingSession) bool {
-	switch fpaivs.Selector() {
-	case ProbingSession_FieldPathSelectorLocation:
-		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
-	case ProbingSession_FieldPathSelectorPathProbing:
-		return fpaivs.subPathItemValue.(common.PathProbe_FieldPathArrayItemValue).ContainsValue(source.GetPathProbing())
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		return fpaivs.subPathItemValue.(common.SpeedTestSettings_FieldPathArrayItemValue).ContainsValue(source.GetSpeedtestSettings())
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		return fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue).ContainsValue(source.GetProxyConfiguration())
-	default:
-		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fpaivs.Selector()))
-	}
-}
-
-// ProbingSession_FieldPathArrayOfValues allows storing slice of values for ProbingSession fields according to their type
-type ProbingSession_FieldPathArrayOfValues interface {
-	gotenobject.FieldPathArrayOfValues
-	ProbingSession_FieldPath
-}
-
-func ParseProbingSession_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbingSession_FieldPathArrayOfValues, error) {
-	fp, err := ParseProbingSession_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProbingSession field path array of values from %s: %v", valuesStr, err)
-	}
-	return fpaov.(ProbingSession_FieldPathArrayOfValues), nil
-}
-
-func MustParseProbingSession_FieldPathArrayOfValues(pathStr, valuesStr string) ProbingSession_FieldPathArrayOfValues {
-	fpaov, err := ParseProbingSession_FieldPathArrayOfValues(pathStr, valuesStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaov
-}
-
-type ProbingSession_FieldTerminalPathArrayOfValues struct {
-	ProbingSession_FieldTerminalPath
-	values interface{}
-}
-
-var _ ProbingSession_FieldPathArrayOfValues = (*ProbingSession_FieldTerminalPathArrayOfValues)(nil)
-
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
-	switch fpaov.selector {
-	case ProbingSession_FieldPathSelectorTarget:
-		for _, v := range fpaov.values.([]*probing_target.Name) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorTargetDisplayName:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorTargetGroup:
-		for _, v := range fpaov.values.([]*probing_target_group.Reference) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorMode:
-		for _, v := range fpaov.values.([]common.ProbingMode) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorIpVersion:
-		for _, v := range fpaov.values.([]common.IpVersion) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorAddress:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorGroupName:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorCategory:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorLocationType:
-		for _, v := range fpaov.values.([]common.LocationType) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorLocation:
-		for _, v := range fpaov.values.([]*common.Location) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorIntervalSec:
-		for _, v := range fpaov.values.([]int64) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorInterval:
-		for _, v := range fpaov.values.([]*duration.Duration) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorTos:
-		for _, v := range fpaov.values.([]uint32) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorWindowSize:
-		for _, v := range fpaov.values.([]uint32) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorPathProbing:
-		for _, v := range fpaov.values.([]*common.PathProbe) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorSpeedtestSettings:
-		for _, v := range fpaov.values.([]*common.SpeedTestSettings) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorHttpProbingConfig:
-		for _, v := range fpaov.values.([]*common.HTTPProbingConfig) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorProxyConfiguration:
-		for _, v := range fpaov.values.([]*common.ProxyConfiguration) {
-			values = append(values, v)
-		}
-	case ProbingSession_FieldPathSelectorAddresses:
-		for _, v := range fpaov.values.([][]string) {
-			values = append(values, v)
-		}
-	}
-	return
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Name, bool) {
-	res, ok := fpaov.values.([]*probing_target.Name)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsTargetDisplayNameArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsTargetGroupArrayOfValues() ([]*probing_target_group.Reference, bool) {
-	res, ok := fpaov.values.([]*probing_target_group.Reference)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsModeArrayOfValues() ([]common.ProbingMode, bool) {
-	res, ok := fpaov.values.([]common.ProbingMode)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
-	res, ok := fpaov.values.([]common.IpVersion)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsAddressArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsGroupNameArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsCategoryArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsLocationTypeArrayOfValues() ([]common.LocationType, bool) {
-	res, ok := fpaov.values.([]common.LocationType)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsLocationArrayOfValues() ([]*common.Location, bool) {
-	res, ok := fpaov.values.([]*common.Location)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsIntervalSecArrayOfValues() ([]int64, bool) {
-	res, ok := fpaov.values.([]int64)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsIntervalArrayOfValues() ([]*duration.Duration, bool) {
-	res, ok := fpaov.values.([]*duration.Duration)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsTosArrayOfValues() ([]uint32, bool) {
-	res, ok := fpaov.values.([]uint32)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsWindowSizeArrayOfValues() ([]uint32, bool) {
-	res, ok := fpaov.values.([]uint32)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsPathProbingArrayOfValues() ([]*common.PathProbe, bool) {
-	res, ok := fpaov.values.([]*common.PathProbe)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsSpeedtestSettingsArrayOfValues() ([]*common.SpeedTestSettings, bool) {
-	res, ok := fpaov.values.([]*common.SpeedTestSettings)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsHttpProbingConfigArrayOfValues() ([]*common.HTTPProbingConfig, bool) {
-	res, ok := fpaov.values.([]*common.HTTPProbingConfig)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsProxyConfigurationArrayOfValues() ([]*common.ProxyConfiguration, bool) {
-	res, ok := fpaov.values.([]*common.ProxyConfiguration)
-	return res, ok
-}
-func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsAddressesArrayOfValues() ([][]string, bool) {
-	res, ok := fpaov.values.([][]string)
-	return res, ok
-}
-
-type ProbingSession_FieldSubPathArrayOfValues struct {
-	ProbingSession_FieldPath
-	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
-}
-
-var _ ProbingSession_FieldPathArrayOfValues = (*ProbingSession_FieldSubPathArrayOfValues)(nil)
-
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
-	return fpsaov.subPathArrayOfValues.GetRawValues()
-}
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsPathProbingPathArrayOfValues() (common.PathProbe_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.PathProbe_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsSpeedtestSettingsPathArrayOfValues() (common.SpeedTestSettings_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.SpeedTestSettings_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsHttpProbingConfigPathArrayOfValues() (common.HTTPProbingConfig_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.HTTPProbingConfig_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingSession_FieldSubPathArrayOfValues) AsProxyConfigurationPathArrayOfValues() (common.ProxyConfiguration_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.ProxyConfiguration_FieldPathArrayOfValues)
 	return res, ok
 }

@@ -542,16 +542,13 @@ type BatchGetProbingDistributionsRequest_FieldPath interface {
 type BatchGetProbingDistributionsRequest_FieldPathSelector int32
 
 const (
-	BatchGetProbingDistributionsRequest_FieldPathSelectorParent    BatchGetProbingDistributionsRequest_FieldPathSelector = 0
-	BatchGetProbingDistributionsRequest_FieldPathSelectorNames     BatchGetProbingDistributionsRequest_FieldPathSelector = 1
-	BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask BatchGetProbingDistributionsRequest_FieldPathSelector = 2
-	BatchGetProbingDistributionsRequest_FieldPathSelectorView      BatchGetProbingDistributionsRequest_FieldPathSelector = 3
+	BatchGetProbingDistributionsRequest_FieldPathSelectorNames     BatchGetProbingDistributionsRequest_FieldPathSelector = 0
+	BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask BatchGetProbingDistributionsRequest_FieldPathSelector = 1
+	BatchGetProbingDistributionsRequest_FieldPathSelectorView      BatchGetProbingDistributionsRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetProbingDistributionsRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetProbingDistributionsRequest_FieldPath(fp gotenobject.RawFieldP
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) JSONString() st
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) Get(source *BatchGetProbingDistributionsRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) GetRaw(source p
 // GetSingle returns value pointed by specific field of from source BatchGetProbingDistributionsRequest
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) GetSingle(source *BatchGetProbingDistributionsRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) GetSingleRaw(so
 // GetDefault returns a default value of the field type
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		return (*probing_distribution.Reference)(nil)
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		return ([]*probing_distribution.Reference)(nil)
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) GetDefault() in
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) ClearValue(item *BatchGetProbingDistributionsRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) ClearValueRaw(i
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetProbingDistributionsRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetProbingDistributionsRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetProbingDistributionsRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetProbingDistributionsRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetProbingDistributionsRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		return &BatchGetProbingDistributionsRequest_FieldTerminalPathValue{BatchGetProbingDistributionsRequest_FieldTerminalPath: *fp, value: value.(*probing_distribution.Reference)}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		return &BatchGetProbingDistributionsRequest_FieldTerminalPathValue{BatchGetProbingDistributionsRequest_FieldTerminalPath: *fp, value: value.([]*probing_distribution.Reference)}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) WithRawIValue(v
 func (fp *BatchGetProbingDistributionsRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetProbingDistributionsRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingDistributionsRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		return &BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingDistributionsRequest_FieldTerminalPath: *fp, values: values.([]*probing_distribution.Reference)}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		return &BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues{BatchGetProbingDistributionsRequest_FieldTerminalPath: *fp, values: values.([][]*probing_distribution.Reference)}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetProbingDistributionsRequest_FieldPathValue = (*BatchGetProbingDist
 func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) AsParentValue() (*probing_distribution.Reference, bool) {
-	res, ok := fpv.value.(*probing_distribution.Reference)
-	return res, ok
-}
 func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) AsNamesValue() ([]*probing_distribution.Reference, bool) {
 	res, ok := fpv.value.([]*probing_distribution.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) SetTo(tar
 		*target = new(BatchGetProbingDistributionsRequest)
 	}
 	switch fpv.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*probing_distribution.Reference)
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*probing_distribution.Reference)
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) SetToRaw(
 // CompareWith compares value in the 'BatchGetProbingDistributionsRequest_FieldTerminalPathValue' with the value under path in 'BatchGetProbingDistributionsRequest'.
 func (fpv *BatchGetProbingDistributionsRequest_FieldTerminalPathValue) CompareWith(source *BatchGetProbingDistributionsRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*probing_distribution.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetProbingDistributionsRequest_FieldPathArrayOfValues = (*BatchGetPro
 
 func (fpaov *BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*probing_distribution.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*probing_distribution.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
 		}
 	}
 	return
-}
-func (fpaov *BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*probing_distribution.Reference, bool) {
-	res, ok := fpaov.values.([]*probing_distribution.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*probing_distribution.Reference, bool) {
 	res, ok := fpaov.values.([][]*probing_distribution.Reference)

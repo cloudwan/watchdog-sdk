@@ -69,15 +69,15 @@ func (d *GetProbingConfigDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetProbingConfigDescriptor) IsCollectionSubject() bool {
+func (d *GetProbingConfigDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetProbingConfigDescriptor) IsPluralSubject() bool {
+func (d *GetProbingConfigDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetProbingConfigDescriptor) HasSubjectResource() bool {
+func (d *GetProbingConfigDescriptor) HasResource() bool {
 	return true
 }
 
@@ -117,7 +117,7 @@ func (d *GetProbingConfigDescriptor) GetApiDescriptor() gotenclient.ApiDescripto
 	return probingConfigServiceDescriptor
 }
 
-func (d *GetProbingConfigDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetProbingConfigDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -129,77 +129,84 @@ func (d *GetProbingConfigDescriptor) GetServerMsgReflectHandle() gotenclient.Met
 	return &GetProbingConfigDescriptorServerMsgHandle{}
 }
 
-func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetProbingConfigRequest) *probing_config.Name
+		OverrideExtractResourceName(*GetProbingConfigRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probing_config.Name)(nil)
 }
 
-func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetProbingConfigRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*GetProbingConfigRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingConfigDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetProbingConfigRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*GetProbingConfigRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_config.ProbingConfig) *probing_config.Name
+		OverrideExtractResourceName(*probing_config.ProbingConfig) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_config.Name)(nil)
 }
 
-func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
+		OverrideExtractResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingConfigDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
+		OverrideExtractCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -234,15 +241,15 @@ func (d *BatchGetProbingConfigsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetProbingConfigsDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetProbingConfigsDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetProbingConfigsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetProbingConfigsDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetProbingConfigsDescriptor) HasSubjectResource() bool {
+func (d *BatchGetProbingConfigsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -282,7 +289,7 @@ func (d *BatchGetProbingConfigsDescriptor) GetApiDescriptor() gotenclient.ApiDes
 	return probingConfigServiceDescriptor
 }
 
-func (d *BatchGetProbingConfigsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetProbingConfigsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -294,86 +301,92 @@ func (d *BatchGetProbingConfigsDescriptor) GetServerMsgReflectHandle() gotenclie
 	return &BatchGetProbingConfigsDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbingConfigsRequest) *probing_config.Name
+		OverrideExtractResourceName(*BatchGetProbingConfigsRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbingConfigsRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*BatchGetProbingConfigsRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(probing_config.ProbingConfigNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(probing_config.ProbingConfigNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (probing_config.ProbingConfigNameList)(nil)
 }
 
-func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingConfigsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbingConfigsRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*BatchGetProbingConfigsRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbingConfigsResponse) *probing_config.Name
+		OverrideExtractResourceName(*BatchGetProbingConfigsResponse) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbingConfigsResponse) []*probing_config.Name
+		OverrideExtractResourceNames(*BatchGetProbingConfigsResponse) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbingConfigs()
-	list := make(probing_config.ProbingConfigNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbingConfigs(); len(resources) > 0 {
+			list := make(probing_config.ProbingConfigNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probing_config.ProbingConfigNameList)(nil)
 }
 
-func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingConfigsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbingConfigsResponse) *probing_config.ParentName
+		OverrideExtractCollectionName(*BatchGetProbingConfigsResponse) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -408,15 +421,15 @@ func (d *ListProbingConfigsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListProbingConfigsDescriptor) IsCollectionSubject() bool {
+func (d *ListProbingConfigsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListProbingConfigsDescriptor) IsPluralSubject() bool {
+func (d *ListProbingConfigsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListProbingConfigsDescriptor) HasSubjectResource() bool {
+func (d *ListProbingConfigsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -456,7 +469,7 @@ func (d *ListProbingConfigsDescriptor) GetApiDescriptor() gotenclient.ApiDescrip
 	return probingConfigServiceDescriptor
 }
 
-func (d *ListProbingConfigsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListProbingConfigsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -468,79 +481,88 @@ func (d *ListProbingConfigsDescriptor) GetServerMsgReflectHandle() gotenclient.M
 	return &ListProbingConfigsDescriptorServerMsgHandle{}
 }
 
-func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbingConfigsRequest) *probing_config.Name
+		OverrideExtractResourceName(*ListProbingConfigsRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbingConfigsRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*ListProbingConfigsRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingConfigsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbingConfigsRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*ListProbingConfigsRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probing_config.ParentName)(nil)
 }
 
-func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbingConfigsResponse) *probing_config.Name
+		OverrideExtractResourceName(*ListProbingConfigsResponse) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbingConfigsResponse) []*probing_config.Name
+		OverrideExtractResourceNames(*ListProbingConfigsResponse) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbingConfigs()
-	list := make(probing_config.ProbingConfigNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbingConfigs(); len(resources) > 0 {
+			list := make(probing_config.ProbingConfigNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probing_config.ProbingConfigNameList)(nil)
 }
 
-func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingConfigsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbingConfigsResponse) *probing_config.ParentName
+		OverrideExtractCollectionName(*ListProbingConfigsResponse) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -575,15 +597,15 @@ func (d *WatchProbingConfigDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbingConfigDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbingConfigDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchProbingConfigDescriptor) IsPluralSubject() bool {
+func (d *WatchProbingConfigDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchProbingConfigDescriptor) HasSubjectResource() bool {
+func (d *WatchProbingConfigDescriptor) HasResource() bool {
 	return true
 }
 
@@ -623,7 +645,7 @@ func (d *WatchProbingConfigDescriptor) GetApiDescriptor() gotenclient.ApiDescrip
 	return probingConfigServiceDescriptor
 }
 
-func (d *WatchProbingConfigDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbingConfigDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -635,89 +657,93 @@ func (d *WatchProbingConfigDescriptor) GetServerMsgReflectHandle() gotenclient.M
 	return &WatchProbingConfigDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingConfigRequest) *probing_config.Name
+		OverrideExtractResourceName(*WatchProbingConfigRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*probing_config.Name)(nil)
-}
-
-func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbingConfigRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingConfigRequest) []*probing_config.Name
-	})
-	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbingConfigRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingConfigRequest) *probing_config.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbingConfigResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingConfigResponse) *probing_config.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *probing_config.ProbingConfigChange_Added_:
-			return tResChange.Added.GetProbingConfig().GetName()
-		case *probing_config.ProbingConfigChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *probing_config.ProbingConfigChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *probing_config.ProbingConfigChange_Current_:
-			return tResChange.Current.GetProbingConfig().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*probing_config.Name)(nil)
 }
 
-func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbingConfigResponse)
+func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingConfigResponse) []*probing_config.Name
+		OverrideExtractResourceNames(*WatchProbingConfigRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbingConfigRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbingConfigRequest) *probing_config.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingConfigResponse) *probing_config.ParentName
+		OverrideExtractResourceName(*WatchProbingConfigResponse) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *probing_config.ProbingConfigChange_Added_:
+				return tResChange.Added.GetProbingConfig().GetName()
+			case *probing_config.ProbingConfigChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *probing_config.ProbingConfigChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *probing_config.ProbingConfigChange_Current_:
+				return tResChange.Current.GetProbingConfig().GetName()
+			}
+		}
+	}
+	return (*probing_config.Name)(nil)
+}
+
+func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbingConfigResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchProbingConfigResponse) []*probing_config.Name
+	})
+	if ok {
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchProbingConfigDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbingConfigResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbingConfigResponse) *probing_config.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -752,15 +778,15 @@ func (d *WatchProbingConfigsDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbingConfigsDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbingConfigsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchProbingConfigsDescriptor) IsPluralSubject() bool {
+func (d *WatchProbingConfigsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchProbingConfigsDescriptor) HasSubjectResource() bool {
+func (d *WatchProbingConfigsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -800,7 +826,7 @@ func (d *WatchProbingConfigsDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return probingConfigServiceDescriptor
 }
 
-func (d *WatchProbingConfigsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbingConfigsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -812,91 +838,97 @@ func (d *WatchProbingConfigsDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &WatchProbingConfigsDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingConfigsRequest) *probing_config.Name
+		OverrideExtractResourceName(*WatchProbingConfigsRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingConfigsRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*WatchProbingConfigsRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingConfigsRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*WatchProbingConfigsRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probing_config.ParentName)(nil)
 }
 
-func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingConfigsResponse) *probing_config.Name
+		OverrideExtractResourceName(*WatchProbingConfigsResponse) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingConfigsResponse) []*probing_config.Name
+		OverrideExtractResourceNames(*WatchProbingConfigsResponse) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetProbingConfigChanges()
-	list := make(probing_config.ProbingConfigNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *probing_config.ProbingConfigChange_Added_:
-			list = append(list, tResChange.Added.GetProbingConfig().GetName())
-		case *probing_config.ProbingConfigChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *probing_config.ProbingConfigChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *probing_config.ProbingConfigChange_Current_:
-			list = append(list, tResChange.Current.GetProbingConfig().GetName())
+	{
+		if resChanges := typedMsg.GetProbingConfigChanges(); len(resChanges) > 0 {
+			list := make(probing_config.ProbingConfigNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *probing_config.ProbingConfigChange_Added_:
+					list = append(list, tResChange.Added.GetProbingConfig().GetName())
+				case *probing_config.ProbingConfigChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *probing_config.ProbingConfigChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *probing_config.ProbingConfigChange_Current_:
+					list = append(list, tResChange.Current.GetProbingConfig().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (probing_config.ProbingConfigNameList)(nil)
 }
 
-func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingConfigsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingConfigsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingConfigsResponse) *probing_config.ParentName
+		OverrideExtractCollectionName(*WatchProbingConfigsResponse) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -931,15 +963,15 @@ func (d *CreateProbingConfigDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateProbingConfigDescriptor) IsCollectionSubject() bool {
+func (d *CreateProbingConfigDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateProbingConfigDescriptor) IsPluralSubject() bool {
+func (d *CreateProbingConfigDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateProbingConfigDescriptor) HasSubjectResource() bool {
+func (d *CreateProbingConfigDescriptor) HasResource() bool {
 	return true
 }
 
@@ -979,7 +1011,7 @@ func (d *CreateProbingConfigDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return probingConfigServiceDescriptor
 }
 
-func (d *CreateProbingConfigDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateProbingConfigDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -991,77 +1023,90 @@ func (d *CreateProbingConfigDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &CreateProbingConfigDescriptorServerMsgHandle{}
 }
 
-func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateProbingConfigRequest) *probing_config.Name
+		OverrideExtractResourceName(*CreateProbingConfigRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbingConfig().GetName()
+	{
+		res := typedMsg.GetProbingConfig()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_config.Name)(nil)
 }
 
-func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateProbingConfigRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*CreateProbingConfigRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingConfigDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateProbingConfigRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*CreateProbingConfigRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probing_config.ParentName)(nil)
 }
 
-func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_config.ProbingConfig) *probing_config.Name
+		OverrideExtractResourceName(*probing_config.ProbingConfig) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_config.Name)(nil)
 }
 
-func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
+		OverrideExtractResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingConfigDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
+		OverrideExtractCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1096,15 +1141,15 @@ func (d *UpdateProbingConfigDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateProbingConfigDescriptor) IsCollectionSubject() bool {
+func (d *UpdateProbingConfigDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateProbingConfigDescriptor) IsPluralSubject() bool {
+func (d *UpdateProbingConfigDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateProbingConfigDescriptor) HasSubjectResource() bool {
+func (d *UpdateProbingConfigDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1144,7 +1189,7 @@ func (d *UpdateProbingConfigDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return probingConfigServiceDescriptor
 }
 
-func (d *UpdateProbingConfigDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateProbingConfigDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -1156,74 +1201,85 @@ func (d *UpdateProbingConfigDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &UpdateProbingConfigDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateProbingConfigRequest) *probing_config.Name
+		OverrideExtractResourceName(*UpdateProbingConfigRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbingConfig().GetName()
+	{
+		res := typedMsg.GetProbingConfig()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_config.Name)(nil)
 }
 
-func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateProbingConfigRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*UpdateProbingConfigRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingConfigDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateProbingConfigRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*UpdateProbingConfigRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_config.ProbingConfig) *probing_config.Name
+		OverrideExtractResourceName(*probing_config.ProbingConfig) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_config.Name)(nil)
 }
 
-func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
+		OverrideExtractResourceNames(*probing_config.ProbingConfig) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingConfigDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_config.ProbingConfig)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
+		OverrideExtractCollectionName(*probing_config.ProbingConfig) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1258,15 +1314,15 @@ func (d *DeleteProbingConfigDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteProbingConfigDescriptor) IsCollectionSubject() bool {
+func (d *DeleteProbingConfigDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteProbingConfigDescriptor) IsPluralSubject() bool {
+func (d *DeleteProbingConfigDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteProbingConfigDescriptor) HasSubjectResource() bool {
+func (d *DeleteProbingConfigDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1306,7 +1362,7 @@ func (d *DeleteProbingConfigDescriptor) GetApiDescriptor() gotenclient.ApiDescri
 	return probingConfigServiceDescriptor
 }
 
-func (d *DeleteProbingConfigDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteProbingConfigDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_config.GetDescriptor()
 }
 
@@ -1318,77 +1374,79 @@ func (d *DeleteProbingConfigDescriptor) GetServerMsgReflectHandle() gotenclient.
 	return &DeleteProbingConfigDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteProbingConfigRequest) *probing_config.Name
+		OverrideExtractResourceName(*DeleteProbingConfigRequest) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probing_config.Name)(nil)
 }
 
-func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteProbingConfigRequest) []*probing_config.Name
+		OverrideExtractResourceNames(*DeleteProbingConfigRequest) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingConfigDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbingConfigRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteProbingConfigRequest) *probing_config.ParentName
+		OverrideExtractCollectionName(*DeleteProbingConfigRequest) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *probing_config.Name
+		OverrideExtractResourceName(*empty.Empty) *probing_config.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*probing_config.Name
+		OverrideExtractResourceNames(*empty.Empty) []*probing_config.Name
 	})
 	if ok {
-		return probing_config.ProbingConfigNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_config.ProbingConfigNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingConfigDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *probing_config.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *probing_config.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

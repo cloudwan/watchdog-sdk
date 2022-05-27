@@ -318,7 +318,6 @@ type BatchGetQualityProfilesRequest_FieldMask struct {
 
 func FullBatchGetQualityProfilesRequest_FieldMask() *BatchGetQualityProfilesRequest_FieldMask {
 	res := &BatchGetQualityProfilesRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetQualityProfilesRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetQualityProfilesRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetQualityProfilesRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetQualityProfilesRequest_FieldMask) Subtract(other *BatchGetQualityProfilesRequest_FieldMask) *BatchGetQualityProfilesRequest_FieldMask {
 	result := &BatchGetQualityProfilesRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetQualityProfilesRequest_FieldMask) Project(source *Batch
 		switch tp := p.(type) {
 		case *BatchGetQualityProfilesRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:

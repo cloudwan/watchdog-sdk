@@ -318,7 +318,6 @@ type BatchGetProbingTargetGroupsRequest_FieldMask struct {
 
 func FullBatchGetProbingTargetGroupsRequest_FieldMask() *BatchGetProbingTargetGroupsRequest_FieldMask {
 	res := &BatchGetProbingTargetGroupsRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetProbingTargetGroupsRequest_FieldTerminalPath{selector: BatchGetProbingTargetGroupsRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetProbingTargetGroupsRequest_FieldTerminalPath{selector: BatchGetProbingTargetGroupsRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetProbingTargetGroupsRequest_FieldTerminalPath{selector: BatchGetProbingTargetGroupsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetProbingTargetGroupsRequest_FieldTerminalPath{selector: BatchGetProbingTargetGroupsRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetProbingTargetGroupsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetProbingTargetGroupsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetProbingTargetGroupsRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetProbingTargetGroupsRequest_FieldMask) Subtract(other *BatchGetProbingTargetGroupsRequest_FieldMask) *BatchGetProbingTargetGroupsRequest_FieldMask {
 	result := &BatchGetProbingTargetGroupsRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetProbingTargetGroupsRequest_FieldMask) Project(source *B
 		switch tp := p.(type) {
 		case *BatchGetProbingTargetGroupsRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetProbingTargetGroupsRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetProbingTargetGroupsRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetProbingTargetGroupsRequest_FieldPathSelectorFieldMask:

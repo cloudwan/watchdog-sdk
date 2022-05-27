@@ -138,9 +138,6 @@ type BatchGetProbingConfigsRequestFieldPathBuilder struct{}
 func NewBatchGetProbingConfigsRequestFieldPathBuilder() BatchGetProbingConfigsRequestFieldPathBuilder {
 	return BatchGetProbingConfigsRequestFieldPathBuilder{}
 }
-func (BatchGetProbingConfigsRequestFieldPathBuilder) Parent() BatchGetProbingConfigsRequestPathSelectorParent {
-	return BatchGetProbingConfigsRequestPathSelectorParent{}
-}
 func (BatchGetProbingConfigsRequestFieldPathBuilder) Names() BatchGetProbingConfigsRequestPathSelectorNames {
 	return BatchGetProbingConfigsRequestPathSelectorNames{}
 }
@@ -149,20 +146,6 @@ func (BatchGetProbingConfigsRequestFieldPathBuilder) FieldMask() BatchGetProbing
 }
 func (BatchGetProbingConfigsRequestFieldPathBuilder) View() BatchGetProbingConfigsRequestPathSelectorView {
 	return BatchGetProbingConfigsRequestPathSelectorView{}
-}
-
-type BatchGetProbingConfigsRequestPathSelectorParent struct{}
-
-func (BatchGetProbingConfigsRequestPathSelectorParent) FieldPath() *BatchGetProbingConfigsRequest_FieldTerminalPath {
-	return &BatchGetProbingConfigsRequest_FieldTerminalPath{selector: BatchGetProbingConfigsRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetProbingConfigsRequestPathSelectorParent) WithValue(value *probing_config.Reference) *BatchGetProbingConfigsRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetProbingConfigsRequestPathSelectorParent) WithArrayOfValues(values []*probing_config.Reference) *BatchGetProbingConfigsRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetProbingConfigsRequestPathSelectorNames struct{}
@@ -866,15 +849,15 @@ func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSession
 	}
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathValue {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue)
 }
 
@@ -3255,15 +3238,15 @@ func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions
 	}
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathValue {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathArrayItemValue)
 }
 
@@ -5840,15 +5823,15 @@ func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) F
 	}
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathValue {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingConfigsResponse_FieldSubPathArrayItemValue)
 }
 
@@ -8229,15 +8212,15 @@ func (ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) Fi
 	}
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathValue {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *ListProbingConfigsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingConfigsResponse_FieldSubPathArrayItemValue)
 }
 
@@ -11190,15 +11173,15 @@ func (CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Fi
 	}
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathValue {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -13579,15 +13562,15 @@ func (CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Fie
 	}
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathValue {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *CreateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -16018,15 +16001,15 @@ func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) Fi
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -18407,15 +18390,15 @@ func (UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) Fie
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -20870,15 +20853,15 @@ func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessio
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -23259,15 +23242,15 @@ func (UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSession
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequest_FieldSubPathArrayItemValue)
 }
 
@@ -25712,15 +25695,15 @@ func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessi
 	}
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecProbingSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue)
 }
 
@@ -28101,15 +28084,15 @@ func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessio
 	}
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithValue(value []*probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithValue(value []*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithArrayOfValues(values [][]*probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithItemValue(value *probing_config.ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateSpecTargetSessions) WithItemValue(value *probing_config.ProbingConfig_ProbingSession) *UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayItemValue)
 }
 

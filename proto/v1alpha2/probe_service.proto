@@ -33,9 +33,6 @@ message GetProbeRequest {
 // Request message for method
 // [BatchGetProbes][ntt.watchdog.v1alpha2.BatchGetProbes]
 message BatchGetProbesRequest {
-  // Optional parent ntt.watchdog.v1alpha2.Probe
-  string parent = 1;
-
   // Names of Probes
   repeated string names = 2;
 
@@ -46,6 +43,8 @@ message BatchGetProbesRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetProbesResponse
@@ -365,7 +364,7 @@ service ProbeService {
   // BatchGetProbes
   rpc BatchGetProbes(BatchGetProbesRequest) returns (BatchGetProbesResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*/regions/*}/probes:batchGet"
+      get : "/v1alpha2/probes:batchGet"
     };
   }
 

@@ -64,15 +64,15 @@ func (d *ActivationDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *ActivationDescriptor) IsCollectionSubject() bool {
+func (d *ActivationDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ActivationDescriptor) IsPluralSubject() bool {
+func (d *ActivationDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *ActivationDescriptor) HasSubjectResource() bool {
+func (d *ActivationDescriptor) HasResource() bool {
 	return false
 }
 
@@ -112,7 +112,7 @@ func (d *ActivationDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return activationServiceDescriptor
 }
 
-func (d *ActivationDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ActivationDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return nil
 }
 
@@ -124,27 +124,27 @@ func (d *ActivationDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsg
 	return &ActivationDescriptorServerMsgHandle{}
 }
 
-func (h *ActivationDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ActivationDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ActivationDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ActivationDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ActivationDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ActivationDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ActivationDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ActivationDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ActivationDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ActivationDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	return nil
 }
 
-func (h *ActivationDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ActivationDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -178,15 +178,15 @@ func (d *SendActivationInvitationDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *SendActivationInvitationDescriptor) IsCollectionSubject() bool {
+func (d *SendActivationInvitationDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *SendActivationInvitationDescriptor) IsPluralSubject() bool {
+func (d *SendActivationInvitationDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *SendActivationInvitationDescriptor) HasSubjectResource() bool {
+func (d *SendActivationInvitationDescriptor) HasResource() bool {
 	return true
 }
 
@@ -226,7 +226,7 @@ func (d *SendActivationInvitationDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return activationServiceDescriptor
 }
 
-func (d *SendActivationInvitationDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *SendActivationInvitationDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -238,77 +238,79 @@ func (d *SendActivationInvitationDescriptor) GetServerMsgReflectHandle() gotencl
 	return &SendActivationInvitationDescriptorServerMsgHandle{}
 }
 
-func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SendActivationInvitationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*SendActivationInvitationRequest) *probe.Name
+		OverrideExtractResourceName(*SendActivationInvitationRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*SendActivationInvitationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*SendActivationInvitationRequest) []*probe.Name
+		OverrideExtractResourceNames(*SendActivationInvitationRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SendActivationInvitationDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SendActivationInvitationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*SendActivationInvitationRequest) *probe.ParentName
+		OverrideExtractCollectionName(*SendActivationInvitationRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *probe.Name
+		OverrideExtractResourceName(*empty.Empty) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*probe.Name
+		OverrideExtractResourceNames(*empty.Empty) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SendActivationInvitationDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *probe.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -343,15 +345,15 @@ func (d *ResetActivationDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ResetActivationDescriptor) IsCollectionSubject() bool {
+func (d *ResetActivationDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *ResetActivationDescriptor) IsPluralSubject() bool {
+func (d *ResetActivationDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *ResetActivationDescriptor) HasSubjectResource() bool {
+func (d *ResetActivationDescriptor) HasResource() bool {
 	return true
 }
 
@@ -391,7 +393,7 @@ func (d *ResetActivationDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return activationServiceDescriptor
 }
 
-func (d *ResetActivationDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ResetActivationDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -403,77 +405,79 @@ func (d *ResetActivationDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &ResetActivationDescriptorServerMsgHandle{}
 }
 
-func (h *ResetActivationDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResetActivationDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResetActivationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ResetActivationRequest) *probe.Name
+		OverrideExtractResourceName(*ResetActivationRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *ResetActivationDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResetActivationDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ResetActivationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ResetActivationRequest) []*probe.Name
+		OverrideExtractResourceNames(*ResetActivationRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResetActivationDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResetActivationDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResetActivationRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ResetActivationRequest) *probe.ParentName
+		OverrideExtractCollectionName(*ResetActivationRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResetActivationDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResetActivationDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *probe.Name
+		OverrideExtractResourceName(*empty.Empty) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResetActivationDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResetActivationDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*probe.Name
+		OverrideExtractResourceNames(*empty.Empty) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResetActivationDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResetActivationDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *probe.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

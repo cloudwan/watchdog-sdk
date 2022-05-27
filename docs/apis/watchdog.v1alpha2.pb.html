@@ -87,6 +87,8 @@ table.fields tbody tr td.none {
 
 <li><a href="#resource-ProbingDistribution">ProbingDistribution</a></li>
 
+<li><a href="#resource-ProbingSession">ProbingSession</a></li>
+
 <li><a href="#resource-ProbingTarget">ProbingTarget</a></li>
 
 <li><a href="#resource-ProbingTargetGroup">ProbingTargetGroup</a></li>
@@ -342,13 +344,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.AdminArea</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -1166,13 +1161,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.InternetQualityRating</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -2874,13 +2862,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.Probe</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -4671,13 +4652,6 @@ Additional fields can be amended by request field field_mask</p>
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.ProbeGroup</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
 </tr>
@@ -5550,6 +5524,156 @@ index can be computed from offset and limit provided in a request</p>
 
 
 
+<h5 id="message-ProbingConfig.ProbingSession">ProbingConfig.ProbingSession</h5>
+
+<p>ProbingSession is target</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Name of ProbingTarget</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target_display_name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Display name is a human readable representation of the target</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target_group</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>group reference</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">mode</th>
+<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
+</tr>
+<tr><td class="description"><p>mode defines the mode for this probe target - icmp/udp/http/tcp</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"><p>ip_version defines which IP version should be used.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">address</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>address is the actual target for the probe - IP addreses/http endpoint</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">group_name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Additional Group Name to enrich data.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">category</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Additional Category Name to enrich data</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">location_type</th>
+<td class="type"><pre><a href="#enum-LocationType">LocationType</a></pre></td>
+</tr>
+<tr><td class="description"><p>Target location type</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">location</th>
+<td class="type"><pre><a href="#message-Location">Location</a></pre></td>
+</tr>
+<tr><td class="description"><p>Specific location if applicable</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">interval_sec</th>
+<td class="type"><pre>int64</pre></td>
+</tr>
+<tr><td class="description"><p>(deprecated) Interval defines the interval of probing in seconds.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">interval</th>
+<td class="type"><pre>.google.protobuf.Duration</pre></td>
+</tr>
+<tr><td class="description"><p>Interval defines probing interval</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">tos</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
+distribution overrides)</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">window_size</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>Window size. Don't set it (use default_settings or distribution
+overrides)</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">path_probing</th>
+<td class="type"><pre><a href="#message-PathProbe">PathProbe</a></pre></td>
+</tr>
+<tr><td class="description"><p>Path Probing settings. Don't set it (use default_settings or distribution
+overrides)</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">speedtest_settings</th>
+<td class="type"><pre><a href="#message-SpeedTestSettings">SpeedTestSettings</a></pre></td>
+</tr>
+<tr><td class="description"><p>Speedtest specific settings</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">http_probing_config</th>
+<td class="type"><pre><a href="#message-HTTPProbingConfig">HTTPProbingConfig</a></pre></td>
+</tr>
+<tr><td class="description"><p>HTTP Probing Settings</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">proxy_configuration</th>
+<td class="type"><pre><a href="#message-ProxyConfiguration">ProxyConfiguration</a></pre></td>
+</tr>
+<tr><td class="description"><p>Proxy configuration (for speedtest and http)</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">addresses</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>addresses list the list of IP addresses that this target is reachable on
+used for managed targets that might have dual stack</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="message-ProbingConfig.Spec">ProbingConfig.Spec</h5>
 
 <p>describes how to probe a target</p>
@@ -5568,7 +5692,7 @@ the probe config.</p>
 
 <tr>
 <th rowspan="2">probing_sessions</th>
-<td class="type"><pre>repeated <a href="#message-ProbingSession">ProbingSession</a></pre></td>
+<td class="type"><pre>repeated <a href="#message-ProbingConfig.ProbingSession">ProbingConfig.ProbingSession</a></pre></td>
 </tr>
 <tr><td class="description"><p>probing target defines a single probe destination target.</p>
 </td></tr>
@@ -5581,7 +5705,7 @@ the probe config.</p>
 
 <tr>
 <th rowspan="2">target_sessions</th>
-<td class="type"><pre>repeated <a href="#message-ProbingSession">ProbingSession</a></pre></td>
+<td class="type"><pre>repeated <a href="#message-ProbingConfig.ProbingSession">ProbingConfig.ProbingSession</a></pre></td>
 </tr>
 <tr><td class="description"><p>target session defines a target server instance.</p>
 </td></tr>
@@ -5736,13 +5860,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.ProbingConfig</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -6646,13 +6763,6 @@ Additional fields can be amended by request field field_mask</p>
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.ProbingDistribution</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
 </tr>
@@ -7360,6 +7470,1076 @@ index can be computed from offset and limit provided in a request</p>
 
 
 
+<h3 id="resource-ProbingSession"><span id="message-ProbingSession">ProbingSession</span></h3>
+
+<p>ProbingSession Resource</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Name of ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">display_name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Display name of ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">metadata</th>
+<td class="type"><pre>.ntt.types.Meta</pre></td>
+</tr>
+<tr><td class="description"><p>metadata describes additional information of the ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">spec</th>
+<td class="type"><pre><a href="#message-ProbingSession.Spec">ProbingSession.Spec</a></pre></td>
+</tr>
+<tr><td class="description"><p>spec describes the to-be state of the ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">probing_distribution</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">status</th>
+<td class="type"><pre><a href="#message-ProbingSession.Status">ProbingSession.Status</a></pre></td>
+</tr>
+<tr><td class="description"><p>status shows the current status of the ProbingSession</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+<h4>Operations</h4>
+
+
+
+<div class="operation">
+<h5 id="operation-GetProbingSession">GetProbingSession</h5>
+
+<pre class="signature">rpc GetProbingSession(<a href="#message-GetProbingSessionRequest">GetProbingSessionRequest</a>) returns (<a href="#message-ProbingSession">ProbingSession</a>)</pre>
+
+<div class="description">
+<p>GetProbingSession</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-BatchGetProbingSessions">BatchGetProbingSessions</h5>
+
+<pre class="signature">rpc BatchGetProbingSessions(<a href="#message-BatchGetProbingSessionsRequest">BatchGetProbingSessionsRequest</a>) returns (<a href="#message-BatchGetProbingSessionsResponse">BatchGetProbingSessionsResponse</a>)</pre>
+
+<div class="description">
+<p>BatchGetProbingSessions</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-ListProbingSessions">ListProbingSessions</h5>
+
+<pre class="signature">rpc ListProbingSessions(<a href="#message-ListProbingSessionsRequest">ListProbingSessionsRequest</a>) returns (<a href="#message-ListProbingSessionsResponse">ListProbingSessionsResponse</a>)</pre>
+
+<div class="description">
+<p>ListProbingSessions</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-WatchProbingSession">WatchProbingSession</h5>
+
+<pre class="signature">rpc WatchProbingSession(<a href="#message-WatchProbingSessionRequest">WatchProbingSessionRequest</a>) returns (<a href="#message-WatchProbingSessionResponse">WatchProbingSessionResponse</a>)</pre>
+
+<div class="description">
+<p>WatchProbingSession</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-WatchProbingSessions">WatchProbingSessions</h5>
+
+<pre class="signature">rpc WatchProbingSessions(<a href="#message-WatchProbingSessionsRequest">WatchProbingSessionsRequest</a>) returns (<a href="#message-WatchProbingSessionsResponse">WatchProbingSessionsResponse</a>)</pre>
+
+<div class="description">
+<p>WatchProbingSessions</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-CreateProbingSession">CreateProbingSession</h5>
+
+<pre class="signature">rpc CreateProbingSession(<a href="#message-CreateProbingSessionRequest">CreateProbingSessionRequest</a>) returns (<a href="#message-ProbingSession">ProbingSession</a>)</pre>
+
+<div class="description">
+<p>CreateProbingSession</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-UpdateProbingSession">UpdateProbingSession</h5>
+
+<pre class="signature">rpc UpdateProbingSession(<a href="#message-UpdateProbingSessionRequest">UpdateProbingSessionRequest</a>) returns (<a href="#message-ProbingSession">ProbingSession</a>)</pre>
+
+<div class="description">
+<p>UpdateProbingSession</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-DeleteProbingSession">DeleteProbingSession</h5>
+
+<pre class="signature">rpc DeleteProbingSession(<a href="#message-DeleteProbingSessionRequest">DeleteProbingSessionRequest</a>) returns (Empty)</pre>
+
+<div class="description">
+<p>DeleteProbingSession</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-SearchProbingSessions">SearchProbingSessions</h5>
+
+<pre class="signature">rpc SearchProbingSessions(<a href="#message-SearchProbingSessionsRequest">SearchProbingSessionsRequest</a>) returns (<a href="#message-SearchProbingSessionsResponse">SearchProbingSessionsResponse</a>)</pre>
+
+<div class="description">
+<p>SearchProbingSessions</p>
+
+</div>
+
+</div>
+
+ 
+
+<h4>Messages</h4>
+
+
+
+<h5 id="message-ProbingSession.Spec">ProbingSession.Spec</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probe</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>probe is the probe resource which is expexted to execute
+the probe config.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target_group</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>group reference</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">mode</th>
+<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
+</tr>
+<tr><td class="description"><p>mode defines the mode for this probe target - icmp/udp/http/tcp</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"><p>ip_version defines which IP version should be used.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">address</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>address is the actual target for the probe - IP addreses/http endpoint</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">addresses</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>addresses list the list of IP addresses that this target is reachable on
+used for managed targets that might have dual stack</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">port</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">type</th>
+<td class="type"><pre><a href="#enum-ProbingSessionType">ProbingSessionType</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">interval</th>
+<td class="type"><pre>.google.protobuf.Duration</pre></td>
+</tr>
+<tr><td class="description"><p>Interval defines probing interval</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">tos</th>
+<td class="type"><pre>uint32s</pre></td>
+</tr>
+<tr><td class="description"><p>TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
+distribution overrides)</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">path_probing</th>
+<td class="type"><pre><a href="#message-PathProbe">PathProbe</a></pre></td>
+</tr>
+<tr><td class="description"><p>Path Probing settings.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">speedtest_settings</th>
+<td class="type"><pre><a href="#message-SpeedTestSettings">SpeedTestSettings</a></pre></td>
+</tr>
+<tr><td class="description"><p>Speedtest specific settings</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">http_probing_config</th>
+<td class="type"><pre><a href="#message-HTTPProbingConfig">HTTPProbingConfig</a></pre></td>
+</tr>
+<tr><td class="description"><p>HTTP Probing Settings</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">proxy_configuration</th>
+<td class="type"><pre><a href="#message-ProxyConfiguration">ProxyConfiguration</a></pre></td>
+</tr>
+<tr><td class="description"><p>Proxy configuration (for speedtest and http)</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ProbingSession.Status">ProbingSession.Status</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody> 
+<tr><td class="none">none</td></tr>
+
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetProbingSessionRequest">GetProbingSessionRequest</h5>
+
+<p>Request message for method
+[GetProbingSession][ntt.watchdog.v1alpha2.GetProbingSession]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Reference of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-BatchGetProbingSessionsRequest">BatchGetProbingSessionsRequest</h5>
+
+<p>Request message for method
+[BatchGetProbingSessions][ntt.watchdog.v1alpha2.BatchGetProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">names</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>Names of ProbingSessions</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-BatchGetProbingSessionsResponse">BatchGetProbingSessionsResponse</h5>
+
+<p>BatchGetProbingSessionsResponse</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_sessions</th>
+<td class="type"><pre>repeated <a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>found ProbingSessions</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">missing</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"><p>list of not found ProbingSessions</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ListProbingSessionsRequest">ListProbingSessionsRequest</h5>
+
+<p>Request message for method
+[ListProbingSessions][ntt.watchdog.v1alpha2.ListProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">parent</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Parent name of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Requested page size. Server may return fewer ProbingSessions than
+requested. If unspecified, server will pick an appropriate default.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token identifying a page of results the server should return.
+Typically, this is the value of
+[ListProbingSessionsResponse.next_page_token][ntt.watchdog.v1alpha2.ListProbingSessionsResponse.next_page_token]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">order_by</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Order By -
+<a href="https://cloud.google.com/apis/design/design_patterns#list_pagination">https://cloud.google.com/apis/design/design_patterns#list_pagination</a> list
+of field path with order directive, either 'asc' or 'desc'. If direction is
+not provided, 'asc' is assumed. e.g. &quot;state.nested_field asc,
+state.something.else desc, theme&quot;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">filter</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Filter - filter results by field criteria. Simplified SQL-like syntax with
+following operators:
+&lt;=, &gt;=, =, !=, &lt;, &gt;, LIKE, CONTAINS (aliases CONTAIN, HAS, HAVE), IN, IS
+[NOT] NULL | NaN . Combine conditions with OR | AND example: 'meta.labels
+CONTAINS &quot;severity:important&quot; OR (state.last_error_time &gt;
+&quot;2018-11-15T10:00:00Z&quot; AND state.status = &quot;ERROR&quot;)'</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ListProbingSessionsResponse">ListProbingSessionsResponse</h5>
+
+<p>Request message for method
+[ListProbingSessions][ntt.watchdog.v1alpha2.ListProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_sessions</th>
+<td class="type"><pre>repeated <a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>The list of ProbingSessions</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">prev_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token to retrieve previous page of results. Pass this value in the
+[ListProbingSessionsRequest.page_token][ntt.watchdog.v1alpha2.ListProbingSessionsRequest.page_token]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token to retrieve next page of results. Pass this value in the
+[ListProbingSessionsRequest.page_token][ntt.watchdog.v1alpha2.ListProbingSessionsRequest.page_token]</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-WatchProbingSessionRequest">WatchProbingSessionRequest</h5>
+
+<p>Request message for method
+[WatchProbingSession][ntt.watchdog.v1alpha2.WatchProbingSession]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Reference to ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-WatchProbingSessionResponse">WatchProbingSessionResponse</h5>
+
+<p>WatchProbingSessionResponse</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">change</th>
+<td class="type"><pre><a href="#message-ProbingSessionChange">ProbingSessionChange</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-WatchProbingSessionsRequest">WatchProbingSessionsRequest</h5>
+
+<p>Request message for method
+[WatchProbingSessions][ntt.watchdog.v1alpha2.WatchProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">type</th>
+<td class="type"><pre>.goten.watch_type.WatchType</pre></td>
+</tr>
+<tr><td class="description"><p>Type of a watch. Identifies how server stream data to a client, which
+fields in a request are allowed and which fields in response are relevant.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">parent</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Parent reference of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Requested page size. Server may return fewer ProbingSessions than
+requested. If unspecified, server will pick an appropriate default. Can be
+populated only for stateful watch type.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token identifying a page of results the server should return.
+Can be populated only for stateful watch type.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">order_by</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Order By -
+<a href="https://cloud.google.com/apis/design/design_patterns#list_pagination">https://cloud.google.com/apis/design/design_patterns#list_pagination</a> Can be
+populated only for stateful watch type.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">resume_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token identifying watch resume point from previous session.
+Can be populated only for stateless watch type.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">filter</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Filter - filter results by field criteria. Simplified SQL-like syntax with
+following operators:
+&lt;=, &gt;=, =, !=, &lt;, &gt;, LIKE, CONTAINS (aliases CONTAIN, HAS, HAVE), IN, IS
+[NOT] NULL | NaN . Combine conditions with OR | AND example: 'meta.labels
+CONTAINS &quot;severity:important&quot; OR (state.last_error_time &gt;
+&quot;2018-11-15T10:00:00Z&quot; AND state.status = &quot;ERROR&quot;)'</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view Changes to ProbingSession that don't
+affect any of masked fields won't be sent back.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask Changes to
+ProbingSession that don't affect any of masked fields won't be sent back.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">max_chunk_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Maximum amount of changes in each response message. Query result response
+is divided on the server side into chunks with size of a specified amount
+to limit memory footprint of each message. Responses will hold information
+whether more elements will continue for the actual change. If unspecified,
+server will pick an appropriate default.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-WatchProbingSessionsResponse">WatchProbingSessionsResponse</h5>
+
+<p>WatchProbingSessionsResponse</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_session_changes</th>
+<td class="type"><pre>repeated <a href="#message-ProbingSessionChange">ProbingSessionChange</a></pre></td>
+</tr>
+<tr><td class="description"><p>Changes of ProbingSessions</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">is_current</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>If request specified max_chunk_size (or this limit was enforced if
+stateless watch has been chosen), then responses with &quot;full changeset&quot; will
+be divided into chunks. Client should keep receiving messages and, once
+is_current has value true, combine this recent message with all previous
+ones where is_current is false. If this is the first is_current in a whole
+watch stream, then it means that client should have, at this moment,
+contain snapshot of the current situation (or more accurately, snapshot of
+situation at the moment of request). All ProbingSessions will be of type
+Added/Current (depending on watch_type specified in the request). Further
+responses will be incremental - however messages may still be chunked and
+is_current logic still applies. is_current is always true for stateful
+watch if max_chunk_size was left to 0.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token_change</th>
+<td class="type"><pre><a href="#message-WatchProbingSessionsResponse.PageTokenChange">WatchProbingSessionsResponse.PageTokenChange</a></pre></td>
+</tr>
+<tr><td class="description"><p>When present, PageTokens used for page navigation should be updated.
+Present only if is_current is true (last chunk).</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">resume_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Token that can be used if current connection drops and client needs to
+reconnect. Populated only for stateless watch type. Present only if
+is_current is true (last chunk).</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">snapshot_size</th>
+<td class="type"><pre>int64</pre></td>
+</tr>
+<tr><td class="description"><p>Server may occasionally send information how many resources should client
+have in its state so far (response message without any changes, but with
+snapshot_size field specified). If client has different value than the one
+sent by the server, then it should be treated by a client as an error and
+should reconnect. If value is smaller then 0, then client should ignore
+this field as unpopulated. This field should be checked only for stateless
+watch. In stateful those kind of errors are handled by the server side.
+Will be never sent together with is_current, is_soft_reset and
+is_hard_reset flags.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">is_soft_reset</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>In case of internal issue server may send response message with this flag.
+It indicates that client should drop all changes from recent responses
+where is_current is false only! If last message had is_current set to true,
+client should do nothing and process normally. Resume token received before
+is still valid. This field should be checked only for stateless watch. In
+stateful those kind of errors are handled by the server side. Will never be
+sent along with is_current, is_hard_reset or snapshot_size.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">is_hard_reset</th>
+<td class="type"><pre>bool</pre></td>
+</tr>
+<tr><td class="description"><p>In case of internal issue server may send response message with this flag.
+After receiving, client should clear whole state (drop all changes received
+so far) as server will send new snapshot (ProbingSessions will contains
+changes of type Current only). Any resume tokens should be discarded as
+well. This field should be checked only for stateless watch. In stateful
+those kind of errors are handled by the server side. Will never be sent
+along with is_current, is_soft_reset or snapshot_size.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-WatchProbingSessionsResponse.PageTokenChange">WatchProbingSessionsResponse.PageTokenChange</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">prev_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>New token to retrieve previous page of results.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>New token to retrieve next page of results.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-CreateProbingSessionRequest">CreateProbingSessionRequest</h5>
+
+<p>Request message for method
+[CreateProbingSession][ntt.watchdog.v1alpha2.CreateProbingSession]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">parent</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Parent reference of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>ProbingSession resource body</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-UpdateProbingSessionRequest">UpdateProbingSessionRequest</h5>
+
+<p>Request message for method
+[UpdateProbingSession][ntt.watchdog.v1alpha2.UpdateProbingSession]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>ProbingSession resource body</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">update_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>FieldMask applied to request - change will be applied only for fields in
+the mask</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">cas</th>
+<td class="type"><pre><a href="#message-UpdateProbingSessionRequest.CAS">UpdateProbingSessionRequest.CAS</a></pre></td>
+</tr>
+<tr><td class="description"><p>Conditional update applied to request if update should be executed only for
+specific resource state. If this field is populated, then server will fetch
+existing resource, compare with the one stored in the cas field (after
+applying field mask) and proceed with update only and only if they match.
+Otherwise RPC error Aborted will be returned.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-UpdateProbingSessionRequest.CAS">UpdateProbingSessionRequest.CAS</h5>
+
+<p>CAS - Compare and Swap. This object is used if user wants to make update
+conditional based upon previous resource version.</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">conditional_state</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>Conditional desired state of a resource before update.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>Field paths from conditional state of resource server should check and
+compare.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-DeleteProbingSessionRequest">DeleteProbingSessionRequest</h5>
+
+<p>Request message for method
+[DeleteProbingSession][ntt.watchdog.v1alpha2.DeleteProbingSession]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Reference of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-SearchProbingSessionsRequest">SearchProbingSessionsRequest</h5>
+
+<p>Request message for method
+[SearchProbingSessions][ntt.watchdog.v1alpha2.SearchProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">parent</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Parent name of ntt.watchdog.v1alpha2.ProbingSession</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Requested page size. Server may return fewer ProbingSessions than
+requested. If unspecified, server will pick an appropriate default.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token identifying a page of results the server should return.
+Typically, this is the value of
+[SearchProbingSessionsResponse.next_page_token][ntt.watchdog.v1alpha2.SearchProbingSessionsResponse.next_page_token]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">order_by</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Order By -
+<a href="https://cloud.google.com/apis/design/design_patterns#list_pagination">https://cloud.google.com/apis/design/design_patterns#list_pagination</a> list
+of field path with order directive, either 'asc' or 'desc'. If direction is
+not provided, 'asc' is assumed. e.g. &quot;state.nested_field asc,
+state.something.else desc, theme&quot;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">filter</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Filter - filter results by field criteria. Simplified SQL-like syntax with
+following operators:
+&lt;=, &gt;=, =, !=, &lt;, &gt;, LIKE, CONTAINS (aliases CONTAIN, HAS, HAVE), IN, IS
+[NOT] NULL | NaN . Combine conditions with OR | AND example: 'meta.labels
+CONTAINS &quot;severity:important&quot; OR (state.last_error_time &gt;
+&quot;2018-11-15T10:00:00Z&quot; AND state.status = &quot;ERROR&quot;)'</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>A list of extra fields to be obtained for each response item on top of
+fields defined by request field view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view</th>
+<td class="type"><pre>.goten.view.View</pre></td>
+</tr>
+<tr><td class="description"><p>View defines list of standard response fields present in response items.
+Additional fields can be amended by request field field_mask</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">phrase</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Optional search phrase used to further filter results.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-SearchProbingSessionsResponse">SearchProbingSessionsResponse</h5>
+
+<p>Request message for method
+[SearchProbingSessions][ntt.watchdog.v1alpha2.SearchProbingSessions]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_sessions</th>
+<td class="type"><pre>repeated <a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>The list of ProbingSessions</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">prev_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token to retrieve previous page of results. Pass this value in the
+[SearchProbingSessionsRequest.page_token][ntt.watchdog.v1alpha2.SearchProbingSessionsRequest.page_token]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>A token to retrieve next page of results. Pass this value in the
+[SearchProbingSessionsRequest.page_token][ntt.watchdog.v1alpha2.SearchProbingSessionsRequest.page_token]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">current_offset</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Current offset from the first page (0 if no page tokens were given). Page
+index can be computed from offset and limit provided in a request</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">total_results_count</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Number of total ProbingSessions across all pages.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+  
+
+
+
 <h3 id="resource-ProbingTarget"><span id="message-ProbingTarget">ProbingTarget</span></h3>
 
 <p>ProbingTarget Resource</p>
@@ -7662,13 +8842,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.ProbingTarget</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -8645,13 +9818,6 @@ Additional fields can be amended by request field field_mask</p>
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.ProbingTargetGroup</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
 </tr>
@@ -9624,13 +10790,6 @@ Additional fields can be amended by request field field_mask</p>
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.Project</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
 </tr>
@@ -10433,13 +11592,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.QualityProfile</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -11371,13 +12523,6 @@ Additional fields can be amended by request field field_mask</p>
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.SharedToken</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
 </tr>
@@ -12276,13 +13421,6 @@ Additional fields can be amended by request field field_mask</p>
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
-<tr>
-<th rowspan="2">parent</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Optional parent ntt.watchdog.v1alpha2.Tag</p>
-</td></tr>
-
 <tr>
 <th rowspan="2">names</th>
 <td class="type"><pre>repeated string</pre></td>
@@ -14966,148 +16104,170 @@ stateless watch type.</p>
 
 
 
-<h5 id="message-ProbingSession">ProbingSession</h5>
+<h5 id="message-ProbingSessionChange">ProbingSessionChange</h5>
 
-<p>ProbingSession is target</p>
+<p>ProbingSessionChange is used by Watch notifications Responses to describe
+change of single ProbingSession One of Added, Modified, Removed</p>
 
 
 <table class="fields">
 <thead><tr><th colspan="2">Fields</th></tr></thead>
 <tbody>
 <tr>
-<th rowspan="2">target</th>
+<th rowspan="2">added</th>
+<td class="type"><pre><a href="#message-ProbingSessionChange.Added">ProbingSessionChange.Added</a></pre></td>
+</tr>
+<tr><td class="description"><p>Added is returned when watched document is added, either created or
+enters Query view</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">modified</th>
+<td class="type"><pre><a href="#message-ProbingSessionChange.Modified">ProbingSessionChange.Modified</a></pre></td>
+</tr>
+<tr><td class="description"><p>Modified is returned when watched document is modified</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">current</th>
+<td class="type"><pre><a href="#message-ProbingSessionChange.Current">ProbingSessionChange.Current</a></pre></td>
+</tr>
+<tr><td class="description"><p>Current is returned in stateless watch when document enters query view or
+is modified within.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">removed</th>
+<td class="type"><pre><a href="#message-ProbingSessionChange.Removed">ProbingSessionChange.Removed</a></pre></td>
+</tr>
+<tr><td class="description"><p>Removed is returned when ProbingSession is deleted or leaves Query view</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ProbingSessionChange.Added">ProbingSessionChange.Added</h5>
+
+<p>ProbingSession has been added to query view</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">view_index</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Integer describing index of added ProbingSession in resulting query view.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ProbingSessionChange.Current">ProbingSessionChange.Current</h5>
+
+<p>ProbingSession has been added or modified in a query view. Version used for
+stateless watching</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ProbingSessionChange.Modified">ProbingSessionChange.Modified</h5>
+
+<p>ProbingSession changed some of it's fields - contains either full document
+or masked change</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Name of ProbingTarget</p>
+<tr><td class="description"><p>Name of modified ProbingSession</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">target_display_name</th>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre><a href="#message-ProbingSession">ProbingSession</a></pre></td>
+</tr>
+<tr><td class="description"><p>New version of ProbingSession or masked difference, depending on
+mask_changes instrumentation of issued [WatchProbingSessionRequest] or
+[WatchProbingSessionsRequest]</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">field_mask</th>
+<td class="type"><pre>.google.protobuf.FieldMask</pre></td>
+</tr>
+<tr><td class="description"><p>Used when mask_changes is set, contains field paths of modified
+properties.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">previous_view_index</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Previous view index specifies previous position of modified
+ProbingSession. When modification doesn't affect sorted order, value will
+remain identical to [view_index].</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">view_index</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Integer specifying ProbingSession new index in resulting query view.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ProbingSessionChange.Removed">ProbingSessionChange.Removed</h5>
+
+<p>Removed is returned when ProbingSession is deleted or leaves Query view</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Display name is a human readable representation of the target</p>
-</td></tr>
+<tr><td class="description"></td></tr>
 
 <tr>
-<th rowspan="2">target_group</th>
-<td class="type"><pre>string</pre></td>
+<th rowspan="2">view_index</th>
+<td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>group reference</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">mode</th>
-<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
-</tr>
-<tr><td class="description"><p>mode defines the mode for this probe target - icmp/udp/http/tcp</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">ip_version</th>
-<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
-</tr>
-<tr><td class="description"><p>ip_version defines which IP version should be used.</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">address</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>address is the actual target for the probe - IP addreses/http endpoint</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">group_name</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Additional Group Name to enrich data.</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">category</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Additional Category Name to enrich data</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">location_type</th>
-<td class="type"><pre><a href="#enum-LocationType">LocationType</a></pre></td>
-</tr>
-<tr><td class="description"><p>Target location type</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">location</th>
-<td class="type"><pre><a href="#message-Location">Location</a></pre></td>
-</tr>
-<tr><td class="description"><p>Specific location if applicable</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">interval_sec</th>
-<td class="type"><pre>int64</pre></td>
-</tr>
-<tr><td class="description"><p>(deprecated) Interval defines the interval of probing in seconds.</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">interval</th>
-<td class="type"><pre>.google.protobuf.Duration</pre></td>
-</tr>
-<tr><td class="description"><p>Interval defines probing interval</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">tos</th>
-<td class="type"><pre>uint32s</pre></td>
-</tr>
-<tr><td class="description"><p>TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
-distribution overrides)</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">window_size</th>
-<td class="type"><pre>uint32s</pre></td>
-</tr>
-<tr><td class="description"><p>Window size. Don't set it (use default_settings or distribution overrides)</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">path_probing</th>
-<td class="type"><pre><a href="#message-PathProbe">PathProbe</a></pre></td>
-</tr>
-<tr><td class="description"><p>Path Probing settings. Don't set it (use default_settings or distribution
-overrides)</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">speedtest_settings</th>
-<td class="type"><pre><a href="#message-SpeedTestSettings">SpeedTestSettings</a></pre></td>
-</tr>
-<tr><td class="description"><p>Speedtest specific settings</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">http_probing_config</th>
-<td class="type"><pre><a href="#message-HTTPProbingConfig">HTTPProbingConfig</a></pre></td>
-</tr>
-<tr><td class="description"><p>HTTP Probing Settings</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">proxy_configuration</th>
-<td class="type"><pre><a href="#message-ProxyConfiguration">ProxyConfiguration</a></pre></td>
-</tr>
-<tr><td class="description"><p>Proxy configuration (for speedtest and http)</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">addresses</th>
-<td class="type"><pre>repeated string</pre></td>
-</tr>
-<tr><td class="description"><p>addresses list the list of IP addresses that this target is reachable on
-used for managed targets that might have dual stack</p>
+<tr><td class="description"><p>Integer specifying removed ProbingSession index. Not populated in
+stateless watch type.</p>
 </td></tr>
  
 </tbody>
@@ -17062,6 +18222,30 @@ type.</p>
 
 <tr>
 <th>SPEED_TEST</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-ProbingSessionType">ProbingSessionType</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>CLIENT</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>SERVER</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

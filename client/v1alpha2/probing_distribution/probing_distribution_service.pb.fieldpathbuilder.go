@@ -138,9 +138,6 @@ type BatchGetProbingDistributionsRequestFieldPathBuilder struct{}
 func NewBatchGetProbingDistributionsRequestFieldPathBuilder() BatchGetProbingDistributionsRequestFieldPathBuilder {
 	return BatchGetProbingDistributionsRequestFieldPathBuilder{}
 }
-func (BatchGetProbingDistributionsRequestFieldPathBuilder) Parent() BatchGetProbingDistributionsRequestPathSelectorParent {
-	return BatchGetProbingDistributionsRequestPathSelectorParent{}
-}
 func (BatchGetProbingDistributionsRequestFieldPathBuilder) Names() BatchGetProbingDistributionsRequestPathSelectorNames {
 	return BatchGetProbingDistributionsRequestPathSelectorNames{}
 }
@@ -149,20 +146,6 @@ func (BatchGetProbingDistributionsRequestFieldPathBuilder) FieldMask() BatchGetP
 }
 func (BatchGetProbingDistributionsRequestFieldPathBuilder) View() BatchGetProbingDistributionsRequestPathSelectorView {
 	return BatchGetProbingDistributionsRequestPathSelectorView{}
-}
-
-type BatchGetProbingDistributionsRequestPathSelectorParent struct{}
-
-func (BatchGetProbingDistributionsRequestPathSelectorParent) FieldPath() *BatchGetProbingDistributionsRequest_FieldTerminalPath {
-	return &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetProbingDistributionsRequestPathSelectorParent) WithValue(value *probing_distribution.Reference) *BatchGetProbingDistributionsRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetProbingDistributionsRequestPathSelectorParent) WithArrayOfValues(values []*probing_distribution.Reference) *BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetProbingDistributionsRequestPathSelectorNames struct{}

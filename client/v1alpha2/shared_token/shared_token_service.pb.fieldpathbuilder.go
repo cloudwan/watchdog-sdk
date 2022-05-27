@@ -136,9 +136,6 @@ type BatchGetSharedTokensRequestFieldPathBuilder struct{}
 func NewBatchGetSharedTokensRequestFieldPathBuilder() BatchGetSharedTokensRequestFieldPathBuilder {
 	return BatchGetSharedTokensRequestFieldPathBuilder{}
 }
-func (BatchGetSharedTokensRequestFieldPathBuilder) Parent() BatchGetSharedTokensRequestPathSelectorParent {
-	return BatchGetSharedTokensRequestPathSelectorParent{}
-}
 func (BatchGetSharedTokensRequestFieldPathBuilder) Names() BatchGetSharedTokensRequestPathSelectorNames {
 	return BatchGetSharedTokensRequestPathSelectorNames{}
 }
@@ -147,20 +144,6 @@ func (BatchGetSharedTokensRequestFieldPathBuilder) FieldMask() BatchGetSharedTok
 }
 func (BatchGetSharedTokensRequestFieldPathBuilder) View() BatchGetSharedTokensRequestPathSelectorView {
 	return BatchGetSharedTokensRequestPathSelectorView{}
-}
-
-type BatchGetSharedTokensRequestPathSelectorParent struct{}
-
-func (BatchGetSharedTokensRequestPathSelectorParent) FieldPath() *BatchGetSharedTokensRequest_FieldTerminalPath {
-	return &BatchGetSharedTokensRequest_FieldTerminalPath{selector: BatchGetSharedTokensRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetSharedTokensRequestPathSelectorParent) WithValue(value *shared_token.Reference) *BatchGetSharedTokensRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetSharedTokensRequestPathSelectorParent) WithArrayOfValues(values []*shared_token.Reference) *BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetSharedTokensRequestPathSelectorNames struct{}

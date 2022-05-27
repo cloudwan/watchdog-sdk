@@ -94,9 +94,6 @@ type BatchGetProbeGroupsRequestFieldPathBuilder struct{}
 func NewBatchGetProbeGroupsRequestFieldPathBuilder() BatchGetProbeGroupsRequestFieldPathBuilder {
 	return BatchGetProbeGroupsRequestFieldPathBuilder{}
 }
-func (BatchGetProbeGroupsRequestFieldPathBuilder) Parent() BatchGetProbeGroupsRequestPathSelectorParent {
-	return BatchGetProbeGroupsRequestPathSelectorParent{}
-}
 func (BatchGetProbeGroupsRequestFieldPathBuilder) Names() BatchGetProbeGroupsRequestPathSelectorNames {
 	return BatchGetProbeGroupsRequestPathSelectorNames{}
 }
@@ -105,20 +102,6 @@ func (BatchGetProbeGroupsRequestFieldPathBuilder) FieldMask() BatchGetProbeGroup
 }
 func (BatchGetProbeGroupsRequestFieldPathBuilder) View() BatchGetProbeGroupsRequestPathSelectorView {
 	return BatchGetProbeGroupsRequestPathSelectorView{}
-}
-
-type BatchGetProbeGroupsRequestPathSelectorParent struct{}
-
-func (BatchGetProbeGroupsRequestPathSelectorParent) FieldPath() *BatchGetProbeGroupsRequest_FieldTerminalPath {
-	return &BatchGetProbeGroupsRequest_FieldTerminalPath{selector: BatchGetProbeGroupsRequest_FieldPathSelectorParent}
-}
-
-func (s BatchGetProbeGroupsRequestPathSelectorParent) WithValue(value *probe_group.Reference) *BatchGetProbeGroupsRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbeGroupsRequest_FieldTerminalPathValue)
-}
-
-func (s BatchGetProbeGroupsRequestPathSelectorParent) WithArrayOfValues(values []*probe_group.Reference) *BatchGetProbeGroupsRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbeGroupsRequest_FieldTerminalPathArrayOfValues)
 }
 
 type BatchGetProbeGroupsRequestPathSelectorNames struct{}

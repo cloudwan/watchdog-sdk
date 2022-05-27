@@ -34,9 +34,6 @@ message GetProbeGroupRequest {
 // Request message for method
 // [BatchGetProbeGroups][ntt.watchdog.v1alpha2.BatchGetProbeGroups]
 message BatchGetProbeGroupsRequest {
-  // Optional parent ntt.watchdog.v1alpha2.ProbeGroup
-  string parent = 1;
-
   // Names of ProbeGroups
   repeated string names = 2;
 
@@ -47,6 +44,8 @@ message BatchGetProbeGroupsRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetProbeGroupsResponse
@@ -376,7 +375,7 @@ service ProbeGroupService {
   rpc BatchGetProbeGroups(BatchGetProbeGroupsRequest)
       returns (BatchGetProbeGroupsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/probeGroups:batchGet"
+      get : "/v1alpha2/probeGroups:batchGet"
     };
   }
 

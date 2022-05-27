@@ -13,6 +13,7 @@ import (
 	probe_group_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probe_group"
 	probing_config_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probing_config"
 	probing_distribution_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probing_distribution"
+	probing_session_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probing_session"
 	probing_target_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probing_target"
 	probing_target_group_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probing_target_group"
 	project_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/project"
@@ -26,6 +27,7 @@ import (
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	probing_config "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_config"
 	probing_distribution "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_distribution"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
 	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
@@ -43,6 +45,7 @@ type WatchdogApiAccess interface {
 	probe_group.ProbeGroupAccess
 	probing_config.ProbingConfigAccess
 	probing_distribution.ProbingDistributionAccess
+	probing_session.ProbingSessionAccess
 	probing_target.ProbingTargetAccess
 	probing_target_group.ProbingTargetGroupAccess
 	project.ProjectAccess
@@ -60,6 +63,7 @@ type apiWatchdogAccess struct {
 	probe_group.ProbeGroupAccess
 	probing_config.ProbingConfigAccess
 	probing_distribution.ProbingDistributionAccess
+	probing_session.ProbingSessionAccess
 	probing_target.ProbingTargetAccess
 	probing_target_group.ProbingTargetGroupAccess
 	project.ProjectAccess
@@ -76,6 +80,7 @@ func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 	probeGroupAccess := probe_group_access.NewApiProbeGroupAccess(client)
 	probingConfigAccess := probing_config_access.NewApiProbingConfigAccess(client)
 	probingDistributionAccess := probing_distribution_access.NewApiProbingDistributionAccess(client)
+	probingSessionAccess := probing_session_access.NewApiProbingSessionAccess(client)
 	probingTargetAccess := probing_target_access.NewApiProbingTargetAccess(client)
 	probingTargetGroupAccess := probing_target_group_access.NewApiProbingTargetGroupAccess(client)
 	projectAccess := project_access.NewApiProjectAccess(client)
@@ -92,6 +97,7 @@ func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 			probe_group.AsAnyCastAccess(probeGroupAccess),
 			probing_config.AsAnyCastAccess(probingConfigAccess),
 			probing_distribution.AsAnyCastAccess(probingDistributionAccess),
+			probing_session.AsAnyCastAccess(probingSessionAccess),
 			probing_target.AsAnyCastAccess(probingTargetAccess),
 			probing_target_group.AsAnyCastAccess(probingTargetGroupAccess),
 			project.AsAnyCastAccess(projectAccess),
@@ -106,6 +112,7 @@ func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 		ProbeGroupAccess:            probeGroupAccess,
 		ProbingConfigAccess:         probingConfigAccess,
 		ProbingDistributionAccess:   probingDistributionAccess,
+		ProbingSessionAccess:        probingSessionAccess,
 		ProbingTargetAccess:         probingTargetAccess,
 		ProbingTargetGroupAccess:    probingTargetGroupAccess,
 		ProjectAccess:               projectAccess,

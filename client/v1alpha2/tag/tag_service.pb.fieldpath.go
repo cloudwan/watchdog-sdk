@@ -542,16 +542,13 @@ type BatchGetTagsRequest_FieldPath interface {
 type BatchGetTagsRequest_FieldPathSelector int32
 
 const (
-	BatchGetTagsRequest_FieldPathSelectorParent    BatchGetTagsRequest_FieldPathSelector = 0
-	BatchGetTagsRequest_FieldPathSelectorNames     BatchGetTagsRequest_FieldPathSelector = 1
-	BatchGetTagsRequest_FieldPathSelectorFieldMask BatchGetTagsRequest_FieldPathSelector = 2
-	BatchGetTagsRequest_FieldPathSelectorView      BatchGetTagsRequest_FieldPathSelector = 3
+	BatchGetTagsRequest_FieldPathSelectorNames     BatchGetTagsRequest_FieldPathSelector = 0
+	BatchGetTagsRequest_FieldPathSelectorFieldMask BatchGetTagsRequest_FieldPathSelector = 1
+	BatchGetTagsRequest_FieldPathSelectorView      BatchGetTagsRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetTagsRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetTagsRequest_FieldPath(fp gotenobject.RawFieldPath) (BatchGetTa
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetTagsRequest_FieldTerminalPath{selector: BatchGetTagsRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetTagsRequest_FieldTerminalPath{selector: BatchGetTagsRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) JSONString() string {
 func (fp *BatchGetTagsRequest_FieldTerminalPath) Get(source *BatchGetTagsRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetTagsRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetTagsRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) GetRaw(source proto.Message) []
 // GetSingle returns value pointed by specific field of from source BatchGetTagsRequest
 func (fp *BatchGetTagsRequest_FieldTerminalPath) GetSingle(source *BatchGetTagsRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) GetSingleRaw(source proto.Messa
 // GetDefault returns a default value of the field type
 func (fp *BatchGetTagsRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		return (*tag.Reference)(nil)
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		return ([]*tag.Reference)(nil)
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) GetDefault() interface{} {
 func (fp *BatchGetTagsRequest_FieldTerminalPath) ClearValue(item *BatchGetTagsRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetTagsRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetTagsRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) ClearValueRaw(item proto.Messag
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetTagsRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetTagsRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetTagsRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetTagsRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetTagsRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetTagsRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetTagsRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetTagsRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		return &BatchGetTagsRequest_FieldTerminalPathValue{BatchGetTagsRequest_FieldTerminalPath: *fp, value: value.(*tag.Reference)}
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		return &BatchGetTagsRequest_FieldTerminalPathValue{BatchGetTagsRequest_FieldTerminalPath: *fp, value: value.([]*tag.Reference)}
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetTagsRequest_FieldTerminalPath) WithRawIValue(value interface{}
 func (fp *BatchGetTagsRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetTagsRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetTagsRequest_FieldTerminalPathArrayOfValues{BatchGetTagsRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		return &BatchGetTagsRequest_FieldTerminalPathArrayOfValues{BatchGetTagsRequest_FieldTerminalPath: *fp, values: values.([]*tag.Reference)}
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		return &BatchGetTagsRequest_FieldTerminalPathArrayOfValues{BatchGetTagsRequest_FieldTerminalPath: *fp, values: values.([][]*tag.Reference)}
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetTagsRequest_FieldPathValue = (*BatchGetTagsRequest_FieldTerminalPa
 func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) AsParentValue() (*tag.Reference, bool) {
-	res, ok := fpv.value.(*tag.Reference)
-	return res, ok
-}
 func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) AsNamesValue() ([]*tag.Reference, bool) {
 	res, ok := fpv.value.([]*tag.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) SetTo(target **BatchGetTa
 		*target = new(BatchGetTagsRequest)
 	}
 	switch fpv.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*tag.Reference)
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*tag.Reference)
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) SetToRaw(target proto.Mes
 // CompareWith compares value in the 'BatchGetTagsRequest_FieldTerminalPathValue' with the value under path in 'BatchGetTagsRequest'.
 func (fpv *BatchGetTagsRequest_FieldTerminalPathValue) CompareWith(source *BatchGetTagsRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*tag.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetTagsRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetTagsRequest_FieldPathArrayOfValues = (*BatchGetTagsRequest_FieldTe
 
 func (fpaov *BatchGetTagsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetTagsRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*tag.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetTagsRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*tag.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetTagsRequest_FieldTerminalPathArrayOfValues) GetRawValues() 
 		}
 	}
 	return
-}
-func (fpaov *BatchGetTagsRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*tag.Reference, bool) {
-	res, ok := fpaov.values.([]*tag.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetTagsRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*tag.Reference, bool) {
 	res, ok := fpaov.values.([][]*tag.Reference)

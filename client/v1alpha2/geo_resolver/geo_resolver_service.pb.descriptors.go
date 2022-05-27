@@ -62,15 +62,15 @@ func (d *ResolveGeoIPDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ResolveGeoIPDescriptor) IsCollectionSubject() bool {
+func (d *ResolveGeoIPDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *ResolveGeoIPDescriptor) IsPluralSubject() bool {
+func (d *ResolveGeoIPDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *ResolveGeoIPDescriptor) HasSubjectResource() bool {
+func (d *ResolveGeoIPDescriptor) HasResource() bool {
 	return true
 }
 
@@ -110,7 +110,7 @@ func (d *ResolveGeoIPDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return geoResolverServiceDescriptor
 }
 
-func (d *ResolveGeoIPDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ResolveGeoIPDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -122,77 +122,79 @@ func (d *ResolveGeoIPDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &ResolveGeoIPDescriptorServerMsgHandle{}
 }
 
-func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ResolveGeoIPRequest) *probe.Name
+		OverrideExtractResourceName(*ResolveGeoIPRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ResolveGeoIPRequest) []*probe.Name
+		OverrideExtractResourceNames(*ResolveGeoIPRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResolveGeoIPDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ResolveGeoIPRequest) *probe.ParentName
+		OverrideExtractCollectionName(*ResolveGeoIPRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ResolveGeoIPResponse) *probe.Name
+		OverrideExtractResourceName(*ResolveGeoIPResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ResolveGeoIPResponse) []*probe.Name
+		OverrideExtractResourceNames(*ResolveGeoIPResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResolveGeoIPDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ResolveGeoIPResponse) *probe.ParentName
+		OverrideExtractCollectionName(*ResolveGeoIPResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -227,15 +229,15 @@ func (d *BulkResolveGeoIPDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BulkResolveGeoIPDescriptor) IsCollectionSubject() bool {
+func (d *BulkResolveGeoIPDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *BulkResolveGeoIPDescriptor) IsPluralSubject() bool {
+func (d *BulkResolveGeoIPDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *BulkResolveGeoIPDescriptor) HasSubjectResource() bool {
+func (d *BulkResolveGeoIPDescriptor) HasResource() bool {
 	return true
 }
 
@@ -275,7 +277,7 @@ func (d *BulkResolveGeoIPDescriptor) GetApiDescriptor() gotenclient.ApiDescripto
 	return geoResolverServiceDescriptor
 }
 
-func (d *BulkResolveGeoIPDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BulkResolveGeoIPDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -287,77 +289,79 @@ func (d *BulkResolveGeoIPDescriptor) GetServerMsgReflectHandle() gotenclient.Met
 	return &BulkResolveGeoIPDescriptorServerMsgHandle{}
 }
 
-func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BulkResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BulkResolveGeoIPRequest) *probe.Name
+		OverrideExtractResourceName(*BulkResolveGeoIPRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BulkResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BulkResolveGeoIPRequest) []*probe.Name
+		OverrideExtractResourceNames(*BulkResolveGeoIPRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BulkResolveGeoIPDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BulkResolveGeoIPRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BulkResolveGeoIPRequest) *probe.ParentName
+		OverrideExtractCollectionName(*BulkResolveGeoIPRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BulkResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BulkResolveGeoIPResponse) *probe.Name
+		OverrideExtractResourceName(*BulkResolveGeoIPResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BulkResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BulkResolveGeoIPResponse) []*probe.Name
+		OverrideExtractResourceNames(*BulkResolveGeoIPResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BulkResolveGeoIPDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BulkResolveGeoIPResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BulkResolveGeoIPResponse) *probe.ParentName
+		OverrideExtractCollectionName(*BulkResolveGeoIPResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -392,15 +396,15 @@ func (d *ResolveEnvironmentDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ResolveEnvironmentDescriptor) IsCollectionSubject() bool {
+func (d *ResolveEnvironmentDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *ResolveEnvironmentDescriptor) IsPluralSubject() bool {
+func (d *ResolveEnvironmentDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *ResolveEnvironmentDescriptor) HasSubjectResource() bool {
+func (d *ResolveEnvironmentDescriptor) HasResource() bool {
 	return true
 }
 
@@ -440,7 +444,7 @@ func (d *ResolveEnvironmentDescriptor) GetApiDescriptor() gotenclient.ApiDescrip
 	return geoResolverServiceDescriptor
 }
 
-func (d *ResolveEnvironmentDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ResolveEnvironmentDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -452,77 +456,79 @@ func (d *ResolveEnvironmentDescriptor) GetServerMsgReflectHandle() gotenclient.M
 	return &ResolveEnvironmentDescriptorServerMsgHandle{}
 }
 
-func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveEnvironmentRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ResolveEnvironmentRequest) *probe.Name
+		OverrideExtractResourceName(*ResolveEnvironmentRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ResolveEnvironmentRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ResolveEnvironmentRequest) []*probe.Name
+		OverrideExtractResourceNames(*ResolveEnvironmentRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResolveEnvironmentDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveEnvironmentRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ResolveEnvironmentRequest) *probe.ParentName
+		OverrideExtractCollectionName(*ResolveEnvironmentRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveEnvironmentResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ResolveEnvironmentResponse) *probe.Name
+		OverrideExtractResourceName(*ResolveEnvironmentResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ResolveEnvironmentResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ResolveEnvironmentResponse) []*probe.Name
+		OverrideExtractResourceNames(*ResolveEnvironmentResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ResolveEnvironmentDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ResolveEnvironmentResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ResolveEnvironmentResponse) *probe.ParentName
+		OverrideExtractCollectionName(*ResolveEnvironmentResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

@@ -29,6 +29,7 @@ import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
+	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
@@ -54,6 +55,7 @@ var (
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 	_ = &probing_target.ProbingTarget{}
+	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &project.Project{}
 )
 

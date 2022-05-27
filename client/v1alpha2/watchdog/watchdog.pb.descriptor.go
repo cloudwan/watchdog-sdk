@@ -22,6 +22,7 @@ import (
 	probe_hardware_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware"
 	probing_config_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_config"
 	probing_distribution_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_distribution"
+	probing_session_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_session"
 	probing_target_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_target"
 	probing_target_group_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probing_target_group"
 	project_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/project"
@@ -35,6 +36,7 @@ import (
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	probing_config "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_config"
 	probing_distribution "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_distribution"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
 	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
@@ -63,6 +65,8 @@ var (
 	_ = &probing_config_client.GetProbingConfigRequest{}
 	_ = &probing_distribution.ProbingDistribution{}
 	_ = &probing_distribution_client.GetProbingDistributionRequest{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_session_client.GetProbingSessionRequest{}
 	_ = &probing_target.ProbingTarget{}
 	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &probing_target_group_client.GetProbingTargetGroupRequest{}
@@ -109,6 +113,7 @@ func (d *WatchdogDescriptor) AllResourceDescriptors() []gotenresource.Descriptor
 		probe_group.GetDescriptor(),
 		probing_config.GetDescriptor(),
 		probing_distribution.GetDescriptor(),
+		probing_session.GetDescriptor(),
 		probing_target.GetDescriptor(),
 		probing_target_group.GetDescriptor(),
 		project.GetDescriptor(),
@@ -131,6 +136,7 @@ func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
 		probe_client.GetProbeServiceDescriptor(),
 		probing_config_client.GetProbingConfigServiceDescriptor(),
 		probing_distribution_client.GetProbingDistributionServiceDescriptor(),
+		probing_session_client.GetProbingSessionServiceDescriptor(),
 		probing_target_group_client.GetProbingTargetGroupServiceDescriptor(),
 		probing_target_client.GetProbingTargetServiceDescriptor(),
 		project_client.GetProjectServiceDescriptor(),

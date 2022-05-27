@@ -399,6 +399,398 @@ func (fieldMask *ProbingConfig_FieldMask) PathsCount() int {
 	return len(fieldMask.Paths)
 }
 
+type ProbingConfig_ProbingSession_FieldMask struct {
+	Paths []ProbingConfigProbingSession_FieldPath
+}
+
+func FullProbingConfig_ProbingSession_FieldMask() *ProbingConfig_ProbingSession_FieldMask {
+	res := &ProbingConfig_ProbingSession_FieldMask{}
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTarget})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetGroup})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorMode})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIpVersion})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddress})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorGroupName})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorCategory})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocationType})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIntervalSec})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorInterval})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTos})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorWindowSize})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration})
+	res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddresses})
+	return res
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbingConfigProbingSession_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 19)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbingConfigProbingSession_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbingConfigProbingSession_FieldPath(raw)
+	})
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) ProtoMessage() {}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Subtract(other *ProbingConfig_ProbingSession_FieldMask) *ProbingConfig_ProbingSession_FieldMask {
+	result := &ProbingConfig_ProbingSession_FieldMask{}
+	removedSelectors := make([]bool, 19)
+	otherSubMasks := map[ProbingConfigProbingSession_FieldPathSelector]gotenobject.FieldMask{
+		ProbingConfigProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
+	}
+	mySubMasks := map[ProbingConfigProbingSession_FieldPathSelector]gotenobject.FieldMask{
+		ProbingConfigProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
+		ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
+	}
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbingConfigProbingSession_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		case *ProbingConfigProbingSession_FieldSubPath:
+			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
+				if tp, ok := path.(*ProbingConfigProbingSession_FieldTerminalPath); ok {
+					switch tp.selector {
+					case ProbingConfigProbingSession_FieldPathSelectorLocation:
+						mySubMasks[ProbingConfigProbingSession_FieldPathSelectorLocation] = common.FullLocation_FieldMask()
+					case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+						mySubMasks[ProbingConfigProbingSession_FieldPathSelectorPathProbing] = common.FullPathProbe_FieldMask()
+					case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+						mySubMasks[ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings] = common.FullSpeedTestSettings_FieldMask()
+					case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+						mySubMasks[ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig] = common.FullHTTPProbingConfig_FieldMask()
+					case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+						mySubMasks[ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration] = common.FullProxyConfiguration_FieldMask()
+					}
+				} else if tp, ok := path.(*ProbingConfigProbingSession_FieldSubPath); ok {
+					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
+				}
+			} else {
+				result.Paths = append(result.Paths, path)
+			}
+		}
+	}
+	for selector, mySubMask := range mySubMasks {
+		if mySubMask.PathsCount() > 0 {
+			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
+				result.Paths = append(result.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: selector, subPath: allowedPath})
+			}
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*ProbingConfig_ProbingSession_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) FilterInputFields() *ProbingConfig_ProbingSession_FieldMask {
+	result := &ProbingConfig_ProbingSession_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbingConfigProbingSession_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbingConfigProbingSession_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask ProbingConfig_ProbingSession_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask ProbingConfig_ProbingSession_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) AppendPath(path ProbingConfigProbingSession_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbingConfigProbingSession_FieldPath))
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) GetPaths() []ProbingConfigProbingSession_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbingConfigProbingSession_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Set(target, source *ProbingConfig_ProbingSession) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*ProbingConfig_ProbingSession), source.(*ProbingConfig_ProbingSession))
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) Project(source *ProbingConfig_ProbingSession) *ProbingConfig_ProbingSession {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &ProbingConfig_ProbingSession{}
+	locationMask := &common.Location_FieldMask{}
+	wholeLocationAccepted := false
+	pathProbingMask := &common.PathProbe_FieldMask{}
+	wholePathProbingAccepted := false
+	speedtestSettingsMask := &common.SpeedTestSettings_FieldMask{}
+	wholeSpeedtestSettingsAccepted := false
+	httpProbingConfigMask := &common.HTTPProbingConfig_FieldMask{}
+	wholeHttpProbingConfigAccepted := false
+	proxyConfigurationMask := &common.ProxyConfiguration_FieldMask{}
+	wholeProxyConfigurationAccepted := false
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbingConfigProbingSession_FieldTerminalPath:
+			switch tp.selector {
+			case ProbingConfigProbingSession_FieldPathSelectorTarget:
+				result.Target = source.Target
+			case ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName:
+				result.TargetDisplayName = source.TargetDisplayName
+			case ProbingConfigProbingSession_FieldPathSelectorTargetGroup:
+				result.TargetGroup = source.TargetGroup
+			case ProbingConfigProbingSession_FieldPathSelectorMode:
+				result.Mode = source.Mode
+			case ProbingConfigProbingSession_FieldPathSelectorIpVersion:
+				result.IpVersion = source.IpVersion
+			case ProbingConfigProbingSession_FieldPathSelectorAddress:
+				result.Address = source.Address
+			case ProbingConfigProbingSession_FieldPathSelectorGroupName:
+				result.GroupName = source.GroupName
+			case ProbingConfigProbingSession_FieldPathSelectorCategory:
+				result.Category = source.Category
+			case ProbingConfigProbingSession_FieldPathSelectorLocationType:
+				result.LocationType = source.LocationType
+			case ProbingConfigProbingSession_FieldPathSelectorLocation:
+				result.Location = source.Location
+				wholeLocationAccepted = true
+			case ProbingConfigProbingSession_FieldPathSelectorIntervalSec:
+				result.IntervalSec = source.IntervalSec
+			case ProbingConfigProbingSession_FieldPathSelectorInterval:
+				result.Interval = source.Interval
+			case ProbingConfigProbingSession_FieldPathSelectorTos:
+				result.Tos = source.Tos
+			case ProbingConfigProbingSession_FieldPathSelectorWindowSize:
+				result.WindowSize = source.WindowSize
+			case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+				result.PathProbing = source.PathProbing
+				wholePathProbingAccepted = true
+			case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+				result.SpeedtestSettings = source.SpeedtestSettings
+				wholeSpeedtestSettingsAccepted = true
+			case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+				result.HttpProbingConfig = source.HttpProbingConfig
+				wholeHttpProbingConfigAccepted = true
+			case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+				result.ProxyConfiguration = source.ProxyConfiguration
+				wholeProxyConfigurationAccepted = true
+			case ProbingConfigProbingSession_FieldPathSelectorAddresses:
+				result.Addresses = source.Addresses
+			}
+		case *ProbingConfigProbingSession_FieldSubPath:
+			switch tp.selector {
+			case ProbingConfigProbingSession_FieldPathSelectorLocation:
+				locationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
+			case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+				pathProbingMask.AppendPath(tp.subPath.(common.PathProbe_FieldPath))
+			case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+				speedtestSettingsMask.AppendPath(tp.subPath.(common.SpeedTestSettings_FieldPath))
+			case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+				httpProbingConfigMask.AppendPath(tp.subPath.(common.HTTPProbingConfig_FieldPath))
+			case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+				proxyConfigurationMask.AppendPath(tp.subPath.(common.ProxyConfiguration_FieldPath))
+			}
+		}
+	}
+	if wholeLocationAccepted == false && len(locationMask.Paths) > 0 {
+		result.Location = locationMask.Project(source.GetLocation())
+	}
+	if wholePathProbingAccepted == false && len(pathProbingMask.Paths) > 0 {
+		result.PathProbing = pathProbingMask.Project(source.GetPathProbing())
+	}
+	if wholeSpeedtestSettingsAccepted == false && len(speedtestSettingsMask.Paths) > 0 {
+		result.SpeedtestSettings = speedtestSettingsMask.Project(source.GetSpeedtestSettings())
+	}
+	if wholeHttpProbingConfigAccepted == false && len(httpProbingConfigMask.Paths) > 0 {
+		result.HttpProbingConfig = httpProbingConfigMask.Project(source.GetHttpProbingConfig())
+	}
+	if wholeProxyConfigurationAccepted == false && len(proxyConfigurationMask.Paths) > 0 {
+		result.ProxyConfiguration = proxyConfigurationMask.Project(source.GetProxyConfiguration())
+	}
+	return result
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*ProbingConfig_ProbingSession))
+}
+
+func (fieldMask *ProbingConfig_ProbingSession_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
 type ProbingConfig_Spec_FieldMask struct {
 	Paths []ProbingConfigSpec_FieldPath
 }
@@ -484,14 +876,14 @@ func (fieldMask *ProbingConfig_Spec_FieldMask) Subtract(other *ProbingConfig_Spe
 	result := &ProbingConfig_Spec_FieldMask{}
 	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[ProbingConfigSpec_FieldPathSelector]gotenobject.FieldMask{
-		ProbingConfigSpec_FieldPathSelectorProbingSessions: &ProbingSession_FieldMask{},
+		ProbingConfigSpec_FieldPathSelectorProbingSessions: &ProbingConfig_ProbingSession_FieldMask{},
 		ProbingConfigSpec_FieldPathSelectorSpeedtest:       &ProbingConfig_Spec_SpeedTest_FieldMask{},
-		ProbingConfigSpec_FieldPathSelectorTargetSessions:  &ProbingSession_FieldMask{},
+		ProbingConfigSpec_FieldPathSelectorTargetSessions:  &ProbingConfig_ProbingSession_FieldMask{},
 	}
 	mySubMasks := map[ProbingConfigSpec_FieldPathSelector]gotenobject.FieldMask{
-		ProbingConfigSpec_FieldPathSelectorProbingSessions: &ProbingSession_FieldMask{},
+		ProbingConfigSpec_FieldPathSelectorProbingSessions: &ProbingConfig_ProbingSession_FieldMask{},
 		ProbingConfigSpec_FieldPathSelectorSpeedtest:       &ProbingConfig_Spec_SpeedTest_FieldMask{},
-		ProbingConfigSpec_FieldPathSelectorTargetSessions:  &ProbingSession_FieldMask{},
+		ProbingConfigSpec_FieldPathSelectorTargetSessions:  &ProbingConfig_ProbingSession_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -508,11 +900,11 @@ func (fieldMask *ProbingConfig_Spec_FieldMask) Subtract(other *ProbingConfig_Spe
 				if tp, ok := path.(*ProbingConfigSpec_FieldTerminalPath); ok {
 					switch tp.selector {
 					case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-						mySubMasks[ProbingConfigSpec_FieldPathSelectorProbingSessions] = FullProbingSession_FieldMask()
+						mySubMasks[ProbingConfigSpec_FieldPathSelectorProbingSessions] = FullProbingConfig_ProbingSession_FieldMask()
 					case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 						mySubMasks[ProbingConfigSpec_FieldPathSelectorSpeedtest] = FullProbingConfig_Spec_SpeedTest_FieldMask()
 					case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-						mySubMasks[ProbingConfigSpec_FieldPathSelectorTargetSessions] = FullProbingSession_FieldMask()
+						mySubMasks[ProbingConfigSpec_FieldPathSelectorTargetSessions] = FullProbingConfig_ProbingSession_FieldMask()
 					}
 				} else if tp, ok := path.(*ProbingConfigSpec_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -665,11 +1057,11 @@ func (fieldMask *ProbingConfig_Spec_FieldMask) Project(source *ProbingConfig_Spe
 		return source
 	}
 	result := &ProbingConfig_Spec{}
-	probingSessionsMask := &ProbingSession_FieldMask{}
+	probingSessionsMask := &ProbingConfig_ProbingSession_FieldMask{}
 	wholeProbingSessionsAccepted := false
 	speedtestMask := &ProbingConfig_Spec_SpeedTest_FieldMask{}
 	wholeSpeedtestAccepted := false
-	targetSessionsMask := &ProbingSession_FieldMask{}
+	targetSessionsMask := &ProbingConfig_ProbingSession_FieldMask{}
 	wholeTargetSessionsAccepted := false
 
 	for _, p := range fieldMask.Paths {
@@ -691,11 +1083,11 @@ func (fieldMask *ProbingConfig_Spec_FieldMask) Project(source *ProbingConfig_Spe
 		case *ProbingConfigSpec_FieldSubPath:
 			switch tp.selector {
 			case ProbingConfigSpec_FieldPathSelectorProbingSessions:
-				probingSessionsMask.AppendPath(tp.subPath.(ProbingSession_FieldPath))
+				probingSessionsMask.AppendPath(tp.subPath.(ProbingConfigProbingSession_FieldPath))
 			case ProbingConfigSpec_FieldPathSelectorSpeedtest:
 				speedtestMask.AppendPath(tp.subPath.(ProbingConfigSpecSpeedTest_FieldPath))
 			case ProbingConfigSpec_FieldPathSelectorTargetSessions:
-				targetSessionsMask.AppendPath(tp.subPath.(ProbingSession_FieldPath))
+				targetSessionsMask.AppendPath(tp.subPath.(ProbingConfigProbingSession_FieldPath))
 			}
 		}
 	}
@@ -1570,398 +1962,6 @@ func (fieldMask *ProbingConfig_Spec_SpeedTest_Server_FieldMask) ProjectRaw(sourc
 }
 
 func (fieldMask *ProbingConfig_Spec_SpeedTest_Server_FieldMask) PathsCount() int {
-	if fieldMask == nil {
-		return 0
-	}
-	return len(fieldMask.Paths)
-}
-
-type ProbingSession_FieldMask struct {
-	Paths []ProbingSession_FieldPath
-}
-
-func FullProbingSession_FieldMask() *ProbingSession_FieldMask {
-	res := &ProbingSession_FieldMask{}
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTarget})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetDisplayName})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetGroup})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorMode})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIpVersion})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddress})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorGroupName})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorCategory})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocationType})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocation})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIntervalSec})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorInterval})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTos})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration})
-	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
-	return res
-}
-
-func (fieldMask *ProbingSession_FieldMask) String() string {
-	if fieldMask == nil {
-		return "<nil>"
-	}
-	pathsStr := make([]string, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		pathsStr = append(pathsStr, path.String())
-	}
-	return strings.Join(pathsStr, ", ")
-}
-
-// firestore encoding/decoding integration
-func (fieldMask *ProbingSession_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
-	if fieldMask == nil {
-		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
-	}
-	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.GetPaths() {
-		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
-	}
-	return &firestorepb.Value{
-		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
-	}, nil
-}
-
-func (fieldMask *ProbingSession_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
-	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseProbingSession_FieldPath(value.GetStringValue())
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
-	}
-	return nil
-}
-
-func (fieldMask *ProbingSession_FieldMask) IsFull() bool {
-	if fieldMask == nil {
-		return false
-	}
-	presentSelectors := make([]bool, 19)
-	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*ProbingSession_FieldTerminalPath); ok {
-			presentSelectors[int(asFinal.selector)] = true
-		}
-	}
-	for _, flag := range presentSelectors {
-		if !flag {
-			return false
-		}
-	}
-	return true
-}
-
-func (fieldMask *ProbingSession_FieldMask) ProtoReflect() preflect.Message {
-	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseProbingSession_FieldPath(raw)
-	})
-}
-
-func (fieldMask *ProbingSession_FieldMask) ProtoMessage() {}
-
-func (fieldMask *ProbingSession_FieldMask) Reset() {
-	if fieldMask != nil {
-		fieldMask.Paths = nil
-	}
-}
-
-func (fieldMask *ProbingSession_FieldMask) Subtract(other *ProbingSession_FieldMask) *ProbingSession_FieldMask {
-	result := &ProbingSession_FieldMask{}
-	removedSelectors := make([]bool, 19)
-	otherSubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
-		ProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
-		ProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
-		ProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
-		ProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
-		ProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
-	}
-	mySubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
-		ProbingSession_FieldPathSelectorLocation:           &common.Location_FieldMask{},
-		ProbingSession_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
-		ProbingSession_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
-		ProbingSession_FieldPathSelectorHttpProbingConfig:  &common.HTTPProbingConfig_FieldMask{},
-		ProbingSession_FieldPathSelectorProxyConfiguration: &common.ProxyConfiguration_FieldMask{},
-	}
-
-	for _, path := range other.GetPaths() {
-		switch tp := path.(type) {
-		case *ProbingSession_FieldTerminalPath:
-			removedSelectors[int(tp.selector)] = true
-		case *ProbingSession_FieldSubPath:
-			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
-		}
-	}
-	for _, path := range fieldMask.GetPaths() {
-		if !removedSelectors[int(path.Selector())] {
-			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
-				if tp, ok := path.(*ProbingSession_FieldTerminalPath); ok {
-					switch tp.selector {
-					case ProbingSession_FieldPathSelectorLocation:
-						mySubMasks[ProbingSession_FieldPathSelectorLocation] = common.FullLocation_FieldMask()
-					case ProbingSession_FieldPathSelectorPathProbing:
-						mySubMasks[ProbingSession_FieldPathSelectorPathProbing] = common.FullPathProbe_FieldMask()
-					case ProbingSession_FieldPathSelectorSpeedtestSettings:
-						mySubMasks[ProbingSession_FieldPathSelectorSpeedtestSettings] = common.FullSpeedTestSettings_FieldMask()
-					case ProbingSession_FieldPathSelectorHttpProbingConfig:
-						mySubMasks[ProbingSession_FieldPathSelectorHttpProbingConfig] = common.FullHTTPProbingConfig_FieldMask()
-					case ProbingSession_FieldPathSelectorProxyConfiguration:
-						mySubMasks[ProbingSession_FieldPathSelectorProxyConfiguration] = common.FullProxyConfiguration_FieldMask()
-					}
-				} else if tp, ok := path.(*ProbingSession_FieldSubPath); ok {
-					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
-				}
-			} else {
-				result.Paths = append(result.Paths, path)
-			}
-		}
-	}
-	for selector, mySubMask := range mySubMasks {
-		if mySubMask.PathsCount() > 0 {
-			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
-				result.Paths = append(result.Paths, &ProbingSession_FieldSubPath{selector: selector, subPath: allowedPath})
-			}
-		}
-	}
-
-	if len(result.Paths) == 0 {
-		return nil
-	}
-	return result
-}
-
-func (fieldMask *ProbingSession_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*ProbingSession_FieldMask))
-}
-
-// FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *ProbingSession_FieldMask) FilterInputFields() *ProbingSession_FieldMask {
-	result := &ProbingSession_FieldMask{}
-	result.Paths = append(result.Paths, fieldMask.Paths...)
-	return result
-}
-
-// ToFieldMask is used for proto conversions
-func (fieldMask *ProbingSession_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	for _, path := range fieldMask.Paths {
-		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
-	}
-	return protoFieldMask
-}
-
-func (fieldMask *ProbingSession_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
-	if fieldMask == nil {
-		return status.Error(codes.Internal, "target field mask is nil")
-	}
-	fieldMask.Paths = make([]ProbingSession_FieldPath, 0, len(protoFieldMask.Paths))
-	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseProbingSession_FieldPath(strPath)
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, path)
-	}
-	return nil
-}
-
-// implement methods required by customType
-func (fieldMask ProbingSession_FieldMask) Marshal() ([]byte, error) {
-	protoFieldMask := fieldMask.ToProtoFieldMask()
-	return proto.Marshal(protoFieldMask)
-}
-
-func (fieldMask *ProbingSession_FieldMask) Unmarshal(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *ProbingSession_FieldMask) Size() int {
-	return proto.Size(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask ProbingSession_FieldMask) MarshalJSON() ([]byte, error) {
-	return json.Marshal(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask *ProbingSession_FieldMask) UnmarshalJSON(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := json.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *ProbingSession_FieldMask) AppendPath(path ProbingSession_FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path)
-}
-
-func (fieldMask *ProbingSession_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(ProbingSession_FieldPath))
-}
-
-func (fieldMask *ProbingSession_FieldMask) GetPaths() []ProbingSession_FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	return fieldMask.Paths
-}
-
-func (fieldMask *ProbingSession_FieldMask) GetRawPaths() []gotenobject.FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		rawPaths = append(rawPaths, path)
-	}
-	return rawPaths
-}
-
-func (fieldMask *ProbingSession_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseProbingSession_FieldPath(raw)
-	if err != nil {
-		return err
-	}
-	fieldMask.Paths = append(fieldMask.Paths, path)
-	return nil
-}
-
-func (fieldMask *ProbingSession_FieldMask) Set(target, source *ProbingSession) {
-	for _, path := range fieldMask.Paths {
-		val, _ := path.GetSingle(source)
-		// if val is nil, then field does not exist in source, skip
-		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
-		if val != nil {
-			path.WithIValue(val).SetTo(&target)
-		}
-	}
-}
-
-func (fieldMask *ProbingSession_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*ProbingSession), source.(*ProbingSession))
-}
-
-func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *ProbingSession {
-	if source == nil {
-		return nil
-	}
-	if fieldMask == nil {
-		return source
-	}
-	result := &ProbingSession{}
-	locationMask := &common.Location_FieldMask{}
-	wholeLocationAccepted := false
-	pathProbingMask := &common.PathProbe_FieldMask{}
-	wholePathProbingAccepted := false
-	speedtestSettingsMask := &common.SpeedTestSettings_FieldMask{}
-	wholeSpeedtestSettingsAccepted := false
-	httpProbingConfigMask := &common.HTTPProbingConfig_FieldMask{}
-	wholeHttpProbingConfigAccepted := false
-	proxyConfigurationMask := &common.ProxyConfiguration_FieldMask{}
-	wholeProxyConfigurationAccepted := false
-
-	for _, p := range fieldMask.Paths {
-		switch tp := p.(type) {
-		case *ProbingSession_FieldTerminalPath:
-			switch tp.selector {
-			case ProbingSession_FieldPathSelectorTarget:
-				result.Target = source.Target
-			case ProbingSession_FieldPathSelectorTargetDisplayName:
-				result.TargetDisplayName = source.TargetDisplayName
-			case ProbingSession_FieldPathSelectorTargetGroup:
-				result.TargetGroup = source.TargetGroup
-			case ProbingSession_FieldPathSelectorMode:
-				result.Mode = source.Mode
-			case ProbingSession_FieldPathSelectorIpVersion:
-				result.IpVersion = source.IpVersion
-			case ProbingSession_FieldPathSelectorAddress:
-				result.Address = source.Address
-			case ProbingSession_FieldPathSelectorGroupName:
-				result.GroupName = source.GroupName
-			case ProbingSession_FieldPathSelectorCategory:
-				result.Category = source.Category
-			case ProbingSession_FieldPathSelectorLocationType:
-				result.LocationType = source.LocationType
-			case ProbingSession_FieldPathSelectorLocation:
-				result.Location = source.Location
-				wholeLocationAccepted = true
-			case ProbingSession_FieldPathSelectorIntervalSec:
-				result.IntervalSec = source.IntervalSec
-			case ProbingSession_FieldPathSelectorInterval:
-				result.Interval = source.Interval
-			case ProbingSession_FieldPathSelectorTos:
-				result.Tos = source.Tos
-			case ProbingSession_FieldPathSelectorWindowSize:
-				result.WindowSize = source.WindowSize
-			case ProbingSession_FieldPathSelectorPathProbing:
-				result.PathProbing = source.PathProbing
-				wholePathProbingAccepted = true
-			case ProbingSession_FieldPathSelectorSpeedtestSettings:
-				result.SpeedtestSettings = source.SpeedtestSettings
-				wholeSpeedtestSettingsAccepted = true
-			case ProbingSession_FieldPathSelectorHttpProbingConfig:
-				result.HttpProbingConfig = source.HttpProbingConfig
-				wholeHttpProbingConfigAccepted = true
-			case ProbingSession_FieldPathSelectorProxyConfiguration:
-				result.ProxyConfiguration = source.ProxyConfiguration
-				wholeProxyConfigurationAccepted = true
-			case ProbingSession_FieldPathSelectorAddresses:
-				result.Addresses = source.Addresses
-			}
-		case *ProbingSession_FieldSubPath:
-			switch tp.selector {
-			case ProbingSession_FieldPathSelectorLocation:
-				locationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
-			case ProbingSession_FieldPathSelectorPathProbing:
-				pathProbingMask.AppendPath(tp.subPath.(common.PathProbe_FieldPath))
-			case ProbingSession_FieldPathSelectorSpeedtestSettings:
-				speedtestSettingsMask.AppendPath(tp.subPath.(common.SpeedTestSettings_FieldPath))
-			case ProbingSession_FieldPathSelectorHttpProbingConfig:
-				httpProbingConfigMask.AppendPath(tp.subPath.(common.HTTPProbingConfig_FieldPath))
-			case ProbingSession_FieldPathSelectorProxyConfiguration:
-				proxyConfigurationMask.AppendPath(tp.subPath.(common.ProxyConfiguration_FieldPath))
-			}
-		}
-	}
-	if wholeLocationAccepted == false && len(locationMask.Paths) > 0 {
-		result.Location = locationMask.Project(source.GetLocation())
-	}
-	if wholePathProbingAccepted == false && len(pathProbingMask.Paths) > 0 {
-		result.PathProbing = pathProbingMask.Project(source.GetPathProbing())
-	}
-	if wholeSpeedtestSettingsAccepted == false && len(speedtestSettingsMask.Paths) > 0 {
-		result.SpeedtestSettings = speedtestSettingsMask.Project(source.GetSpeedtestSettings())
-	}
-	if wholeHttpProbingConfigAccepted == false && len(httpProbingConfigMask.Paths) > 0 {
-		result.HttpProbingConfig = httpProbingConfigMask.Project(source.GetHttpProbingConfig())
-	}
-	if wholeProxyConfigurationAccepted == false && len(proxyConfigurationMask.Paths) > 0 {
-		result.ProxyConfiguration = proxyConfigurationMask.Project(source.GetProxyConfiguration())
-	}
-	return result
-}
-
-func (fieldMask *ProbingSession_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*ProbingSession))
-}
-
-func (fieldMask *ProbingSession_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

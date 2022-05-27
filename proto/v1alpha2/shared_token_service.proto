@@ -35,9 +35,6 @@ message GetSharedTokenRequest {
 // Request message for method
 // [BatchGetSharedTokens][ntt.watchdog.v1alpha2.BatchGetSharedTokens]
 message BatchGetSharedTokensRequest {
-  // Optional parent ntt.watchdog.v1alpha2.SharedToken
-  string parent = 1;
-
   // Names of SharedTokens
   repeated string names = 2;
 
@@ -48,6 +45,8 @@ message BatchGetSharedTokensRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetSharedTokensResponse
@@ -313,7 +312,7 @@ service SharedTokenService {
   rpc BatchGetSharedTokens(BatchGetSharedTokensRequest)
       returns (BatchGetSharedTokensResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*/regions/*}/sharedTokens:batchGet"
+      get : "/v1alpha2/sharedTokens:batchGet"
     };
   }
 

@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/types/meta.proto";
+import "google/api/resource.proto";
+import "google/protobuf/duration.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session;probing_session";
+option java_multiple_files = true;
+option java_outer_classname = "ProbingSessionProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// ProbingSession Resource
+message ProbingSession {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/ProbingSession"
+    pattern : "projects/{project}/regions/{region}/probingSessions/"
+              "{probing_session}"
+  };
+
+  // Name of ProbingSession
+  string name = 1;
+
+  // Display name of ProbingSession
+  string display_name = 2;
+
+  // metadata describes additional information of the ProbingSession
+  ntt.types.Meta metadata = 3;
+
+  // spec describes the to-be state of the ProbingSession
+  Spec spec = 4;
+
+  string probing_distribution = 5
+      [ (google.api.resource_reference) = {type : "ProbingDistribution"} ];
+
+  // status shows the current status of the ProbingSession
+  Status status = 6;
+
+  message Spec {
+    // probe is the probe resource which is expexted to execute
+    // the probe config.
+    string probe = 1 [ (google.api.resource_reference) = {type : "Probe"} ];
+
+    string target = 2
+        [ (google.api.resource_reference) = {type : "ProbingTarget"} ];
+
+    // group reference
+    string target_group = 3;
+
+    // mode defines the mode for this probe target - icmp/udp/http/tcp
+    ProbingMode mode = 4;
+
+    // ip_version defines which IP version should be used.
+    IpVersion ip_version = 5;
+
+    // address is the actual target for the probe - IP addreses/http endpoint
+    string address = 6;
+
+    // addresses list the list of IP addresses that this target is reachable on
+    // used for managed targets that might have dual stack
+    repeated string addresses = 7;
+
+    uint32 port = 8;
+
+    ProbingSessionType type = 9;
+
+    // Interval defines probing interval
+    google.protobuf.Duration interval = 10;
+
+    // TOS for ipv4 or Traffic class for ipv6. Don't set it (use defaults or
+    // distribution overrides)
+    uint32 tos = 11;
+
+    // Path Probing settings.
+    PathProbe path_probing = 12;
+
+    // Speedtest specific settings
+    SpeedTestSettings speedtest_settings = 13;
+
+    // HTTP Probing Settings
+    HTTPProbingConfig http_probing_config = 14;
+
+    // Proxy configuration (for speedtest and http)
+    ProxyConfiguration proxy_configuration = 15;
+  }
+
+  message Status {}
+}
+
+enum ProbingSessionType {
+  CLIENT = 0;
+
+  SERVER = 1;
+}

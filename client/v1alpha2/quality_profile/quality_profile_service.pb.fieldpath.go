@@ -542,16 +542,13 @@ type BatchGetQualityProfilesRequest_FieldPath interface {
 type BatchGetQualityProfilesRequest_FieldPathSelector int32
 
 const (
-	BatchGetQualityProfilesRequest_FieldPathSelectorParent    BatchGetQualityProfilesRequest_FieldPathSelector = 0
-	BatchGetQualityProfilesRequest_FieldPathSelectorNames     BatchGetQualityProfilesRequest_FieldPathSelector = 1
-	BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask BatchGetQualityProfilesRequest_FieldPathSelector = 2
-	BatchGetQualityProfilesRequest_FieldPathSelectorView      BatchGetQualityProfilesRequest_FieldPathSelector = 3
+	BatchGetQualityProfilesRequest_FieldPathSelectorNames     BatchGetQualityProfilesRequest_FieldPathSelector = 0
+	BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask BatchGetQualityProfilesRequest_FieldPathSelector = 1
+	BatchGetQualityProfilesRequest_FieldPathSelectorView      BatchGetQualityProfilesRequest_FieldPathSelector = 2
 )
 
 func (s BatchGetQualityProfilesRequest_FieldPathSelector) String() string {
 	switch s {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		return "parent"
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		return "names"
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -569,8 +566,6 @@ func BuildBatchGetQualityProfilesRequest_FieldPath(fp gotenobject.RawFieldPath) 
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "parent":
-			return &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorParent}, nil
 		case "names":
 			return &BatchGetQualityProfilesRequest_FieldTerminalPath{selector: BatchGetQualityProfilesRequest_FieldPathSelectorNames}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -622,10 +617,6 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) JSONString() string 
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) Get(source *BatchGetQualityProfilesRequest) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-			if source.Parent != nil {
-				values = append(values, source.Parent)
-			}
 		case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 			for _, value := range source.GetNames() {
 				values = append(values, value)
@@ -650,9 +641,6 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) GetRaw(source proto.
 // GetSingle returns value pointed by specific field of from source BatchGetQualityProfilesRequest
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) GetSingle(source *BatchGetQualityProfilesRequest) (interface{}, bool) {
 	switch fp.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		res := source.GetParent()
-		return res, res != nil
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		res := source.GetNames()
 		return res, res != nil
@@ -673,8 +661,6 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) GetSingleRaw(source 
 // GetDefault returns a default value of the field type
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		return (*quality_profile.Reference)(nil)
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		return ([]*quality_profile.Reference)(nil)
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -689,8 +675,6 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) GetDefault() interfa
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) ClearValue(item *BatchGetQualityProfilesRequest) {
 	if item != nil {
 		switch fp.selector {
-		case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-			item.Parent = nil
 		case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 			item.Names = nil
 		case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -709,16 +693,13 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) ClearValueRaw(item p
 
 // IsLeaf - whether field path is holds simple value
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == BatchGetQualityProfilesRequest_FieldPathSelectorParent ||
-		fp.selector == BatchGetQualityProfilesRequest_FieldPathSelectorNames ||
+	return fp.selector == BatchGetQualityProfilesRequest_FieldPathSelectorNames ||
 		fp.selector == BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask ||
 		fp.selector == BatchGetQualityProfilesRequest_FieldPathSelectorView
 }
 
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetQualityProfilesRequest_FieldPathValue {
 	switch fp.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		return &BatchGetQualityProfilesRequest_FieldTerminalPathValue{BatchGetQualityProfilesRequest_FieldTerminalPath: *fp, value: value.(*quality_profile.Reference)}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		return &BatchGetQualityProfilesRequest_FieldTerminalPathValue{BatchGetQualityProfilesRequest_FieldTerminalPath: *fp, value: value.([]*quality_profile.Reference)}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -737,8 +718,6 @@ func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) WithRawIValue(value 
 func (fp *BatchGetQualityProfilesRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) BatchGetQualityProfilesRequest_FieldPathArrayOfValues {
 	fpaov := &BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues{BatchGetQualityProfilesRequest_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		return &BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues{BatchGetQualityProfilesRequest_FieldTerminalPath: *fp, values: values.([]*quality_profile.Reference)}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		return &BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues{BatchGetQualityProfilesRequest_FieldTerminalPath: *fp, values: values.([][]*quality_profile.Reference)}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -807,10 +786,6 @@ var _ BatchGetQualityProfilesRequest_FieldPathValue = (*BatchGetQualityProfilesR
 func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) AsParentValue() (*quality_profile.Reference, bool) {
-	res, ok := fpv.value.(*quality_profile.Reference)
-	return res, ok
-}
 func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) AsNamesValue() ([]*quality_profile.Reference, bool) {
 	res, ok := fpv.value.([]*quality_profile.Reference)
 	return res, ok
@@ -830,8 +805,6 @@ func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) SetTo(target *
 		*target = new(BatchGetQualityProfilesRequest)
 	}
 	switch fpv.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		(*target).Parent = fpv.value.(*quality_profile.Reference)
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		(*target).Names = fpv.value.([]*quality_profile.Reference)
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -851,25 +824,6 @@ func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) SetToRaw(targe
 // CompareWith compares value in the 'BatchGetQualityProfilesRequest_FieldTerminalPathValue' with the value under path in 'BatchGetQualityProfilesRequest'.
 func (fpv *BatchGetQualityProfilesRequest_FieldTerminalPathValue) CompareWith(source *BatchGetQualityProfilesRequest) (int, bool) {
 	switch fpv.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		leftValue := fpv.value.(*quality_profile.Reference)
-		rightValue := source.GetParent()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.String() == rightValue.String() {
-			return 0, true
-		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		return 0, false
 	case BatchGetQualityProfilesRequest_FieldPathSelectorFieldMask:
@@ -992,10 +946,6 @@ var _ BatchGetQualityProfilesRequest_FieldPathArrayOfValues = (*BatchGetQualityP
 
 func (fpaov *BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case BatchGetQualityProfilesRequest_FieldPathSelectorParent:
-		for _, v := range fpaov.values.([]*quality_profile.Reference) {
-			values = append(values, v)
-		}
 	case BatchGetQualityProfilesRequest_FieldPathSelectorNames:
 		for _, v := range fpaov.values.([][]*quality_profile.Reference) {
 			values = append(values, v)
@@ -1010,10 +960,6 @@ func (fpaov *BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues) GetR
 		}
 	}
 	return
-}
-func (fpaov *BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues) AsParentArrayOfValues() ([]*quality_profile.Reference, bool) {
-	res, ok := fpaov.values.([]*quality_profile.Reference)
-	return res, ok
 }
 func (fpaov *BatchGetQualityProfilesRequest_FieldTerminalPathArrayOfValues) AsNamesArrayOfValues() ([][]*quality_profile.Reference, bool) {
 	res, ok := fpaov.values.([][]*quality_profile.Reference)

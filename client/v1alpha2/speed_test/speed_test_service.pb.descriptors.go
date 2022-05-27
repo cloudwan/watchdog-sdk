@@ -60,15 +60,15 @@ func (d *RunSpeedTestDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *RunSpeedTestDescriptor) IsCollectionSubject() bool {
+func (d *RunSpeedTestDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *RunSpeedTestDescriptor) IsPluralSubject() bool {
+func (d *RunSpeedTestDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *RunSpeedTestDescriptor) HasSubjectResource() bool {
+func (d *RunSpeedTestDescriptor) HasResource() bool {
 	return true
 }
 
@@ -108,7 +108,7 @@ func (d *RunSpeedTestDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return speedTestServiceDescriptor
 }
 
-func (d *RunSpeedTestDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *RunSpeedTestDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -120,77 +120,79 @@ func (d *RunSpeedTestDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &RunSpeedTestDescriptorServerMsgHandle{}
 }
 
-func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunSpeedTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunSpeedTestRequest) *probe.Name
+		OverrideExtractResourceName(*RunSpeedTestRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunSpeedTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunSpeedTestRequest) []*probe.Name
+		OverrideExtractResourceNames(*RunSpeedTestRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunSpeedTestDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunSpeedTestRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunSpeedTestRequest) *probe.ParentName
+		OverrideExtractCollectionName(*RunSpeedTestRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunSpeedTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*RunSpeedTestResponse) *probe.Name
+		OverrideExtractResourceName(*RunSpeedTestResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*RunSpeedTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*RunSpeedTestResponse) []*probe.Name
+		OverrideExtractResourceNames(*RunSpeedTestResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *RunSpeedTestDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*RunSpeedTestResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*RunSpeedTestResponse) *probe.ParentName
+		OverrideExtractCollectionName(*RunSpeedTestResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

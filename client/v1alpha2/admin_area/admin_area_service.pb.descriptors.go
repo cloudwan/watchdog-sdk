@@ -69,15 +69,15 @@ func (d *GetAdminAreaDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetAdminAreaDescriptor) IsCollectionSubject() bool {
+func (d *GetAdminAreaDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetAdminAreaDescriptor) IsPluralSubject() bool {
+func (d *GetAdminAreaDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetAdminAreaDescriptor) HasSubjectResource() bool {
+func (d *GetAdminAreaDescriptor) HasResource() bool {
 	return true
 }
 
@@ -117,7 +117,7 @@ func (d *GetAdminAreaDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return adminAreaServiceDescriptor
 }
 
-func (d *GetAdminAreaDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetAdminAreaDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -129,62 +129,69 @@ func (d *GetAdminAreaDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &GetAdminAreaDescriptorServerMsgHandle{}
 }
 
-func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetAdminAreaRequest) *admin_area.Name
+		OverrideExtractResourceName(*GetAdminAreaRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*admin_area.Name)(nil)
 }
 
-func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetAdminAreaRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*GetAdminAreaRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetAdminAreaDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*admin_area.AdminArea) *admin_area.Name
+		OverrideExtractResourceName(*admin_area.AdminArea) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*admin_area.Name)(nil)
 }
 
-func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*admin_area.AdminArea) []*admin_area.Name
+		OverrideExtractResourceNames(*admin_area.AdminArea) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetAdminAreaDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -218,15 +225,15 @@ func (d *BatchGetAdminAreasDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetAdminAreasDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetAdminAreasDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetAdminAreasDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetAdminAreasDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetAdminAreasDescriptor) HasSubjectResource() bool {
+func (d *BatchGetAdminAreasDescriptor) HasResource() bool {
 	return true
 }
 
@@ -266,7 +273,7 @@ func (d *BatchGetAdminAreasDescriptor) GetApiDescriptor() gotenclient.ApiDescrip
 	return adminAreaServiceDescriptor
 }
 
-func (d *BatchGetAdminAreasDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetAdminAreasDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -278,71 +285,77 @@ func (d *BatchGetAdminAreasDescriptor) GetServerMsgReflectHandle() gotenclient.M
 	return &BatchGetAdminAreasDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetAdminAreasRequest) *admin_area.Name
+		OverrideExtractResourceName(*BatchGetAdminAreasRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetAdminAreasRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*BatchGetAdminAreasRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(admin_area.AdminAreaNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(admin_area.AdminAreaNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (admin_area.AdminAreaNameList)(nil)
 }
 
-func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetAdminAreasDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetAdminAreasResponse) *admin_area.Name
+		OverrideExtractResourceName(*BatchGetAdminAreasResponse) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetAdminAreasResponse) []*admin_area.Name
+		OverrideExtractResourceNames(*BatchGetAdminAreasResponse) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetAdminAreas()
-	list := make(admin_area.AdminAreaNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetAdminAreas(); len(resources) > 0 {
+			list := make(admin_area.AdminAreaNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (admin_area.AdminAreaNameList)(nil)
 }
 
-func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetAdminAreasDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -376,15 +389,15 @@ func (d *ListAdminAreasDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListAdminAreasDescriptor) IsCollectionSubject() bool {
+func (d *ListAdminAreasDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListAdminAreasDescriptor) IsPluralSubject() bool {
+func (d *ListAdminAreasDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListAdminAreasDescriptor) HasSubjectResource() bool {
+func (d *ListAdminAreasDescriptor) HasResource() bool {
 	return true
 }
 
@@ -424,7 +437,7 @@ func (d *ListAdminAreasDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor 
 	return adminAreaServiceDescriptor
 }
 
-func (d *ListAdminAreasDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListAdminAreasDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -436,64 +449,68 @@ func (d *ListAdminAreasDescriptor) GetServerMsgReflectHandle() gotenclient.Metho
 	return &ListAdminAreasDescriptorServerMsgHandle{}
 }
 
-func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListAdminAreasRequest) *admin_area.Name
+		OverrideExtractResourceName(*ListAdminAreasRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListAdminAreasRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*ListAdminAreasRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListAdminAreasDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListAdminAreasResponse) *admin_area.Name
+		OverrideExtractResourceName(*ListAdminAreasResponse) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListAdminAreasResponse) []*admin_area.Name
+		OverrideExtractResourceNames(*ListAdminAreasResponse) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetAdminAreas()
-	list := make(admin_area.AdminAreaNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetAdminAreas(); len(resources) > 0 {
+			list := make(admin_area.AdminAreaNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (admin_area.AdminAreaNameList)(nil)
 }
 
-func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListAdminAreasDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -527,15 +544,15 @@ func (d *WatchAdminAreaDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchAdminAreaDescriptor) IsCollectionSubject() bool {
+func (d *WatchAdminAreaDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchAdminAreaDescriptor) IsPluralSubject() bool {
+func (d *WatchAdminAreaDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchAdminAreaDescriptor) HasSubjectResource() bool {
+func (d *WatchAdminAreaDescriptor) HasResource() bool {
 	return true
 }
 
@@ -575,7 +592,7 @@ func (d *WatchAdminAreaDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor 
 	return adminAreaServiceDescriptor
 }
 
-func (d *WatchAdminAreaDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchAdminAreaDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -587,74 +604,78 @@ func (d *WatchAdminAreaDescriptor) GetServerMsgReflectHandle() gotenclient.Metho
 	return &WatchAdminAreaDescriptorServerMsgHandle{}
 }
 
-func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchAdminAreaRequest) *admin_area.Name
+		OverrideExtractResourceName(*WatchAdminAreaRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*admin_area.Name)(nil)
-}
-
-func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchAdminAreaRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchAdminAreaRequest) []*admin_area.Name
-	})
-	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	return nil
-}
-
-func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchAdminAreaResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchAdminAreaResponse) *admin_area.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *admin_area.AdminAreaChange_Added_:
-			return tResChange.Added.GetAdminArea().GetName()
-		case *admin_area.AdminAreaChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *admin_area.AdminAreaChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *admin_area.AdminAreaChange_Current_:
-			return tResChange.Current.GetAdminArea().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*admin_area.Name)(nil)
 }
 
-func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchAdminAreaResponse)
+func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchAdminAreaResponse) []*admin_area.Name
+		OverrideExtractResourceNames(*WatchAdminAreaRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreaDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	return nil
+}
+
+func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchAdminAreaResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceName(*WatchAdminAreaResponse) *admin_area.Name
+	})
+	if ok {
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *admin_area.AdminAreaChange_Added_:
+				return tResChange.Added.GetAdminArea().GetName()
+			case *admin_area.AdminAreaChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *admin_area.AdminAreaChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *admin_area.AdminAreaChange_Current_:
+				return tResChange.Current.GetAdminArea().GetName()
+			}
+		}
+	}
+	return (*admin_area.Name)(nil)
+}
+
+func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchAdminAreaResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchAdminAreaResponse) []*admin_area.Name
+	})
+	if ok {
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchAdminAreaDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -688,15 +709,15 @@ func (d *WatchAdminAreasDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchAdminAreasDescriptor) IsCollectionSubject() bool {
+func (d *WatchAdminAreasDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchAdminAreasDescriptor) IsPluralSubject() bool {
+func (d *WatchAdminAreasDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchAdminAreasDescriptor) HasSubjectResource() bool {
+func (d *WatchAdminAreasDescriptor) HasResource() bool {
 	return true
 }
 
@@ -736,7 +757,7 @@ func (d *WatchAdminAreasDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return adminAreaServiceDescriptor
 }
 
-func (d *WatchAdminAreasDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchAdminAreasDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -748,73 +769,77 @@ func (d *WatchAdminAreasDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &WatchAdminAreasDescriptorServerMsgHandle{}
 }
 
-func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchAdminAreasRequest) *admin_area.Name
+		OverrideExtractResourceName(*WatchAdminAreasRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchAdminAreasRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchAdminAreasRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*WatchAdminAreasRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreasDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchAdminAreasResponse) *admin_area.Name
+		OverrideExtractResourceName(*WatchAdminAreasResponse) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchAdminAreasResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchAdminAreasResponse) []*admin_area.Name
+		OverrideExtractResourceNames(*WatchAdminAreasResponse) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetAdminAreaChanges()
-	list := make(admin_area.AdminAreaNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *admin_area.AdminAreaChange_Added_:
-			list = append(list, tResChange.Added.GetAdminArea().GetName())
-		case *admin_area.AdminAreaChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *admin_area.AdminAreaChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *admin_area.AdminAreaChange_Current_:
-			list = append(list, tResChange.Current.GetAdminArea().GetName())
+	{
+		if resChanges := typedMsg.GetAdminAreaChanges(); len(resChanges) > 0 {
+			list := make(admin_area.AdminAreaNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *admin_area.AdminAreaChange_Added_:
+					list = append(list, tResChange.Added.GetAdminArea().GetName())
+				case *admin_area.AdminAreaChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *admin_area.AdminAreaChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *admin_area.AdminAreaChange_Current_:
+					list = append(list, tResChange.Current.GetAdminArea().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (admin_area.AdminAreaNameList)(nil)
 }
 
-func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchAdminAreasDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -848,15 +873,15 @@ func (d *CreateAdminAreaDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateAdminAreaDescriptor) IsCollectionSubject() bool {
+func (d *CreateAdminAreaDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateAdminAreaDescriptor) IsPluralSubject() bool {
+func (d *CreateAdminAreaDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateAdminAreaDescriptor) HasSubjectResource() bool {
+func (d *CreateAdminAreaDescriptor) HasResource() bool {
 	return true
 }
 
@@ -896,7 +921,7 @@ func (d *CreateAdminAreaDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return adminAreaServiceDescriptor
 }
 
-func (d *CreateAdminAreaDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateAdminAreaDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -908,59 +933,70 @@ func (d *CreateAdminAreaDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &CreateAdminAreaDescriptorServerMsgHandle{}
 }
 
-func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateAdminAreaRequest) *admin_area.Name
+		OverrideExtractResourceName(*CreateAdminAreaRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetAdminArea().GetName()
+	{
+		res := typedMsg.GetAdminArea()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*admin_area.Name)(nil)
 }
 
-func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateAdminAreaRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*CreateAdminAreaRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateAdminAreaDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*admin_area.AdminArea) *admin_area.Name
+		OverrideExtractResourceName(*admin_area.AdminArea) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*admin_area.Name)(nil)
 }
 
-func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*admin_area.AdminArea) []*admin_area.Name
+		OverrideExtractResourceNames(*admin_area.AdminArea) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateAdminAreaDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -994,15 +1030,15 @@ func (d *UpdateAdminAreaDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateAdminAreaDescriptor) IsCollectionSubject() bool {
+func (d *UpdateAdminAreaDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateAdminAreaDescriptor) IsPluralSubject() bool {
+func (d *UpdateAdminAreaDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateAdminAreaDescriptor) HasSubjectResource() bool {
+func (d *UpdateAdminAreaDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1042,7 +1078,7 @@ func (d *UpdateAdminAreaDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return adminAreaServiceDescriptor
 }
 
-func (d *UpdateAdminAreaDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateAdminAreaDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -1054,59 +1090,70 @@ func (d *UpdateAdminAreaDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &UpdateAdminAreaDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateAdminAreaRequest) *admin_area.Name
+		OverrideExtractResourceName(*UpdateAdminAreaRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetAdminArea().GetName()
+	{
+		res := typedMsg.GetAdminArea()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*admin_area.Name)(nil)
 }
 
-func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateAdminAreaRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*UpdateAdminAreaRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateAdminAreaDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*admin_area.AdminArea) *admin_area.Name
+		OverrideExtractResourceName(*admin_area.AdminArea) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*admin_area.Name)(nil)
 }
 
-func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*admin_area.AdminArea)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*admin_area.AdminArea) []*admin_area.Name
+		OverrideExtractResourceNames(*admin_area.AdminArea) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateAdminAreaDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
@@ -1140,15 +1187,15 @@ func (d *DeleteAdminAreaDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteAdminAreaDescriptor) IsCollectionSubject() bool {
+func (d *DeleteAdminAreaDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteAdminAreaDescriptor) IsPluralSubject() bool {
+func (d *DeleteAdminAreaDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteAdminAreaDescriptor) HasSubjectResource() bool {
+func (d *DeleteAdminAreaDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1188,7 +1235,7 @@ func (d *DeleteAdminAreaDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor
 	return adminAreaServiceDescriptor
 }
 
-func (d *DeleteAdminAreaDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteAdminAreaDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return admin_area.GetDescriptor()
 }
 
@@ -1200,62 +1247,64 @@ func (d *DeleteAdminAreaDescriptor) GetServerMsgReflectHandle() gotenclient.Meth
 	return &DeleteAdminAreaDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteAdminAreaRequest) *admin_area.Name
+		OverrideExtractResourceName(*DeleteAdminAreaRequest) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*admin_area.Name)(nil)
 }
 
-func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteAdminAreaRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteAdminAreaRequest) []*admin_area.Name
+		OverrideExtractResourceNames(*DeleteAdminAreaRequest) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteAdminAreaDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 
-func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *admin_area.Name
+		OverrideExtractResourceName(*empty.Empty) *admin_area.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*admin_area.Name
+		OverrideExtractResourceNames(*empty.Empty) []*admin_area.Name
 	})
 	if ok {
-		return admin_area.AdminAreaNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return admin_area.AdminAreaNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteAdminAreaDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	return nil
 }
 

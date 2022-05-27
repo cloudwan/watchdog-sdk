@@ -70,15 +70,15 @@ func (d *GetProbingTargetGroupDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetProbingTargetGroupDescriptor) IsCollectionSubject() bool {
+func (d *GetProbingTargetGroupDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetProbingTargetGroupDescriptor) IsPluralSubject() bool {
+func (d *GetProbingTargetGroupDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetProbingTargetGroupDescriptor) HasSubjectResource() bool {
+func (d *GetProbingTargetGroupDescriptor) HasResource() bool {
 	return true
 }
 
@@ -118,7 +118,7 @@ func (d *GetProbingTargetGroupDescriptor) GetApiDescriptor() gotenclient.ApiDesc
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *GetProbingTargetGroupDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetProbingTargetGroupDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -130,77 +130,84 @@ func (d *GetProbingTargetGroupDescriptor) GetServerMsgReflectHandle() gotenclien
 	return &GetProbingTargetGroupDescriptorServerMsgHandle{}
 }
 
-func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetProbingTargetGroupRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*GetProbingTargetGroupRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probing_target_group.Name)(nil)
 }
 
-func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetProbingTargetGroupRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*GetProbingTargetGroupRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingTargetGroupDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetProbingTargetGroupRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*GetProbingTargetGroupRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
+		OverrideExtractResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_target_group.Name)(nil)
 }
 
-func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
+		OverrideExtractResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbingTargetGroupDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -235,15 +242,15 @@ func (d *BatchGetProbingTargetGroupsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetProbingTargetGroupsDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetProbingTargetGroupsDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetProbingTargetGroupsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetProbingTargetGroupsDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetProbingTargetGroupsDescriptor) HasSubjectResource() bool {
+func (d *BatchGetProbingTargetGroupsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -283,7 +290,7 @@ func (d *BatchGetProbingTargetGroupsDescriptor) GetApiDescriptor() gotenclient.A
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *BatchGetProbingTargetGroupsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetProbingTargetGroupsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -295,86 +302,92 @@ func (d *BatchGetProbingTargetGroupsDescriptor) GetServerMsgReflectHandle() gote
 	return &BatchGetProbingTargetGroupsDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbingTargetGroupsRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*BatchGetProbingTargetGroupsRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbingTargetGroupsRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*BatchGetProbingTargetGroupsRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (probing_target_group.ProbingTargetGroupNameList)(nil)
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingTargetGroupsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbingTargetGroupsRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*BatchGetProbingTargetGroupsRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbingTargetGroupsResponse) *probing_target_group.Name
+		OverrideExtractResourceName(*BatchGetProbingTargetGroupsResponse) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbingTargetGroupsResponse) []*probing_target_group.Name
+		OverrideExtractResourceNames(*BatchGetProbingTargetGroupsResponse) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbingTargetGroups()
-	list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbingTargetGroups(); len(resources) > 0 {
+			list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probing_target_group.ProbingTargetGroupNameList)(nil)
 }
 
-func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbingTargetGroupsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbingTargetGroupsResponse) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*BatchGetProbingTargetGroupsResponse) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -409,15 +422,15 @@ func (d *ListProbingTargetGroupsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListProbingTargetGroupsDescriptor) IsCollectionSubject() bool {
+func (d *ListProbingTargetGroupsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListProbingTargetGroupsDescriptor) IsPluralSubject() bool {
+func (d *ListProbingTargetGroupsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListProbingTargetGroupsDescriptor) HasSubjectResource() bool {
+func (d *ListProbingTargetGroupsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -457,7 +470,7 @@ func (d *ListProbingTargetGroupsDescriptor) GetApiDescriptor() gotenclient.ApiDe
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *ListProbingTargetGroupsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListProbingTargetGroupsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -469,79 +482,88 @@ func (d *ListProbingTargetGroupsDescriptor) GetServerMsgReflectHandle() gotencli
 	return &ListProbingTargetGroupsDescriptorServerMsgHandle{}
 }
 
-func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbingTargetGroupsRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*ListProbingTargetGroupsRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbingTargetGroupsRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*ListProbingTargetGroupsRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingTargetGroupsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbingTargetGroupsRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*ListProbingTargetGroupsRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probing_target_group.ParentName)(nil)
 }
 
-func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbingTargetGroupsResponse) *probing_target_group.Name
+		OverrideExtractResourceName(*ListProbingTargetGroupsResponse) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbingTargetGroupsResponse) []*probing_target_group.Name
+		OverrideExtractResourceNames(*ListProbingTargetGroupsResponse) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbingTargetGroups()
-	list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbingTargetGroups(); len(resources) > 0 {
+			list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probing_target_group.ProbingTargetGroupNameList)(nil)
 }
 
-func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbingTargetGroupsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbingTargetGroupsResponse) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*ListProbingTargetGroupsResponse) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -576,15 +598,15 @@ func (d *WatchProbingTargetGroupDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbingTargetGroupDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbingTargetGroupDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchProbingTargetGroupDescriptor) IsPluralSubject() bool {
+func (d *WatchProbingTargetGroupDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchProbingTargetGroupDescriptor) HasSubjectResource() bool {
+func (d *WatchProbingTargetGroupDescriptor) HasResource() bool {
 	return true
 }
 
@@ -624,7 +646,7 @@ func (d *WatchProbingTargetGroupDescriptor) GetApiDescriptor() gotenclient.ApiDe
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *WatchProbingTargetGroupDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbingTargetGroupDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -636,89 +658,93 @@ func (d *WatchProbingTargetGroupDescriptor) GetServerMsgReflectHandle() gotencli
 	return &WatchProbingTargetGroupDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingTargetGroupRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*WatchProbingTargetGroupRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*probing_target_group.Name)(nil)
-}
-
-func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbingTargetGroupRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingTargetGroupRequest) []*probing_target_group.Name
-	})
-	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbingTargetGroupRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingTargetGroupRequest) *probing_target_group.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbingTargetGroupResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingTargetGroupResponse) *probing_target_group.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *probing_target_group.ProbingTargetGroupChange_Added_:
-			return tResChange.Added.GetProbingTargetGroup().GetName()
-		case *probing_target_group.ProbingTargetGroupChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *probing_target_group.ProbingTargetGroupChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *probing_target_group.ProbingTargetGroupChange_Current_:
-			return tResChange.Current.GetProbingTargetGroup().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*probing_target_group.Name)(nil)
 }
 
-func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbingTargetGroupResponse)
+func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingTargetGroupResponse) []*probing_target_group.Name
+		OverrideExtractResourceNames(*WatchProbingTargetGroupRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbingTargetGroupRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbingTargetGroupRequest) *probing_target_group.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingTargetGroupResponse) *probing_target_group.ParentName
+		OverrideExtractResourceName(*WatchProbingTargetGroupResponse) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *probing_target_group.ProbingTargetGroupChange_Added_:
+				return tResChange.Added.GetProbingTargetGroup().GetName()
+			case *probing_target_group.ProbingTargetGroupChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *probing_target_group.ProbingTargetGroupChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *probing_target_group.ProbingTargetGroupChange_Current_:
+				return tResChange.Current.GetProbingTargetGroup().GetName()
+			}
+		}
+	}
+	return (*probing_target_group.Name)(nil)
+}
+
+func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbingTargetGroupResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchProbingTargetGroupResponse) []*probing_target_group.Name
+	})
+	if ok {
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchProbingTargetGroupDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbingTargetGroupResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbingTargetGroupResponse) *probing_target_group.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -753,15 +779,15 @@ func (d *WatchProbingTargetGroupsDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbingTargetGroupsDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbingTargetGroupsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchProbingTargetGroupsDescriptor) IsPluralSubject() bool {
+func (d *WatchProbingTargetGroupsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchProbingTargetGroupsDescriptor) HasSubjectResource() bool {
+func (d *WatchProbingTargetGroupsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -801,7 +827,7 @@ func (d *WatchProbingTargetGroupsDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *WatchProbingTargetGroupsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbingTargetGroupsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -813,91 +839,97 @@ func (d *WatchProbingTargetGroupsDescriptor) GetServerMsgReflectHandle() gotencl
 	return &WatchProbingTargetGroupsDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingTargetGroupsRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*WatchProbingTargetGroupsRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingTargetGroupsRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*WatchProbingTargetGroupsRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingTargetGroupsRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*WatchProbingTargetGroupsRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probing_target_group.ParentName)(nil)
 }
 
-func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbingTargetGroupsResponse) *probing_target_group.Name
+		OverrideExtractResourceName(*WatchProbingTargetGroupsResponse) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbingTargetGroupsResponse) []*probing_target_group.Name
+		OverrideExtractResourceNames(*WatchProbingTargetGroupsResponse) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetProbingTargetGroupChanges()
-	list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *probing_target_group.ProbingTargetGroupChange_Added_:
-			list = append(list, tResChange.Added.GetProbingTargetGroup().GetName())
-		case *probing_target_group.ProbingTargetGroupChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *probing_target_group.ProbingTargetGroupChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *probing_target_group.ProbingTargetGroupChange_Current_:
-			list = append(list, tResChange.Current.GetProbingTargetGroup().GetName())
+	{
+		if resChanges := typedMsg.GetProbingTargetGroupChanges(); len(resChanges) > 0 {
+			list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *probing_target_group.ProbingTargetGroupChange_Added_:
+					list = append(list, tResChange.Added.GetProbingTargetGroup().GetName())
+				case *probing_target_group.ProbingTargetGroupChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *probing_target_group.ProbingTargetGroupChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *probing_target_group.ProbingTargetGroupChange_Current_:
+					list = append(list, tResChange.Current.GetProbingTargetGroup().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (probing_target_group.ProbingTargetGroupNameList)(nil)
 }
 
-func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbingTargetGroupsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbingTargetGroupsResponse) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*WatchProbingTargetGroupsResponse) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -932,15 +964,15 @@ func (d *CreateProbingTargetGroupDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateProbingTargetGroupDescriptor) IsCollectionSubject() bool {
+func (d *CreateProbingTargetGroupDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateProbingTargetGroupDescriptor) IsPluralSubject() bool {
+func (d *CreateProbingTargetGroupDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateProbingTargetGroupDescriptor) HasSubjectResource() bool {
+func (d *CreateProbingTargetGroupDescriptor) HasResource() bool {
 	return true
 }
 
@@ -980,7 +1012,7 @@ func (d *CreateProbingTargetGroupDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *CreateProbingTargetGroupDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateProbingTargetGroupDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -992,77 +1024,90 @@ func (d *CreateProbingTargetGroupDescriptor) GetServerMsgReflectHandle() gotencl
 	return &CreateProbingTargetGroupDescriptorServerMsgHandle{}
 }
 
-func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateProbingTargetGroupRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*CreateProbingTargetGroupRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbingTargetGroup().GetName()
+	{
+		res := typedMsg.GetProbingTargetGroup()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_target_group.Name)(nil)
 }
 
-func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateProbingTargetGroupRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*CreateProbingTargetGroupRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingTargetGroupDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateProbingTargetGroupRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*CreateProbingTargetGroupRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probing_target_group.ParentName)(nil)
 }
 
-func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
+		OverrideExtractResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_target_group.Name)(nil)
 }
 
-func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
+		OverrideExtractResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbingTargetGroupDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1097,15 +1142,15 @@ func (d *UpdateProbingTargetGroupDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateProbingTargetGroupDescriptor) IsCollectionSubject() bool {
+func (d *UpdateProbingTargetGroupDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateProbingTargetGroupDescriptor) IsPluralSubject() bool {
+func (d *UpdateProbingTargetGroupDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateProbingTargetGroupDescriptor) HasSubjectResource() bool {
+func (d *UpdateProbingTargetGroupDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1145,7 +1190,7 @@ func (d *UpdateProbingTargetGroupDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *UpdateProbingTargetGroupDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateProbingTargetGroupDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -1157,74 +1202,85 @@ func (d *UpdateProbingTargetGroupDescriptor) GetServerMsgReflectHandle() gotencl
 	return &UpdateProbingTargetGroupDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateProbingTargetGroupRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*UpdateProbingTargetGroupRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbingTargetGroup().GetName()
+	{
+		res := typedMsg.GetProbingTargetGroup()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_target_group.Name)(nil)
 }
 
-func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateProbingTargetGroupRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*UpdateProbingTargetGroupRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingTargetGroupDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateProbingTargetGroupRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*UpdateProbingTargetGroupRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
+		OverrideExtractResourceName(*probing_target_group.ProbingTargetGroup) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probing_target_group.Name)(nil)
 }
 
-func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
+		OverrideExtractResourceNames(*probing_target_group.ProbingTargetGroup) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbingTargetGroupDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probing_target_group.ProbingTargetGroup)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*probing_target_group.ProbingTargetGroup) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1259,15 +1315,15 @@ func (d *DeleteProbingTargetGroupDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteProbingTargetGroupDescriptor) IsCollectionSubject() bool {
+func (d *DeleteProbingTargetGroupDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteProbingTargetGroupDescriptor) IsPluralSubject() bool {
+func (d *DeleteProbingTargetGroupDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteProbingTargetGroupDescriptor) HasSubjectResource() bool {
+func (d *DeleteProbingTargetGroupDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1307,7 +1363,7 @@ func (d *DeleteProbingTargetGroupDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *DeleteProbingTargetGroupDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteProbingTargetGroupDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -1319,77 +1375,79 @@ func (d *DeleteProbingTargetGroupDescriptor) GetServerMsgReflectHandle() gotencl
 	return &DeleteProbingTargetGroupDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteProbingTargetGroupRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*DeleteProbingTargetGroupRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probing_target_group.Name)(nil)
 }
 
-func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteProbingTargetGroupRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*DeleteProbingTargetGroupRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingTargetGroupDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbingTargetGroupRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteProbingTargetGroupRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*DeleteProbingTargetGroupRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *probing_target_group.Name
+		OverrideExtractResourceName(*empty.Empty) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*probing_target_group.Name
+		OverrideExtractResourceNames(*empty.Empty) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbingTargetGroupDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1424,15 +1482,15 @@ func (d *SearchProbingTargetGroupsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *SearchProbingTargetGroupsDescriptor) IsCollectionSubject() bool {
+func (d *SearchProbingTargetGroupsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *SearchProbingTargetGroupsDescriptor) IsPluralSubject() bool {
+func (d *SearchProbingTargetGroupsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *SearchProbingTargetGroupsDescriptor) HasSubjectResource() bool {
+func (d *SearchProbingTargetGroupsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1472,7 +1530,7 @@ func (d *SearchProbingTargetGroupsDescriptor) GetApiDescriptor() gotenclient.Api
 	return probingTargetGroupServiceDescriptor
 }
 
-func (d *SearchProbingTargetGroupsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *SearchProbingTargetGroupsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probing_target_group.GetDescriptor()
 }
 
@@ -1484,79 +1542,88 @@ func (d *SearchProbingTargetGroupsDescriptor) GetServerMsgReflectHandle() gotenc
 	return &SearchProbingTargetGroupsDescriptorServerMsgHandle{}
 }
 
-func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*SearchProbingTargetGroupsRequest) *probing_target_group.Name
+		OverrideExtractResourceName(*SearchProbingTargetGroupsRequest) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*SearchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*SearchProbingTargetGroupsRequest) []*probing_target_group.Name
+		OverrideExtractResourceNames(*SearchProbingTargetGroupsRequest) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbingTargetGroupsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbingTargetGroupsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*SearchProbingTargetGroupsRequest) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*SearchProbingTargetGroupsRequest) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probing_target_group.ParentName)(nil)
 }
 
-func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*SearchProbingTargetGroupsResponse) *probing_target_group.Name
+		OverrideExtractResourceName(*SearchProbingTargetGroupsResponse) *probing_target_group.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*SearchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*SearchProbingTargetGroupsResponse) []*probing_target_group.Name
+		OverrideExtractResourceNames(*SearchProbingTargetGroupsResponse) []*probing_target_group.Name
 	})
 	if ok {
-		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probing_target_group.ProbingTargetGroupNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbingTargetGroups()
-	list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbingTargetGroups(); len(resources) > 0 {
+			list := make(probing_target_group.ProbingTargetGroupNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probing_target_group.ProbingTargetGroupNameList)(nil)
 }
 
-func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbingTargetGroupsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbingTargetGroupsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*SearchProbingTargetGroupsResponse) *probing_target_group.ParentName
+		OverrideExtractCollectionName(*SearchProbingTargetGroupsResponse) *probing_target_group.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

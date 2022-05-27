@@ -33,9 +33,6 @@ message GetAdminAreaRequest {
 // Request message for method
 // [BatchGetAdminAreas][ntt.watchdog.v1alpha2.BatchGetAdminAreas]
 message BatchGetAdminAreasRequest {
-  // Optional parent ntt.watchdog.v1alpha2.AdminArea
-  string parent = 1;
-
   // Names of AdminAreas
   repeated string names = 2;
 
@@ -46,6 +43,8 @@ message BatchGetAdminAreasRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetAdminAreasResponse

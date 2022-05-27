@@ -34,9 +34,6 @@ message GetProbingTargetRequest {
 // Request message for method
 // [BatchGetProbingTargets][ntt.watchdog.v1alpha2.BatchGetProbingTargets]
 message BatchGetProbingTargetsRequest {
-  // Optional parent ntt.watchdog.v1alpha2.ProbingTarget
-  string parent = 1;
-
   // Names of ProbingTargets
   repeated string names = 2;
 
@@ -47,6 +44,8 @@ message BatchGetProbingTargetsRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetProbingTargetsResponse
@@ -376,7 +375,7 @@ service ProbingTargetService {
   rpc BatchGetProbingTargets(BatchGetProbingTargetsRequest)
       returns (BatchGetProbingTargetsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/probingTargets:batchGet"
+      get : "/v1alpha2/probingTargets:batchGet"
     };
   }
 

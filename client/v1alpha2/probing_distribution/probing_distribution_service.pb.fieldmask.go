@@ -318,7 +318,6 @@ type BatchGetProbingDistributionsRequest_FieldMask struct {
 
 func FullBatchGetProbingDistributionsRequest_FieldMask() *BatchGetProbingDistributionsRequest_FieldMask {
 	res := &BatchGetProbingDistributionsRequest_FieldMask{}
-	res.Paths = append(res.Paths, &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorParent})
 	res.Paths = append(res.Paths, &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorNames})
 	res.Paths = append(res.Paths, &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &BatchGetProbingDistributionsRequest_FieldTerminalPath{selector: BatchGetProbingDistributionsRequest_FieldPathSelectorView})
@@ -365,7 +364,7 @@ func (fieldMask *BatchGetProbingDistributionsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*BatchGetProbingDistributionsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -395,7 +394,7 @@ func (fieldMask *BatchGetProbingDistributionsRequest_FieldMask) Reset() {
 
 func (fieldMask *BatchGetProbingDistributionsRequest_FieldMask) Subtract(other *BatchGetProbingDistributionsRequest_FieldMask) *BatchGetProbingDistributionsRequest_FieldMask {
 	result := &BatchGetProbingDistributionsRequest_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -549,8 +548,6 @@ func (fieldMask *BatchGetProbingDistributionsRequest_FieldMask) Project(source *
 		switch tp := p.(type) {
 		case *BatchGetProbingDistributionsRequest_FieldTerminalPath:
 			switch tp.selector {
-			case BatchGetProbingDistributionsRequest_FieldPathSelectorParent:
-				result.Parent = source.Parent
 			case BatchGetProbingDistributionsRequest_FieldPathSelectorNames:
 				result.Names = source.Names
 			case BatchGetProbingDistributionsRequest_FieldPathSelectorFieldMask:

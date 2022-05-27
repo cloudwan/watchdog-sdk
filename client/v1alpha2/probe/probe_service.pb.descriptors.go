@@ -71,15 +71,15 @@ func (d *GetProbeDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetProbeDescriptor) IsCollectionSubject() bool {
+func (d *GetProbeDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetProbeDescriptor) IsPluralSubject() bool {
+func (d *GetProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetProbeDescriptor) HasSubjectResource() bool {
+func (d *GetProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -119,7 +119,7 @@ func (d *GetProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *GetProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -131,77 +131,84 @@ func (d *GetProbeDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgHa
 	return &GetProbeDescriptorServerMsgHandle{}
 }
 
-func (h *GetProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetProbeRequest) *probe.Name
+		OverrideExtractResourceName(*GetProbeRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *GetProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetProbeRequest) []*probe.Name
+		OverrideExtractResourceNames(*GetProbeRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetProbeRequest) *probe.ParentName
+		OverrideExtractCollectionName(*GetProbeRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probe.Probe) *probe.Name
+		OverrideExtractResourceName(*probe.Probe) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probe.Name)(nil)
 }
 
-func (h *GetProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probe.Probe) []*probe.Name
+		OverrideExtractResourceNames(*probe.Probe) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probe.Probe) *probe.ParentName
+		OverrideExtractCollectionName(*probe.Probe) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -236,15 +243,15 @@ func (d *BatchGetProbesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetProbesDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetProbesDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetProbesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetProbesDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetProbesDescriptor) HasSubjectResource() bool {
+func (d *BatchGetProbesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -284,7 +291,7 @@ func (d *BatchGetProbesDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor 
 	return probeServiceDescriptor
 }
 
-func (d *BatchGetProbesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetProbesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -296,86 +303,92 @@ func (d *BatchGetProbesDescriptor) GetServerMsgReflectHandle() gotenclient.Metho
 	return &BatchGetProbesDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbesRequest) *probe.Name
+		OverrideExtractResourceName(*BatchGetProbesRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbesRequest) []*probe.Name
+		OverrideExtractResourceNames(*BatchGetProbesRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(probe.ProbeNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(probe.ProbeNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (probe.ProbeNameList)(nil)
 }
 
-func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbesRequest) *probe.ParentName
+		OverrideExtractCollectionName(*BatchGetProbesRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetProbesResponse) *probe.Name
+		OverrideExtractResourceName(*BatchGetProbesResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetProbesResponse) []*probe.Name
+		OverrideExtractResourceNames(*BatchGetProbesResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbes()
-	list := make(probe.ProbeNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbes(); len(resources) > 0 {
+			list := make(probe.ProbeNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probe.ProbeNameList)(nil)
 }
 
-func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetProbesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetProbesResponse) *probe.ParentName
+		OverrideExtractCollectionName(*BatchGetProbesResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -410,15 +423,15 @@ func (d *ListProbesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListProbesDescriptor) IsCollectionSubject() bool {
+func (d *ListProbesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListProbesDescriptor) IsPluralSubject() bool {
+func (d *ListProbesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListProbesDescriptor) HasSubjectResource() bool {
+func (d *ListProbesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -458,7 +471,7 @@ func (d *ListProbesDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *ListProbesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListProbesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -470,79 +483,88 @@ func (d *ListProbesDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsg
 	return &ListProbesDescriptorServerMsgHandle{}
 }
 
-func (h *ListProbesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbesRequest) *probe.Name
+		OverrideExtractResourceName(*ListProbesRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbesRequest) []*probe.Name
+		OverrideExtractResourceNames(*ListProbesRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListProbesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbesRequest) *probe.ParentName
+		OverrideExtractCollectionName(*ListProbesRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probe.ParentName)(nil)
 }
 
-func (h *ListProbesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListProbesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbesResponse) *probe.Name
+		OverrideExtractResourceName(*ListProbesResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListProbesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListProbesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbesResponse) []*probe.Name
+		OverrideExtractResourceNames(*ListProbesResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbes()
-	list := make(probe.ProbeNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbes(); len(resources) > 0 {
+			list := make(probe.ProbeNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probe.ProbeNameList)(nil)
 }
 
-func (h *ListProbesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListProbesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbesResponse) *probe.ParentName
+		OverrideExtractCollectionName(*ListProbesResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -577,15 +599,15 @@ func (d *WatchProbeDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbeDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbeDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchProbeDescriptor) IsPluralSubject() bool {
+func (d *WatchProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchProbeDescriptor) HasSubjectResource() bool {
+func (d *WatchProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -625,7 +647,7 @@ func (d *WatchProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *WatchProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -637,89 +659,93 @@ func (d *WatchProbeDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsg
 	return &WatchProbeDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbeRequest) *probe.Name
+		OverrideExtractResourceName(*WatchProbeRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*probe.Name)(nil)
-}
-
-func (h *WatchProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbeRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbeRequest) []*probe.Name
-	})
-	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbeRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbeRequest) *probe.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchProbeResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbeResponse) *probe.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *probe.ProbeChange_Added_:
-			return tResChange.Added.GetProbe().GetName()
-		case *probe.ProbeChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *probe.ProbeChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *probe.ProbeChange_Current_:
-			return tResChange.Current.GetProbe().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *WatchProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchProbeResponse)
+func (h *WatchProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbeResponse) []*probe.Name
+		OverrideExtractResourceNames(*WatchProbeRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbeRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbeRequest) *probe.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbeResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbeResponse) *probe.ParentName
+		OverrideExtractResourceName(*WatchProbeResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *probe.ProbeChange_Added_:
+				return tResChange.Added.GetProbe().GetName()
+			case *probe.ProbeChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *probe.ProbeChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *probe.ProbeChange_Current_:
+				return tResChange.Current.GetProbe().GetName()
+			}
+		}
+	}
+	return (*probe.Name)(nil)
+}
+
+func (h *WatchProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchProbeResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchProbeResponse) []*probe.Name
+	})
+	if ok {
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchProbeResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchProbeResponse) *probe.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -754,15 +780,15 @@ func (d *WatchProbesDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchProbesDescriptor) IsCollectionSubject() bool {
+func (d *WatchProbesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchProbesDescriptor) IsPluralSubject() bool {
+func (d *WatchProbesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchProbesDescriptor) HasSubjectResource() bool {
+func (d *WatchProbesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -802,7 +828,7 @@ func (d *WatchProbesDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *WatchProbesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchProbesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -814,91 +840,97 @@ func (d *WatchProbesDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMs
 	return &WatchProbesDescriptorServerMsgHandle{}
 }
 
-func (h *WatchProbesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbesRequest) *probe.Name
+		OverrideExtractResourceName(*WatchProbesRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbesRequest) []*probe.Name
+		OverrideExtractResourceNames(*WatchProbesRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchProbesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbesRequest) *probe.ParentName
+		OverrideExtractCollectionName(*WatchProbesRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probe.ParentName)(nil)
 }
 
-func (h *WatchProbesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchProbesResponse) *probe.Name
+		OverrideExtractResourceName(*WatchProbesResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchProbesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchProbesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchProbesResponse) []*probe.Name
+		OverrideExtractResourceNames(*WatchProbesResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetProbeChanges()
-	list := make(probe.ProbeNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *probe.ProbeChange_Added_:
-			list = append(list, tResChange.Added.GetProbe().GetName())
-		case *probe.ProbeChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *probe.ProbeChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *probe.ProbeChange_Current_:
-			list = append(list, tResChange.Current.GetProbe().GetName())
+	{
+		if resChanges := typedMsg.GetProbeChanges(); len(resChanges) > 0 {
+			list := make(probe.ProbeNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *probe.ProbeChange_Added_:
+					list = append(list, tResChange.Added.GetProbe().GetName())
+				case *probe.ProbeChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *probe.ProbeChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *probe.ProbeChange_Current_:
+					list = append(list, tResChange.Current.GetProbe().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (probe.ProbeNameList)(nil)
 }
 
-func (h *WatchProbesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchProbesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchProbesResponse) *probe.ParentName
+		OverrideExtractCollectionName(*WatchProbesResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -933,15 +965,15 @@ func (d *CreateProbeDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateProbeDescriptor) IsCollectionSubject() bool {
+func (d *CreateProbeDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateProbeDescriptor) IsPluralSubject() bool {
+func (d *CreateProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateProbeDescriptor) HasSubjectResource() bool {
+func (d *CreateProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -981,7 +1013,7 @@ func (d *CreateProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *CreateProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -993,77 +1025,90 @@ func (d *CreateProbeDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMs
 	return &CreateProbeDescriptorServerMsgHandle{}
 }
 
-func (h *CreateProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateProbeRequest) *probe.Name
+		OverrideExtractResourceName(*CreateProbeRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbe().GetName()
+	{
+		res := typedMsg.GetProbe()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probe.Name)(nil)
 }
 
-func (h *CreateProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateProbeRequest) []*probe.Name
+		OverrideExtractResourceNames(*CreateProbeRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateProbeRequest) *probe.ParentName
+		OverrideExtractCollectionName(*CreateProbeRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*probe.ParentName)(nil)
 }
 
-func (h *CreateProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probe.Probe) *probe.Name
+		OverrideExtractResourceName(*probe.Probe) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probe.Name)(nil)
 }
 
-func (h *CreateProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probe.Probe) []*probe.Name
+		OverrideExtractResourceNames(*probe.Probe) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probe.Probe) *probe.ParentName
+		OverrideExtractCollectionName(*probe.Probe) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1098,15 +1143,15 @@ func (d *UpdateProbeDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateProbeDescriptor) IsCollectionSubject() bool {
+func (d *UpdateProbeDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateProbeDescriptor) IsPluralSubject() bool {
+func (d *UpdateProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateProbeDescriptor) HasSubjectResource() bool {
+func (d *UpdateProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1146,7 +1191,7 @@ func (d *UpdateProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *UpdateProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -1158,74 +1203,85 @@ func (d *UpdateProbeDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMs
 	return &UpdateProbeDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateProbeRequest) *probe.Name
+		OverrideExtractResourceName(*UpdateProbeRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetProbe().GetName()
+	{
+		res := typedMsg.GetProbe()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probe.Name)(nil)
 }
 
-func (h *UpdateProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateProbeRequest) []*probe.Name
+		OverrideExtractResourceNames(*UpdateProbeRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateProbeRequest) *probe.ParentName
+		OverrideExtractCollectionName(*UpdateProbeRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*probe.Probe) *probe.Name
+		OverrideExtractResourceName(*probe.Probe) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*probe.Name)(nil)
 }
 
-func (h *UpdateProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*probe.Probe) []*probe.Name
+		OverrideExtractResourceNames(*probe.Probe) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*probe.Probe)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*probe.Probe) *probe.ParentName
+		OverrideExtractCollectionName(*probe.Probe) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1260,15 +1316,15 @@ func (d *DeleteProbeDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteProbeDescriptor) IsCollectionSubject() bool {
+func (d *DeleteProbeDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteProbeDescriptor) IsPluralSubject() bool {
+func (d *DeleteProbeDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteProbeDescriptor) HasSubjectResource() bool {
+func (d *DeleteProbeDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1308,7 +1364,7 @@ func (d *DeleteProbeDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *DeleteProbeDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteProbeDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -1320,77 +1376,79 @@ func (d *DeleteProbeDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMs
 	return &DeleteProbeDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteProbeDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbeDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteProbeRequest) *probe.Name
+		OverrideExtractResourceName(*DeleteProbeRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*probe.Name)(nil)
 }
 
-func (h *DeleteProbeDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbeDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteProbeRequest) []*probe.Name
+		OverrideExtractResourceNames(*DeleteProbeRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbeDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbeDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteProbeRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteProbeRequest) *probe.ParentName
+		OverrideExtractCollectionName(*DeleteProbeRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbeDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbeDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *probe.Name
+		OverrideExtractResourceName(*empty.Empty) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteProbeDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteProbeDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*probe.Name
+		OverrideExtractResourceNames(*empty.Empty) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteProbeDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteProbeDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *probe.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1425,15 +1483,15 @@ func (d *SearchProbesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *SearchProbesDescriptor) IsCollectionSubject() bool {
+func (d *SearchProbesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *SearchProbesDescriptor) IsPluralSubject() bool {
+func (d *SearchProbesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *SearchProbesDescriptor) HasSubjectResource() bool {
+func (d *SearchProbesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1473,7 +1531,7 @@ func (d *SearchProbesDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *SearchProbesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *SearchProbesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -1485,79 +1543,88 @@ func (d *SearchProbesDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &SearchProbesDescriptorServerMsgHandle{}
 }
 
-func (h *SearchProbesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*SearchProbesRequest) *probe.Name
+		OverrideExtractResourceName(*SearchProbesRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SearchProbesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SearchProbesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*SearchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*SearchProbesRequest) []*probe.Name
+		OverrideExtractResourceNames(*SearchProbesRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *SearchProbesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*SearchProbesRequest) *probe.ParentName
+		OverrideExtractCollectionName(*SearchProbesRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probe.ParentName)(nil)
 }
 
-func (h *SearchProbesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*SearchProbesResponse) *probe.Name
+		OverrideExtractResourceName(*SearchProbesResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *SearchProbesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *SearchProbesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*SearchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*SearchProbesResponse) []*probe.Name
+		OverrideExtractResourceNames(*SearchProbesResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbes()
-	list := make(probe.ProbeNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetProbes(); len(resources) > 0 {
+			list := make(probe.ProbeNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (probe.ProbeNameList)(nil)
 }
 
-func (h *SearchProbesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *SearchProbesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*SearchProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*SearchProbesResponse) *probe.ParentName
+		OverrideExtractCollectionName(*SearchProbesResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1592,15 +1659,15 @@ func (d *ListMyProbesDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListMyProbesDescriptor) IsCollectionSubject() bool {
+func (d *ListMyProbesDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListMyProbesDescriptor) IsPluralSubject() bool {
+func (d *ListMyProbesDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListMyProbesDescriptor) HasSubjectResource() bool {
+func (d *ListMyProbesDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1640,7 +1707,7 @@ func (d *ListMyProbesDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
 	return probeServiceDescriptor
 }
 
-func (d *ListMyProbesDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListMyProbesDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return probe.GetDescriptor()
 }
 
@@ -1652,79 +1719,79 @@ func (d *ListMyProbesDescriptor) GetServerMsgReflectHandle() gotenclient.MethodM
 	return &ListMyProbesDescriptorServerMsgHandle{}
 }
 
-func (h *ListMyProbesDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListMyProbesDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbesRequest) *probe.Name
+		OverrideExtractResourceName(*ListProbesRequest) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListMyProbesDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListMyProbesDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbesRequest) []*probe.Name
+		OverrideExtractResourceNames(*ListProbesRequest) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListMyProbesDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListMyProbesDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbesRequest) *probe.ParentName
+		OverrideExtractCollectionName(*ListProbesRequest) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*probe.ParentName)(nil)
 }
 
-func (h *ListMyProbesDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListMyProbesDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListProbesResponse) *probe.Name
+		OverrideExtractResourceName(*ListProbesResponse) *probe.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListMyProbesDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListMyProbesDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListProbesResponse) []*probe.Name
+		OverrideExtractResourceNames(*ListProbesResponse) []*probe.Name
 	})
 	if ok {
-		return probe.ProbeNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetProbes()
-	list := make(probe.ProbeNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
-	}
-	return list
+	return nil
 }
 
-func (h *ListMyProbesDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListMyProbesDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListProbesResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListProbesResponse) *probe.ParentName
+		OverrideExtractCollectionName(*ListProbesResponse) *probe.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

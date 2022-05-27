@@ -173,6 +173,277 @@ func (o *ProbingConfig) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*ProbingConfig))
 }
 
+func (o *ProbingConfig_ProbingSession) GotenObjectExt() {}
+
+func (o *ProbingConfig_ProbingSession) MakeFullFieldMask() *ProbingConfig_ProbingSession_FieldMask {
+	return FullProbingConfig_ProbingSession_FieldMask()
+}
+
+func (o *ProbingConfig_ProbingSession) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbingConfig_ProbingSession_FieldMask()
+}
+
+func (o *ProbingConfig_ProbingSession) MakeDiffFieldMask(other *ProbingConfig_ProbingSession) *ProbingConfig_ProbingSession_FieldMask {
+	if o == nil && other == nil {
+		return &ProbingConfig_ProbingSession_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbingConfig_ProbingSession_FieldMask()
+	}
+
+	res := &ProbingConfig_ProbingSession_FieldMask{}
+	if o.GetTarget().String() != other.GetTarget().String() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTarget})
+	}
+	if o.GetTargetDisplayName() != other.GetTargetDisplayName() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetDisplayName})
+	}
+	if o.GetTargetGroup().String() != other.GetTargetGroup().String() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTargetGroup})
+	}
+	if o.GetMode() != other.GetMode() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorMode})
+	}
+	if o.GetIpVersion() != other.GetIpVersion() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIpVersion})
+	}
+	if o.GetAddress() != other.GetAddress() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddress})
+	}
+	if o.GetGroupName() != other.GetGroupName() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorGroupName})
+	}
+	if o.GetCategory() != other.GetCategory() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorCategory})
+	}
+	if o.GetLocationType() != other.GetLocationType() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocationType})
+	}
+	{
+		subMask := o.GetLocation().MakeDiffFieldMask(other.GetLocation())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorLocation, subPath: subpath})
+			}
+		}
+	}
+	if o.GetIntervalSec() != other.GetIntervalSec() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorIntervalSec})
+	}
+	if !proto.Equal(o.GetInterval(), other.GetInterval()) {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorInterval})
+	}
+	if o.GetTos() != other.GetTos() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorTos})
+	}
+	if o.GetWindowSize() != other.GetWindowSize() {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorWindowSize})
+	}
+	{
+		subMask := o.GetPathProbing().MakeDiffFieldMask(other.GetPathProbing())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorPathProbing, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetSpeedtestSettings().MakeDiffFieldMask(other.GetSpeedtestSettings())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetHttpProbingConfig().MakeDiffFieldMask(other.GetHttpProbingConfig())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetProxyConfiguration().MakeDiffFieldMask(other.GetProxyConfiguration())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldSubPath{selector: ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration, subPath: subpath})
+			}
+		}
+	}
+
+	if len(o.GetAddresses()) == len(other.GetAddresses()) {
+		for i, lValue := range o.GetAddresses() {
+			rValue := other.GetAddresses()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddresses})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbingConfigProbingSession_FieldTerminalPath{selector: ProbingConfigProbingSession_FieldPathSelectorAddresses})
+	}
+	return res
+}
+
+func (o *ProbingConfig_ProbingSession) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*ProbingConfig_ProbingSession))
+}
+
+func (o *ProbingConfig_ProbingSession) Clone() *ProbingConfig_ProbingSession {
+	if o == nil {
+		return nil
+	}
+	result := &ProbingConfig_ProbingSession{}
+	if o.Target == nil {
+		result.Target = nil
+	} else if data, err := o.Target.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Target = &probing_target.Name{}
+		if err := result.Target.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	result.TargetDisplayName = o.TargetDisplayName
+	if o.TargetGroup == nil {
+		result.TargetGroup = nil
+	} else if data, err := o.TargetGroup.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.TargetGroup = &probing_target_group.Reference{}
+		if err := result.TargetGroup.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	result.Mode = o.Mode
+	result.IpVersion = o.IpVersion
+	result.Address = o.Address
+	result.GroupName = o.GroupName
+	result.Category = o.Category
+	result.LocationType = o.LocationType
+	result.Location = o.Location.Clone()
+	result.IntervalSec = o.IntervalSec
+	result.Interval = proto.Clone(o.Interval).(*duration.Duration)
+	result.Tos = o.Tos
+	result.WindowSize = o.WindowSize
+	result.PathProbing = o.PathProbing.Clone()
+	result.SpeedtestSettings = o.SpeedtestSettings.Clone()
+	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
+	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
+	result.Addresses = make([]string, len(o.Addresses))
+	for i, sourceValue := range o.Addresses {
+		result.Addresses[i] = sourceValue
+	}
+	return result
+}
+
+func (o *ProbingConfig_ProbingSession) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *ProbingConfig_ProbingSession) Merge(source *ProbingConfig_ProbingSession) {
+	if source.GetTarget() != nil {
+		if data, err := source.GetTarget().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Target = &probing_target.Name{}
+			if err := o.Target.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Target = nil
+	}
+	o.TargetDisplayName = source.GetTargetDisplayName()
+	if source.GetTargetGroup() != nil {
+		if data, err := source.GetTargetGroup().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.TargetGroup = &probing_target_group.Reference{}
+			if err := o.TargetGroup.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.TargetGroup = nil
+	}
+	o.Mode = source.GetMode()
+	o.IpVersion = source.GetIpVersion()
+	o.Address = source.GetAddress()
+	o.GroupName = source.GetGroupName()
+	o.Category = source.GetCategory()
+	o.LocationType = source.GetLocationType()
+	if source.GetLocation() != nil {
+		if o.Location == nil {
+			o.Location = new(common.Location)
+		}
+		o.Location.Merge(source.GetLocation())
+	}
+	o.IntervalSec = source.GetIntervalSec()
+	if source.GetInterval() != nil {
+		if o.Interval == nil {
+			o.Interval = new(duration.Duration)
+		}
+		proto.Merge(o.Interval, source.GetInterval())
+	}
+	o.Tos = source.GetTos()
+	o.WindowSize = source.GetWindowSize()
+	if source.GetPathProbing() != nil {
+		if o.PathProbing == nil {
+			o.PathProbing = new(common.PathProbe)
+		}
+		o.PathProbing.Merge(source.GetPathProbing())
+	}
+	if source.GetSpeedtestSettings() != nil {
+		if o.SpeedtestSettings == nil {
+			o.SpeedtestSettings = new(common.SpeedTestSettings)
+		}
+		o.SpeedtestSettings.Merge(source.GetSpeedtestSettings())
+	}
+	if source.GetHttpProbingConfig() != nil {
+		if o.HttpProbingConfig == nil {
+			o.HttpProbingConfig = new(common.HTTPProbingConfig)
+		}
+		o.HttpProbingConfig.Merge(source.GetHttpProbingConfig())
+	}
+	if source.GetProxyConfiguration() != nil {
+		if o.ProxyConfiguration == nil {
+			o.ProxyConfiguration = new(common.ProxyConfiguration)
+		}
+		o.ProxyConfiguration.Merge(source.GetProxyConfiguration())
+	}
+	for _, sourceValue := range source.GetAddresses() {
+		exists := false
+		for _, currentValue := range o.Addresses {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.Addresses = append(o.Addresses, newDstElement)
+		}
+	}
+
+}
+
+func (o *ProbingConfig_ProbingSession) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*ProbingConfig_ProbingSession))
+}
+
 func (o *ProbingConfig_Spec) GotenObjectExt() {}
 
 func (o *ProbingConfig_Spec) MakeFullFieldMask() *ProbingConfig_Spec_FieldMask {
@@ -251,12 +522,12 @@ func (o *ProbingConfig_Spec) Clone() *ProbingConfig_Spec {
 			panic(err)
 		}
 	}
-	result.ProbingSessions = make([]*ProbingSession, len(o.ProbingSessions))
+	result.ProbingSessions = make([]*ProbingConfig_ProbingSession, len(o.ProbingSessions))
 	for i, sourceValue := range o.ProbingSessions {
 		result.ProbingSessions[i] = sourceValue.Clone()
 	}
 	result.Speedtest = o.Speedtest.Clone()
-	result.TargetSessions = make([]*ProbingSession, len(o.TargetSessions))
+	result.TargetSessions = make([]*ProbingConfig_ProbingSession, len(o.TargetSessions))
 	for i, sourceValue := range o.TargetSessions {
 		result.TargetSessions[i] = sourceValue.Clone()
 	}
@@ -280,8 +551,8 @@ func (o *ProbingConfig_Spec) Merge(source *ProbingConfig_Spec) {
 	} else {
 		o.Probe = nil
 	}
-	sourceProbingSessions, origProbingSessionsKeys := map[string]*ProbingSession{}, map[string]bool{}
-	newProbingSessions := make([]*ProbingSession, 0, len(o.ProbingSessions))
+	sourceProbingSessions, origProbingSessionsKeys := map[string]*ProbingConfig_ProbingSession{}, map[string]bool{}
+	newProbingSessions := make([]*ProbingConfig_ProbingSession, 0, len(o.ProbingSessions))
 	for _, sourceValue := range source.GetProbingSessions() {
 		key := fmt.Sprintf("%s", sourceValue.GetTarget())
 		sourceProbingSessions[key] = sourceValue
@@ -292,7 +563,7 @@ func (o *ProbingConfig_Spec) Merge(source *ProbingConfig_Spec) {
 		sourceValue := sourceProbingSessions[key]
 		if sourceValue != nil {
 			if origValue == nil {
-				origValue = new(ProbingSession)
+				origValue = new(ProbingConfig_ProbingSession)
 			}
 			origValue.Merge(sourceValue)
 		}
@@ -317,8 +588,8 @@ func (o *ProbingConfig_Spec) Merge(source *ProbingConfig_Spec) {
 		}
 		o.Speedtest.Merge(source.GetSpeedtest())
 	}
-	sourceTargetSessions, origTargetSessionsKeys := map[string]*ProbingSession{}, map[string]bool{}
-	newTargetSessions := make([]*ProbingSession, 0, len(o.TargetSessions))
+	sourceTargetSessions, origTargetSessionsKeys := map[string]*ProbingConfig_ProbingSession{}, map[string]bool{}
+	newTargetSessions := make([]*ProbingConfig_ProbingSession, 0, len(o.TargetSessions))
 	for _, sourceValue := range source.GetTargetSessions() {
 		key := fmt.Sprintf("%s", sourceValue.GetTarget())
 		sourceTargetSessions[key] = sourceValue
@@ -329,7 +600,7 @@ func (o *ProbingConfig_Spec) Merge(source *ProbingConfig_Spec) {
 		sourceValue := sourceTargetSessions[key]
 		if sourceValue != nil {
 			if origValue == nil {
-				origValue = new(ProbingSession)
+				origValue = new(ProbingConfig_ProbingSession)
 			}
 			origValue.Merge(sourceValue)
 		}
@@ -626,275 +897,4 @@ func (o *ProbingConfig_Spec_SpeedTest_Server) Merge(source *ProbingConfig_Spec_S
 
 func (o *ProbingConfig_Spec_SpeedTest_Server) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*ProbingConfig_Spec_SpeedTest_Server))
-}
-
-func (o *ProbingSession) GotenObjectExt() {}
-
-func (o *ProbingSession) MakeFullFieldMask() *ProbingSession_FieldMask {
-	return FullProbingSession_FieldMask()
-}
-
-func (o *ProbingSession) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullProbingSession_FieldMask()
-}
-
-func (o *ProbingSession) MakeDiffFieldMask(other *ProbingSession) *ProbingSession_FieldMask {
-	if o == nil && other == nil {
-		return &ProbingSession_FieldMask{}
-	}
-	if o == nil || other == nil {
-		return FullProbingSession_FieldMask()
-	}
-
-	res := &ProbingSession_FieldMask{}
-	if o.GetTarget().String() != other.GetTarget().String() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTarget})
-	}
-	if o.GetTargetDisplayName() != other.GetTargetDisplayName() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetDisplayName})
-	}
-	if o.GetTargetGroup().String() != other.GetTargetGroup().String() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTargetGroup})
-	}
-	if o.GetMode() != other.GetMode() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorMode})
-	}
-	if o.GetIpVersion() != other.GetIpVersion() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIpVersion})
-	}
-	if o.GetAddress() != other.GetAddress() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddress})
-	}
-	if o.GetGroupName() != other.GetGroupName() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorGroupName})
-	}
-	if o.GetCategory() != other.GetCategory() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorCategory})
-	}
-	if o.GetLocationType() != other.GetLocationType() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocationType})
-	}
-	{
-		subMask := o.GetLocation().MakeDiffFieldMask(other.GetLocation())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorLocation})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorLocation, subPath: subpath})
-			}
-		}
-	}
-	if o.GetIntervalSec() != other.GetIntervalSec() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorIntervalSec})
-	}
-	if !proto.Equal(o.GetInterval(), other.GetInterval()) {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorInterval})
-	}
-	if o.GetTos() != other.GetTos() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorTos})
-	}
-	if o.GetWindowSize() != other.GetWindowSize() {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorWindowSize})
-	}
-	{
-		subMask := o.GetPathProbing().MakeDiffFieldMask(other.GetPathProbing())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorPathProbing})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorPathProbing, subPath: subpath})
-			}
-		}
-	}
-	{
-		subMask := o.GetSpeedtestSettings().MakeDiffFieldMask(other.GetSpeedtestSettings())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorSpeedtestSettings, subPath: subpath})
-			}
-		}
-	}
-	{
-		subMask := o.GetHttpProbingConfig().MakeDiffFieldMask(other.GetHttpProbingConfig())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorHttpProbingConfig, subPath: subpath})
-			}
-		}
-	}
-	{
-		subMask := o.GetProxyConfiguration().MakeDiffFieldMask(other.GetProxyConfiguration())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingSession_FieldSubPath{selector: ProbingSession_FieldPathSelectorProxyConfiguration, subPath: subpath})
-			}
-		}
-	}
-
-	if len(o.GetAddresses()) == len(other.GetAddresses()) {
-		for i, lValue := range o.GetAddresses() {
-			rValue := other.GetAddresses()[i]
-			if lValue != rValue {
-				res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorAddresses})
-	}
-	return res
-}
-
-func (o *ProbingSession) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*ProbingSession))
-}
-
-func (o *ProbingSession) Clone() *ProbingSession {
-	if o == nil {
-		return nil
-	}
-	result := &ProbingSession{}
-	if o.Target == nil {
-		result.Target = nil
-	} else if data, err := o.Target.ProtoString(); err != nil {
-		panic(err)
-	} else {
-		result.Target = &probing_target.Name{}
-		if err := result.Target.ParseProtoString(data); err != nil {
-			panic(err)
-		}
-	}
-	result.TargetDisplayName = o.TargetDisplayName
-	if o.TargetGroup == nil {
-		result.TargetGroup = nil
-	} else if data, err := o.TargetGroup.ProtoString(); err != nil {
-		panic(err)
-	} else {
-		result.TargetGroup = &probing_target_group.Reference{}
-		if err := result.TargetGroup.ParseProtoString(data); err != nil {
-			panic(err)
-		}
-	}
-	result.Mode = o.Mode
-	result.IpVersion = o.IpVersion
-	result.Address = o.Address
-	result.GroupName = o.GroupName
-	result.Category = o.Category
-	result.LocationType = o.LocationType
-	result.Location = o.Location.Clone()
-	result.IntervalSec = o.IntervalSec
-	result.Interval = proto.Clone(o.Interval).(*duration.Duration)
-	result.Tos = o.Tos
-	result.WindowSize = o.WindowSize
-	result.PathProbing = o.PathProbing.Clone()
-	result.SpeedtestSettings = o.SpeedtestSettings.Clone()
-	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
-	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
-	result.Addresses = make([]string, len(o.Addresses))
-	for i, sourceValue := range o.Addresses {
-		result.Addresses[i] = sourceValue
-	}
-	return result
-}
-
-func (o *ProbingSession) CloneRaw() gotenobject.GotenObjectExt {
-	return o.Clone()
-}
-
-func (o *ProbingSession) Merge(source *ProbingSession) {
-	if source.GetTarget() != nil {
-		if data, err := source.GetTarget().ProtoString(); err != nil {
-			panic(err)
-		} else {
-			o.Target = &probing_target.Name{}
-			if err := o.Target.ParseProtoString(data); err != nil {
-				panic(err)
-			}
-		}
-	} else {
-		o.Target = nil
-	}
-	o.TargetDisplayName = source.GetTargetDisplayName()
-	if source.GetTargetGroup() != nil {
-		if data, err := source.GetTargetGroup().ProtoString(); err != nil {
-			panic(err)
-		} else {
-			o.TargetGroup = &probing_target_group.Reference{}
-			if err := o.TargetGroup.ParseProtoString(data); err != nil {
-				panic(err)
-			}
-		}
-	} else {
-		o.TargetGroup = nil
-	}
-	o.Mode = source.GetMode()
-	o.IpVersion = source.GetIpVersion()
-	o.Address = source.GetAddress()
-	o.GroupName = source.GetGroupName()
-	o.Category = source.GetCategory()
-	o.LocationType = source.GetLocationType()
-	if source.GetLocation() != nil {
-		if o.Location == nil {
-			o.Location = new(common.Location)
-		}
-		o.Location.Merge(source.GetLocation())
-	}
-	o.IntervalSec = source.GetIntervalSec()
-	if source.GetInterval() != nil {
-		if o.Interval == nil {
-			o.Interval = new(duration.Duration)
-		}
-		proto.Merge(o.Interval, source.GetInterval())
-	}
-	o.Tos = source.GetTos()
-	o.WindowSize = source.GetWindowSize()
-	if source.GetPathProbing() != nil {
-		if o.PathProbing == nil {
-			o.PathProbing = new(common.PathProbe)
-		}
-		o.PathProbing.Merge(source.GetPathProbing())
-	}
-	if source.GetSpeedtestSettings() != nil {
-		if o.SpeedtestSettings == nil {
-			o.SpeedtestSettings = new(common.SpeedTestSettings)
-		}
-		o.SpeedtestSettings.Merge(source.GetSpeedtestSettings())
-	}
-	if source.GetHttpProbingConfig() != nil {
-		if o.HttpProbingConfig == nil {
-			o.HttpProbingConfig = new(common.HTTPProbingConfig)
-		}
-		o.HttpProbingConfig.Merge(source.GetHttpProbingConfig())
-	}
-	if source.GetProxyConfiguration() != nil {
-		if o.ProxyConfiguration == nil {
-			o.ProxyConfiguration = new(common.ProxyConfiguration)
-		}
-		o.ProxyConfiguration.Merge(source.GetProxyConfiguration())
-	}
-	for _, sourceValue := range source.GetAddresses() {
-		exists := false
-		for _, currentValue := range o.Addresses {
-			if currentValue == sourceValue {
-				exists = true
-				break
-			}
-		}
-		if !exists {
-			var newDstElement string
-			newDstElement = sourceValue
-			o.Addresses = append(o.Addresses, newDstElement)
-		}
-	}
-
-}
-
-func (o *ProbingSession) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*ProbingSession))
 }

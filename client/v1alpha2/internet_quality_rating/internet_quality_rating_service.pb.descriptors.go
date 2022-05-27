@@ -69,15 +69,15 @@ func (d *GetInternetQualityRatingDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *GetInternetQualityRatingDescriptor) IsCollectionSubject() bool {
+func (d *GetInternetQualityRatingDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *GetInternetQualityRatingDescriptor) IsPluralSubject() bool {
+func (d *GetInternetQualityRatingDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *GetInternetQualityRatingDescriptor) HasSubjectResource() bool {
+func (d *GetInternetQualityRatingDescriptor) HasResource() bool {
 	return true
 }
 
@@ -117,7 +117,7 @@ func (d *GetInternetQualityRatingDescriptor) GetApiDescriptor() gotenclient.ApiD
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *GetInternetQualityRatingDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *GetInternetQualityRatingDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -129,77 +129,84 @@ func (d *GetInternetQualityRatingDescriptor) GetServerMsgReflectHandle() gotencl
 	return &GetInternetQualityRatingDescriptorServerMsgHandle{}
 }
 
-func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*GetInternetQualityRatingRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*GetInternetQualityRatingRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*GetInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*GetInternetQualityRatingRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*GetInternetQualityRatingRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetInternetQualityRatingDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*GetInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*GetInternetQualityRatingRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*GetInternetQualityRatingRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
+		OverrideExtractResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *GetInternetQualityRatingDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -234,15 +241,15 @@ func (d *BatchGetInternetQualityRatingsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *BatchGetInternetQualityRatingsDescriptor) IsCollectionSubject() bool {
+func (d *BatchGetInternetQualityRatingsDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *BatchGetInternetQualityRatingsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *BatchGetInternetQualityRatingsDescriptor) IsPluralSubject() bool {
-	return true
-}
-
-func (d *BatchGetInternetQualityRatingsDescriptor) HasSubjectResource() bool {
+func (d *BatchGetInternetQualityRatingsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -282,7 +289,7 @@ func (d *BatchGetInternetQualityRatingsDescriptor) GetApiDescriptor() gotenclien
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *BatchGetInternetQualityRatingsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *BatchGetInternetQualityRatingsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -294,86 +301,92 @@ func (d *BatchGetInternetQualityRatingsDescriptor) GetServerMsgReflectHandle() g
 	return &BatchGetInternetQualityRatingsDescriptorServerMsgHandle{}
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetInternetQualityRatingsRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*BatchGetInternetQualityRatingsRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetInternetQualityRatingsRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*BatchGetInternetQualityRatingsRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	if refs := typedMsg.GetNames(); len(refs) > 0 {
-		list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(refs))
-		for _, ref := range refs {
-			list = append(list, &ref.Name)
+	{
+		if refs := typedMsg.GetNames(); len(refs) > 0 {
+			list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(refs))
+			for _, ref := range refs {
+				list = append(list, &ref.Name)
+			}
+			return list
 		}
-		return list
 	}
 	return (internet_quality_rating.InternetQualityRatingNameList)(nil)
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetInternetQualityRatingsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetInternetQualityRatingsRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*BatchGetInternetQualityRatingsRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*BatchGetInternetQualityRatingsResponse) *internet_quality_rating.Name
+		OverrideExtractResourceName(*BatchGetInternetQualityRatingsResponse) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*BatchGetInternetQualityRatingsResponse) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*BatchGetInternetQualityRatingsResponse) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetInternetQualityRatings()
-	list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetInternetQualityRatings(); len(resources) > 0 {
+			list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (internet_quality_rating.InternetQualityRatingNameList)(nil)
 }
 
-func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *BatchGetInternetQualityRatingsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*BatchGetInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*BatchGetInternetQualityRatingsResponse) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*BatchGetInternetQualityRatingsResponse) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -408,15 +421,15 @@ func (d *ListInternetQualityRatingsDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *ListInternetQualityRatingsDescriptor) IsCollectionSubject() bool {
+func (d *ListInternetQualityRatingsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *ListInternetQualityRatingsDescriptor) IsPluralSubject() bool {
+func (d *ListInternetQualityRatingsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *ListInternetQualityRatingsDescriptor) HasSubjectResource() bool {
+func (d *ListInternetQualityRatingsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -456,7 +469,7 @@ func (d *ListInternetQualityRatingsDescriptor) GetApiDescriptor() gotenclient.Ap
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *ListInternetQualityRatingsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *ListInternetQualityRatingsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -468,79 +481,88 @@ func (d *ListInternetQualityRatingsDescriptor) GetServerMsgReflectHandle() goten
 	return &ListInternetQualityRatingsDescriptorServerMsgHandle{}
 }
 
-func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListInternetQualityRatingsRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*ListInternetQualityRatingsRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListInternetQualityRatingsRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*ListInternetQualityRatingsRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListInternetQualityRatingsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListInternetQualityRatingsRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*ListInternetQualityRatingsRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	return typedMsg.GetParent()
+	{
+		if parentName := typedMsg.GetParent(); parentName != nil {
+			return parentName
+		}
+	}
+	return (*internet_quality_rating.ParentName)(nil)
 }
 
-func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*ListInternetQualityRatingsResponse) *internet_quality_rating.Name
+		OverrideExtractResourceName(*ListInternetQualityRatingsResponse) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*ListInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*ListInternetQualityRatingsResponse) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*ListInternetQualityRatingsResponse) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resources := typedMsg.GetInternetQualityRatings()
-	list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resources))
-	for _, res := range resources {
-		list = append(list, res.GetName())
+	{
+		if resources := typedMsg.GetInternetQualityRatings(); len(resources) > 0 {
+			list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resources))
+			for _, res := range resources {
+				list = append(list, res.GetName())
+			}
+			return list
+		}
 	}
-	return list
+	return (internet_quality_rating.InternetQualityRatingNameList)(nil)
 }
 
-func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *ListInternetQualityRatingsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*ListInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*ListInternetQualityRatingsResponse) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*ListInternetQualityRatingsResponse) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -575,15 +597,15 @@ func (d *WatchInternetQualityRatingDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchInternetQualityRatingDescriptor) IsCollectionSubject() bool {
+func (d *WatchInternetQualityRatingDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *WatchInternetQualityRatingDescriptor) IsPluralSubject() bool {
+func (d *WatchInternetQualityRatingDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *WatchInternetQualityRatingDescriptor) HasSubjectResource() bool {
+func (d *WatchInternetQualityRatingDescriptor) HasResource() bool {
 	return true
 }
 
@@ -623,7 +645,7 @@ func (d *WatchInternetQualityRatingDescriptor) GetApiDescriptor() gotenclient.Ap
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *WatchInternetQualityRatingDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchInternetQualityRatingDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -635,89 +657,93 @@ func (d *WatchInternetQualityRatingDescriptor) GetServerMsgReflectHandle() goten
 	return &WatchInternetQualityRatingDescriptorServerMsgHandle{}
 }
 
-func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchInternetQualityRatingRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*WatchInternetQualityRatingRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
-	}
-	return (*internet_quality_rating.Name)(nil)
-}
-
-func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchInternetQualityRatingRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchInternetQualityRatingRequest) []*internet_quality_rating.Name
-	})
-	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
-	}
-	return nil
-}
-
-func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchInternetQualityRatingRequest)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchInternetQualityRatingRequest) *internet_quality_rating.ParentName
-	})
-	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
-	}
-	return nil
-}
-
-func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
-	typedMsg := msg.(*WatchInternetQualityRatingResponse)
-	var asInterface interface{} = h
-	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchInternetQualityRatingResponse) *internet_quality_rating.Name
-	})
-	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
-	}
-	if typedMsg.GetChange() != nil {
-		switch tResChange := typedMsg.GetChange().ChangeType.(type) {
-		case *internet_quality_rating.InternetQualityRatingChange_Added_:
-			return tResChange.Added.GetInternetQualityRating().GetName()
-		case *internet_quality_rating.InternetQualityRatingChange_Modified_:
-			return tResChange.Modified.GetName()
-		case *internet_quality_rating.InternetQualityRatingChange_Removed_:
-			return tResChange.Removed.GetName()
-		case *internet_quality_rating.InternetQualityRatingChange_Current_:
-			return tResChange.Current.GetInternetQualityRating().GetName()
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
 		}
 	}
 	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
-	typedMsg := msg.(*WatchInternetQualityRatingResponse)
+func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchInternetQualityRatingResponse) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*WatchInternetQualityRatingRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchInternetQualityRatingRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchInternetQualityRatingRequest) *internet_quality_rating.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchInternetQualityRatingResponse) *internet_quality_rating.ParentName
+		OverrideExtractResourceName(*WatchInternetQualityRatingResponse) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if resChange := typedMsg.GetChange(); resChange != nil {
+			switch tResChange := resChange.ChangeType.(type) {
+			case *internet_quality_rating.InternetQualityRatingChange_Added_:
+				return tResChange.Added.GetInternetQualityRating().GetName()
+			case *internet_quality_rating.InternetQualityRatingChange_Modified_:
+				return tResChange.Modified.GetName()
+			case *internet_quality_rating.InternetQualityRatingChange_Removed_:
+				return tResChange.Removed.GetName()
+			case *internet_quality_rating.InternetQualityRatingChange_Current_:
+				return tResChange.Current.GetInternetQualityRating().GetName()
+			}
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
+}
+
+func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*WatchInternetQualityRatingResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*WatchInternetQualityRatingResponse) []*internet_quality_rating.Name
+	})
+	if ok {
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *WatchInternetQualityRatingDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*WatchInternetQualityRatingResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*WatchInternetQualityRatingResponse) *internet_quality_rating.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -752,15 +778,15 @@ func (d *WatchInternetQualityRatingsDescriptor) IsServerStream() bool {
 	return true
 }
 
-func (d *WatchInternetQualityRatingsDescriptor) IsCollectionSubject() bool {
+func (d *WatchInternetQualityRatingsDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *WatchInternetQualityRatingsDescriptor) IsPluralSubject() bool {
+func (d *WatchInternetQualityRatingsDescriptor) IsPlural() bool {
 	return true
 }
 
-func (d *WatchInternetQualityRatingsDescriptor) HasSubjectResource() bool {
+func (d *WatchInternetQualityRatingsDescriptor) HasResource() bool {
 	return true
 }
 
@@ -800,7 +826,7 @@ func (d *WatchInternetQualityRatingsDescriptor) GetApiDescriptor() gotenclient.A
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *WatchInternetQualityRatingsDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *WatchInternetQualityRatingsDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -812,91 +838,97 @@ func (d *WatchInternetQualityRatingsDescriptor) GetServerMsgReflectHandle() gote
 	return &WatchInternetQualityRatingsDescriptorServerMsgHandle{}
 }
 
-func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchInternetQualityRatingsRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*WatchInternetQualityRatingsRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchInternetQualityRatingsRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*WatchInternetQualityRatingsRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingsDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingsRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchInternetQualityRatingsRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*WatchInternetQualityRatingsRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*internet_quality_rating.ParentName)(nil)
 }
 
-func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*WatchInternetQualityRatingsResponse) *internet_quality_rating.Name
+		OverrideExtractResourceName(*WatchInternetQualityRatingsResponse) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*WatchInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*WatchInternetQualityRatingsResponse) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*WatchInternetQualityRatingsResponse) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
-	resourceChanges := typedMsg.GetInternetQualityRatingChanges()
-	list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resourceChanges))
-	for _, resChange := range resourceChanges {
-		switch tResChange := resChange.ChangeType.(type) {
-		case *internet_quality_rating.InternetQualityRatingChange_Added_:
-			list = append(list, tResChange.Added.GetInternetQualityRating().GetName())
-		case *internet_quality_rating.InternetQualityRatingChange_Modified_:
-			list = append(list, tResChange.Modified.GetName())
-		case *internet_quality_rating.InternetQualityRatingChange_Removed_:
-			list = append(list, tResChange.Removed.GetName())
-		case *internet_quality_rating.InternetQualityRatingChange_Current_:
-			list = append(list, tResChange.Current.GetInternetQualityRating().GetName())
+	{
+		if resChanges := typedMsg.GetInternetQualityRatingChanges(); len(resChanges) > 0 {
+			list := make(internet_quality_rating.InternetQualityRatingNameList, 0, len(resChanges))
+			for _, resChange := range resChanges {
+				switch tResChange := resChange.ChangeType.(type) {
+				case *internet_quality_rating.InternetQualityRatingChange_Added_:
+					list = append(list, tResChange.Added.GetInternetQualityRating().GetName())
+				case *internet_quality_rating.InternetQualityRatingChange_Modified_:
+					list = append(list, tResChange.Modified.GetName())
+				case *internet_quality_rating.InternetQualityRatingChange_Removed_:
+					list = append(list, tResChange.Removed.GetName())
+				case *internet_quality_rating.InternetQualityRatingChange_Current_:
+					list = append(list, tResChange.Current.GetInternetQualityRating().GetName())
+				}
+			}
+			return list
 		}
 	}
-	return list
+	return (internet_quality_rating.InternetQualityRatingNameList)(nil)
 }
 
-func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *WatchInternetQualityRatingsDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*WatchInternetQualityRatingsResponse)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*WatchInternetQualityRatingsResponse) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*WatchInternetQualityRatingsResponse) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -931,15 +963,15 @@ func (d *CreateInternetQualityRatingDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *CreateInternetQualityRatingDescriptor) IsCollectionSubject() bool {
+func (d *CreateInternetQualityRatingDescriptor) IsCollection() bool {
 	return true
 }
 
-func (d *CreateInternetQualityRatingDescriptor) IsPluralSubject() bool {
+func (d *CreateInternetQualityRatingDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *CreateInternetQualityRatingDescriptor) HasSubjectResource() bool {
+func (d *CreateInternetQualityRatingDescriptor) HasResource() bool {
 	return true
 }
 
@@ -979,7 +1011,7 @@ func (d *CreateInternetQualityRatingDescriptor) GetApiDescriptor() gotenclient.A
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *CreateInternetQualityRatingDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *CreateInternetQualityRatingDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -991,77 +1023,90 @@ func (d *CreateInternetQualityRatingDescriptor) GetServerMsgReflectHandle() gote
 	return &CreateInternetQualityRatingDescriptorServerMsgHandle{}
 }
 
-func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*CreateInternetQualityRatingRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*CreateInternetQualityRatingRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetInternetQualityRating().GetName()
+	{
+		res := typedMsg.GetInternetQualityRating()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*CreateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*CreateInternetQualityRatingRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*CreateInternetQualityRatingRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateInternetQualityRatingDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*CreateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*CreateInternetQualityRatingRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*CreateInternetQualityRatingRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
-	if ref := typedMsg.GetParent(); ref != nil {
-		return &ref.ParentName
+	{
+		if ref := typedMsg.GetParent(); ref != nil {
+			return &ref.ParentName
+		}
 	}
 	return (*internet_quality_rating.ParentName)(nil)
 }
 
-func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
+		OverrideExtractResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *CreateInternetQualityRatingDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1096,15 +1141,15 @@ func (d *UpdateInternetQualityRatingDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *UpdateInternetQualityRatingDescriptor) IsCollectionSubject() bool {
+func (d *UpdateInternetQualityRatingDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *UpdateInternetQualityRatingDescriptor) IsPluralSubject() bool {
+func (d *UpdateInternetQualityRatingDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *UpdateInternetQualityRatingDescriptor) HasSubjectResource() bool {
+func (d *UpdateInternetQualityRatingDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1144,7 +1189,7 @@ func (d *UpdateInternetQualityRatingDescriptor) GetApiDescriptor() gotenclient.A
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *UpdateInternetQualityRatingDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *UpdateInternetQualityRatingDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -1156,74 +1201,85 @@ func (d *UpdateInternetQualityRatingDescriptor) GetServerMsgReflectHandle() gote
 	return &UpdateInternetQualityRatingDescriptorServerMsgHandle{}
 }
 
-func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*UpdateInternetQualityRatingRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*UpdateInternetQualityRatingRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetInternetQualityRating().GetName()
+	{
+		res := typedMsg.GetInternetQualityRating()
+		if name := res.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*UpdateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*UpdateInternetQualityRatingRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*UpdateInternetQualityRatingRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateInternetQualityRatingDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*UpdateInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*UpdateInternetQualityRatingRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*UpdateInternetQualityRatingRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
+		OverrideExtractResourceName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	return typedMsg.GetName()
+	{
+		if name := typedMsg.GetName(); name != nil {
+			return name
+		}
+	}
+	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*internet_quality_rating.InternetQualityRating) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *UpdateInternetQualityRatingDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*internet_quality_rating.InternetQualityRating)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*internet_quality_rating.InternetQualityRating) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
@@ -1258,15 +1314,15 @@ func (d *DeleteInternetQualityRatingDescriptor) IsServerStream() bool {
 	return false
 }
 
-func (d *DeleteInternetQualityRatingDescriptor) IsCollectionSubject() bool {
+func (d *DeleteInternetQualityRatingDescriptor) IsCollection() bool {
 	return false
 }
 
-func (d *DeleteInternetQualityRatingDescriptor) IsPluralSubject() bool {
+func (d *DeleteInternetQualityRatingDescriptor) IsPlural() bool {
 	return false
 }
 
-func (d *DeleteInternetQualityRatingDescriptor) HasSubjectResource() bool {
+func (d *DeleteInternetQualityRatingDescriptor) HasResource() bool {
 	return true
 }
 
@@ -1306,7 +1362,7 @@ func (d *DeleteInternetQualityRatingDescriptor) GetApiDescriptor() gotenclient.A
 	return internetQualityRatingServiceDescriptor
 }
 
-func (d *DeleteInternetQualityRatingDescriptor) GetSubjectResourceDescriptor() gotenresource.Descriptor {
+func (d *DeleteInternetQualityRatingDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
 	return internet_quality_rating.GetDescriptor()
 }
 
@@ -1318,77 +1374,79 @@ func (d *DeleteInternetQualityRatingDescriptor) GetServerMsgReflectHandle() gote
 	return &DeleteInternetQualityRatingDescriptorServerMsgHandle{}
 }
 
-func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*DeleteInternetQualityRatingRequest) *internet_quality_rating.Name
+		OverrideExtractResourceName(*DeleteInternetQualityRatingRequest) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
-	if ref := typedMsg.GetName(); ref != nil {
-		return &ref.Name
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
 	}
 	return (*internet_quality_rating.Name)(nil)
 }
 
-func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*DeleteInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*DeleteInternetQualityRatingRequest) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*DeleteInternetQualityRatingRequest) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteInternetQualityRatingDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*DeleteInternetQualityRatingRequest)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*DeleteInternetQualityRatingRequest) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*DeleteInternetQualityRatingRequest) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceName(msg proto.Message) gotenresource.Name {
+func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceName(*empty.Empty) *internet_quality_rating.Name
+		OverrideExtractResourceName(*empty.Empty) *internet_quality_rating.Name
 	})
 	if ok {
-		return override.OverrideExtractSubjectResourceName(typedMsg)
+		return override.OverrideExtractResourceName(typedMsg)
 	}
 	return nil
 }
 
-func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectResourceNames(msg proto.Message) gotenresource.NameList {
+func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectResourceNames(*empty.Empty) []*internet_quality_rating.Name
+		OverrideExtractResourceNames(*empty.Empty) []*internet_quality_rating.Name
 	})
 	if ok {
-		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractSubjectResourceNames(typedMsg))
+		return internet_quality_rating.InternetQualityRatingNameList(override.OverrideExtractResourceNames(typedMsg))
 	}
 	return nil
 }
 
-func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractSubjectCollectionName(msg proto.Message) gotenresource.Name {
+func (h *DeleteInternetQualityRatingDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
 	typedMsg := msg.(*empty.Empty)
 	var asInterface interface{} = h
 	override, ok := asInterface.(interface {
-		OverrideExtractSubjectCollectionName(*empty.Empty) *internet_quality_rating.ParentName
+		OverrideExtractCollectionName(*empty.Empty) *internet_quality_rating.ParentName
 	})
 	if ok {
-		return override.OverrideExtractSubjectCollectionName(typedMsg)
+		return override.OverrideExtractCollectionName(typedMsg)
 	}
 	return nil
 }

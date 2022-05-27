@@ -82,6 +82,43 @@ func (obj *ProbingConfig) GotenValidate() error {
 	}
 	return nil
 }
+func (obj *ProbingConfig_ProbingSession) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if subobj, ok := interface{}(obj.Location).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingSession", "location", obj.Location, "nested object validation failed", err)
+		}
+	}
+	if !(obj.Tos <= 255) {
+		return gotenvalidate.NewValidationError("ProbingSession", "tos", obj.Tos, "field must be less or equal to 255", nil)
+	}
+	if subobj, ok := interface{}(obj.PathProbing).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingSession", "pathProbing", obj.PathProbing, "nested object validation failed", err)
+		}
+	}
+	if subobj, ok := interface{}(obj.SpeedtestSettings).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingSession", "speedtestSettings", obj.SpeedtestSettings, "nested object validation failed", err)
+		}
+	}
+	if subobj, ok := interface{}(obj.HttpProbingConfig).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingSession", "httpProbingConfig", obj.HttpProbingConfig, "nested object validation failed", err)
+		}
+	}
+	if subobj, ok := interface{}(obj.ProxyConfiguration).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingSession", "proxyConfiguration", obj.ProxyConfiguration, "nested object validation failed", err)
+		}
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
 func (obj *ProbingConfig_Spec) GotenValidate() error {
 	if obj == nil {
 		return nil
@@ -142,43 +179,6 @@ func (obj *ProbingConfig_Spec_SpeedTest_Server) GotenValidate() error {
 	if subobj, ok := interface{}(obj.Location).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Server", "location", obj.Location, "nested object validation failed", err)
-		}
-	}
-	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
-		return cvobj.GotenCustomValidate()
-	}
-	return nil
-}
-func (obj *ProbingSession) GotenValidate() error {
-	if obj == nil {
-		return nil
-	}
-	if subobj, ok := interface{}(obj.Location).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "location", obj.Location, "nested object validation failed", err)
-		}
-	}
-	if !(obj.Tos <= 255) {
-		return gotenvalidate.NewValidationError("ProbingSession", "tos", obj.Tos, "field must be less or equal to 255", nil)
-	}
-	if subobj, ok := interface{}(obj.PathProbing).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "pathProbing", obj.PathProbing, "nested object validation failed", err)
-		}
-	}
-	if subobj, ok := interface{}(obj.SpeedtestSettings).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "speedtestSettings", obj.SpeedtestSettings, "nested object validation failed", err)
-		}
-	}
-	if subobj, ok := interface{}(obj.HttpProbingConfig).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "httpProbingConfig", obj.HttpProbingConfig, "nested object validation failed", err)
-		}
-	}
-	if subobj, ok := interface{}(obj.ProxyConfiguration).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingSession", "proxyConfiguration", obj.ProxyConfiguration, "nested object validation failed", err)
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {

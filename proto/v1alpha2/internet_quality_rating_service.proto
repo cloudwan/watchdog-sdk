@@ -34,9 +34,6 @@ message GetInternetQualityRatingRequest {
 // Request message for method
 // [BatchGetInternetQualityRatings][ntt.watchdog.v1alpha2.BatchGetInternetQualityRatings]
 message BatchGetInternetQualityRatingsRequest {
-  // Optional parent ntt.watchdog.v1alpha2.InternetQualityRating
-  string parent = 1;
-
   // Names of InternetQualityRatings
   repeated string names = 2;
 
@@ -47,6 +44,8 @@ message BatchGetInternetQualityRatingsRequest {
   // View defines list of standard response fields present in response items.
   // Additional fields can be amended by request field field_mask
   goten.view.View view = 4;
+
+  reserved 1;
 }
 
 // BatchGetInternetQualityRatingsResponse
@@ -317,8 +316,7 @@ service InternetQualityRatingService {
   rpc BatchGetInternetQualityRatings(BatchGetInternetQualityRatingsRequest)
       returns (BatchGetInternetQualityRatingsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*/regions/*/probes/*}/"
-            "internetQualityRatings:batchGet"
+      get : "/v1alpha2/internetQualityRatings:batchGet"
     };
   }
 
