@@ -114,6 +114,11 @@ func (obj *ProbingSession_Spec) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Spec", "proxyConfiguration", obj.ProxyConfiguration, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.Location).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("Spec", "location", obj.Location, "nested object validation failed", err)
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}

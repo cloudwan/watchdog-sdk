@@ -301,6 +301,19 @@ func (o *ProbingSession_Spec) MakeDiffFieldMask(other *ProbingSession_Spec) *Pro
 			}
 		}
 	}
+	if o.GetLocationType() != other.GetLocationType() {
+		res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocationType})
+	}
+	{
+		subMask := o.GetLocation().MakeDiffFieldMask(other.GetLocation())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocation})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingSessionSpec_FieldSubPath{selector: ProbingSessionSpec_FieldPathSelectorLocation, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -358,6 +371,8 @@ func (o *ProbingSession_Spec) Clone() *ProbingSession_Spec {
 	result.SpeedtestSettings = o.SpeedtestSettings.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
 	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
+	result.LocationType = o.LocationType
+	result.Location = o.Location.Clone()
 	return result
 }
 
@@ -452,6 +467,13 @@ func (o *ProbingSession_Spec) Merge(source *ProbingSession_Spec) {
 			o.ProxyConfiguration = new(common.ProxyConfiguration)
 		}
 		o.ProxyConfiguration.Merge(source.GetProxyConfiguration())
+	}
+	o.LocationType = source.GetLocationType()
+	if source.GetLocation() != nil {
+		if o.Location == nil {
+			o.Location = new(common.Location)
+		}
+		o.Location.Merge(source.GetLocation())
 	}
 }
 

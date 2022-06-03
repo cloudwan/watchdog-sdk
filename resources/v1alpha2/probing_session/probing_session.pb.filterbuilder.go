@@ -2031,6 +2031,14 @@ func (b *filterCndBuilderSpec) ProxyConfiguration() *filterCndBuilderSpecProxyCo
 	return &filterCndBuilderSpecProxyConfiguration{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpec) LocationType() *filterCndBuilderSpecLocationType {
+	return &filterCndBuilderSpecLocationType{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpec) Location() *filterCndBuilderSpecLocation {
+	return &filterCndBuilderSpecLocation{builder: b.builder}
+}
+
 type filterCndBuilderSpecProbe struct {
 	builder *FilterBuilder
 }
@@ -5723,6 +5731,1384 @@ func (b *filterCndBuilderSpecProxyConfigurationNoProxy) compare(op gotenfilter.C
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                      op,
 		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().ProxyConfiguration().NoProxy().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationType) Eq(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) Neq(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) Gt(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) Gte(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) Lt(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) Lte(value common.LocationType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationType) In(values []common.LocationType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().LocationType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationType) NotIn(values []common.LocationType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().LocationType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().LocationType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().LocationType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationType) compare(op gotenfilter.CompareOperator, value common.LocationType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().LocationType().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocation struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocation) Eq(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocation) Neq(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocation) Gt(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocation) Gte(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocation) Lt(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocation) Lte(value *common.Location) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocation) In(values []*common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocation) NotIn(values []*common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocation) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocation) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocation) compare(op gotenfilter.CompareOperator, value *common.Location) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecLocation) Address() *filterCndBuilderSpecLocationAddress {
+	return &filterCndBuilderSpecLocationAddress{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocation) AdminHierarchy() *filterCndBuilderSpecLocationAdminHierarchy {
+	return &filterCndBuilderSpecLocationAdminHierarchy{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocation) Coordinates() *filterCndBuilderSpecLocationCoordinates {
+	return &filterCndBuilderSpecLocationCoordinates{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocation) Accuracy() *filterCndBuilderSpecLocationAccuracy {
+	return &filterCndBuilderSpecLocationAccuracy{builder: b.builder}
+}
+
+type filterCndBuilderSpecLocationAddress struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Eq(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Neq(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Gt(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Gte(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Lt(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Lte(value *common.Address) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddress) In(values []*common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddress) NotIn(values []*common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddress) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddress) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddress) compare(op gotenfilter.CompareOperator, value *common.Address) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddress) PostalCode() *filterCndBuilderSpecLocationAddressPostalCode {
+	return &filterCndBuilderSpecLocationAddressPostalCode{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) CountryCode() *filterCndBuilderSpecLocationAddressCountryCode {
+	return &filterCndBuilderSpecLocationAddressCountryCode{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Continent() *filterCndBuilderSpecLocationAddressContinent {
+	return &filterCndBuilderSpecLocationAddressContinent{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) Country() *filterCndBuilderSpecLocationAddressCountry {
+	return &filterCndBuilderSpecLocationAddressCountry{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) AdminArea1() *filterCndBuilderSpecLocationAddressAdminArea1 {
+	return &filterCndBuilderSpecLocationAddressAdminArea1{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) AdminArea2() *filterCndBuilderSpecLocationAddressAdminArea2 {
+	return &filterCndBuilderSpecLocationAddressAdminArea2{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) AdminArea3() *filterCndBuilderSpecLocationAddressAdminArea3 {
+	return &filterCndBuilderSpecLocationAddressAdminArea3{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) AdminArea4() *filterCndBuilderSpecLocationAddressAdminArea4 {
+	return &filterCndBuilderSpecLocationAddressAdminArea4{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAddress) StreetAddress() *filterCndBuilderSpecLocationAddressStreetAddress {
+	return &filterCndBuilderSpecLocationAddressStreetAddress{builder: b.builder}
+}
+
+type filterCndBuilderSpecLocationAddressPostalCode struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().PostalCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().PostalCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().PostalCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().PostalCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressPostalCode) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().PostalCode().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressCountryCode struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().CountryCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().CountryCode().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().CountryCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().CountryCode().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountryCode) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().CountryCode().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressContinent struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressContinent) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Continent().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressCountry struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressCountry) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().Country().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressAdminArea1 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea1) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea1().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressAdminArea2 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea2) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea2().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressAdminArea3 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea3) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea3().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressAdminArea4 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressAdminArea4) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().AdminArea4().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAddressStreetAddress struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().StreetAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Address().StreetAddress().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().StreetAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Address().StreetAddress().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAddressStreetAddress) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Address().StreetAddress().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Eq(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Neq(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Gt(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Gte(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Lt(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Lte(value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) In(values []*admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) NotIn(values []*admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) compare(op gotenfilter.CompareOperator, value *admin_area.AdminHierarchy) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Continent() *filterCndBuilderSpecLocationAdminHierarchyContinent {
+	return &filterCndBuilderSpecLocationAdminHierarchyContinent{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Country() *filterCndBuilderSpecLocationAdminHierarchyCountry {
+	return &filterCndBuilderSpecLocationAdminHierarchyCountry{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Admin1() *filterCndBuilderSpecLocationAdminHierarchyAdmin1 {
+	return &filterCndBuilderSpecLocationAdminHierarchyAdmin1{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Admin2() *filterCndBuilderSpecLocationAdminHierarchyAdmin2 {
+	return &filterCndBuilderSpecLocationAdminHierarchyAdmin2{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Admin3() *filterCndBuilderSpecLocationAdminHierarchyAdmin3 {
+	return &filterCndBuilderSpecLocationAdminHierarchyAdmin3{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Admin4() *filterCndBuilderSpecLocationAdminHierarchyAdmin4 {
+	return &filterCndBuilderSpecLocationAdminHierarchyAdmin4{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchy) Admin5() *filterCndBuilderSpecLocationAdminHierarchyAdmin5 {
+	return &filterCndBuilderSpecLocationAdminHierarchyAdmin5{builder: b.builder}
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyContinent struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Continent().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Continent().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyContinent) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Continent().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyCountry struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Country().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Country().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyCountry) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Country().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyAdmin1 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin1().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin1().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin1) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin1().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyAdmin2 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin2().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin2().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin2) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin2().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyAdmin3 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin3().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin3().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin3) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin3().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyAdmin4 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin4().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin4().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin4) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin4().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAdminHierarchyAdmin5 struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Eq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Neq(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Gt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Gte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Lt(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) Lte(value *admin_area.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) In(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin5().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) NotIn(values []*admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin5().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin5().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin5().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAdminHierarchyAdmin5) compare(op gotenfilter.CompareOperator, value *admin_area.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().AdminHierarchy().Admin5().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationCoordinates struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Eq(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Neq(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Gt(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Gte(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Lt(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) Lte(value *latlng.LatLng) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) In(values []*latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Coordinates().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) NotIn(values []*latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Coordinates().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Coordinates().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Coordinates().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationCoordinates) compare(op gotenfilter.CompareOperator, value *latlng.LatLng) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Coordinates().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecLocationAccuracy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Eq(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Neq(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Gt(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Gte(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Lt(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) Lte(value float64) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) In(values []float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) NotIn(values []float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecLocationAccuracy) compare(op gotenfilter.CompareOperator, value float64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().WithValue(value),
 	})
 }
 

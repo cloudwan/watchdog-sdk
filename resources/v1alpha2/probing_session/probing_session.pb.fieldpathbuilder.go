@@ -722,6 +722,14 @@ func (ProbingSessionPathSelectorSpec) ProxyConfiguration() ProbingSessionPathSel
 	return ProbingSessionPathSelectorSpecProxyConfiguration{}
 }
 
+func (ProbingSessionPathSelectorSpec) LocationType() ProbingSessionPathSelectorSpecLocationType {
+	return ProbingSessionPathSelectorSpecLocationType{}
+}
+
+func (ProbingSessionPathSelectorSpec) Location() ProbingSessionPathSelectorSpecLocation {
+	return ProbingSessionPathSelectorSpecLocation{}
+}
+
 type ProbingSessionPathSelectorSpecProbe struct{}
 
 func (ProbingSessionPathSelectorSpecProbe) FieldPath() *ProbingSession_FieldSubPath {
@@ -1913,6 +1921,460 @@ func (s ProbingSessionPathSelectorSpecProxyConfigurationNoProxy) WithArrayOfValu
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
+type ProbingSessionPathSelectorSpecLocationType struct{}
+
+func (ProbingSessionPathSelectorSpecLocationType) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().LocationType().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationType) WithValue(value common.LocationType) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationType) WithArrayOfValues(values []common.LocationType) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocation struct{}
+
+func (ProbingSessionPathSelectorSpecLocation) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocation) WithValue(value *common.Location) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocation) WithArrayOfValues(values []*common.Location) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingSessionPathSelectorSpecLocation) Address() ProbingSessionPathSelectorSpecLocationAddress {
+	return ProbingSessionPathSelectorSpecLocationAddress{}
+}
+
+func (ProbingSessionPathSelectorSpecLocation) AdminHierarchy() ProbingSessionPathSelectorSpecLocationAdminHierarchy {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchy{}
+}
+
+func (ProbingSessionPathSelectorSpecLocation) Coordinates() ProbingSessionPathSelectorSpecLocationCoordinates {
+	return ProbingSessionPathSelectorSpecLocationCoordinates{}
+}
+
+func (ProbingSessionPathSelectorSpecLocation) Accuracy() ProbingSessionPathSelectorSpecLocationAccuracy {
+	return ProbingSessionPathSelectorSpecLocationAccuracy{}
+}
+
+type ProbingSessionPathSelectorSpecLocationAddress struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddress) WithValue(value *common.Address) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddress) WithArrayOfValues(values []*common.Address) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) PostalCode() ProbingSessionPathSelectorSpecLocationAddressPostalCode {
+	return ProbingSessionPathSelectorSpecLocationAddressPostalCode{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) CountryCode() ProbingSessionPathSelectorSpecLocationAddressCountryCode {
+	return ProbingSessionPathSelectorSpecLocationAddressCountryCode{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) Continent() ProbingSessionPathSelectorSpecLocationAddressContinent {
+	return ProbingSessionPathSelectorSpecLocationAddressContinent{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) Country() ProbingSessionPathSelectorSpecLocationAddressCountry {
+	return ProbingSessionPathSelectorSpecLocationAddressCountry{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) AdminArea1() ProbingSessionPathSelectorSpecLocationAddressAdminArea1 {
+	return ProbingSessionPathSelectorSpecLocationAddressAdminArea1{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) AdminArea2() ProbingSessionPathSelectorSpecLocationAddressAdminArea2 {
+	return ProbingSessionPathSelectorSpecLocationAddressAdminArea2{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) AdminArea3() ProbingSessionPathSelectorSpecLocationAddressAdminArea3 {
+	return ProbingSessionPathSelectorSpecLocationAddressAdminArea3{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) AdminArea4() ProbingSessionPathSelectorSpecLocationAddressAdminArea4 {
+	return ProbingSessionPathSelectorSpecLocationAddressAdminArea4{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAddress) StreetAddress() ProbingSessionPathSelectorSpecLocationAddressStreetAddress {
+	return ProbingSessionPathSelectorSpecLocationAddressStreetAddress{}
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressPostalCode struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressPostalCode) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressPostalCode) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressPostalCode) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressCountryCode struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressCountryCode) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressCountryCode) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressCountryCode) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressContinent struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressContinent) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressContinent) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressContinent) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressCountry struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressCountry) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().Country().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressCountry) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressCountry) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressAdminArea1 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressAdminArea1) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea1) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea1) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressAdminArea2 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressAdminArea2) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea2) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea2) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressAdminArea3 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressAdminArea3) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea3) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea3) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressAdminArea4 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressAdminArea4) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea4) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressAdminArea4) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAddressStreetAddress struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAddressStreetAddress) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressStreetAddress) WithValue(value string) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAddressStreetAddress) WithArrayOfValues(values []string) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchy struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Continent() ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Country() ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Admin1() ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1 {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Admin2() ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2 {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Admin3() ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3 {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Admin4() ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4 {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4{}
+}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchy) Admin5() ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5 {
+	return ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5{}
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5 struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationCoordinates struct{}
+
+func (ProbingSessionPathSelectorSpecLocationCoordinates) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Coordinates().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationCoordinates) WithValue(value *latlng.LatLng) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorSpecLocationAccuracy struct{}
+
+func (ProbingSessionPathSelectorSpecLocationAccuracy) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().Location().Accuracy().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAccuracy) WithValue(value float64) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecLocationAccuracy) WithArrayOfValues(values []float64) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
 type ProbingSessionPathSelectorProbingDistribution struct{}
 
 func (ProbingSessionPathSelectorProbingDistribution) FieldPath() *ProbingSession_FieldTerminalPath {
@@ -2006,6 +2468,12 @@ func (ProbingSessionSpecFieldPathBuilder) HttpProbingConfig() ProbingSession_Spe
 }
 func (ProbingSessionSpecFieldPathBuilder) ProxyConfiguration() ProbingSession_SpecPathSelectorProxyConfiguration {
 	return ProbingSession_SpecPathSelectorProxyConfiguration{}
+}
+func (ProbingSessionSpecFieldPathBuilder) LocationType() ProbingSession_SpecPathSelectorLocationType {
+	return ProbingSession_SpecPathSelectorLocationType{}
+}
+func (ProbingSessionSpecFieldPathBuilder) Location() ProbingSession_SpecPathSelectorLocation {
+	return ProbingSession_SpecPathSelectorLocation{}
 }
 
 type ProbingSession_SpecPathSelectorProbe struct{}
@@ -3215,6 +3683,470 @@ func (s ProbingSession_SpecPathSelectorProxyConfigurationNoProxy) WithValue(valu
 }
 
 func (s ProbingSession_SpecPathSelectorProxyConfigurationNoProxy) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationType struct{}
+
+func (ProbingSession_SpecPathSelectorLocationType) FieldPath() *ProbingSessionSpec_FieldTerminalPath {
+	return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocationType}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationType) WithValue(value common.LocationType) *ProbingSessionSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldTerminalPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationType) WithArrayOfValues(values []common.LocationType) *ProbingSessionSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocation struct{}
+
+func (ProbingSession_SpecPathSelectorLocation) FieldPath() *ProbingSessionSpec_FieldTerminalPath {
+	return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocation}
+}
+
+func (s ProbingSession_SpecPathSelectorLocation) WithValue(value *common.Location) *ProbingSessionSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldTerminalPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocation) WithArrayOfValues(values []*common.Location) *ProbingSessionSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingSession_SpecPathSelectorLocation) WithSubPath(subPath common.Location_FieldPath) *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{selector: ProbingSessionSpec_FieldPathSelectorLocation, subPath: subPath}
+}
+
+func (s ProbingSession_SpecPathSelectorLocation) WithSubValue(subPathValue common.Location_FieldPathValue) *ProbingSessionSpec_FieldSubPathValue {
+	return &ProbingSessionSpec_FieldSubPathValue{ProbingSessionSpec_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingSession_SpecPathSelectorLocation) WithSubArrayOfValues(subPathArrayOfValues common.Location_FieldPathArrayOfValues) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return &ProbingSessionSpec_FieldSubPathArrayOfValues{ProbingSessionSpec_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingSession_SpecPathSelectorLocation) WithSubArrayItemValue(subPathArrayItemValue common.Location_FieldPathArrayItemValue) *ProbingSessionSpec_FieldSubPathArrayItemValue {
+	return &ProbingSessionSpec_FieldSubPathArrayItemValue{ProbingSessionSpec_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingSession_SpecPathSelectorLocation) Address() ProbingSession_SpecPathSelectorLocationAddress {
+	return ProbingSession_SpecPathSelectorLocationAddress{}
+}
+
+func (ProbingSession_SpecPathSelectorLocation) AdminHierarchy() ProbingSession_SpecPathSelectorLocationAdminHierarchy {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchy{}
+}
+
+func (ProbingSession_SpecPathSelectorLocation) Coordinates() ProbingSession_SpecPathSelectorLocationCoordinates {
+	return ProbingSession_SpecPathSelectorLocationCoordinates{}
+}
+
+func (ProbingSession_SpecPathSelectorLocation) Accuracy() ProbingSession_SpecPathSelectorLocationAccuracy {
+	return ProbingSession_SpecPathSelectorLocationAccuracy{}
+}
+
+type ProbingSession_SpecPathSelectorLocationAddress struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddress) WithValue(value *common.Address) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddress) WithArrayOfValues(values []*common.Address) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) PostalCode() ProbingSession_SpecPathSelectorLocationAddressPostalCode {
+	return ProbingSession_SpecPathSelectorLocationAddressPostalCode{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) CountryCode() ProbingSession_SpecPathSelectorLocationAddressCountryCode {
+	return ProbingSession_SpecPathSelectorLocationAddressCountryCode{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) Continent() ProbingSession_SpecPathSelectorLocationAddressContinent {
+	return ProbingSession_SpecPathSelectorLocationAddressContinent{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) Country() ProbingSession_SpecPathSelectorLocationAddressCountry {
+	return ProbingSession_SpecPathSelectorLocationAddressCountry{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) AdminArea1() ProbingSession_SpecPathSelectorLocationAddressAdminArea1 {
+	return ProbingSession_SpecPathSelectorLocationAddressAdminArea1{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) AdminArea2() ProbingSession_SpecPathSelectorLocationAddressAdminArea2 {
+	return ProbingSession_SpecPathSelectorLocationAddressAdminArea2{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) AdminArea3() ProbingSession_SpecPathSelectorLocationAddressAdminArea3 {
+	return ProbingSession_SpecPathSelectorLocationAddressAdminArea3{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) AdminArea4() ProbingSession_SpecPathSelectorLocationAddressAdminArea4 {
+	return ProbingSession_SpecPathSelectorLocationAddressAdminArea4{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAddress) StreetAddress() ProbingSession_SpecPathSelectorLocationAddressStreetAddress {
+	return ProbingSession_SpecPathSelectorLocationAddressStreetAddress{}
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressPostalCode struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressPostalCode) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().PostalCode().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressPostalCode) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressPostalCode) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressCountryCode struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressCountryCode) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().CountryCode().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressCountryCode) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressCountryCode) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressContinent struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressContinent) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressContinent) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressContinent) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressCountry struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressCountry) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().Country().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressCountry) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressCountry) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressAdminArea1 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressAdminArea1) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea1().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea1) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea1) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressAdminArea2 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressAdminArea2) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea2().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea2) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea2) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressAdminArea3 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressAdminArea3) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea3().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea3) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea3) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressAdminArea4 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressAdminArea4) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().AdminArea4().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea4) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressAdminArea4) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAddressStreetAddress struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAddressStreetAddress) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Address().StreetAddress().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressStreetAddress) WithValue(value string) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAddressStreetAddress) WithArrayOfValues(values []string) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchy struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchy) WithValue(value *admin_area.AdminHierarchy) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchy) WithArrayOfValues(values []*admin_area.AdminHierarchy) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Continent() ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Country() ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Admin1() ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1 {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Admin2() ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2 {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Admin3() ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3 {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Admin4() ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4 {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4{}
+}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchy) Admin5() ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5 {
+	return ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5{}
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Continent().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyContinent) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Country().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyCountry) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin1().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin1) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin2().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin2) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin3().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin3) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin4().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin4) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5 struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().AdminHierarchy().Admin5().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5) WithValue(value *admin_area.Reference) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAdminHierarchyAdmin5) WithArrayOfValues(values []*admin_area.Reference) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationCoordinates struct{}
+
+func (ProbingSession_SpecPathSelectorLocationCoordinates) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Coordinates().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationCoordinates) WithValue(value *latlng.LatLng) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ProbingSessionSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorLocationAccuracy struct{}
+
+func (ProbingSession_SpecPathSelectorLocationAccuracy) FieldPath() *ProbingSessionSpec_FieldSubPath {
+	return &ProbingSessionSpec_FieldSubPath{
+		selector: ProbingSessionSpec_FieldPathSelectorLocation,
+		subPath:  common.NewLocationFieldPathBuilder().Accuracy().FieldPath(),
+	}
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAccuracy) WithValue(value float64) *ProbingSessionSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorLocationAccuracy) WithArrayOfValues(values []float64) *ProbingSessionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
 }
 

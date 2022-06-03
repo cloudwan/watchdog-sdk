@@ -84,6 +84,12 @@ message ProbingSession {
 
     // Proxy configuration (for speedtest and http)
     ProxyConfiguration proxy_configuration = 15;
+
+    // Target location type
+    LocationType location_type = 16;
+
+    // Specific target location if applicable
+    Location location = 17;
   }
 
   message Status {}

@@ -959,6 +959,8 @@ const (
 	ProbingSessionSpec_FieldPathSelectorSpeedtestSettings  ProbingSessionSpec_FieldPathSelector = 12
 	ProbingSessionSpec_FieldPathSelectorHttpProbingConfig  ProbingSessionSpec_FieldPathSelector = 13
 	ProbingSessionSpec_FieldPathSelectorProxyConfiguration ProbingSessionSpec_FieldPathSelector = 14
+	ProbingSessionSpec_FieldPathSelectorLocationType       ProbingSessionSpec_FieldPathSelector = 15
+	ProbingSessionSpec_FieldPathSelectorLocation           ProbingSessionSpec_FieldPathSelector = 16
 )
 
 func (s ProbingSessionSpec_FieldPathSelector) String() string {
@@ -993,6 +995,10 @@ func (s ProbingSessionSpec_FieldPathSelector) String() string {
 		return "http_probing_config"
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return "proxy_configuration"
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		return "location_type"
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return "location"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", s))
 	}
@@ -1034,6 +1040,10 @@ func BuildProbingSessionSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbingSess
 			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorHttpProbingConfig}, nil
 		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
 			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorProxyConfiguration}, nil
+		case "location_type", "locationType", "location-type":
+			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocationType}, nil
+		case "location":
+			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocation}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1060,6 +1070,12 @@ func BuildProbingSessionSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbingSess
 				return nil, err
 			} else {
 				return &ProbingSessionSpec_FieldSubPath{selector: ProbingSessionSpec_FieldPathSelectorProxyConfiguration, subPath: subpath}, nil
+			}
+		case "location":
+			if subpath, err := common.BuildLocation_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingSessionSpec_FieldSubPath{selector: ProbingSessionSpec_FieldPathSelectorLocation, subPath: subpath}, nil
 			}
 		}
 	}
@@ -1154,6 +1170,12 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) Get(source *ProbingSession_Spec)
 			if source.ProxyConfiguration != nil {
 				values = append(values, source.ProxyConfiguration)
 			}
+		case ProbingSessionSpec_FieldPathSelectorLocationType:
+			values = append(values, source.LocationType)
+		case ProbingSessionSpec_FieldPathSelectorLocation:
+			if source.Location != nil {
+				values = append(values, source.Location)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 		}
@@ -1207,6 +1229,11 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) GetSingle(source *ProbingSession
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		res := source.GetProxyConfiguration()
 		return res, res != nil
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		return source.GetLocationType(), source != nil
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		res := source.GetLocation()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1249,6 +1276,10 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.HTTPProbingConfig)(nil)
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return (*common.ProxyConfiguration)(nil)
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		return common.LocationType_LOCATION_TYPE_UNSPECIFIED
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return (*common.Location)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1287,6 +1318,10 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) ClearValue(item *ProbingSession_
 			item.HttpProbingConfig = nil
 		case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 			item.ProxyConfiguration = nil
+		case ProbingSessionSpec_FieldPathSelectorLocationType:
+			item.LocationType = common.LocationType_LOCATION_TYPE_UNSPECIFIED
+		case ProbingSessionSpec_FieldPathSelectorLocation:
+			item.Location = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 		}
@@ -1309,7 +1344,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingSessionSpec_FieldPathSelectorPort ||
 		fp.selector == ProbingSessionSpec_FieldPathSelectorType ||
 		fp.selector == ProbingSessionSpec_FieldPathSelectorInterval ||
-		fp.selector == ProbingSessionSpec_FieldPathSelectorTos
+		fp.selector == ProbingSessionSpec_FieldPathSelectorTos ||
+		fp.selector == ProbingSessionSpec_FieldPathSelectorLocationType
 }
 
 func (fp *ProbingSessionSpec_FieldTerminalPath) WithIValue(value interface{}) ProbingSessionSpec_FieldPathValue {
@@ -1344,6 +1380,10 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) WithIValue(value interface{}) Pr
 		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(*common.ProxyConfiguration)}
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(common.LocationType)}
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(*common.Location)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1386,6 +1426,10 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]*common.ProxyConfiguration)}
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]common.LocationType)}
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]*common.Location)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1435,6 +1479,10 @@ func (fps *ProbingSessionSpec_FieldSubPath) AsProxyConfigurationSubPath() (commo
 	res, ok := fps.subPath.(common.ProxyConfiguration_FieldPath)
 	return res, ok
 }
+func (fps *ProbingSessionSpec_FieldSubPath) AsLocationSubPath() (common.Location_FieldPath, bool) {
+	res, ok := fps.subPath.(common.Location_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ProbingSessionSpec_FieldSubPath) String() string {
@@ -1456,6 +1504,8 @@ func (fps *ProbingSessionSpec_FieldSubPath) Get(source *ProbingSession_Spec) (va
 		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
 	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
 		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
+	} else if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
+		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
 	} else {
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fps.selector))
 	}
@@ -1489,6 +1539,11 @@ func (fps *ProbingSessionSpec_FieldSubPath) GetSingle(source *ProbingSession_Spe
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetProxyConfiguration())
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		if source.GetLocation() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fps.selector))
 	}
@@ -1514,6 +1569,8 @@ func (fps *ProbingSessionSpec_FieldSubPath) ClearValue(item *ProbingSession_Spec
 			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
 		case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 			fps.subPath.ClearValueRaw(item.ProxyConfiguration)
+		case ProbingSessionSpec_FieldPathSelectorLocation:
+			fps.subPath.ClearValueRaw(item.Location)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fps.selector))
 		}
@@ -1652,6 +1709,14 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) AsProxyConfigurationValue(
 	res, ok := fpv.value.(*common.ProxyConfiguration)
 	return res, ok
 }
+func (fpv *ProbingSessionSpec_FieldTerminalPathValue) AsLocationTypeValue() (common.LocationType, bool) {
+	res, ok := fpv.value.(common.LocationType)
+	return res, ok
+}
+func (fpv *ProbingSessionSpec_FieldTerminalPathValue) AsLocationValue() (*common.Location, bool) {
+	res, ok := fpv.value.(*common.Location)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbingSessionSpec_FieldTerminalPathValue) SetTo(target **ProbingSession_Spec) {
@@ -1689,6 +1754,10 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) SetTo(target **ProbingSess
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		(*target).ProxyConfiguration = fpv.value.(*common.ProxyConfiguration)
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		(*target).LocationType = fpv.value.(common.LocationType)
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		(*target).Location = fpv.value.(*common.Location)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpv.selector))
 	}
@@ -1848,6 +1917,18 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) CompareWith(source *Probin
 		return 0, false
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return 0, false
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		leftValue := fpv.value.(common.LocationType)
+		rightValue := source.GetLocationType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpv.selector))
 	}
@@ -1880,6 +1961,10 @@ func (fpvs *ProbingSessionSpec_FieldSubPathValue) AsProxyConfigurationPathValue(
 	res, ok := fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbingSessionSpec_FieldSubPathValue) AsLocationPathValue() (common.Location_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ProbingSessionSpec_FieldSubPathValue) SetTo(target **ProbingSession_Spec) {
 	if *target == nil {
@@ -1894,6 +1979,8 @@ func (fpvs *ProbingSessionSpec_FieldSubPathValue) SetTo(target **ProbingSession_
 		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).SetTo(&(*target).ProxyConfiguration)
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpvs.Selector()))
 	}
@@ -1918,6 +2005,8 @@ func (fpvs *ProbingSessionSpec_FieldSubPathValue) CompareWith(source *ProbingSes
 		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).CompareWith(source.GetProxyConfiguration())
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpvs.Selector()))
 	}
@@ -2016,6 +2105,10 @@ func (fpaivs *ProbingSessionSpec_FieldSubPathArrayItemValue) AsProxyConfiguratio
 	res, ok := fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbingSessionSpec_FieldSubPathArrayItemValue) AsLocationPathItemValue() (common.Location_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'Spec'
 func (fpaivs *ProbingSessionSpec_FieldSubPathArrayItemValue) ContainsValue(source *ProbingSession_Spec) bool {
@@ -2028,6 +2121,8 @@ func (fpaivs *ProbingSessionSpec_FieldSubPathArrayItemValue) ContainsValue(sourc
 		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
 	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
 		return fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue).ContainsValue(source.GetProxyConfiguration())
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpaivs.Selector()))
 	}
@@ -2128,6 +2223,14 @@ func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]*common.ProxyConfiguration) {
 			values = append(values, v)
 		}
+	case ProbingSessionSpec_FieldPathSelectorLocationType:
+		for _, v := range fpaov.values.([]common.LocationType) {
+			values = append(values, v)
+		}
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		for _, v := range fpaov.values.([]*common.Location) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2191,6 +2294,14 @@ func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsProxyConfigura
 	res, ok := fpaov.values.([]*common.ProxyConfiguration)
 	return res, ok
 }
+func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsLocationTypeArrayOfValues() ([]common.LocationType, bool) {
+	res, ok := fpaov.values.([]common.LocationType)
+	return res, ok
+}
+func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsLocationArrayOfValues() ([]*common.Location, bool) {
+	res, ok := fpaov.values.([]*common.Location)
+	return res, ok
+}
 
 type ProbingSessionSpec_FieldSubPathArrayOfValues struct {
 	ProbingSessionSpec_FieldPath
@@ -2216,6 +2327,10 @@ func (fpsaov *ProbingSessionSpec_FieldSubPathArrayOfValues) AsHttpProbingConfigP
 }
 func (fpsaov *ProbingSessionSpec_FieldSubPathArrayOfValues) AsProxyConfigurationPathArrayOfValues() (common.ProxyConfiguration_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.ProxyConfiguration_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingSessionSpec_FieldSubPathArrayOfValues) AsLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
 	return res, ok
 }
 
