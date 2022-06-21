@@ -1832,6 +1832,7 @@ func FullProbe_Spec_TargetServers_FieldMask() *Probe_Spec_TargetServers_FieldMas
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorIcmpTarget})
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget})
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetAddressType})
 	return res
 }
 
@@ -1875,7 +1876,7 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpecTargetServers_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1905,7 +1906,7 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_TargetServers_FieldMask) Subtract(other *Probe_Spec_TargetServers_FieldMask) *Probe_Spec_TargetServers_FieldMask {
 	result := &Probe_Spec_TargetServers_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[ProbeSpecTargetServers_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:      &Probe_Spec_TargetServers_IcmpTarget_FieldMask{},
 		ProbeSpecTargetServers_FieldPathSelectorUdpTarget:       &Probe_Spec_TargetServers_UdpTarget_FieldMask{},
@@ -2108,6 +2109,8 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) Project(source *Probe_Spec_
 			case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
 				result.SpeedTestTarget = source.SpeedTestTarget
 				wholeSpeedTestTargetAccepted = true
+			case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
+				result.TargetAddressType = source.TargetAddressType
 			}
 		case *ProbeSpecTargetServers_FieldSubPath:
 			switch tp.selector {

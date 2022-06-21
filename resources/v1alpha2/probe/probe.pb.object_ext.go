@@ -871,6 +871,9 @@ func (o *Probe_Spec_TargetServers) MakeDiffFieldMask(other *Probe_Spec_TargetSer
 			}
 		}
 	}
+	if o.GetTargetAddressType() != other.GetTargetAddressType() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetAddressType})
+	}
 	return res
 }
 
@@ -886,6 +889,7 @@ func (o *Probe_Spec_TargetServers) Clone() *Probe_Spec_TargetServers {
 	result.IcmpTarget = o.IcmpTarget.Clone()
 	result.UdpTarget = o.UdpTarget.Clone()
 	result.SpeedTestTarget = o.SpeedTestTarget.Clone()
+	result.TargetAddressType = o.TargetAddressType
 	return result
 }
 
@@ -912,6 +916,7 @@ func (o *Probe_Spec_TargetServers) Merge(source *Probe_Spec_TargetServers) {
 		}
 		o.SpeedTestTarget.Merge(source.GetSpeedTestTarget())
 	}
+	o.TargetAddressType = source.GetTargetAddressType()
 }
 
 func (o *Probe_Spec_TargetServers) MergeRaw(source gotenobject.GotenObjectExt) {

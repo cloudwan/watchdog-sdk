@@ -1791,6 +1791,10 @@ func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget
 	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServers) TargetAddressType() BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType {
+	return BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType{}
+}
+
 type BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
 
 func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *BatchGetProbesResponse_FieldSubPath {
@@ -1986,6 +1990,23 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget
 }
 
 func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5840,6 +5861,10 @@ func (ListProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget() L
 	return ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
 }
 
+func (ListProbesResponsePathSelectorProbesSpecTargetServers) TargetAddressType() ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType {
+	return ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType{}
+}
+
 type ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
 
 func (ListProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *ListProbesResponse_FieldSubPath {
@@ -6035,6 +6060,23 @@ func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsP
 }
 
 func (s ListProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -10265,6 +10307,10 @@ func (CreateProbeRequestPathSelectorProbeSpecTargetServers) SpeedTestTarget() Cr
 	return CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (CreateProbeRequestPathSelectorProbeSpecTargetServers) TargetAddressType() CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType {
+	return CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType{}
+}
+
 type CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (CreateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *CreateProbeRequest_FieldSubPath {
@@ -10460,6 +10506,23 @@ func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPo
 }
 
 func (s CreateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -14168,6 +14231,10 @@ func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) SpeedTestTarget() Up
 	return UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServers) TargetAddressType() UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType {
+	return UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType{}
+}
+
 type UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (UpdateProbeRequestPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -14363,6 +14430,23 @@ func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPo
 }
 
 func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -18095,6 +18179,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) SpeedT
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTarget{}
 }
 
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServers) TargetAddressType() UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType{}
+}
+
 type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget struct{}
 
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequest_FieldSubPath {
@@ -18290,6 +18378,23 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedT
 }
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -22012,6 +22117,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) Speed
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTarget{}
 }
 
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServers) TargetAddressType() UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType{}
+}
+
 type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget struct{}
 
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersIcmpTarget) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
@@ -22207,6 +22316,23 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeed
 }
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -26103,6 +26229,10 @@ func (SearchProbesResponsePathSelectorProbesSpecTargetServers) SpeedTestTarget()
 	return SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTarget{}
 }
 
+func (SearchProbesResponsePathSelectorProbesSpecTargetServers) TargetAddressType() SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType {
+	return SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType{}
+}
+
 type SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget struct{}
 
 func (SearchProbesResponsePathSelectorProbesSpecTargetServersIcmpTarget) FieldPath() *SearchProbesResponse_FieldSubPath {
@@ -26298,6 +26428,23 @@ func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTl
 }
 
 func (s SearchProbesResponsePathSelectorProbesSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

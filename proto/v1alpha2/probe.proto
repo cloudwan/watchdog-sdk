@@ -118,6 +118,8 @@ message Probe {
 
       SpeedTestTarget speed_test_target = 3;
 
+      TargetIPAddressType target_address_type = 4;
+
       message IcmpTarget { bool enabled = 1; }
 
       message UdpTarget {
@@ -136,6 +138,14 @@ message Probe {
         int32 tls_port = 5;
 
         reserved 2;
+      }
+
+      enum TargetIPAddressType {
+        EXTERNAL_IP = 0;
+
+        INTERNAL_IP = 1;
+        // BOTH_INTERNAL_EXTERNAL = 2; This will leave gaps when switching and
+        // might give false results with icmp between different IPs
       }
     }
   }

@@ -4941,6 +4941,10 @@ func (b *filterCndBuilderSpecTargetServers) SpeedTestTarget() *filterCndBuilderS
 	return &filterCndBuilderSpecTargetServersSpeedTestTarget{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpecTargetServers) TargetAddressType() *filterCndBuilderSpecTargetServersTargetAddressType {
+	return &filterCndBuilderSpecTargetServersTargetAddressType{builder: b.builder}
+}
+
 type filterCndBuilderSpecTargetServersIcmpTarget struct {
 	builder *FilterBuilder
 }
@@ -5556,6 +5560,65 @@ func (b *filterCndBuilderSpecTargetServersSpeedTestTargetTlsPort) compare(op got
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().SpeedTestTarget().TlsPort().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecTargetServersTargetAddressType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Eq(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Neq(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Gt(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Gte(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Lt(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) Lte(value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) In(values []Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) NotIn(values []Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecTargetServersTargetAddressType) compare(op gotenfilter.CompareOperator, value Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().WithValue(value),
 	})
 }
 

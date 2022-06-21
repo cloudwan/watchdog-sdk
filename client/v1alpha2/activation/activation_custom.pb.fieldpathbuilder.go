@@ -1733,6 +1733,10 @@ func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) SpeedTestTarg
 	return ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) TargetAddressType() ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType{}
+}
+
 type ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequest_FieldSubPath {
@@ -1928,6 +1932,23 @@ func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTarg
 }
 
 func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5758,6 +5779,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) SpeedTestTar
 	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) TargetAddressType() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -5953,6 +5978,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTar
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -9740,6 +9782,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) SpeedTestTa
 	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) TargetAddressType() ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponse_FieldSubPath {
@@ -9935,6 +9981,23 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTa
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -14335,6 +14398,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) SpeedTestT
 	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTarget{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) TargetAddressType() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -14530,6 +14597,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestT
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetAddressType().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType) WithValue(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
