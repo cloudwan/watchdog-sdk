@@ -11,17 +11,32 @@ import (
 
 // proto imports
 import (
+	ntt_memo "github.com/cloudwan/edgelq-sdk/common/types/memo"
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
+	devices_device "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/device"
+	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
+	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
+	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
+	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
+	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
+	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
+	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
+	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
+	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
+	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
 	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
+	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
+	field_mask "google.golang.org/genproto/protobuf/field_mask"
 )
 
 // ensure the imports are used
@@ -32,15 +47,30 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &ntt_memo.Memo{}
 	_ = &ntt_meta.Meta{}
+	_ = &devices_device.Device{}
+	_ = &devices_project.Project{}
+	_ = &iam_attestation_domain.AttestationDomain{}
+	_ = &iam_iam_common.Actor{}
+	_ = &iam_condition.Condition{}
+	_ = &iam_organization.Organization{}
+	_ = &iam_permission.Permission{}
+	_ = &iam_project.Project{}
+	_ = &iam_role.Role{}
+	_ = &iam_service_account.ServiceAccount{}
+	_ = &iam_user.User{}
 	_ = &policy.Policy{}
 	_ = &syncing_meta.SyncingMeta{}
+	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
+	_ = &field_mask.FieldMask{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
 	_ = &admin_area.BBox{}
 	_ = &common.SoftwareVersion{}
+	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
 	_ = &project.Project{}
 )
@@ -1010,6 +1040,14 @@ func (b *filterCndBuilderProbeTemplateSpec) ContactInfo() *filterCndBuilderProbe
 
 func (b *filterCndBuilderProbeTemplateSpec) DisableSpeedtest() *filterCndBuilderProbeTemplateSpecDisableSpeedtest {
 	return &filterCndBuilderProbeTemplateSpecDisableSpeedtest{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpec) AgentType() *filterCndBuilderProbeTemplateSpecAgentType {
+	return &filterCndBuilderProbeTemplateSpecAgentType{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpec) TargetServers() *filterCndBuilderProbeTemplateSpecTargetServers {
+	return &filterCndBuilderProbeTemplateSpecTargetServers{builder: b.builder}
 }
 
 type filterCndBuilderProbeTemplateSpecProbeGroup struct {
@@ -3039,6 +3077,817 @@ func (b *filterCndBuilderProbeTemplateSpecDisableSpeedtest) compare(op gotenfilt
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                   op,
 		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().DisableSpeedtest().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecAgentType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Eq(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Neq(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Gt(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Gte(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Lt(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) Lte(value probe.Probe_AgentType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) In(values []probe.Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) NotIn(values []probe.Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().AgentType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().AgentType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecAgentType) compare(op gotenfilter.CompareOperator, value probe.Probe_AgentType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().AgentType().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServers struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Eq(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Neq(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Gt(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Gte(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Lt(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) Lte(value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) In(values []*probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) NotIn(values []*probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) compare(op gotenfilter.CompareOperator, value *probe.Probe_Spec_TargetServers) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) IcmpTarget() *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget {
+	return &filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) UdpTarget() *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget {
+	return &filterCndBuilderProbeTemplateSpecTargetServersUdpTarget{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) SpeedTestTarget() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget {
+	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) TargetAddressType() *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType {
+	return &filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType{builder: b.builder}
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Eq(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Neq(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Gt(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Gte(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Lt(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Lte(value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) In(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) NotIn(values []*probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) compare(op gotenfilter.CompareOperator, value *probe.Probe_Spec_TargetServers_IcmpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget) Enabled() *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled {
+	return &filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled{builder: b.builder}
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersIcmpTargetEnabled) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().IcmpTarget().Enabled().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersUdpTarget struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Eq(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Neq(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Gt(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Gte(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Lt(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Lte(value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) In(values []*probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) NotIn(values []*probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) compare(op gotenfilter.CompareOperator, value *probe.Probe_Spec_TargetServers_UdpTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Enabled() *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled {
+	return &filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTarget) Port() *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort {
+	return &filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort{builder: b.builder}
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetEnabled) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Enabled().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Port().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Port().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Port().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersUdpTargetPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().UdpTarget().Port().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Eq(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Neq(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Gt(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Gte(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Lt(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Lte(value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) In(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) NotIn(values []*probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) compare(op gotenfilter.CompareOperator, value *probe.Probe_Spec_TargetServers_SpeedTestTarget) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Enabled() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled {
+	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
+	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
+	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{builder: b.builder}
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
+	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{builder: b.builder}
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().Enabled().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().Enabled().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().Enabled().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Eq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Neq(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Gt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Gte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Lt(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Lte(value int32) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) In(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) NotIn(values []int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Eq(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Neq(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Gt(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Gte(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Lt(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) Lte(value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) In(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) NotIn(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) compare(op gotenfilter.CompareOperator, value probe.Probe_Spec_TargetServers_TargetIPAddressType) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().WithValue(value),
 	})
 }
 

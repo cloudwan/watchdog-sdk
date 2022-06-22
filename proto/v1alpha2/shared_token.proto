@@ -5,6 +5,7 @@ package ntt.watchdog.v1alpha2;
 import "edgelq-sdk/common/types/meta.proto";
 import "google/api/resource.proto";
 import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
 
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/shared_token;shared_token";
 option java_multiple_files = true;
@@ -77,6 +78,10 @@ message SharedToken {
       ContactInformation contact_info = 9;
 
       bool disable_speedtest = 13;
+
+      Probe.AgentType agent_type = 14;
+
+      Probe.Spec.TargetServers target_servers = 15;
     }
   }
 }

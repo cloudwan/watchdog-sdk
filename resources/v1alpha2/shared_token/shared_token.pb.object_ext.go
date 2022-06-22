@@ -18,6 +18,7 @@ import (
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 )
@@ -37,6 +38,7 @@ var (
 var (
 	_ = &ntt_meta.Meta{}
 	_ = &common.SoftwareVersion{}
+	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
 	_ = &project.Project{}
 )
@@ -459,6 +461,19 @@ func (o *SharedToken_ProbeTemplate_Spec) MakeDiffFieldMask(other *SharedToken_Pr
 	if o.GetDisableSpeedtest() != other.GetDisableSpeedtest() {
 		res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest})
 	}
+	if o.GetAgentType() != other.GetAgentType() {
+		res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType})
+	}
+	{
+		subMask := o.GetTargetServers().MakeDiffFieldMask(other.GetTargetServers())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldSubPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -485,6 +500,8 @@ func (o *SharedToken_ProbeTemplate_Spec) Clone() *SharedToken_ProbeTemplate_Spec
 	result.LocationDiscovery = o.LocationDiscovery.Clone()
 	result.ContactInfo = o.ContactInfo.Clone()
 	result.DisableSpeedtest = o.DisableSpeedtest
+	result.AgentType = o.AgentType
+	result.TargetServers = o.TargetServers.Clone()
 	return result
 }
 
@@ -524,6 +541,13 @@ func (o *SharedToken_ProbeTemplate_Spec) Merge(source *SharedToken_ProbeTemplate
 		o.ContactInfo.Merge(source.GetContactInfo())
 	}
 	o.DisableSpeedtest = source.GetDisableSpeedtest()
+	o.AgentType = source.GetAgentType()
+	if source.GetTargetServers() != nil {
+		if o.TargetServers == nil {
+			o.TargetServers = new(probe.Probe_Spec_TargetServers)
+		}
+		o.TargetServers.Merge(source.GetTargetServers())
+	}
 }
 
 func (o *SharedToken_ProbeTemplate_Spec) MergeRaw(source gotenobject.GotenObjectExt) {

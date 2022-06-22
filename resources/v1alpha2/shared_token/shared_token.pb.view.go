@@ -14,6 +14,7 @@ import (
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 )
@@ -29,6 +30,7 @@ var (
 var (
 	_ = &ntt_meta.Meta{}
 	_ = &common.SoftwareVersion{}
+	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
 	_ = &project.Project{}
 )

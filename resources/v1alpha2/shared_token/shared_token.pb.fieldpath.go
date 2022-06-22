@@ -26,6 +26,7 @@ import (
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 )
@@ -53,6 +54,7 @@ var (
 var (
 	_ = &ntt_meta.Meta{}
 	_ = &common.SoftwareVersion{}
+	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
 	_ = &project.Project{}
 )
@@ -2370,6 +2372,8 @@ const (
 	SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery SharedTokenProbeTemplateSpec_FieldPathSelector = 2
 	SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo       SharedTokenProbeTemplateSpec_FieldPathSelector = 3
 	SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest  SharedTokenProbeTemplateSpec_FieldPathSelector = 4
+	SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType         SharedTokenProbeTemplateSpec_FieldPathSelector = 5
+	SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers     SharedTokenProbeTemplateSpec_FieldPathSelector = 6
 )
 
 func (s SharedTokenProbeTemplateSpec_FieldPathSelector) String() string {
@@ -2384,6 +2388,10 @@ func (s SharedTokenProbeTemplateSpec_FieldPathSelector) String() string {
 		return "contact_info"
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		return "disable_speedtest"
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		return "agent_type"
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return "target_servers"
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", s))
 	}
@@ -2405,6 +2413,10 @@ func BuildSharedTokenProbeTemplateSpec_FieldPath(fp gotenobject.RawFieldPath) (S
 			return &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo}, nil
 		case "disable_speedtest", "disableSpeedtest", "disable-speedtest":
 			return &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest}, nil
+		case "agent_type", "agentType", "agent-type":
+			return &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType}, nil
+		case "target_servers", "targetServers", "target-servers":
+			return &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2425,6 +2437,12 @@ func BuildSharedTokenProbeTemplateSpec_FieldPath(fp gotenobject.RawFieldPath) (S
 				return nil, err
 			} else {
 				return &SharedTokenProbeTemplateSpec_FieldSubPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo, subPath: subpath}, nil
+			}
+		case "target_servers", "targetServers", "target-servers":
+			if subpath, err := probe.BuildProbeSpecTargetServers_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &SharedTokenProbeTemplateSpec_FieldSubPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers, subPath: subpath}, nil
 			}
 		}
 	}
@@ -2489,6 +2507,12 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) Get(source *SharedToke
 			}
 		case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 			values = append(values, source.DisableSpeedtest)
+		case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+			values = append(values, source.AgentType)
+		case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+			if source.TargetServers != nil {
+				values = append(values, source.TargetServers)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 		}
@@ -2517,6 +2541,11 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) GetSingle(source *Shar
 		return res, res != nil
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		return source.GetDisableSpeedtest(), source != nil
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		return source.GetAgentType(), source != nil
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		res := source.GetTargetServers()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 	}
@@ -2539,6 +2568,10 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) GetDefault() interface
 		return (*common.ContactInformation)(nil)
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		return false
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		return probe.Probe_UNKNOWN
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return (*probe.Probe_Spec_TargetServers)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 	}
@@ -2557,6 +2590,10 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) ClearValue(item *Share
 			item.ContactInfo = nil
 		case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 			item.DisableSpeedtest = false
+		case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+			item.AgentType = probe.Probe_UNKNOWN
+		case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+			item.TargetServers = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 		}
@@ -2570,7 +2607,8 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) ClearValueRaw(item pro
 // IsLeaf - whether field path is holds simple value
 func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == SharedTokenProbeTemplateSpec_FieldPathSelectorProbeGroup ||
-		fp.selector == SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest
+		fp.selector == SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest ||
+		fp.selector == SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType
 }
 
 func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) WithIValue(value interface{}) SharedTokenProbeTemplateSpec_FieldPathValue {
@@ -2585,6 +2623,10 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) WithIValue(value inter
 		return &SharedTokenProbeTemplateSpec_FieldTerminalPathValue{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, value: value.(*common.ContactInformation)}
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		return &SharedTokenProbeTemplateSpec_FieldTerminalPathValue{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, value: value.(bool)}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		return &SharedTokenProbeTemplateSpec_FieldTerminalPathValue{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, value: value.(probe.Probe_AgentType)}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return &SharedTokenProbeTemplateSpec_FieldTerminalPathValue{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, value: value.(*probe.Probe_Spec_TargetServers)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 	}
@@ -2607,6 +2649,10 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) WithIArrayOfValues(val
 		return &SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, values: values.([]*common.ContactInformation)}
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		return &SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, values: values.([]bool)}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		return &SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, values: values.([]probe.Probe_AgentType)}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return &SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues{SharedTokenProbeTemplateSpec_FieldTerminalPath: *fp, values: values.([]*probe.Probe_Spec_TargetServers)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fp.selector))
 	}
@@ -2650,6 +2696,10 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) AsContactInfoSubPath() (co
 	res, ok := fps.subPath.(common.ContactInformation_FieldPath)
 	return res, ok
 }
+func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) AsTargetServersSubPath() (probe.ProbeSpecTargetServers_FieldPath, bool) {
+	res, ok := fps.subPath.(probe.ProbeSpecTargetServers_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) String() string {
@@ -2669,6 +2719,8 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) Get(source *SharedToken_Pr
 		values = append(values, asLocationDiscoverySpecFieldPath.Get(source.GetLocationDiscovery())...)
 	} else if asContactInformationFieldPath, ok := fps.AsContactInfoSubPath(); ok {
 		values = append(values, asContactInformationFieldPath.Get(source.GetContactInfo())...)
+	} else if asTargetServersFieldPath, ok := fps.AsTargetServersSubPath(); ok {
+		values = append(values, asTargetServersFieldPath.Get(source.GetTargetServers())...)
 	} else {
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fps.selector))
 	}
@@ -2697,6 +2749,11 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) GetSingle(source *SharedTo
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetContactInfo())
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		if source.GetTargetServers() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fps.selector))
 	}
@@ -2720,6 +2777,8 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) ClearValue(item *SharedTok
 			fps.subPath.ClearValueRaw(item.LocationDiscovery)
 		case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 			fps.subPath.ClearValueRaw(item.ContactInfo)
+		case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+			fps.subPath.ClearValueRaw(item.TargetServers)
 		default:
 			panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fps.selector))
 		}
@@ -2818,6 +2877,14 @@ func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) AsDisableSpeedte
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
+func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) AsAgentTypeValue() (probe.Probe_AgentType, bool) {
+	res, ok := fpv.value.(probe.Probe_AgentType)
+	return res, ok
+}
+func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) AsTargetServersValue() (*probe.Probe_Spec_TargetServers, bool) {
+	res, ok := fpv.value.(*probe.Probe_Spec_TargetServers)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) SetTo(target **SharedToken_ProbeTemplate_Spec) {
@@ -2835,6 +2902,10 @@ func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) SetTo(target **S
 		(*target).ContactInfo = fpv.value.(*common.ContactInformation)
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 		(*target).DisableSpeedtest = fpv.value.(bool)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		(*target).AgentType = fpv.value.(probe.Probe_AgentType)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		(*target).TargetServers = fpv.value.(*probe.Probe_Spec_TargetServers)
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fpv.selector))
 	}
@@ -2883,6 +2954,18 @@ func (fpv *SharedTokenProbeTemplateSpec_FieldTerminalPathValue) CompareWith(sour
 		} else {
 			return 1, true
 		}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		leftValue := fpv.value.(probe.Probe_AgentType)
+		rightValue := source.GetAgentType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fpv.selector))
 	}
@@ -2911,6 +2994,10 @@ func (fpvs *SharedTokenProbeTemplateSpec_FieldSubPathValue) AsContactInfoPathVal
 	res, ok := fpvs.subPathValue.(common.ContactInformation_FieldPathValue)
 	return res, ok
 }
+func (fpvs *SharedTokenProbeTemplateSpec_FieldSubPathValue) AsTargetServersPathValue() (probe.ProbeSpecTargetServers_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(probe.ProbeSpecTargetServers_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *SharedTokenProbeTemplateSpec_FieldSubPathValue) SetTo(target **SharedToken_ProbeTemplate_Spec) {
 	if *target == nil {
@@ -2923,6 +3010,8 @@ func (fpvs *SharedTokenProbeTemplateSpec_FieldSubPathValue) SetTo(target **Share
 		fpvs.subPathValue.(common.LocationDiscoverySpec_FieldPathValue).SetTo(&(*target).LocationDiscovery)
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 		fpvs.subPathValue.(common.ContactInformation_FieldPathValue).SetTo(&(*target).ContactInfo)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		fpvs.subPathValue.(probe.ProbeSpecTargetServers_FieldPathValue).SetTo(&(*target).TargetServers)
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fpvs.Selector()))
 	}
@@ -2945,6 +3034,8 @@ func (fpvs *SharedTokenProbeTemplateSpec_FieldSubPathValue) CompareWith(source *
 		return fpvs.subPathValue.(common.LocationDiscoverySpec_FieldPathValue).CompareWith(source.GetLocationDiscovery())
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 		return fpvs.subPathValue.(common.ContactInformation_FieldPathValue).CompareWith(source.GetContactInfo())
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return fpvs.subPathValue.(probe.ProbeSpecTargetServers_FieldPathValue).CompareWith(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fpvs.Selector()))
 	}
@@ -3035,6 +3126,10 @@ func (fpaivs *SharedTokenProbeTemplateSpec_FieldSubPathArrayItemValue) AsContact
 	res, ok := fpaivs.subPathItemValue.(common.ContactInformation_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *SharedTokenProbeTemplateSpec_FieldSubPathArrayItemValue) AsTargetServersPathItemValue() (probe.ProbeSpecTargetServers_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(probe.ProbeSpecTargetServers_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'Spec'
 func (fpaivs *SharedTokenProbeTemplateSpec_FieldSubPathArrayItemValue) ContainsValue(source *SharedToken_ProbeTemplate_Spec) bool {
@@ -3045,6 +3140,8 @@ func (fpaivs *SharedTokenProbeTemplateSpec_FieldSubPathArrayItemValue) ContainsV
 		return fpaivs.subPathItemValue.(common.LocationDiscoverySpec_FieldPathArrayItemValue).ContainsValue(source.GetLocationDiscovery())
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 		return fpaivs.subPathItemValue.(common.ContactInformation_FieldPathArrayItemValue).ContainsValue(source.GetContactInfo())
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		return fpaivs.subPathItemValue.(probe.ProbeSpecTargetServers_FieldPathArrayItemValue).ContainsValue(source.GetTargetServers())
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fpaivs.Selector()))
 	}
@@ -3105,6 +3202,14 @@ func (fpaov *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues) GetRaw
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+		for _, v := range fpaov.values.([]probe.Probe_AgentType) {
+			values = append(values, v)
+		}
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		for _, v := range fpaov.values.([]*probe.Probe_Spec_TargetServers) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -3128,6 +3233,14 @@ func (fpaov *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues) AsDisa
 	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
+func (fpaov *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues) AsAgentTypeArrayOfValues() ([]probe.Probe_AgentType, bool) {
+	res, ok := fpaov.values.([]probe.Probe_AgentType)
+	return res, ok
+}
+func (fpaov *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayOfValues) AsTargetServersArrayOfValues() ([]*probe.Probe_Spec_TargetServers, bool) {
+	res, ok := fpaov.values.([]*probe.Probe_Spec_TargetServers)
+	return res, ok
+}
 
 type SharedTokenProbeTemplateSpec_FieldSubPathArrayOfValues struct {
 	SharedTokenProbeTemplateSpec_FieldPath
@@ -3149,5 +3262,9 @@ func (fpsaov *SharedTokenProbeTemplateSpec_FieldSubPathArrayOfValues) AsLocation
 }
 func (fpsaov *SharedTokenProbeTemplateSpec_FieldSubPathArrayOfValues) AsContactInfoPathArrayOfValues() (common.ContactInformation_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.ContactInformation_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *SharedTokenProbeTemplateSpec_FieldSubPathArrayOfValues) AsTargetServersPathArrayOfValues() (probe.ProbeSpecTargetServers_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(probe.ProbeSpecTargetServers_FieldPathArrayOfValues)
 	return res, ok
 }

@@ -22,6 +22,7 @@ import (
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
+	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 )
@@ -45,6 +46,7 @@ var (
 var (
 	_ = &ntt_meta.Meta{}
 	_ = &common.SoftwareVersion{}
+	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
 	_ = &project.Project{}
 )
@@ -997,6 +999,8 @@ func FullSharedToken_ProbeTemplate_Spec_FieldMask() *SharedToken_ProbeTemplate_S
 	res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery})
 	res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo})
 	res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest})
+	res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType})
+	res.Paths = append(res.Paths, &SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers})
 	return res
 }
 
@@ -1040,7 +1044,7 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 5)
+	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*SharedTokenProbeTemplateSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1070,16 +1074,18 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Reset() {
 
 func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Subtract(other *SharedToken_ProbeTemplate_Spec_FieldMask) *SharedToken_ProbeTemplate_Spec_FieldMask {
 	result := &SharedToken_ProbeTemplate_Spec_FieldMask{}
-	removedSelectors := make([]bool, 5)
+	removedSelectors := make([]bool, 7)
 	otherSubMasks := map[SharedTokenProbeTemplateSpec_FieldPathSelector]gotenobject.FieldMask{
 		SharedTokenProbeTemplateSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
 		SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:       &common.ContactInformation_FieldMask{},
+		SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:     &probe.Probe_Spec_TargetServers_FieldMask{},
 	}
 	mySubMasks := map[SharedTokenProbeTemplateSpec_FieldPathSelector]gotenobject.FieldMask{
 		SharedTokenProbeTemplateSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
 		SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:       &common.ContactInformation_FieldMask{},
+		SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:     &probe.Probe_Spec_TargetServers_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -1101,6 +1107,8 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Subtract(other *Share
 						mySubMasks[SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery] = common.FullLocationDiscoverySpec_FieldMask()
 					case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 						mySubMasks[SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo] = common.FullContactInformation_FieldMask()
+					case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+						mySubMasks[SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers] = probe.FullProbe_Spec_TargetServers_FieldMask()
 					}
 				} else if tp, ok := path.(*SharedTokenProbeTemplateSpec_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -1259,6 +1267,8 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Project(source *Share
 	wholeLocationDiscoveryAccepted := false
 	contactInfoMask := &common.ContactInformation_FieldMask{}
 	wholeContactInfoAccepted := false
+	targetServersMask := &probe.Probe_Spec_TargetServers_FieldMask{}
+	wholeTargetServersAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -1277,6 +1287,11 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Project(source *Share
 				wholeContactInfoAccepted = true
 			case SharedTokenProbeTemplateSpec_FieldPathSelectorDisableSpeedtest:
 				result.DisableSpeedtest = source.DisableSpeedtest
+			case SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType:
+				result.AgentType = source.AgentType
+			case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+				result.TargetServers = source.TargetServers
+				wholeTargetServersAccepted = true
 			}
 		case *SharedTokenProbeTemplateSpec_FieldSubPath:
 			switch tp.selector {
@@ -1286,6 +1301,8 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Project(source *Share
 				locationDiscoveryMask.AppendPath(tp.subPath.(common.LocationDiscoverySpec_FieldPath))
 			case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
 				contactInfoMask.AppendPath(tp.subPath.(common.ContactInformation_FieldPath))
+			case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+				targetServersMask.AppendPath(tp.subPath.(probe.ProbeSpecTargetServers_FieldPath))
 			}
 		}
 	}
@@ -1297,6 +1314,9 @@ func (fieldMask *SharedToken_ProbeTemplate_Spec_FieldMask) Project(source *Share
 	}
 	if wholeContactInfoAccepted == false && len(contactInfoMask.Paths) > 0 {
 		result.ContactInfo = contactInfoMask.Project(source.GetContactInfo())
+	}
+	if wholeTargetServersAccepted == false && len(targetServersMask.Paths) > 0 {
+		result.TargetServers = targetServersMask.Project(source.GetTargetServers())
 	}
 	return result
 }
