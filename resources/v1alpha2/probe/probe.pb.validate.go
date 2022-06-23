@@ -69,6 +69,9 @@ func (obj *Probe) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Probe", "metadata", obj.Metadata, "nested object validation failed", err)
 		}
 	}
+	if obj.Spec == nil {
+		return gotenvalidate.NewValidationError("Probe", "spec", obj.Spec, "field is required", nil)
+	}
 	if subobj, ok := interface{}(obj.Spec).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Probe", "spec", obj.Spec, "nested object validation failed", err)
@@ -110,6 +113,9 @@ func (obj *Probe_Spec) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Spec", "contactInfo", obj.ContactInfo, "nested object validation failed", err)
 		}
 	}
+	if obj.Activation == nil {
+		return gotenvalidate.NewValidationError("Spec", "activation", obj.Activation, "field is required", nil)
+	}
 	if subobj, ok := interface{}(obj.Activation).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Spec", "activation", obj.Activation, "nested object validation failed", err)
@@ -119,6 +125,12 @@ func (obj *Probe_Spec) GotenValidate() error {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Spec", "accessToken", obj.AccessToken, "nested object validation failed", err)
 		}
+	}
+	if _, ok := Probe_AgentType_name[int32(obj.AgentType)]; !ok {
+		return gotenvalidate.NewValidationError("Spec", "agentType", obj.AgentType, "field must be a defined enum value", nil)
+	}
+	if obj.AgentType == 0 {
+		return gotenvalidate.NewValidationError("Spec", "agentType", obj.AgentType, "field must not be equal to any of the following values: 0", nil)
 	}
 	if subobj, ok := interface{}(obj.TargetServers).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
@@ -182,6 +194,12 @@ func (obj *Probe_Status) GotenValidate() error {
 func (obj *Probe_Spec_ActivationSpec) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	if _, ok := Probe_Spec_ActivationSpec_ActivationType_name[int32(obj.Type)]; !ok {
+		return gotenvalidate.NewValidationError("ActivationSpec", "type", obj.Type, "field must be a defined enum value", nil)
+	}
+	if obj.Type == 0 {
+		return gotenvalidate.NewValidationError("ActivationSpec", "type", obj.Type, "field must not be equal to any of the following values: 0", nil)
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

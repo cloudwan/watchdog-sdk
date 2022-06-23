@@ -58,6 +58,12 @@ func (obj *SharedToken) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
+	if obj.Quota == 0 {
+		return gotenvalidate.NewValidationError("SharedToken", "quota", obj.Quota, "field must not be equal to any of the following values: 0", nil)
+	}
+	if obj.ProbeTemplate == nil {
+		return gotenvalidate.NewValidationError("SharedToken", "probeTemplate", obj.ProbeTemplate, "field is required", nil)
+	}
 	if subobj, ok := interface{}(obj.ProbeTemplate).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("SharedToken", "probeTemplate", obj.ProbeTemplate, "nested object validation failed", err)
@@ -90,6 +96,9 @@ func (obj *SharedToken_ProbeTemplate) GotenValidate() error {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("ProbeTemplate", "metadata", obj.Metadata, "nested object validation failed", err)
 		}
+	}
+	if obj.Spec == nil {
+		return gotenvalidate.NewValidationError("ProbeTemplate", "spec", obj.Spec, "field is required", nil)
 	}
 	if subobj, ok := interface{}(obj.Spec).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
@@ -140,6 +149,12 @@ func (obj *SharedToken_ProbeTemplate_Spec) GotenValidate() error {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Spec", "contactInfo", obj.ContactInfo, "nested object validation failed", err)
 		}
+	}
+	if _, ok := probe.Probe_AgentType_name[int32(obj.AgentType)]; !ok {
+		return gotenvalidate.NewValidationError("Spec", "agentType", obj.AgentType, "field must be a defined enum value", nil)
+	}
+	if obj.AgentType == 0 {
+		return gotenvalidate.NewValidationError("Spec", "agentType", obj.AgentType, "field must not be equal to any of the following values: 0", nil)
 	}
 	if subobj, ok := interface{}(obj.TargetServers).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
