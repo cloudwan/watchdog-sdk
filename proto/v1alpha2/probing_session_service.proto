@@ -434,7 +434,7 @@ service ProbingSessionService {
   rpc SearchProbingSessions(SearchProbingSessionsRequest)
       returns (SearchProbingSessionsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*/regions/*}/probingSessions"
+      get : "/v1alpha2/{parent=projects/*/regions/*}/probingSessions:search"
     };
   }
 }

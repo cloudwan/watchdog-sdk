@@ -438,7 +438,7 @@ service ProbingDistributionService {
   rpc SearchProbingDistributions(SearchProbingDistributionsRequest)
       returns (SearchProbingDistributionsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/probingDistributions"
+      get : "/v1alpha2/{parent=projects/*}/probingDistributions:search"
     };
   }
 }

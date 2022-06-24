@@ -431,7 +431,7 @@ service ProbeGroupService {
   rpc SearchProbeGroups(SearchProbeGroupsRequest)
       returns (SearchProbeGroupsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/probeGroups"
+      get : "/v1alpha2/{parent=projects/*}/probeGroups:search"
     };
   }
 }

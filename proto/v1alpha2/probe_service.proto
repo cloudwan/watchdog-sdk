@@ -415,7 +415,7 @@ service ProbeService {
   // SearchProbes
   rpc SearchProbes(SearchProbesRequest) returns (SearchProbesResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*/regions/*}/probes"
+      get : "/v1alpha2/{parent=projects/*/regions/*}/probes:search"
     };
   }
 

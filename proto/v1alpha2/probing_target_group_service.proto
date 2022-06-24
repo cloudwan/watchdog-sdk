@@ -436,7 +436,7 @@ service ProbingTargetGroupService {
   rpc SearchProbingTargetGroups(SearchProbingTargetGroupsRequest)
       returns (SearchProbingTargetGroupsResponse) {
     option (google.api.http) = {
-      get : "/v1alpha2/{parent=projects/*}/probingTargetGroups"
+      get : "/v1alpha2/{parent=projects/*}/probingTargetGroups:search"
     };
   }
 }
