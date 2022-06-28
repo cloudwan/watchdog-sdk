@@ -217,6 +217,10 @@ func (obj *ProbingSettings) GotenValidate() error {
 	} else {
 		d := obj.Interval.AsDuration()
 
+		if obj.Interval == nil {
+			return gotenvalidate.NewValidationError("ProbingSettings", "interval", d, "field is required", nil)
+		}
+
 		if obj.Interval != nil {
 			if !(d >= time.Duration(100000000)) {
 				return gotenvalidate.NewValidationError("ProbingSettings", "interval", d, "field must be greater or equal to 100ms", nil)

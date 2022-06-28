@@ -63,6 +63,9 @@ func (obj *ProbingDistribution) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ProbingDistribution", "metadata", obj.Metadata, "nested object validation failed", err)
 		}
 	}
+	if obj.Spec == nil {
+		return gotenvalidate.NewValidationError("ProbingDistribution", "spec", obj.Spec, "field is required", nil)
+	}
 	if subobj, ok := interface{}(obj.Spec).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("ProbingDistribution", "spec", obj.Spec, "nested object validation failed", err)
@@ -92,6 +95,9 @@ func (obj *ProbingDistribution_Spec) GotenValidate() error {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("Spec", "constraint", obj.Constraint, "nested object validation failed", err)
 		}
+	}
+	if obj.ProbingSettings == nil {
+		return gotenvalidate.NewValidationError("Spec", "probingSettings", obj.ProbingSettings, "field is required", nil)
 	}
 	if subobj, ok := interface{}(obj.ProbingSettings).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
