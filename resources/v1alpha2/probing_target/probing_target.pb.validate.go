@@ -83,23 +83,16 @@ func (obj *ProbingTarget) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ProbingTarget", "location", obj.Location, "nested object validation failed", err)
 		}
 	}
-	if subobj, ok := interface{}(obj.ProbingConstraint).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingTarget", "probingConstraint", obj.ProbingConstraint, "nested object validation failed", err)
-		}
-	}
-	if obj.DefaultProbingSettings == nil {
-		return gotenvalidate.NewValidationError("ProbingTarget", "defaultProbingSettings", obj.DefaultProbingSettings, "field is required", nil)
-	}
-	if subobj, ok := interface{}(obj.DefaultProbingSettings).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("ProbingTarget", "defaultProbingSettings", obj.DefaultProbingSettings, "nested object validation failed", err)
-		}
-	}
 	if subobj, ok := interface{}(obj.HttpProbingConfig).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("ProbingTarget", "httpProbingConfig", obj.HttpProbingConfig, "nested object validation failed", err)
 		}
+	}
+	if !(obj.UdpPort >= 0 && obj.UdpPort <= 65535) {
+		return gotenvalidate.NewValidationError("ProbingTarget", "udpPort", obj.UdpPort, "field must be in range [0, 65535]", nil)
+	}
+	if !(obj.SpeedtestTcpPort >= 0 && obj.SpeedtestTcpPort <= 65535) {
+		return gotenvalidate.NewValidationError("ProbingTarget", "speedtestTcpPort", obj.SpeedtestTcpPort, "field must be in range [0, 65535]", nil)
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

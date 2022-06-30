@@ -1154,20 +1154,12 @@ func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) Durat
 	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) UseTls() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls{}
-}
-
 func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) ServerSelection() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection {
 	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsServerSelection{}
 }
 
 func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) TcpPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort {
 	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettings) TlsPort() ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort {
-	return ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort{}
 }
 
 type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration struct{}
@@ -1184,23 +1176,6 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDurat
 }
 
 func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls struct{}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) WithValue(value bool) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -1235,23 +1210,6 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPo
 }
 
 func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort struct{}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().SpeedtestSettings().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -2619,20 +2577,12 @@ func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) Dura
 	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) UseTls() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls{}
-}
-
 func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) ServerSelection() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection {
 	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsServerSelection{}
 }
 
 func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) TcpPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort {
 	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettings) TlsPort() ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort{}
 }
 
 type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration struct{}
@@ -2649,23 +2599,6 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDura
 }
 
 func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls struct{}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) WithValue(value bool) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
@@ -2700,23 +2633,6 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpP
 }
 
 func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort struct{}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 

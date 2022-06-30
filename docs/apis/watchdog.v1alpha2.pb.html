@@ -2479,19 +2479,7 @@ manager intervention. Convenient, but less secure configuration option.</p>
 <tr><td class="description"></td></tr>
 
 <tr>
-<th rowspan="2">use_tls</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
 <th rowspan="2">tcp_port</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">tls_port</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
@@ -8663,20 +8651,6 @@ index can be computed from offset and limit provided in a request</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">probing_constraint</th>
-<td class="type"><pre><a href="#message-ProbingConstraint">ProbingConstraint</a></pre></td>
-</tr>
-<tr><td class="description"><p>per-target constraints</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">default_probing_settings</th>
-<td class="type"><pre><a href="#message-ProbingSettings">ProbingSettings</a></pre></td>
-</tr>
-<tr><td class="description"><p>Default Probing Settings like interval, tos, window size, path probing</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">http_probing_config</th>
 <td class="type"><pre><a href="#message-HTTPProbingConfig">HTTPProbingConfig</a></pre></td>
 </tr>
@@ -8702,6 +8676,20 @@ used for managed targets that might have dual stack</p>
 <td class="type"><pre><a href="#enum-ProbingTarget.TargetType">ProbingTarget.TargetType</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">udp_port</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Default value is 5001</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">speedtest_tcp_port</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Default value is 8080</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -17632,13 +17620,6 @@ watch type.</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">use_tls</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"><p>Use tls or unencrypted. Default mode is to run unencrypted</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">server_selection</th>
 <td class="type"><pre><a href="#enum-SpeedTestSettings.ServerSelection">SpeedTestSettings.ServerSelection</a></pre></td>
 </tr>
@@ -17646,12 +17627,6 @@ watch type.</p>
 
 <tr>
 <th rowspan="2">tcp_port</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">tls_port</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"></td></tr>

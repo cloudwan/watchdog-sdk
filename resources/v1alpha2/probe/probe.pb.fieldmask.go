@@ -2662,9 +2662,7 @@ type Probe_Spec_TargetServers_SpeedTestTarget_FieldMask struct {
 func FullProbe_Spec_TargetServers_SpeedTestTarget_FieldMask() *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
 	res := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
 	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled})
-	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls})
 	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort})
-	res.Paths = append(res.Paths, &ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath{selector: ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort})
 	return res
 }
 
@@ -2708,7 +2706,7 @@ func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) IsFull() bo
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 2)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -2738,7 +2736,7 @@ func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Subtract(other *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask {
 	result := &Probe_Spec_TargetServers_SpeedTestTarget_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 2)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -2894,12 +2892,8 @@ func (fieldMask *Probe_Spec_TargetServers_SpeedTestTarget_FieldMask) Project(sou
 			switch tp.selector {
 			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
 				result.Enabled = source.Enabled
-			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorUseTls:
-				result.UseTls = source.UseTls
 			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort:
 				result.TcpPort = source.TcpPort
-			case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTlsPort:
-				result.TlsPort = source.TlsPort
 			}
 		}
 	}

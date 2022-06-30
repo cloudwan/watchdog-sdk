@@ -48,12 +48,6 @@ message ProbingTarget {
   // Specific location if applicable
   Location location = 15;
 
-  // per-target constraints
-  ProbingConstraint probing_constraint = 16;
-
-  // Default Probing Settings like interval, tos, window size, path probing
-  ProbingSettings default_probing_settings = 18;
-
   // Additional configuration for http probing
   HTTPProbingConfig http_probing_config = 19;
 
@@ -65,11 +59,17 @@ message ProbingTarget {
 
   TargetType target_type = 22;
 
+  // Default value is 5001
+  int32 udp_port = 23;
+
+  // Default value is 8080
+  int32 speedtest_tcp_port = 24;
+
   enum TargetType {
     UNMANAGED_TARGET = 0;
 
     MANAGED_TARGET = 1;
   }
 
-  reserved 11;
+  reserved 11, 16, 18;
 }

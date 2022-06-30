@@ -107,26 +107,6 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 		}
 	}
 	{
-		subMask := o.GetProbingConstraint().MakeDiffFieldMask(other.GetProbingConstraint())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProbingConstraint})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorProbingConstraint, subPath: subpath})
-			}
-		}
-	}
-	{
-		subMask := o.GetDefaultProbingSettings().MakeDiffFieldMask(other.GetDefaultProbingSettings())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings, subPath: subpath})
-			}
-		}
-	}
-	{
 		subMask := o.GetHttpProbingConfig().MakeDiffFieldMask(other.GetHttpProbingConfig())
 		if subMask.IsFull() {
 			res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig})
@@ -153,6 +133,12 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 	}
 	if o.GetTargetType() != other.GetTargetType() {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType})
+	}
+	if o.GetUdpPort() != other.GetUdpPort() {
+		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorUdpPort})
+	}
+	if o.GetSpeedtestTcpPort() != other.GetSpeedtestTcpPort() {
+		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorSpeedtestTcpPort})
 	}
 	return res
 }
@@ -194,8 +180,6 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 	result.Category = o.Category
 	result.LocationType = o.LocationType
 	result.Location = o.Location.Clone()
-	result.ProbingConstraint = o.ProbingConstraint.Clone()
-	result.DefaultProbingSettings = o.DefaultProbingSettings.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
 	if o.Agent == nil {
 		result.Agent = nil
@@ -212,6 +196,8 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 		result.Addresses[i] = sourceValue
 	}
 	result.TargetType = o.TargetType
+	result.UdpPort = o.UdpPort
+	result.SpeedtestTcpPort = o.SpeedtestTcpPort
 	return result
 }
 
@@ -262,18 +248,6 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 		}
 		o.Location.Merge(source.GetLocation())
 	}
-	if source.GetProbingConstraint() != nil {
-		if o.ProbingConstraint == nil {
-			o.ProbingConstraint = new(common.ProbingConstraint)
-		}
-		o.ProbingConstraint.Merge(source.GetProbingConstraint())
-	}
-	if source.GetDefaultProbingSettings() != nil {
-		if o.DefaultProbingSettings == nil {
-			o.DefaultProbingSettings = new(common.ProbingSettings)
-		}
-		o.DefaultProbingSettings.Merge(source.GetDefaultProbingSettings())
-	}
 	if source.GetHttpProbingConfig() != nil {
 		if o.HttpProbingConfig == nil {
 			o.HttpProbingConfig = new(common.HTTPProbingConfig)
@@ -308,6 +282,8 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 	}
 
 	o.TargetType = source.GetTargetType()
+	o.UdpPort = source.GetUdpPort()
+	o.SpeedtestTcpPort = source.GetSpeedtestTcpPort()
 }
 
 func (o *ProbingTarget) MergeRaw(source gotenobject.GotenObjectExt) {

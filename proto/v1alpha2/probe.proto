@@ -131,13 +131,9 @@ message Probe {
       message SpeedTestTarget {
         bool enabled = 1;
 
-        bool use_tls = 3;
-
         int32 tcp_port = 4;
 
-        int32 tls_port = 5;
-
-        reserved 2;
+        reserved 2, 3, 5;
       }
 
       enum TargetIPAddressType {

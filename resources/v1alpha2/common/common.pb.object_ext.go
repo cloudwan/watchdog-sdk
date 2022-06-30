@@ -1157,17 +1157,11 @@ func (o *SpeedTestSettings) MakeDiffFieldMask(other *SpeedTestSettings) *SpeedTe
 	if !proto.Equal(o.GetDuration(), other.GetDuration()) {
 		res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorDuration})
 	}
-	if o.GetUseTls() != other.GetUseTls() {
-		res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorUseTls})
-	}
 	if o.GetServerSelection() != other.GetServerSelection() {
 		res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorServerSelection})
 	}
 	if o.GetTcpPort() != other.GetTcpPort() {
 		res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTcpPort})
-	}
-	if o.GetTlsPort() != other.GetTlsPort() {
-		res.Paths = append(res.Paths, &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTlsPort})
 	}
 	return res
 }
@@ -1182,10 +1176,8 @@ func (o *SpeedTestSettings) Clone() *SpeedTestSettings {
 	}
 	result := &SpeedTestSettings{}
 	result.Duration = proto.Clone(o.Duration).(*duration.Duration)
-	result.UseTls = o.UseTls
 	result.ServerSelection = o.ServerSelection
 	result.TcpPort = o.TcpPort
-	result.TlsPort = o.TlsPort
 	return result
 }
 
@@ -1200,10 +1192,8 @@ func (o *SpeedTestSettings) Merge(source *SpeedTestSettings) {
 		}
 		proto.Merge(o.Duration, source.GetDuration())
 	}
-	o.UseTls = source.GetUseTls()
 	o.ServerSelection = source.GetServerSelection()
 	o.TcpPort = source.GetTcpPort()
-	o.TlsPort = source.GetTlsPort()
 }
 
 func (o *SpeedTestSettings) MergeRaw(source gotenobject.GotenObjectExt) {

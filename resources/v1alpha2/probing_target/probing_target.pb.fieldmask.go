@@ -67,12 +67,12 @@ func FullProbingTarget_FieldMask() *ProbingTarget_FieldMask {
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorCategory})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorLocationType})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorLocation})
-	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProbingConstraint})
-	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType})
+	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorUdpPort})
+	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorSpeedtestTcpPort})
 	return res
 }
 
@@ -148,18 +148,14 @@ func (fieldMask *ProbingTarget_FieldMask) Subtract(other *ProbingTarget_FieldMas
 	result := &ProbingTarget_FieldMask{}
 	removedSelectors := make([]bool, 16)
 	otherSubMasks := map[ProbingTarget_FieldPathSelector]gotenobject.FieldMask{
-		ProbingTarget_FieldPathSelectorMetadata:               &ntt_meta.Meta_FieldMask{},
-		ProbingTarget_FieldPathSelectorLocation:               &common.Location_FieldMask{},
-		ProbingTarget_FieldPathSelectorProbingConstraint:      &common.ProbingConstraint_FieldMask{},
-		ProbingTarget_FieldPathSelectorDefaultProbingSettings: &common.ProbingSettings_FieldMask{},
-		ProbingTarget_FieldPathSelectorHttpProbingConfig:      &common.HTTPProbingConfig_FieldMask{},
+		ProbingTarget_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
+		ProbingTarget_FieldPathSelectorLocation:          &common.Location_FieldMask{},
+		ProbingTarget_FieldPathSelectorHttpProbingConfig: &common.HTTPProbingConfig_FieldMask{},
 	}
 	mySubMasks := map[ProbingTarget_FieldPathSelector]gotenobject.FieldMask{
-		ProbingTarget_FieldPathSelectorMetadata:               &ntt_meta.Meta_FieldMask{},
-		ProbingTarget_FieldPathSelectorLocation:               &common.Location_FieldMask{},
-		ProbingTarget_FieldPathSelectorProbingConstraint:      &common.ProbingConstraint_FieldMask{},
-		ProbingTarget_FieldPathSelectorDefaultProbingSettings: &common.ProbingSettings_FieldMask{},
-		ProbingTarget_FieldPathSelectorHttpProbingConfig:      &common.HTTPProbingConfig_FieldMask{},
+		ProbingTarget_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
+		ProbingTarget_FieldPathSelectorLocation:          &common.Location_FieldMask{},
+		ProbingTarget_FieldPathSelectorHttpProbingConfig: &common.HTTPProbingConfig_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -179,10 +175,6 @@ func (fieldMask *ProbingTarget_FieldMask) Subtract(other *ProbingTarget_FieldMas
 						mySubMasks[ProbingTarget_FieldPathSelectorMetadata] = ntt_meta.FullMeta_FieldMask()
 					case ProbingTarget_FieldPathSelectorLocation:
 						mySubMasks[ProbingTarget_FieldPathSelectorLocation] = common.FullLocation_FieldMask()
-					case ProbingTarget_FieldPathSelectorProbingConstraint:
-						mySubMasks[ProbingTarget_FieldPathSelectorProbingConstraint] = common.FullProbingConstraint_FieldMask()
-					case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-						mySubMasks[ProbingTarget_FieldPathSelectorDefaultProbingSettings] = common.FullProbingSettings_FieldMask()
 					case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 						mySubMasks[ProbingTarget_FieldPathSelectorHttpProbingConfig] = common.FullHTTPProbingConfig_FieldMask()
 					}
@@ -359,10 +351,6 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 	wholeMetadataAccepted := false
 	locationMask := &common.Location_FieldMask{}
 	wholeLocationAccepted := false
-	probingConstraintMask := &common.ProbingConstraint_FieldMask{}
-	wholeProbingConstraintAccepted := false
-	defaultProbingSettingsMask := &common.ProbingSettings_FieldMask{}
-	wholeDefaultProbingSettingsAccepted := false
 	httpProbingConfigMask := &common.HTTPProbingConfig_FieldMask{}
 	wholeHttpProbingConfigAccepted := false
 
@@ -392,12 +380,6 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 			case ProbingTarget_FieldPathSelectorLocation:
 				result.Location = source.Location
 				wholeLocationAccepted = true
-			case ProbingTarget_FieldPathSelectorProbingConstraint:
-				result.ProbingConstraint = source.ProbingConstraint
-				wholeProbingConstraintAccepted = true
-			case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-				result.DefaultProbingSettings = source.DefaultProbingSettings
-				wholeDefaultProbingSettingsAccepted = true
 			case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 				result.HttpProbingConfig = source.HttpProbingConfig
 				wholeHttpProbingConfigAccepted = true
@@ -407,6 +389,10 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 				result.Addresses = source.Addresses
 			case ProbingTarget_FieldPathSelectorTargetType:
 				result.TargetType = source.TargetType
+			case ProbingTarget_FieldPathSelectorUdpPort:
+				result.UdpPort = source.UdpPort
+			case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+				result.SpeedtestTcpPort = source.SpeedtestTcpPort
 			}
 		case *ProbingTarget_FieldSubPath:
 			switch tp.selector {
@@ -414,10 +400,6 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 				metadataMask.AppendPath(tp.subPath.(ntt_meta.Meta_FieldPath))
 			case ProbingTarget_FieldPathSelectorLocation:
 				locationMask.AppendPath(tp.subPath.(common.Location_FieldPath))
-			case ProbingTarget_FieldPathSelectorProbingConstraint:
-				probingConstraintMask.AppendPath(tp.subPath.(common.ProbingConstraint_FieldPath))
-			case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-				defaultProbingSettingsMask.AppendPath(tp.subPath.(common.ProbingSettings_FieldPath))
 			case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 				httpProbingConfigMask.AppendPath(tp.subPath.(common.HTTPProbingConfig_FieldPath))
 			}
@@ -428,12 +410,6 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 	}
 	if wholeLocationAccepted == false && len(locationMask.Paths) > 0 {
 		result.Location = locationMask.Project(source.GetLocation())
-	}
-	if wholeProbingConstraintAccepted == false && len(probingConstraintMask.Paths) > 0 {
-		result.ProbingConstraint = probingConstraintMask.Project(source.GetProbingConstraint())
-	}
-	if wholeDefaultProbingSettingsAccepted == false && len(defaultProbingSettingsMask.Paths) > 0 {
-		result.DefaultProbingSettings = defaultProbingSettingsMask.Project(source.GetDefaultProbingSettings())
 	}
 	if wholeHttpProbingConfigAccepted == false && len(httpProbingConfigMask.Paths) > 0 {
 		result.HttpProbingConfig = httpProbingConfigMask.Project(source.GetHttpProbingConfig())

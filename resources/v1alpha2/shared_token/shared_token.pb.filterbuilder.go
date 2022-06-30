@@ -3586,16 +3586,8 @@ func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) Enabled(
 	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled{builder: b.builder}
 }
 
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls{builder: b.builder}
-}
-
 func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{builder: b.builder}
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return &filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{builder: b.builder}
 }
 
 type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct {
@@ -3657,65 +3649,6 @@ func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetEnabled) c
 	})
 }
 
-type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct {
-	builder *FilterBuilder
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Eq(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Eq, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Neq(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Neq, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Gt(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Gt, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Gte(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Gte, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Lt(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Lt, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) Lte(value bool) *FilterBuilder {
-	return b.compare(gotenfilter.Lte, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) In(values []bool) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIn{
-		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) NotIn(values []bool) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionNotIn{
-		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) IsNull() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) IsNan() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetUseTls) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionCompare{
-		Operator:                   op,
-		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().WithValue(value),
-	})
-}
-
 type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct {
 	builder *FilterBuilder
 }
@@ -3772,65 +3705,6 @@ func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) c
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                   op,
 		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TcpPort().WithValue(value),
-	})
-}
-
-type filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct {
-	builder *FilterBuilder
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Eq(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Eq, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Neq(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Neq, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Gt(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Gt, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Gte(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Gte, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Lt(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Lt, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) Lte(value int32) *FilterBuilder {
-	return b.compare(gotenfilter.Lte, value)
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) In(values []int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIn{
-		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) NotIn(values []int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionNotIn{
-		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) IsNull() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) IsNan() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) compare(op gotenfilter.CompareOperator, value int32) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionCompare{
-		Operator:                   op,
-		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().WithValue(value),
 	})
 }
 

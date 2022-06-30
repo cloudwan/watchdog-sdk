@@ -1087,20 +1087,12 @@ func (ProbingSessionPathSelectorSpecSpeedtestSettings) Duration() ProbingSession
 	return ProbingSessionPathSelectorSpecSpeedtestSettingsDuration{}
 }
 
-func (ProbingSessionPathSelectorSpecSpeedtestSettings) UseTls() ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls {
-	return ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls{}
-}
-
 func (ProbingSessionPathSelectorSpecSpeedtestSettings) ServerSelection() ProbingSessionPathSelectorSpecSpeedtestSettingsServerSelection {
 	return ProbingSessionPathSelectorSpecSpeedtestSettingsServerSelection{}
 }
 
 func (ProbingSessionPathSelectorSpecSpeedtestSettings) TcpPort() ProbingSessionPathSelectorSpecSpeedtestSettingsTcpPort {
 	return ProbingSessionPathSelectorSpecSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingSessionPathSelectorSpecSpeedtestSettings) TlsPort() ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort {
-	return ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort{}
 }
 
 type ProbingSessionPathSelectorSpecSpeedtestSettingsDuration struct{}
@@ -1117,23 +1109,6 @@ func (s ProbingSessionPathSelectorSpecSpeedtestSettingsDuration) WithValue(value
 }
 
 func (s ProbingSessionPathSelectorSpecSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls struct{}
-
-func (ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().SpeedtestSettings().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls) WithValue(value bool) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpecSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSession_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
@@ -1168,23 +1143,6 @@ func (s ProbingSessionPathSelectorSpecSpeedtestSettingsTcpPort) WithValue(value 
 }
 
 func (s ProbingSessionPathSelectorSpecSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort struct{}
-
-func (ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().SpeedtestSettings().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpecSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSession_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
@@ -2826,20 +2784,12 @@ func (ProbingSession_SpecPathSelectorSpeedtestSettings) Duration() ProbingSessio
 	return ProbingSession_SpecPathSelectorSpeedtestSettingsDuration{}
 }
 
-func (ProbingSession_SpecPathSelectorSpeedtestSettings) UseTls() ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls {
-	return ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls{}
-}
-
 func (ProbingSession_SpecPathSelectorSpeedtestSettings) ServerSelection() ProbingSession_SpecPathSelectorSpeedtestSettingsServerSelection {
 	return ProbingSession_SpecPathSelectorSpeedtestSettingsServerSelection{}
 }
 
 func (ProbingSession_SpecPathSelectorSpeedtestSettings) TcpPort() ProbingSession_SpecPathSelectorSpeedtestSettingsTcpPort {
 	return ProbingSession_SpecPathSelectorSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingSession_SpecPathSelectorSpeedtestSettings) TlsPort() ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort {
-	return ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort{}
 }
 
 type ProbingSession_SpecPathSelectorSpeedtestSettingsDuration struct{}
@@ -2856,23 +2806,6 @@ func (s ProbingSession_SpecPathSelectorSpeedtestSettingsDuration) WithValue(valu
 }
 
 func (s ProbingSession_SpecPathSelectorSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls struct{}
-
-func (ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls) WithValue(value bool) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecPathSelectorSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSessionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
 }
 
@@ -2907,23 +2840,6 @@ func (s ProbingSession_SpecPathSelectorSpeedtestSettingsTcpPort) WithValue(value
 }
 
 func (s ProbingSession_SpecPathSelectorSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort struct{}
-
-func (ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorSpeedtestSettings,
-		subPath:  common.NewSpeedTestSettingsFieldPathBuilder().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecPathSelectorSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSessionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
 }
 

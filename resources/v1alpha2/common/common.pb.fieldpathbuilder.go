@@ -1670,20 +1670,12 @@ func (ProbingSettingsPathSelectorSpeedtestSettings) Duration() ProbingSettingsPa
 	return ProbingSettingsPathSelectorSpeedtestSettingsDuration{}
 }
 
-func (ProbingSettingsPathSelectorSpeedtestSettings) UseTls() ProbingSettingsPathSelectorSpeedtestSettingsUseTls {
-	return ProbingSettingsPathSelectorSpeedtestSettingsUseTls{}
-}
-
 func (ProbingSettingsPathSelectorSpeedtestSettings) ServerSelection() ProbingSettingsPathSelectorSpeedtestSettingsServerSelection {
 	return ProbingSettingsPathSelectorSpeedtestSettingsServerSelection{}
 }
 
 func (ProbingSettingsPathSelectorSpeedtestSettings) TcpPort() ProbingSettingsPathSelectorSpeedtestSettingsTcpPort {
 	return ProbingSettingsPathSelectorSpeedtestSettingsTcpPort{}
-}
-
-func (ProbingSettingsPathSelectorSpeedtestSettings) TlsPort() ProbingSettingsPathSelectorSpeedtestSettingsTlsPort {
-	return ProbingSettingsPathSelectorSpeedtestSettingsTlsPort{}
 }
 
 type ProbingSettingsPathSelectorSpeedtestSettingsDuration struct{}
@@ -1700,23 +1692,6 @@ func (s ProbingSettingsPathSelectorSpeedtestSettingsDuration) WithValue(value *d
 }
 
 func (s ProbingSettingsPathSelectorSpeedtestSettingsDuration) WithArrayOfValues(values []*duration.Duration) *ProbingSettings_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
-}
-
-type ProbingSettingsPathSelectorSpeedtestSettingsUseTls struct{}
-
-func (ProbingSettingsPathSelectorSpeedtestSettingsUseTls) FieldPath() *ProbingSettings_FieldSubPath {
-	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
-		subPath:  NewSpeedTestSettingsFieldPathBuilder().UseTls().FieldPath(),
-	}
-}
-
-func (s ProbingSettingsPathSelectorSpeedtestSettingsUseTls) WithValue(value bool) *ProbingSettings_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
-}
-
-func (s ProbingSettingsPathSelectorSpeedtestSettingsUseTls) WithArrayOfValues(values []bool) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
@@ -1751,23 +1726,6 @@ func (s ProbingSettingsPathSelectorSpeedtestSettingsTcpPort) WithValue(value int
 }
 
 func (s ProbingSettingsPathSelectorSpeedtestSettingsTcpPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
-}
-
-type ProbingSettingsPathSelectorSpeedtestSettingsTlsPort struct{}
-
-func (ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) FieldPath() *ProbingSettings_FieldSubPath {
-	return &ProbingSettings_FieldSubPath{
-		selector: ProbingSettings_FieldPathSelectorSpeedtestSettings,
-		subPath:  NewSpeedTestSettingsFieldPathBuilder().TlsPort().FieldPath(),
-	}
-}
-
-func (s ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) WithValue(value int32) *ProbingSettings_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSettings_FieldSubPathValue)
-}
-
-func (s ProbingSettingsPathSelectorSpeedtestSettingsTlsPort) WithArrayOfValues(values []int32) *ProbingSettings_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSettings_FieldSubPathArrayOfValues)
 }
 
@@ -2654,17 +2612,11 @@ func NewSpeedTestSettingsFieldPathBuilder() SpeedTestSettingsFieldPathBuilder {
 func (SpeedTestSettingsFieldPathBuilder) Duration() SpeedTestSettingsPathSelectorDuration {
 	return SpeedTestSettingsPathSelectorDuration{}
 }
-func (SpeedTestSettingsFieldPathBuilder) UseTls() SpeedTestSettingsPathSelectorUseTls {
-	return SpeedTestSettingsPathSelectorUseTls{}
-}
 func (SpeedTestSettingsFieldPathBuilder) ServerSelection() SpeedTestSettingsPathSelectorServerSelection {
 	return SpeedTestSettingsPathSelectorServerSelection{}
 }
 func (SpeedTestSettingsFieldPathBuilder) TcpPort() SpeedTestSettingsPathSelectorTcpPort {
 	return SpeedTestSettingsPathSelectorTcpPort{}
-}
-func (SpeedTestSettingsFieldPathBuilder) TlsPort() SpeedTestSettingsPathSelectorTlsPort {
-	return SpeedTestSettingsPathSelectorTlsPort{}
 }
 
 type SpeedTestSettingsPathSelectorDuration struct{}
@@ -2678,20 +2630,6 @@ func (s SpeedTestSettingsPathSelectorDuration) WithValue(value *duration.Duratio
 }
 
 func (s SpeedTestSettingsPathSelectorDuration) WithArrayOfValues(values []*duration.Duration) *SpeedTestSettings_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SpeedTestSettings_FieldTerminalPathArrayOfValues)
-}
-
-type SpeedTestSettingsPathSelectorUseTls struct{}
-
-func (SpeedTestSettingsPathSelectorUseTls) FieldPath() *SpeedTestSettings_FieldTerminalPath {
-	return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorUseTls}
-}
-
-func (s SpeedTestSettingsPathSelectorUseTls) WithValue(value bool) *SpeedTestSettings_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*SpeedTestSettings_FieldTerminalPathValue)
-}
-
-func (s SpeedTestSettingsPathSelectorUseTls) WithArrayOfValues(values []bool) *SpeedTestSettings_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SpeedTestSettings_FieldTerminalPathArrayOfValues)
 }
 
@@ -2720,20 +2658,6 @@ func (s SpeedTestSettingsPathSelectorTcpPort) WithValue(value int32) *SpeedTestS
 }
 
 func (s SpeedTestSettingsPathSelectorTcpPort) WithArrayOfValues(values []int32) *SpeedTestSettings_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SpeedTestSettings_FieldTerminalPathArrayOfValues)
-}
-
-type SpeedTestSettingsPathSelectorTlsPort struct{}
-
-func (SpeedTestSettingsPathSelectorTlsPort) FieldPath() *SpeedTestSettings_FieldTerminalPath {
-	return &SpeedTestSettings_FieldTerminalPath{selector: SpeedTestSettings_FieldPathSelectorTlsPort}
-}
-
-func (s SpeedTestSettingsPathSelectorTlsPort) WithValue(value int32) *SpeedTestSettings_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*SpeedTestSettings_FieldTerminalPathValue)
-}
-
-func (s SpeedTestSettingsPathSelectorTlsPort) WithArrayOfValues(values []int32) *SpeedTestSettings_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SpeedTestSettings_FieldTerminalPathArrayOfValues)
 }
 

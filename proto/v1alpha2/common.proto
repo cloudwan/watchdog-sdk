@@ -228,20 +228,17 @@ message SpeedTestSettings {
   // Duration for the speedtest. 0 implies default which is 10 seconds for NDT
   google.protobuf.Duration duration = 1;
 
-  // Use tls or unencrypted. Default mode is to run unencrypted
-  bool use_tls = 2;
-
   ServerSelection server_selection = 3;
 
   int32 tcp_port = 4;
-
-  int32 tls_port = 5;
 
   enum ServerSelection {
     NEAREST = 0;
 
     ALL = 1;
   }
+
+  reserved 2, 5;
 }
 
 message HTTPProbingConfig {

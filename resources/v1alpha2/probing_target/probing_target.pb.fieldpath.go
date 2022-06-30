@@ -78,22 +78,22 @@ type ProbingTarget_FieldPath interface {
 type ProbingTarget_FieldPathSelector int32
 
 const (
-	ProbingTarget_FieldPathSelectorName                   ProbingTarget_FieldPathSelector = 0
-	ProbingTarget_FieldPathSelectorDisplayName            ProbingTarget_FieldPathSelector = 1
-	ProbingTarget_FieldPathSelectorMetadata               ProbingTarget_FieldPathSelector = 2
-	ProbingTarget_FieldPathSelectorGroup                  ProbingTarget_FieldPathSelector = 3
-	ProbingTarget_FieldPathSelectorMode                   ProbingTarget_FieldPathSelector = 4
-	ProbingTarget_FieldPathSelectorIpVersion              ProbingTarget_FieldPathSelector = 5
-	ProbingTarget_FieldPathSelectorAddress                ProbingTarget_FieldPathSelector = 6
-	ProbingTarget_FieldPathSelectorCategory               ProbingTarget_FieldPathSelector = 7
-	ProbingTarget_FieldPathSelectorLocationType           ProbingTarget_FieldPathSelector = 8
-	ProbingTarget_FieldPathSelectorLocation               ProbingTarget_FieldPathSelector = 9
-	ProbingTarget_FieldPathSelectorProbingConstraint      ProbingTarget_FieldPathSelector = 10
-	ProbingTarget_FieldPathSelectorDefaultProbingSettings ProbingTarget_FieldPathSelector = 11
-	ProbingTarget_FieldPathSelectorHttpProbingConfig      ProbingTarget_FieldPathSelector = 12
-	ProbingTarget_FieldPathSelectorAgent                  ProbingTarget_FieldPathSelector = 13
-	ProbingTarget_FieldPathSelectorAddresses              ProbingTarget_FieldPathSelector = 14
-	ProbingTarget_FieldPathSelectorTargetType             ProbingTarget_FieldPathSelector = 15
+	ProbingTarget_FieldPathSelectorName              ProbingTarget_FieldPathSelector = 0
+	ProbingTarget_FieldPathSelectorDisplayName       ProbingTarget_FieldPathSelector = 1
+	ProbingTarget_FieldPathSelectorMetadata          ProbingTarget_FieldPathSelector = 2
+	ProbingTarget_FieldPathSelectorGroup             ProbingTarget_FieldPathSelector = 3
+	ProbingTarget_FieldPathSelectorMode              ProbingTarget_FieldPathSelector = 4
+	ProbingTarget_FieldPathSelectorIpVersion         ProbingTarget_FieldPathSelector = 5
+	ProbingTarget_FieldPathSelectorAddress           ProbingTarget_FieldPathSelector = 6
+	ProbingTarget_FieldPathSelectorCategory          ProbingTarget_FieldPathSelector = 7
+	ProbingTarget_FieldPathSelectorLocationType      ProbingTarget_FieldPathSelector = 8
+	ProbingTarget_FieldPathSelectorLocation          ProbingTarget_FieldPathSelector = 9
+	ProbingTarget_FieldPathSelectorHttpProbingConfig ProbingTarget_FieldPathSelector = 10
+	ProbingTarget_FieldPathSelectorAgent             ProbingTarget_FieldPathSelector = 11
+	ProbingTarget_FieldPathSelectorAddresses         ProbingTarget_FieldPathSelector = 12
+	ProbingTarget_FieldPathSelectorTargetType        ProbingTarget_FieldPathSelector = 13
+	ProbingTarget_FieldPathSelectorUdpPort           ProbingTarget_FieldPathSelector = 14
+	ProbingTarget_FieldPathSelectorSpeedtestTcpPort  ProbingTarget_FieldPathSelector = 15
 )
 
 func (s ProbingTarget_FieldPathSelector) String() string {
@@ -118,10 +118,6 @@ func (s ProbingTarget_FieldPathSelector) String() string {
 		return "location_type"
 	case ProbingTarget_FieldPathSelectorLocation:
 		return "location"
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return "probing_constraint"
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return "default_probing_settings"
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return "http_probing_config"
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -130,6 +126,10 @@ func (s ProbingTarget_FieldPathSelector) String() string {
 		return "addresses"
 	case ProbingTarget_FieldPathSelectorTargetType:
 		return "target_type"
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		return "udp_port"
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		return "speedtest_tcp_port"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", s))
 	}
@@ -161,10 +161,6 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorLocationType}, nil
 		case "location":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorLocation}, nil
-		case "probing_constraint", "probingConstraint", "probing-constraint":
-			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProbingConstraint}, nil
-		case "default_probing_settings", "defaultProbingSettings", "default-probing-settings":
-			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings}, nil
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig}, nil
 		case "agent":
@@ -173,6 +169,10 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddresses}, nil
 		case "target_type", "targetType", "target-type":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorTargetType}, nil
+		case "udp_port", "udpPort", "udp-port":
+			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorUdpPort}, nil
+		case "speedtest_tcp_port", "speedtestTcpPort", "speedtest-tcp-port":
+			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorSpeedtestTcpPort}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -187,18 +187,6 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 				return nil, err
 			} else {
 				return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorLocation, subPath: subpath}, nil
-			}
-		case "probing_constraint", "probingConstraint", "probing-constraint":
-			if subpath, err := common.BuildProbingConstraint_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorProbingConstraint, subPath: subpath}, nil
-			}
-		case "default_probing_settings", "defaultProbingSettings", "default-probing-settings":
-			if subpath, err := common.BuildProbingSettings_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorDefaultProbingSettings, subPath: subpath}, nil
 			}
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			if subpath, err := common.BuildHTTPProbingConfig_FieldPath(fp[1:]); err != nil {
@@ -279,14 +267,6 @@ func (fp *ProbingTarget_FieldTerminalPath) Get(source *ProbingTarget) (values []
 			if source.Location != nil {
 				values = append(values, source.Location)
 			}
-		case ProbingTarget_FieldPathSelectorProbingConstraint:
-			if source.ProbingConstraint != nil {
-				values = append(values, source.ProbingConstraint)
-			}
-		case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-			if source.DefaultProbingSettings != nil {
-				values = append(values, source.DefaultProbingSettings)
-			}
 		case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 			if source.HttpProbingConfig != nil {
 				values = append(values, source.HttpProbingConfig)
@@ -301,6 +281,10 @@ func (fp *ProbingTarget_FieldTerminalPath) Get(source *ProbingTarget) (values []
 			}
 		case ProbingTarget_FieldPathSelectorTargetType:
 			values = append(values, source.TargetType)
+		case ProbingTarget_FieldPathSelectorUdpPort:
+			values = append(values, source.UdpPort)
+		case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+			values = append(values, source.SpeedtestTcpPort)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 		}
@@ -339,12 +323,6 @@ func (fp *ProbingTarget_FieldTerminalPath) GetSingle(source *ProbingTarget) (int
 	case ProbingTarget_FieldPathSelectorLocation:
 		res := source.GetLocation()
 		return res, res != nil
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		res := source.GetProbingConstraint()
-		return res, res != nil
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		res := source.GetDefaultProbingSettings()
-		return res, res != nil
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		res := source.GetHttpProbingConfig()
 		return res, res != nil
@@ -356,6 +334,10 @@ func (fp *ProbingTarget_FieldTerminalPath) GetSingle(source *ProbingTarget) (int
 		return res, res != nil
 	case ProbingTarget_FieldPathSelectorTargetType:
 		return source.GetTargetType(), source != nil
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		return source.GetUdpPort(), source != nil
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		return source.GetSpeedtestTcpPort(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -388,10 +370,6 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 		return common.LocationType_LOCATION_TYPE_UNSPECIFIED
 	case ProbingTarget_FieldPathSelectorLocation:
 		return (*common.Location)(nil)
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return (*common.ProbingConstraint)(nil)
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return (*common.ProbingSettings)(nil)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return (*common.HTTPProbingConfig)(nil)
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -400,6 +378,10 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 		return ([]string)(nil)
 	case ProbingTarget_FieldPathSelectorTargetType:
 		return ProbingTarget_UNMANAGED_TARGET
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		return int32(0)
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -428,10 +410,6 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 			item.LocationType = common.LocationType_LOCATION_TYPE_UNSPECIFIED
 		case ProbingTarget_FieldPathSelectorLocation:
 			item.Location = nil
-		case ProbingTarget_FieldPathSelectorProbingConstraint:
-			item.ProbingConstraint = nil
-		case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-			item.DefaultProbingSettings = nil
 		case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 			item.HttpProbingConfig = nil
 		case ProbingTarget_FieldPathSelectorAgent:
@@ -440,6 +418,10 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 			item.Addresses = nil
 		case ProbingTarget_FieldPathSelectorTargetType:
 			item.TargetType = ProbingTarget_UNMANAGED_TARGET
+		case ProbingTarget_FieldPathSelectorUdpPort:
+			item.UdpPort = int32(0)
+		case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+			item.SpeedtestTcpPort = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 		}
@@ -462,7 +444,9 @@ func (fp *ProbingTarget_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingTarget_FieldPathSelectorLocationType ||
 		fp.selector == ProbingTarget_FieldPathSelectorAgent ||
 		fp.selector == ProbingTarget_FieldPathSelectorAddresses ||
-		fp.selector == ProbingTarget_FieldPathSelectorTargetType
+		fp.selector == ProbingTarget_FieldPathSelectorTargetType ||
+		fp.selector == ProbingTarget_FieldPathSelectorUdpPort ||
+		fp.selector == ProbingTarget_FieldPathSelectorSpeedtestTcpPort
 }
 
 func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) ProbingTarget_FieldPathValue {
@@ -487,10 +471,6 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) Probing
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(common.LocationType)}
 	case ProbingTarget_FieldPathSelectorLocation:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.Location)}
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.ProbingConstraint)}
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.ProbingSettings)}
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -499,6 +479,10 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) Probing
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.([]string)}
 	case ProbingTarget_FieldPathSelectorTargetType:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(ProbingTarget_TargetType)}
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(int32)}
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -531,10 +515,6 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]common.LocationType)}
 	case ProbingTarget_FieldPathSelectorLocation:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.Location)}
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.ProbingConstraint)}
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.ProbingSettings)}
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -543,6 +523,10 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([][]string)}
 	case ProbingTarget_FieldPathSelectorTargetType:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]ProbingTarget_TargetType)}
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fp.selector))
 	}
@@ -584,14 +568,6 @@ func (fps *ProbingTarget_FieldSubPath) AsLocationSubPath() (common.Location_Fiel
 	res, ok := fps.subPath.(common.Location_FieldPath)
 	return res, ok
 }
-func (fps *ProbingTarget_FieldSubPath) AsProbingConstraintSubPath() (common.ProbingConstraint_FieldPath, bool) {
-	res, ok := fps.subPath.(common.ProbingConstraint_FieldPath)
-	return res, ok
-}
-func (fps *ProbingTarget_FieldSubPath) AsDefaultProbingSettingsSubPath() (common.ProbingSettings_FieldPath, bool) {
-	res, ok := fps.subPath.(common.ProbingSettings_FieldPath)
-	return res, ok
-}
 func (fps *ProbingTarget_FieldSubPath) AsHttpProbingConfigSubPath() (common.HTTPProbingConfig_FieldPath, bool) {
 	res, ok := fps.subPath.(common.HTTPProbingConfig_FieldPath)
 	return res, ok
@@ -613,10 +589,6 @@ func (fps *ProbingTarget_FieldSubPath) Get(source *ProbingTarget) (values []inte
 		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
 	} else if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
 		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asProbingConstraintFieldPath, ok := fps.AsProbingConstraintSubPath(); ok {
-		values = append(values, asProbingConstraintFieldPath.Get(source.GetProbingConstraint())...)
-	} else if asProbingSettingsFieldPath, ok := fps.AsDefaultProbingSettingsSubPath(); ok {
-		values = append(values, asProbingSettingsFieldPath.Get(source.GetDefaultProbingSettings())...)
 	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
 		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
 	} else {
@@ -642,16 +614,6 @@ func (fps *ProbingTarget_FieldSubPath) GetSingle(source *ProbingTarget) (interfa
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetLocation())
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		if source.GetProbingConstraint() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetProbingConstraint())
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		if source.GetDefaultProbingSettings() == nil {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetDefaultProbingSettings())
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		if source.GetHttpProbingConfig() == nil {
 			return nil, false
@@ -678,10 +640,6 @@ func (fps *ProbingTarget_FieldSubPath) ClearValue(item *ProbingTarget) {
 			fps.subPath.ClearValueRaw(item.Metadata)
 		case ProbingTarget_FieldPathSelectorLocation:
 			fps.subPath.ClearValueRaw(item.Location)
-		case ProbingTarget_FieldPathSelectorProbingConstraint:
-			fps.subPath.ClearValueRaw(item.ProbingConstraint)
-		case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-			fps.subPath.ClearValueRaw(item.DefaultProbingSettings)
 		case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
 		default:
@@ -802,14 +760,6 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) AsLocationValue() (*common.Loca
 	res, ok := fpv.value.(*common.Location)
 	return res, ok
 }
-func (fpv *ProbingTarget_FieldTerminalPathValue) AsProbingConstraintValue() (*common.ProbingConstraint, bool) {
-	res, ok := fpv.value.(*common.ProbingConstraint)
-	return res, ok
-}
-func (fpv *ProbingTarget_FieldTerminalPathValue) AsDefaultProbingSettingsValue() (*common.ProbingSettings, bool) {
-	res, ok := fpv.value.(*common.ProbingSettings)
-	return res, ok
-}
 func (fpv *ProbingTarget_FieldTerminalPathValue) AsHttpProbingConfigValue() (*common.HTTPProbingConfig, bool) {
 	res, ok := fpv.value.(*common.HTTPProbingConfig)
 	return res, ok
@@ -824,6 +774,14 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) AsAddressesValue() ([]string, b
 }
 func (fpv *ProbingTarget_FieldTerminalPathValue) AsTargetTypeValue() (ProbingTarget_TargetType, bool) {
 	res, ok := fpv.value.(ProbingTarget_TargetType)
+	return res, ok
+}
+func (fpv *ProbingTarget_FieldTerminalPathValue) AsUdpPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ProbingTarget_FieldTerminalPathValue) AsSpeedtestTcpPortValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
 	return res, ok
 }
 
@@ -853,10 +811,6 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
 		(*target).LocationType = fpv.value.(common.LocationType)
 	case ProbingTarget_FieldPathSelectorLocation:
 		(*target).Location = fpv.value.(*common.Location)
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		(*target).ProbingConstraint = fpv.value.(*common.ProbingConstraint)
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		(*target).DefaultProbingSettings = fpv.value.(*common.ProbingSettings)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -865,6 +819,10 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
 		(*target).Addresses = fpv.value.([]string)
 	case ProbingTarget_FieldPathSelectorTargetType:
 		(*target).TargetType = fpv.value.(ProbingTarget_TargetType)
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		(*target).UdpPort = fpv.value.(int32)
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		(*target).SpeedtestTcpPort = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpv.selector))
 	}
@@ -980,10 +938,6 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) CompareWith(source *ProbingTarg
 		}
 	case ProbingTarget_FieldPathSelectorLocation:
 		return 0, false
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return 0, false
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return 0, false
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return 0, false
 	case ProbingTarget_FieldPathSelectorAgent:
@@ -1017,6 +971,26 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) CompareWith(source *ProbingTarg
 		} else {
 			return 1, true
 		}
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetUdpPort()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetSpeedtestTcpPort()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpv.selector))
 	}
@@ -1041,14 +1015,6 @@ func (fpvs *ProbingTarget_FieldSubPathValue) AsLocationPathValue() (common.Locat
 	res, ok := fpvs.subPathValue.(common.Location_FieldPathValue)
 	return res, ok
 }
-func (fpvs *ProbingTarget_FieldSubPathValue) AsProbingConstraintPathValue() (common.ProbingConstraint_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.ProbingConstraint_FieldPathValue)
-	return res, ok
-}
-func (fpvs *ProbingTarget_FieldSubPathValue) AsDefaultProbingSettingsPathValue() (common.ProbingSettings_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.ProbingSettings_FieldPathValue)
-	return res, ok
-}
 func (fpvs *ProbingTarget_FieldSubPathValue) AsHttpProbingConfigPathValue() (common.HTTPProbingConfig_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue)
 	return res, ok
@@ -1063,10 +1029,6 @@ func (fpvs *ProbingTarget_FieldSubPathValue) SetTo(target **ProbingTarget) {
 		fpvs.subPathValue.(ntt_meta.Meta_FieldPathValue).SetTo(&(*target).Metadata)
 	case ProbingTarget_FieldPathSelectorLocation:
 		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		fpvs.subPathValue.(common.ProbingConstraint_FieldPathValue).SetTo(&(*target).ProbingConstraint)
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		fpvs.subPathValue.(common.ProbingSettings_FieldPathValue).SetTo(&(*target).DefaultProbingSettings)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
 	default:
@@ -1089,10 +1051,6 @@ func (fpvs *ProbingTarget_FieldSubPathValue) CompareWith(source *ProbingTarget) 
 		return fpvs.subPathValue.(ntt_meta.Meta_FieldPathValue).CompareWith(source.GetMetadata())
 	case ProbingTarget_FieldPathSelectorLocation:
 		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return fpvs.subPathValue.(common.ProbingConstraint_FieldPathValue).CompareWith(source.GetProbingConstraint())
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return fpvs.subPathValue.(common.ProbingSettings_FieldPathValue).CompareWith(source.GetDefaultProbingSettings())
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
 	default:
@@ -1185,14 +1143,6 @@ func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsLocationPathItemValue(
 	res, ok := fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue)
 	return res, ok
 }
-func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsProbingConstraintPathItemValue() (common.ProbingConstraint_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.ProbingConstraint_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsDefaultProbingSettingsPathItemValue() (common.ProbingSettings_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.ProbingSettings_FieldPathArrayItemValue)
-	return res, ok
-}
 func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsHttpProbingConfigPathItemValue() (common.HTTPProbingConfig_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue)
 	return res, ok
@@ -1205,10 +1155,6 @@ func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) ContainsValue(source *Pr
 		return fpaivs.subPathItemValue.(ntt_meta.Meta_FieldPathArrayItemValue).ContainsValue(source.GetMetadata())
 	case ProbingTarget_FieldPathSelectorLocation:
 		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		return fpaivs.subPathItemValue.(common.ProbingConstraint_FieldPathArrayItemValue).ContainsValue(source.GetProbingConstraint())
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		return fpaivs.subPathItemValue.(common.ProbingSettings_FieldPathArrayItemValue).ContainsValue(source.GetDefaultProbingSettings())
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
 	default:
@@ -1291,14 +1237,6 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) GetRawValues() (value
 		for _, v := range fpaov.values.([]*common.Location) {
 			values = append(values, v)
 		}
-	case ProbingTarget_FieldPathSelectorProbingConstraint:
-		for _, v := range fpaov.values.([]*common.ProbingConstraint) {
-			values = append(values, v)
-		}
-	case ProbingTarget_FieldPathSelectorDefaultProbingSettings:
-		for _, v := range fpaov.values.([]*common.ProbingSettings) {
-			values = append(values, v)
-		}
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		for _, v := range fpaov.values.([]*common.HTTPProbingConfig) {
 			values = append(values, v)
@@ -1313,6 +1251,14 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) GetRawValues() (value
 		}
 	case ProbingTarget_FieldPathSelectorTargetType:
 		for _, v := range fpaov.values.([]ProbingTarget_TargetType) {
+			values = append(values, v)
+		}
+	case ProbingTarget_FieldPathSelectorUdpPort:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ProbingTarget_FieldPathSelectorSpeedtestTcpPort:
+		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
 	}
@@ -1358,14 +1304,6 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsLocationArrayOfValu
 	res, ok := fpaov.values.([]*common.Location)
 	return res, ok
 }
-func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsProbingConstraintArrayOfValues() ([]*common.ProbingConstraint, bool) {
-	res, ok := fpaov.values.([]*common.ProbingConstraint)
-	return res, ok
-}
-func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsDefaultProbingSettingsArrayOfValues() ([]*common.ProbingSettings, bool) {
-	res, ok := fpaov.values.([]*common.ProbingSettings)
-	return res, ok
-}
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsHttpProbingConfigArrayOfValues() ([]*common.HTTPProbingConfig, bool) {
 	res, ok := fpaov.values.([]*common.HTTPProbingConfig)
 	return res, ok
@@ -1380,6 +1318,14 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsAddressesArrayOfVal
 }
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsTargetTypeArrayOfValues() ([]ProbingTarget_TargetType, bool) {
 	res, ok := fpaov.values.([]ProbingTarget_TargetType)
+	return res, ok
+}
+func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsUdpPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsSpeedtestTcpPortArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -1399,14 +1345,6 @@ func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsMetadataPathArrayOfValu
 }
 func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsLocationPathArrayOfValues() (common.Location_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.Location_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsProbingConstraintPathArrayOfValues() (common.ProbingConstraint_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.ProbingConstraint_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsDefaultProbingSettingsPathArrayOfValues() (common.ProbingSettings_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.ProbingSettings_FieldPathArrayOfValues)
 	return res, ok
 }
 func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsHttpProbingConfigPathArrayOfValues() (common.HTTPProbingConfig_FieldPathArrayOfValues, bool) {

@@ -1367,16 +1367,8 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTarge
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -1396,23 +1388,6 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTar
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
-	return &BatchGetSharedTokensResponse_FieldSubPath{
-		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *BatchGetSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
-}
-
 type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
@@ -1427,23 +1402,6 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTar
 }
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
-}
-
-type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
-	return &BatchGetSharedTokensResponse_FieldSubPath{
-		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *BatchGetSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3335,16 +3293,8 @@ func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetSer
 	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -3364,23 +3314,6 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetS
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
-type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *ListSharedTokensResponse_FieldSubPath {
-	return &ListSharedTokensResponse_FieldSubPath{
-		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *ListSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
-}
-
 type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *ListSharedTokensResponse_FieldSubPath {
@@ -3395,23 +3328,6 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetS
 }
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
-}
-
-type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *ListSharedTokensResponse_FieldSubPath {
-	return &ListSharedTokensResponse_FieldSubPath{
-		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *ListSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5679,16 +5595,8 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServ
 	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -5708,23 +5616,6 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
-	return &CreateSharedTokenRequest_FieldSubPath{
-		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *CreateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
 type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
@@ -5739,23 +5630,6 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 }
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
-type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
-	return &CreateSharedTokenRequest_FieldSubPath{
-		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *CreateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7501,16 +7375,8 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServ
 	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -7530,23 +7396,6 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
 type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -7561,23 +7410,6 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 }
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
-type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9347,16 +9179,8 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTa
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -9376,23 +9200,6 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpec
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -9407,23 +9214,6 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpec
 }
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
-}
-
-type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -11183,16 +10973,8 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecT
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetEnabled{}
 }
 
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) UseTls() UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls {
-	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls{}
-}
-
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) TcpPort() UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort {
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort{}
-}
-
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTarget) TlsPort() UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort {
-	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort{}
 }
 
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetEnabled struct{}
@@ -11212,23 +10994,6 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpe
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls struct{}
-
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
-	return &UpdateSharedTokenRequestCAS_FieldSubPath{
-		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().UseTls().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithValue(value bool) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetUseTls) WithArrayOfValues(values []bool) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
-}
-
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort struct{}
 
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
@@ -11243,23 +11008,6 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpe
 }
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTcpPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
-}
-
-type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort struct{}
-
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
-	return &UpdateSharedTokenRequestCAS_FieldSubPath{
-		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().SpeedTestTarget().TlsPort().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithValue(value int32) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersSpeedTestTargetTlsPort) WithArrayOfValues(values []int32) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
