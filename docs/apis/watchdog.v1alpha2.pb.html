@@ -3808,6 +3808,26 @@ index can be computed from offset and limit provided in a request</p>
 <td class="type"><pre><a href="#enum-SpeedTestDirection">SpeedTestDirection</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Reference to probing session to run speedtest
+Optional. If not specified the agent selects nearest server
+or the test is run to the recently used speedtest server
+Request should have both probingSession and probingTarget</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">probing_target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Reference to probing target to run speedtest
+Optional. If not specified the agent selects nearest server
+or the test is run to the recently used speedtest server
+Request should have both probingSession and probingTarget</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -3856,6 +3876,18 @@ index can be computed from offset and limit provided in a request</p>
 <tr>
 <th rowspan="2">server_retransmit_percentage</th>
 <td class="type"><pre>double</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -17396,6 +17428,18 @@ stateless watch type.</p>
 <tr>
 <th rowspan="2">direction</th>
 <td class="type"><pre><a href="#enum-SpeedTestDirection">SpeedTestDirection</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target_name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">probing_session</th>
+<td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  

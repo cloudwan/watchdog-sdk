@@ -25,6 +25,8 @@ import (
 // proto imports
 import (
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 )
 
 // ensure the imports are used
@@ -49,6 +51,8 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &probe.Probe{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 // FieldPath provides implementation to handle
@@ -70,8 +74,10 @@ type RunSpeedTestRequest_FieldPath interface {
 type RunSpeedTestRequest_FieldPathSelector int32
 
 const (
-	RunSpeedTestRequest_FieldPathSelectorName      RunSpeedTestRequest_FieldPathSelector = 0
-	RunSpeedTestRequest_FieldPathSelectorDirection RunSpeedTestRequest_FieldPathSelector = 1
+	RunSpeedTestRequest_FieldPathSelectorName           RunSpeedTestRequest_FieldPathSelector = 0
+	RunSpeedTestRequest_FieldPathSelectorDirection      RunSpeedTestRequest_FieldPathSelector = 1
+	RunSpeedTestRequest_FieldPathSelectorProbingSession RunSpeedTestRequest_FieldPathSelector = 2
+	RunSpeedTestRequest_FieldPathSelectorProbingTarget  RunSpeedTestRequest_FieldPathSelector = 3
 )
 
 func (s RunSpeedTestRequest_FieldPathSelector) String() string {
@@ -80,6 +86,10 @@ func (s RunSpeedTestRequest_FieldPathSelector) String() string {
 		return "name"
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		return "direction"
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		return "probing_session"
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		return "probing_target"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", s))
 	}
@@ -95,6 +105,10 @@ func BuildRunSpeedTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunSpeedTe
 			return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorName}, nil
 		case "direction":
 			return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorDirection}, nil
+		case "probing_session", "probingSession", "probing-session":
+			return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingSession}, nil
+		case "probing_target", "probingTarget", "probing-target":
+			return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingTarget}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunSpeedTestRequest", fp)
@@ -146,6 +160,14 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) Get(source *RunSpeedTestRequest
 			}
 		case RunSpeedTestRequest_FieldPathSelectorDirection:
 			values = append(values, source.Direction)
+		case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+			if source.ProbingSession != nil {
+				values = append(values, source.ProbingSession)
+			}
+		case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+			if source.ProbingTarget != nil {
+				values = append(values, source.ProbingTarget)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 		}
@@ -165,6 +187,12 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) GetSingle(source *RunSpeedTestR
 		return res, res != nil
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		return source.GetDirection(), source != nil
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		res := source.GetProbingSession()
+		return res, res != nil
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		res := source.GetProbingTarget()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 	}
@@ -181,6 +209,10 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*probe.Reference)(nil)
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		return SpeedTestDirection_Download
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		return (*probing_session.Reference)(nil)
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		return (*probing_target.Reference)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 	}
@@ -193,6 +225,10 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) ClearValue(item *RunSpeedTestRe
 			item.Name = nil
 		case RunSpeedTestRequest_FieldPathSelectorDirection:
 			item.Direction = SpeedTestDirection_Download
+		case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+			item.ProbingSession = nil
+		case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+			item.ProbingTarget = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 		}
@@ -206,7 +242,9 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) ClearValueRaw(item proto.Messag
 // IsLeaf - whether field path is holds simple value
 func (fp *RunSpeedTestRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == RunSpeedTestRequest_FieldPathSelectorName ||
-		fp.selector == RunSpeedTestRequest_FieldPathSelectorDirection
+		fp.selector == RunSpeedTestRequest_FieldPathSelectorDirection ||
+		fp.selector == RunSpeedTestRequest_FieldPathSelectorProbingSession ||
+		fp.selector == RunSpeedTestRequest_FieldPathSelectorProbingTarget
 }
 
 func (fp *RunSpeedTestRequest_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestRequest_FieldPathValue {
@@ -215,6 +253,10 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) WithIValue(value interface{}) R
 		return &RunSpeedTestRequest_FieldTerminalPathValue{RunSpeedTestRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		return &RunSpeedTestRequest_FieldTerminalPathValue{RunSpeedTestRequest_FieldTerminalPath: *fp, value: value.(SpeedTestDirection)}
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		return &RunSpeedTestRequest_FieldTerminalPathValue{RunSpeedTestRequest_FieldTerminalPath: *fp, value: value.(*probing_session.Reference)}
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		return &RunSpeedTestRequest_FieldTerminalPathValue{RunSpeedTestRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 	}
@@ -231,6 +273,10 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) WithIArrayOfValues(values inter
 		return &RunSpeedTestRequest_FieldTerminalPathArrayOfValues{RunSpeedTestRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		return &RunSpeedTestRequest_FieldTerminalPathArrayOfValues{RunSpeedTestRequest_FieldTerminalPath: *fp, values: values.([]SpeedTestDirection)}
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		return &RunSpeedTestRequest_FieldTerminalPathArrayOfValues{RunSpeedTestRequest_FieldTerminalPath: *fp, values: values.([]*probing_session.Reference)}
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		return &RunSpeedTestRequest_FieldTerminalPathArrayOfValues{RunSpeedTestRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fp.selector))
 	}
@@ -299,6 +345,14 @@ func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) AsDirectionValue() (Speed
 	res, ok := fpv.value.(SpeedTestDirection)
 	return res, ok
 }
+func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) AsProbingSessionValue() (*probing_session.Reference, bool) {
+	res, ok := fpv.value.(*probing_session.Reference)
+	return res, ok
+}
+func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) AsProbingTargetValue() (*probing_target.Reference, bool) {
+	res, ok := fpv.value.(*probing_target.Reference)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunSpeedTestRequest
 func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) SetTo(target **RunSpeedTestRequest) {
@@ -310,6 +364,10 @@ func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) SetTo(target **RunSpeedTe
 		(*target).Name = fpv.value.(*probe.Reference)
 	case RunSpeedTestRequest_FieldPathSelectorDirection:
 		(*target).Direction = fpv.value.(SpeedTestDirection)
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		(*target).ProbingSession = fpv.value.(*probing_session.Reference)
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		(*target).ProbingTarget = fpv.value.(*probing_target.Reference)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequest: %d", fpv.selector))
 	}
@@ -348,6 +406,44 @@ func (fpv *RunSpeedTestRequest_FieldTerminalPathValue) CompareWith(source *RunSp
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		leftValue := fpv.value.(*probing_session.Reference)
+		rightValue := source.GetProbingSession()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		leftValue := fpv.value.(*probing_target.Reference)
+		rightValue := source.GetProbingTarget()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
 			return -1, true
 		} else {
 			return 1, true
@@ -464,6 +560,14 @@ func (fpaov *RunSpeedTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() 
 		for _, v := range fpaov.values.([]SpeedTestDirection) {
 			values = append(values, v)
 		}
+	case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+		for _, v := range fpaov.values.([]*probing_session.Reference) {
+			values = append(values, v)
+		}
+	case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+		for _, v := range fpaov.values.([]*probing_target.Reference) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -473,6 +577,14 @@ func (fpaov *RunSpeedTestRequest_FieldTerminalPathArrayOfValues) AsNameArrayOfVa
 }
 func (fpaov *RunSpeedTestRequest_FieldTerminalPathArrayOfValues) AsDirectionArrayOfValues() ([]SpeedTestDirection, bool) {
 	res, ok := fpaov.values.([]SpeedTestDirection)
+	return res, ok
+}
+func (fpaov *RunSpeedTestRequest_FieldTerminalPathArrayOfValues) AsProbingSessionArrayOfValues() ([]*probing_session.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_session.Reference)
+	return res, ok
+}
+func (fpaov *RunSpeedTestRequest_FieldTerminalPathArrayOfValues) AsProbingTargetArrayOfValues() ([]*probing_target.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_target.Reference)
 	return res, ok
 }
 
@@ -501,6 +613,8 @@ const (
 	RunSpeedTestResponse_FieldPathSelectorServerIp                   RunSpeedTestResponse_FieldPathSelector = 3
 	RunSpeedTestResponse_FieldPathSelectorServerLatency              RunSpeedTestResponse_FieldPathSelector = 4
 	RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage RunSpeedTestResponse_FieldPathSelector = 5
+	RunSpeedTestResponse_FieldPathSelectorProbingSession             RunSpeedTestResponse_FieldPathSelector = 6
+	RunSpeedTestResponse_FieldPathSelectorTarget                     RunSpeedTestResponse_FieldPathSelector = 7
 )
 
 func (s RunSpeedTestResponse_FieldPathSelector) String() string {
@@ -517,6 +631,10 @@ func (s RunSpeedTestResponse_FieldPathSelector) String() string {
 		return "server_latency"
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		return "server_retransmit_percentage"
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		return "probing_session"
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		return "target"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", s))
 	}
@@ -540,6 +658,10 @@ func BuildRunSpeedTestResponse_FieldPath(fp gotenobject.RawFieldPath) (RunSpeedT
 			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerLatency}, nil
 		case "server_retransmit_percentage", "serverRetransmitPercentage", "server-retransmit-percentage":
 			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage}, nil
+		case "probing_session", "probingSession", "probing-session":
+			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession}, nil
+		case "target":
+			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunSpeedTestResponse", fp)
@@ -597,6 +719,14 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) Get(source *RunSpeedTestRespon
 			values = append(values, source.ServerLatency)
 		case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 			values = append(values, source.ServerRetransmitPercentage)
+		case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+			if source.ProbingSession != nil {
+				values = append(values, source.ProbingSession)
+			}
+		case RunSpeedTestResponse_FieldPathSelectorTarget:
+			if source.Target != nil {
+				values = append(values, source.Target)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 		}
@@ -623,6 +753,12 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) GetSingle(source *RunSpeedTest
 		return source.GetServerLatency(), source != nil
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		return source.GetServerRetransmitPercentage(), source != nil
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		res := source.GetProbingSession()
+		return res, res != nil
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		res := source.GetTarget()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -647,6 +783,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) GetDefault() interface{} {
 		return float64(0)
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		return float64(0)
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		return (*probing_session.Reference)(nil)
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		return (*probing_target.Reference)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -667,6 +807,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) ClearValue(item *RunSpeedTestR
 			item.ServerLatency = float64(0)
 		case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 			item.ServerRetransmitPercentage = float64(0)
+		case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+			item.ProbingSession = nil
+		case RunSpeedTestResponse_FieldPathSelectorTarget:
+			item.Target = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 		}
@@ -684,7 +828,9 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerName ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerIp ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerLatency ||
-		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage ||
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorProbingSession ||
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorTarget
 }
 
 func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestResponse_FieldPathValue {
@@ -701,6 +847,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIValue(value interface{}) 
 		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(float64)}
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(float64)}
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(*probing_session.Reference)}
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -725,6 +875,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIArrayOfValues(values inte
 		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]float64)}
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]float64)}
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]*probing_session.Reference)}
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -809,6 +963,14 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsServerRetransmitPercen
 	res, ok := fpv.value.(float64)
 	return res, ok
 }
+func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsProbingSessionValue() (*probing_session.Reference, bool) {
+	res, ok := fpv.value.(*probing_session.Reference)
+	return res, ok
+}
+func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsTargetValue() (*probing_target.Reference, bool) {
+	res, ok := fpv.value.(*probing_target.Reference)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunSpeedTestResponse
 func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) SetTo(target **RunSpeedTestResponse) {
@@ -828,6 +990,10 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) SetTo(target **RunSpeedT
 		(*target).ServerLatency = fpv.value.(float64)
 	case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 		(*target).ServerRetransmitPercentage = fpv.value.(float64)
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		(*target).ProbingSession = fpv.value.(*probing_session.Reference)
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		(*target).Target = fpv.value.(*probing_target.Reference)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fpv.selector))
 	}
@@ -897,6 +1063,44 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) CompareWith(source *RunS
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		leftValue := fpv.value.(*probing_session.Reference)
+		rightValue := source.GetProbingSession()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		leftValue := fpv.value.(*probing_target.Reference)
+		rightValue := source.GetTarget()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
 			return -1, true
 		} else {
 			return 1, true
@@ -1029,6 +1233,14 @@ func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
 		}
+	case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+		for _, v := range fpaov.values.([]*probing_session.Reference) {
+			values = append(values, v)
+		}
+	case RunSpeedTestResponse_FieldPathSelectorTarget:
+		for _, v := range fpaov.values.([]*probing_target.Reference) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1056,6 +1268,14 @@ func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsServerRetran
 	res, ok := fpaov.values.([]float64)
 	return res, ok
 }
+func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsProbingSessionArrayOfValues() ([]*probing_session.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_session.Reference)
+	return res, ok
+}
+func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_target.Reference)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -1076,13 +1296,19 @@ type RunSpeedTestRequestToProbe_FieldPath interface {
 type RunSpeedTestRequestToProbe_FieldPathSelector int32
 
 const (
-	RunSpeedTestRequestToProbe_FieldPathSelectorDirection RunSpeedTestRequestToProbe_FieldPathSelector = 0
+	RunSpeedTestRequestToProbe_FieldPathSelectorDirection      RunSpeedTestRequestToProbe_FieldPathSelector = 0
+	RunSpeedTestRequestToProbe_FieldPathSelectorTargetName     RunSpeedTestRequestToProbe_FieldPathSelector = 1
+	RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession RunSpeedTestRequestToProbe_FieldPathSelector = 2
 )
 
 func (s RunSpeedTestRequestToProbe_FieldPathSelector) String() string {
 	switch s {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		return "direction"
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		return "target_name"
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		return "probing_session"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", s))
 	}
@@ -1096,6 +1322,10 @@ func BuildRunSpeedTestRequestToProbe_FieldPath(fp gotenobject.RawFieldPath) (Run
 		switch fp[0] {
 		case "direction":
 			return &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorDirection}, nil
+		case "target_name", "targetName", "target-name":
+			return &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorTargetName}, nil
+		case "probing_session", "probingSession", "probing-session":
+			return &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunSpeedTestRequestToProbe", fp)
@@ -1143,6 +1373,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) Get(source *RunSpeedTest
 		switch fp.selector {
 		case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 			values = append(values, source.Direction)
+		case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+			values = append(values, source.TargetName)
+		case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+			values = append(values, source.ProbingSession)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 		}
@@ -1159,6 +1393,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) GetSingle(source *RunSpe
 	switch fp.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		return source.GetDirection(), source != nil
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		return source.GetTargetName(), source != nil
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		return source.GetProbingSession(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 	}
@@ -1173,6 +1411,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) GetDefault() interface{}
 	switch fp.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		return SpeedTestDirection_Download
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		return ""
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 	}
@@ -1183,6 +1425,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) ClearValue(item *RunSpee
 		switch fp.selector {
 		case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 			item.Direction = SpeedTestDirection_Download
+		case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+			item.TargetName = ""
+		case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+			item.ProbingSession = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 		}
@@ -1195,13 +1441,19 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) ClearValueRaw(item proto
 
 // IsLeaf - whether field path is holds simple value
 func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunSpeedTestRequestToProbe_FieldPathSelectorDirection
+	return fp.selector == RunSpeedTestRequestToProbe_FieldPathSelectorDirection ||
+		fp.selector == RunSpeedTestRequestToProbe_FieldPathSelectorTargetName ||
+		fp.selector == RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession
 }
 
 func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestRequestToProbe_FieldPathValue {
 	switch fp.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		return &RunSpeedTestRequestToProbe_FieldTerminalPathValue{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, value: value.(SpeedTestDirection)}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		return &RunSpeedTestRequestToProbe_FieldTerminalPathValue{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, value: value.(string)}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		return &RunSpeedTestRequestToProbe_FieldTerminalPathValue{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 	}
@@ -1216,6 +1468,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) WithIArrayOfValues(value
 	switch fp.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		return &RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]SpeedTestDirection)}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		return &RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		return &RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues{RunSpeedTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fp.selector))
 	}
@@ -1280,6 +1536,14 @@ func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) AsDirectionValue()
 	res, ok := fpv.value.(SpeedTestDirection)
 	return res, ok
 }
+func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) AsTargetNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) AsProbingSessionValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunSpeedTestRequestToProbe
 func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) SetTo(target **RunSpeedTestRequestToProbe) {
@@ -1289,6 +1553,10 @@ func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) SetTo(target **Run
 	switch fpv.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		(*target).Direction = fpv.value.(SpeedTestDirection)
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		(*target).TargetName = fpv.value.(string)
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		(*target).ProbingSession = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestRequestToProbe: %d", fpv.selector))
 	}
@@ -1305,6 +1573,26 @@ func (fpv *RunSpeedTestRequestToProbe_FieldTerminalPathValue) CompareWith(source
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 		leftValue := fpv.value.(SpeedTestDirection)
 		rightValue := source.GetDirection()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetTargetName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetProbingSession()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -1420,10 +1708,26 @@ func (fpaov *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues) GetRawVa
 		for _, v := range fpaov.values.([]SpeedTestDirection) {
 			values = append(values, v)
 		}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
 func (fpaov *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues) AsDirectionArrayOfValues() ([]SpeedTestDirection, bool) {
 	res, ok := fpaov.values.([]SpeedTestDirection)
+	return res, ok
+}
+func (fpaov *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues) AsTargetNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues) AsProbingSessionArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }

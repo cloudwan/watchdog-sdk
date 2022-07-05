@@ -26,6 +26,10 @@ import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
+	probing_distribution "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_distribution"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
+	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	structpb "github.com/golang/protobuf/ptypes/struct"
@@ -63,6 +67,10 @@ var (
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
+	_ = &probing_distribution.ProbingDistribution{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_target.ProbingTarget{}
+	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &project.Project{}
 )
 
@@ -76,6 +84,12 @@ func (RunSpeedTestRequestFieldPathBuilder) Name() RunSpeedTestRequestPathSelecto
 }
 func (RunSpeedTestRequestFieldPathBuilder) Direction() RunSpeedTestRequestPathSelectorDirection {
 	return RunSpeedTestRequestPathSelectorDirection{}
+}
+func (RunSpeedTestRequestFieldPathBuilder) ProbingSession() RunSpeedTestRequestPathSelectorProbingSession {
+	return RunSpeedTestRequestPathSelectorProbingSession{}
+}
+func (RunSpeedTestRequestFieldPathBuilder) ProbingTarget() RunSpeedTestRequestPathSelectorProbingTarget {
+	return RunSpeedTestRequestPathSelectorProbingTarget{}
 }
 
 type RunSpeedTestRequestPathSelectorName struct{}
@@ -106,6 +120,34 @@ func (s RunSpeedTestRequestPathSelectorDirection) WithArrayOfValues(values []Spe
 	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequest_FieldTerminalPathArrayOfValues)
 }
 
+type RunSpeedTestRequestPathSelectorProbingSession struct{}
+
+func (RunSpeedTestRequestPathSelectorProbingSession) FieldPath() *RunSpeedTestRequest_FieldTerminalPath {
+	return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingSession}
+}
+
+func (s RunSpeedTestRequestPathSelectorProbingSession) WithValue(value *probing_session.Reference) *RunSpeedTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestRequestPathSelectorProbingSession) WithArrayOfValues(values []*probing_session.Reference) *RunSpeedTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestRequestPathSelectorProbingTarget struct{}
+
+func (RunSpeedTestRequestPathSelectorProbingTarget) FieldPath() *RunSpeedTestRequest_FieldTerminalPath {
+	return &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingTarget}
+}
+
+func (s RunSpeedTestRequestPathSelectorProbingTarget) WithValue(value *probing_target.Reference) *RunSpeedTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestRequestPathSelectorProbingTarget) WithArrayOfValues(values []*probing_target.Reference) *RunSpeedTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequest_FieldTerminalPathArrayOfValues)
+}
+
 type RunSpeedTestResponseFieldPathBuilder struct{}
 
 func NewRunSpeedTestResponseFieldPathBuilder() RunSpeedTestResponseFieldPathBuilder {
@@ -128,6 +170,12 @@ func (RunSpeedTestResponseFieldPathBuilder) ServerLatency() RunSpeedTestResponse
 }
 func (RunSpeedTestResponseFieldPathBuilder) ServerRetransmitPercentage() RunSpeedTestResponsePathSelectorServerRetransmitPercentage {
 	return RunSpeedTestResponsePathSelectorServerRetransmitPercentage{}
+}
+func (RunSpeedTestResponseFieldPathBuilder) ProbingSession() RunSpeedTestResponsePathSelectorProbingSession {
+	return RunSpeedTestResponsePathSelectorProbingSession{}
+}
+func (RunSpeedTestResponseFieldPathBuilder) Target() RunSpeedTestResponsePathSelectorTarget {
+	return RunSpeedTestResponsePathSelectorTarget{}
 }
 
 type RunSpeedTestResponsePathSelectorDirection struct{}
@@ -214,6 +262,34 @@ func (s RunSpeedTestResponsePathSelectorServerRetransmitPercentage) WithArrayOfV
 	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
 }
 
+type RunSpeedTestResponsePathSelectorProbingSession struct{}
+
+func (RunSpeedTestResponsePathSelectorProbingSession) FieldPath() *RunSpeedTestResponse_FieldTerminalPath {
+	return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession}
+}
+
+func (s RunSpeedTestResponsePathSelectorProbingSession) WithValue(value *probing_session.Reference) *RunSpeedTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestResponsePathSelectorProbingSession) WithArrayOfValues(values []*probing_session.Reference) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestResponsePathSelectorTarget struct{}
+
+func (RunSpeedTestResponsePathSelectorTarget) FieldPath() *RunSpeedTestResponse_FieldTerminalPath {
+	return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget}
+}
+
+func (s RunSpeedTestResponsePathSelectorTarget) WithValue(value *probing_target.Reference) *RunSpeedTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestResponsePathSelectorTarget) WithArrayOfValues(values []*probing_target.Reference) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
+}
+
 type RunSpeedTestRequestToProbeFieldPathBuilder struct{}
 
 func NewRunSpeedTestRequestToProbeFieldPathBuilder() RunSpeedTestRequestToProbeFieldPathBuilder {
@@ -221,6 +297,12 @@ func NewRunSpeedTestRequestToProbeFieldPathBuilder() RunSpeedTestRequestToProbeF
 }
 func (RunSpeedTestRequestToProbeFieldPathBuilder) Direction() RunSpeedTestRequestToProbePathSelectorDirection {
 	return RunSpeedTestRequestToProbePathSelectorDirection{}
+}
+func (RunSpeedTestRequestToProbeFieldPathBuilder) TargetName() RunSpeedTestRequestToProbePathSelectorTargetName {
+	return RunSpeedTestRequestToProbePathSelectorTargetName{}
+}
+func (RunSpeedTestRequestToProbeFieldPathBuilder) ProbingSession() RunSpeedTestRequestToProbePathSelectorProbingSession {
+	return RunSpeedTestRequestToProbePathSelectorProbingSession{}
 }
 
 type RunSpeedTestRequestToProbePathSelectorDirection struct{}
@@ -234,5 +316,33 @@ func (s RunSpeedTestRequestToProbePathSelectorDirection) WithValue(value SpeedTe
 }
 
 func (s RunSpeedTestRequestToProbePathSelectorDirection) WithArrayOfValues(values []SpeedTestDirection) *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestRequestToProbePathSelectorTargetName struct{}
+
+func (RunSpeedTestRequestToProbePathSelectorTargetName) FieldPath() *RunSpeedTestRequestToProbe_FieldTerminalPath {
+	return &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorTargetName}
+}
+
+func (s RunSpeedTestRequestToProbePathSelectorTargetName) WithValue(value string) *RunSpeedTestRequestToProbe_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestRequestToProbe_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestRequestToProbePathSelectorTargetName) WithArrayOfValues(values []string) *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestRequestToProbePathSelectorProbingSession struct{}
+
+func (RunSpeedTestRequestToProbePathSelectorProbingSession) FieldPath() *RunSpeedTestRequestToProbe_FieldTerminalPath {
+	return &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession}
+}
+
+func (s RunSpeedTestRequestToProbePathSelectorProbingSession) WithValue(value string) *RunSpeedTestRequestToProbe_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestRequestToProbe_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestRequestToProbePathSelectorProbingSession) WithArrayOfValues(values []string) *RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestRequestToProbe_FieldTerminalPathArrayOfValues)
 }

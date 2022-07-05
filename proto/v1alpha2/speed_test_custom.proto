@@ -3,7 +3,7 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
-import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+import "watchdog-sdk/proto/v1alpha2/probing_session.proto";
 
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/speed_test;speed_test_client";
 option java_multiple_files = false;
@@ -16,6 +16,18 @@ message RunSpeedTestRequest {
   string name = 1;
 
   SpeedTestDirection direction = 2;
+
+  // Reference to probing session to run speedtest
+  // Optional. If not specified the agent selects nearest server
+  // or the test is run to the recently used speedtest server
+  // Request should have both probingSession and probingTarget
+  string probing_session = 3;
+
+  // Reference to probing target to run speedtest
+  // Optional. If not specified the agent selects nearest server
+  // or the test is run to the recently used speedtest server
+  // Request should have both probingSession and probingTarget
+  string probing_target = 4;
 }
 
 // Response message for method
@@ -32,9 +44,19 @@ message RunSpeedTestResponse {
   double server_latency = 5;
 
   double server_retransmit_percentage = 6;
+
+  string probing_session = 7;
+
+  string target = 8;
 }
 
-message RunSpeedTestRequestToProbe { SpeedTestDirection direction = 1; }
+message RunSpeedTestRequestToProbe {
+  SpeedTestDirection direction = 1;
+
+  string target_name = 2;
+
+  string probing_session = 3;
+}
 
 enum SpeedTestDirection {
   Download = 0;

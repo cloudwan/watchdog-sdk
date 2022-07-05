@@ -24,6 +24,8 @@ import (
 // proto imports
 import (
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 )
 
 var (
@@ -44,6 +46,8 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &probe.Probe{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 func (obj *RunSpeedTestRequest) GotenValidate() error {

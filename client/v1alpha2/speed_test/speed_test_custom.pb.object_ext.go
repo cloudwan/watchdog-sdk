@@ -17,6 +17,8 @@ import (
 // proto imports
 import (
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 )
 
 // ensure the imports are used
@@ -33,6 +35,8 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &probe.Probe{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 func (o *RunSpeedTestRequest) GotenObjectExt() {}
@@ -60,6 +64,12 @@ func (o *RunSpeedTestRequest) MakeDiffFieldMask(other *RunSpeedTestRequest) *Run
 	if o.GetDirection() != other.GetDirection() {
 		res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorDirection})
 	}
+	if o.GetProbingSession().String() != other.GetProbingSession().String() {
+		res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingSession})
+	}
+	if o.GetProbingTarget().String() != other.GetProbingTarget().String() {
+		res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingTarget})
+	}
 	return res
 }
 
@@ -83,6 +93,26 @@ func (o *RunSpeedTestRequest) Clone() *RunSpeedTestRequest {
 		}
 	}
 	result.Direction = o.Direction
+	if o.ProbingSession == nil {
+		result.ProbingSession = nil
+	} else if data, err := o.ProbingSession.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.ProbingSession = &probing_session.Reference{}
+		if err := result.ProbingSession.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	if o.ProbingTarget == nil {
+		result.ProbingTarget = nil
+	} else if data, err := o.ProbingTarget.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.ProbingTarget = &probing_target.Reference{}
+		if err := result.ProbingTarget.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
 	return result
 }
 
@@ -104,6 +134,30 @@ func (o *RunSpeedTestRequest) Merge(source *RunSpeedTestRequest) {
 		o.Name = nil
 	}
 	o.Direction = source.GetDirection()
+	if source.GetProbingSession() != nil {
+		if data, err := source.GetProbingSession().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.ProbingSession = &probing_session.Reference{}
+			if err := o.ProbingSession.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.ProbingSession = nil
+	}
+	if source.GetProbingTarget() != nil {
+		if data, err := source.GetProbingTarget().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.ProbingTarget = &probing_target.Reference{}
+			if err := o.ProbingTarget.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.ProbingTarget = nil
+	}
 }
 
 func (o *RunSpeedTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -147,6 +201,12 @@ func (o *RunSpeedTestResponse) MakeDiffFieldMask(other *RunSpeedTestResponse) *R
 	if o.GetServerRetransmitPercentage() != other.GetServerRetransmitPercentage() {
 		res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage})
 	}
+	if o.GetProbingSession().String() != other.GetProbingSession().String() {
+		res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession})
+	}
+	if o.GetTarget().String() != other.GetTarget().String() {
+		res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget})
+	}
 	return res
 }
 
@@ -165,6 +225,26 @@ func (o *RunSpeedTestResponse) Clone() *RunSpeedTestResponse {
 	result.ServerIp = o.ServerIp
 	result.ServerLatency = o.ServerLatency
 	result.ServerRetransmitPercentage = o.ServerRetransmitPercentage
+	if o.ProbingSession == nil {
+		result.ProbingSession = nil
+	} else if data, err := o.ProbingSession.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.ProbingSession = &probing_session.Reference{}
+		if err := result.ProbingSession.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	if o.Target == nil {
+		result.Target = nil
+	} else if data, err := o.Target.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Target = &probing_target.Reference{}
+		if err := result.Target.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
 	return result
 }
 
@@ -179,6 +259,30 @@ func (o *RunSpeedTestResponse) Merge(source *RunSpeedTestResponse) {
 	o.ServerIp = source.GetServerIp()
 	o.ServerLatency = source.GetServerLatency()
 	o.ServerRetransmitPercentage = source.GetServerRetransmitPercentage()
+	if source.GetProbingSession() != nil {
+		if data, err := source.GetProbingSession().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.ProbingSession = &probing_session.Reference{}
+			if err := o.ProbingSession.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.ProbingSession = nil
+	}
+	if source.GetTarget() != nil {
+		if data, err := source.GetTarget().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Target = &probing_target.Reference{}
+			if err := o.Target.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Target = nil
+	}
 }
 
 func (o *RunSpeedTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -207,6 +311,12 @@ func (o *RunSpeedTestRequestToProbe) MakeDiffFieldMask(other *RunSpeedTestReques
 	if o.GetDirection() != other.GetDirection() {
 		res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorDirection})
 	}
+	if o.GetTargetName() != other.GetTargetName() {
+		res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorTargetName})
+	}
+	if o.GetProbingSession() != other.GetProbingSession() {
+		res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession})
+	}
 	return res
 }
 
@@ -220,6 +330,8 @@ func (o *RunSpeedTestRequestToProbe) Clone() *RunSpeedTestRequestToProbe {
 	}
 	result := &RunSpeedTestRequestToProbe{}
 	result.Direction = o.Direction
+	result.TargetName = o.TargetName
+	result.ProbingSession = o.ProbingSession
 	return result
 }
 
@@ -229,6 +341,8 @@ func (o *RunSpeedTestRequestToProbe) CloneRaw() gotenobject.GotenObjectExt {
 
 func (o *RunSpeedTestRequestToProbe) Merge(source *RunSpeedTestRequestToProbe) {
 	o.Direction = source.GetDirection()
+	o.TargetName = source.GetTargetName()
+	o.ProbingSession = source.GetProbingSession()
 }
 
 func (o *RunSpeedTestRequestToProbe) MergeRaw(source gotenobject.GotenObjectExt) {

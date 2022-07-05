@@ -21,6 +21,8 @@ import (
 // proto imports
 import (
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_session "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_session"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 )
 
 // ensure the imports are used
@@ -41,6 +43,8 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &probe.Probe{}
+	_ = &probing_session.ProbingSession{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 type RunSpeedTestRequest_FieldMask struct {
@@ -51,6 +55,8 @@ func FullRunSpeedTestRequest_FieldMask() *RunSpeedTestRequest_FieldMask {
 	res := &RunSpeedTestRequest_FieldMask{}
 	res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorName})
 	res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorDirection})
+	res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingSession})
+	res.Paths = append(res.Paths, &RunSpeedTestRequest_FieldTerminalPath{selector: RunSpeedTestRequest_FieldPathSelectorProbingTarget})
 	return res
 }
 
@@ -94,7 +100,7 @@ func (fieldMask *RunSpeedTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 2)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunSpeedTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -124,7 +130,7 @@ func (fieldMask *RunSpeedTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunSpeedTestRequest_FieldMask) Subtract(other *RunSpeedTestRequest_FieldMask) *RunSpeedTestRequest_FieldMask {
 	result := &RunSpeedTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 2)
+	removedSelectors := make([]bool, 4)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -282,6 +288,10 @@ func (fieldMask *RunSpeedTestRequest_FieldMask) Project(source *RunSpeedTestRequ
 				result.Name = source.Name
 			case RunSpeedTestRequest_FieldPathSelectorDirection:
 				result.Direction = source.Direction
+			case RunSpeedTestRequest_FieldPathSelectorProbingSession:
+				result.ProbingSession = source.ProbingSession
+			case RunSpeedTestRequest_FieldPathSelectorProbingTarget:
+				result.ProbingTarget = source.ProbingTarget
 			}
 		}
 	}
@@ -311,6 +321,8 @@ func FullRunSpeedTestResponse_FieldMask() *RunSpeedTestResponse_FieldMask {
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerIp})
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerLatency})
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage})
+	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession})
+	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget})
 	return res
 }
 
@@ -354,7 +366,7 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 6)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunSpeedTestResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -384,7 +396,7 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) Reset() {
 
 func (fieldMask *RunSpeedTestResponse_FieldMask) Subtract(other *RunSpeedTestResponse_FieldMask) *RunSpeedTestResponse_FieldMask {
 	result := &RunSpeedTestResponse_FieldMask{}
-	removedSelectors := make([]bool, 6)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -550,6 +562,10 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) Project(source *RunSpeedTestRes
 				result.ServerLatency = source.ServerLatency
 			case RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage:
 				result.ServerRetransmitPercentage = source.ServerRetransmitPercentage
+			case RunSpeedTestResponse_FieldPathSelectorProbingSession:
+				result.ProbingSession = source.ProbingSession
+			case RunSpeedTestResponse_FieldPathSelectorTarget:
+				result.Target = source.Target
 			}
 		}
 	}
@@ -574,6 +590,8 @@ type RunSpeedTestRequestToProbe_FieldMask struct {
 func FullRunSpeedTestRequestToProbe_FieldMask() *RunSpeedTestRequestToProbe_FieldMask {
 	res := &RunSpeedTestRequestToProbe_FieldMask{}
 	res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorDirection})
+	res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorTargetName})
+	res.Paths = append(res.Paths, &RunSpeedTestRequestToProbe_FieldTerminalPath{selector: RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession})
 	return res
 }
 
@@ -617,7 +635,7 @@ func (fieldMask *RunSpeedTestRequestToProbe_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 1)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunSpeedTestRequestToProbe_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -647,7 +665,7 @@ func (fieldMask *RunSpeedTestRequestToProbe_FieldMask) Reset() {
 
 func (fieldMask *RunSpeedTestRequestToProbe_FieldMask) Subtract(other *RunSpeedTestRequestToProbe_FieldMask) *RunSpeedTestRequestToProbe_FieldMask {
 	result := &RunSpeedTestRequestToProbe_FieldMask{}
-	removedSelectors := make([]bool, 1)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -803,6 +821,10 @@ func (fieldMask *RunSpeedTestRequestToProbe_FieldMask) Project(source *RunSpeedT
 			switch tp.selector {
 			case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
 				result.Direction = source.Direction
+			case RunSpeedTestRequestToProbe_FieldPathSelectorTargetName:
+				result.TargetName = source.TargetName
+			case RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession:
+				result.ProbingSession = source.ProbingSession
 			}
 		}
 	}
