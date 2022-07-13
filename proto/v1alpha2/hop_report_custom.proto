@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/protobuf/timestamp.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_report;hop_report_client";
+option java_multiple_files = false;
+option java_outer_classname = "HopReportCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method [ReportHops][ntt.watchdog.v1alpha2.ReportHops]
+message ReportHopsRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  string target = 2;
+
+  string target_ip_address = 3;
+
+  IpVersion ip_version = 4;
+
+  ProbingMode mode = 5;
+
+  TraceType trace_type = 6;
+
+  repeated Path paths = 7;
+
+  // map<hopip, HopStat>
+  map<string, HopStat> hop_stats = 8;
+
+  // map<hopip, HopStat>
+  map<string, HopInfo> hop_info = 9;
+
+  TraceReason trace_reason = 10;
+
+  string trace_reason_description = 11;
+
+  google.protobuf.Timestamp time = 12;
+}
+
+// Response message for method [ReportHops][ntt.watchdog.v1alpha2.ReportHops]
+message ReportHopsResponse {}
+
+message PathStats {
+  google.protobuf.Timestamp time = 1;
+
+  repeated Path paths = 2;
+
+  // map<hopip, HopStat>
+  map<string, HopStat> hop_stats = 3;
+
+  TraceReason trace_reason = 4;
+
+  string trace_reason_description = 5;
+}
+
+// Request message for method
+// [GetHopReports][ntt.watchdog.v1alpha2.GetHopReports]
+message GetHopReportsRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  // Atleast one of Probe Name or ProbingTarget Name is mandatory.
+  string probe = 1;
+
+  //  reference of ntt.watchdog.v1alpha2.ProbingTarget
+  // Atleast one of Probe Name or ProbingTarget Name is mandatory.
+  string target = 2;
+
+  // Interval for which the hop report is required
+  TimeInterval interval = 3;
+
+  // A positive number that is the maximum number of results to return. If
+  // `page_size` is empty or more than 100,000 results, the effective
+  // `page_size` is 100,000 results.
+  int32 page_size = 4;
+
+  // If this field is not empty then it must contain the `nextPageToken` value
+  // returned by a previous call to this method.  Using this field causes the
+  // method to return additional results from the previous method call.
+  string page_token = 5;
+}
+
+message HopsReport {
+  string probe = 1;
+
+  string target = 2;
+
+  string target_ip_address = 3;
+
+  IpVersion ip_version = 4;
+
+  ProbingMode mode = 5;
+
+  TraceType trace_type = 6;
+
+  repeated PathStats path_stats = 7;
+}
+
+// Response message for method
+// [GetHopReports][ntt.watchdog.v1alpha2.GetHopReports]
+message GetHopReportsResponse {
+  repeated HopsReport hops_report = 1;
+
+  // map<hopip, HopStat>
+  map<string, HopInfo> hop_info = 2;
+
+  // If there are more results than have been returned, then this field is set
+  // to a non-empty value.  To see the additional results,
+  // use that value as `pageToken` in the next call to this method.
+  string next_page_token = 3;
+}

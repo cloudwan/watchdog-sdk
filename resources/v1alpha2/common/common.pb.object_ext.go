@@ -18,6 +18,7 @@ import (
 import (
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	duration "github.com/golang/protobuf/ptypes/duration"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
@@ -36,6 +37,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
 	_ = &admin_area.BBox{}
@@ -1739,4 +1741,426 @@ func (o *DNSResourceRecord) Merge(source *DNSResourceRecord) {
 
 func (o *DNSResourceRecord) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*DNSResourceRecord))
+}
+
+func (o *HopInfo) GotenObjectExt() {}
+
+func (o *HopInfo) MakeFullFieldMask() *HopInfo_FieldMask {
+	return FullHopInfo_FieldMask()
+}
+
+func (o *HopInfo) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullHopInfo_FieldMask()
+}
+
+func (o *HopInfo) MakeDiffFieldMask(other *HopInfo) *HopInfo_FieldMask {
+	if o == nil && other == nil {
+		return &HopInfo_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullHopInfo_FieldMask()
+	}
+
+	res := &HopInfo_FieldMask{}
+	if o.GetHopIp() != other.GetHopIp() {
+		res.Paths = append(res.Paths, &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopIp})
+	}
+	if o.GetHopAsn() != other.GetHopAsn() {
+		res.Paths = append(res.Paths, &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsn})
+	}
+	if o.GetHopAsName() != other.GetHopAsName() {
+		res.Paths = append(res.Paths, &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsName})
+	}
+	return res
+}
+
+func (o *HopInfo) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*HopInfo))
+}
+
+func (o *HopInfo) Clone() *HopInfo {
+	if o == nil {
+		return nil
+	}
+	result := &HopInfo{}
+	result.HopIp = o.HopIp
+	result.HopAsn = o.HopAsn
+	result.HopAsName = o.HopAsName
+	return result
+}
+
+func (o *HopInfo) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *HopInfo) Merge(source *HopInfo) {
+	o.HopIp = source.GetHopIp()
+	o.HopAsn = source.GetHopAsn()
+	o.HopAsName = source.GetHopAsName()
+}
+
+func (o *HopInfo) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*HopInfo))
+}
+
+func (o *HopStat) GotenObjectExt() {}
+
+func (o *HopStat) MakeFullFieldMask() *HopStat_FieldMask {
+	return FullHopStat_FieldMask()
+}
+
+func (o *HopStat) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullHopStat_FieldMask()
+}
+
+func (o *HopStat) MakeDiffFieldMask(other *HopStat) *HopStat_FieldMask {
+	if o == nil && other == nil {
+		return &HopStat_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullHopStat_FieldMask()
+	}
+
+	res := &HopStat_FieldMask{}
+	{
+		subMask := o.GetTtlExceededLatency().MakeDiffFieldMask(other.GetTtlExceededLatency())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorTtlExceededLatency})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorTtlExceededLatency, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetIcmpLatency().MakeDiffFieldMask(other.GetIcmpLatency())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorIcmpLatency})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorIcmpLatency, subPath: subpath})
+			}
+		}
+	}
+	{
+		subMask := o.GetLoss().MakeDiffFieldMask(other.GetLoss())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorLoss})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorLoss, subPath: subpath})
+			}
+		}
+	}
+	return res
+}
+
+func (o *HopStat) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*HopStat))
+}
+
+func (o *HopStat) Clone() *HopStat {
+	if o == nil {
+		return nil
+	}
+	result := &HopStat{}
+	result.TtlExceededLatency = o.TtlExceededLatency.Clone()
+	result.IcmpLatency = o.IcmpLatency.Clone()
+	result.Loss = o.Loss.Clone()
+	return result
+}
+
+func (o *HopStat) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *HopStat) Merge(source *HopStat) {
+	if source.GetTtlExceededLatency() != nil {
+		if o.TtlExceededLatency == nil {
+			o.TtlExceededLatency = new(DurationStatsMilliSeconds)
+		}
+		o.TtlExceededLatency.Merge(source.GetTtlExceededLatency())
+	}
+	if source.GetIcmpLatency() != nil {
+		if o.IcmpLatency == nil {
+			o.IcmpLatency = new(DurationStatsMilliSeconds)
+		}
+		o.IcmpLatency.Merge(source.GetIcmpLatency())
+	}
+	if source.GetLoss() != nil {
+		if o.Loss == nil {
+			o.Loss = new(LossStats)
+		}
+		o.Loss.Merge(source.GetLoss())
+	}
+}
+
+func (o *HopStat) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*HopStat))
+}
+
+func (o *DurationStatsMilliSeconds) GotenObjectExt() {}
+
+func (o *DurationStatsMilliSeconds) MakeFullFieldMask() *DurationStatsMilliSeconds_FieldMask {
+	return FullDurationStatsMilliSeconds_FieldMask()
+}
+
+func (o *DurationStatsMilliSeconds) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullDurationStatsMilliSeconds_FieldMask()
+}
+
+func (o *DurationStatsMilliSeconds) MakeDiffFieldMask(other *DurationStatsMilliSeconds) *DurationStatsMilliSeconds_FieldMask {
+	if o == nil && other == nil {
+		return &DurationStatsMilliSeconds_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullDurationStatsMilliSeconds_FieldMask()
+	}
+
+	res := &DurationStatsMilliSeconds_FieldMask{}
+	if o.GetMean() != other.GetMean() {
+		res.Paths = append(res.Paths, &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMean})
+	}
+	if o.GetMin() != other.GetMin() {
+		res.Paths = append(res.Paths, &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMin})
+	}
+	if o.GetMax() != other.GetMax() {
+		res.Paths = append(res.Paths, &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMax})
+	}
+	if o.GetCount() != other.GetCount() {
+		res.Paths = append(res.Paths, &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorCount})
+	}
+	return res
+}
+
+func (o *DurationStatsMilliSeconds) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*DurationStatsMilliSeconds))
+}
+
+func (o *DurationStatsMilliSeconds) Clone() *DurationStatsMilliSeconds {
+	if o == nil {
+		return nil
+	}
+	result := &DurationStatsMilliSeconds{}
+	result.Mean = o.Mean
+	result.Min = o.Min
+	result.Max = o.Max
+	result.Count = o.Count
+	return result
+}
+
+func (o *DurationStatsMilliSeconds) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *DurationStatsMilliSeconds) Merge(source *DurationStatsMilliSeconds) {
+	o.Mean = source.GetMean()
+	o.Min = source.GetMin()
+	o.Max = source.GetMax()
+	o.Count = source.GetCount()
+}
+
+func (o *DurationStatsMilliSeconds) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*DurationStatsMilliSeconds))
+}
+
+func (o *LossStats) GotenObjectExt() {}
+
+func (o *LossStats) MakeFullFieldMask() *LossStats_FieldMask {
+	return FullLossStats_FieldMask()
+}
+
+func (o *LossStats) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullLossStats_FieldMask()
+}
+
+func (o *LossStats) MakeDiffFieldMask(other *LossStats) *LossStats_FieldMask {
+	if o == nil && other == nil {
+		return &LossStats_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullLossStats_FieldMask()
+	}
+
+	res := &LossStats_FieldMask{}
+	if o.GetPacketsSent() != other.GetPacketsSent() {
+		res.Paths = append(res.Paths, &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsSent})
+	}
+	if o.GetPacketsLost() != other.GetPacketsLost() {
+		res.Paths = append(res.Paths, &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsLost})
+	}
+	if o.GetLossPercentage() != other.GetLossPercentage() {
+		res.Paths = append(res.Paths, &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorLossPercentage})
+	}
+	return res
+}
+
+func (o *LossStats) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*LossStats))
+}
+
+func (o *LossStats) Clone() *LossStats {
+	if o == nil {
+		return nil
+	}
+	result := &LossStats{}
+	result.PacketsSent = o.PacketsSent
+	result.PacketsLost = o.PacketsLost
+	result.LossPercentage = o.LossPercentage
+	return result
+}
+
+func (o *LossStats) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *LossStats) Merge(source *LossStats) {
+	o.PacketsSent = source.GetPacketsSent()
+	o.PacketsLost = source.GetPacketsLost()
+	o.LossPercentage = source.GetLossPercentage()
+}
+
+func (o *LossStats) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*LossStats))
+}
+
+func (o *Path) GotenObjectExt() {}
+
+func (o *Path) MakeFullFieldMask() *Path_FieldMask {
+	return FullPath_FieldMask()
+}
+
+func (o *Path) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullPath_FieldMask()
+}
+
+func (o *Path) MakeDiffFieldMask(other *Path) *Path_FieldMask {
+	if o == nil && other == nil {
+		return &Path_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullPath_FieldMask()
+	}
+
+	res := &Path_FieldMask{}
+
+	if len(o.GetHops()) == len(other.GetHops()) {
+		for i, lValue := range o.GetHops() {
+			rValue := other.GetHops()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &Path_FieldTerminalPath{selector: Path_FieldPathSelectorHops})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &Path_FieldTerminalPath{selector: Path_FieldPathSelectorHops})
+	}
+	return res
+}
+
+func (o *Path) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Path))
+}
+
+func (o *Path) Clone() *Path {
+	if o == nil {
+		return nil
+	}
+	result := &Path{}
+	result.Hops = make([]string, len(o.Hops))
+	for i, sourceValue := range o.Hops {
+		result.Hops[i] = sourceValue
+	}
+	return result
+}
+
+func (o *Path) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Path) Merge(source *Path) {
+	for _, sourceValue := range source.GetHops() {
+		exists := false
+		for _, currentValue := range o.Hops {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.Hops = append(o.Hops, newDstElement)
+		}
+	}
+
+}
+
+func (o *Path) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Path))
+}
+
+func (o *TimeInterval) GotenObjectExt() {}
+
+func (o *TimeInterval) MakeFullFieldMask() *TimeInterval_FieldMask {
+	return FullTimeInterval_FieldMask()
+}
+
+func (o *TimeInterval) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullTimeInterval_FieldMask()
+}
+
+func (o *TimeInterval) MakeDiffFieldMask(other *TimeInterval) *TimeInterval_FieldMask {
+	if o == nil && other == nil {
+		return &TimeInterval_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullTimeInterval_FieldMask()
+	}
+
+	res := &TimeInterval_FieldMask{}
+	if !proto.Equal(o.GetEndTime(), other.GetEndTime()) {
+		res.Paths = append(res.Paths, &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorEndTime})
+	}
+	if !proto.Equal(o.GetStartTime(), other.GetStartTime()) {
+		res.Paths = append(res.Paths, &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorStartTime})
+	}
+	return res
+}
+
+func (o *TimeInterval) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*TimeInterval))
+}
+
+func (o *TimeInterval) Clone() *TimeInterval {
+	if o == nil {
+		return nil
+	}
+	result := &TimeInterval{}
+	result.EndTime = proto.Clone(o.EndTime).(*timestamp.Timestamp)
+	result.StartTime = proto.Clone(o.StartTime).(*timestamp.Timestamp)
+	return result
+}
+
+func (o *TimeInterval) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *TimeInterval) Merge(source *TimeInterval) {
+	if source.GetEndTime() != nil {
+		if o.EndTime == nil {
+			o.EndTime = new(timestamp.Timestamp)
+		}
+		proto.Merge(o.EndTime, source.GetEndTime())
+	}
+	if source.GetStartTime() != nil {
+		if o.StartTime == nil {
+			o.StartTime = new(timestamp.Timestamp)
+		}
+		proto.Merge(o.StartTime, source.GetStartTime())
+	}
+}
+
+func (o *TimeInterval) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*TimeInterval))
 }

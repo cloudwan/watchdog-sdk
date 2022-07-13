@@ -4,6 +4,7 @@ package ntt.watchdog.v1alpha2;
 
 import "google/api/resource.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/type/latlng.proto";
 import "watchdog-sdk/proto/v1alpha2/admin_area.proto";
@@ -327,6 +328,52 @@ message DNSResourceRecord {
   repeated string rdata = 6;
 }
 
+message HopInfo {
+  string hop_ip = 1;
+
+  string hop_asn = 2;
+
+  string hop_as_name = 3;
+}
+
+message HopStat {
+  DurationStatsMilliSeconds ttl_exceeded_latency = 1;
+
+  DurationStatsMilliSeconds icmp_latency = 2;
+
+  LossStats loss = 3;
+}
+
+message DurationStatsMilliSeconds {
+  double mean = 1;
+
+  double min = 2;
+
+  double max = 3;
+
+  int32 count = 4;
+}
+
+message LossStats {
+  int32 packets_sent = 1;
+
+  int32 packets_lost = 2;
+
+  double loss_percentage = 3;
+}
+
+message Path { repeated string hops = 2; }
+
+message TimeInterval {
+  // Required. The end of the time interval.
+  google.protobuf.Timestamp end_time = 2;
+
+  // Optional. The beginning of the time interval.  The default value
+  // for the start time is the end time. The start time must not be
+  // later than the end time.
+  google.protobuf.Timestamp start_time = 1;
+}
+
 enum IpVersion {
   IP_VERSION_UNSPECIFIED = 0;
 
@@ -446,4 +493,24 @@ enum DNSResourceRecordType {
   ANY = 255;
 
   URI = 256;
+}
+
+enum TraceReason {
+  UNDEFINED = 0;
+
+  USER_REQUEST_ONDEMAND = 1;
+
+  PROBING_SESSION_START = 2;
+
+  SLA_CHANGE = 3;
+
+  PERIODIC = 4;
+}
+
+enum TraceType {
+  UNDEFINED_TYPE = 0;
+
+  INBAND = 1;
+
+  OUT_OF_BAND = 2;
 }

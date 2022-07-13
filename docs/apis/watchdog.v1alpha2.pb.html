@@ -2099,6 +2099,34 @@ compare.</p>
 
 </div>
 
+
+
+<div class="operation">
+<h5 id="operation-RunHopMonitor">RunHopMonitor</h5>
+
+<pre class="signature">rpc RunHopMonitor(<a href="#message-RunHopMonitorRequest">RunHopMonitorRequest</a>) returns (<a href="#message-RunHopMonitorResponse">RunHopMonitorResponse</a>)</pre>
+
+<div class="description">
+<p>RunHopMonitor</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-ReportHops">ReportHops</h5>
+
+<pre class="signature">rpc ReportHops(<a href="#message-ReportHopsRequest">ReportHopsRequest</a>) returns (Empty)</pre>
+
+<div class="description">
+<p>ReportHops</p>
+
+</div>
+
+</div>
+
  
 
 <h4>Messages</h4>
@@ -4268,6 +4296,204 @@ cd: Checking Disabled</p>
 </tr>
 <tr><td class="description"><p>RTT to exchange the message</p>
 </td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHopMonitorRequest">RunHopMonitorRequest</h5>
+
+<p>Request message for method
+[RunHopMonitor][ntt.watchdog.v1alpha2.RunHopMonitor]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">source</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Source address to listen packet
+Skip validating goten's ip format
+in order to accept a zone index for IPv6 link local address
+ex. fe80::3%eth0</p>
+<p>If unspecified, agent will pick :: or 0.0.0.0 by default
+The IP version is chosen according to the version of destination address</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Target or Destination is required as user input</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">destination</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Destination to send packet
+IP address and hostname are acceptable
+As the IPv6 address, a zone index is also acceptable
+Destination or Target is required from user</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">size_bytes</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Byte size of the payload
+If unspecified, 100 is picked by default
+The minimum length includes space for timestamp and a tracker</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">attempts</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>Number of attempts to discover unique paths</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">mode</th>
+<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHopMonitorResponse">RunHopMonitorResponse</h5>
+
+<p>Response message for method
+[RunHopMonitor][ntt.watchdog.v1alpha2.RunHopMonitor]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">paths</th>
+<td class="type"><pre>repeated <a href="#message-Path">Path</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_stats</th>
+<td class="type"><pre><a href="#message-HopStat">HopStat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_info</th>
+<td class="type"><pre><a href="#message-HopInfo">HopInfo</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ReportHopsRequest">ReportHopsRequest</h5>
+
+<p>Request message for method [ReportHops][ntt.watchdog.v1alpha2.ReportHops]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target_ip_address</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">mode</th>
+<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">trace_type</th>
+<td class="type"><pre><a href="#enum-TraceType">TraceType</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">paths</th>
+<td class="type"><pre>repeated <a href="#message-Path">Path</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_stats</th>
+<td class="type"><pre><a href="#message-HopStat">HopStat</a></pre></td>
+</tr>
+<tr><td class="description"><p>map&lt;hopip, HopStat&gt;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">hop_info</th>
+<td class="type"><pre><a href="#message-HopInfo">HopInfo</a></pre></td>
+</tr>
+<tr><td class="description"><p>map&lt;hopip, HopStat&gt;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">trace_reason</th>
+<td class="type"><pre><a href="#enum-TraceReason">TraceReason</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">trace_reason_description</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -14083,6 +14309,20 @@ compare.</p>
 
 
 <div class="operation">
+<h5 id="operation-GetHopReports">GetHopReports</h5>
+
+<pre class="signature">rpc GetHopReports(<a href="#message-GetHopReportsRequest">GetHopReportsRequest</a>) returns (<a href="#message-GetHopReportsResponse">GetHopReportsResponse</a>)</pre>
+
+<div class="description">
+<p>GetHopReports</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-ProbeHardwareGet">ProbeHardwareGet</h5>
 
 <pre class="signature">rpc ProbeHardwareGet(<a href="#message-ProbeHardwareGetRequest">ProbeHardwareGetRequest</a>) returns (<a href="#message-ProbeHardwareGetResponse">ProbeHardwareGetResponse</a>)</pre>
@@ -14825,6 +15065,42 @@ watch type.</p>
 
 
 
+<h5 id="message-DurationStatsMilliSeconds">DurationStatsMilliSeconds</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">mean</th>
+<td class="type"><pre>double</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">min</th>
+<td class="type"><pre>double</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">max</th>
+<td class="type"><pre>double</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">count</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="message-Geometry">Geometry</h5>
 
 
@@ -14843,6 +15119,97 @@ watch type.</p>
 <td class="type"><pre><a href="#message-BBox">BBox</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetHopReportsRequest">GetHopReportsRequest</h5>
+
+<p>Request message for method
+[GetHopReports][ntt.watchdog.v1alpha2.GetHopReports]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probe</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe
+Atleast one of Probe Name or ProbingTarget Name is mandatory.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.ProbingTarget
+Atleast one of Probe Name or ProbingTarget Name is mandatory.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">interval</th>
+<td class="type"><pre><a href="#message-TimeInterval">TimeInterval</a></pre></td>
+</tr>
+<tr><td class="description"><p>Interval for which the hop report is required</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>A positive number that is the maximum number of results to return. If
+<code>page_size</code> is empty or more than 100,000 results, the effective
+<code>page_size</code> is 100,000 results.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>If this field is not empty then it must contain the <code>nextPageToken</code> value
+returned by a previous call to this method.  Using this field causes the
+method to return additional results from the previous method call.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetHopReportsResponse">GetHopReportsResponse</h5>
+
+<p>Response message for method
+[GetHopReports][ntt.watchdog.v1alpha2.GetHopReports]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">hops_report</th>
+<td class="type"><pre>repeated <a href="#message-HopsReport">HopsReport</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_info</th>
+<td class="type"><pre><a href="#message-HopInfo">HopInfo</a></pre></td>
+</tr>
+<tr><td class="description"><p>map&lt;hopip, HopStat&gt;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>If there are more results than have been returned, then this field is set
+to a non-empty value.  To see the additional results,
+use that value as <code>pageToken</code> in the next call to this method.</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -15008,6 +15375,120 @@ holds token expiry</p>
 <tr>
 <th rowspan="2">value</th>
 <td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-HopInfo">HopInfo</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">hop_ip</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_asn</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_as_name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-HopStat">HopStat</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">ttl_exceeded_latency</th>
+<td class="type"><pre><a href="#message-DurationStatsMilliSeconds">DurationStatsMilliSeconds</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">icmp_latency</th>
+<td class="type"><pre><a href="#message-DurationStatsMilliSeconds">DurationStatsMilliSeconds</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">loss</th>
+<td class="type"><pre><a href="#message-LossStats">LossStats</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-HopsReport">HopsReport</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probe</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">target_ip_address</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">mode</th>
+<td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">trace_type</th>
+<td class="type"><pre><a href="#enum-TraceType">TraceType</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">path_stats</th>
+<td class="type"><pre>repeated <a href="#message-PathStats">PathStats</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -15261,6 +15742,54 @@ below or equal to this threshold When it's not set, 100m is used.</p>
 
 
 
+<h5 id="message-LossStats">LossStats</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">packets_sent</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">packets_lost</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">loss_percentage</th>
+<td class="type"><pre>double</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-Path">Path</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">hops</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="message-PathProbe">PathProbe</h5>
 
 <p>Path Tracing settings</p>
@@ -15304,6 +15833,49 @@ below or equal to this threshold When it's not set, 100m is used.</p>
 <tr>
 <th rowspan="2">max_ttl</th>
 <td class="type"><pre>.google.protobuf.UInt32Value</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-PathStats">PathStats</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">paths</th>
+<td class="type"><pre>repeated <a href="#message-Path">Path</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">hop_stats</th>
+<td class="type"><pre><a href="#message-HopStat">HopStat</a></pre></td>
+</tr>
+<tr><td class="description"><p>map&lt;hopip, HopStat&gt;</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">trace_reason</th>
+<td class="type"><pre><a href="#enum-TraceReason">TraceReason</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">trace_reason_description</th>
+<td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -17304,6 +17876,21 @@ stateless watch type.</p>
 
 
 
+<h5 id="message-ReportHopsResponse">ReportHopsResponse</h5>
+
+<p>Response message for method [ReportHops][ntt.watchdog.v1alpha2.ReportHops]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody> 
+<tr><td class="none">none</td></tr>
+
+</tbody>
+</table>
+
+
+
 <h5 id="message-RunDNSQueryTestRequestToProbe">RunDNSQueryTestRequestToProbe</h5>
 
 
@@ -17843,6 +18430,34 @@ identical to [view_index].</p>
 </tr>
 <tr><td class="description"><p>Integer specifying removed Tag index. Not populated in stateless watch
 type.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-TimeInterval">TimeInterval</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">end_time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"><p>Required. The end of the time interval.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">start_time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"><p>Optional. The beginning of the time interval.  The default value
+for the start time is the end time. The start time must not be
+later than the end time.</p>
 </td></tr>
  
 </tbody>
@@ -18399,6 +19014,78 @@ type.</p>
 
 <tr>
 <th>ALL</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-TraceReason">TraceReason</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>UNDEFINED</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>USER_REQUEST_ONDEMAND</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>PROBING_SESSION_START</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>SLA_CHANGE</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>PERIODIC</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-TraceType">TraceType</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>UNDEFINED_TYPE</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>INBAND</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>OUT_OF_BAND</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

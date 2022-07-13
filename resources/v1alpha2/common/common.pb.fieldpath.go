@@ -26,6 +26,7 @@ import (
 import (
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	duration "github.com/golang/protobuf/ptypes/duration"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
@@ -52,6 +53,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
 	_ = &admin_area.BBox{}
@@ -12254,5 +12256,2932 @@ func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsRdlengthArrayOf
 }
 func (fpaov *DNSResourceRecord_FieldTerminalPathArrayOfValues) AsRdataArrayOfValues() ([][]string, bool) {
 	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type HopInfo_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() HopInfo_FieldPathSelector
+	Get(source *HopInfo) []interface{}
+	GetSingle(source *HopInfo) (interface{}, bool)
+	ClearValue(item *HopInfo)
+
+	// Those methods build corresponding HopInfo_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) HopInfo_FieldPathValue
+	WithIArrayOfValues(values interface{}) HopInfo_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) HopInfo_FieldPathArrayItemValue
+}
+
+type HopInfo_FieldPathSelector int32
+
+const (
+	HopInfo_FieldPathSelectorHopIp     HopInfo_FieldPathSelector = 0
+	HopInfo_FieldPathSelectorHopAsn    HopInfo_FieldPathSelector = 1
+	HopInfo_FieldPathSelectorHopAsName HopInfo_FieldPathSelector = 2
+)
+
+func (s HopInfo_FieldPathSelector) String() string {
+	switch s {
+	case HopInfo_FieldPathSelectorHopIp:
+		return "hop_ip"
+	case HopInfo_FieldPathSelectorHopAsn:
+		return "hop_asn"
+	case HopInfo_FieldPathSelectorHopAsName:
+		return "hop_as_name"
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", s))
+	}
+}
+
+func BuildHopInfo_FieldPath(fp gotenobject.RawFieldPath) (HopInfo_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object HopInfo")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "hop_ip", "hopIp", "hop-ip":
+			return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopIp}, nil
+		case "hop_asn", "hopAsn", "hop-asn":
+			return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsn}, nil
+		case "hop_as_name", "hopAsName", "hop-as-name":
+			return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsName}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object HopInfo", fp)
+}
+
+func ParseHopInfo_FieldPath(rawField string) (HopInfo_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildHopInfo_FieldPath(fp)
+}
+
+func MustParseHopInfo_FieldPath(rawField string) HopInfo_FieldPath {
+	fp, err := ParseHopInfo_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type HopInfo_FieldTerminalPath struct {
+	selector HopInfo_FieldPathSelector
+}
+
+var _ HopInfo_FieldPath = (*HopInfo_FieldTerminalPath)(nil)
+
+func (fp *HopInfo_FieldTerminalPath) Selector() HopInfo_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *HopInfo_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *HopInfo_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source HopInfo
+func (fp *HopInfo_FieldTerminalPath) Get(source *HopInfo) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case HopInfo_FieldPathSelectorHopIp:
+			values = append(values, source.HopIp)
+		case HopInfo_FieldPathSelectorHopAsn:
+			values = append(values, source.HopAsn)
+		case HopInfo_FieldPathSelectorHopAsName:
+			values = append(values, source.HopAsName)
+		default:
+			panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *HopInfo_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*HopInfo))
+}
+
+// GetSingle returns value pointed by specific field of from source HopInfo
+func (fp *HopInfo_FieldTerminalPath) GetSingle(source *HopInfo) (interface{}, bool) {
+	switch fp.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		return source.GetHopIp(), source != nil
+	case HopInfo_FieldPathSelectorHopAsn:
+		return source.GetHopAsn(), source != nil
+	case HopInfo_FieldPathSelectorHopAsName:
+		return source.GetHopAsName(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+	}
+}
+
+func (fp *HopInfo_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*HopInfo))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *HopInfo_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		return ""
+	case HopInfo_FieldPathSelectorHopAsn:
+		return ""
+	case HopInfo_FieldPathSelectorHopAsName:
+		return ""
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+	}
+}
+
+func (fp *HopInfo_FieldTerminalPath) ClearValue(item *HopInfo) {
+	if item != nil {
+		switch fp.selector {
+		case HopInfo_FieldPathSelectorHopIp:
+			item.HopIp = ""
+		case HopInfo_FieldPathSelectorHopAsn:
+			item.HopAsn = ""
+		case HopInfo_FieldPathSelectorHopAsName:
+			item.HopAsName = ""
+		default:
+			panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *HopInfo_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*HopInfo))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *HopInfo_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == HopInfo_FieldPathSelectorHopIp ||
+		fp.selector == HopInfo_FieldPathSelectorHopAsn ||
+		fp.selector == HopInfo_FieldPathSelectorHopAsName
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithIValue(value interface{}) HopInfo_FieldPathValue {
+	switch fp.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		return &HopInfo_FieldTerminalPathValue{HopInfo_FieldTerminalPath: *fp, value: value.(string)}
+	case HopInfo_FieldPathSelectorHopAsn:
+		return &HopInfo_FieldTerminalPathValue{HopInfo_FieldTerminalPath: *fp, value: value.(string)}
+	case HopInfo_FieldPathSelectorHopAsName:
+		return &HopInfo_FieldTerminalPathValue{HopInfo_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+	}
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithIArrayOfValues(values interface{}) HopInfo_FieldPathArrayOfValues {
+	fpaov := &HopInfo_FieldTerminalPathArrayOfValues{HopInfo_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		return &HopInfo_FieldTerminalPathArrayOfValues{HopInfo_FieldTerminalPath: *fp, values: values.([]string)}
+	case HopInfo_FieldPathSelectorHopAsn:
+		return &HopInfo_FieldTerminalPathArrayOfValues{HopInfo_FieldTerminalPath: *fp, values: values.([]string)}
+	case HopInfo_FieldPathSelectorHopAsName:
+		return &HopInfo_FieldTerminalPathArrayOfValues{HopInfo_FieldTerminalPath: *fp, values: values.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithIArrayItemValue(value interface{}) HopInfo_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fp.selector))
+	}
+}
+
+func (fp *HopInfo_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// HopInfo_FieldPathValue allows storing values for HopInfo fields according to their type
+type HopInfo_FieldPathValue interface {
+	HopInfo_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **HopInfo)
+	CompareWith(*HopInfo) (cmp int, comparable bool)
+}
+
+func ParseHopInfo_FieldPathValue(pathStr, valueStr string) (HopInfo_FieldPathValue, error) {
+	fp, err := ParseHopInfo_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopInfo field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(HopInfo_FieldPathValue), nil
+}
+
+func MustParseHopInfo_FieldPathValue(pathStr, valueStr string) HopInfo_FieldPathValue {
+	fpv, err := ParseHopInfo_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type HopInfo_FieldTerminalPathValue struct {
+	HopInfo_FieldTerminalPath
+	value interface{}
+}
+
+var _ HopInfo_FieldPathValue = (*HopInfo_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'HopInfo' as interface{}
+func (fpv *HopInfo_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *HopInfo_FieldTerminalPathValue) AsHopIpValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *HopInfo_FieldTerminalPathValue) AsHopAsnValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *HopInfo_FieldTerminalPathValue) AsHopAsNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object HopInfo
+func (fpv *HopInfo_FieldTerminalPathValue) SetTo(target **HopInfo) {
+	if *target == nil {
+		*target = new(HopInfo)
+	}
+	switch fpv.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		(*target).HopIp = fpv.value.(string)
+	case HopInfo_FieldPathSelectorHopAsn:
+		(*target).HopAsn = fpv.value.(string)
+	case HopInfo_FieldPathSelectorHopAsName:
+		(*target).HopAsName = fpv.value.(string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fpv.selector))
+	}
+}
+
+func (fpv *HopInfo_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*HopInfo)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'HopInfo_FieldTerminalPathValue' with the value under path in 'HopInfo'.
+func (fpv *HopInfo_FieldTerminalPathValue) CompareWith(source *HopInfo) (int, bool) {
+	switch fpv.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetHopIp()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HopInfo_FieldPathSelectorHopAsn:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetHopAsn()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HopInfo_FieldPathSelectorHopAsName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetHopAsName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopInfo: %d", fpv.selector))
+	}
+}
+
+func (fpv *HopInfo_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*HopInfo))
+}
+
+// HopInfo_FieldPathArrayItemValue allows storing single item in Path-specific values for HopInfo according to their type
+// Present only for array (repeated) types.
+type HopInfo_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	HopInfo_FieldPath
+	ContainsValue(*HopInfo) bool
+}
+
+// ParseHopInfo_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseHopInfo_FieldPathArrayItemValue(pathStr, valueStr string) (HopInfo_FieldPathArrayItemValue, error) {
+	fp, err := ParseHopInfo_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopInfo field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(HopInfo_FieldPathArrayItemValue), nil
+}
+
+func MustParseHopInfo_FieldPathArrayItemValue(pathStr, valueStr string) HopInfo_FieldPathArrayItemValue {
+	fpaiv, err := ParseHopInfo_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type HopInfo_FieldTerminalPathArrayItemValue struct {
+	HopInfo_FieldTerminalPath
+	value interface{}
+}
+
+var _ HopInfo_FieldPathArrayItemValue = (*HopInfo_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object HopInfo as interface{}
+func (fpaiv *HopInfo_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *HopInfo_FieldTerminalPathArrayItemValue) GetSingle(source *HopInfo) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *HopInfo_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*HopInfo))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'HopInfo'
+func (fpaiv *HopInfo_FieldTerminalPathArrayItemValue) ContainsValue(source *HopInfo) bool {
+	slice := fpaiv.HopInfo_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// HopInfo_FieldPathArrayOfValues allows storing slice of values for HopInfo fields according to their type
+type HopInfo_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	HopInfo_FieldPath
+}
+
+func ParseHopInfo_FieldPathArrayOfValues(pathStr, valuesStr string) (HopInfo_FieldPathArrayOfValues, error) {
+	fp, err := ParseHopInfo_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopInfo field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(HopInfo_FieldPathArrayOfValues), nil
+}
+
+func MustParseHopInfo_FieldPathArrayOfValues(pathStr, valuesStr string) HopInfo_FieldPathArrayOfValues {
+	fpaov, err := ParseHopInfo_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type HopInfo_FieldTerminalPathArrayOfValues struct {
+	HopInfo_FieldTerminalPath
+	values interface{}
+}
+
+var _ HopInfo_FieldPathArrayOfValues = (*HopInfo_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *HopInfo_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case HopInfo_FieldPathSelectorHopIp:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case HopInfo_FieldPathSelectorHopAsn:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case HopInfo_FieldPathSelectorHopAsName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *HopInfo_FieldTerminalPathArrayOfValues) AsHopIpArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *HopInfo_FieldTerminalPathArrayOfValues) AsHopAsnArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *HopInfo_FieldTerminalPathArrayOfValues) AsHopAsNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type HopStat_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() HopStat_FieldPathSelector
+	Get(source *HopStat) []interface{}
+	GetSingle(source *HopStat) (interface{}, bool)
+	ClearValue(item *HopStat)
+
+	// Those methods build corresponding HopStat_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) HopStat_FieldPathValue
+	WithIArrayOfValues(values interface{}) HopStat_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) HopStat_FieldPathArrayItemValue
+}
+
+type HopStat_FieldPathSelector int32
+
+const (
+	HopStat_FieldPathSelectorTtlExceededLatency HopStat_FieldPathSelector = 0
+	HopStat_FieldPathSelectorIcmpLatency        HopStat_FieldPathSelector = 1
+	HopStat_FieldPathSelectorLoss               HopStat_FieldPathSelector = 2
+)
+
+func (s HopStat_FieldPathSelector) String() string {
+	switch s {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return "ttl_exceeded_latency"
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return "icmp_latency"
+	case HopStat_FieldPathSelectorLoss:
+		return "loss"
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", s))
+	}
+}
+
+func BuildHopStat_FieldPath(fp gotenobject.RawFieldPath) (HopStat_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object HopStat")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "ttl_exceeded_latency", "ttlExceededLatency", "ttl-exceeded-latency":
+			return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorTtlExceededLatency}, nil
+		case "icmp_latency", "icmpLatency", "icmp-latency":
+			return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorIcmpLatency}, nil
+		case "loss":
+			return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorLoss}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "ttl_exceeded_latency", "ttlExceededLatency", "ttl-exceeded-latency":
+			if subpath, err := BuildDurationStatsMilliSeconds_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorTtlExceededLatency, subPath: subpath}, nil
+			}
+		case "icmp_latency", "icmpLatency", "icmp-latency":
+			if subpath, err := BuildDurationStatsMilliSeconds_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorIcmpLatency, subPath: subpath}, nil
+			}
+		case "loss":
+			if subpath, err := BuildLossStats_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorLoss, subPath: subpath}, nil
+			}
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object HopStat", fp)
+}
+
+func ParseHopStat_FieldPath(rawField string) (HopStat_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildHopStat_FieldPath(fp)
+}
+
+func MustParseHopStat_FieldPath(rawField string) HopStat_FieldPath {
+	fp, err := ParseHopStat_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type HopStat_FieldTerminalPath struct {
+	selector HopStat_FieldPathSelector
+}
+
+var _ HopStat_FieldPath = (*HopStat_FieldTerminalPath)(nil)
+
+func (fp *HopStat_FieldTerminalPath) Selector() HopStat_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *HopStat_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *HopStat_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source HopStat
+func (fp *HopStat_FieldTerminalPath) Get(source *HopStat) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case HopStat_FieldPathSelectorTtlExceededLatency:
+			if source.TtlExceededLatency != nil {
+				values = append(values, source.TtlExceededLatency)
+			}
+		case HopStat_FieldPathSelectorIcmpLatency:
+			if source.IcmpLatency != nil {
+				values = append(values, source.IcmpLatency)
+			}
+		case HopStat_FieldPathSelectorLoss:
+			if source.Loss != nil {
+				values = append(values, source.Loss)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *HopStat_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*HopStat))
+}
+
+// GetSingle returns value pointed by specific field of from source HopStat
+func (fp *HopStat_FieldTerminalPath) GetSingle(source *HopStat) (interface{}, bool) {
+	switch fp.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		res := source.GetTtlExceededLatency()
+		return res, res != nil
+	case HopStat_FieldPathSelectorIcmpLatency:
+		res := source.GetIcmpLatency()
+		return res, res != nil
+	case HopStat_FieldPathSelectorLoss:
+		res := source.GetLoss()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+	}
+}
+
+func (fp *HopStat_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*HopStat))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *HopStat_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return (*DurationStatsMilliSeconds)(nil)
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return (*DurationStatsMilliSeconds)(nil)
+	case HopStat_FieldPathSelectorLoss:
+		return (*LossStats)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+	}
+}
+
+func (fp *HopStat_FieldTerminalPath) ClearValue(item *HopStat) {
+	if item != nil {
+		switch fp.selector {
+		case HopStat_FieldPathSelectorTtlExceededLatency:
+			item.TtlExceededLatency = nil
+		case HopStat_FieldPathSelectorIcmpLatency:
+			item.IcmpLatency = nil
+		case HopStat_FieldPathSelectorLoss:
+			item.Loss = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *HopStat_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*HopStat))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *HopStat_FieldTerminalPath) IsLeaf() bool {
+	return false
+}
+
+func (fp *HopStat_FieldTerminalPath) WithIValue(value interface{}) HopStat_FieldPathValue {
+	switch fp.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return &HopStat_FieldTerminalPathValue{HopStat_FieldTerminalPath: *fp, value: value.(*DurationStatsMilliSeconds)}
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return &HopStat_FieldTerminalPathValue{HopStat_FieldTerminalPath: *fp, value: value.(*DurationStatsMilliSeconds)}
+	case HopStat_FieldPathSelectorLoss:
+		return &HopStat_FieldTerminalPathValue{HopStat_FieldTerminalPath: *fp, value: value.(*LossStats)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+	}
+}
+
+func (fp *HopStat_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *HopStat_FieldTerminalPath) WithIArrayOfValues(values interface{}) HopStat_FieldPathArrayOfValues {
+	fpaov := &HopStat_FieldTerminalPathArrayOfValues{HopStat_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return &HopStat_FieldTerminalPathArrayOfValues{HopStat_FieldTerminalPath: *fp, values: values.([]*DurationStatsMilliSeconds)}
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return &HopStat_FieldTerminalPathArrayOfValues{HopStat_FieldTerminalPath: *fp, values: values.([]*DurationStatsMilliSeconds)}
+	case HopStat_FieldPathSelectorLoss:
+		return &HopStat_FieldTerminalPathArrayOfValues{HopStat_FieldTerminalPath: *fp, values: values.([]*LossStats)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *HopStat_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *HopStat_FieldTerminalPath) WithIArrayItemValue(value interface{}) HopStat_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fp.selector))
+	}
+}
+
+func (fp *HopStat_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+type HopStat_FieldSubPath struct {
+	selector HopStat_FieldPathSelector
+	subPath  gotenobject.FieldPath
+}
+
+var _ HopStat_FieldPath = (*HopStat_FieldSubPath)(nil)
+
+func (fps *HopStat_FieldSubPath) Selector() HopStat_FieldPathSelector {
+	return fps.selector
+}
+func (fps *HopStat_FieldSubPath) AsTtlExceededLatencySubPath() (DurationStatsMilliSeconds_FieldPath, bool) {
+	res, ok := fps.subPath.(DurationStatsMilliSeconds_FieldPath)
+	return res, ok
+}
+func (fps *HopStat_FieldSubPath) AsIcmpLatencySubPath() (DurationStatsMilliSeconds_FieldPath, bool) {
+	res, ok := fps.subPath.(DurationStatsMilliSeconds_FieldPath)
+	return res, ok
+}
+func (fps *HopStat_FieldSubPath) AsLossSubPath() (LossStats_FieldPath, bool) {
+	res, ok := fps.subPath.(LossStats_FieldPath)
+	return res, ok
+}
+
+// String returns path representation in proto convention
+func (fps *HopStat_FieldSubPath) String() string {
+	return fps.selector.String() + "." + fps.subPath.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fps *HopStat_FieldSubPath) JSONString() string {
+	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
+}
+
+// Get returns all values pointed by selected field from source HopStat
+func (fps *HopStat_FieldSubPath) Get(source *HopStat) (values []interface{}) {
+	if asDurationStatsMilliSecondsFieldPath, ok := fps.AsTtlExceededLatencySubPath(); ok {
+		values = append(values, asDurationStatsMilliSecondsFieldPath.Get(source.GetTtlExceededLatency())...)
+	} else if asDurationStatsMilliSecondsFieldPath, ok := fps.AsIcmpLatencySubPath(); ok {
+		values = append(values, asDurationStatsMilliSecondsFieldPath.Get(source.GetIcmpLatency())...)
+	} else if asLossStatsFieldPath, ok := fps.AsLossSubPath(); ok {
+		values = append(values, asLossStatsFieldPath.Get(source.GetLoss())...)
+	} else {
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fps.selector))
+	}
+	return
+}
+
+func (fps *HopStat_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*HopStat))
+}
+
+// GetSingle returns value of selected field from source HopStat
+func (fps *HopStat_FieldSubPath) GetSingle(source *HopStat) (interface{}, bool) {
+	switch fps.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		if source.GetTtlExceededLatency() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetTtlExceededLatency())
+	case HopStat_FieldPathSelectorIcmpLatency:
+		if source.GetIcmpLatency() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetIcmpLatency())
+	case HopStat_FieldPathSelectorLoss:
+		if source.GetLoss() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetLoss())
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fps.selector))
+	}
+}
+
+func (fps *HopStat_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*HopStat))
+}
+
+// GetDefault returns a default value of the field type
+func (fps *HopStat_FieldSubPath) GetDefault() interface{} {
+	return fps.subPath.GetDefault()
+}
+
+func (fps *HopStat_FieldSubPath) ClearValue(item *HopStat) {
+	if item != nil {
+		switch fps.selector {
+		case HopStat_FieldPathSelectorTtlExceededLatency:
+			fps.subPath.ClearValueRaw(item.TtlExceededLatency)
+		case HopStat_FieldPathSelectorIcmpLatency:
+			fps.subPath.ClearValueRaw(item.IcmpLatency)
+		case HopStat_FieldPathSelectorLoss:
+			fps.subPath.ClearValueRaw(item.Loss)
+		default:
+			panic(fmt.Sprintf("Invalid selector for HopStat: %d", fps.selector))
+		}
+	}
+}
+
+func (fps *HopStat_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*HopStat))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fps *HopStat_FieldSubPath) IsLeaf() bool {
+	return fps.subPath.IsLeaf()
+}
+
+func (fps *HopStat_FieldSubPath) WithIValue(value interface{}) HopStat_FieldPathValue {
+	return &HopStat_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+}
+
+func (fps *HopStat_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fps.WithIValue(value)
+}
+
+func (fps *HopStat_FieldSubPath) WithIArrayOfValues(values interface{}) HopStat_FieldPathArrayOfValues {
+	return &HopStat_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+}
+
+func (fps *HopStat_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fps.WithIArrayOfValues(values)
+}
+
+func (fps *HopStat_FieldSubPath) WithIArrayItemValue(value interface{}) HopStat_FieldPathArrayItemValue {
+	return &HopStat_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+}
+
+func (fps *HopStat_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fps.WithIArrayItemValue(value)
+}
+
+// HopStat_FieldPathValue allows storing values for HopStat fields according to their type
+type HopStat_FieldPathValue interface {
+	HopStat_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **HopStat)
+	CompareWith(*HopStat) (cmp int, comparable bool)
+}
+
+func ParseHopStat_FieldPathValue(pathStr, valueStr string) (HopStat_FieldPathValue, error) {
+	fp, err := ParseHopStat_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopStat field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(HopStat_FieldPathValue), nil
+}
+
+func MustParseHopStat_FieldPathValue(pathStr, valueStr string) HopStat_FieldPathValue {
+	fpv, err := ParseHopStat_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type HopStat_FieldTerminalPathValue struct {
+	HopStat_FieldTerminalPath
+	value interface{}
+}
+
+var _ HopStat_FieldPathValue = (*HopStat_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'HopStat' as interface{}
+func (fpv *HopStat_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *HopStat_FieldTerminalPathValue) AsTtlExceededLatencyValue() (*DurationStatsMilliSeconds, bool) {
+	res, ok := fpv.value.(*DurationStatsMilliSeconds)
+	return res, ok
+}
+func (fpv *HopStat_FieldTerminalPathValue) AsIcmpLatencyValue() (*DurationStatsMilliSeconds, bool) {
+	res, ok := fpv.value.(*DurationStatsMilliSeconds)
+	return res, ok
+}
+func (fpv *HopStat_FieldTerminalPathValue) AsLossValue() (*LossStats, bool) {
+	res, ok := fpv.value.(*LossStats)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object HopStat
+func (fpv *HopStat_FieldTerminalPathValue) SetTo(target **HopStat) {
+	if *target == nil {
+		*target = new(HopStat)
+	}
+	switch fpv.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		(*target).TtlExceededLatency = fpv.value.(*DurationStatsMilliSeconds)
+	case HopStat_FieldPathSelectorIcmpLatency:
+		(*target).IcmpLatency = fpv.value.(*DurationStatsMilliSeconds)
+	case HopStat_FieldPathSelectorLoss:
+		(*target).Loss = fpv.value.(*LossStats)
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fpv.selector))
+	}
+}
+
+func (fpv *HopStat_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*HopStat)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'HopStat_FieldTerminalPathValue' with the value under path in 'HopStat'.
+func (fpv *HopStat_FieldTerminalPathValue) CompareWith(source *HopStat) (int, bool) {
+	switch fpv.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return 0, false
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return 0, false
+	case HopStat_FieldPathSelectorLoss:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fpv.selector))
+	}
+}
+
+func (fpv *HopStat_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*HopStat))
+}
+
+type HopStat_FieldSubPathValue struct {
+	HopStat_FieldPath
+	subPathValue gotenobject.FieldPathValue
+}
+
+var _ HopStat_FieldPathValue = (*HopStat_FieldSubPathValue)(nil)
+
+func (fpvs *HopStat_FieldSubPathValue) AsTtlExceededLatencyPathValue() (DurationStatsMilliSeconds_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue)
+	return res, ok
+}
+func (fpvs *HopStat_FieldSubPathValue) AsIcmpLatencyPathValue() (DurationStatsMilliSeconds_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue)
+	return res, ok
+}
+func (fpvs *HopStat_FieldSubPathValue) AsLossPathValue() (LossStats_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(LossStats_FieldPathValue)
+	return res, ok
+}
+
+func (fpvs *HopStat_FieldSubPathValue) SetTo(target **HopStat) {
+	if *target == nil {
+		*target = new(HopStat)
+	}
+	switch fpvs.Selector() {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue).SetTo(&(*target).TtlExceededLatency)
+	case HopStat_FieldPathSelectorIcmpLatency:
+		fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue).SetTo(&(*target).IcmpLatency)
+	case HopStat_FieldPathSelectorLoss:
+		fpvs.subPathValue.(LossStats_FieldPathValue).SetTo(&(*target).Loss)
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *HopStat_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*HopStat)
+	fpvs.SetTo(&typedObject)
+}
+
+func (fpvs *HopStat_FieldSubPathValue) GetRawValue() interface{} {
+	return fpvs.subPathValue.GetRawValue()
+}
+
+func (fpvs *HopStat_FieldSubPathValue) CompareWith(source *HopStat) (int, bool) {
+	switch fpvs.Selector() {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue).CompareWith(source.GetTtlExceededLatency())
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return fpvs.subPathValue.(DurationStatsMilliSeconds_FieldPathValue).CompareWith(source.GetIcmpLatency())
+	case HopStat_FieldPathSelectorLoss:
+		return fpvs.subPathValue.(LossStats_FieldPathValue).CompareWith(source.GetLoss())
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *HopStat_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*HopStat))
+}
+
+// HopStat_FieldPathArrayItemValue allows storing single item in Path-specific values for HopStat according to their type
+// Present only for array (repeated) types.
+type HopStat_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	HopStat_FieldPath
+	ContainsValue(*HopStat) bool
+}
+
+// ParseHopStat_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseHopStat_FieldPathArrayItemValue(pathStr, valueStr string) (HopStat_FieldPathArrayItemValue, error) {
+	fp, err := ParseHopStat_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopStat field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(HopStat_FieldPathArrayItemValue), nil
+}
+
+func MustParseHopStat_FieldPathArrayItemValue(pathStr, valueStr string) HopStat_FieldPathArrayItemValue {
+	fpaiv, err := ParseHopStat_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type HopStat_FieldTerminalPathArrayItemValue struct {
+	HopStat_FieldTerminalPath
+	value interface{}
+}
+
+var _ HopStat_FieldPathArrayItemValue = (*HopStat_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object HopStat as interface{}
+func (fpaiv *HopStat_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *HopStat_FieldTerminalPathArrayItemValue) GetSingle(source *HopStat) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *HopStat_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*HopStat))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'HopStat'
+func (fpaiv *HopStat_FieldTerminalPathArrayItemValue) ContainsValue(source *HopStat) bool {
+	slice := fpaiv.HopStat_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+type HopStat_FieldSubPathArrayItemValue struct {
+	HopStat_FieldPath
+	subPathItemValue gotenobject.FieldPathArrayItemValue
+}
+
+// GetRawValue returns stored array item value
+func (fpaivs *HopStat_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaivs.subPathItemValue.GetRawItemValue()
+}
+func (fpaivs *HopStat_FieldSubPathArrayItemValue) AsTtlExceededLatencyPathItemValue() (DurationStatsMilliSeconds_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(DurationStatsMilliSeconds_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *HopStat_FieldSubPathArrayItemValue) AsIcmpLatencyPathItemValue() (DurationStatsMilliSeconds_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(DurationStatsMilliSeconds_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *HopStat_FieldSubPathArrayItemValue) AsLossPathItemValue() (LossStats_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(LossStats_FieldPathArrayItemValue)
+	return res, ok
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'HopStat'
+func (fpaivs *HopStat_FieldSubPathArrayItemValue) ContainsValue(source *HopStat) bool {
+	switch fpaivs.Selector() {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		return fpaivs.subPathItemValue.(DurationStatsMilliSeconds_FieldPathArrayItemValue).ContainsValue(source.GetTtlExceededLatency())
+	case HopStat_FieldPathSelectorIcmpLatency:
+		return fpaivs.subPathItemValue.(DurationStatsMilliSeconds_FieldPathArrayItemValue).ContainsValue(source.GetIcmpLatency())
+	case HopStat_FieldPathSelectorLoss:
+		return fpaivs.subPathItemValue.(LossStats_FieldPathArrayItemValue).ContainsValue(source.GetLoss())
+	default:
+		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fpaivs.Selector()))
+	}
+}
+
+// HopStat_FieldPathArrayOfValues allows storing slice of values for HopStat fields according to their type
+type HopStat_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	HopStat_FieldPath
+}
+
+func ParseHopStat_FieldPathArrayOfValues(pathStr, valuesStr string) (HopStat_FieldPathArrayOfValues, error) {
+	fp, err := ParseHopStat_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing HopStat field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(HopStat_FieldPathArrayOfValues), nil
+}
+
+func MustParseHopStat_FieldPathArrayOfValues(pathStr, valuesStr string) HopStat_FieldPathArrayOfValues {
+	fpaov, err := ParseHopStat_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type HopStat_FieldTerminalPathArrayOfValues struct {
+	HopStat_FieldTerminalPath
+	values interface{}
+}
+
+var _ HopStat_FieldPathArrayOfValues = (*HopStat_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *HopStat_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		for _, v := range fpaov.values.([]*DurationStatsMilliSeconds) {
+			values = append(values, v)
+		}
+	case HopStat_FieldPathSelectorIcmpLatency:
+		for _, v := range fpaov.values.([]*DurationStatsMilliSeconds) {
+			values = append(values, v)
+		}
+	case HopStat_FieldPathSelectorLoss:
+		for _, v := range fpaov.values.([]*LossStats) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *HopStat_FieldTerminalPathArrayOfValues) AsTtlExceededLatencyArrayOfValues() ([]*DurationStatsMilliSeconds, bool) {
+	res, ok := fpaov.values.([]*DurationStatsMilliSeconds)
+	return res, ok
+}
+func (fpaov *HopStat_FieldTerminalPathArrayOfValues) AsIcmpLatencyArrayOfValues() ([]*DurationStatsMilliSeconds, bool) {
+	res, ok := fpaov.values.([]*DurationStatsMilliSeconds)
+	return res, ok
+}
+func (fpaov *HopStat_FieldTerminalPathArrayOfValues) AsLossArrayOfValues() ([]*LossStats, bool) {
+	res, ok := fpaov.values.([]*LossStats)
+	return res, ok
+}
+
+type HopStat_FieldSubPathArrayOfValues struct {
+	HopStat_FieldPath
+	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
+}
+
+var _ HopStat_FieldPathArrayOfValues = (*HopStat_FieldSubPathArrayOfValues)(nil)
+
+func (fpsaov *HopStat_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+	return fpsaov.subPathArrayOfValues.GetRawValues()
+}
+func (fpsaov *HopStat_FieldSubPathArrayOfValues) AsTtlExceededLatencyPathArrayOfValues() (DurationStatsMilliSeconds_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(DurationStatsMilliSeconds_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *HopStat_FieldSubPathArrayOfValues) AsIcmpLatencyPathArrayOfValues() (DurationStatsMilliSeconds_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(DurationStatsMilliSeconds_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *HopStat_FieldSubPathArrayOfValues) AsLossPathArrayOfValues() (LossStats_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(LossStats_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type DurationStatsMilliSeconds_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() DurationStatsMilliSeconds_FieldPathSelector
+	Get(source *DurationStatsMilliSeconds) []interface{}
+	GetSingle(source *DurationStatsMilliSeconds) (interface{}, bool)
+	ClearValue(item *DurationStatsMilliSeconds)
+
+	// Those methods build corresponding DurationStatsMilliSeconds_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) DurationStatsMilliSeconds_FieldPathValue
+	WithIArrayOfValues(values interface{}) DurationStatsMilliSeconds_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) DurationStatsMilliSeconds_FieldPathArrayItemValue
+}
+
+type DurationStatsMilliSeconds_FieldPathSelector int32
+
+const (
+	DurationStatsMilliSeconds_FieldPathSelectorMean  DurationStatsMilliSeconds_FieldPathSelector = 0
+	DurationStatsMilliSeconds_FieldPathSelectorMin   DurationStatsMilliSeconds_FieldPathSelector = 1
+	DurationStatsMilliSeconds_FieldPathSelectorMax   DurationStatsMilliSeconds_FieldPathSelector = 2
+	DurationStatsMilliSeconds_FieldPathSelectorCount DurationStatsMilliSeconds_FieldPathSelector = 3
+)
+
+func (s DurationStatsMilliSeconds_FieldPathSelector) String() string {
+	switch s {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		return "mean"
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		return "min"
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		return "max"
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		return "count"
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", s))
+	}
+}
+
+func BuildDurationStatsMilliSeconds_FieldPath(fp gotenobject.RawFieldPath) (DurationStatsMilliSeconds_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object DurationStatsMilliSeconds")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "mean":
+			return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMean}, nil
+		case "min":
+			return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMin}, nil
+		case "max":
+			return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMax}, nil
+		case "count":
+			return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorCount}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object DurationStatsMilliSeconds", fp)
+}
+
+func ParseDurationStatsMilliSeconds_FieldPath(rawField string) (DurationStatsMilliSeconds_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildDurationStatsMilliSeconds_FieldPath(fp)
+}
+
+func MustParseDurationStatsMilliSeconds_FieldPath(rawField string) DurationStatsMilliSeconds_FieldPath {
+	fp, err := ParseDurationStatsMilliSeconds_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type DurationStatsMilliSeconds_FieldTerminalPath struct {
+	selector DurationStatsMilliSeconds_FieldPathSelector
+}
+
+var _ DurationStatsMilliSeconds_FieldPath = (*DurationStatsMilliSeconds_FieldTerminalPath)(nil)
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) Selector() DurationStatsMilliSeconds_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source DurationStatsMilliSeconds
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) Get(source *DurationStatsMilliSeconds) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case DurationStatsMilliSeconds_FieldPathSelectorMean:
+			values = append(values, source.Mean)
+		case DurationStatsMilliSeconds_FieldPathSelectorMin:
+			values = append(values, source.Min)
+		case DurationStatsMilliSeconds_FieldPathSelectorMax:
+			values = append(values, source.Max)
+		case DurationStatsMilliSeconds_FieldPathSelectorCount:
+			values = append(values, source.Count)
+		default:
+			panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*DurationStatsMilliSeconds))
+}
+
+// GetSingle returns value pointed by specific field of from source DurationStatsMilliSeconds
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) GetSingle(source *DurationStatsMilliSeconds) (interface{}, bool) {
+	switch fp.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		return source.GetMean(), source != nil
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		return source.GetMin(), source != nil
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		return source.GetMax(), source != nil
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		return source.GetCount(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+	}
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*DurationStatsMilliSeconds))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		return float64(0)
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		return float64(0)
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		return float64(0)
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		return int32(0)
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+	}
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) ClearValue(item *DurationStatsMilliSeconds) {
+	if item != nil {
+		switch fp.selector {
+		case DurationStatsMilliSeconds_FieldPathSelectorMean:
+			item.Mean = float64(0)
+		case DurationStatsMilliSeconds_FieldPathSelectorMin:
+			item.Min = float64(0)
+		case DurationStatsMilliSeconds_FieldPathSelectorMax:
+			item.Max = float64(0)
+		case DurationStatsMilliSeconds_FieldPathSelectorCount:
+			item.Count = int32(0)
+		default:
+			panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*DurationStatsMilliSeconds))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == DurationStatsMilliSeconds_FieldPathSelectorMean ||
+		fp.selector == DurationStatsMilliSeconds_FieldPathSelectorMin ||
+		fp.selector == DurationStatsMilliSeconds_FieldPathSelectorMax ||
+		fp.selector == DurationStatsMilliSeconds_FieldPathSelectorCount
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithIValue(value interface{}) DurationStatsMilliSeconds_FieldPathValue {
+	switch fp.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		return &DurationStatsMilliSeconds_FieldTerminalPathValue{DurationStatsMilliSeconds_FieldTerminalPath: *fp, value: value.(float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		return &DurationStatsMilliSeconds_FieldTerminalPathValue{DurationStatsMilliSeconds_FieldTerminalPath: *fp, value: value.(float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		return &DurationStatsMilliSeconds_FieldTerminalPathValue{DurationStatsMilliSeconds_FieldTerminalPath: *fp, value: value.(float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		return &DurationStatsMilliSeconds_FieldTerminalPathValue{DurationStatsMilliSeconds_FieldTerminalPath: *fp, value: value.(int32)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+	}
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithIArrayOfValues(values interface{}) DurationStatsMilliSeconds_FieldPathArrayOfValues {
+	fpaov := &DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues{DurationStatsMilliSeconds_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		return &DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues{DurationStatsMilliSeconds_FieldTerminalPath: *fp, values: values.([]float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		return &DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues{DurationStatsMilliSeconds_FieldTerminalPath: *fp, values: values.([]float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		return &DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues{DurationStatsMilliSeconds_FieldTerminalPath: *fp, values: values.([]float64)}
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		return &DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues{DurationStatsMilliSeconds_FieldTerminalPath: *fp, values: values.([]int32)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithIArrayItemValue(value interface{}) DurationStatsMilliSeconds_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fp.selector))
+	}
+}
+
+func (fp *DurationStatsMilliSeconds_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// DurationStatsMilliSeconds_FieldPathValue allows storing values for DurationStatsMilliSeconds fields according to their type
+type DurationStatsMilliSeconds_FieldPathValue interface {
+	DurationStatsMilliSeconds_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **DurationStatsMilliSeconds)
+	CompareWith(*DurationStatsMilliSeconds) (cmp int, comparable bool)
+}
+
+func ParseDurationStatsMilliSeconds_FieldPathValue(pathStr, valueStr string) (DurationStatsMilliSeconds_FieldPathValue, error) {
+	fp, err := ParseDurationStatsMilliSeconds_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DurationStatsMilliSeconds field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(DurationStatsMilliSeconds_FieldPathValue), nil
+}
+
+func MustParseDurationStatsMilliSeconds_FieldPathValue(pathStr, valueStr string) DurationStatsMilliSeconds_FieldPathValue {
+	fpv, err := ParseDurationStatsMilliSeconds_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type DurationStatsMilliSeconds_FieldTerminalPathValue struct {
+	DurationStatsMilliSeconds_FieldTerminalPath
+	value interface{}
+}
+
+var _ DurationStatsMilliSeconds_FieldPathValue = (*DurationStatsMilliSeconds_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'DurationStatsMilliSeconds' as interface{}
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) AsMeanValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) AsMinValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) AsMaxValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) AsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object DurationStatsMilliSeconds
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) SetTo(target **DurationStatsMilliSeconds) {
+	if *target == nil {
+		*target = new(DurationStatsMilliSeconds)
+	}
+	switch fpv.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		(*target).Mean = fpv.value.(float64)
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		(*target).Min = fpv.value.(float64)
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		(*target).Max = fpv.value.(float64)
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		(*target).Count = fpv.value.(int32)
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fpv.selector))
+	}
+}
+
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*DurationStatsMilliSeconds)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'DurationStatsMilliSeconds_FieldTerminalPathValue' with the value under path in 'DurationStatsMilliSeconds'.
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) CompareWith(source *DurationStatsMilliSeconds) (int, bool) {
+	switch fpv.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetMean()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetMin()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetMax()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for DurationStatsMilliSeconds: %d", fpv.selector))
+	}
+}
+
+func (fpv *DurationStatsMilliSeconds_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*DurationStatsMilliSeconds))
+}
+
+// DurationStatsMilliSeconds_FieldPathArrayItemValue allows storing single item in Path-specific values for DurationStatsMilliSeconds according to their type
+// Present only for array (repeated) types.
+type DurationStatsMilliSeconds_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	DurationStatsMilliSeconds_FieldPath
+	ContainsValue(*DurationStatsMilliSeconds) bool
+}
+
+// ParseDurationStatsMilliSeconds_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseDurationStatsMilliSeconds_FieldPathArrayItemValue(pathStr, valueStr string) (DurationStatsMilliSeconds_FieldPathArrayItemValue, error) {
+	fp, err := ParseDurationStatsMilliSeconds_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DurationStatsMilliSeconds field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(DurationStatsMilliSeconds_FieldPathArrayItemValue), nil
+}
+
+func MustParseDurationStatsMilliSeconds_FieldPathArrayItemValue(pathStr, valueStr string) DurationStatsMilliSeconds_FieldPathArrayItemValue {
+	fpaiv, err := ParseDurationStatsMilliSeconds_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue struct {
+	DurationStatsMilliSeconds_FieldTerminalPath
+	value interface{}
+}
+
+var _ DurationStatsMilliSeconds_FieldPathArrayItemValue = (*DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object DurationStatsMilliSeconds as interface{}
+func (fpaiv *DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue) GetSingle(source *DurationStatsMilliSeconds) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*DurationStatsMilliSeconds))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'DurationStatsMilliSeconds'
+func (fpaiv *DurationStatsMilliSeconds_FieldTerminalPathArrayItemValue) ContainsValue(source *DurationStatsMilliSeconds) bool {
+	slice := fpaiv.DurationStatsMilliSeconds_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// DurationStatsMilliSeconds_FieldPathArrayOfValues allows storing slice of values for DurationStatsMilliSeconds fields according to their type
+type DurationStatsMilliSeconds_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	DurationStatsMilliSeconds_FieldPath
+}
+
+func ParseDurationStatsMilliSeconds_FieldPathArrayOfValues(pathStr, valuesStr string) (DurationStatsMilliSeconds_FieldPathArrayOfValues, error) {
+	fp, err := ParseDurationStatsMilliSeconds_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing DurationStatsMilliSeconds field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(DurationStatsMilliSeconds_FieldPathArrayOfValues), nil
+}
+
+func MustParseDurationStatsMilliSeconds_FieldPathArrayOfValues(pathStr, valuesStr string) DurationStatsMilliSeconds_FieldPathArrayOfValues {
+	fpaov, err := ParseDurationStatsMilliSeconds_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues struct {
+	DurationStatsMilliSeconds_FieldTerminalPath
+	values interface{}
+}
+
+var _ DurationStatsMilliSeconds_FieldPathArrayOfValues = (*DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case DurationStatsMilliSeconds_FieldPathSelectorMean:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorMin:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorMax:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
+	case DurationStatsMilliSeconds_FieldPathSelectorCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues) AsMeanArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+func (fpaov *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues) AsMinArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+func (fpaov *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues) AsMaxArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+func (fpaov *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues) AsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type LossStats_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() LossStats_FieldPathSelector
+	Get(source *LossStats) []interface{}
+	GetSingle(source *LossStats) (interface{}, bool)
+	ClearValue(item *LossStats)
+
+	// Those methods build corresponding LossStats_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) LossStats_FieldPathValue
+	WithIArrayOfValues(values interface{}) LossStats_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) LossStats_FieldPathArrayItemValue
+}
+
+type LossStats_FieldPathSelector int32
+
+const (
+	LossStats_FieldPathSelectorPacketsSent    LossStats_FieldPathSelector = 0
+	LossStats_FieldPathSelectorPacketsLost    LossStats_FieldPathSelector = 1
+	LossStats_FieldPathSelectorLossPercentage LossStats_FieldPathSelector = 2
+)
+
+func (s LossStats_FieldPathSelector) String() string {
+	switch s {
+	case LossStats_FieldPathSelectorPacketsSent:
+		return "packets_sent"
+	case LossStats_FieldPathSelectorPacketsLost:
+		return "packets_lost"
+	case LossStats_FieldPathSelectorLossPercentage:
+		return "loss_percentage"
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", s))
+	}
+}
+
+func BuildLossStats_FieldPath(fp gotenobject.RawFieldPath) (LossStats_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object LossStats")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "packets_sent", "packetsSent", "packets-sent":
+			return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsSent}, nil
+		case "packets_lost", "packetsLost", "packets-lost":
+			return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsLost}, nil
+		case "loss_percentage", "lossPercentage", "loss-percentage":
+			return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorLossPercentage}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object LossStats", fp)
+}
+
+func ParseLossStats_FieldPath(rawField string) (LossStats_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildLossStats_FieldPath(fp)
+}
+
+func MustParseLossStats_FieldPath(rawField string) LossStats_FieldPath {
+	fp, err := ParseLossStats_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type LossStats_FieldTerminalPath struct {
+	selector LossStats_FieldPathSelector
+}
+
+var _ LossStats_FieldPath = (*LossStats_FieldTerminalPath)(nil)
+
+func (fp *LossStats_FieldTerminalPath) Selector() LossStats_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *LossStats_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *LossStats_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source LossStats
+func (fp *LossStats_FieldTerminalPath) Get(source *LossStats) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case LossStats_FieldPathSelectorPacketsSent:
+			values = append(values, source.PacketsSent)
+		case LossStats_FieldPathSelectorPacketsLost:
+			values = append(values, source.PacketsLost)
+		case LossStats_FieldPathSelectorLossPercentage:
+			values = append(values, source.LossPercentage)
+		default:
+			panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *LossStats_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*LossStats))
+}
+
+// GetSingle returns value pointed by specific field of from source LossStats
+func (fp *LossStats_FieldTerminalPath) GetSingle(source *LossStats) (interface{}, bool) {
+	switch fp.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		return source.GetPacketsSent(), source != nil
+	case LossStats_FieldPathSelectorPacketsLost:
+		return source.GetPacketsLost(), source != nil
+	case LossStats_FieldPathSelectorLossPercentage:
+		return source.GetLossPercentage(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+	}
+}
+
+func (fp *LossStats_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*LossStats))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *LossStats_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		return int32(0)
+	case LossStats_FieldPathSelectorPacketsLost:
+		return int32(0)
+	case LossStats_FieldPathSelectorLossPercentage:
+		return float64(0)
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+	}
+}
+
+func (fp *LossStats_FieldTerminalPath) ClearValue(item *LossStats) {
+	if item != nil {
+		switch fp.selector {
+		case LossStats_FieldPathSelectorPacketsSent:
+			item.PacketsSent = int32(0)
+		case LossStats_FieldPathSelectorPacketsLost:
+			item.PacketsLost = int32(0)
+		case LossStats_FieldPathSelectorLossPercentage:
+			item.LossPercentage = float64(0)
+		default:
+			panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *LossStats_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*LossStats))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *LossStats_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == LossStats_FieldPathSelectorPacketsSent ||
+		fp.selector == LossStats_FieldPathSelectorPacketsLost ||
+		fp.selector == LossStats_FieldPathSelectorLossPercentage
+}
+
+func (fp *LossStats_FieldTerminalPath) WithIValue(value interface{}) LossStats_FieldPathValue {
+	switch fp.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		return &LossStats_FieldTerminalPathValue{LossStats_FieldTerminalPath: *fp, value: value.(int32)}
+	case LossStats_FieldPathSelectorPacketsLost:
+		return &LossStats_FieldTerminalPathValue{LossStats_FieldTerminalPath: *fp, value: value.(int32)}
+	case LossStats_FieldPathSelectorLossPercentage:
+		return &LossStats_FieldTerminalPathValue{LossStats_FieldTerminalPath: *fp, value: value.(float64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+	}
+}
+
+func (fp *LossStats_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *LossStats_FieldTerminalPath) WithIArrayOfValues(values interface{}) LossStats_FieldPathArrayOfValues {
+	fpaov := &LossStats_FieldTerminalPathArrayOfValues{LossStats_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		return &LossStats_FieldTerminalPathArrayOfValues{LossStats_FieldTerminalPath: *fp, values: values.([]int32)}
+	case LossStats_FieldPathSelectorPacketsLost:
+		return &LossStats_FieldTerminalPathArrayOfValues{LossStats_FieldTerminalPath: *fp, values: values.([]int32)}
+	case LossStats_FieldPathSelectorLossPercentage:
+		return &LossStats_FieldTerminalPathArrayOfValues{LossStats_FieldTerminalPath: *fp, values: values.([]float64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *LossStats_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *LossStats_FieldTerminalPath) WithIArrayItemValue(value interface{}) LossStats_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fp.selector))
+	}
+}
+
+func (fp *LossStats_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// LossStats_FieldPathValue allows storing values for LossStats fields according to their type
+type LossStats_FieldPathValue interface {
+	LossStats_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **LossStats)
+	CompareWith(*LossStats) (cmp int, comparable bool)
+}
+
+func ParseLossStats_FieldPathValue(pathStr, valueStr string) (LossStats_FieldPathValue, error) {
+	fp, err := ParseLossStats_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing LossStats field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(LossStats_FieldPathValue), nil
+}
+
+func MustParseLossStats_FieldPathValue(pathStr, valueStr string) LossStats_FieldPathValue {
+	fpv, err := ParseLossStats_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type LossStats_FieldTerminalPathValue struct {
+	LossStats_FieldTerminalPath
+	value interface{}
+}
+
+var _ LossStats_FieldPathValue = (*LossStats_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'LossStats' as interface{}
+func (fpv *LossStats_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *LossStats_FieldTerminalPathValue) AsPacketsSentValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *LossStats_FieldTerminalPathValue) AsPacketsLostValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *LossStats_FieldTerminalPathValue) AsLossPercentageValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object LossStats
+func (fpv *LossStats_FieldTerminalPathValue) SetTo(target **LossStats) {
+	if *target == nil {
+		*target = new(LossStats)
+	}
+	switch fpv.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		(*target).PacketsSent = fpv.value.(int32)
+	case LossStats_FieldPathSelectorPacketsLost:
+		(*target).PacketsLost = fpv.value.(int32)
+	case LossStats_FieldPathSelectorLossPercentage:
+		(*target).LossPercentage = fpv.value.(float64)
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fpv.selector))
+	}
+}
+
+func (fpv *LossStats_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*LossStats)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'LossStats_FieldTerminalPathValue' with the value under path in 'LossStats'.
+func (fpv *LossStats_FieldTerminalPathValue) CompareWith(source *LossStats) (int, bool) {
+	switch fpv.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetPacketsSent()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case LossStats_FieldPathSelectorPacketsLost:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetPacketsLost()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case LossStats_FieldPathSelectorLossPercentage:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetLossPercentage()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for LossStats: %d", fpv.selector))
+	}
+}
+
+func (fpv *LossStats_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*LossStats))
+}
+
+// LossStats_FieldPathArrayItemValue allows storing single item in Path-specific values for LossStats according to their type
+// Present only for array (repeated) types.
+type LossStats_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	LossStats_FieldPath
+	ContainsValue(*LossStats) bool
+}
+
+// ParseLossStats_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseLossStats_FieldPathArrayItemValue(pathStr, valueStr string) (LossStats_FieldPathArrayItemValue, error) {
+	fp, err := ParseLossStats_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing LossStats field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(LossStats_FieldPathArrayItemValue), nil
+}
+
+func MustParseLossStats_FieldPathArrayItemValue(pathStr, valueStr string) LossStats_FieldPathArrayItemValue {
+	fpaiv, err := ParseLossStats_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type LossStats_FieldTerminalPathArrayItemValue struct {
+	LossStats_FieldTerminalPath
+	value interface{}
+}
+
+var _ LossStats_FieldPathArrayItemValue = (*LossStats_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object LossStats as interface{}
+func (fpaiv *LossStats_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *LossStats_FieldTerminalPathArrayItemValue) GetSingle(source *LossStats) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *LossStats_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*LossStats))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'LossStats'
+func (fpaiv *LossStats_FieldTerminalPathArrayItemValue) ContainsValue(source *LossStats) bool {
+	slice := fpaiv.LossStats_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// LossStats_FieldPathArrayOfValues allows storing slice of values for LossStats fields according to their type
+type LossStats_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	LossStats_FieldPath
+}
+
+func ParseLossStats_FieldPathArrayOfValues(pathStr, valuesStr string) (LossStats_FieldPathArrayOfValues, error) {
+	fp, err := ParseLossStats_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing LossStats field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(LossStats_FieldPathArrayOfValues), nil
+}
+
+func MustParseLossStats_FieldPathArrayOfValues(pathStr, valuesStr string) LossStats_FieldPathArrayOfValues {
+	fpaov, err := ParseLossStats_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type LossStats_FieldTerminalPathArrayOfValues struct {
+	LossStats_FieldTerminalPath
+	values interface{}
+}
+
+var _ LossStats_FieldPathArrayOfValues = (*LossStats_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *LossStats_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case LossStats_FieldPathSelectorPacketsSent:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case LossStats_FieldPathSelectorPacketsLost:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case LossStats_FieldPathSelectorLossPercentage:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *LossStats_FieldTerminalPathArrayOfValues) AsPacketsSentArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *LossStats_FieldTerminalPathArrayOfValues) AsPacketsLostArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *LossStats_FieldTerminalPathArrayOfValues) AsLossPercentageArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type Path_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() Path_FieldPathSelector
+	Get(source *Path) []interface{}
+	GetSingle(source *Path) (interface{}, bool)
+	ClearValue(item *Path)
+
+	// Those methods build corresponding Path_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) Path_FieldPathValue
+	WithIArrayOfValues(values interface{}) Path_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) Path_FieldPathArrayItemValue
+}
+
+type Path_FieldPathSelector int32
+
+const (
+	Path_FieldPathSelectorHops Path_FieldPathSelector = 0
+)
+
+func (s Path_FieldPathSelector) String() string {
+	switch s {
+	case Path_FieldPathSelectorHops:
+		return "hops"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", s))
+	}
+}
+
+func BuildPath_FieldPath(fp gotenobject.RawFieldPath) (Path_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Path")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "hops":
+			return &Path_FieldTerminalPath{selector: Path_FieldPathSelectorHops}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Path", fp)
+}
+
+func ParsePath_FieldPath(rawField string) (Path_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildPath_FieldPath(fp)
+}
+
+func MustParsePath_FieldPath(rawField string) Path_FieldPath {
+	fp, err := ParsePath_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type Path_FieldTerminalPath struct {
+	selector Path_FieldPathSelector
+}
+
+var _ Path_FieldPath = (*Path_FieldTerminalPath)(nil)
+
+func (fp *Path_FieldTerminalPath) Selector() Path_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *Path_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *Path_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Path
+func (fp *Path_FieldTerminalPath) Get(source *Path) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case Path_FieldPathSelectorHops:
+			for _, value := range source.GetHops() {
+				values = append(values, value)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *Path_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Path))
+}
+
+// GetSingle returns value pointed by specific field of from source Path
+func (fp *Path_FieldTerminalPath) GetSingle(source *Path) (interface{}, bool) {
+	switch fp.selector {
+	case Path_FieldPathSelectorHops:
+		res := source.GetHops()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+	}
+}
+
+func (fp *Path_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Path))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *Path_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case Path_FieldPathSelectorHops:
+		return ([]string)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+	}
+}
+
+func (fp *Path_FieldTerminalPath) ClearValue(item *Path) {
+	if item != nil {
+		switch fp.selector {
+		case Path_FieldPathSelectorHops:
+			item.Hops = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *Path_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Path))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *Path_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == Path_FieldPathSelectorHops
+}
+
+func (fp *Path_FieldTerminalPath) WithIValue(value interface{}) Path_FieldPathValue {
+	switch fp.selector {
+	case Path_FieldPathSelectorHops:
+		return &Path_FieldTerminalPathValue{Path_FieldTerminalPath: *fp, value: value.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+	}
+}
+
+func (fp *Path_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *Path_FieldTerminalPath) WithIArrayOfValues(values interface{}) Path_FieldPathArrayOfValues {
+	fpaov := &Path_FieldTerminalPathArrayOfValues{Path_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case Path_FieldPathSelectorHops:
+		return &Path_FieldTerminalPathArrayOfValues{Path_FieldTerminalPath: *fp, values: values.([][]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *Path_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *Path_FieldTerminalPath) WithIArrayItemValue(value interface{}) Path_FieldPathArrayItemValue {
+	switch fp.selector {
+	case Path_FieldPathSelectorHops:
+		return &Path_FieldTerminalPathArrayItemValue{Path_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fp.selector))
+	}
+}
+
+func (fp *Path_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// Path_FieldPathValue allows storing values for Path fields according to their type
+type Path_FieldPathValue interface {
+	Path_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Path)
+	CompareWith(*Path) (cmp int, comparable bool)
+}
+
+func ParsePath_FieldPathValue(pathStr, valueStr string) (Path_FieldPathValue, error) {
+	fp, err := ParsePath_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Path field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(Path_FieldPathValue), nil
+}
+
+func MustParsePath_FieldPathValue(pathStr, valueStr string) Path_FieldPathValue {
+	fpv, err := ParsePath_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type Path_FieldTerminalPathValue struct {
+	Path_FieldTerminalPath
+	value interface{}
+}
+
+var _ Path_FieldPathValue = (*Path_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'Path' as interface{}
+func (fpv *Path_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *Path_FieldTerminalPathValue) AsHopsValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object Path
+func (fpv *Path_FieldTerminalPathValue) SetTo(target **Path) {
+	if *target == nil {
+		*target = new(Path)
+	}
+	switch fpv.selector {
+	case Path_FieldPathSelectorHops:
+		(*target).Hops = fpv.value.([]string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fpv.selector))
+	}
+}
+
+func (fpv *Path_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Path)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'Path_FieldTerminalPathValue' with the value under path in 'Path'.
+func (fpv *Path_FieldTerminalPathValue) CompareWith(source *Path) (int, bool) {
+	switch fpv.selector {
+	case Path_FieldPathSelectorHops:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for Path: %d", fpv.selector))
+	}
+}
+
+func (fpv *Path_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Path))
+}
+
+// Path_FieldPathArrayItemValue allows storing single item in Path-specific values for Path according to their type
+// Present only for array (repeated) types.
+type Path_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	Path_FieldPath
+	ContainsValue(*Path) bool
+}
+
+// ParsePath_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParsePath_FieldPathArrayItemValue(pathStr, valueStr string) (Path_FieldPathArrayItemValue, error) {
+	fp, err := ParsePath_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Path field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(Path_FieldPathArrayItemValue), nil
+}
+
+func MustParsePath_FieldPathArrayItemValue(pathStr, valueStr string) Path_FieldPathArrayItemValue {
+	fpaiv, err := ParsePath_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type Path_FieldTerminalPathArrayItemValue struct {
+	Path_FieldTerminalPath
+	value interface{}
+}
+
+var _ Path_FieldPathArrayItemValue = (*Path_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Path as interface{}
+func (fpaiv *Path_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+func (fpaiv *Path_FieldTerminalPathArrayItemValue) AsHopsItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
+}
+
+func (fpaiv *Path_FieldTerminalPathArrayItemValue) GetSingle(source *Path) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *Path_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Path))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'Path'
+func (fpaiv *Path_FieldTerminalPathArrayItemValue) ContainsValue(source *Path) bool {
+	slice := fpaiv.Path_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// Path_FieldPathArrayOfValues allows storing slice of values for Path fields according to their type
+type Path_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	Path_FieldPath
+}
+
+func ParsePath_FieldPathArrayOfValues(pathStr, valuesStr string) (Path_FieldPathArrayOfValues, error) {
+	fp, err := ParsePath_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Path field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(Path_FieldPathArrayOfValues), nil
+}
+
+func MustParsePath_FieldPathArrayOfValues(pathStr, valuesStr string) Path_FieldPathArrayOfValues {
+	fpaov, err := ParsePath_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type Path_FieldTerminalPathArrayOfValues struct {
+	Path_FieldTerminalPath
+	values interface{}
+}
+
+var _ Path_FieldPathArrayOfValues = (*Path_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *Path_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case Path_FieldPathSelectorHops:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *Path_FieldTerminalPathArrayOfValues) AsHopsArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type TimeInterval_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() TimeInterval_FieldPathSelector
+	Get(source *TimeInterval) []interface{}
+	GetSingle(source *TimeInterval) (interface{}, bool)
+	ClearValue(item *TimeInterval)
+
+	// Those methods build corresponding TimeInterval_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) TimeInterval_FieldPathValue
+	WithIArrayOfValues(values interface{}) TimeInterval_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) TimeInterval_FieldPathArrayItemValue
+}
+
+type TimeInterval_FieldPathSelector int32
+
+const (
+	TimeInterval_FieldPathSelectorEndTime   TimeInterval_FieldPathSelector = 0
+	TimeInterval_FieldPathSelectorStartTime TimeInterval_FieldPathSelector = 1
+)
+
+func (s TimeInterval_FieldPathSelector) String() string {
+	switch s {
+	case TimeInterval_FieldPathSelectorEndTime:
+		return "end_time"
+	case TimeInterval_FieldPathSelectorStartTime:
+		return "start_time"
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", s))
+	}
+}
+
+func BuildTimeInterval_FieldPath(fp gotenobject.RawFieldPath) (TimeInterval_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object TimeInterval")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "end_time", "endTime", "end-time":
+			return &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorEndTime}, nil
+		case "start_time", "startTime", "start-time":
+			return &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorStartTime}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object TimeInterval", fp)
+}
+
+func ParseTimeInterval_FieldPath(rawField string) (TimeInterval_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildTimeInterval_FieldPath(fp)
+}
+
+func MustParseTimeInterval_FieldPath(rawField string) TimeInterval_FieldPath {
+	fp, err := ParseTimeInterval_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type TimeInterval_FieldTerminalPath struct {
+	selector TimeInterval_FieldPathSelector
+}
+
+var _ TimeInterval_FieldPath = (*TimeInterval_FieldTerminalPath)(nil)
+
+func (fp *TimeInterval_FieldTerminalPath) Selector() TimeInterval_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *TimeInterval_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *TimeInterval_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source TimeInterval
+func (fp *TimeInterval_FieldTerminalPath) Get(source *TimeInterval) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case TimeInterval_FieldPathSelectorEndTime:
+			if source.EndTime != nil {
+				values = append(values, source.EndTime)
+			}
+		case TimeInterval_FieldPathSelectorStartTime:
+			if source.StartTime != nil {
+				values = append(values, source.StartTime)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *TimeInterval_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*TimeInterval))
+}
+
+// GetSingle returns value pointed by specific field of from source TimeInterval
+func (fp *TimeInterval_FieldTerminalPath) GetSingle(source *TimeInterval) (interface{}, bool) {
+	switch fp.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		res := source.GetEndTime()
+		return res, res != nil
+	case TimeInterval_FieldPathSelectorStartTime:
+		res := source.GetStartTime()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+	}
+}
+
+func (fp *TimeInterval_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*TimeInterval))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *TimeInterval_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		return (*timestamp.Timestamp)(nil)
+	case TimeInterval_FieldPathSelectorStartTime:
+		return (*timestamp.Timestamp)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+	}
+}
+
+func (fp *TimeInterval_FieldTerminalPath) ClearValue(item *TimeInterval) {
+	if item != nil {
+		switch fp.selector {
+		case TimeInterval_FieldPathSelectorEndTime:
+			item.EndTime = nil
+		case TimeInterval_FieldPathSelectorStartTime:
+			item.StartTime = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *TimeInterval_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*TimeInterval))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *TimeInterval_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == TimeInterval_FieldPathSelectorEndTime ||
+		fp.selector == TimeInterval_FieldPathSelectorStartTime
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithIValue(value interface{}) TimeInterval_FieldPathValue {
+	switch fp.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		return &TimeInterval_FieldTerminalPathValue{TimeInterval_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
+	case TimeInterval_FieldPathSelectorStartTime:
+		return &TimeInterval_FieldTerminalPathValue{TimeInterval_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+	}
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithIArrayOfValues(values interface{}) TimeInterval_FieldPathArrayOfValues {
+	fpaov := &TimeInterval_FieldTerminalPathArrayOfValues{TimeInterval_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		return &TimeInterval_FieldTerminalPathArrayOfValues{TimeInterval_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
+	case TimeInterval_FieldPathSelectorStartTime:
+		return &TimeInterval_FieldTerminalPathArrayOfValues{TimeInterval_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithIArrayItemValue(value interface{}) TimeInterval_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fp.selector))
+	}
+}
+
+func (fp *TimeInterval_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// TimeInterval_FieldPathValue allows storing values for TimeInterval fields according to their type
+type TimeInterval_FieldPathValue interface {
+	TimeInterval_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **TimeInterval)
+	CompareWith(*TimeInterval) (cmp int, comparable bool)
+}
+
+func ParseTimeInterval_FieldPathValue(pathStr, valueStr string) (TimeInterval_FieldPathValue, error) {
+	fp, err := ParseTimeInterval_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TimeInterval field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(TimeInterval_FieldPathValue), nil
+}
+
+func MustParseTimeInterval_FieldPathValue(pathStr, valueStr string) TimeInterval_FieldPathValue {
+	fpv, err := ParseTimeInterval_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type TimeInterval_FieldTerminalPathValue struct {
+	TimeInterval_FieldTerminalPath
+	value interface{}
+}
+
+var _ TimeInterval_FieldPathValue = (*TimeInterval_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'TimeInterval' as interface{}
+func (fpv *TimeInterval_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *TimeInterval_FieldTerminalPathValue) AsEndTimeValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
+func (fpv *TimeInterval_FieldTerminalPathValue) AsStartTimeValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object TimeInterval
+func (fpv *TimeInterval_FieldTerminalPathValue) SetTo(target **TimeInterval) {
+	if *target == nil {
+		*target = new(TimeInterval)
+	}
+	switch fpv.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		(*target).EndTime = fpv.value.(*timestamp.Timestamp)
+	case TimeInterval_FieldPathSelectorStartTime:
+		(*target).StartTime = fpv.value.(*timestamp.Timestamp)
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fpv.selector))
+	}
+}
+
+func (fpv *TimeInterval_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*TimeInterval)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'TimeInterval_FieldTerminalPathValue' with the value under path in 'TimeInterval'.
+func (fpv *TimeInterval_FieldTerminalPathValue) CompareWith(source *TimeInterval) (int, bool) {
+	switch fpv.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetEndTime()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case TimeInterval_FieldPathSelectorStartTime:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetStartTime()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for TimeInterval: %d", fpv.selector))
+	}
+}
+
+func (fpv *TimeInterval_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*TimeInterval))
+}
+
+// TimeInterval_FieldPathArrayItemValue allows storing single item in Path-specific values for TimeInterval according to their type
+// Present only for array (repeated) types.
+type TimeInterval_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	TimeInterval_FieldPath
+	ContainsValue(*TimeInterval) bool
+}
+
+// ParseTimeInterval_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseTimeInterval_FieldPathArrayItemValue(pathStr, valueStr string) (TimeInterval_FieldPathArrayItemValue, error) {
+	fp, err := ParseTimeInterval_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TimeInterval field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(TimeInterval_FieldPathArrayItemValue), nil
+}
+
+func MustParseTimeInterval_FieldPathArrayItemValue(pathStr, valueStr string) TimeInterval_FieldPathArrayItemValue {
+	fpaiv, err := ParseTimeInterval_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type TimeInterval_FieldTerminalPathArrayItemValue struct {
+	TimeInterval_FieldTerminalPath
+	value interface{}
+}
+
+var _ TimeInterval_FieldPathArrayItemValue = (*TimeInterval_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object TimeInterval as interface{}
+func (fpaiv *TimeInterval_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *TimeInterval_FieldTerminalPathArrayItemValue) GetSingle(source *TimeInterval) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *TimeInterval_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*TimeInterval))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'TimeInterval'
+func (fpaiv *TimeInterval_FieldTerminalPathArrayItemValue) ContainsValue(source *TimeInterval) bool {
+	slice := fpaiv.TimeInterval_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// TimeInterval_FieldPathArrayOfValues allows storing slice of values for TimeInterval fields according to their type
+type TimeInterval_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	TimeInterval_FieldPath
+}
+
+func ParseTimeInterval_FieldPathArrayOfValues(pathStr, valuesStr string) (TimeInterval_FieldPathArrayOfValues, error) {
+	fp, err := ParseTimeInterval_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing TimeInterval field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(TimeInterval_FieldPathArrayOfValues), nil
+}
+
+func MustParseTimeInterval_FieldPathArrayOfValues(pathStr, valuesStr string) TimeInterval_FieldPathArrayOfValues {
+	fpaov, err := ParseTimeInterval_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type TimeInterval_FieldTerminalPathArrayOfValues struct {
+	TimeInterval_FieldTerminalPath
+	values interface{}
+}
+
+var _ TimeInterval_FieldPathArrayOfValues = (*TimeInterval_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *TimeInterval_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case TimeInterval_FieldPathSelectorEndTime:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
+	case TimeInterval_FieldPathSelectorStartTime:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *TimeInterval_FieldTerminalPathArrayOfValues) AsEndTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
+	return res, ok
+}
+func (fpaov *TimeInterval_FieldTerminalPathArrayOfValues) AsStartTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
 	return res, ok
 }

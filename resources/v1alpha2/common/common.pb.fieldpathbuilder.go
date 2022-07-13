@@ -4040,3 +4040,594 @@ func (s DNSResourceRecordPathSelectorRdata) WithArrayOfValues(values [][]string)
 func (s DNSResourceRecordPathSelectorRdata) WithItemValue(value string) *DNSResourceRecord_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*DNSResourceRecord_FieldTerminalPathArrayItemValue)
 }
+
+type HopInfoFieldPathBuilder struct{}
+
+func NewHopInfoFieldPathBuilder() HopInfoFieldPathBuilder {
+	return HopInfoFieldPathBuilder{}
+}
+func (HopInfoFieldPathBuilder) HopIp() HopInfoPathSelectorHopIp {
+	return HopInfoPathSelectorHopIp{}
+}
+func (HopInfoFieldPathBuilder) HopAsn() HopInfoPathSelectorHopAsn {
+	return HopInfoPathSelectorHopAsn{}
+}
+func (HopInfoFieldPathBuilder) HopAsName() HopInfoPathSelectorHopAsName {
+	return HopInfoPathSelectorHopAsName{}
+}
+
+type HopInfoPathSelectorHopIp struct{}
+
+func (HopInfoPathSelectorHopIp) FieldPath() *HopInfo_FieldTerminalPath {
+	return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopIp}
+}
+
+func (s HopInfoPathSelectorHopIp) WithValue(value string) *HopInfo_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopInfo_FieldTerminalPathValue)
+}
+
+func (s HopInfoPathSelectorHopIp) WithArrayOfValues(values []string) *HopInfo_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopInfo_FieldTerminalPathArrayOfValues)
+}
+
+type HopInfoPathSelectorHopAsn struct{}
+
+func (HopInfoPathSelectorHopAsn) FieldPath() *HopInfo_FieldTerminalPath {
+	return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsn}
+}
+
+func (s HopInfoPathSelectorHopAsn) WithValue(value string) *HopInfo_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopInfo_FieldTerminalPathValue)
+}
+
+func (s HopInfoPathSelectorHopAsn) WithArrayOfValues(values []string) *HopInfo_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopInfo_FieldTerminalPathArrayOfValues)
+}
+
+type HopInfoPathSelectorHopAsName struct{}
+
+func (HopInfoPathSelectorHopAsName) FieldPath() *HopInfo_FieldTerminalPath {
+	return &HopInfo_FieldTerminalPath{selector: HopInfo_FieldPathSelectorHopAsName}
+}
+
+func (s HopInfoPathSelectorHopAsName) WithValue(value string) *HopInfo_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopInfo_FieldTerminalPathValue)
+}
+
+func (s HopInfoPathSelectorHopAsName) WithArrayOfValues(values []string) *HopInfo_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopInfo_FieldTerminalPathArrayOfValues)
+}
+
+type HopStatFieldPathBuilder struct{}
+
+func NewHopStatFieldPathBuilder() HopStatFieldPathBuilder {
+	return HopStatFieldPathBuilder{}
+}
+func (HopStatFieldPathBuilder) TtlExceededLatency() HopStatPathSelectorTtlExceededLatency {
+	return HopStatPathSelectorTtlExceededLatency{}
+}
+func (HopStatFieldPathBuilder) IcmpLatency() HopStatPathSelectorIcmpLatency {
+	return HopStatPathSelectorIcmpLatency{}
+}
+func (HopStatFieldPathBuilder) Loss() HopStatPathSelectorLoss {
+	return HopStatPathSelectorLoss{}
+}
+
+type HopStatPathSelectorTtlExceededLatency struct{}
+
+func (HopStatPathSelectorTtlExceededLatency) FieldPath() *HopStat_FieldTerminalPath {
+	return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorTtlExceededLatency}
+}
+
+func (s HopStatPathSelectorTtlExceededLatency) WithValue(value *DurationStatsMilliSeconds) *HopStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldTerminalPathValue)
+}
+
+func (s HopStatPathSelectorTtlExceededLatency) WithArrayOfValues(values []*DurationStatsMilliSeconds) *HopStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldTerminalPathArrayOfValues)
+}
+
+func (HopStatPathSelectorTtlExceededLatency) WithSubPath(subPath DurationStatsMilliSeconds_FieldPath) *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorTtlExceededLatency, subPath: subPath}
+}
+
+func (s HopStatPathSelectorTtlExceededLatency) WithSubValue(subPathValue DurationStatsMilliSeconds_FieldPathValue) *HopStat_FieldSubPathValue {
+	return &HopStat_FieldSubPathValue{HopStat_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s HopStatPathSelectorTtlExceededLatency) WithSubArrayOfValues(subPathArrayOfValues DurationStatsMilliSeconds_FieldPathArrayOfValues) *HopStat_FieldSubPathArrayOfValues {
+	return &HopStat_FieldSubPathArrayOfValues{HopStat_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s HopStatPathSelectorTtlExceededLatency) WithSubArrayItemValue(subPathArrayItemValue DurationStatsMilliSeconds_FieldPathArrayItemValue) *HopStat_FieldSubPathArrayItemValue {
+	return &HopStat_FieldSubPathArrayItemValue{HopStat_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (HopStatPathSelectorTtlExceededLatency) Mean() HopStatPathSelectorTtlExceededLatencyMean {
+	return HopStatPathSelectorTtlExceededLatencyMean{}
+}
+
+func (HopStatPathSelectorTtlExceededLatency) Min() HopStatPathSelectorTtlExceededLatencyMin {
+	return HopStatPathSelectorTtlExceededLatencyMin{}
+}
+
+func (HopStatPathSelectorTtlExceededLatency) Max() HopStatPathSelectorTtlExceededLatencyMax {
+	return HopStatPathSelectorTtlExceededLatencyMax{}
+}
+
+func (HopStatPathSelectorTtlExceededLatency) Count() HopStatPathSelectorTtlExceededLatencyCount {
+	return HopStatPathSelectorTtlExceededLatencyCount{}
+}
+
+type HopStatPathSelectorTtlExceededLatencyMean struct{}
+
+func (HopStatPathSelectorTtlExceededLatencyMean) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorTtlExceededLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Mean().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMean) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMean) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorTtlExceededLatencyMin struct{}
+
+func (HopStatPathSelectorTtlExceededLatencyMin) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorTtlExceededLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Min().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMin) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMin) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorTtlExceededLatencyMax struct{}
+
+func (HopStatPathSelectorTtlExceededLatencyMax) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorTtlExceededLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Max().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMax) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyMax) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorTtlExceededLatencyCount struct{}
+
+func (HopStatPathSelectorTtlExceededLatencyCount) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorTtlExceededLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Count().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyCount) WithValue(value int32) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorTtlExceededLatencyCount) WithArrayOfValues(values []int32) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorIcmpLatency struct{}
+
+func (HopStatPathSelectorIcmpLatency) FieldPath() *HopStat_FieldTerminalPath {
+	return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorIcmpLatency}
+}
+
+func (s HopStatPathSelectorIcmpLatency) WithValue(value *DurationStatsMilliSeconds) *HopStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldTerminalPathValue)
+}
+
+func (s HopStatPathSelectorIcmpLatency) WithArrayOfValues(values []*DurationStatsMilliSeconds) *HopStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldTerminalPathArrayOfValues)
+}
+
+func (HopStatPathSelectorIcmpLatency) WithSubPath(subPath DurationStatsMilliSeconds_FieldPath) *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorIcmpLatency, subPath: subPath}
+}
+
+func (s HopStatPathSelectorIcmpLatency) WithSubValue(subPathValue DurationStatsMilliSeconds_FieldPathValue) *HopStat_FieldSubPathValue {
+	return &HopStat_FieldSubPathValue{HopStat_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s HopStatPathSelectorIcmpLatency) WithSubArrayOfValues(subPathArrayOfValues DurationStatsMilliSeconds_FieldPathArrayOfValues) *HopStat_FieldSubPathArrayOfValues {
+	return &HopStat_FieldSubPathArrayOfValues{HopStat_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s HopStatPathSelectorIcmpLatency) WithSubArrayItemValue(subPathArrayItemValue DurationStatsMilliSeconds_FieldPathArrayItemValue) *HopStat_FieldSubPathArrayItemValue {
+	return &HopStat_FieldSubPathArrayItemValue{HopStat_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (HopStatPathSelectorIcmpLatency) Mean() HopStatPathSelectorIcmpLatencyMean {
+	return HopStatPathSelectorIcmpLatencyMean{}
+}
+
+func (HopStatPathSelectorIcmpLatency) Min() HopStatPathSelectorIcmpLatencyMin {
+	return HopStatPathSelectorIcmpLatencyMin{}
+}
+
+func (HopStatPathSelectorIcmpLatency) Max() HopStatPathSelectorIcmpLatencyMax {
+	return HopStatPathSelectorIcmpLatencyMax{}
+}
+
+func (HopStatPathSelectorIcmpLatency) Count() HopStatPathSelectorIcmpLatencyCount {
+	return HopStatPathSelectorIcmpLatencyCount{}
+}
+
+type HopStatPathSelectorIcmpLatencyMean struct{}
+
+func (HopStatPathSelectorIcmpLatencyMean) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorIcmpLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Mean().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorIcmpLatencyMean) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorIcmpLatencyMean) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorIcmpLatencyMin struct{}
+
+func (HopStatPathSelectorIcmpLatencyMin) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorIcmpLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Min().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorIcmpLatencyMin) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorIcmpLatencyMin) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorIcmpLatencyMax struct{}
+
+func (HopStatPathSelectorIcmpLatencyMax) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorIcmpLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Max().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorIcmpLatencyMax) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorIcmpLatencyMax) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorIcmpLatencyCount struct{}
+
+func (HopStatPathSelectorIcmpLatencyCount) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorIcmpLatency,
+		subPath:  NewDurationStatsMilliSecondsFieldPathBuilder().Count().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorIcmpLatencyCount) WithValue(value int32) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorIcmpLatencyCount) WithArrayOfValues(values []int32) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorLoss struct{}
+
+func (HopStatPathSelectorLoss) FieldPath() *HopStat_FieldTerminalPath {
+	return &HopStat_FieldTerminalPath{selector: HopStat_FieldPathSelectorLoss}
+}
+
+func (s HopStatPathSelectorLoss) WithValue(value *LossStats) *HopStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldTerminalPathValue)
+}
+
+func (s HopStatPathSelectorLoss) WithArrayOfValues(values []*LossStats) *HopStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldTerminalPathArrayOfValues)
+}
+
+func (HopStatPathSelectorLoss) WithSubPath(subPath LossStats_FieldPath) *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{selector: HopStat_FieldPathSelectorLoss, subPath: subPath}
+}
+
+func (s HopStatPathSelectorLoss) WithSubValue(subPathValue LossStats_FieldPathValue) *HopStat_FieldSubPathValue {
+	return &HopStat_FieldSubPathValue{HopStat_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s HopStatPathSelectorLoss) WithSubArrayOfValues(subPathArrayOfValues LossStats_FieldPathArrayOfValues) *HopStat_FieldSubPathArrayOfValues {
+	return &HopStat_FieldSubPathArrayOfValues{HopStat_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s HopStatPathSelectorLoss) WithSubArrayItemValue(subPathArrayItemValue LossStats_FieldPathArrayItemValue) *HopStat_FieldSubPathArrayItemValue {
+	return &HopStat_FieldSubPathArrayItemValue{HopStat_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (HopStatPathSelectorLoss) PacketsSent() HopStatPathSelectorLossPacketsSent {
+	return HopStatPathSelectorLossPacketsSent{}
+}
+
+func (HopStatPathSelectorLoss) PacketsLost() HopStatPathSelectorLossPacketsLost {
+	return HopStatPathSelectorLossPacketsLost{}
+}
+
+func (HopStatPathSelectorLoss) LossPercentage() HopStatPathSelectorLossLossPercentage {
+	return HopStatPathSelectorLossLossPercentage{}
+}
+
+type HopStatPathSelectorLossPacketsSent struct{}
+
+func (HopStatPathSelectorLossPacketsSent) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorLoss,
+		subPath:  NewLossStatsFieldPathBuilder().PacketsSent().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorLossPacketsSent) WithValue(value int32) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorLossPacketsSent) WithArrayOfValues(values []int32) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorLossPacketsLost struct{}
+
+func (HopStatPathSelectorLossPacketsLost) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorLoss,
+		subPath:  NewLossStatsFieldPathBuilder().PacketsLost().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorLossPacketsLost) WithValue(value int32) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorLossPacketsLost) WithArrayOfValues(values []int32) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type HopStatPathSelectorLossLossPercentage struct{}
+
+func (HopStatPathSelectorLossLossPercentage) FieldPath() *HopStat_FieldSubPath {
+	return &HopStat_FieldSubPath{
+		selector: HopStat_FieldPathSelectorLoss,
+		subPath:  NewLossStatsFieldPathBuilder().LossPercentage().FieldPath(),
+	}
+}
+
+func (s HopStatPathSelectorLossLossPercentage) WithValue(value float64) *HopStat_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*HopStat_FieldSubPathValue)
+}
+
+func (s HopStatPathSelectorLossLossPercentage) WithArrayOfValues(values []float64) *HopStat_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopStat_FieldSubPathArrayOfValues)
+}
+
+type DurationStatsMilliSecondsFieldPathBuilder struct{}
+
+func NewDurationStatsMilliSecondsFieldPathBuilder() DurationStatsMilliSecondsFieldPathBuilder {
+	return DurationStatsMilliSecondsFieldPathBuilder{}
+}
+func (DurationStatsMilliSecondsFieldPathBuilder) Mean() DurationStatsMilliSecondsPathSelectorMean {
+	return DurationStatsMilliSecondsPathSelectorMean{}
+}
+func (DurationStatsMilliSecondsFieldPathBuilder) Min() DurationStatsMilliSecondsPathSelectorMin {
+	return DurationStatsMilliSecondsPathSelectorMin{}
+}
+func (DurationStatsMilliSecondsFieldPathBuilder) Max() DurationStatsMilliSecondsPathSelectorMax {
+	return DurationStatsMilliSecondsPathSelectorMax{}
+}
+func (DurationStatsMilliSecondsFieldPathBuilder) Count() DurationStatsMilliSecondsPathSelectorCount {
+	return DurationStatsMilliSecondsPathSelectorCount{}
+}
+
+type DurationStatsMilliSecondsPathSelectorMean struct{}
+
+func (DurationStatsMilliSecondsPathSelectorMean) FieldPath() *DurationStatsMilliSeconds_FieldTerminalPath {
+	return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMean}
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMean) WithValue(value float64) *DurationStatsMilliSeconds_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DurationStatsMilliSeconds_FieldTerminalPathValue)
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMean) WithArrayOfValues(values []float64) *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues)
+}
+
+type DurationStatsMilliSecondsPathSelectorMin struct{}
+
+func (DurationStatsMilliSecondsPathSelectorMin) FieldPath() *DurationStatsMilliSeconds_FieldTerminalPath {
+	return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMin}
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMin) WithValue(value float64) *DurationStatsMilliSeconds_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DurationStatsMilliSeconds_FieldTerminalPathValue)
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMin) WithArrayOfValues(values []float64) *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues)
+}
+
+type DurationStatsMilliSecondsPathSelectorMax struct{}
+
+func (DurationStatsMilliSecondsPathSelectorMax) FieldPath() *DurationStatsMilliSeconds_FieldTerminalPath {
+	return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorMax}
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMax) WithValue(value float64) *DurationStatsMilliSeconds_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DurationStatsMilliSeconds_FieldTerminalPathValue)
+}
+
+func (s DurationStatsMilliSecondsPathSelectorMax) WithArrayOfValues(values []float64) *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues)
+}
+
+type DurationStatsMilliSecondsPathSelectorCount struct{}
+
+func (DurationStatsMilliSecondsPathSelectorCount) FieldPath() *DurationStatsMilliSeconds_FieldTerminalPath {
+	return &DurationStatsMilliSeconds_FieldTerminalPath{selector: DurationStatsMilliSeconds_FieldPathSelectorCount}
+}
+
+func (s DurationStatsMilliSecondsPathSelectorCount) WithValue(value int32) *DurationStatsMilliSeconds_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*DurationStatsMilliSeconds_FieldTerminalPathValue)
+}
+
+func (s DurationStatsMilliSecondsPathSelectorCount) WithArrayOfValues(values []int32) *DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*DurationStatsMilliSeconds_FieldTerminalPathArrayOfValues)
+}
+
+type LossStatsFieldPathBuilder struct{}
+
+func NewLossStatsFieldPathBuilder() LossStatsFieldPathBuilder {
+	return LossStatsFieldPathBuilder{}
+}
+func (LossStatsFieldPathBuilder) PacketsSent() LossStatsPathSelectorPacketsSent {
+	return LossStatsPathSelectorPacketsSent{}
+}
+func (LossStatsFieldPathBuilder) PacketsLost() LossStatsPathSelectorPacketsLost {
+	return LossStatsPathSelectorPacketsLost{}
+}
+func (LossStatsFieldPathBuilder) LossPercentage() LossStatsPathSelectorLossPercentage {
+	return LossStatsPathSelectorLossPercentage{}
+}
+
+type LossStatsPathSelectorPacketsSent struct{}
+
+func (LossStatsPathSelectorPacketsSent) FieldPath() *LossStats_FieldTerminalPath {
+	return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsSent}
+}
+
+func (s LossStatsPathSelectorPacketsSent) WithValue(value int32) *LossStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*LossStats_FieldTerminalPathValue)
+}
+
+func (s LossStatsPathSelectorPacketsSent) WithArrayOfValues(values []int32) *LossStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*LossStats_FieldTerminalPathArrayOfValues)
+}
+
+type LossStatsPathSelectorPacketsLost struct{}
+
+func (LossStatsPathSelectorPacketsLost) FieldPath() *LossStats_FieldTerminalPath {
+	return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorPacketsLost}
+}
+
+func (s LossStatsPathSelectorPacketsLost) WithValue(value int32) *LossStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*LossStats_FieldTerminalPathValue)
+}
+
+func (s LossStatsPathSelectorPacketsLost) WithArrayOfValues(values []int32) *LossStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*LossStats_FieldTerminalPathArrayOfValues)
+}
+
+type LossStatsPathSelectorLossPercentage struct{}
+
+func (LossStatsPathSelectorLossPercentage) FieldPath() *LossStats_FieldTerminalPath {
+	return &LossStats_FieldTerminalPath{selector: LossStats_FieldPathSelectorLossPercentage}
+}
+
+func (s LossStatsPathSelectorLossPercentage) WithValue(value float64) *LossStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*LossStats_FieldTerminalPathValue)
+}
+
+func (s LossStatsPathSelectorLossPercentage) WithArrayOfValues(values []float64) *LossStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*LossStats_FieldTerminalPathArrayOfValues)
+}
+
+type PathFieldPathBuilder struct{}
+
+func NewPathFieldPathBuilder() PathFieldPathBuilder {
+	return PathFieldPathBuilder{}
+}
+func (PathFieldPathBuilder) Hops() PathPathSelectorHops {
+	return PathPathSelectorHops{}
+}
+
+type PathPathSelectorHops struct{}
+
+func (PathPathSelectorHops) FieldPath() *Path_FieldTerminalPath {
+	return &Path_FieldTerminalPath{selector: Path_FieldPathSelectorHops}
+}
+
+func (s PathPathSelectorHops) WithValue(value []string) *Path_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*Path_FieldTerminalPathValue)
+}
+
+func (s PathPathSelectorHops) WithArrayOfValues(values [][]string) *Path_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Path_FieldTerminalPathArrayOfValues)
+}
+
+func (s PathPathSelectorHops) WithItemValue(value string) *Path_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*Path_FieldTerminalPathArrayItemValue)
+}
+
+type TimeIntervalFieldPathBuilder struct{}
+
+func NewTimeIntervalFieldPathBuilder() TimeIntervalFieldPathBuilder {
+	return TimeIntervalFieldPathBuilder{}
+}
+func (TimeIntervalFieldPathBuilder) EndTime() TimeIntervalPathSelectorEndTime {
+	return TimeIntervalPathSelectorEndTime{}
+}
+func (TimeIntervalFieldPathBuilder) StartTime() TimeIntervalPathSelectorStartTime {
+	return TimeIntervalPathSelectorStartTime{}
+}
+
+type TimeIntervalPathSelectorEndTime struct{}
+
+func (TimeIntervalPathSelectorEndTime) FieldPath() *TimeInterval_FieldTerminalPath {
+	return &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorEndTime}
+}
+
+func (s TimeIntervalPathSelectorEndTime) WithValue(value *timestamp.Timestamp) *TimeInterval_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*TimeInterval_FieldTerminalPathValue)
+}
+
+func (s TimeIntervalPathSelectorEndTime) WithArrayOfValues(values []*timestamp.Timestamp) *TimeInterval_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*TimeInterval_FieldTerminalPathArrayOfValues)
+}
+
+type TimeIntervalPathSelectorStartTime struct{}
+
+func (TimeIntervalPathSelectorStartTime) FieldPath() *TimeInterval_FieldTerminalPath {
+	return &TimeInterval_FieldTerminalPath{selector: TimeInterval_FieldPathSelectorStartTime}
+}
+
+func (s TimeIntervalPathSelectorStartTime) WithValue(value *timestamp.Timestamp) *TimeInterval_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*TimeInterval_FieldTerminalPathValue)
+}
+
+func (s TimeIntervalPathSelectorStartTime) WithArrayOfValues(values []*timestamp.Timestamp) *TimeInterval_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*TimeInterval_FieldTerminalPathArrayOfValues)
+}

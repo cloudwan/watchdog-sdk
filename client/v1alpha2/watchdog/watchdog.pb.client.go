@@ -14,6 +14,8 @@ import (
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
 	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
+	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
+	hop_report_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_report"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
 	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
 	probe_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe"
@@ -84,6 +86,8 @@ type WatchdogClient interface {
 	admin_area_client.AdminAreaServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
+	hop_monitor_client.HopMonitorServiceClient
+	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
 	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
@@ -106,6 +110,8 @@ type watchdogClient struct {
 	admin_area_client.AdminAreaServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
+	hop_monitor_client.HopMonitorServiceClient
+	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
 	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
@@ -129,6 +135,8 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
 		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
+		HopMonitorServiceClient:            hop_monitor_client.NewHopMonitorServiceClient(cc),
+		HopReportServiceClient:             hop_report_client.NewHopReportServiceClient(cc),
 		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
 		PingTestServiceClient:              ping_test_client.NewPingTestServiceClient(cc),
 		ProbeGroupServiceClient:            probe_group_client.NewProbeGroupServiceClient(cc),
