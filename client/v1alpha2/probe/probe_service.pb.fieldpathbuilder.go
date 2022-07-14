@@ -1578,6 +1578,10 @@ func (BatchGetProbesResponsePathSelectorProbesSpecActivation) SendInvitationOnCr
 	return BatchGetProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesSpecActivation) InvitationExtras() BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras {
+	return BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras{}
+}
+
 func (BatchGetProbesResponsePathSelectorProbesSpecActivation) ReusableToken() BatchGetProbesResponsePathSelectorProbesSpecActivationReusableToken {
 	return BatchGetProbesResponsePathSelectorProbesSpecActivationReusableToken{}
 }
@@ -1630,6 +1634,46 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCr
 }
 
 func (s BatchGetProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithValue(value map[string]string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithKey(key string) BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras {
+	return BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras{key: key}
+}
+
+type BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5606,6 +5650,10 @@ func (ListProbesResponsePathSelectorProbesSpecActivation) SendInvitationOnCreate
 	return ListProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate{}
 }
 
+func (ListProbesResponsePathSelectorProbesSpecActivation) InvitationExtras() ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras {
+	return ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras{}
+}
+
 func (ListProbesResponsePathSelectorProbesSpecActivation) ReusableToken() ListProbesResponsePathSelectorProbesSpecActivationReusableToken {
 	return ListProbesResponsePathSelectorProbesSpecActivationReusableToken{}
 }
@@ -5658,6 +5706,46 @@ func (s ListProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate
 }
 
 func (s ListProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithValue(value map[string]string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithKey(key string) ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras {
+	return ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras{key: key}
+}
+
+type ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -10010,6 +10098,10 @@ func (CreateProbeRequestPathSelectorProbeSpecActivation) SendInvitationOnCreate(
 	return CreateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate{}
 }
 
+func (CreateProbeRequestPathSelectorProbeSpecActivation) InvitationExtras() CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras {
+	return CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras{}
+}
+
 func (CreateProbeRequestPathSelectorProbeSpecActivation) ReusableToken() CreateProbeRequestPathSelectorProbeSpecActivationReusableToken {
 	return CreateProbeRequestPathSelectorProbeSpecActivationReusableToken{}
 }
@@ -10062,6 +10154,46 @@ func (s CreateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate)
 }
 
 func (s CreateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithValue(value map[string]string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithKey(key string) CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras {
+	return CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras{key: key}
+}
+
+type CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -13892,6 +14024,10 @@ func (UpdateProbeRequestPathSelectorProbeSpecActivation) SendInvitationOnCreate(
 	return UpdateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate{}
 }
 
+func (UpdateProbeRequestPathSelectorProbeSpecActivation) InvitationExtras() UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras {
+	return UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras{}
+}
+
 func (UpdateProbeRequestPathSelectorProbeSpecActivation) ReusableToken() UpdateProbeRequestPathSelectorProbeSpecActivationReusableToken {
 	return UpdateProbeRequestPathSelectorProbeSpecActivationReusableToken{}
 }
@@ -13944,6 +14080,46 @@ func (s UpdateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate)
 }
 
 func (s UpdateProbeRequestPathSelectorProbeSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithValue(value map[string]string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorProbeSpecActivationInvitationExtras) WithKey(key string) UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras {
+	return UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras{key: key}
+}
+
+type UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestMapPathSelectorProbeSpecActivationInvitationExtras) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -17798,6 +17974,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpecActivation) SendInvit
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationSendInvitationOnCreate{}
 }
 
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecActivation) InvitationExtras() UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras{}
+}
+
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpecActivation) ReusableToken() UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationReusableToken {
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationReusableToken{}
 }
@@ -17850,6 +18030,46 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationSendInvit
 }
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras) WithValue(value map[string]string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecActivationInvitationExtras) WithKey(key string) UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras {
+	return UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras{key: key}
+}
+
+type UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestMapPathSelectorCasConditionalStateSpecActivationInvitationExtras) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -21694,6 +21914,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivation) SendInvi
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationSendInvitationOnCreate{}
 }
 
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivation) InvitationExtras() UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras{}
+}
+
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivation) ReusableToken() UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationReusableToken {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationReusableToken{}
 }
@@ -21746,6 +21970,46 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationSendInvi
 }
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras) WithValue(value map[string]string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecActivationInvitationExtras) WithKey(key string) UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras {
+	return UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras{key: key}
+}
+
+type UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASMapPathSelectorConditionalStateSpecActivationInvitationExtras) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -25764,6 +26028,10 @@ func (SearchProbesResponsePathSelectorProbesSpecActivation) SendInvitationOnCrea
 	return SearchProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate{}
 }
 
+func (SearchProbesResponsePathSelectorProbesSpecActivation) InvitationExtras() SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras {
+	return SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras{}
+}
+
 func (SearchProbesResponsePathSelectorProbesSpecActivation) ReusableToken() SearchProbesResponsePathSelectorProbesSpecActivationReusableToken {
 	return SearchProbesResponsePathSelectorProbesSpecActivationReusableToken{}
 }
@@ -25816,6 +26084,46 @@ func (s SearchProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCrea
 }
 
 func (s SearchProbesResponsePathSelectorProbesSpecActivationSendInvitationOnCreate) WithArrayOfValues(values []bool) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithValue(value map[string]string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []map[string]string) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbesResponsePathSelectorProbesSpecActivationInvitationExtras) WithKey(key string) SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras {
+	return SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras{key: key}
+}
+
+type SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras struct {
+	key string
+}
+
+func (s SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponseMapPathSelectorProbesSpecActivationInvitationExtras) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

@@ -4236,6 +4236,10 @@ func (b *filterCndBuilderSpecActivation) SendInvitationOnCreate() *filterCndBuil
 	return &filterCndBuilderSpecActivationSendInvitationOnCreate{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpecActivation) InvitationExtras() *filterCndBuilderSpecActivationInvitationExtras {
+	return &filterCndBuilderSpecActivationInvitationExtras{builder: b.builder}
+}
+
 func (b *filterCndBuilderSpecActivation) ReusableToken() *filterCndBuilderSpecActivationReusableToken {
 	return &filterCndBuilderSpecActivationReusableToken{builder: b.builder}
 }
@@ -4414,6 +4418,129 @@ func (b *filterCndBuilderSpecActivationSendInvitationOnCreate) compare(op gotenf
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().Activation().SendInvitationOnCreate().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecActivationInvitationExtras struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Eq(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Neq(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Gt(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Gte(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Lt(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) Lte(value map[string]string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) In(values []map[string]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) NotIn(values []map[string]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) compare(op gotenfilter.CompareOperator, value map[string]string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecActivationInvitationExtras) WithKey(key string) *mapFilterCndBuilderSpecActivationInvitationExtras {
+	return &mapFilterCndBuilderSpecActivationInvitationExtras{builder: b.builder, key: key}
+}
+
+type mapFilterCndBuilderSpecActivationInvitationExtras struct {
+	builder *FilterBuilder
+	key     string
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(b.key).WithArrayOfValues(values),
+	})
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(b.key).WithArrayOfValues(values),
+	})
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(b.key).FieldPath(),
+	})
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(b.key).FieldPath(),
+	})
+}
+
+func (b *mapFilterCndBuilderSpecActivationInvitationExtras) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().Activation().InvitationExtras().WithKey(b.key).WithValue(value),
 	})
 }
 

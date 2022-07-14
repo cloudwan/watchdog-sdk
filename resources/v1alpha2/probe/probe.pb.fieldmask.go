@@ -1302,6 +1302,7 @@ func FullProbe_Spec_ActivationSpec_FieldMask() *Probe_Spec_ActivationSpec_FieldM
 	res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorType})
 	res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorToken})
 	res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate})
+	res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras})
 	res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorReusableToken})
 	return res
 }
@@ -1346,7 +1347,7 @@ func (fieldMask *Probe_Spec_ActivationSpec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpecActivationSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1376,7 +1377,7 @@ func (fieldMask *Probe_Spec_ActivationSpec_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_ActivationSpec_FieldMask) Subtract(other *Probe_Spec_ActivationSpec_FieldMask) *Probe_Spec_ActivationSpec_FieldMask {
 	result := &Probe_Spec_ActivationSpec_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 5)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1531,6 +1532,8 @@ func (fieldMask *Probe_Spec_ActivationSpec_FieldMask) Project(source *Probe_Spec
 		return source
 	}
 	result := &Probe_Spec_ActivationSpec{}
+	var invitationExtrasMapKeys []string
+	wholeInvitationExtrasAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -1542,10 +1545,26 @@ func (fieldMask *Probe_Spec_ActivationSpec_FieldMask) Project(source *Probe_Spec
 				result.Token = source.Token
 			case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 				result.SendInvitationOnCreate = source.SendInvitationOnCreate
+			case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+				result.InvitationExtras = source.InvitationExtras
+				wholeInvitationExtrasAccepted = true
 			case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 				result.ReusableToken = source.ReusableToken
 			}
+		case *ProbeSpecActivationSpec_FieldPathMap:
+			switch tp.selector {
+			case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+				invitationExtrasMapKeys = append(invitationExtrasMapKeys, tp.key)
+			}
 		}
+	}
+	if wholeInvitationExtrasAccepted == false && len(invitationExtrasMapKeys) > 0 && source.GetInvitationExtras() != nil {
+		copiedMap := map[string]string{}
+		sourceMap := source.GetInvitationExtras()
+		for _, key := range invitationExtrasMapKeys {
+			copiedMap[key] = sourceMap[key]
+		}
+		result.InvitationExtras = copiedMap
 	}
 	return result
 }

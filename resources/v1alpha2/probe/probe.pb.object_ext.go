@@ -730,6 +730,18 @@ func (o *Probe_Spec_ActivationSpec) MakeDiffFieldMask(other *Probe_Spec_Activati
 	if o.GetSendInvitationOnCreate() != other.GetSendInvitationOnCreate() {
 		res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate})
 	}
+
+	if len(o.GetInvitationExtras()) == len(other.GetInvitationExtras()) {
+		for i, lValue := range o.GetInvitationExtras() {
+			rValue := other.GetInvitationExtras()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras})
+	}
 	if o.GetReusableToken() != other.GetReusableToken() {
 		res.Paths = append(res.Paths, &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorReusableToken})
 	}
@@ -748,6 +760,10 @@ func (o *Probe_Spec_ActivationSpec) Clone() *Probe_Spec_ActivationSpec {
 	result.Type = o.Type
 	result.Token = o.Token
 	result.SendInvitationOnCreate = o.SendInvitationOnCreate
+	result.InvitationExtras = map[string]string{}
+	for key, sourceValue := range o.InvitationExtras {
+		result.InvitationExtras[key] = sourceValue
+	}
 	result.ReusableToken = o.ReusableToken
 	return result
 }
@@ -760,6 +776,14 @@ func (o *Probe_Spec_ActivationSpec) Merge(source *Probe_Spec_ActivationSpec) {
 	o.Type = source.GetType()
 	o.Token = source.GetToken()
 	o.SendInvitationOnCreate = source.GetSendInvitationOnCreate()
+	if source.GetInvitationExtras() != nil {
+		if o.InvitationExtras == nil {
+			o.InvitationExtras = make(map[string]string, len(source.GetInvitationExtras()))
+		}
+		for key, sourceValue := range source.GetInvitationExtras() {
+			o.InvitationExtras[key] = sourceValue
+		}
+	}
 	o.ReusableToken = source.GetReusableToken()
 }
 

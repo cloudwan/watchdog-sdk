@@ -3804,7 +3804,8 @@ const (
 	ProbeSpecActivationSpec_FieldPathSelectorType                   ProbeSpecActivationSpec_FieldPathSelector = 0
 	ProbeSpecActivationSpec_FieldPathSelectorToken                  ProbeSpecActivationSpec_FieldPathSelector = 1
 	ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate ProbeSpecActivationSpec_FieldPathSelector = 2
-	ProbeSpecActivationSpec_FieldPathSelectorReusableToken          ProbeSpecActivationSpec_FieldPathSelector = 3
+	ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras       ProbeSpecActivationSpec_FieldPathSelector = 3
+	ProbeSpecActivationSpec_FieldPathSelectorReusableToken          ProbeSpecActivationSpec_FieldPathSelector = 4
 )
 
 func (s ProbeSpecActivationSpec_FieldPathSelector) String() string {
@@ -3815,6 +3816,8 @@ func (s ProbeSpecActivationSpec_FieldPathSelector) String() string {
 		return "token"
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		return "send_invitation_on_create"
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return "invitation_extras"
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		return "reusable_token"
 	default:
@@ -3834,8 +3837,18 @@ func BuildProbeSpecActivationSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeS
 			return &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorToken}, nil
 		case "send_invitation_on_create", "sendInvitationOnCreate", "send-invitation-on-create":
 			return &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate}, nil
+		case "invitation_extras", "invitationExtras", "invitation-extras":
+			return &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras}, nil
 		case "reusable_token", "reusableToken", "reusable-token":
 			return &ProbeSpecActivationSpec_FieldTerminalPath{selector: ProbeSpecActivationSpec_FieldPathSelectorReusableToken}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "invitation_extras", "invitationExtras", "invitation-extras":
+			if len(fp) > 2 {
+				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object Probe_Spec_ActivationSpec)", fp)
+			}
+			return &ProbeSpecActivationSpec_FieldPathMap{selector: ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras, key: fp[1]}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_ActivationSpec", fp)
@@ -3887,6 +3900,8 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) Get(source *Probe_Spec_Acti
 			values = append(values, source.Token)
 		case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 			values = append(values, source.SendInvitationOnCreate)
+		case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+			values = append(values, source.InvitationExtras)
 		case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 			values = append(values, source.ReusableToken)
 		default:
@@ -3909,6 +3924,9 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) GetSingle(source *Probe_Spe
 		return source.GetToken(), source != nil
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		return source.GetSendInvitationOnCreate(), source != nil
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		res := source.GetInvitationExtras()
+		return res, res != nil
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		return source.GetReusableToken(), source != nil
 	default:
@@ -3929,6 +3947,8 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		return false
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return (map[string]string)(nil)
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		return false
 	default:
@@ -3945,6 +3965,8 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) ClearValue(item *Probe_Spec
 			item.Token = ""
 		case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 			item.SendInvitationOnCreate = false
+		case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+			item.InvitationExtras = nil
 		case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 			item.ReusableToken = false
 		default:
@@ -3962,6 +3984,7 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecActivationSpec_FieldPathSelectorType ||
 		fp.selector == ProbeSpecActivationSpec_FieldPathSelectorToken ||
 		fp.selector == ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate ||
+		fp.selector == ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras ||
 		fp.selector == ProbeSpecActivationSpec_FieldPathSelectorReusableToken
 }
 
@@ -3973,6 +3996,8 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) WithIValue(value interface{
 		return &ProbeSpecActivationSpec_FieldTerminalPathValue{ProbeSpecActivationSpec_FieldTerminalPath: *fp, value: value.(string)}
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		return &ProbeSpecActivationSpec_FieldTerminalPathValue{ProbeSpecActivationSpec_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return &ProbeSpecActivationSpec_FieldTerminalPathValue{ProbeSpecActivationSpec_FieldTerminalPath: *fp, value: value.(map[string]string)}
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		return &ProbeSpecActivationSpec_FieldTerminalPathValue{ProbeSpecActivationSpec_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
@@ -3993,6 +4018,8 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) WithIArrayOfValues(values i
 		return &ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues{ProbeSpecActivationSpec_FieldTerminalPath: *fp, values: values.([]string)}
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		return &ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues{ProbeSpecActivationSpec_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return &ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues{ProbeSpecActivationSpec_FieldTerminalPath: *fp, values: values.([]map[string]string)}
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		return &ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues{ProbeSpecActivationSpec_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
@@ -4014,6 +4041,134 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) WithIArrayItemValue(value i
 
 func (fp *ProbeSpecActivationSpec_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
 	return fp.WithIArrayItemValue(value)
+}
+
+// FieldPath for map type with additional Key information
+type ProbeSpecActivationSpec_FieldPathMap struct {
+	key      string
+	selector ProbeSpecActivationSpec_FieldPathSelector
+}
+
+var _ ProbeSpecActivationSpec_FieldPath = (*ProbeSpecActivationSpec_FieldPathMap)(nil)
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) Selector() ProbeSpecActivationSpec_FieldPathSelector {
+	return fpm.selector
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) Key() string {
+	return fpm.key
+}
+
+// String returns path representation in proto convention
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) String() string {
+	return fpm.selector.String() + "." + fpm.key
+}
+
+// JSONString returns path representation is JSON convention. Note that map keys are not transformed
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) JSONString() string {
+	return strcase.ToLowerCamel(fpm.selector.String()) + "." + fpm.key
+}
+
+// Get returns all values pointed by selected field map key from source Probe_Spec_ActivationSpec
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) Get(source *Probe_Spec_ActivationSpec) (values []interface{}) {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		if value, ok := source.GetInvitationExtras()[fpm.key]; ok {
+			values = append(values, value)
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+	return
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) GetRaw(source proto.Message) []interface{} {
+	return fpm.Get(source.(*Probe_Spec_ActivationSpec))
+}
+
+// GetSingle returns value by selected field map key from source Probe_Spec_ActivationSpec
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) GetSingle(source *Probe_Spec_ActivationSpec) (interface{}, bool) {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		res, ok := source.GetInvitationExtras()[fpm.key]
+		return res, ok
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpm.GetSingle(source.(*Probe_Spec_ActivationSpec))
+}
+
+// GetDefault returns a default value of the field type
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) GetDefault() interface{} {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		var v string
+		return v
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) ClearValue(item *Probe_Spec_ActivationSpec) {
+	if item != nil {
+		switch fpm.selector {
+		case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+			delete(item.InvitationExtras, fpm.key)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+		}
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) ClearValueRaw(item proto.Message) {
+	fpm.ClearValue(item.(*Probe_Spec_ActivationSpec))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) IsLeaf() bool {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return true
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithIValue(value interface{}) ProbeSpecActivationSpec_FieldPathValue {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return &ProbeSpecActivationSpec_FieldPathMapValue{ProbeSpecActivationSpec_FieldPathMap: *fpm, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fpm.WithIValue(value)
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithIArrayOfValues(values interface{}) ProbeSpecActivationSpec_FieldPathArrayOfValues {
+	switch fpm.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return &ProbeSpecActivationSpec_FieldPathMapArrayOfValues{ProbeSpecActivationSpec_FieldPathMap: *fpm, values: values.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
+	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fpm.WithIArrayOfValues(values)
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithIArrayItemValue(value interface{}) ProbeSpecActivationSpec_FieldPathArrayItemValue {
+	panic("Cannot create array item value from map fieldpath")
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fpm.WithIArrayItemValue(value)
 }
 
 // ProbeSpecActivationSpec_FieldPathValue allows storing values for ActivationSpec fields according to their type
@@ -4067,6 +4222,10 @@ func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) AsSendInvitationOnCre
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
+func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) AsInvitationExtrasValue() (map[string]string, bool) {
+	res, ok := fpv.value.(map[string]string)
+	return res, ok
+}
 func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) AsReusableTokenValue() (bool, bool) {
 	res, ok := fpv.value.(bool)
 	return res, ok
@@ -4084,6 +4243,8 @@ func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) SetTo(target **Probe_
 		(*target).Token = fpv.value.(string)
 	case ProbeSpecActivationSpec_FieldPathSelectorSendInvitationOnCreate:
 		(*target).SendInvitationOnCreate = fpv.value.(bool)
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		(*target).InvitationExtras = fpv.value.(map[string]string)
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		(*target).ReusableToken = fpv.value.(bool)
 	default:
@@ -4129,6 +4290,8 @@ func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) CompareWith(source *P
 		} else {
 			return 1, true
 		}
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		return 0, false
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		leftValue := fpv.value.(bool)
 		rightValue := source.GetReusableToken()
@@ -4146,6 +4309,65 @@ func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) CompareWith(source *P
 
 func (fpv *ProbeSpecActivationSpec_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
 	return fpv.CompareWith(source.(*Probe_Spec_ActivationSpec))
+}
+
+type ProbeSpecActivationSpec_FieldPathMapValue struct {
+	ProbeSpecActivationSpec_FieldPathMap
+	value interface{}
+}
+
+var _ ProbeSpecActivationSpec_FieldPathValue = (*ProbeSpecActivationSpec_FieldPathMapValue)(nil)
+
+// GetValue returns value stored under selected field in ActivationSpec as interface{}
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) GetRawValue() interface{} {
+	return fpmv.value
+}
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) AsInvitationExtrasElementValue() (string, bool) {
+	res, ok := fpmv.value.(string)
+	return res, ok
+}
+
+// SetTo stores value for selected field in ActivationSpec
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) SetTo(target **Probe_Spec_ActivationSpec) {
+	if *target == nil {
+		*target = new(Probe_Spec_ActivationSpec)
+	}
+	switch fpmv.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		if (*target).InvitationExtras == nil {
+			(*target).InvitationExtras = make(map[string]string)
+		}
+		(*target).InvitationExtras[fpmv.key] = fpmv.value.(string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpmv.selector))
+	}
+}
+
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_ActivationSpec)
+	fpmv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecActivationSpec_FieldPathMapValue' with the value under path in 'Probe_Spec_ActivationSpec'.
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) CompareWith(source *Probe_Spec_ActivationSpec) (int, bool) {
+	switch fpmv.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		leftValue := fpmv.value.(string)
+		rightValue := source.GetInvitationExtras()[fpmv.key]
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpmv.selector))
+	}
+}
+
+func (fpmv *ProbeSpecActivationSpec_FieldPathMapValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpmv.CompareWith(source.(*Probe_Spec_ActivationSpec))
 }
 
 // ProbeSpecActivationSpec_FieldPathArrayItemValue allows storing single item in Path-specific values for ActivationSpec according to their type
@@ -4255,6 +4477,10 @@ func (fpaov *ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues) GetRawValue
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		for _, v := range fpaov.values.([]map[string]string) {
+			values = append(values, v)
+		}
 	case ProbeSpecActivationSpec_FieldPathSelectorReusableToken:
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
@@ -4274,8 +4500,33 @@ func (fpaov *ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues) AsSendInvit
 	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
+func (fpaov *ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues) AsInvitationExtrasArrayOfValues() ([]map[string]string, bool) {
+	res, ok := fpaov.values.([]map[string]string)
+	return res, ok
+}
 func (fpaov *ProbeSpecActivationSpec_FieldTerminalPathArrayOfValues) AsReusableTokenArrayOfValues() ([]bool, bool) {
 	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+
+type ProbeSpecActivationSpec_FieldPathMapArrayOfValues struct {
+	ProbeSpecActivationSpec_FieldPathMap
+	values interface{}
+}
+
+var _ ProbeSpecActivationSpec_FieldPathArrayOfValues = (*ProbeSpecActivationSpec_FieldPathMapArrayOfValues)(nil)
+
+func (fpmaov *ProbeSpecActivationSpec_FieldPathMapArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpmaov.selector {
+	case ProbeSpecActivationSpec_FieldPathSelectorInvitationExtras:
+		for _, v := range fpmaov.values.([]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpmaov *ProbeSpecActivationSpec_FieldPathMapArrayOfValues) AsInvitationExtrasArrayOfElementValues() ([]string, bool) {
+	res, ok := fpmaov.values.([]string)
 	return res, ok
 }
 

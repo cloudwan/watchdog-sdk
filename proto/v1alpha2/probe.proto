@@ -89,6 +89,9 @@ message Probe {
       // send activation email upon creation
       bool send_invitation_on_create = 3;
 
+      // Invitation template extra fields
+      map<string, string> invitation_extras = 5;
+
       // reusable token - determines if same token may be reused to reactivate
       // probe even after activation was successful without admin or asset
       // manager intervention. Convenient, but less secure configuration option.
