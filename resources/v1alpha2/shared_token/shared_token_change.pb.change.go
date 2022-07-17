@@ -94,7 +94,7 @@ func (c *SharedTokenChange) GetSharedToken() *SharedToken {
 	return nil
 }
 
-func (c *SharedTokenChange) GetResource() gotenresource.Resource {
+func (c *SharedTokenChange) GetRawResource() gotenresource.Resource {
 	return c.GetSharedToken()
 }
 

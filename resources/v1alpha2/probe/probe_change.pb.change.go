@@ -94,7 +94,7 @@ func (c *ProbeChange) GetProbe() *Probe {
 	return nil
 }
 
-func (c *ProbeChange) GetResource() gotenresource.Resource {
+func (c *ProbeChange) GetRawResource() gotenresource.Resource {
 	return c.GetProbe()
 }
 

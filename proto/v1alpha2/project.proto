@@ -3,7 +3,8 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
-import "edgelq-sdk/meta/multi_region/proto/policy.proto";
+import "edgelq-sdk/common/types/multi_region_policy.proto";
+import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "google/api/resource.proto";
 
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project;project";
@@ -25,7 +26,7 @@ message Project {
   ntt.types.Meta metadata = 5;
 
   // Multi region policy
-  ntt.meta.multi_region.Policy multi_region_policy = 6;
+  ntt.types.MultiRegionPolicy multi_region_policy = 6;
 
   // Behaviour mode for probeStatus.
   // Note that this configuration affects all Proe resources in the project,

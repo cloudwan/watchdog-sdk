@@ -8,6 +8,7 @@ package probing_session_client
 import (
 	ntt_memo "github.com/cloudwan/edgelq-sdk/common/types/memo"
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	devices_device "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/device"
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
@@ -19,8 +20,6 @@ import (
 	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
 	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -35,7 +34,6 @@ import (
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -46,6 +44,7 @@ import (
 var (
 	_ = &ntt_memo.Memo{}
 	_ = &ntt_meta.Meta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
@@ -57,13 +56,10 @@ var (
 	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
 	_ = &iam_user.User{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -744,11 +740,11 @@ func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing)
 	}
 }
 
-func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetProbingSessionsResponse_FieldSubPathValue {
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetProbingSessionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingSessionsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3212,11 +3208,11 @@ func (ListProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) Fie
 	}
 }
 
-func (s ListProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListProbingSessionsResponse_FieldSubPathValue {
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListProbingSessionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingSessionsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListProbingSessionsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListProbingSessionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -6056,11 +6052,11 @@ func (CreateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) Fiel
 	}
 }
 
-func (s CreateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateProbingSessionRequest_FieldSubPathValue {
+func (s CreateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateProbingSessionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingSessionRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateProbingSessionRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateProbingSessionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -8378,11 +8374,11 @@ func (UpdateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) Fiel
 	}
 }
 
-func (s UpdateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathValue {
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -10724,11 +10720,11 @@ func (UpdateProbingSessionRequestPathSelectorCasConditionalStateMetadataSyncing)
 	}
 }
 
-func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathValue {
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -13060,11 +13056,11 @@ func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateMetadataSyncing
 	}
 }
 
-func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingSessionRequestCAS_FieldSubPathValue {
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingSessionRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -15570,11 +15566,11 @@ func (SearchProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) F
 	}
 }
 
-func (s SearchProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *SearchProbingSessionsResponse_FieldSubPathValue {
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *SearchProbingSessionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbingSessionsResponse_FieldSubPathValue)
 }
 
-func (s SearchProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 

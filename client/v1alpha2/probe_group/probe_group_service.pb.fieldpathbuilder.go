@@ -7,8 +7,7 @@ package probe_group_client
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
@@ -21,8 +20,7 @@ import (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
 	_ = &timestamp.Timestamp{}
@@ -770,11 +768,11 @@ func (BatchGetProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) FieldPa
 	}
 }
 
-func (s BatchGetProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetProbeGroupsResponse_FieldSubPathValue {
+func (s BatchGetProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetProbeGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbeGroupsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetProbeGroupsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetProbeGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbeGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1590,11 +1588,11 @@ func (ListProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) FieldPath()
 	}
 }
 
-func (s ListProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListProbeGroupsResponse_FieldSubPathValue {
+func (s ListProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListProbeGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbeGroupsResponse_FieldSubPathValue)
 }
 
-func (s ListProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListProbeGroupsResponse_FieldSubPathArrayOfValues {
+func (s ListProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListProbeGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbeGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2786,11 +2784,11 @@ func (CreateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) FieldPath() 
 	}
 }
 
-func (s CreateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateProbeGroupRequest_FieldSubPathValue {
+func (s CreateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateProbeGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbeGroupRequest_FieldSubPathValue)
 }
 
-func (s CreateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateProbeGroupRequest_FieldSubPathArrayOfValues {
+func (s CreateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateProbeGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3460,11 +3458,11 @@ func (UpdateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) FieldPath() 
 	}
 }
 
-func (s UpdateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathValue {
+func (s UpdateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeGroupRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbeGroupRequestPathSelectorProbeGroupMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4158,11 +4156,11 @@ func (UpdateProbeGroupRequestPathSelectorCasConditionalStateMetadataSyncing) Fie
 	}
 }
 
-func (s UpdateProbeGroupRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathValue {
+func (s UpdateProbeGroupRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeGroupRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbeGroupRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbeGroupRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbeGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4846,11 +4844,11 @@ func (UpdateProbeGroupRequest_CASPathSelectorConditionalStateMetadataSyncing) Fi
 	}
 }
 
-func (s UpdateProbeGroupRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbeGroupRequestCAS_FieldSubPathValue {
+func (s UpdateProbeGroupRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbeGroupRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbeGroupRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbeGroupRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbeGroupRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbeGroupRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbeGroupRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -5708,11 +5706,11 @@ func (SearchProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) FieldPath
 	}
 }
 
-func (s SearchProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *SearchProbeGroupsResponse_FieldSubPathValue {
+func (s SearchProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *SearchProbeGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbeGroupsResponse_FieldSubPathValue)
 }
 
-func (s SearchProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *SearchProbeGroupsResponse_FieldSubPathArrayOfValues {
+func (s SearchProbeGroupsResponsePathSelectorProbeGroupsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *SearchProbeGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbeGroupsResponse_FieldSubPathArrayOfValues)
 }
 

@@ -94,7 +94,7 @@ func (c *InternetQualityRatingChange) GetInternetQualityRating() *InternetQualit
 	return nil
 }
 
-func (c *InternetQualityRatingChange) GetResource() gotenresource.Resource {
+func (c *InternetQualityRatingChange) GetRawResource() gotenresource.Resource {
 	return c.GetInternetQualityRating()
 }
 

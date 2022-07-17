@@ -94,7 +94,7 @@ func (c *QualityProfileChange) GetQualityProfile() *QualityProfile {
 	return nil
 }
 
-func (c *QualityProfileChange) GetResource() gotenresource.Resource {
+func (c *QualityProfileChange) GetRawResource() gotenresource.Resource {
 	return c.GetQualityProfile()
 }
 

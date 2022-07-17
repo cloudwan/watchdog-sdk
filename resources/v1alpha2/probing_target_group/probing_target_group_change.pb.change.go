@@ -94,7 +94,7 @@ func (c *ProbingTargetGroupChange) GetProbingTargetGroup() *ProbingTargetGroup {
 	return nil
 }
 
-func (c *ProbingTargetGroupChange) GetResource() gotenresource.Resource {
+func (c *ProbingTargetGroupChange) GetRawResource() gotenresource.Resource {
 	return c.GetProbingTargetGroup()
 }
 

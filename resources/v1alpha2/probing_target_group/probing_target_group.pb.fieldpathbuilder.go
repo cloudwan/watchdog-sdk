@@ -7,8 +7,7 @@ package probing_target_group
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 )
@@ -16,8 +15,7 @@ import (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &timestamp.Timestamp{}
 	_ = &project.Project{}
 )
@@ -575,11 +573,11 @@ func (ProbingTargetGroupPathSelectorMetadataSyncing) FieldPath() *ProbingTargetG
 	}
 }
 
-func (s ProbingTargetGroupPathSelectorMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ProbingTargetGroup_FieldSubPathValue {
+func (s ProbingTargetGroupPathSelectorMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ProbingTargetGroup_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingTargetGroup_FieldSubPathValue)
 }
 
-func (s ProbingTargetGroupPathSelectorMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ProbingTargetGroup_FieldSubPathArrayOfValues {
+func (s ProbingTargetGroupPathSelectorMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ProbingTargetGroup_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTargetGroup_FieldSubPathArrayOfValues)
 }
 

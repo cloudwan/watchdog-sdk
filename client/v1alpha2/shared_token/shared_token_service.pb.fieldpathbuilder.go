@@ -9,6 +9,7 @@ import (
 	api "github.com/cloudwan/edgelq-sdk/common/api"
 	ntt_memo "github.com/cloudwan/edgelq-sdk/common/types/memo"
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	devices_device "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/device"
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
@@ -20,8 +21,6 @@ import (
 	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
 	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -33,7 +32,6 @@ import (
 	shared_token "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/shared_token"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -45,6 +43,7 @@ var (
 	_ = &api.Account{}
 	_ = &ntt_memo.Memo{}
 	_ = &ntt_meta.Meta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
@@ -56,13 +55,10 @@ var (
 	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
 	_ = &iam_user.User{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -1903,11 +1899,11 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) Field
 	}
 }
 
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetSharedTokensResponse_FieldSubPathValue {
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetSharedTokensResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
 }
 
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3829,11 +3825,11 @@ func (ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) FieldPath
 	}
 }
 
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListSharedTokensResponse_FieldSubPathValue {
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListSharedTokensResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
 }
 
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -6131,11 +6127,11 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) FieldPath(
 	}
 }
 
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateSharedTokenRequest_FieldSubPathValue {
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7911,11 +7907,11 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) FieldPath(
 	}
 }
 
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathValue {
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9715,11 +9711,11 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing) Fi
 	}
 }
 
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathValue {
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -11509,11 +11505,11 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing) F
 	}
 }
 
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 

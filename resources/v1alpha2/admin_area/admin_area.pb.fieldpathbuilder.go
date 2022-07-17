@@ -7,7 +7,6 @@ package admin_area
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
@@ -15,7 +14,6 @@ import (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &timestamp.Timestamp{}
 	_ = &latlng.LatLng{}
 )
@@ -1216,11 +1214,11 @@ func (AdminAreaPathSelectorMetadataSyncing) FieldPath() *AdminArea_FieldSubPath 
 	}
 }
 
-func (s AdminAreaPathSelectorMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *AdminArea_FieldSubPathValue {
+func (s AdminAreaPathSelectorMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *AdminArea_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*AdminArea_FieldSubPathValue)
 }
 
-func (s AdminAreaPathSelectorMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *AdminArea_FieldSubPathArrayOfValues {
+func (s AdminAreaPathSelectorMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *AdminArea_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*AdminArea_FieldSubPathArrayOfValues)
 }
 

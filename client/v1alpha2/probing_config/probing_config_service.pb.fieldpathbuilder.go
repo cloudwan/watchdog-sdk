@@ -8,6 +8,7 @@ package probing_config_client
 import (
 	ntt_memo "github.com/cloudwan/edgelq-sdk/common/types/memo"
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	devices_device "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/device"
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
@@ -19,8 +20,6 @@ import (
 	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
 	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -34,7 +33,6 @@ import (
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -45,6 +43,7 @@ import (
 var (
 	_ = &ntt_memo.Memo{}
 	_ = &ntt_meta.Meta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
@@ -56,13 +55,10 @@ var (
 	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
 	_ = &iam_user.User{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -738,11 +734,11 @@ func (BatchGetProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) F
 	}
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetProbingConfigsResponse_FieldSubPathValue {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5628,11 +5624,11 @@ func (ListProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) Field
 	}
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListProbingConfigsResponse_FieldSubPathValue {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListProbingConfigsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingConfigsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingConfigsResponsePathSelectorProbingConfigsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListProbingConfigsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingConfigsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -10894,11 +10890,11 @@ func (CreateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) FieldP
 	}
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateProbingConfigRequest_FieldSubPathValue {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
@@ -15638,11 +15634,11 @@ func (UpdateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) FieldP
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorProbingConfigMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
@@ -20406,11 +20402,11 @@ func (UpdateProbingConfigRequestPathSelectorCasConditionalStateMetadataSyncing) 
 	}
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathValue {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
 }
 
@@ -25164,11 +25160,11 @@ func (UpdateProbingConfigRequest_CASPathSelectorConditionalStateMetadataSyncing)
 	}
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingConfigRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingConfigRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequestCAS_FieldSubPathArrayOfValues)
 }
 

@@ -94,7 +94,7 @@ func (c *ProbingDistributionChange) GetProbingDistribution() *ProbingDistributio
 	return nil
 }
 
-func (c *ProbingDistributionChange) GetResource() gotenresource.Resource {
+func (c *ProbingDistributionChange) GetRawResource() gotenresource.Resource {
 	return c.GetProbingDistribution()
 }
 

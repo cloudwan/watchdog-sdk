@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package ntt.watchdog.v1alpha2;
 
+import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 
 option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe_hardware;probe_hardware_client";

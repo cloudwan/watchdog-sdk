@@ -92,7 +92,7 @@ func (c *AdminAreaChange) GetAdminArea() *AdminArea {
 	return nil
 }
 
-func (c *AdminAreaChange) GetResource() gotenresource.Resource {
+func (c *AdminAreaChange) GetRawResource() gotenresource.Resource {
 	return c.GetAdminArea()
 }
 

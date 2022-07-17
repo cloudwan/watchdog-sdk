@@ -3,6 +3,7 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/api/credentials.proto";
+import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 import "watchdog-sdk/proto/v1alpha2/shared_token.proto";
 import "watchdog-sdk/proto/v1alpha2/shared_token_change.proto";

@@ -21,7 +21,7 @@ import (
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 )
 
 // ensure the imports are used
@@ -42,7 +42,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &policy.Policy{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 )
 
 type Project_FieldMask struct {
@@ -136,12 +136,12 @@ func (fieldMask *Project_FieldMask) Subtract(other *Project_FieldMask) *Project_
 	removedSelectors := make([]bool, 9)
 	otherSubMasks := map[Project_FieldPathSelector]gotenobject.FieldMask{
 		Project_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
-		Project_FieldPathSelectorMultiRegionPolicy: &policy.Policy_FieldMask{},
+		Project_FieldPathSelectorMultiRegionPolicy: &multi_region_policy.MultiRegionPolicy_FieldMask{},
 		Project_FieldPathSelectorPreferredLocale:   &Project_Locale_FieldMask{},
 	}
 	mySubMasks := map[Project_FieldPathSelector]gotenobject.FieldMask{
 		Project_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
-		Project_FieldPathSelectorMultiRegionPolicy: &policy.Policy_FieldMask{},
+		Project_FieldPathSelectorMultiRegionPolicy: &multi_region_policy.MultiRegionPolicy_FieldMask{},
 		Project_FieldPathSelectorPreferredLocale:   &Project_Locale_FieldMask{},
 	}
 
@@ -161,7 +161,7 @@ func (fieldMask *Project_FieldMask) Subtract(other *Project_FieldMask) *Project_
 					case Project_FieldPathSelectorMetadata:
 						mySubMasks[Project_FieldPathSelectorMetadata] = ntt_meta.FullMeta_FieldMask()
 					case Project_FieldPathSelectorMultiRegionPolicy:
-						mySubMasks[Project_FieldPathSelectorMultiRegionPolicy] = policy.FullPolicy_FieldMask()
+						mySubMasks[Project_FieldPathSelectorMultiRegionPolicy] = multi_region_policy.FullMultiRegionPolicy_FieldMask()
 					case Project_FieldPathSelectorPreferredLocale:
 						mySubMasks[Project_FieldPathSelectorPreferredLocale] = FullProject_Locale_FieldMask()
 					}
@@ -336,7 +336,7 @@ func (fieldMask *Project_FieldMask) Project(source *Project) *Project {
 	result := &Project{}
 	metadataMask := &ntt_meta.Meta_FieldMask{}
 	wholeMetadataAccepted := false
-	multiRegionPolicyMask := &policy.Policy_FieldMask{}
+	multiRegionPolicyMask := &multi_region_policy.MultiRegionPolicy_FieldMask{}
 	wholeMultiRegionPolicyAccepted := false
 	preferredLocaleMask := &Project_Locale_FieldMask{}
 	wholePreferredLocaleAccepted := false
@@ -372,7 +372,7 @@ func (fieldMask *Project_FieldMask) Project(source *Project) *Project {
 			case Project_FieldPathSelectorMetadata:
 				metadataMask.AppendPath(tp.subPath.(ntt_meta.Meta_FieldPath))
 			case Project_FieldPathSelectorMultiRegionPolicy:
-				multiRegionPolicyMask.AppendPath(tp.subPath.(policy.Policy_FieldPath))
+				multiRegionPolicyMask.AppendPath(tp.subPath.(multi_region_policy.MultiRegionPolicy_FieldPath))
 			case Project_FieldPathSelectorPreferredLocale:
 				preferredLocaleMask.AppendPath(tp.subPath.(ProjectLocale_FieldPath))
 			}

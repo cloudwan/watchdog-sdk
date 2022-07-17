@@ -7,7 +7,6 @@ package admin_area_client
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
@@ -20,7 +19,6 @@ import (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
 	_ = &timestamp.Timestamp{}
@@ -1085,11 +1083,11 @@ func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) FieldPath
 	}
 }
 
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetAdminAreasResponse_FieldSubPathValue {
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetAdminAreasResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
 }
 
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2245,11 +2243,11 @@ func (ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) FieldPath() *
 	}
 }
 
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListAdminAreasResponse_FieldSubPathValue {
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListAdminAreasResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
 }
 
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3764,11 +3762,11 @@ func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) FieldPath() *C
 	}
 }
 
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateAdminAreaRequest_FieldSubPathValue {
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4795,11 +4793,11 @@ func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) FieldPath() *U
 	}
 }
 
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathValue {
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5850,11 +5848,11 @@ func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing) Fiel
 	}
 }
 
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathValue {
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6895,11 +6893,11 @@ func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing) Fie
 	}
 }
 
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 

@@ -94,7 +94,7 @@ func (c *ProbingConfigChange) GetProbingConfig() *ProbingConfig {
 	return nil
 }
 
-func (c *ProbingConfigChange) GetResource() gotenresource.Resource {
+func (c *ProbingConfigChange) GetRawResource() gotenresource.Resource {
 	return c.GetProbingConfig()
 }
 

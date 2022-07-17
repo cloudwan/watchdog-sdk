@@ -8,6 +8,7 @@ package probing_distribution_client
 import (
 	ntt_memo "github.com/cloudwan/edgelq-sdk/common/types/memo"
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	devices_device "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/device"
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
@@ -19,8 +20,6 @@ import (
 	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
 	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -34,7 +33,6 @@ import (
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -45,6 +43,7 @@ import (
 var (
 	_ = &ntt_memo.Memo{}
 	_ = &ntt_meta.Meta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
@@ -56,13 +55,10 @@ var (
 	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
 	_ = &iam_user.User{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -738,11 +734,11 @@ func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	}
 }
 
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2889,11 +2885,11 @@ func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSy
 	}
 }
 
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListProbingDistributionsResponse_FieldSubPathValue {
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5416,11 +5412,11 @@ func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyn
 	}
 }
 
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateProbingDistributionRequest_FieldSubPathValue {
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7421,11 +7417,11 @@ func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyn
 	}
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathValue {
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9450,11 +9446,11 @@ func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyn
 	}
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathValue {
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -11469,11 +11465,11 @@ func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSy
 	}
 }
 
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -13662,11 +13658,11 @@ func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	}
 }
 
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *SearchProbingDistributionsResponse_FieldSubPathValue {
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *SearchProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 

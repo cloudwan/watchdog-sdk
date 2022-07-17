@@ -94,7 +94,7 @@ func (c *ProbingSessionChange) GetProbingSession() *ProbingSession {
 	return nil
 }
 
-func (c *ProbingSessionChange) GetResource() gotenresource.Resource {
+func (c *ProbingSessionChange) GetRawResource() gotenresource.Resource {
 	return c.GetProbingSession()
 }
 

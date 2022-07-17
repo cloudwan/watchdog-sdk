@@ -94,7 +94,7 @@ func (c *TagChange) GetTag() *Tag {
 	return nil
 }
 
-func (c *TagChange) GetResource() gotenresource.Resource {
+func (c *TagChange) GetRawResource() gotenresource.Resource {
 	return c.GetTag()
 }
 

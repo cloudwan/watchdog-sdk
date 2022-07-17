@@ -7,8 +7,7 @@ package quality_profile_client
 // proto imports
 import (
 	ntt_meta "github.com/cloudwan/edgelq-sdk/common/types/meta"
-	policy "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/policy"
-	syncing_meta "github.com/cloudwan/edgelq-sdk/meta/multi_region/proto/syncing_meta"
+	multi_region_policy "github.com/cloudwan/edgelq-sdk/common/types/multi_region_policy"
 	monitoring_common "github.com/cloudwan/edgelq-sdk/monitoring/common/v3"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -23,8 +22,7 @@ import (
 // make sure we're using proto imports
 var (
 	_ = &ntt_meta.Meta{}
-	_ = &policy.Policy{}
-	_ = &syncing_meta.SyncingMeta{}
+	_ = &multi_region_policy.MultiRegionPolicy{}
 	_ = &monitoring_common.LabelDescriptor{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
@@ -1090,11 +1088,11 @@ func (BatchGetQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing)
 	}
 }
 
-func (s BatchGetQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *BatchGetQualityProfilesResponse_FieldSubPathValue {
+func (s BatchGetQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *BatchGetQualityProfilesResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetQualityProfilesResponse_FieldSubPathValue)
 }
 
-func (s BatchGetQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *BatchGetQualityProfilesResponse_FieldSubPathArrayOfValues {
+func (s BatchGetQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *BatchGetQualityProfilesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetQualityProfilesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2226,11 +2224,11 @@ func (ListQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) Fie
 	}
 }
 
-func (s ListQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *ListQualityProfilesResponse_FieldSubPathValue {
+func (s ListQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *ListQualityProfilesResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListQualityProfilesResponse_FieldSubPathValue)
 }
 
-func (s ListQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *ListQualityProfilesResponse_FieldSubPathArrayOfValues {
+func (s ListQualityProfilesResponsePathSelectorQualityProfilesMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *ListQualityProfilesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3738,11 +3736,11 @@ func (CreateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) Fiel
 	}
 }
 
-func (s CreateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *CreateQualityProfileRequest_FieldSubPathValue {
+func (s CreateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *CreateQualityProfileRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateQualityProfileRequest_FieldSubPathValue)
 }
 
-func (s CreateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *CreateQualityProfileRequest_FieldSubPathArrayOfValues {
+func (s CreateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *CreateQualityProfileRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateQualityProfileRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4728,11 +4726,11 @@ func (UpdateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) Fiel
 	}
 }
 
-func (s UpdateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathValue {
+func (s UpdateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateQualityProfileRequest_FieldSubPathValue)
 }
 
-func (s UpdateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathArrayOfValues {
+func (s UpdateQualityProfileRequestPathSelectorQualityProfileMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateQualityProfileRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5742,11 +5740,11 @@ func (UpdateQualityProfileRequestPathSelectorCasConditionalStateMetadataSyncing)
 	}
 }
 
-func (s UpdateQualityProfileRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathValue {
+func (s UpdateQualityProfileRequestPathSelectorCasConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateQualityProfileRequest_FieldSubPathValue)
 }
 
-func (s UpdateQualityProfileRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathArrayOfValues {
+func (s UpdateQualityProfileRequestPathSelectorCasConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateQualityProfileRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateQualityProfileRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6746,11 +6744,11 @@ func (UpdateQualityProfileRequest_CASPathSelectorConditionalStateMetadataSyncing
 	}
 }
 
-func (s UpdateQualityProfileRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *syncing_meta.SyncingMeta) *UpdateQualityProfileRequestCAS_FieldSubPathValue {
+func (s UpdateQualityProfileRequest_CASPathSelectorConditionalStateMetadataSyncing) WithValue(value *ntt_meta.SyncingMeta) *UpdateQualityProfileRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateQualityProfileRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateQualityProfileRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*syncing_meta.SyncingMeta) *UpdateQualityProfileRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateQualityProfileRequest_CASPathSelectorConditionalStateMetadataSyncing) WithArrayOfValues(values []*ntt_meta.SyncingMeta) *UpdateQualityProfileRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateQualityProfileRequestCAS_FieldSubPathArrayOfValues)
 }
 
