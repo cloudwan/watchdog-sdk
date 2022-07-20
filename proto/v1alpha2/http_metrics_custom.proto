@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
+import "google/protobuf/timestamp.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_metrics;http_metrics_client";
+option java_multiple_files = false;
+option java_outer_classname = "HTTPMetricsCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method
+// [ReportHTTPMetrics][ntt.watchdog.v1alpha2.ReportHTTPMetrics]
+message ReportHTTPMetricsRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  repeated HTTPStat http_stats = 3;
+}
+
+// Request message for method
+// [GetHTTPMetrics][ntt.watchdog.v1alpha2.GetHTTPMetrics]
+message GetHTTPMetricsRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  // Atleast one of Probe Name or ProbingTarget Name is mandatory.
+  string probe = 1;
+
+  //  reference of ntt.watchdog.v1alpha2.ProbingTarget
+  // Atleast one of Probe Name or ProbingTarget Name is mandatory.
+  string target = 2;
+
+  // Interval for which the hop report is required
+  TimeInterval interval = 3;
+
+  // A positive number that is the maximum number of results to return. If
+  // `page_size` is empty or more than 100,000 results, the effective
+  // `page_size` is 100,000 results.
+  int32 page_size = 4;
+
+  // If this field is not empty then it must contain the `nextPageToken` value
+  // returned by a previous call to this method.  Using this field causes the
+  // method to return additional results from the previous method call.
+  string page_token = 5;
+}
+
+// Response message for method
+// [GetHTTPMetrics][ntt.watchdog.v1alpha2.GetHTTPMetrics]
+message GetHTTPMetricsResponse {
+  repeated HTTPMetricsPerAgentTargetPair http_metrics = 1;
+
+  // If there are more results than have been returned, then this field is set
+  // to a non-empty value.  To see the additional results,
+  // use that value as `pageToken` in the next call to this method.
+  string next_page_token = 2;
+
+  message HTTPMetricsPerAgentTargetPair {
+    string probe = 1;
+
+    string target = 2;
+
+    repeated HTTPStat http_stats = 3;
+  }
+}
+
+message HTTPStat {
+  double dns_lookup_time = 1;
+
+  double tcp_connect_time = 2;
+
+  double tls_handshake_time = 3;
+
+  double request_send_time = 4;
+
+  double time_to_first_byte = 5;
+
+  double content_download_time = 6;
+
+  double total_response_time = 7;
+
+  int32 response_code = 8;
+
+  string server_ip_address = 9;
+
+  IpVersion ip_version = 10;
+
+  FailedStage failed_stage = 11;
+
+  google.protobuf.Timestamp time = 12;
+
+  string target = 13;
+
+  enum FailedStage {
+    no_failure = 0;
+
+    dns_failed = 1;
+
+    tcp_connect_failed = 2;
+
+    tls_handshake_failed = 3;
+
+    request_send_failed = 4;
+
+    first_byte_response_failed =
+        5; // Request sent successfully, but no response packet from server
+
+    response_timeout = 6; // Did not get any payload response or response not
+
+    // completed within timeout
+    response_failed = 7; // Any other error
+
+    response_code_failed = 8; // Unexpected response code
+  }
+}

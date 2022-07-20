@@ -20,6 +20,8 @@ import "watchdog-sdk/proto/v1alpha2/hop_monitor_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/hop_monitor_service.proto";
 import "watchdog-sdk/proto/v1alpha2/hop_report_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/hop_report_service.proto";
+import "watchdog-sdk/proto/v1alpha2/http_metrics_custom.proto";
+import "watchdog-sdk/proto/v1alpha2/http_metrics_service.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating_service.proto";
 import "watchdog-sdk/proto/v1alpha2/ping_test_custom.proto";

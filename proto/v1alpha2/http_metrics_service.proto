@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "goten-sdk/runtime/api/view.proto";
+import "goten-sdk/runtime/api/watch_type.proto";
+import "watchdog-sdk/proto/v1alpha2/http_metrics_custom.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_metrics;http_metrics_client";
+option java_multiple_files = false;
+option java_outer_classname = "HTTPMetricsServiceProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// HTTPMetrics service API for Watchdog
+service HTTPMetricsService {
+  option (google.api.default_host) = "watchdog.edgelq.com";
+  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
+
+  // ReportHTTPMetrics
+  rpc ReportHTTPMetrics(ReportHTTPMetricsRequest)
+      returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post : "/v1alpha2/{name=projects/*/regions/*/probes/*}:reportHTTPMetrics"
+    };
+  }
+
+  // GetHTTPMetrics
+  rpc GetHTTPMetrics(GetHTTPMetricsRequest) returns (GetHTTPMetricsResponse) {
+    option (google.api.http) = {
+      get : "/v1alpha2:getHTTPMetrics"
+    };
+  }
+}
