@@ -231,7 +231,7 @@ func (d *GetHTTPMetricsDescriptor) IsServerStream() bool {
 }
 
 func (d *GetHTTPMetricsDescriptor) IsCollection() bool {
-	return true
+	return false
 }
 
 func (d *GetHTTPMetricsDescriptor) IsPlural() bool {

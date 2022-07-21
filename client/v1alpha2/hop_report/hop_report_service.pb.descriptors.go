@@ -231,7 +231,7 @@ func (d *GetHopReportsDescriptor) IsServerStream() bool {
 }
 
 func (d *GetHopReportsDescriptor) IsCollection() bool {
-	return true
+	return false
 }
 
 func (d *GetHopReportsDescriptor) IsPlural() bool {
