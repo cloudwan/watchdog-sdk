@@ -226,6 +226,10 @@ func (fp *ReportHTTPMetricsRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ReportHTTPMetricsRequest_FieldPathSelectorName
 }
 
+func (fp *ReportHTTPMetricsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ReportHTTPMetricsRequest_FieldTerminalPath) WithIValue(value interface{}) ReportHTTPMetricsRequest_FieldPathValue {
 	switch fp.selector {
 	case ReportHTTPMetricsRequest_FieldPathSelectorName:
@@ -354,6 +358,12 @@ func (fps *ReportHTTPMetricsRequest_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *ReportHTTPMetricsRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ReportHTTPMetricsRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ReportHTTPMetricsRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ReportHTTPMetricsRequest_FieldSubPath) WithIValue(value interface{}) ReportHTTPMetricsRequest_FieldPathValue {
@@ -584,7 +594,11 @@ func (fpaiv *ReportHTTPMetricsRequest_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *ReportHTTPMetricsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ReportHTTPMetricsRequest) bool {
 	slice := fpaiv.ReportHTTPMetricsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -899,6 +913,10 @@ func (fp *GetHTTPMetricsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == GetHTTPMetricsRequest_FieldPathSelectorPageToken
 }
 
+func (fp *GetHTTPMetricsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetHTTPMetricsRequest_FieldTerminalPath) WithIValue(value interface{}) GetHTTPMetricsRequest_FieldPathValue {
 	switch fp.selector {
 	case GetHTTPMetricsRequest_FieldPathSelectorProbe:
@@ -1033,6 +1051,12 @@ func (fps *GetHTTPMetricsRequest_FieldSubPath) ClearValueRaw(item proto.Message)
 // IsLeaf - whether field path is holds simple value
 func (fps *GetHTTPMetricsRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *GetHTTPMetricsRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&GetHTTPMetricsRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *GetHTTPMetricsRequest_FieldSubPath) WithIValue(value interface{}) GetHTTPMetricsRequest_FieldPathValue {
@@ -1316,7 +1340,11 @@ func (fpaiv *GetHTTPMetricsRequest_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *GetHTTPMetricsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetHTTPMetricsRequest) bool {
 	slice := fpaiv.GetHTTPMetricsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1607,6 +1635,10 @@ func (fp *GetHTTPMetricsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == GetHTTPMetricsResponse_FieldPathSelectorNextPageToken
 }
 
+func (fp *GetHTTPMetricsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetHTTPMetricsResponse_FieldTerminalPath) WithIValue(value interface{}) GetHTTPMetricsResponse_FieldPathValue {
 	switch fp.selector {
 	case GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics:
@@ -1735,6 +1767,12 @@ func (fps *GetHTTPMetricsResponse_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *GetHTTPMetricsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *GetHTTPMetricsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&GetHTTPMetricsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *GetHTTPMetricsResponse_FieldSubPath) WithIValue(value interface{}) GetHTTPMetricsResponse_FieldPathValue {
@@ -1956,7 +1994,11 @@ func (fpaiv *GetHTTPMetricsResponse_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *GetHTTPMetricsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *GetHTTPMetricsResponse) bool {
 	slice := fpaiv.GetHTTPMetricsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2243,6 +2285,10 @@ func (fp *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPath)
 		fp.selector == GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorTarget
 }
 
+func (fp *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPath) WithIValue(value interface{}) GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathValue {
 	switch fp.selector {
 	case GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorProbe:
@@ -2375,6 +2421,12 @@ func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) Cle
 // IsLeaf - whether field path is holds simple value
 func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) WithIValue(value interface{}) GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathValue {
@@ -2630,7 +2682,11 @@ func (fpaiv *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPa
 func (fpaiv *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPathArrayItemValue) ContainsValue(source *GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPair) bool {
 	slice := fpaiv.GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3052,6 +3108,10 @@ func (fp *HTTPStat_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HTTPStat_FieldPathSelectorFailedStage ||
 		fp.selector == HTTPStat_FieldPathSelectorTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTarget
+}
+
+func (fp *HTTPStat_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
 }
 
 func (fp *HTTPStat_FieldTerminalPath) WithIValue(value interface{}) HTTPStat_FieldPathValue {
@@ -3488,7 +3548,11 @@ func (fpaiv *HTTPStat_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto
 func (fpaiv *HTTPStat_FieldTerminalPathArrayItemValue) ContainsValue(source *HTTPStat) bool {
 	slice := fpaiv.HTTPStat_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

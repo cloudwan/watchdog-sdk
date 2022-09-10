@@ -306,6 +306,10 @@ func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime{}
 }
 
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) DeleteTime() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime{}
+}
+
 func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Uuid() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid {
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid{}
 }
@@ -342,6 +346,10 @@ func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncing{}
 }
 
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Lifecycle() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle{}
+}
+
 type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime struct{}
 
 func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
@@ -373,6 +381,23 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 }
 
 func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -549,20 +574,20 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
 }
 
-func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) ApiVersion() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion {
-	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion{}
-}
-
 func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Kind() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind {
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind{}
+}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Version() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion{}
 }
 
 func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Name() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName {
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName{}
 }
 
-func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Uid() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid {
-	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid{}
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Region() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion{}
 }
 
 func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Controller() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesController {
@@ -573,21 +598,8 @@ func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion struct{}
-
-func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
-	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
-		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithValue(value string) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
-}
-
-func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) RequiresOwnerReference() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind struct{}
@@ -604,6 +616,23 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 }
 
 func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithValue(value string) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -624,20 +653,20 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid struct{}
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion struct{}
 
-func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
 	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
 		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithValue(value string) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithValue(value string) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -672,6 +701,23 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 }
 
 func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -776,6 +822,65 @@ func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetada
 
 func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncingRegions) WithItemValue(value string) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) State() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState{}
+}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) BlockDeletion() BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion {
+	return BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion{}
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion struct{}
+
+func (BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) FieldPath() *BatchGetProbingTargetGroupsResponse_FieldSubPath {
+	return &BatchGetProbingTargetGroupsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithValue(value bool) *BatchGetProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetProbingTargetGroupsResponsePathSelectorMissing struct{}
@@ -1082,6 +1187,10 @@ func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Up
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime{}
 }
 
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) DeleteTime() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime{}
+}
+
 func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Uuid() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid {
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid{}
 }
@@ -1118,6 +1227,10 @@ func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Sy
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncing{}
 }
 
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Lifecycle() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle{}
+}
+
 type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime struct{}
 
 func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
@@ -1149,6 +1262,23 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUp
 }
 
 func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1325,20 +1455,20 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOw
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
 }
 
-func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) ApiVersion() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion {
-	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion{}
-}
-
 func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Kind() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind {
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind{}
+}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Version() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion{}
 }
 
 func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Name() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName {
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName{}
 }
 
-func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Uid() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid {
-	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid{}
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Region() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion{}
 }
 
 func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Controller() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesController {
@@ -1349,21 +1479,8 @@ func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwne
 	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion struct{}
-
-func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
-	return &ListProbingTargetGroupsResponse_FieldSubPath{
-		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithValue(value string) *ListProbingTargetGroupsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
-}
-
-func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) RequiresOwnerReference() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind struct{}
@@ -1380,6 +1497,23 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOw
 }
 
 func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithValue(value string) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1400,20 +1534,20 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOw
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
-type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid struct{}
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion struct{}
 
-func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
 	return &ListProbingTargetGroupsResponse_FieldSubPath{
 		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithValue(value string) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithValue(value string) *ListProbingTargetGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1448,6 +1582,23 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOw
 }
 
 func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1552,6 +1703,65 @@ func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSy
 
 func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncingRegions) WithItemValue(value string) *ListProbingTargetGroupsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) State() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState{}
+}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) BlockDeletion() ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion {
+	return ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion{}
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) FieldPath() *ListProbingTargetGroupsResponse_FieldSubPath {
+	return &ListProbingTargetGroupsResponse_FieldSubPath{
+		selector: ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithValue(value bool) *ListProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
 type ListProbingTargetGroupsResponsePathSelectorPrevPageToken struct{}
@@ -2234,6 +2444,10 @@ func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Upd
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpdateTime{}
 }
 
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) DeleteTime() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime{}
+}
+
 func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Uuid() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUuid {
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUuid{}
 }
@@ -2270,6 +2484,10 @@ func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Syn
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyncing{}
 }
 
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Lifecycle() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle{}
+}
+
 type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataCreateTime struct{}
 
 func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataCreateTime) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
@@ -2301,6 +2519,23 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpd
 }
 
 func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2477,20 +2712,20 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
 }
 
-func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) ApiVersion() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion {
-	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion{}
-}
-
 func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Kind() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind {
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind{}
+}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Version() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion{}
 }
 
 func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Name() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesName {
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesName{}
 }
 
-func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Uid() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid {
-	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid{}
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Region() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion{}
 }
 
 func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Controller() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesController {
@@ -2501,21 +2736,8 @@ func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwner
 	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion struct{}
-
-func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
-	return &CreateProbingTargetGroupRequest_FieldSubPath{
-		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) WithValue(value string) *CreateProbingTargetGroupRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
-}
-
-func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) RequiresOwnerReference() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind struct{}
@@ -2532,6 +2754,23 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 }
 
 func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) WithValue(value string) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2552,20 +2791,20 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid struct{}
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion struct{}
 
-func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
 	return &CreateProbingTargetGroupRequest_FieldSubPath{
 		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) WithValue(value string) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) WithValue(value string) *CreateProbingTargetGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2600,6 +2839,23 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 }
 
 func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2704,6 +2960,65 @@ func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyn
 
 func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyncingRegions) WithItemValue(value string) *CreateProbingTargetGroupRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) State() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState{}
+}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) BlockDeletion() CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion {
+	return CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion{}
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion struct{}
+
+func (CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) FieldPath() *CreateProbingTargetGroupRequest_FieldSubPath {
+	return &CreateProbingTargetGroupRequest_FieldSubPath{
+		selector: CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) WithValue(value bool) *CreateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingTargetGroupRequestFieldPathBuilder struct{}
@@ -2864,6 +3179,10 @@ func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Upd
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpdateTime{}
 }
 
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) DeleteTime() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime{}
+}
+
 func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Uuid() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUuid {
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUuid{}
 }
@@ -2900,6 +3219,10 @@ func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Syn
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyncing{}
 }
 
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadata) Lifecycle() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle{}
+}
+
 type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataCreateTime struct{}
 
 func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataCreateTime) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
@@ -2931,6 +3254,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpd
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3107,20 +3447,20 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) ApiVersion() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion {
-	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Kind() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind {
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Version() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Name() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesName {
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Uid() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid {
-	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid{}
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Region() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) Controller() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesController {
@@ -3131,21 +3471,8 @@ func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwner
 	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
-	return &UpdateProbingTargetGroupRequest_FieldSubPath{
-		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind struct{}
@@ -3162,6 +3489,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3182,20 +3526,20 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid struct{}
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
 	return &UpdateProbingTargetGroupRequest_FieldSubPath{
 		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3230,6 +3574,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwn
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3334,6 +3695,65 @@ func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyn
 
 func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) State() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState{}
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycle) BlockDeletion() UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion {
+	return UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorProbingTargetGroupMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingTargetGroupRequestPathSelectorUpdateMask struct{}
@@ -3518,6 +3938,10 @@ func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadata) Up
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadata) DeleteTime() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadata) Uuid() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataUuid {
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataUuid{}
 }
@@ -3554,6 +3978,10 @@ func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadata) Sy
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataSyncing{}
 }
 
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadata) Lifecycle() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle{}
+}
+
 type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataCreateTime struct{}
 
 func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataCreateTime) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
@@ -3585,6 +4013,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataUp
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3761,20 +4206,20 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOw
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) ApiVersion() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Kind() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind {
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Version() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Name() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName {
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Uid() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid {
-	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Region() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Controller() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesController {
@@ -3785,21 +4230,8 @@ func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwne
 	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
-	return &UpdateProbingTargetGroupRequest_FieldSubPath{
-		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind struct{}
@@ -3816,6 +4248,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOw
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3836,20 +4285,20 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOw
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
 	return &UpdateProbingTargetGroupRequest_FieldSubPath{
 		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3884,6 +4333,23 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOw
 }
 
 func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3988,6 +4454,65 @@ func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataSy
 
 func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle) State() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycle) BlockDeletion() UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingTargetGroupRequest_FieldSubPath {
+	return &UpdateProbingTargetGroupRequest_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetGroupRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingTargetGroupRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingTargetGroupRequestPathSelectorCasFieldMask struct{}
@@ -4162,6 +4687,10 @@ func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadata) U
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadata) DeleteTime() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadata) Uuid() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataUuid {
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataUuid{}
 }
@@ -4198,6 +4727,10 @@ func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadata) S
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataSyncing{}
 }
 
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadata) Lifecycle() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle{}
+}
+
 type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataCreateTime struct{}
 
 func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataCreateTime) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
@@ -4229,6 +4762,23 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataU
 }
 
 func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -4405,20 +4955,20 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataO
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) ApiVersion() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Kind() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind {
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Version() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Name() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName {
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Uid() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid {
-	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Region() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Controller() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesController {
@@ -4429,21 +4979,8 @@ func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwn
 	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
-	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
-		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind struct{}
@@ -4460,6 +4997,23 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataO
 }
 
 func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -4480,20 +5034,20 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataO
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
 	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
 		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -4528,6 +5082,23 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataO
 }
 
 func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -4632,6 +5203,65 @@ func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataS
 
 func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle) State() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycle) BlockDeletion() UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingTargetGroupRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetGroupRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingTargetGroupRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetGroupRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetGroupRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingTargetGroupRequest_CASPathSelectorFieldMask struct{}
@@ -4980,6 +5610,10 @@ func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) 
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime{}
 }
 
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) DeleteTime() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime{}
+}
+
 func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Uuid() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid {
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUuid{}
 }
@@ -5016,6 +5650,10 @@ func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) 
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncing{}
 }
 
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata) Lifecycle() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle{}
+}
+
 type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime struct{}
 
 func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataCreateTime) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
@@ -5047,6 +5685,23 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 }
 
 func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5223,20 +5878,20 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
 }
 
-func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) ApiVersion() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion {
-	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion{}
-}
-
 func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Kind() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind {
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind{}
+}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Version() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion{}
 }
 
 func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Name() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName {
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesName{}
 }
 
-func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Uid() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid {
-	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid{}
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Region() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion{}
 }
 
 func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) Controller() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesController {
@@ -5247,21 +5902,8 @@ func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOw
 	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion struct{}
-
-func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
-	return &SearchProbingTargetGroupsResponse_FieldSubPath{
-		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithValue(value string) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
-}
-
-func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferences) RequiresOwnerReference() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind struct{}
@@ -5278,6 +5920,23 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 }
 
 func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithValue(value string) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5298,20 +5957,20 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
-type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid struct{}
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion struct{}
 
-func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
 	return &SearchProbingTargetGroupsResponse_FieldSubPath{
 		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
-		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithValue(value string) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithValue(value string) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
 }
 
-func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5346,6 +6005,23 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 }
 
 func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5450,6 +6126,65 @@ func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadata
 
 func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataSyncingRegions) WithItemValue(value string) *SearchProbingTargetGroupsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayItemValue)
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) State() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState{}
+}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycle) BlockDeletion() SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion {
+	return SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion{}
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion struct{}
+
+func (SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) FieldPath() *SearchProbingTargetGroupsResponse_FieldSubPath {
+	return &SearchProbingTargetGroupsResponse_FieldSubPath{
+		selector: SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups,
+		subPath:  probing_target_group.NewProbingTargetGroupFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithValue(value bool) *SearchProbingTargetGroupsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetGroupsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetGroupsResponsePathSelectorProbingTargetGroupsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetGroupsResponse_FieldSubPathArrayOfValues)
 }
 
 type SearchProbingTargetGroupsResponsePathSelectorPrevPageToken struct{}

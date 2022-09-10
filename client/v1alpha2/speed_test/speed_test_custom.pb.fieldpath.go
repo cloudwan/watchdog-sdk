@@ -247,6 +247,10 @@ func (fp *RunSpeedTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunSpeedTestRequest_FieldPathSelectorProbingTarget
 }
 
+func (fp *RunSpeedTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunSpeedTestRequest_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestRequest_FieldPathValue {
 	switch fp.selector {
 	case RunSpeedTestRequest_FieldPathSelectorName:
@@ -510,7 +514,11 @@ func (fpaiv *RunSpeedTestRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *RunSpeedTestRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *RunSpeedTestRequest) bool {
 	slice := fpaiv.RunSpeedTestRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -831,6 +839,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorProbingSession ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorTarget
+}
+
+func (fp *RunSpeedTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
 }
 
 func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestResponse_FieldPathValue {
@@ -1167,7 +1179,11 @@ func (fpaiv *RunSpeedTestResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *RunSpeedTestResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunSpeedTestResponse) bool {
 	slice := fpaiv.RunSpeedTestResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1446,6 +1462,10 @@ func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunSpeedTestRequestToProbe_FieldPathSelectorProbingSession
 }
 
+func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunSpeedTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunSpeedTestRequestToProbe_FieldPathValue {
 	switch fp.selector {
 	case RunSpeedTestRequestToProbe_FieldPathSelectorDirection:
@@ -1662,7 +1682,11 @@ func (fpaiv *RunSpeedTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSing
 func (fpaiv *RunSpeedTestRequestToProbe_FieldTerminalPathArrayItemValue) ContainsValue(source *RunSpeedTestRequestToProbe) bool {
 	slice := fpaiv.RunSpeedTestRequestToProbe_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

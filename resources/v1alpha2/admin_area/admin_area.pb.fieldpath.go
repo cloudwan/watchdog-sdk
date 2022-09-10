@@ -214,6 +214,10 @@ func (fp *BBox_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BBox_FieldPathSelectorNorthEast
 }
 
+func (fp *BBox_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BBox_FieldTerminalPath) WithIValue(value interface{}) BBox_FieldPathValue {
 	switch fp.selector {
 	case BBox_FieldPathSelectorSouthWest:
@@ -394,7 +398,11 @@ func (fpaiv *BBox_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Mes
 func (fpaiv *BBox_FieldTerminalPathArrayItemValue) ContainsValue(source *BBox) bool {
 	slice := fpaiv.BBox_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -625,6 +633,10 @@ func (fp *Geometry_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == Geometry_FieldPathSelectorCenter
 }
 
+func (fp *Geometry_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *Geometry_FieldTerminalPath) WithIValue(value interface{}) Geometry_FieldPathValue {
 	switch fp.selector {
 	case Geometry_FieldPathSelectorCenter:
@@ -747,6 +759,12 @@ func (fps *Geometry_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *Geometry_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *Geometry_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&Geometry_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *Geometry_FieldSubPath) WithIValue(value interface{}) Geometry_FieldPathValue {
@@ -956,7 +974,11 @@ func (fpaiv *Geometry_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto
 func (fpaiv *Geometry_FieldTerminalPathArrayItemValue) ContainsValue(source *Geometry) bool {
 	slice := fpaiv.Geometry_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1301,6 +1323,10 @@ func (fp *AdminHierarchy_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == AdminHierarchy_FieldPathSelectorAdmin3 ||
 		fp.selector == AdminHierarchy_FieldPathSelectorAdmin4 ||
 		fp.selector == AdminHierarchy_FieldPathSelectorAdmin5
+}
+
+func (fp *AdminHierarchy_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
 }
 
 func (fp *AdminHierarchy_FieldTerminalPath) WithIValue(value interface{}) AdminHierarchy_FieldPathValue {
@@ -1662,7 +1688,11 @@ func (fpaiv *AdminHierarchy_FieldTerminalPathArrayItemValue) GetSingleRaw(source
 func (fpaiv *AdminHierarchy_FieldTerminalPathArrayItemValue) ContainsValue(source *AdminHierarchy) bool {
 	slice := fpaiv.AdminHierarchy_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2047,6 +2077,10 @@ func (fp *AdminArea_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == AdminArea_FieldPathSelectorLocalLanguageNames
 }
 
+func (fp *AdminArea_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *AdminArea_FieldTerminalPath) WithIValue(value interface{}) AdminArea_FieldPathValue {
 	switch fp.selector {
 	case AdminArea_FieldPathSelectorName:
@@ -2208,6 +2242,10 @@ func (fpm *AdminArea_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *AdminArea_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *AdminArea_FieldPathMap) WithIValue(value interface{}) AdminArea_FieldPathValue {
 	switch fpm.selector {
 	case AdminArea_FieldPathSelectorLocalLanguageNames:
@@ -2360,6 +2398,12 @@ func (fps *AdminArea_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *AdminArea_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *AdminArea_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&AdminArea_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *AdminArea_FieldSubPath) WithIValue(value interface{}) AdminArea_FieldPathValue {
@@ -2733,7 +2777,11 @@ func (fpaiv *AdminArea_FieldTerminalPathArrayItemValue) GetSingleRaw(source prot
 func (fpaiv *AdminArea_FieldTerminalPathArrayItemValue) ContainsValue(source *AdminArea) bool {
 	slice := fpaiv.AdminArea_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

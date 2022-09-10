@@ -386,6 +386,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ReportHopsRequest_FieldPathSelectorTime
 }
 
+func (fp *ReportHopsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ReportHopsRequest_FieldTerminalPath) WithIValue(value interface{}) ReportHopsRequest_FieldPathValue {
 	switch fp.selector {
 	case ReportHopsRequest_FieldPathSelectorName:
@@ -579,6 +583,10 @@ func (fpm *ReportHopsRequest_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *ReportHopsRequest_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *ReportHopsRequest_FieldPathMap) WithIValue(value interface{}) ReportHopsRequest_FieldPathValue {
 	switch fpm.selector {
 	case ReportHopsRequest_FieldPathSelectorHopStats:
@@ -700,6 +708,12 @@ func (fps *ReportHopsRequest_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ReportHopsRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ReportHopsRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ReportHopsRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ReportHopsRequest_FieldSubPath) WithIValue(value interface{}) ReportHopsRequest_FieldPathValue {
@@ -1154,7 +1168,11 @@ func (fpaiv *ReportHopsRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(sou
 func (fpaiv *ReportHopsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ReportHopsRequest) bool {
 	slice := fpaiv.ReportHopsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1489,6 +1507,10 @@ func (fp *ReportHopsResponse_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ReportHopsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ReportHopsResponse_FieldTerminalPath) WithIValue(value interface{}) ReportHopsResponse_FieldPathValue {
 	switch fp.selector {
 	default:
@@ -1645,7 +1667,11 @@ func (fpaiv *ReportHopsResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(so
 func (fpaiv *ReportHopsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ReportHopsResponse) bool {
 	slice := fpaiv.ReportHopsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1909,6 +1935,10 @@ func (fp *PathStats_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == PathStats_FieldPathSelectorTraceReasonDescription
 }
 
+func (fp *PathStats_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *PathStats_FieldTerminalPath) WithIValue(value interface{}) PathStats_FieldPathValue {
 	switch fp.selector {
 	case PathStats_FieldPathSelectorTime:
@@ -2060,6 +2090,10 @@ func (fpm *PathStats_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *PathStats_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *PathStats_FieldPathMap) WithIValue(value interface{}) PathStats_FieldPathValue {
 	switch fpm.selector {
 	case PathStats_FieldPathSelectorHopStats:
@@ -2177,6 +2211,12 @@ func (fps *PathStats_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *PathStats_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *PathStats_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&PathStats_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *PathStats_FieldSubPath) WithIValue(value interface{}) PathStats_FieldPathValue {
@@ -2498,7 +2538,11 @@ func (fpaiv *PathStats_FieldTerminalPathArrayItemValue) GetSingleRaw(source prot
 func (fpaiv *PathStats_FieldTerminalPathArrayItemValue) ContainsValue(source *PathStats) bool {
 	slice := fpaiv.PathStats_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2858,6 +2902,10 @@ func (fp *GetHopReportsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == GetHopReportsRequest_FieldPathSelectorPageToken
 }
 
+func (fp *GetHopReportsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetHopReportsRequest_FieldTerminalPath) WithIValue(value interface{}) GetHopReportsRequest_FieldPathValue {
 	switch fp.selector {
 	case GetHopReportsRequest_FieldPathSelectorProbe:
@@ -2992,6 +3040,12 @@ func (fps *GetHopReportsRequest_FieldSubPath) ClearValueRaw(item proto.Message) 
 // IsLeaf - whether field path is holds simple value
 func (fps *GetHopReportsRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *GetHopReportsRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&GetHopReportsRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *GetHopReportsRequest_FieldSubPath) WithIValue(value interface{}) GetHopReportsRequest_FieldPathValue {
@@ -3275,7 +3329,11 @@ func (fpaiv *GetHopReportsRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *GetHopReportsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetHopReportsRequest) bool {
 	slice := fpaiv.GetHopReportsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3642,6 +3700,10 @@ func (fp *HopsReport_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HopsReport_FieldPathSelectorTraceType
 }
 
+func (fp *HopsReport_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *HopsReport_FieldTerminalPath) WithIValue(value interface{}) HopsReport_FieldPathValue {
 	switch fp.selector {
 	case HopsReport_FieldPathSelectorProbe:
@@ -3790,6 +3852,12 @@ func (fps *HopsReport_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *HopsReport_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *HopsReport_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&HopsReport_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *HopsReport_FieldSubPath) WithIValue(value interface{}) HopsReport_FieldPathValue {
@@ -4109,7 +4177,11 @@ func (fpaiv *HopsReport_FieldTerminalPathArrayItemValue) GetSingleRaw(source pro
 func (fpaiv *HopsReport_FieldTerminalPathArrayItemValue) ContainsValue(source *HopsReport) bool {
 	slice := fpaiv.HopsReport_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4437,6 +4509,10 @@ func (fp *GetHopReportsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == GetHopReportsResponse_FieldPathSelectorNextPageToken
 }
 
+func (fp *GetHopReportsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetHopReportsResponse_FieldTerminalPath) WithIValue(value interface{}) GetHopReportsResponse_FieldPathValue {
 	switch fp.selector {
 	case GetHopReportsResponse_FieldPathSelectorHopsReport:
@@ -4580,6 +4656,10 @@ func (fpm *GetHopReportsResponse_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *GetHopReportsResponse_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *GetHopReportsResponse_FieldPathMap) WithIValue(value interface{}) GetHopReportsResponse_FieldPathValue {
 	switch fpm.selector {
 	case GetHopReportsResponse_FieldPathSelectorHopInfo:
@@ -4697,6 +4777,12 @@ func (fps *GetHopReportsResponse_FieldSubPath) ClearValueRaw(item proto.Message)
 // IsLeaf - whether field path is holds simple value
 func (fps *GetHopReportsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *GetHopReportsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&GetHopReportsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *GetHopReportsResponse_FieldSubPath) WithIValue(value interface{}) GetHopReportsResponse_FieldPathValue {
@@ -4977,7 +5063,11 @@ func (fpaiv *GetHopReportsResponse_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *GetHopReportsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *GetHopReportsResponse) bool {
 	slice := fpaiv.GetHopReportsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

@@ -320,6 +320,10 @@ func (TagPathSelectorMetadata) UpdateTime() TagPathSelectorMetadataUpdateTime {
 	return TagPathSelectorMetadataUpdateTime{}
 }
 
+func (TagPathSelectorMetadata) DeleteTime() TagPathSelectorMetadataDeleteTime {
+	return TagPathSelectorMetadataDeleteTime{}
+}
+
 func (TagPathSelectorMetadata) Uuid() TagPathSelectorMetadataUuid {
 	return TagPathSelectorMetadataUuid{}
 }
@@ -356,6 +360,10 @@ func (TagPathSelectorMetadata) Syncing() TagPathSelectorMetadataSyncing {
 	return TagPathSelectorMetadataSyncing{}
 }
 
+func (TagPathSelectorMetadata) Lifecycle() TagPathSelectorMetadataLifecycle {
+	return TagPathSelectorMetadataLifecycle{}
+}
+
 type TagPathSelectorMetadataCreateTime struct{}
 
 func (TagPathSelectorMetadataCreateTime) FieldPath() *Tag_FieldSubPath {
@@ -387,6 +395,23 @@ func (s TagPathSelectorMetadataUpdateTime) WithValue(value *timestamp.Timestamp)
 }
 
 func (s TagPathSelectorMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+}
+
+type TagPathSelectorMetadataDeleteTime struct{}
+
+func (TagPathSelectorMetadataDeleteTime) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().DeleteTime().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *Tag_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
@@ -563,20 +588,20 @@ func (s TagPathSelectorMetadataOwnerReferences) WithItemValue(value *ntt_meta.Ow
 	return s.FieldPath().WithIArrayItemValue(value).(*Tag_FieldSubPathArrayItemValue)
 }
 
-func (TagPathSelectorMetadataOwnerReferences) ApiVersion() TagPathSelectorMetadataOwnerReferencesApiVersion {
-	return TagPathSelectorMetadataOwnerReferencesApiVersion{}
-}
-
 func (TagPathSelectorMetadataOwnerReferences) Kind() TagPathSelectorMetadataOwnerReferencesKind {
 	return TagPathSelectorMetadataOwnerReferencesKind{}
+}
+
+func (TagPathSelectorMetadataOwnerReferences) Version() TagPathSelectorMetadataOwnerReferencesVersion {
+	return TagPathSelectorMetadataOwnerReferencesVersion{}
 }
 
 func (TagPathSelectorMetadataOwnerReferences) Name() TagPathSelectorMetadataOwnerReferencesName {
 	return TagPathSelectorMetadataOwnerReferencesName{}
 }
 
-func (TagPathSelectorMetadataOwnerReferences) Uid() TagPathSelectorMetadataOwnerReferencesUid {
-	return TagPathSelectorMetadataOwnerReferencesUid{}
+func (TagPathSelectorMetadataOwnerReferences) Region() TagPathSelectorMetadataOwnerReferencesRegion {
+	return TagPathSelectorMetadataOwnerReferencesRegion{}
 }
 
 func (TagPathSelectorMetadataOwnerReferences) Controller() TagPathSelectorMetadataOwnerReferencesController {
@@ -587,21 +612,8 @@ func (TagPathSelectorMetadataOwnerReferences) BlockOwnerDeletion() TagPathSelect
 	return TagPathSelectorMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type TagPathSelectorMetadataOwnerReferencesApiVersion struct{}
-
-func (TagPathSelectorMetadataOwnerReferencesApiVersion) FieldPath() *Tag_FieldSubPath {
-	return &Tag_FieldSubPath{
-		selector: Tag_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s TagPathSelectorMetadataOwnerReferencesApiVersion) WithValue(value string) *Tag_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
-}
-
-func (s TagPathSelectorMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *Tag_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+func (TagPathSelectorMetadataOwnerReferences) RequiresOwnerReference() TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference {
+	return TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type TagPathSelectorMetadataOwnerReferencesKind struct{}
@@ -618,6 +630,23 @@ func (s TagPathSelectorMetadataOwnerReferencesKind) WithValue(value string) *Tag
 }
 
 func (s TagPathSelectorMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+}
+
+type TagPathSelectorMetadataOwnerReferencesVersion struct{}
+
+func (TagPathSelectorMetadataOwnerReferencesVersion) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataOwnerReferencesVersion) WithValue(value string) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *Tag_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
@@ -638,20 +667,20 @@ func (s TagPathSelectorMetadataOwnerReferencesName) WithArrayOfValues(values []s
 	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
-type TagPathSelectorMetadataOwnerReferencesUid struct{}
+type TagPathSelectorMetadataOwnerReferencesRegion struct{}
 
-func (TagPathSelectorMetadataOwnerReferencesUid) FieldPath() *Tag_FieldSubPath {
+func (TagPathSelectorMetadataOwnerReferencesRegion) FieldPath() *Tag_FieldSubPath {
 	return &Tag_FieldSubPath{
 		selector: Tag_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Uid().FieldPath(),
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s TagPathSelectorMetadataOwnerReferencesUid) WithValue(value string) *Tag_FieldSubPathValue {
+func (s TagPathSelectorMetadataOwnerReferencesRegion) WithValue(value string) *Tag_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
 }
 
-func (s TagPathSelectorMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *Tag_FieldSubPathArrayOfValues {
+func (s TagPathSelectorMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *Tag_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
@@ -686,6 +715,23 @@ func (s TagPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithValue(valu
 }
 
 func (s TagPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+}
+
+type TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *Tag_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
@@ -790,6 +836,65 @@ func (s TagPathSelectorMetadataSyncingRegions) WithArrayOfValues(values [][]stri
 
 func (s TagPathSelectorMetadataSyncingRegions) WithItemValue(value string) *Tag_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*Tag_FieldSubPathArrayItemValue)
+}
+
+type TagPathSelectorMetadataLifecycle struct{}
+
+func (TagPathSelectorMetadataLifecycle) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+}
+
+func (TagPathSelectorMetadataLifecycle) State() TagPathSelectorMetadataLifecycleState {
+	return TagPathSelectorMetadataLifecycleState{}
+}
+
+func (TagPathSelectorMetadataLifecycle) BlockDeletion() TagPathSelectorMetadataLifecycleBlockDeletion {
+	return TagPathSelectorMetadataLifecycleBlockDeletion{}
+}
+
+type TagPathSelectorMetadataLifecycleState struct{}
+
+func (TagPathSelectorMetadataLifecycleState) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
+}
+
+type TagPathSelectorMetadataLifecycleBlockDeletion struct{}
+
+func (TagPathSelectorMetadataLifecycleBlockDeletion) FieldPath() *Tag_FieldSubPath {
+	return &Tag_FieldSubPath{
+		selector: Tag_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s TagPathSelectorMetadataLifecycleBlockDeletion) WithValue(value bool) *Tag_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Tag_FieldSubPathValue)
+}
+
+func (s TagPathSelectorMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *Tag_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Tag_FieldSubPathArrayOfValues)
 }
 
 type TagStateFieldPathBuilder struct{}

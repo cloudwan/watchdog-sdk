@@ -236,6 +236,10 @@ func (fp *ActivationRequest_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ActivationRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationRequest_FieldTerminalPath) WithIValue(value interface{}) ActivationRequest_FieldPathValue {
 	switch fp.selector {
 	case ActivationRequest_FieldPathSelectorActivate:
@@ -379,6 +383,12 @@ func (fps *ActivationRequest_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ActivationRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ActivationRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ActivationRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ActivationRequest_FieldSubPath) WithIValue(value interface{}) ActivationRequest_FieldPathValue {
@@ -608,7 +618,11 @@ func (fpaiv *ActivationRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(sou
 func (fpaiv *ActivationRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationRequest) bool {
 	slice := fpaiv.ActivationRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -919,6 +933,10 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ActivationRequestActivate_FieldPathSelectorMetadata
 }
 
+func (fp *ActivationRequestActivate_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationRequestActivate_FieldTerminalPath) WithIValue(value interface{}) ActivationRequestActivate_FieldPathValue {
 	switch fp.selector {
 	case ActivationRequestActivate_FieldPathSelectorToken:
@@ -1064,6 +1082,10 @@ func (fpm *ActivationRequestActivate_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *ActivationRequestActivate_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *ActivationRequestActivate_FieldPathMap) WithIValue(value interface{}) ActivationRequestActivate_FieldPathValue {
 	switch fpm.selector {
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
@@ -1177,6 +1199,12 @@ func (fps *ActivationRequestActivate_FieldSubPath) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fps *ActivationRequestActivate_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ActivationRequestActivate_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ActivationRequestActivate_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ActivationRequestActivate_FieldSubPath) WithIValue(value interface{}) ActivationRequestActivate_FieldPathValue {
@@ -1477,7 +1505,11 @@ func (fpaiv *ActivationRequestActivate_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *ActivationRequestActivate_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationRequest_Activate) bool {
 	slice := fpaiv.ActivationRequestActivate_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1756,6 +1788,10 @@ func (fp *ActivationRequestConfirmActivation_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ActivationRequestConfirmActivation_FieldPathSelectorClientCookie
 }
 
+func (fp *ActivationRequestConfirmActivation_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationRequestConfirmActivation_FieldTerminalPath) WithIValue(value interface{}) ActivationRequestConfirmActivation_FieldPathValue {
 	switch fp.selector {
 	case ActivationRequestConfirmActivation_FieldPathSelectorClientCookie:
@@ -1932,7 +1968,11 @@ func (fpaiv *ActivationRequestConfirmActivation_FieldTerminalPathArrayItemValue)
 func (fpaiv *ActivationRequestConfirmActivation_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationRequest_ConfirmActivation) bool {
 	slice := fpaiv.ActivationRequestConfirmActivation_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2169,6 +2209,10 @@ func (fp *ActivationResponse_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ActivationResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationResponse_FieldTerminalPath) WithIValue(value interface{}) ActivationResponse_FieldPathValue {
 	switch fp.selector {
 	case ActivationResponse_FieldPathSelectorActivated:
@@ -2312,6 +2356,12 @@ func (fps *ActivationResponse_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ActivationResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ActivationResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ActivationResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ActivationResponse_FieldSubPath) WithIValue(value interface{}) ActivationResponse_FieldPathValue {
@@ -2541,7 +2591,11 @@ func (fpaiv *ActivationResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(so
 func (fpaiv *ActivationResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationResponse) bool {
 	slice := fpaiv.ActivationResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2827,6 +2881,10 @@ func (fp *ActivationResponseActivated_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ActivationResponseActivated_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationResponseActivated_FieldTerminalPath) WithIValue(value interface{}) ActivationResponseActivated_FieldPathValue {
 	switch fp.selector {
 	case ActivationResponseActivated_FieldPathSelectorProbe:
@@ -2962,6 +3020,12 @@ func (fps *ActivationResponseActivated_FieldSubPath) ClearValueRaw(item proto.Me
 // IsLeaf - whether field path is holds simple value
 func (fps *ActivationResponseActivated_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ActivationResponseActivated_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ActivationResponseActivated_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ActivationResponseActivated_FieldSubPath) WithIValue(value interface{}) ActivationResponseActivated_FieldPathValue {
@@ -3179,7 +3243,11 @@ func (fpaiv *ActivationResponseActivated_FieldTerminalPathArrayItemValue) GetSin
 func (fpaiv *ActivationResponseActivated_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationResponse_Activated) bool {
 	slice := fpaiv.ActivationResponseActivated_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3415,6 +3483,10 @@ func (fp *ActivationResponseConfirmActivationAck_FieldTerminalPath) IsLeaf() boo
 	return false
 }
 
+func (fp *ActivationResponseConfirmActivationAck_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ActivationResponseConfirmActivationAck_FieldTerminalPath) WithIValue(value interface{}) ActivationResponseConfirmActivationAck_FieldPathValue {
 	switch fp.selector {
 	default:
@@ -3571,7 +3643,11 @@ func (fpaiv *ActivationResponseConfirmActivationAck_FieldTerminalPathArrayItemVa
 func (fpaiv *ActivationResponseConfirmActivationAck_FieldTerminalPathArrayItemValue) ContainsValue(source *ActivationResponse_ConfirmActivationAck) bool {
 	slice := fpaiv.ActivationResponseConfirmActivationAck_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3761,6 +3837,10 @@ func (fp *SendActivationInvitationRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == SendActivationInvitationRequest_FieldPathSelectorName
 }
 
+func (fp *SendActivationInvitationRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SendActivationInvitationRequest_FieldTerminalPath) WithIValue(value interface{}) SendActivationInvitationRequest_FieldPathValue {
 	switch fp.selector {
 	case SendActivationInvitationRequest_FieldPathSelectorName:
@@ -3946,7 +4026,11 @@ func (fpaiv *SendActivationInvitationRequest_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *SendActivationInvitationRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *SendActivationInvitationRequest) bool {
 	slice := fpaiv.SendActivationInvitationRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4144,6 +4228,10 @@ func (fp *ResetActivationRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ResetActivationRequest_FieldPathSelectorName
 }
 
+func (fp *ResetActivationRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ResetActivationRequest_FieldTerminalPath) WithIValue(value interface{}) ResetActivationRequest_FieldPathValue {
 	switch fp.selector {
 	case ResetActivationRequest_FieldPathSelectorName:
@@ -4329,7 +4417,11 @@ func (fpaiv *ResetActivationRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *ResetActivationRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ResetActivationRequest) bool {
 	slice := fpaiv.ResetActivationRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

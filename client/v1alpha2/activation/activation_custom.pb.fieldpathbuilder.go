@@ -277,6 +277,10 @@ func (ActivationRequestPathSelectorActivateProbeMetadata) UpdateTime() Activatio
 	return ActivationRequestPathSelectorActivateProbeMetadataUpdateTime{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeMetadata) DeleteTime() ActivationRequestPathSelectorActivateProbeMetadataDeleteTime {
+	return ActivationRequestPathSelectorActivateProbeMetadataDeleteTime{}
+}
+
 func (ActivationRequestPathSelectorActivateProbeMetadata) Uuid() ActivationRequestPathSelectorActivateProbeMetadataUuid {
 	return ActivationRequestPathSelectorActivateProbeMetadataUuid{}
 }
@@ -313,6 +317,10 @@ func (ActivationRequestPathSelectorActivateProbeMetadata) Syncing() ActivationRe
 	return ActivationRequestPathSelectorActivateProbeMetadataSyncing{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeMetadata) Lifecycle() ActivationRequestPathSelectorActivateProbeMetadataLifecycle {
+	return ActivationRequestPathSelectorActivateProbeMetadataLifecycle{}
+}
+
 type ActivationRequestPathSelectorActivateProbeMetadataCreateTime struct{}
 
 func (ActivationRequestPathSelectorActivateProbeMetadataCreateTime) FieldPath() *ActivationRequest_FieldSubPath {
@@ -344,6 +352,23 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataUpdateTime) WithValue(
 }
 
 func (s ActivationRequestPathSelectorActivateProbeMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataDeleteTime struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataDeleteTime) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -520,20 +545,20 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) WithI
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequest_FieldSubPathArrayItemValue)
 }
 
-func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) ApiVersion() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion {
-	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Kind() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesKind {
 	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesKind{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Version() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion {
+	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Name() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesName {
 	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesName{}
 }
 
-func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Uid() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid {
-	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid{}
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Region() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion {
+	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) Controller() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesController {
@@ -544,21 +569,8 @@ func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) BlockOw
 	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion) FieldPath() *ActivationRequest_FieldSubPath {
-	return &ActivationRequest_FieldSubPath{
-		selector: ActivationRequest_FieldPathSelectorActivate,
-		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
-}
-
-func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferences) RequiresOwnerReference() ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesKind struct{}
@@ -575,6 +587,23 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesKind) W
 }
 
 func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -595,20 +624,20 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesName) W
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid struct{}
+type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion struct{}
 
-func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid) FieldPath() *ActivationRequest_FieldSubPath {
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion) FieldPath() *ActivationRequest_FieldSubPath {
 	return &ActivationRequest_FieldSubPath{
 		selector: ActivationRequest_FieldPathSelectorActivate,
-		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion) WithValue(value string) *ActivationRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
 }
 
-func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -643,6 +672,23 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesBlockOw
 }
 
 func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -747,6 +793,65 @@ func (s ActivationRequestPathSelectorActivateProbeMetadataSyncingRegions) WithAr
 
 func (s ActivationRequestPathSelectorActivateProbeMetadataSyncingRegions) WithItemValue(value string) *ActivationRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequest_FieldSubPathArrayItemValue)
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataLifecycle struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataLifecycle) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataLifecycle) State() ActivationRequestPathSelectorActivateProbeMetadataLifecycleState {
+	return ActivationRequestPathSelectorActivateProbeMetadataLifecycleState{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataLifecycle) BlockDeletion() ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion {
+	return ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataLifecycleState struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataLifecycleState) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
 type ActivationRequestPathSelectorActivateProbeSpec struct{}
@@ -4325,6 +4430,10 @@ func (ActivationRequest_ActivatePathSelectorProbeMetadata) UpdateTime() Activati
 	return ActivationRequest_ActivatePathSelectorProbeMetadataUpdateTime{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeMetadata) DeleteTime() ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime{}
+}
+
 func (ActivationRequest_ActivatePathSelectorProbeMetadata) Uuid() ActivationRequest_ActivatePathSelectorProbeMetadataUuid {
 	return ActivationRequest_ActivatePathSelectorProbeMetadataUuid{}
 }
@@ -4361,6 +4470,10 @@ func (ActivationRequest_ActivatePathSelectorProbeMetadata) Syncing() ActivationR
 	return ActivationRequest_ActivatePathSelectorProbeMetadataSyncing{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeMetadata) Lifecycle() ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeMetadataCreateTime struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeMetadataCreateTime) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -4392,6 +4505,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataUpdateTime) WithValue
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -4568,20 +4698,20 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) With
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequestActivate_FieldSubPathArrayItemValue)
 }
 
-func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) ApiVersion() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion {
-	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Kind() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesKind {
 	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesKind{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Version() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Name() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesName {
 	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesName{}
 }
 
-func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Uid() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid {
-	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid{}
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Region() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) Controller() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesController {
@@ -4592,21 +4722,8 @@ func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) BlockO
 	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion) FieldPath() *ActivationRequestActivate_FieldSubPath {
-	return &ActivationRequestActivate_FieldSubPath{
-		selector: ActivationRequestActivate_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
-}
-
-func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferences) RequiresOwnerReference() ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesKind struct{}
@@ -4623,6 +4740,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesKind) 
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -4643,20 +4777,20 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesName) 
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid struct{}
+type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion struct{}
 
-func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid) FieldPath() *ActivationRequestActivate_FieldSubPath {
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion) FieldPath() *ActivationRequestActivate_FieldSubPath {
 	return &ActivationRequestActivate_FieldSubPath{
 		selector: ActivationRequestActivate_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -4691,6 +4825,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesBlockO
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -4795,6 +4946,65 @@ func (s ActivationRequest_ActivatePathSelectorProbeMetadataSyncingRegions) WithA
 
 func (s ActivationRequest_ActivatePathSelectorProbeMetadataSyncingRegions) WithItemValue(value string) *ActivationRequestActivate_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationRequestActivate_FieldSubPathArrayItemValue)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle) State() ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataLifecycle) BlockDeletion() ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion {
+	return ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
 type ActivationRequest_ActivatePathSelectorProbeSpec struct{}
@@ -8330,6 +8540,10 @@ func (ActivationResponsePathSelectorActivatedProbeMetadata) UpdateTime() Activat
 	return ActivationResponsePathSelectorActivatedProbeMetadataUpdateTime{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeMetadata) DeleteTime() ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime {
+	return ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime{}
+}
+
 func (ActivationResponsePathSelectorActivatedProbeMetadata) Uuid() ActivationResponsePathSelectorActivatedProbeMetadataUuid {
 	return ActivationResponsePathSelectorActivatedProbeMetadataUuid{}
 }
@@ -8366,6 +8580,10 @@ func (ActivationResponsePathSelectorActivatedProbeMetadata) Syncing() Activation
 	return ActivationResponsePathSelectorActivatedProbeMetadataSyncing{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeMetadata) Lifecycle() ActivationResponsePathSelectorActivatedProbeMetadataLifecycle {
+	return ActivationResponsePathSelectorActivatedProbeMetadataLifecycle{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeMetadataCreateTime struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeMetadataCreateTime) FieldPath() *ActivationResponse_FieldSubPath {
@@ -8397,6 +8615,23 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataUpdateTime) WithValu
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -8573,20 +8808,20 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Wit
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
 }
 
-func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) ApiVersion() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion {
-	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Kind() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesKind {
 	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesKind{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Version() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion {
+	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Name() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesName {
 	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesName{}
 }
 
-func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Uid() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid {
-	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid{}
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Region() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion {
+	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Controller() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesController {
@@ -8597,21 +8832,8 @@ func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) Block
 	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion) FieldPath() *ActivationResponse_FieldSubPath {
-	return &ActivationResponse_FieldSubPath{
-		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
-}
-
-func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferences) RequiresOwnerReference() ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesKind struct{}
@@ -8628,6 +8850,23 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesKind)
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -8648,20 +8887,20 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesName)
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid struct{}
+type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion struct{}
 
-func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid) FieldPath() *ActivationResponse_FieldSubPath {
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion) FieldPath() *ActivationResponse_FieldSubPath {
 	return &ActivationResponse_FieldSubPath{
 		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -8696,6 +8935,23 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesBlock
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -8800,6 +9056,65 @@ func (s ActivationResponsePathSelectorActivatedProbeMetadataSyncingRegions) With
 
 func (s ActivationResponsePathSelectorActivatedProbeMetadataSyncingRegions) WithItemValue(value string) *ActivationResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataLifecycle struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataLifecycle) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataLifecycle) State() ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState {
+	return ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataLifecycle) BlockDeletion() ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion {
+	return ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponsePathSelectorActivatedProbeSpec struct{}
@@ -12300,6 +12615,10 @@ func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadata) UpdateTi
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataUpdateTime{}
 }
 
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadata) DeleteTime() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime{}
+}
+
 func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadata) Uuid() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataUuid {
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataUuid{}
 }
@@ -12336,6 +12655,10 @@ func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadata) Syncing(
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataSyncing{}
 }
 
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadata) Lifecycle() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle{}
+}
+
 type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataCreateTime struct{}
 
 func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataCreateTime) FieldPath() *ActivationResponse_FieldSubPath {
@@ -12367,6 +12690,23 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataUpdateTi
 }
 
 func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -12543,20 +12883,20 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerRef
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
 }
 
-func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) ApiVersion() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion {
-	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Kind() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesKind {
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesKind{}
+}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Version() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Name() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesName {
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesName{}
 }
 
-func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Uid() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid {
-	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid{}
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Region() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) Controller() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesController {
@@ -12567,21 +12907,8 @@ func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerRefer
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion) FieldPath() *ActivationResponse_FieldSubPath {
-	return &ActivationResponse_FieldSubPath{
-		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
-}
-
-func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferences) RequiresOwnerReference() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesKind struct{}
@@ -12598,6 +12925,23 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerRef
 }
 
 func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -12618,20 +12962,20 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerRef
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid struct{}
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion struct{}
 
-func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid) FieldPath() *ActivationResponse_FieldSubPath {
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion) FieldPath() *ActivationResponse_FieldSubPath {
 	return &ActivationResponse_FieldSubPath{
 		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion) WithValue(value string) *ActivationResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
 }
 
-func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -12666,6 +13010,23 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerRef
 }
 
 func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -12770,6 +13131,65 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataSyncingR
 
 func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataSyncingRegions) WithItemValue(value string) *ActivationResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponse_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle) State() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState{}
+}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycle) BlockDeletion() ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponsePathSelectorConfirmActivationAck struct{}
@@ -12948,6 +13368,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeMetadata) UpdateTime() Activa
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataUpdateTime{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeMetadata) DeleteTime() ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorProbeMetadata) Uuid() ActivationResponse_ActivatedPathSelectorProbeMetadataUuid {
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataUuid{}
 }
@@ -12984,6 +13408,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeMetadata) Syncing() Activatio
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataSyncing{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeMetadata) Lifecycle() ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeMetadataCreateTime struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeMetadataCreateTime) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -13015,6 +13443,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataUpdateTime) WithVal
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -13191,20 +13636,20 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Wi
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
 }
 
-func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) ApiVersion() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion {
-	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Kind() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesKind {
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesKind{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Version() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Name() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesName {
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesName{}
 }
 
-func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Uid() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid {
-	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid{}
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Region() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Controller() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesController {
@@ -13215,21 +13660,8 @@ func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) Bloc
 	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion) FieldPath() *ActivationResponseActivated_FieldSubPath {
-	return &ActivationResponseActivated_FieldSubPath{
-		selector: ActivationResponseActivated_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
-}
-
-func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferences) RequiresOwnerReference() ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesKind struct{}
@@ -13246,6 +13678,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesKind
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -13266,20 +13715,20 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesName
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid struct{}
+type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion struct{}
 
-func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid) FieldPath() *ActivationResponseActivated_FieldSubPath {
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion) FieldPath() *ActivationResponseActivated_FieldSubPath {
 	return &ActivationResponseActivated_FieldSubPath{
 		selector: ActivationResponseActivated_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -13314,6 +13763,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesBloc
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -13418,6 +13884,65 @@ func (s ActivationResponse_ActivatedPathSelectorProbeMetadataSyncingRegions) Wit
 
 func (s ActivationResponse_ActivatedPathSelectorProbeMetadataSyncingRegions) WithItemValue(value string) *ActivationResponseActivated_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle) State() ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycle) BlockDeletion() ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion {
+	return ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeSpec struct{}
@@ -16931,6 +17456,10 @@ func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadata) UpdateT
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataUpdateTime{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadata) DeleteTime() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadata) Uuid() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataUuid {
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataUuid{}
 }
@@ -16967,6 +17496,10 @@ func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadata) Syncing
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataSyncing{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadata) Lifecycle() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle{}
+}
+
 type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataCreateTime struct{}
 
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataCreateTime) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -16998,6 +17531,23 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataUpdateT
 }
 
 func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -17174,20 +17724,20 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerRe
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
 }
 
-func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) ApiVersion() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion {
-	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion{}
-}
-
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Kind() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesKind {
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesKind{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Version() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion{}
 }
 
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Name() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesName {
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesName{}
 }
 
-func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Uid() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid {
-	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid{}
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Region() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion{}
 }
 
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) Controller() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesController {
@@ -17198,21 +17748,8 @@ func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerRefe
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion struct{}
-
-func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion) FieldPath() *ActivationResponseActivated_FieldSubPath {
-	return &ActivationResponseActivated_FieldSubPath{
-		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
-		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
-}
-
-func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferences) RequiresOwnerReference() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesKind struct{}
@@ -17229,6 +17766,23 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerRe
 }
 
 func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -17249,20 +17803,20 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerRe
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid struct{}
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion struct{}
 
-func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid) FieldPath() *ActivationResponseActivated_FieldSubPath {
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion) FieldPath() *ActivationResponseActivated_FieldSubPath {
 	return &ActivationResponseActivated_FieldSubPath{
 		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
-		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -17297,6 +17851,23 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerRe
 }
 
 func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -17401,6 +17972,65 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataSyncing
 
 func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataSyncingRegions) WithItemValue(value string) *ActivationResponseActivated_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ActivationResponseActivated_FieldSubPathArrayItemValue)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle) State() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycle) BlockDeletion() ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion{}
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
 type ActivationResponseConfirmActivationAckFieldPathBuilder struct{}

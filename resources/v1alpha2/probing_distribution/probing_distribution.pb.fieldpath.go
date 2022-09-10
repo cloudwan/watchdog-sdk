@@ -286,6 +286,10 @@ func (fp *ProbingDistribution_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingDistribution_FieldPathSelectorDisplayName
 }
 
+func (fp *ProbingDistribution_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingDistribution_FieldTerminalPath) WithIValue(value interface{}) ProbingDistribution_FieldPathValue {
 	switch fp.selector {
 	case ProbingDistribution_FieldPathSelectorName:
@@ -446,6 +450,12 @@ func (fps *ProbingDistribution_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbingDistribution_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbingDistribution_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbingDistribution_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbingDistribution_FieldSubPath) WithIValue(value interface{}) ProbingDistribution_FieldPathValue {
@@ -720,7 +730,11 @@ func (fpaiv *ProbingDistribution_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *ProbingDistribution_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingDistribution) bool {
 	slice := fpaiv.ProbingDistribution_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1087,6 +1101,10 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingDistributionSpec_FieldPathSelectorTargetSelector
 }
 
+func (fp *ProbingDistributionSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingDistributionSpec_FieldTerminalPath) WithIValue(value interface{}) ProbingDistributionSpec_FieldPathValue {
 	switch fp.selector {
 	case ProbingDistributionSpec_FieldPathSelectorEnabled:
@@ -1234,6 +1252,12 @@ func (fps *ProbingDistributionSpec_FieldSubPath) ClearValueRaw(item proto.Messag
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbingDistributionSpec_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbingDistributionSpec_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbingDistributionSpec_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbingDistributionSpec_FieldSubPath) WithIValue(value interface{}) ProbingDistributionSpec_FieldPathValue {
@@ -1483,7 +1507,11 @@ func (fpaiv *ProbingDistributionSpec_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *ProbingDistributionSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingDistribution_Spec) bool {
 	slice := fpaiv.ProbingDistributionSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1796,6 +1824,10 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount
 }
 
+func (fp *ProbingDistributionStatus_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIValue(value interface{}) ProbingDistributionStatus_FieldPathValue {
 	switch fp.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
@@ -1935,6 +1967,10 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
 	}
+}
+
+func (fpm *ProbingDistributionStatus_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *ProbingDistributionStatus_FieldPathMap) WithIValue(value interface{}) ProbingDistributionStatus_FieldPathValue {
@@ -2191,7 +2227,11 @@ func (fpaiv *ProbingDistributionStatus_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *ProbingDistributionStatus_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingDistribution_Status) bool {
 	slice := fpaiv.ProbingDistributionStatus_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

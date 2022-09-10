@@ -279,6 +279,10 @@ func (fp *Profile_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == Profile_FieldPathSelectorDescription
 }
 
+func (fp *Profile_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *Profile_FieldTerminalPath) WithIValue(value interface{}) Profile_FieldPathValue {
 	switch fp.selector {
 	case Profile_FieldPathSelectorDisplayName:
@@ -451,6 +455,12 @@ func (fps *Profile_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *Profile_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *Profile_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&Profile_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *Profile_FieldSubPath) WithIValue(value interface{}) Profile_FieldPathValue {
@@ -724,7 +734,11 @@ func (fpaiv *Profile_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.
 func (fpaiv *Profile_FieldTerminalPathArrayItemValue) ContainsValue(source *Profile) bool {
 	slice := fpaiv.Profile_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1052,6 +1066,10 @@ func (fp *ProfileLocation_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProfileLocation_FieldPathSelectorAdministrativeAreaLevel3Name
 }
 
+func (fp *ProfileLocation_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProfileLocation_FieldTerminalPath) WithIValue(value interface{}) ProfileLocation_FieldPathValue {
 	switch fp.selector {
 	case ProfileLocation_FieldPathSelectorCountryName:
@@ -1288,7 +1306,11 @@ func (fpaiv *ProfileLocation_FieldTerminalPathArrayItemValue) GetSingleRaw(sourc
 func (fpaiv *ProfileLocation_FieldTerminalPathArrayItemValue) ContainsValue(source *Profile_Location) bool {
 	slice := fpaiv.ProfileLocation_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1552,6 +1574,10 @@ func (fp *ProfileFilter_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProfileFilter_FieldPathSelectorTargets
 }
 
+func (fp *ProfileFilter_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProfileFilter_FieldTerminalPath) WithIValue(value interface{}) ProfileFilter_FieldPathValue {
 	switch fp.selector {
 	case ProfileFilter_FieldPathSelectorSourceLocations:
@@ -1688,6 +1714,12 @@ func (fps *ProfileFilter_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProfileFilter_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProfileFilter_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProfileFilter_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProfileFilter_FieldSubPath) WithIValue(value interface{}) ProfileFilter_FieldPathValue {
@@ -1917,7 +1949,11 @@ func (fpaiv *ProfileFilter_FieldTerminalPathArrayItemValue) GetSingleRaw(source 
 func (fpaiv *ProfileFilter_FieldTerminalPathArrayItemValue) ContainsValue(source *Profile_Filter) bool {
 	slice := fpaiv.ProfileFilter_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2195,6 +2231,10 @@ func (fp *ProfileMetricThreshold_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProfileMetricThreshold_FieldPathSelectorValue
 }
 
+func (fp *ProfileMetricThreshold_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProfileMetricThreshold_FieldTerminalPath) WithIValue(value interface{}) ProfileMetricThreshold_FieldPathValue {
 	switch fp.selector {
 	case ProfileMetricThreshold_FieldPathSelectorAggregationReducer:
@@ -2411,7 +2451,11 @@ func (fpaiv *ProfileMetricThreshold_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *ProfileMetricThreshold_FieldTerminalPathArrayItemValue) ContainsValue(source *Profile_MetricThreshold) bool {
 	slice := fpaiv.ProfileMetricThreshold_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2717,6 +2761,10 @@ func (fp *QualityProfile_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == QualityProfile_FieldPathSelectorSourceProject
 }
 
+func (fp *QualityProfile_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *QualityProfile_FieldTerminalPath) WithIValue(value interface{}) QualityProfile_FieldPathValue {
 	switch fp.selector {
 	case QualityProfile_FieldPathSelectorName:
@@ -2874,6 +2922,12 @@ func (fps *QualityProfile_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *QualityProfile_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *QualityProfile_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&QualityProfile_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *QualityProfile_FieldSubPath) WithIValue(value interface{}) QualityProfile_FieldPathValue {
@@ -3177,7 +3231,11 @@ func (fpaiv *QualityProfile_FieldTerminalPathArrayItemValue) GetSingleRaw(source
 func (fpaiv *QualityProfile_FieldTerminalPathArrayItemValue) ContainsValue(source *QualityProfile) bool {
 	slice := fpaiv.QualityProfile_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

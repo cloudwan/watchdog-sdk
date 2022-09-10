@@ -665,6 +665,10 @@ func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadata) UpdateTime() Bat
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime{}
 }
 
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadata) DeleteTime() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime{}
+}
+
 func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadata) Uuid() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataUuid {
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataUuid{}
 }
@@ -701,6 +705,10 @@ func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadata) Syncing() BatchG
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncing{}
 }
 
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadata) Lifecycle() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle{}
+}
+
 type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataCreateTime struct{}
 
 func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataCreateTime) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
@@ -732,6 +740,23 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime) With
 }
 
 func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -908,20 +933,20 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences)
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetAdminAreasResponse_FieldSubPathArrayItemValue)
 }
 
-func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) ApiVersion() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion {
-	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion{}
-}
-
 func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Kind() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind {
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind{}
+}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Version() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion{}
 }
 
 func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Name() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesName {
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesName{}
 }
 
-func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Uid() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid {
-	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid{}
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Region() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion{}
 }
 
 func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Controller() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesController {
@@ -932,21 +957,8 @@ func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) B
 	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion struct{}
-
-func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
-	return &BatchGetAdminAreasResponse_FieldSubPath{
-		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) WithValue(value string) *BatchGetAdminAreasResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
-}
-
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) RequiresOwnerReference() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind struct{}
@@ -963,6 +975,23 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesK
 }
 
 func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) WithValue(value string) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -983,20 +1012,20 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesN
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid struct{}
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion struct{}
 
-func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
 	return &BatchGetAdminAreasResponse_FieldSubPath{
 		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) WithValue(value string) *BatchGetAdminAreasResponse_FieldSubPathValue {
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) WithValue(value string) *BatchGetAdminAreasResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
 }
 
-func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1031,6 +1060,23 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesB
 }
 
 func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1135,6 +1181,65 @@ func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncingRegions) 
 
 func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataSyncingRegions) WithItemValue(value string) *BatchGetAdminAreasResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetAdminAreasResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) State() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState{}
+}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) BlockDeletion() BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion {
+	return BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion{}
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion struct{}
+
+func (BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) FieldPath() *BatchGetAdminAreasResponse_FieldSubPath {
+	return &BatchGetAdminAreasResponse_FieldSubPath{
+		selector: BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) WithValue(value bool) *BatchGetAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s BatchGetAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *BatchGetAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetAdminAreasResponsePathSelectorAdminAreasLocalLanguageNames struct{}
@@ -1825,6 +1930,10 @@ func (ListAdminAreasResponsePathSelectorAdminAreasMetadata) UpdateTime() ListAdm
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime{}
 }
 
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadata) DeleteTime() ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime{}
+}
+
 func (ListAdminAreasResponsePathSelectorAdminAreasMetadata) Uuid() ListAdminAreasResponsePathSelectorAdminAreasMetadataUuid {
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataUuid{}
 }
@@ -1861,6 +1970,10 @@ func (ListAdminAreasResponsePathSelectorAdminAreasMetadata) Syncing() ListAdminA
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncing{}
 }
 
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadata) Lifecycle() ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle{}
+}
+
 type ListAdminAreasResponsePathSelectorAdminAreasMetadataCreateTime struct{}
 
 func (ListAdminAreasResponsePathSelectorAdminAreasMetadataCreateTime) FieldPath() *ListAdminAreasResponse_FieldSubPath {
@@ -1892,6 +2005,23 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime) WithValu
 }
 
 func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2068,20 +2198,20 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Wit
 	return s.FieldPath().WithIArrayItemValue(value).(*ListAdminAreasResponse_FieldSubPathArrayItemValue)
 }
 
-func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) ApiVersion() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion {
-	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion{}
-}
-
 func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Kind() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind {
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind{}
+}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Version() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion{}
 }
 
 func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Name() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesName {
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesName{}
 }
 
-func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Uid() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid {
-	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid{}
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Region() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion{}
 }
 
 func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Controller() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesController {
@@ -2092,21 +2222,8 @@ func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) Block
 	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion struct{}
-
-func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) FieldPath() *ListAdminAreasResponse_FieldSubPath {
-	return &ListAdminAreasResponse_FieldSubPath{
-		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) WithValue(value string) *ListAdminAreasResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
-}
-
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferences) RequiresOwnerReference() ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind struct{}
@@ -2123,6 +2240,23 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind)
 }
 
 func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) WithValue(value string) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2143,20 +2277,20 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesName)
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
-type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid struct{}
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion struct{}
 
-func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) FieldPath() *ListAdminAreasResponse_FieldSubPath {
 	return &ListAdminAreasResponse_FieldSubPath{
 		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) WithValue(value string) *ListAdminAreasResponse_FieldSubPathValue {
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) WithValue(value string) *ListAdminAreasResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
 }
 
-func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2191,6 +2325,23 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesBlock
 }
 
 func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2295,6 +2446,65 @@ func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncingRegions) With
 
 func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataSyncingRegions) WithItemValue(value string) *ListAdminAreasResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListAdminAreasResponse_FieldSubPathArrayItemValue)
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) State() ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState{}
+}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycle) BlockDeletion() ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion {
+	return ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion{}
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion struct{}
+
+func (ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) FieldPath() *ListAdminAreasResponse_FieldSubPath {
+	return &ListAdminAreasResponse_FieldSubPath{
+		selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) WithValue(value bool) *ListAdminAreasResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldSubPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorAdminAreasMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ListAdminAreasResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldSubPathArrayOfValues)
 }
 
 type ListAdminAreasResponsePathSelectorAdminAreasLocalLanguageNames struct{}
@@ -3344,6 +3554,10 @@ func (CreateAdminAreaRequestPathSelectorAdminAreaMetadata) UpdateTime() CreateAd
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime{}
 }
 
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadata) DeleteTime() CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime{}
+}
+
 func (CreateAdminAreaRequestPathSelectorAdminAreaMetadata) Uuid() CreateAdminAreaRequestPathSelectorAdminAreaMetadataUuid {
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataUuid{}
 }
@@ -3380,6 +3594,10 @@ func (CreateAdminAreaRequestPathSelectorAdminAreaMetadata) Syncing() CreateAdmin
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing{}
 }
 
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadata) Lifecycle() CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle{}
+}
+
 type CreateAdminAreaRequestPathSelectorAdminAreaMetadataCreateTime struct{}
 
 func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataCreateTime) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
@@ -3411,6 +3629,23 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime) WithValue
 }
 
 func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3587,20 +3822,20 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) With
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateAdminAreaRequest_FieldSubPathArrayItemValue)
 }
 
-func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) ApiVersion() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion {
-	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion{}
-}
-
 func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Kind() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind {
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind{}
+}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Version() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion{}
 }
 
 func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Name() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName {
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName{}
 }
 
-func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Uid() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid {
-	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid{}
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Region() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion{}
 }
 
 func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Controller() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesController {
@@ -3611,21 +3846,8 @@ func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) BlockO
 	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion struct{}
-
-func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
-	return &CreateAdminAreaRequest_FieldSubPath{
-		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) WithValue(value string) *CreateAdminAreaRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
-}
-
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) RequiresOwnerReference() CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind struct{}
@@ -3642,6 +3864,23 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind) 
 }
 
 func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) WithValue(value string) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3662,20 +3901,20 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName) 
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid struct{}
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion struct{}
 
-func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
 	return &CreateAdminAreaRequest_FieldSubPath{
 		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) WithValue(value string) *CreateAdminAreaRequest_FieldSubPathValue {
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) WithValue(value string) *CreateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3710,6 +3949,23 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockO
 }
 
 func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3814,6 +4070,65 @@ func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncingRegions) WithA
 
 func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataSyncingRegions) WithItemValue(value string) *CreateAdminAreaRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateAdminAreaRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) State() CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState{}
+}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) BlockDeletion() CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion {
+	return CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion{}
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion struct{}
+
+func (CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) FieldPath() *CreateAdminAreaRequest_FieldSubPath {
+	return &CreateAdminAreaRequest_FieldSubPath{
+		selector: CreateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) WithValue(value bool) *CreateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s CreateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *CreateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
 type CreateAdminAreaRequestPathSelectorAdminAreaLocalLanguageNames struct{}
@@ -4375,6 +4690,10 @@ func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadata) UpdateTime() UpdateAd
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime{}
 }
 
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadata) DeleteTime() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime{}
+}
+
 func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadata) Uuid() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataUuid {
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataUuid{}
 }
@@ -4411,6 +4730,10 @@ func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadata) Syncing() UpdateAdmin
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncing{}
 }
 
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadata) Lifecycle() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle{}
+}
+
 type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataCreateTime struct{}
 
 func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataCreateTime) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
@@ -4442,6 +4765,23 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime) WithValue
 }
 
 func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4618,20 +4958,20 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) With
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) ApiVersion() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion {
-	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Kind() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind {
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind{}
+}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Version() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Name() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName {
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName{}
 }
 
-func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Uid() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid {
-	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid{}
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Region() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) Controller() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesController {
@@ -4642,21 +4982,8 @@ func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) BlockO
 	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
-	return &UpdateAdminAreaRequest_FieldSubPath{
-		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
-}
-
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferences) RequiresOwnerReference() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind struct{}
@@ -4673,6 +5000,23 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind) 
 }
 
 func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4693,20 +5037,20 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesName) 
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid struct{}
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion struct{}
 
-func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
 	return &UpdateAdminAreaRequest_FieldSubPath{
 		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4741,6 +5085,23 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockO
 }
 
 func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4845,6 +5206,65 @@ func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncingRegions) WithA
 
 func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataSyncingRegions) WithItemValue(value string) *UpdateAdminAreaRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) State() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState{}
+}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycle) BlockDeletion() UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion {
+	return UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorAdminArea,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAdminAreaMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateAdminAreaRequestPathSelectorAdminAreaLocalLanguageNames struct{}
@@ -5430,6 +5850,10 @@ func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadata) UpdateTime(
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadata) DeleteTime() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadata) Uuid() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataUuid {
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataUuid{}
 }
@@ -5466,6 +5890,10 @@ func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadata) Syncing() U
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncing{}
 }
 
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadata) Lifecycle() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle{}
+}
+
 type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataCreateTime struct{}
 
 func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataCreateTime) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
@@ -5497,6 +5925,23 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataUpdateTime)
 }
 
 func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5673,20 +6118,20 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerRefere
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) ApiVersion() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Kind() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind {
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Version() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Name() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName {
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Uid() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid {
-	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Region() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Controller() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesController {
@@ -5697,21 +6142,8 @@ func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferenc
 	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
-	return &UpdateAdminAreaRequest_FieldSubPath{
-		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
-}
-
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind struct{}
@@ -5728,6 +6160,23 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerRefere
 }
 
 func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5748,20 +6197,20 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerRefere
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
 	return &UpdateAdminAreaRequest_FieldSubPath{
 		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateAdminAreaRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5796,6 +6245,23 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerRefere
 }
 
 func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5900,6 +6366,65 @@ func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncingRegi
 
 func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateAdminAreaRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle) State() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycle) BlockDeletion() UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateAdminAreaRequest_FieldSubPath {
+	return &UpdateAdminAreaRequest_FieldSubPath{
+		selector: UpdateAdminAreaRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateAdminAreaRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateAdminAreaRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateAdminAreaRequestPathSelectorCasConditionalStateLocalLanguageNames struct{}
@@ -6475,6 +7000,10 @@ func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadata) UpdateTime
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadata) DeleteTime() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadata) Uuid() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataUuid {
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataUuid{}
 }
@@ -6511,6 +7040,10 @@ func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadata) Syncing() 
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncing{}
 }
 
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadata) Lifecycle() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle{}
+}
+
 type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataCreateTime struct{}
 
 func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataCreateTime) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
@@ -6542,6 +7075,23 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataUpdateTime
 }
 
 func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -6718,20 +7268,20 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerRefer
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayItemValue)
 }
 
-func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) ApiVersion() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Kind() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind {
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Version() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Name() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName {
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Uid() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid {
-	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Region() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Controller() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesController {
@@ -6742,21 +7292,8 @@ func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferen
 	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
-	return &UpdateAdminAreaRequestCAS_FieldSubPath{
-		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind struct{}
@@ -6773,6 +7310,23 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerRefer
 }
 
 func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -6793,20 +7347,20 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerRefer
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
 	return &UpdateAdminAreaRequestCAS_FieldSubPath{
 		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -6841,6 +7395,23 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerRefer
 }
 
 func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -6945,6 +7516,65 @@ func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncingReg
 
 func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateAdminAreaRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle) State() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycle) BlockDeletion() UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateAdminAreaRequestCAS_FieldSubPath {
+	return &UpdateAdminAreaRequestCAS_FieldSubPath{
+		selector: UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  admin_area.NewAdminAreaFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateAdminAreaRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateAdminAreaRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateAdminAreaRequest_CASPathSelectorConditionalStateLocalLanguageNames struct{}

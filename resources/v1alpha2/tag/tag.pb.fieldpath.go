@@ -260,6 +260,10 @@ func (fp *Tag_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == Tag_FieldPathSelectorDisplayName
 }
 
+func (fp *Tag_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *Tag_FieldTerminalPath) WithIValue(value interface{}) Tag_FieldPathValue {
 	switch fp.selector {
 	case Tag_FieldPathSelectorName:
@@ -403,6 +407,12 @@ func (fps *Tag_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *Tag_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *Tag_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&Tag_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *Tag_FieldSubPath) WithIValue(value interface{}) Tag_FieldPathValue {
@@ -661,7 +671,11 @@ func (fpaiv *Tag_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Mess
 func (fpaiv *Tag_FieldTerminalPathArrayItemValue) ContainsValue(source *Tag) bool {
 	slice := fpaiv.Tag_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -993,6 +1007,10 @@ func (fp *TagState_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == TagState_FieldPathSelectorDistributionsViaProbeSelector
 }
 
+func (fp *TagState_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *TagState_FieldTerminalPath) WithIValue(value interface{}) TagState_FieldPathValue {
 	switch fp.selector {
 	case TagState_FieldPathSelectorResourceTypeCounters:
@@ -1154,6 +1172,10 @@ func (fpm *TagState_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for Tag_State: %d", fpm.selector))
 	}
+}
+
+func (fpm *TagState_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *TagState_FieldPathMap) WithIValue(value interface{}) TagState_FieldPathValue {
@@ -1425,7 +1447,11 @@ func (fpaiv *TagState_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto
 func (fpaiv *TagState_FieldTerminalPathArrayItemValue) ContainsValue(source *Tag_State) bool {
 	slice := fpaiv.TagState_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1682,6 +1708,10 @@ func (fp *TagStateRegionalCounter_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == TagStateRegionalCounter_FieldPathSelectorByResourceType
 }
 
+func (fp *TagStateRegionalCounter_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *TagStateRegionalCounter_FieldTerminalPath) WithIValue(value interface{}) TagStateRegionalCounter_FieldPathValue {
 	switch fp.selector {
 	case TagStateRegionalCounter_FieldPathSelectorByResourceType:
@@ -1813,6 +1843,10 @@ func (fpm *TagStateRegionalCounter_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for Tag_State_RegionalCounter: %d", fpm.selector))
 	}
+}
+
+func (fpm *TagStateRegionalCounter_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *TagStateRegionalCounter_FieldPathMap) WithIValue(value interface{}) TagStateRegionalCounter_FieldPathValue {
@@ -2037,7 +2071,11 @@ func (fpaiv *TagStateRegionalCounter_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *TagStateRegionalCounter_FieldTerminalPathArrayItemValue) ContainsValue(source *Tag_State_RegionalCounter) bool {
 	slice := fpaiv.TagStateRegionalCounter_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

@@ -323,6 +323,10 @@ func (fp *SharedToken_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == SharedToken_FieldPathSelectorAssociateExistingProbeOnly
 }
 
+func (fp *SharedToken_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SharedToken_FieldTerminalPath) WithIValue(value interface{}) SharedToken_FieldPathValue {
 	switch fp.selector {
 	case SharedToken_FieldPathSelectorName:
@@ -484,6 +488,12 @@ func (fps *SharedToken_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *SharedToken_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *SharedToken_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&SharedToken_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *SharedToken_FieldSubPath) WithIValue(value interface{}) SharedToken_FieldPathValue {
@@ -802,7 +812,11 @@ func (fpaiv *SharedToken_FieldTerminalPathArrayItemValue) GetSingleRaw(source pr
 func (fpaiv *SharedToken_FieldTerminalPathArrayItemValue) ContainsValue(source *SharedToken) bool {
 	slice := fpaiv.SharedToken_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1149,6 +1163,10 @@ func (fp *SharedTokenProbeTemplate_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == SharedTokenProbeTemplate_FieldPathSelectorDisplayName
 }
 
+func (fp *SharedTokenProbeTemplate_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SharedTokenProbeTemplate_FieldTerminalPath) WithIValue(value interface{}) SharedTokenProbeTemplate_FieldPathValue {
 	switch fp.selector {
 	case SharedTokenProbeTemplate_FieldPathSelectorMetadata:
@@ -1288,6 +1306,12 @@ func (fps *SharedTokenProbeTemplate_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *SharedTokenProbeTemplate_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *SharedTokenProbeTemplate_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&SharedTokenProbeTemplate_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *SharedTokenProbeTemplate_FieldSubPath) WithIValue(value interface{}) SharedTokenProbeTemplate_FieldPathValue {
@@ -1521,7 +1545,11 @@ func (fpaiv *SharedTokenProbeTemplate_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *SharedTokenProbeTemplate_FieldTerminalPathArrayItemValue) ContainsValue(source *SharedToken_ProbeTemplate) bool {
 	slice := fpaiv.SharedTokenProbeTemplate_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1827,6 +1855,10 @@ func (fp *SharedTokenProbeTemplateMeta_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == SharedTokenProbeTemplateMeta_FieldPathSelectorAnnotations
 }
 
+func (fp *SharedTokenProbeTemplateMeta_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SharedTokenProbeTemplateMeta_FieldTerminalPath) WithIValue(value interface{}) SharedTokenProbeTemplateMeta_FieldPathValue {
 	switch fp.selector {
 	case SharedTokenProbeTemplateMeta_FieldPathSelectorTags:
@@ -1982,6 +2014,10 @@ func (fpm *SharedTokenProbeTemplateMeta_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Meta: %d", fpm.selector))
 	}
+}
+
+func (fpm *SharedTokenProbeTemplateMeta_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *SharedTokenProbeTemplateMeta_FieldPathMap) WithIValue(value interface{}) SharedTokenProbeTemplateMeta_FieldPathValue {
@@ -2249,7 +2285,11 @@ func (fpaiv *SharedTokenProbeTemplateMeta_FieldTerminalPathArrayItemValue) GetSi
 func (fpaiv *SharedTokenProbeTemplateMeta_FieldTerminalPathArrayItemValue) ContainsValue(source *SharedToken_ProbeTemplate_Meta) bool {
 	slice := fpaiv.SharedTokenProbeTemplateMeta_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2611,6 +2651,10 @@ func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == SharedTokenProbeTemplateSpec_FieldPathSelectorAgentType
 }
 
+func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SharedTokenProbeTemplateSpec_FieldTerminalPath) WithIValue(value interface{}) SharedTokenProbeTemplateSpec_FieldPathValue {
 	switch fp.selector {
 	case SharedTokenProbeTemplateSpec_FieldPathSelectorProbeGroup:
@@ -2792,6 +2836,12 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) ClearValueRaw(item proto.M
 // IsLeaf - whether field path is holds simple value
 func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&SharedTokenProbeTemplateSpec_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) WithIValue(value interface{}) SharedTokenProbeTemplateSpec_FieldPathValue {
@@ -3098,7 +3148,11 @@ func (fpaiv *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayItemValue) GetSi
 func (fpaiv *SharedTokenProbeTemplateSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *SharedToken_ProbeTemplate_Spec) bool {
 	slice := fpaiv.SharedTokenProbeTemplateSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

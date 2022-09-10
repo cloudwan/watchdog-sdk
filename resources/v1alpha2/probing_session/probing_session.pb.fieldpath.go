@@ -309,6 +309,10 @@ func (fp *ProbingSession_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingSession_FieldPathSelectorProbingDistribution
 }
 
+func (fp *ProbingSession_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) ProbingSession_FieldPathValue {
 	switch fp.selector {
 	case ProbingSession_FieldPathSelectorName:
@@ -473,6 +477,12 @@ func (fps *ProbingSession_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbingSession_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbingSession_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbingSession_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbingSession_FieldSubPath) WithIValue(value interface{}) ProbingSession_FieldPathValue {
@@ -772,7 +782,11 @@ func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetSingleRaw(source
 func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingSession) bool {
 	slice := fpaiv.ProbingSession_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1348,6 +1362,10 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingSessionSpec_FieldPathSelectorLocationType
 }
 
+func (fp *ProbingSessionSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingSessionSpec_FieldTerminalPath) WithIValue(value interface{}) ProbingSessionSpec_FieldPathValue {
 	switch fp.selector {
 	case ProbingSessionSpec_FieldPathSelectorProbe:
@@ -1584,6 +1602,12 @@ func (fps *ProbingSessionSpec_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbingSessionSpec_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbingSessionSpec_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbingSessionSpec_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbingSessionSpec_FieldSubPath) WithIValue(value interface{}) ProbingSessionSpec_FieldPathValue {
@@ -2073,7 +2097,11 @@ func (fpaiv *ProbingSessionSpec_FieldTerminalPathArrayItemValue) GetSingleRaw(so
 func (fpaiv *ProbingSessionSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingSession_Spec) bool {
 	slice := fpaiv.ProbingSessionSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2459,6 +2487,10 @@ func (fp *ProbingSessionStatus_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ProbingSessionStatus_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbingSessionStatus_FieldTerminalPath) WithIValue(value interface{}) ProbingSessionStatus_FieldPathValue {
 	switch fp.selector {
 	default:
@@ -2615,7 +2647,11 @@ func (fpaiv *ProbingSessionStatus_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *ProbingSessionStatus_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingSession_Status) bool {
 	slice := fpaiv.ProbingSessionStatus_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

@@ -258,6 +258,10 @@ func (fp *ProbeGroup_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeGroup_FieldPathSelectorDisplayName
 }
 
+func (fp *ProbeGroup_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeGroup_FieldTerminalPath) WithIValue(value interface{}) ProbeGroup_FieldPathValue {
 	switch fp.selector {
 	case ProbeGroup_FieldPathSelectorName:
@@ -401,6 +405,12 @@ func (fps *ProbeGroup_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeGroup_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeGroup_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeGroup_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeGroup_FieldSubPath) WithIValue(value interface{}) ProbeGroup_FieldPathValue {
@@ -659,7 +669,11 @@ func (fpaiv *ProbeGroup_FieldTerminalPathArrayItemValue) GetSingleRaw(source pro
 func (fpaiv *ProbeGroup_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeGroup) bool {
 	slice := fpaiv.ProbeGroup_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -950,6 +964,10 @@ func (fp *ProbeGroupState_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeGroupState_FieldPathSelectorRegionalTargetCounts
 }
 
+func (fp *ProbeGroupState_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeGroupState_FieldTerminalPath) WithIValue(value interface{}) ProbeGroupState_FieldPathValue {
 	switch fp.selector {
 	case ProbeGroupState_FieldPathSelectorTargetCount:
@@ -1085,6 +1103,10 @@ func (fpm *ProbeGroupState_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbeGroup_State: %d", fpm.selector))
 	}
+}
+
+func (fpm *ProbeGroupState_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *ProbeGroupState_FieldPathMap) WithIValue(value interface{}) ProbeGroupState_FieldPathValue {
@@ -1325,7 +1347,11 @@ func (fpaiv *ProbeGroupState_FieldTerminalPathArrayItemValue) GetSingleRaw(sourc
 func (fpaiv *ProbeGroupState_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeGroup_State) bool {
 	slice := fpaiv.ProbeGroupState_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

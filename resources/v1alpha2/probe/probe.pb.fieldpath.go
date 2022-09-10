@@ -328,6 +328,10 @@ func (fp *Probe_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == Probe_FieldPathSelectorLowerDisplayName
 }
 
+func (fp *Probe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *Probe_FieldTerminalPath) WithIValue(value interface{}) Probe_FieldPathValue {
 	switch fp.selector {
 	case Probe_FieldPathSelectorName:
@@ -515,6 +519,12 @@ func (fps *Probe_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *Probe_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *Probe_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&Probe_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *Probe_FieldSubPath) WithIValue(value interface{}) Probe_FieldPathValue {
@@ -825,7 +835,11 @@ func (fpaiv *Probe_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Me
 func (fpaiv *Probe_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe) bool {
 	slice := fpaiv.Probe_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1351,6 +1365,10 @@ func (fp *ProbeSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeSpec_FieldPathSelectorExternalIpCheckUrl
 }
 
+func (fp *ProbeSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
@@ -1580,6 +1598,12 @@ func (fps *ProbeSpec_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeSpec_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeSpec_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeSpec_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeSpec_FieldSubPath) WithIValue(value interface{}) ProbeSpec_FieldPathValue {
@@ -1971,7 +1995,11 @@ func (fpaiv *ProbeSpec_FieldTerminalPathArrayItemValue) GetSingleRaw(source prot
 func (fpaiv *ProbeSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec) bool {
 	slice := fpaiv.ProbeSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2616,6 +2644,10 @@ func (fp *ProbeStatus_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatus_FieldPathSelectorAgentType
 }
 
+func (fp *ProbeStatus_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatus_FieldTerminalPath) WithIValue(value interface{}) ProbeStatus_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatus_FieldPathSelectorExternalIpAddressV4:
@@ -2803,6 +2835,10 @@ func (fpm *ProbeStatus_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpm.selector))
 	}
+}
+
+func (fpm *ProbeStatus_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *ProbeStatus_FieldPathMap) WithIValue(value interface{}) ProbeStatus_FieldPathValue {
@@ -3009,6 +3045,12 @@ func (fps *ProbeStatus_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeStatus_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeStatus_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeStatus_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeStatus_FieldSubPath) WithIValue(value interface{}) ProbeStatus_FieldPathValue {
@@ -3486,7 +3528,11 @@ func (fpaiv *ProbeStatus_FieldTerminalPathArrayItemValue) GetSingleRaw(source pr
 func (fpaiv *ProbeStatus_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status) bool {
 	slice := fpaiv.ProbeStatus_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3988,6 +4034,10 @@ func (fp *ProbeSpecActivationSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeSpecActivationSpec_FieldPathSelectorReusableToken
 }
 
+func (fp *ProbeSpecActivationSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecActivationSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecActivationSpec_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecActivationSpec_FieldPathSelectorType:
@@ -4135,6 +4185,10 @@ func (fpm *ProbeSpecActivationSpec_FieldPathMap) IsLeaf() bool {
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_ActivationSpec: %d", fpm.selector))
 	}
+}
+
+func (fpm *ProbeSpecActivationSpec_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
 }
 
 func (fpm *ProbeSpecActivationSpec_FieldPathMap) WithIValue(value interface{}) ProbeSpecActivationSpec_FieldPathValue {
@@ -4423,7 +4477,11 @@ func (fpaiv *ProbeSpecActivationSpec_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *ProbeSpecActivationSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_ActivationSpec) bool {
 	slice := fpaiv.ProbeSpecActivationSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4685,6 +4743,10 @@ func (fp *ProbeSpecAccessTokenSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeSpecAccessTokenSpec_FieldPathSelectorAccessToken
 }
 
+func (fp *ProbeSpecAccessTokenSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecAccessTokenSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecAccessTokenSpec_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecAccessTokenSpec_FieldPathSelectorEnable:
@@ -4881,7 +4943,11 @@ func (fpaiv *ProbeSpecAccessTokenSpec_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *ProbeSpecAccessTokenSpec_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_AccessTokenSpec) bool {
 	slice := fpaiv.ProbeSpecAccessTokenSpec_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5153,6 +5219,10 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecTargetServers_FieldPathSelectorTargetAddressType
 }
 
+func (fp *ProbeSpecTargetServers_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServers_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
@@ -5309,6 +5379,12 @@ func (fps *ProbeSpecTargetServers_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeSpecTargetServers_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeSpecTargetServers_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeSpecTargetServers_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeSpecTargetServers_FieldSubPath) WithIValue(value interface{}) ProbeSpecTargetServers_FieldPathValue {
@@ -5558,7 +5634,11 @@ func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *ProbeSpecTargetServers_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers) bool {
 	slice := fpaiv.ProbeSpecTargetServers_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5836,6 +5916,10 @@ func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled
 }
 
+func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecTargetServersIcmpTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersIcmpTarget_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecTargetServersIcmpTarget_FieldPathSelectorEnabled:
@@ -6012,7 +6096,11 @@ func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) G
 func (fpaiv *ProbeSpecTargetServersIcmpTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_IcmpTarget) bool {
 	slice := fpaiv.ProbeSpecTargetServersIcmpTarget_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6221,6 +6309,10 @@ func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeSpecTargetServersUdpTarget_FieldPathSelectorPort
 }
 
+func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecTargetServersUdpTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersUdpTarget_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecTargetServersUdpTarget_FieldPathSelectorEnabled:
@@ -6417,7 +6509,11 @@ func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *ProbeSpecTargetServersUdpTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_UdpTarget) bool {
 	slice := fpaiv.ProbeSpecTargetServersUdpTarget_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6634,6 +6730,10 @@ func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) IsLeaf() bool
 		fp.selector == ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorTcpPort
 }
 
+func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecTargetServersSpeedTestTarget_FieldPathValue {
 	switch fp.selector {
 	case ProbeSpecTargetServersSpeedTestTarget_FieldPathSelectorEnabled:
@@ -6830,7 +6930,11 @@ func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemVal
 func (fpaiv *ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_TargetServers_SpeedTestTarget) bool {
 	slice := fpaiv.ProbeSpecTargetServersSpeedTestTarget_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7156,6 +7260,10 @@ func (fp *ProbeStatusSystem_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusSystem_FieldPathSelectorHostName
 }
 
+func (fp *ProbeStatusSystem_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusSystem_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusSystem_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusSystem_FieldPathSelectorManufacturer:
@@ -7306,6 +7414,12 @@ func (fps *ProbeStatusSystem_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeStatusSystem_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeStatusSystem_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeStatusSystem_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeStatusSystem_FieldSubPath) WithIValue(value interface{}) ProbeStatusSystem_FieldPathValue {
@@ -7635,7 +7749,11 @@ func (fpaiv *ProbeStatusSystem_FieldTerminalPathArrayItemValue) GetSingleRaw(sou
 func (fpaiv *ProbeStatusSystem_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_System) bool {
 	slice := fpaiv.ProbeStatusSystem_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7997,6 +8115,10 @@ func (fp *ProbeStatusActivationState_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusActivationState_FieldPathSelectorServiceAccount
 }
 
+func (fp *ProbeStatusActivationState_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusActivationState_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusActivationState_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusActivationState_FieldPathSelectorStatus:
@@ -8140,6 +8262,12 @@ func (fps *ProbeStatusActivationState_FieldSubPath) ClearValueRaw(item proto.Mes
 // IsLeaf - whether field path is holds simple value
 func (fps *ProbeStatusActivationState_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ProbeStatusActivationState_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ProbeStatusActivationState_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ProbeStatusActivationState_FieldSubPath) WithIValue(value interface{}) ProbeStatusActivationState_FieldPathValue {
@@ -8398,7 +8526,11 @@ func (fpaiv *ProbeStatusActivationState_FieldTerminalPathArrayItemValue) GetSing
 func (fpaiv *ProbeStatusActivationState_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_ActivationState) bool {
 	slice := fpaiv.ProbeStatusActivationState_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -8725,6 +8857,10 @@ func (fp *ProbeStatusBandwidth_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusBandwidth_FieldPathSelectorLastReported
 }
 
+func (fp *ProbeStatusBandwidth_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusBandwidth_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusBandwidth_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusBandwidth_FieldPathSelectorUploadMbps:
@@ -8990,7 +9126,11 @@ func (fpaiv *ProbeStatusBandwidth_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *ProbeStatusBandwidth_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_Bandwidth) bool {
 	slice := fpaiv.ProbeStatusBandwidth_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -9285,6 +9425,10 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6
 }
 
+func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusNetworkInterface_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusNetworkInterface_FieldPathSelectorInterfaceName:
@@ -9533,7 +9677,11 @@ func (fpaiv *ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue) GetSin
 func (fpaiv *ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_NetworkInterface) bool {
 	slice := fpaiv.ProbeStatusNetworkInterface_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -9802,6 +9950,10 @@ func (fp *ProbeStatusSystemOS_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusSystemOS_FieldPathSelectorKernel
 }
 
+func (fp *ProbeStatusSystemOS_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusSystemOS_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusSystemOS_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusSystemOS_FieldPathSelectorName:
@@ -10038,7 +10190,11 @@ func (fpaiv *ProbeStatusSystemOS_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *ProbeStatusSystemOS_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_System_OS) bool {
 	slice := fpaiv.ProbeStatusSystemOS_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -10274,6 +10430,10 @@ func (fp *ProbeStatusActivationStateSession_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusActivationStateSession_FieldPathSelectorLockDeadline
 }
 
+func (fp *ProbeStatusActivationStateSession_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusActivationStateSession_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusActivationStateSession_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusActivationStateSession_FieldPathSelectorClientCookie:
@@ -10479,7 +10639,11 @@ func (fpaiv *ProbeStatusActivationStateSession_FieldTerminalPathArrayItemValue) 
 func (fpaiv *ProbeStatusActivationStateSession_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_ActivationState_Session) bool {
 	slice := fpaiv.ProbeStatusActivationStateSession_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -10699,6 +10863,10 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) IsLeaf() 
 		fp.selector == ProbeStatusActivationStateInvitationState_FieldPathSelectorSender
 }
 
+func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusActivationStateInvitationState_FieldPathValue {
 	switch fp.selector {
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate:
@@ -10904,7 +11072,11 @@ func (fpaiv *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayIte
 func (fpaiv *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_ActivationState_InvitationState) bool {
 	slice := fpaiv.ProbeStatusActivationStateInvitationState_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

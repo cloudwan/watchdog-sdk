@@ -1176,6 +1176,10 @@ func (QualityProfilePathSelectorMetadata) UpdateTime() QualityProfilePathSelecto
 	return QualityProfilePathSelectorMetadataUpdateTime{}
 }
 
+func (QualityProfilePathSelectorMetadata) DeleteTime() QualityProfilePathSelectorMetadataDeleteTime {
+	return QualityProfilePathSelectorMetadataDeleteTime{}
+}
+
 func (QualityProfilePathSelectorMetadata) Uuid() QualityProfilePathSelectorMetadataUuid {
 	return QualityProfilePathSelectorMetadataUuid{}
 }
@@ -1212,6 +1216,10 @@ func (QualityProfilePathSelectorMetadata) Syncing() QualityProfilePathSelectorMe
 	return QualityProfilePathSelectorMetadataSyncing{}
 }
 
+func (QualityProfilePathSelectorMetadata) Lifecycle() QualityProfilePathSelectorMetadataLifecycle {
+	return QualityProfilePathSelectorMetadataLifecycle{}
+}
+
 type QualityProfilePathSelectorMetadataCreateTime struct{}
 
 func (QualityProfilePathSelectorMetadataCreateTime) FieldPath() *QualityProfile_FieldSubPath {
@@ -1243,6 +1251,23 @@ func (s QualityProfilePathSelectorMetadataUpdateTime) WithValue(value *timestamp
 }
 
 func (s QualityProfilePathSelectorMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+}
+
+type QualityProfilePathSelectorMetadataDeleteTime struct{}
+
+func (QualityProfilePathSelectorMetadataDeleteTime) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().DeleteTime().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *QualityProfile_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }
 
@@ -1419,20 +1444,20 @@ func (s QualityProfilePathSelectorMetadataOwnerReferences) WithItemValue(value *
 	return s.FieldPath().WithIArrayItemValue(value).(*QualityProfile_FieldSubPathArrayItemValue)
 }
 
-func (QualityProfilePathSelectorMetadataOwnerReferences) ApiVersion() QualityProfilePathSelectorMetadataOwnerReferencesApiVersion {
-	return QualityProfilePathSelectorMetadataOwnerReferencesApiVersion{}
-}
-
 func (QualityProfilePathSelectorMetadataOwnerReferences) Kind() QualityProfilePathSelectorMetadataOwnerReferencesKind {
 	return QualityProfilePathSelectorMetadataOwnerReferencesKind{}
+}
+
+func (QualityProfilePathSelectorMetadataOwnerReferences) Version() QualityProfilePathSelectorMetadataOwnerReferencesVersion {
+	return QualityProfilePathSelectorMetadataOwnerReferencesVersion{}
 }
 
 func (QualityProfilePathSelectorMetadataOwnerReferences) Name() QualityProfilePathSelectorMetadataOwnerReferencesName {
 	return QualityProfilePathSelectorMetadataOwnerReferencesName{}
 }
 
-func (QualityProfilePathSelectorMetadataOwnerReferences) Uid() QualityProfilePathSelectorMetadataOwnerReferencesUid {
-	return QualityProfilePathSelectorMetadataOwnerReferencesUid{}
+func (QualityProfilePathSelectorMetadataOwnerReferences) Region() QualityProfilePathSelectorMetadataOwnerReferencesRegion {
+	return QualityProfilePathSelectorMetadataOwnerReferencesRegion{}
 }
 
 func (QualityProfilePathSelectorMetadataOwnerReferences) Controller() QualityProfilePathSelectorMetadataOwnerReferencesController {
@@ -1443,21 +1468,8 @@ func (QualityProfilePathSelectorMetadataOwnerReferences) BlockOwnerDeletion() Qu
 	return QualityProfilePathSelectorMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type QualityProfilePathSelectorMetadataOwnerReferencesApiVersion struct{}
-
-func (QualityProfilePathSelectorMetadataOwnerReferencesApiVersion) FieldPath() *QualityProfile_FieldSubPath {
-	return &QualityProfile_FieldSubPath{
-		selector: QualityProfile_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s QualityProfilePathSelectorMetadataOwnerReferencesApiVersion) WithValue(value string) *QualityProfile_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
-}
-
-func (s QualityProfilePathSelectorMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *QualityProfile_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+func (QualityProfilePathSelectorMetadataOwnerReferences) RequiresOwnerReference() QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference {
+	return QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type QualityProfilePathSelectorMetadataOwnerReferencesKind struct{}
@@ -1474,6 +1486,23 @@ func (s QualityProfilePathSelectorMetadataOwnerReferencesKind) WithValue(value s
 }
 
 func (s QualityProfilePathSelectorMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+}
+
+type QualityProfilePathSelectorMetadataOwnerReferencesVersion struct{}
+
+func (QualityProfilePathSelectorMetadataOwnerReferencesVersion) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataOwnerReferencesVersion) WithValue(value string) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *QualityProfile_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }
 
@@ -1494,20 +1523,20 @@ func (s QualityProfilePathSelectorMetadataOwnerReferencesName) WithArrayOfValues
 	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }
 
-type QualityProfilePathSelectorMetadataOwnerReferencesUid struct{}
+type QualityProfilePathSelectorMetadataOwnerReferencesRegion struct{}
 
-func (QualityProfilePathSelectorMetadataOwnerReferencesUid) FieldPath() *QualityProfile_FieldSubPath {
+func (QualityProfilePathSelectorMetadataOwnerReferencesRegion) FieldPath() *QualityProfile_FieldSubPath {
 	return &QualityProfile_FieldSubPath{
 		selector: QualityProfile_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Uid().FieldPath(),
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s QualityProfilePathSelectorMetadataOwnerReferencesUid) WithValue(value string) *QualityProfile_FieldSubPathValue {
+func (s QualityProfilePathSelectorMetadataOwnerReferencesRegion) WithValue(value string) *QualityProfile_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
 }
 
-func (s QualityProfilePathSelectorMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *QualityProfile_FieldSubPathArrayOfValues {
+func (s QualityProfilePathSelectorMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *QualityProfile_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }
 
@@ -1542,6 +1571,23 @@ func (s QualityProfilePathSelectorMetadataOwnerReferencesBlockOwnerDeletion) Wit
 }
 
 func (s QualityProfilePathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+}
+
+type QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *QualityProfile_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }
 
@@ -1646,4 +1692,63 @@ func (s QualityProfilePathSelectorMetadataSyncingRegions) WithArrayOfValues(valu
 
 func (s QualityProfilePathSelectorMetadataSyncingRegions) WithItemValue(value string) *QualityProfile_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*QualityProfile_FieldSubPathArrayItemValue)
+}
+
+type QualityProfilePathSelectorMetadataLifecycle struct{}
+
+func (QualityProfilePathSelectorMetadataLifecycle) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+}
+
+func (QualityProfilePathSelectorMetadataLifecycle) State() QualityProfilePathSelectorMetadataLifecycleState {
+	return QualityProfilePathSelectorMetadataLifecycleState{}
+}
+
+func (QualityProfilePathSelectorMetadataLifecycle) BlockDeletion() QualityProfilePathSelectorMetadataLifecycleBlockDeletion {
+	return QualityProfilePathSelectorMetadataLifecycleBlockDeletion{}
+}
+
+type QualityProfilePathSelectorMetadataLifecycleState struct{}
+
+func (QualityProfilePathSelectorMetadataLifecycleState) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
+}
+
+type QualityProfilePathSelectorMetadataLifecycleBlockDeletion struct{}
+
+func (QualityProfilePathSelectorMetadataLifecycleBlockDeletion) FieldPath() *QualityProfile_FieldSubPath {
+	return &QualityProfile_FieldSubPath{
+		selector: QualityProfile_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycleBlockDeletion) WithValue(value bool) *QualityProfile_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*QualityProfile_FieldSubPathValue)
+}
+
+func (s QualityProfilePathSelectorMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *QualityProfile_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*QualityProfile_FieldSubPathArrayOfValues)
 }

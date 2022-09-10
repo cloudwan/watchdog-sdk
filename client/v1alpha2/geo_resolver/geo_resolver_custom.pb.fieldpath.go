@@ -211,6 +211,10 @@ func (fp *ResolveGeoIPRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ResolveGeoIPRequest_FieldPathSelectorAddress
 }
 
+func (fp *ResolveGeoIPRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ResolveGeoIPRequest_FieldTerminalPath) WithIValue(value interface{}) ResolveGeoIPRequest_FieldPathValue {
 	switch fp.selector {
 	case ResolveGeoIPRequest_FieldPathSelectorName:
@@ -416,7 +420,11 @@ func (fpaiv *ResolveGeoIPRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *ResolveGeoIPRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ResolveGeoIPRequest) bool {
 	slice := fpaiv.ResolveGeoIPRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -702,6 +710,10 @@ func (fp *ResolveGeoIPResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ResolveGeoIPResponse_FieldPathSelectorAccessProvider
 }
 
+func (fp *ResolveGeoIPResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ResolveGeoIPResponse_FieldTerminalPath) WithIValue(value interface{}) ResolveGeoIPResponse_FieldPathValue {
 	switch fp.selector {
 	case ResolveGeoIPResponse_FieldPathSelectorLocation:
@@ -862,6 +874,12 @@ func (fps *ResolveGeoIPResponse_FieldSubPath) ClearValueRaw(item proto.Message) 
 // IsLeaf - whether field path is holds simple value
 func (fps *ResolveGeoIPResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ResolveGeoIPResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ResolveGeoIPResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ResolveGeoIPResponse_FieldSubPath) WithIValue(value interface{}) ResolveGeoIPResponse_FieldPathValue {
@@ -1127,7 +1145,11 @@ func (fpaiv *ResolveGeoIPResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *ResolveGeoIPResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ResolveGeoIPResponse) bool {
 	slice := fpaiv.ResolveGeoIPResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1433,6 +1455,10 @@ func (fp *BulkResolveGeoIPRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BulkResolveGeoIPRequest_FieldPathSelectorAddress
 }
 
+func (fp *BulkResolveGeoIPRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BulkResolveGeoIPRequest_FieldTerminalPath) WithIValue(value interface{}) BulkResolveGeoIPRequest_FieldPathValue {
 	switch fp.selector {
 	case BulkResolveGeoIPRequest_FieldPathSelectorName:
@@ -1636,7 +1662,11 @@ func (fpaiv *BulkResolveGeoIPRequest_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *BulkResolveGeoIPRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *BulkResolveGeoIPRequest) bool {
 	slice := fpaiv.BulkResolveGeoIPRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1851,6 +1881,10 @@ func (fp *BulkResolveGeoIPResponse_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *BulkResolveGeoIPResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BulkResolveGeoIPResponse_FieldTerminalPath) WithIValue(value interface{}) BulkResolveGeoIPResponse_FieldPathValue {
 	switch fp.selector {
 	case BulkResolveGeoIPResponse_FieldPathSelectorGeoIpInfo:
@@ -1975,6 +2009,12 @@ func (fps *BulkResolveGeoIPResponse_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *BulkResolveGeoIPResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *BulkResolveGeoIPResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&BulkResolveGeoIPResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *BulkResolveGeoIPResponse_FieldSubPath) WithIValue(value interface{}) BulkResolveGeoIPResponse_FieldPathValue {
@@ -2180,7 +2220,11 @@ func (fpaiv *BulkResolveGeoIPResponse_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *BulkResolveGeoIPResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *BulkResolveGeoIPResponse) bool {
 	slice := fpaiv.BulkResolveGeoIPResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2511,6 +2555,10 @@ func (fp *BulkResolveGeoIPResponseGeoIPData_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BulkResolveGeoIPResponseGeoIPData_FieldPathSelectorIpAddress
 }
 
+func (fp *BulkResolveGeoIPResponseGeoIPData_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BulkResolveGeoIPResponseGeoIPData_FieldTerminalPath) WithIValue(value interface{}) BulkResolveGeoIPResponseGeoIPData_FieldPathValue {
 	switch fp.selector {
 	case BulkResolveGeoIPResponseGeoIPData_FieldPathSelectorLocation:
@@ -2675,6 +2723,12 @@ func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) ClearValueRaw(item pr
 // IsLeaf - whether field path is holds simple value
 func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&BulkResolveGeoIPResponseGeoIPData_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) WithIValue(value interface{}) BulkResolveGeoIPResponseGeoIPData_FieldPathValue {
@@ -2956,7 +3010,11 @@ func (fpaiv *BulkResolveGeoIPResponseGeoIPData_FieldTerminalPathArrayItemValue) 
 func (fpaiv *BulkResolveGeoIPResponseGeoIPData_FieldTerminalPathArrayItemValue) ContainsValue(source *BulkResolveGeoIPResponse_GeoIPData) bool {
 	slice := fpaiv.BulkResolveGeoIPResponseGeoIPData_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3292,6 +3350,10 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ResolveEnvironmentRequest_FieldPathSelectorAddress
 }
 
+func (fp *ResolveEnvironmentRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ResolveEnvironmentRequest_FieldTerminalPath) WithIValue(value interface{}) ResolveEnvironmentRequest_FieldPathValue {
 	switch fp.selector {
 	case ResolveEnvironmentRequest_FieldPathSelectorName:
@@ -3424,6 +3486,12 @@ func (fps *ResolveEnvironmentRequest_FieldSubPath) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fps *ResolveEnvironmentRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ResolveEnvironmentRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ResolveEnvironmentRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ResolveEnvironmentRequest_FieldSubPath) WithIValue(value interface{}) ResolveEnvironmentRequest_FieldPathValue {
@@ -3670,7 +3738,11 @@ func (fpaiv *ResolveEnvironmentRequest_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *ResolveEnvironmentRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ResolveEnvironmentRequest) bool {
 	slice := fpaiv.ResolveEnvironmentRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3998,6 +4070,10 @@ func (fp *ResolveEnvironmentResponse_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *ResolveEnvironmentResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ResolveEnvironmentResponse_FieldTerminalPath) WithIValue(value interface{}) ResolveEnvironmentResponse_FieldPathValue {
 	switch fp.selector {
 	case ResolveEnvironmentResponse_FieldPathSelectorLocation:
@@ -4167,6 +4243,12 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) ClearValueRaw(item proto.Mes
 // IsLeaf - whether field path is holds simple value
 func (fps *ResolveEnvironmentResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ResolveEnvironmentResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ResolveEnvironmentResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ResolveEnvironmentResponse_FieldSubPath) WithIValue(value interface{}) ResolveEnvironmentResponse_FieldPathValue {
@@ -4416,7 +4498,11 @@ func (fpaiv *ResolveEnvironmentResponse_FieldTerminalPathArrayItemValue) GetSing
 func (fpaiv *ResolveEnvironmentResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ResolveEnvironmentResponse) bool {
 	slice := fpaiv.ResolveEnvironmentResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

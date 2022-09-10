@@ -255,6 +255,10 @@ func (fp *InternetQualityRating_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == InternetQualityRating_FieldPathSelectorTimestamp
 }
 
+func (fp *InternetQualityRating_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *InternetQualityRating_FieldTerminalPath) WithIValue(value interface{}) InternetQualityRating_FieldPathValue {
 	switch fp.selector {
 	case InternetQualityRating_FieldPathSelectorName:
@@ -385,6 +389,12 @@ func (fps *InternetQualityRating_FieldSubPath) ClearValueRaw(item proto.Message)
 // IsLeaf - whether field path is holds simple value
 func (fps *InternetQualityRating_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *InternetQualityRating_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&InternetQualityRating_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *InternetQualityRating_FieldSubPath) WithIValue(value interface{}) InternetQualityRating_FieldPathValue {
@@ -652,7 +662,11 @@ func (fpaiv *InternetQualityRating_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *InternetQualityRating_FieldTerminalPathArrayItemValue) ContainsValue(source *InternetQualityRating) bool {
 	slice := fpaiv.InternetQualityRating_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

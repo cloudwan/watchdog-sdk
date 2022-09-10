@@ -211,6 +211,10 @@ func (fp *ProbeHardwareGetRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeHardwareGetRequest_FieldPathSelectorAccessToken
 }
 
+func (fp *ProbeHardwareGetRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeHardwareGetRequest_FieldTerminalPath) WithIValue(value interface{}) ProbeHardwareGetRequest_FieldPathValue {
 	switch fp.selector {
 	case ProbeHardwareGetRequest_FieldPathSelectorProbeName:
@@ -416,7 +420,11 @@ func (fpaiv *ProbeHardwareGetRequest_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *ProbeHardwareGetRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeHardwareGetRequest) bool {
 	slice := fpaiv.ProbeHardwareGetRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -647,6 +655,10 @@ func (fp *ProbeHardwareGetResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeHardwareGetResponse_FieldPathSelectorConnectionStatus
 }
 
+func (fp *ProbeHardwareGetResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeHardwareGetResponse_FieldTerminalPath) WithIValue(value interface{}) ProbeHardwareGetResponse_FieldPathValue {
 	switch fp.selector {
 	case ProbeHardwareGetResponse_FieldPathSelectorSerialNumber:
@@ -863,7 +875,11 @@ func (fpaiv *ProbeHardwareGetResponse_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *ProbeHardwareGetResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeHardwareGetResponse) bool {
 	slice := fpaiv.ProbeHardwareGetResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1105,6 +1121,10 @@ func (fp *ProbeHardwareUpdateRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeHardwareUpdateRequest_FieldPathSelectorAccessToken
 }
 
+func (fp *ProbeHardwareUpdateRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeHardwareUpdateRequest_FieldTerminalPath) WithIValue(value interface{}) ProbeHardwareUpdateRequest_FieldPathValue {
 	switch fp.selector {
 	case ProbeHardwareUpdateRequest_FieldPathSelectorProbeName:
@@ -1330,7 +1350,11 @@ func (fpaiv *ProbeHardwareUpdateRequest_FieldTerminalPathArrayItemValue) GetSing
 func (fpaiv *ProbeHardwareUpdateRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeHardwareUpdateRequest) bool {
 	slice := fpaiv.ProbeHardwareUpdateRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1541,6 +1565,10 @@ func (fp *ProbeHardwareUpdateResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeHardwareUpdateResponse_FieldPathSelectorSerialNumber
 }
 
+func (fp *ProbeHardwareUpdateResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ProbeHardwareUpdateResponse_FieldTerminalPath) WithIValue(value interface{}) ProbeHardwareUpdateResponse_FieldPathValue {
 	switch fp.selector {
 	case ProbeHardwareUpdateResponse_FieldPathSelectorSerialNumber:
@@ -1717,7 +1745,11 @@ func (fpaiv *ProbeHardwareUpdateResponse_FieldTerminalPathArrayItemValue) GetSin
 func (fpaiv *ProbeHardwareUpdateResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbeHardwareUpdateResponse) bool {
 	slice := fpaiv.ProbeHardwareUpdateResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

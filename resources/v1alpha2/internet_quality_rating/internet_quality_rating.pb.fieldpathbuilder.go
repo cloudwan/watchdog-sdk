@@ -160,6 +160,10 @@ func (InternetQualityRatingPathSelectorMetadata) UpdateTime() InternetQualityRat
 	return InternetQualityRatingPathSelectorMetadataUpdateTime{}
 }
 
+func (InternetQualityRatingPathSelectorMetadata) DeleteTime() InternetQualityRatingPathSelectorMetadataDeleteTime {
+	return InternetQualityRatingPathSelectorMetadataDeleteTime{}
+}
+
 func (InternetQualityRatingPathSelectorMetadata) Uuid() InternetQualityRatingPathSelectorMetadataUuid {
 	return InternetQualityRatingPathSelectorMetadataUuid{}
 }
@@ -196,6 +200,10 @@ func (InternetQualityRatingPathSelectorMetadata) Syncing() InternetQualityRating
 	return InternetQualityRatingPathSelectorMetadataSyncing{}
 }
 
+func (InternetQualityRatingPathSelectorMetadata) Lifecycle() InternetQualityRatingPathSelectorMetadataLifecycle {
+	return InternetQualityRatingPathSelectorMetadataLifecycle{}
+}
+
 type InternetQualityRatingPathSelectorMetadataCreateTime struct{}
 
 func (InternetQualityRatingPathSelectorMetadataCreateTime) FieldPath() *InternetQualityRating_FieldSubPath {
@@ -227,6 +235,23 @@ func (s InternetQualityRatingPathSelectorMetadataUpdateTime) WithValue(value *ti
 }
 
 func (s InternetQualityRatingPathSelectorMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+}
+
+type InternetQualityRatingPathSelectorMetadataDeleteTime struct{}
+
+func (InternetQualityRatingPathSelectorMetadataDeleteTime) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().DeleteTime().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *InternetQualityRating_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }
 
@@ -403,20 +428,20 @@ func (s InternetQualityRatingPathSelectorMetadataOwnerReferences) WithItemValue(
 	return s.FieldPath().WithIArrayItemValue(value).(*InternetQualityRating_FieldSubPathArrayItemValue)
 }
 
-func (InternetQualityRatingPathSelectorMetadataOwnerReferences) ApiVersion() InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion {
-	return InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion{}
-}
-
 func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Kind() InternetQualityRatingPathSelectorMetadataOwnerReferencesKind {
 	return InternetQualityRatingPathSelectorMetadataOwnerReferencesKind{}
+}
+
+func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Version() InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion {
+	return InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion{}
 }
 
 func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Name() InternetQualityRatingPathSelectorMetadataOwnerReferencesName {
 	return InternetQualityRatingPathSelectorMetadataOwnerReferencesName{}
 }
 
-func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Uid() InternetQualityRatingPathSelectorMetadataOwnerReferencesUid {
-	return InternetQualityRatingPathSelectorMetadataOwnerReferencesUid{}
+func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Region() InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion {
+	return InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion{}
 }
 
 func (InternetQualityRatingPathSelectorMetadataOwnerReferences) Controller() InternetQualityRatingPathSelectorMetadataOwnerReferencesController {
@@ -427,21 +452,8 @@ func (InternetQualityRatingPathSelectorMetadataOwnerReferences) BlockOwnerDeleti
 	return InternetQualityRatingPathSelectorMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion struct{}
-
-func (InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion) FieldPath() *InternetQualityRating_FieldSubPath {
-	return &InternetQualityRating_FieldSubPath{
-		selector: InternetQualityRating_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion) WithValue(value string) *InternetQualityRating_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
-}
-
-func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *InternetQualityRating_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+func (InternetQualityRatingPathSelectorMetadataOwnerReferences) RequiresOwnerReference() InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference {
+	return InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type InternetQualityRatingPathSelectorMetadataOwnerReferencesKind struct{}
@@ -458,6 +470,23 @@ func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesKind) WithValue(
 }
 
 func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+}
+
+type InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion struct{}
+
+func (InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion) WithValue(value string) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *InternetQualityRating_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }
 
@@ -478,20 +507,20 @@ func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesName) WithArrayO
 	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }
 
-type InternetQualityRatingPathSelectorMetadataOwnerReferencesUid struct{}
+type InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion struct{}
 
-func (InternetQualityRatingPathSelectorMetadataOwnerReferencesUid) FieldPath() *InternetQualityRating_FieldSubPath {
+func (InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion) FieldPath() *InternetQualityRating_FieldSubPath {
 	return &InternetQualityRating_FieldSubPath{
 		selector: InternetQualityRating_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Uid().FieldPath(),
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesUid) WithValue(value string) *InternetQualityRating_FieldSubPathValue {
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion) WithValue(value string) *InternetQualityRating_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
 }
 
-func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *InternetQualityRating_FieldSubPathArrayOfValues {
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *InternetQualityRating_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }
 
@@ -526,6 +555,23 @@ func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesBlockOwnerDeleti
 }
 
 func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+}
+
+type InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *InternetQualityRating_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }
 
@@ -630,4 +676,63 @@ func (s InternetQualityRatingPathSelectorMetadataSyncingRegions) WithArrayOfValu
 
 func (s InternetQualityRatingPathSelectorMetadataSyncingRegions) WithItemValue(value string) *InternetQualityRating_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*InternetQualityRating_FieldSubPathArrayItemValue)
+}
+
+type InternetQualityRatingPathSelectorMetadataLifecycle struct{}
+
+func (InternetQualityRatingPathSelectorMetadataLifecycle) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+}
+
+func (InternetQualityRatingPathSelectorMetadataLifecycle) State() InternetQualityRatingPathSelectorMetadataLifecycleState {
+	return InternetQualityRatingPathSelectorMetadataLifecycleState{}
+}
+
+func (InternetQualityRatingPathSelectorMetadataLifecycle) BlockDeletion() InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion {
+	return InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion{}
+}
+
+type InternetQualityRatingPathSelectorMetadataLifecycleState struct{}
+
+func (InternetQualityRatingPathSelectorMetadataLifecycleState) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
+}
+
+type InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion struct{}
+
+func (InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion) FieldPath() *InternetQualityRating_FieldSubPath {
+	return &InternetQualityRating_FieldSubPath{
+		selector: InternetQualityRating_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion) WithValue(value bool) *InternetQualityRating_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*InternetQualityRating_FieldSubPathValue)
+}
+
+func (s InternetQualityRatingPathSelectorMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *InternetQualityRating_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*InternetQualityRating_FieldSubPathArrayOfValues)
 }

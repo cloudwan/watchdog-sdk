@@ -184,6 +184,10 @@ func (ProbingTargetPathSelectorMetadata) UpdateTime() ProbingTargetPathSelectorM
 	return ProbingTargetPathSelectorMetadataUpdateTime{}
 }
 
+func (ProbingTargetPathSelectorMetadata) DeleteTime() ProbingTargetPathSelectorMetadataDeleteTime {
+	return ProbingTargetPathSelectorMetadataDeleteTime{}
+}
+
 func (ProbingTargetPathSelectorMetadata) Uuid() ProbingTargetPathSelectorMetadataUuid {
 	return ProbingTargetPathSelectorMetadataUuid{}
 }
@@ -220,6 +224,10 @@ func (ProbingTargetPathSelectorMetadata) Syncing() ProbingTargetPathSelectorMeta
 	return ProbingTargetPathSelectorMetadataSyncing{}
 }
 
+func (ProbingTargetPathSelectorMetadata) Lifecycle() ProbingTargetPathSelectorMetadataLifecycle {
+	return ProbingTargetPathSelectorMetadataLifecycle{}
+}
+
 type ProbingTargetPathSelectorMetadataCreateTime struct{}
 
 func (ProbingTargetPathSelectorMetadataCreateTime) FieldPath() *ProbingTarget_FieldSubPath {
@@ -251,6 +259,23 @@ func (s ProbingTargetPathSelectorMetadataUpdateTime) WithValue(value *timestamp.
 }
 
 func (s ProbingTargetPathSelectorMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorMetadataDeleteTime struct{}
+
+func (ProbingTargetPathSelectorMetadataDeleteTime) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
@@ -427,20 +452,20 @@ func (s ProbingTargetPathSelectorMetadataOwnerReferences) WithItemValue(value *n
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingTarget_FieldSubPathArrayItemValue)
 }
 
-func (ProbingTargetPathSelectorMetadataOwnerReferences) ApiVersion() ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion {
-	return ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion{}
-}
-
 func (ProbingTargetPathSelectorMetadataOwnerReferences) Kind() ProbingTargetPathSelectorMetadataOwnerReferencesKind {
 	return ProbingTargetPathSelectorMetadataOwnerReferencesKind{}
+}
+
+func (ProbingTargetPathSelectorMetadataOwnerReferences) Version() ProbingTargetPathSelectorMetadataOwnerReferencesVersion {
+	return ProbingTargetPathSelectorMetadataOwnerReferencesVersion{}
 }
 
 func (ProbingTargetPathSelectorMetadataOwnerReferences) Name() ProbingTargetPathSelectorMetadataOwnerReferencesName {
 	return ProbingTargetPathSelectorMetadataOwnerReferencesName{}
 }
 
-func (ProbingTargetPathSelectorMetadataOwnerReferences) Uid() ProbingTargetPathSelectorMetadataOwnerReferencesUid {
-	return ProbingTargetPathSelectorMetadataOwnerReferencesUid{}
+func (ProbingTargetPathSelectorMetadataOwnerReferences) Region() ProbingTargetPathSelectorMetadataOwnerReferencesRegion {
+	return ProbingTargetPathSelectorMetadataOwnerReferencesRegion{}
 }
 
 func (ProbingTargetPathSelectorMetadataOwnerReferences) Controller() ProbingTargetPathSelectorMetadataOwnerReferencesController {
@@ -451,21 +476,8 @@ func (ProbingTargetPathSelectorMetadataOwnerReferences) BlockOwnerDeletion() Pro
 	return ProbingTargetPathSelectorMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion struct{}
-
-func (ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion) FieldPath() *ProbingTarget_FieldSubPath {
-	return &ProbingTarget_FieldSubPath{
-		selector: ProbingTarget_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion) WithValue(value string) *ProbingTarget_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
-}
-
-func (s ProbingTargetPathSelectorMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+func (ProbingTargetPathSelectorMetadataOwnerReferences) RequiresOwnerReference() ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference {
+	return ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ProbingTargetPathSelectorMetadataOwnerReferencesKind struct{}
@@ -482,6 +494,23 @@ func (s ProbingTargetPathSelectorMetadataOwnerReferencesKind) WithValue(value st
 }
 
 func (s ProbingTargetPathSelectorMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorMetadataOwnerReferencesVersion struct{}
+
+func (ProbingTargetPathSelectorMetadataOwnerReferencesVersion) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesVersion) WithValue(value string) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
@@ -502,20 +531,20 @@ func (s ProbingTargetPathSelectorMetadataOwnerReferencesName) WithArrayOfValues(
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
-type ProbingTargetPathSelectorMetadataOwnerReferencesUid struct{}
+type ProbingTargetPathSelectorMetadataOwnerReferencesRegion struct{}
 
-func (ProbingTargetPathSelectorMetadataOwnerReferencesUid) FieldPath() *ProbingTarget_FieldSubPath {
+func (ProbingTargetPathSelectorMetadataOwnerReferencesRegion) FieldPath() *ProbingTarget_FieldSubPath {
 	return &ProbingTarget_FieldSubPath{
 		selector: ProbingTarget_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Uid().FieldPath(),
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ProbingTargetPathSelectorMetadataOwnerReferencesUid) WithValue(value string) *ProbingTarget_FieldSubPathValue {
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesRegion) WithValue(value string) *ProbingTarget_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
 }
 
-func (s ProbingTargetPathSelectorMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
@@ -550,6 +579,23 @@ func (s ProbingTargetPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) With
 }
 
 func (s ProbingTargetPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
@@ -654,6 +700,65 @@ func (s ProbingTargetPathSelectorMetadataSyncingRegions) WithArrayOfValues(value
 
 func (s ProbingTargetPathSelectorMetadataSyncingRegions) WithItemValue(value string) *ProbingTarget_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbingTarget_FieldSubPathArrayItemValue)
+}
+
+type ProbingTargetPathSelectorMetadataLifecycle struct{}
+
+func (ProbingTargetPathSelectorMetadataLifecycle) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+func (ProbingTargetPathSelectorMetadataLifecycle) State() ProbingTargetPathSelectorMetadataLifecycleState {
+	return ProbingTargetPathSelectorMetadataLifecycleState{}
+}
+
+func (ProbingTargetPathSelectorMetadataLifecycle) BlockDeletion() ProbingTargetPathSelectorMetadataLifecycleBlockDeletion {
+	return ProbingTargetPathSelectorMetadataLifecycleBlockDeletion{}
+}
+
+type ProbingTargetPathSelectorMetadataLifecycleState struct{}
+
+func (ProbingTargetPathSelectorMetadataLifecycleState) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorMetadataLifecycleBlockDeletion struct{}
+
+func (ProbingTargetPathSelectorMetadataLifecycleBlockDeletion) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycleBlockDeletion) WithValue(value bool) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 
 type ProbingTargetPathSelectorGroup struct{}

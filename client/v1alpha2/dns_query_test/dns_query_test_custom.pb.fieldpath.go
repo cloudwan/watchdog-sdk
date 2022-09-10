@@ -294,6 +294,10 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorReverse
 }
 
+func (fp *RunDNSQueryTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunDNSQueryTestRequest_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestRequest_FieldPathValue {
 	switch fp.selector {
 	case RunDNSQueryTestRequest_FieldPathSelectorName:
@@ -436,6 +440,12 @@ func (fps *RunDNSQueryTestRequest_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *RunDNSQueryTestRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunDNSQueryTestRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunDNSQueryTestRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RunDNSQueryTestRequest_FieldSubPath) WithIValue(value interface{}) RunDNSQueryTestRequest_FieldPathValue {
@@ -742,7 +752,11 @@ func (fpaiv *RunDNSQueryTestRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *RunDNSQueryTestRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *RunDNSQueryTestRequest) bool {
 	slice := fpaiv.RunDNSQueryTestRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1163,6 +1177,10 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunDNSQueryTestResponse_FieldPathSelectorRtt
 }
 
+func (fp *RunDNSQueryTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestResponse_FieldPathValue {
 	switch fp.selector {
 	case RunDNSQueryTestResponse_FieldPathSelectorId:
@@ -1374,6 +1392,12 @@ func (fps *RunDNSQueryTestResponse_FieldSubPath) ClearValueRaw(item proto.Messag
 // IsLeaf - whether field path is holds simple value
 func (fps *RunDNSQueryTestResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunDNSQueryTestResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunDNSQueryTestResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RunDNSQueryTestResponse_FieldSubPath) WithIValue(value interface{}) RunDNSQueryTestResponse_FieldPathValue {
@@ -1708,7 +1732,11 @@ func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunDNSQueryTestResponse) bool {
 	slice := fpaiv.RunDNSQueryTestResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2109,6 +2137,10 @@ func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse
 }
 
+func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathValue {
 	switch fp.selector {
 	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
@@ -2247,6 +2279,12 @@ func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) ClearValueRaw(item proto.
 // IsLeaf - whether field path is holds simple value
 func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithIValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathValue {
@@ -2528,7 +2566,11 @@ func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) GetS
 func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) ContainsValue(source *RunDNSQueryTestRequestToProbe) bool {
 	slice := fpaiv.RunDNSQueryTestRequestToProbe_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

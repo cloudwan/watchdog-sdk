@@ -236,6 +236,10 @@ func (fp *GetSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == GetSharedTokenRequest_FieldPathSelectorView
 }
 
+func (fp *GetSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetSharedTokenRequest_FieldTerminalPath) WithIValue(value interface{}) GetSharedTokenRequest_FieldPathValue {
 	switch fp.selector {
 	case GetSharedTokenRequest_FieldPathSelectorName:
@@ -453,7 +457,11 @@ func (fpaiv *GetSharedTokenRequest_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *GetSharedTokenRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetSharedTokenRequest) bool {
 	slice := fpaiv.GetSharedTokenRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -698,6 +706,10 @@ func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BatchGetSharedTokensRequest_FieldPathSelectorView
 }
 
+func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetSharedTokensRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetSharedTokensRequest_FieldPathValue {
 	switch fp.selector {
 	case BatchGetSharedTokensRequest_FieldPathSelectorNames:
@@ -904,7 +916,11 @@ func (fpaiv *BatchGetSharedTokensRequest_FieldTerminalPathArrayItemValue) GetSin
 func (fpaiv *BatchGetSharedTokensRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetSharedTokensRequest) bool {
 	slice := fpaiv.BatchGetSharedTokensRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1143,6 +1159,10 @@ func (fp *BatchGetSharedTokensResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == BatchGetSharedTokensResponse_FieldPathSelectorMissing
 }
 
+func (fp *BatchGetSharedTokensResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetSharedTokensResponse_FieldTerminalPath) WithIValue(value interface{}) BatchGetSharedTokensResponse_FieldPathValue {
 	switch fp.selector {
 	case BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens:
@@ -1273,6 +1293,12 @@ func (fps *BatchGetSharedTokensResponse_FieldSubPath) ClearValueRaw(item proto.M
 // IsLeaf - whether field path is holds simple value
 func (fps *BatchGetSharedTokensResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *BatchGetSharedTokensResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&BatchGetSharedTokensResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *BatchGetSharedTokensResponse_FieldSubPath) WithIValue(value interface{}) BatchGetSharedTokensResponse_FieldPathValue {
@@ -1490,7 +1516,11 @@ func (fpaiv *BatchGetSharedTokensResponse_FieldTerminalPathArrayItemValue) GetSi
 func (fpaiv *BatchGetSharedTokensResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetSharedTokensResponse) bool {
 	slice := fpaiv.BatchGetSharedTokensResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1831,6 +1861,10 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListSharedTokensRequest_FieldPathSelectorView
 }
 
+func (fp *ListSharedTokensRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListSharedTokensRequest_FieldTerminalPath) WithIValue(value interface{}) ListSharedTokensRequest_FieldPathValue {
 	switch fp.selector {
 	case ListSharedTokensRequest_FieldPathSelectorParent:
@@ -2104,7 +2138,11 @@ func (fpaiv *ListSharedTokensRequest_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *ListSharedTokensRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ListSharedTokensRequest) bool {
 	slice := fpaiv.ListSharedTokensRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2392,6 +2430,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListSharedTokensResponse_FieldPathSelectorNextPageToken
 }
 
+func (fp *ListSharedTokensResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListSharedTokensResponse_FieldTerminalPath) WithIValue(value interface{}) ListSharedTokensResponse_FieldPathValue {
 	switch fp.selector {
 	case ListSharedTokensResponse_FieldPathSelectorSharedTokens:
@@ -2524,6 +2566,12 @@ func (fps *ListSharedTokensResponse_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *ListSharedTokensResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ListSharedTokensResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ListSharedTokensResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ListSharedTokensResponse_FieldSubPath) WithIValue(value interface{}) ListSharedTokensResponse_FieldPathValue {
@@ -2745,7 +2793,11 @@ func (fpaiv *ListSharedTokensResponse_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *ListSharedTokensResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ListSharedTokensResponse) bool {
 	slice := fpaiv.ListSharedTokensResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3029,6 +3081,10 @@ func (fp *WatchSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchSharedTokenRequest_FieldPathSelectorView
 }
 
+func (fp *WatchSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchSharedTokenRequest_FieldTerminalPath) WithIValue(value interface{}) WatchSharedTokenRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchSharedTokenRequest_FieldPathSelectorName:
@@ -3246,7 +3302,11 @@ func (fpaiv *WatchSharedTokenRequest_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *WatchSharedTokenRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchSharedTokenRequest) bool {
 	slice := fpaiv.WatchSharedTokenRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3460,6 +3520,10 @@ func (fp *WatchSharedTokenResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == WatchSharedTokenResponse_FieldPathSelectorChange
 }
 
+func (fp *WatchSharedTokenResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchSharedTokenResponse_FieldTerminalPath) WithIValue(value interface{}) WatchSharedTokenResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchSharedTokenResponse_FieldPathSelectorChange:
@@ -3628,7 +3692,11 @@ func (fpaiv *WatchSharedTokenResponse_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *WatchSharedTokenResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchSharedTokenResponse) bool {
 	slice := fpaiv.WatchSharedTokenResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3964,6 +4032,10 @@ func (fp *WatchSharedTokensRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchSharedTokensRequest_FieldPathSelectorMaxChunkSize
 }
 
+func (fp *WatchSharedTokensRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchSharedTokensRequest_FieldTerminalPath) WithIValue(value interface{}) WatchSharedTokensRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchSharedTokensRequest_FieldPathSelectorType:
@@ -4297,7 +4369,11 @@ func (fpaiv *WatchSharedTokensRequest_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *WatchSharedTokensRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchSharedTokensRequest) bool {
 	slice := fpaiv.WatchSharedTokensRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4662,6 +4738,10 @@ func (fp *WatchSharedTokensResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchSharedTokensResponse_FieldPathSelectorIsHardReset
 }
 
+func (fp *WatchSharedTokensResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchSharedTokensResponse_FieldTerminalPath) WithIValue(value interface{}) WatchSharedTokensResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchSharedTokensResponse_FieldPathSelectorSharedTokenChanges:
@@ -4806,6 +4886,12 @@ func (fps *WatchSharedTokensResponse_FieldSubPath) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fps *WatchSharedTokensResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *WatchSharedTokensResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&WatchSharedTokensResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *WatchSharedTokensResponse_FieldSubPath) WithIValue(value interface{}) WatchSharedTokensResponse_FieldPathValue {
@@ -5099,7 +5185,11 @@ func (fpaiv *WatchSharedTokensResponse_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *WatchSharedTokensResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchSharedTokensResponse) bool {
 	slice := fpaiv.WatchSharedTokensResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5401,6 +5491,10 @@ func (fp *WatchSharedTokensResponsePageTokenChange_FieldTerminalPath) IsLeaf() b
 		fp.selector == WatchSharedTokensResponsePageTokenChange_FieldPathSelectorNextPageToken
 }
 
+func (fp *WatchSharedTokensResponsePageTokenChange_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchSharedTokensResponsePageTokenChange_FieldTerminalPath) WithIValue(value interface{}) WatchSharedTokensResponsePageTokenChange_FieldPathValue {
 	switch fp.selector {
 	case WatchSharedTokensResponsePageTokenChange_FieldPathSelectorPrevPageToken:
@@ -5581,7 +5675,11 @@ func (fpaiv *WatchSharedTokensResponsePageTokenChange_FieldTerminalPathArrayItem
 func (fpaiv *WatchSharedTokensResponsePageTokenChange_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchSharedTokensResponse_PageTokenChange) bool {
 	slice := fpaiv.WatchSharedTokensResponsePageTokenChange_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5812,6 +5910,10 @@ func (fp *CreateSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == CreateSharedTokenRequest_FieldPathSelectorParent
 }
 
+func (fp *CreateSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *CreateSharedTokenRequest_FieldTerminalPath) WithIValue(value interface{}) CreateSharedTokenRequest_FieldPathValue {
 	switch fp.selector {
 	case CreateSharedTokenRequest_FieldPathSelectorParent:
@@ -5934,6 +6036,12 @@ func (fps *CreateSharedTokenRequest_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *CreateSharedTokenRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *CreateSharedTokenRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&CreateSharedTokenRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *CreateSharedTokenRequest_FieldSubPath) WithIValue(value interface{}) CreateSharedTokenRequest_FieldPathValue {
@@ -6160,7 +6268,11 @@ func (fpaiv *CreateSharedTokenRequest_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *CreateSharedTokenRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *CreateSharedTokenRequest) bool {
 	slice := fpaiv.CreateSharedTokenRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6452,6 +6564,10 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateSharedTokenRequest_FieldPathSelectorUpdateMask
 }
 
+func (fp *UpdateSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateSharedTokenRequest_FieldTerminalPath) WithIValue(value interface{}) UpdateSharedTokenRequest_FieldPathValue {
 	switch fp.selector {
 	case UpdateSharedTokenRequest_FieldPathSelectorSharedToken:
@@ -6591,6 +6707,12 @@ func (fps *UpdateSharedTokenRequest_FieldSubPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateSharedTokenRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateSharedTokenRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateSharedTokenRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateSharedTokenRequest_FieldSubPath) WithIValue(value interface{}) UpdateSharedTokenRequest_FieldPathValue {
@@ -6816,7 +6938,11 @@ func (fpaiv *UpdateSharedTokenRequest_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *UpdateSharedTokenRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateSharedTokenRequest) bool {
 	slice := fpaiv.UpdateSharedTokenRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7104,6 +7230,10 @@ func (fp *UpdateSharedTokenRequestCAS_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateSharedTokenRequestCAS_FieldPathSelectorFieldMask
 }
 
+func (fp *UpdateSharedTokenRequestCAS_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateSharedTokenRequestCAS_FieldTerminalPath) WithIValue(value interface{}) UpdateSharedTokenRequestCAS_FieldPathValue {
 	switch fp.selector {
 	case UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState:
@@ -7226,6 +7356,12 @@ func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) ClearValueRaw(item proto.Me
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateSharedTokenRequestCAS_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) WithIValue(value interface{}) UpdateSharedTokenRequestCAS_FieldPathValue {
@@ -7435,7 +7571,11 @@ func (fpaiv *UpdateSharedTokenRequestCAS_FieldTerminalPathArrayItemValue) GetSin
 func (fpaiv *UpdateSharedTokenRequestCAS_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateSharedTokenRequest_CAS) bool {
 	slice := fpaiv.UpdateSharedTokenRequestCAS_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7680,6 +7820,10 @@ func (fp *DeleteSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == DeleteSharedTokenRequest_FieldPathSelectorName
 }
 
+func (fp *DeleteSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *DeleteSharedTokenRequest_FieldTerminalPath) WithIValue(value interface{}) DeleteSharedTokenRequest_FieldPathValue {
 	switch fp.selector {
 	case DeleteSharedTokenRequest_FieldPathSelectorName:
@@ -7865,7 +8009,11 @@ func (fpaiv *DeleteSharedTokenRequest_FieldTerminalPathArrayItemValue) GetSingle
 func (fpaiv *DeleteSharedTokenRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *DeleteSharedTokenRequest) bool {
 	slice := fpaiv.DeleteSharedTokenRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

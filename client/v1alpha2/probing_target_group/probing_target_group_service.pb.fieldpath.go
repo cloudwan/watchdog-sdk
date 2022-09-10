@@ -236,6 +236,10 @@ func (fp *GetProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == GetProbingTargetGroupRequest_FieldPathSelectorView
 }
 
+func (fp *GetProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value interface{}) GetProbingTargetGroupRequest_FieldPathValue {
 	switch fp.selector {
 	case GetProbingTargetGroupRequest_FieldPathSelectorName:
@@ -453,7 +457,11 @@ func (fpaiv *GetProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) GetSi
 func (fpaiv *GetProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetProbingTargetGroupRequest) bool {
 	slice := fpaiv.GetProbingTargetGroupRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -698,6 +706,10 @@ func (fp *BatchGetProbingTargetGroupsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BatchGetProbingTargetGroupsRequest_FieldPathSelectorView
 }
 
+func (fp *BatchGetProbingTargetGroupsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetProbingTargetGroupsRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetProbingTargetGroupsRequest_FieldPathValue {
 	switch fp.selector {
 	case BatchGetProbingTargetGroupsRequest_FieldPathSelectorNames:
@@ -904,7 +916,11 @@ func (fpaiv *BatchGetProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue)
 func (fpaiv *BatchGetProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetProbingTargetGroupsRequest) bool {
 	slice := fpaiv.BatchGetProbingTargetGroupsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1143,6 +1159,10 @@ func (fp *BatchGetProbingTargetGroupsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == BatchGetProbingTargetGroupsResponse_FieldPathSelectorMissing
 }
 
+func (fp *BatchGetProbingTargetGroupsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetProbingTargetGroupsResponse_FieldTerminalPath) WithIValue(value interface{}) BatchGetProbingTargetGroupsResponse_FieldPathValue {
 	switch fp.selector {
 	case BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
@@ -1273,6 +1293,12 @@ func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) ClearValueRaw(item 
 // IsLeaf - whether field path is holds simple value
 func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&BatchGetProbingTargetGroupsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) WithIValue(value interface{}) BatchGetProbingTargetGroupsResponse_FieldPathValue {
@@ -1490,7 +1516,11 @@ func (fpaiv *BatchGetProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue
 func (fpaiv *BatchGetProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetProbingTargetGroupsResponse) bool {
 	slice := fpaiv.BatchGetProbingTargetGroupsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1831,6 +1861,10 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorView
 }
 
+func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) WithIValue(value interface{}) ListProbingTargetGroupsRequest_FieldPathValue {
 	switch fp.selector {
 	case ListProbingTargetGroupsRequest_FieldPathSelectorParent:
@@ -2104,7 +2138,11 @@ func (fpaiv *ListProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) Get
 func (fpaiv *ListProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ListProbingTargetGroupsRequest) bool {
 	slice := fpaiv.ListProbingTargetGroupsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2392,6 +2430,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken
 }
 
+func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) WithIValue(value interface{}) ListProbingTargetGroupsResponse_FieldPathValue {
 	switch fp.selector {
 	case ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
@@ -2524,6 +2566,12 @@ func (fps *ListProbingTargetGroupsResponse_FieldSubPath) ClearValueRaw(item prot
 // IsLeaf - whether field path is holds simple value
 func (fps *ListProbingTargetGroupsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ListProbingTargetGroupsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ListProbingTargetGroupsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ListProbingTargetGroupsResponse_FieldSubPath) WithIValue(value interface{}) ListProbingTargetGroupsResponse_FieldPathValue {
@@ -2745,7 +2793,11 @@ func (fpaiv *ListProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *ListProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ListProbingTargetGroupsResponse) bool {
 	slice := fpaiv.ListProbingTargetGroupsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3029,6 +3081,10 @@ func (fp *WatchProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchProbingTargetGroupRequest_FieldPathSelectorView
 }
 
+func (fp *WatchProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value interface{}) WatchProbingTargetGroupRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchProbingTargetGroupRequest_FieldPathSelectorName:
@@ -3246,7 +3302,11 @@ func (fpaiv *WatchProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) Get
 func (fpaiv *WatchProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchProbingTargetGroupRequest) bool {
 	slice := fpaiv.WatchProbingTargetGroupRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3460,6 +3520,10 @@ func (fp *WatchProbingTargetGroupResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == WatchProbingTargetGroupResponse_FieldPathSelectorChange
 }
 
+func (fp *WatchProbingTargetGroupResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchProbingTargetGroupResponse_FieldTerminalPath) WithIValue(value interface{}) WatchProbingTargetGroupResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchProbingTargetGroupResponse_FieldPathSelectorChange:
@@ -3628,7 +3692,11 @@ func (fpaiv *WatchProbingTargetGroupResponse_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *WatchProbingTargetGroupResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchProbingTargetGroupResponse) bool {
 	slice := fpaiv.WatchProbingTargetGroupResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3964,6 +4032,10 @@ func (fp *WatchProbingTargetGroupsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchProbingTargetGroupsRequest_FieldPathSelectorMaxChunkSize
 }
 
+func (fp *WatchProbingTargetGroupsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchProbingTargetGroupsRequest_FieldTerminalPath) WithIValue(value interface{}) WatchProbingTargetGroupsRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchProbingTargetGroupsRequest_FieldPathSelectorType:
@@ -4297,7 +4369,11 @@ func (fpaiv *WatchProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *WatchProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchProbingTargetGroupsRequest) bool {
 	slice := fpaiv.WatchProbingTargetGroupsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4662,6 +4738,10 @@ func (fp *WatchProbingTargetGroupsResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchProbingTargetGroupsResponse_FieldPathSelectorIsHardReset
 }
 
+func (fp *WatchProbingTargetGroupsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchProbingTargetGroupsResponse_FieldTerminalPath) WithIValue(value interface{}) WatchProbingTargetGroupsResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroupChanges:
@@ -4806,6 +4886,12 @@ func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) ClearValueRaw(item pro
 // IsLeaf - whether field path is holds simple value
 func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&WatchProbingTargetGroupsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) WithIValue(value interface{}) WatchProbingTargetGroupsResponse_FieldPathValue {
@@ -5099,7 +5185,11 @@ func (fpaiv *WatchProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) G
 func (fpaiv *WatchProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchProbingTargetGroupsResponse) bool {
 	slice := fpaiv.WatchProbingTargetGroupsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5401,6 +5491,10 @@ func (fp *WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPath) IsL
 		fp.selector == WatchProbingTargetGroupsResponsePageTokenChange_FieldPathSelectorNextPageToken
 }
 
+func (fp *WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPath) WithIValue(value interface{}) WatchProbingTargetGroupsResponsePageTokenChange_FieldPathValue {
 	switch fp.selector {
 	case WatchProbingTargetGroupsResponsePageTokenChange_FieldPathSelectorPrevPageToken:
@@ -5581,7 +5675,11 @@ func (fpaiv *WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPathAr
 func (fpaiv *WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchProbingTargetGroupsResponse_PageTokenChange) bool {
 	slice := fpaiv.WatchProbingTargetGroupsResponsePageTokenChange_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5812,6 +5910,10 @@ func (fp *CreateProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == CreateProbingTargetGroupRequest_FieldPathSelectorParent
 }
 
+func (fp *CreateProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *CreateProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value interface{}) CreateProbingTargetGroupRequest_FieldPathValue {
 	switch fp.selector {
 	case CreateProbingTargetGroupRequest_FieldPathSelectorParent:
@@ -5934,6 +6036,12 @@ func (fps *CreateProbingTargetGroupRequest_FieldSubPath) ClearValueRaw(item prot
 // IsLeaf - whether field path is holds simple value
 func (fps *CreateProbingTargetGroupRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *CreateProbingTargetGroupRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&CreateProbingTargetGroupRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *CreateProbingTargetGroupRequest_FieldSubPath) WithIValue(value interface{}) CreateProbingTargetGroupRequest_FieldPathValue {
@@ -6160,7 +6268,11 @@ func (fpaiv *CreateProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *CreateProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *CreateProbingTargetGroupRequest) bool {
 	slice := fpaiv.CreateProbingTargetGroupRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6452,6 +6564,10 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask
 }
 
+func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value interface{}) UpdateProbingTargetGroupRequest_FieldPathValue {
 	switch fp.selector {
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup:
@@ -6591,6 +6707,12 @@ func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) ClearValueRaw(item prot
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) WithIValue(value interface{}) UpdateProbingTargetGroupRequest_FieldPathValue {
@@ -6816,7 +6938,11 @@ func (fpaiv *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateProbingTargetGroupRequest) bool {
 	slice := fpaiv.UpdateProbingTargetGroupRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7104,6 +7230,10 @@ func (fp *UpdateProbingTargetGroupRequestCAS_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateProbingTargetGroupRequestCAS_FieldPathSelectorFieldMask
 }
 
+func (fp *UpdateProbingTargetGroupRequestCAS_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateProbingTargetGroupRequestCAS_FieldTerminalPath) WithIValue(value interface{}) UpdateProbingTargetGroupRequestCAS_FieldPathValue {
 	switch fp.selector {
 	case UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState:
@@ -7226,6 +7356,12 @@ func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) ClearValueRaw(item p
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateProbingTargetGroupRequestCAS_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) WithIValue(value interface{}) UpdateProbingTargetGroupRequestCAS_FieldPathValue {
@@ -7435,7 +7571,11 @@ func (fpaiv *UpdateProbingTargetGroupRequestCAS_FieldTerminalPathArrayItemValue)
 func (fpaiv *UpdateProbingTargetGroupRequestCAS_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateProbingTargetGroupRequest_CAS) bool {
 	slice := fpaiv.UpdateProbingTargetGroupRequestCAS_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7680,6 +7820,10 @@ func (fp *DeleteProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == DeleteProbingTargetGroupRequest_FieldPathSelectorName
 }
 
+func (fp *DeleteProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *DeleteProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value interface{}) DeleteProbingTargetGroupRequest_FieldPathValue {
 	switch fp.selector {
 	case DeleteProbingTargetGroupRequest_FieldPathSelectorName:
@@ -7865,7 +8009,11 @@ func (fpaiv *DeleteProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *DeleteProbingTargetGroupRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *DeleteProbingTargetGroupRequest) bool {
 	slice := fpaiv.DeleteProbingTargetGroupRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -8173,6 +8321,10 @@ func (fp *SearchProbingTargetGroupsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == SearchProbingTargetGroupsRequest_FieldPathSelectorPhrase
 }
 
+func (fp *SearchProbingTargetGroupsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SearchProbingTargetGroupsRequest_FieldTerminalPath) WithIValue(value interface{}) SearchProbingTargetGroupsRequest_FieldPathValue {
 	switch fp.selector {
 	case SearchProbingTargetGroupsRequest_FieldPathSelectorParent:
@@ -8466,7 +8618,11 @@ func (fpaiv *SearchProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) G
 func (fpaiv *SearchProbingTargetGroupsRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *SearchProbingTargetGroupsRequest) bool {
 	slice := fpaiv.SearchProbingTargetGroupsRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -8790,6 +8946,10 @@ func (fp *SearchProbingTargetGroupsResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == SearchProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount
 }
 
+func (fp *SearchProbingTargetGroupsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *SearchProbingTargetGroupsResponse_FieldTerminalPath) WithIValue(value interface{}) SearchProbingTargetGroupsResponse_FieldPathValue {
 	switch fp.selector {
 	case SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
@@ -8930,6 +9090,12 @@ func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) ClearValueRaw(item pr
 // IsLeaf - whether field path is holds simple value
 func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&SearchProbingTargetGroupsResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) WithIValue(value interface{}) SearchProbingTargetGroupsResponse_FieldPathValue {
@@ -9183,7 +9349,11 @@ func (fpaiv *SearchProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) 
 func (fpaiv *SearchProbingTargetGroupsResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *SearchProbingTargetGroupsResponse) bool {
 	slice := fpaiv.SearchProbingTargetGroupsResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

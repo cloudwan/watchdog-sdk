@@ -153,6 +153,19 @@ func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
 	}
 }
 
+func (d *WatchdogDescriptor) AllImportedServiceInfos() []gotenclient.ServiceImportInfo {
+	return []gotenclient.ServiceImportInfo{
+		{
+			Domain:  "devices.edgelq.com",
+			Version: "v1alpha2",
+		},
+		{
+			Domain:  "iam.edgelq.com",
+			Version: "v1alpha2",
+		},
+	}
+}
+
 func GetWatchdogDescriptor() *WatchdogDescriptor {
 	return watchdogDescriptor
 }

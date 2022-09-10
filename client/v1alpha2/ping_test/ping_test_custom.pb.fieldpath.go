@@ -329,6 +329,10 @@ func (fp *RunPingTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestRequest_FieldPathSelectorTos
 }
 
+func (fp *RunPingTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunPingTestRequest_FieldTerminalPath) WithIValue(value interface{}) RunPingTestRequest_FieldPathValue {
 	switch fp.selector {
 	case RunPingTestRequest_FieldPathSelectorName:
@@ -712,7 +716,11 @@ func (fpaiv *RunPingTestRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(so
 func (fpaiv *RunPingTestRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestRequest) bool {
 	slice := fpaiv.RunPingTestRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1077,6 +1085,10 @@ func (fp *RunPingTestResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestResponse_FieldPathSelectorError
 }
 
+func (fp *RunPingTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunPingTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponse_FieldPathValue {
 	switch fp.selector {
 	case RunPingTestResponse_FieldPathSelectorFrom:
@@ -1219,6 +1231,12 @@ func (fps *RunPingTestResponse_FieldSubPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fps *RunPingTestResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunPingTestResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunPingTestResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RunPingTestResponse_FieldSubPath) WithIValue(value interface{}) RunPingTestResponse_FieldPathValue {
@@ -1525,7 +1543,11 @@ func (fpaiv *RunPingTestResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *RunPingTestResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestResponse) bool {
 	slice := fpaiv.RunPingTestResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1903,6 +1925,10 @@ func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio
 }
 
+func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponseSummaryStats_FieldPathValue {
 	switch fp.selector {
 	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
@@ -2235,7 +2261,11 @@ func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) Ge
 func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestResponse_SummaryStats) bool {
 	slice := fpaiv.RunPingTestResponseSummaryStats_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2596,6 +2626,10 @@ func (fp *RunPingTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorTos
 }
 
+func (fp *RunPingTestRequestToProbe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunPingTestRequestToProbe_FieldPathValue {
 	switch fp.selector {
 	case RunPingTestRequestToProbe_FieldPathSelectorSource:
@@ -2950,7 +2984,11 @@ func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestRequestToProbe) bool {
 	slice := fpaiv.RunPingTestRequestToProbe_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

@@ -1481,6 +1481,10 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadata) UpdateTime()
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime{}
 }
 
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadata) DeleteTime() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime{}
+}
+
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadata) Uuid() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataUuid {
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataUuid{}
 }
@@ -1517,6 +1521,10 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadata) Syncing() Ba
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncing{}
 }
 
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadata) Lifecycle() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle{}
+}
+
 type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataCreateTime struct{}
 
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataCreateTime) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
@@ -1548,6 +1556,23 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime) 
 }
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1724,20 +1749,20 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferen
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetSharedTokensResponse_FieldSubPathArrayItemValue)
 }
 
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) ApiVersion() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion {
-	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion{}
-}
-
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Kind() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind {
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind{}
+}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Version() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion{}
 }
 
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Name() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesName {
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesName{}
 }
 
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Uid() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid {
-	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid{}
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Region() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion{}
 }
 
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Controller() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesController {
@@ -1748,21 +1773,8 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReference
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion struct{}
-
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
-	return &BatchGetSharedTokensResponse_FieldSubPath{
-		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) WithValue(value string) *BatchGetSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) RequiresOwnerReference() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind struct{}
@@ -1779,6 +1791,23 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferen
 }
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) WithValue(value string) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1799,20 +1828,20 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferen
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid struct{}
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion struct{}
 
-func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
 	return &BatchGetSharedTokensResponse_FieldSubPath{
 		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) WithValue(value string) *BatchGetSharedTokensResponse_FieldSubPathValue {
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) WithValue(value string) *BatchGetSharedTokensResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
 }
 
-func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1847,6 +1876,23 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferen
 }
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1951,6 +1997,65 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncingRegio
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataSyncingRegions) WithItemValue(value string) *BatchGetSharedTokensResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetSharedTokensResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) State() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState{}
+}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) BlockDeletion() BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion{}
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) WithValue(value bool) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetSharedTokensResponsePathSelectorSharedTokensAssociateExistingProbeOnly struct{}
@@ -3407,6 +3512,10 @@ func (ListSharedTokensResponsePathSelectorSharedTokensMetadata) UpdateTime() Lis
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime{}
 }
 
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadata) DeleteTime() ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime{}
+}
+
 func (ListSharedTokensResponsePathSelectorSharedTokensMetadata) Uuid() ListSharedTokensResponsePathSelectorSharedTokensMetadataUuid {
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataUuid{}
 }
@@ -3443,6 +3552,10 @@ func (ListSharedTokensResponsePathSelectorSharedTokensMetadata) Syncing() ListSh
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncing{}
 }
 
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadata) Lifecycle() ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle{}
+}
+
 type ListSharedTokensResponsePathSelectorSharedTokensMetadataCreateTime struct{}
 
 func (ListSharedTokensResponsePathSelectorSharedTokensMetadataCreateTime) FieldPath() *ListSharedTokensResponse_FieldSubPath {
@@ -3474,6 +3587,23 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime) With
 }
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3650,20 +3780,20 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences)
 	return s.FieldPath().WithIArrayItemValue(value).(*ListSharedTokensResponse_FieldSubPathArrayItemValue)
 }
 
-func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) ApiVersion() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion {
-	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion{}
-}
-
 func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Kind() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind {
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind{}
+}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Version() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion{}
 }
 
 func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Name() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesName {
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesName{}
 }
 
-func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Uid() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid {
-	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid{}
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Region() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion{}
 }
 
 func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) Controller() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesController {
@@ -3674,21 +3804,8 @@ func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) B
 	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion struct{}
-
-func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) FieldPath() *ListSharedTokensResponse_FieldSubPath {
-	return &ListSharedTokensResponse_FieldSubPath{
-		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) WithValue(value string) *ListSharedTokensResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
-}
-
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferences) RequiresOwnerReference() ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind struct{}
@@ -3705,6 +3822,23 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesK
 }
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) WithValue(value string) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3725,20 +3859,20 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesN
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
-type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid struct{}
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion struct{}
 
-func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) FieldPath() *ListSharedTokensResponse_FieldSubPath {
 	return &ListSharedTokensResponse_FieldSubPath{
 		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) WithValue(value string) *ListSharedTokensResponse_FieldSubPathValue {
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) WithValue(value string) *ListSharedTokensResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
 }
 
-func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3773,6 +3907,23 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesB
 }
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3877,6 +4028,65 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncingRegions) 
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataSyncingRegions) WithItemValue(value string) *ListSharedTokensResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListSharedTokensResponse_FieldSubPathArrayItemValue)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) State() ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState{}
+}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycle) BlockDeletion() ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion {
+	return ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion{}
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) WithValue(value bool) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
 type ListSharedTokensResponsePathSelectorSharedTokensAssociateExistingProbeOnly struct{}
@@ -5709,6 +5919,10 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenMetadata) UpdateTime() Crea
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime{}
 }
 
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadata) DeleteTime() CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime{}
+}
+
 func (CreateSharedTokenRequestPathSelectorSharedTokenMetadata) Uuid() CreateSharedTokenRequestPathSelectorSharedTokenMetadataUuid {
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataUuid{}
 }
@@ -5745,6 +5959,10 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenMetadata) Syncing() CreateS
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing{}
 }
 
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadata) Lifecycle() CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle{}
+}
+
 type CreateSharedTokenRequestPathSelectorSharedTokenMetadataCreateTime struct{}
 
 func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataCreateTime) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
@@ -5776,6 +5994,23 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime) WithV
 }
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5952,20 +6187,20 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) 
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateSharedTokenRequest_FieldSubPathArrayItemValue)
 }
 
-func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) ApiVersion() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion {
-	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion{}
-}
-
 func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Kind() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind {
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind{}
+}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Version() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion{}
 }
 
 func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Name() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesName {
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesName{}
 }
 
-func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Uid() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid {
-	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid{}
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Region() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion{}
 }
 
 func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Controller() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesController {
@@ -5976,21 +6211,8 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Bl
 	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion struct{}
-
-func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
-	return &CreateSharedTokenRequest_FieldSubPath{
-		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) WithValue(value string) *CreateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) RequiresOwnerReference() CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind struct{}
@@ -6007,6 +6229,23 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKi
 }
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) WithValue(value string) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6027,20 +6266,20 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesNa
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid struct{}
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion struct{}
 
-func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
 	return &CreateSharedTokenRequest_FieldSubPath{
 		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) WithValue(value string) *CreateSharedTokenRequest_FieldSubPathValue {
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) WithValue(value string) *CreateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6075,6 +6314,23 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBl
 }
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6179,6 +6435,65 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncingRegions) W
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataSyncingRegions) WithItemValue(value string) *CreateSharedTokenRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateSharedTokenRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) State() CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState{}
+}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) BlockDeletion() CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion {
+	return CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion{}
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) WithValue(value bool) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
 type CreateSharedTokenRequestPathSelectorSharedTokenAssociateExistingProbeOnly struct{}
@@ -7489,6 +7804,10 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadata) UpdateTime() Upda
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadata) DeleteTime() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime{}
+}
+
 func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadata) Uuid() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataUuid {
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataUuid{}
 }
@@ -7525,6 +7844,10 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadata) Syncing() UpdateS
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncing{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadata) Lifecycle() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle{}
+}
+
 type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataCreateTime struct{}
 
 func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataCreateTime) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -7556,6 +7879,23 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime) WithV
 }
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7732,20 +8072,20 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) 
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) ApiVersion() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion {
-	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Kind() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind {
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind{}
+}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Version() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Name() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesName {
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesName{}
 }
 
-func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Uid() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid {
-	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid{}
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Region() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Controller() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesController {
@@ -7756,21 +8096,8 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) Bl
 	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferences) RequiresOwnerReference() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind struct{}
@@ -7787,6 +8114,23 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKi
 }
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7807,20 +8151,20 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesNa
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid struct{}
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion struct{}
 
-func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
 	return &UpdateSharedTokenRequest_FieldSubPath{
 		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7855,6 +8199,23 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBl
 }
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7959,6 +8320,65 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncingRegions) W
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataSyncingRegions) WithItemValue(value string) *UpdateSharedTokenRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) State() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState{}
+}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycle) BlockDeletion() UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateSharedTokenRequestPathSelectorSharedTokenAssociateExistingProbeOnly struct{}
@@ -9293,6 +9713,10 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadata) UpdateTim
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadata) DeleteTime() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadata) Uuid() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataUuid {
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataUuid{}
 }
@@ -9329,6 +9753,10 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadata) Syncing()
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncing{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadata) Lifecycle() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle{}
+}
+
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataCreateTime struct{}
 
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataCreateTime) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -9360,6 +9788,23 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataUpdateTim
 }
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9536,20 +9981,20 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerRefe
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) ApiVersion() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Kind() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind {
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Version() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Name() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName {
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Uid() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid {
-	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Region() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Controller() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesController {
@@ -9560,21 +10005,8 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerRefere
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
-	return &UpdateSharedTokenRequest_FieldSubPath{
-		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind struct{}
@@ -9591,6 +10023,23 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerRefe
 }
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9611,20 +10060,20 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerRefe
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
 	return &UpdateSharedTokenRequest_FieldSubPath{
 		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateSharedTokenRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9659,6 +10108,23 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerRefe
 }
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9763,6 +10229,65 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncingRe
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateSharedTokenRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle) State() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycle) BlockDeletion() UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateAssociateExistingProbeOnly struct{}
@@ -11087,6 +11612,10 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadata) UpdateTi
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadata) DeleteTime() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadata) Uuid() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataUuid {
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataUuid{}
 }
@@ -11123,6 +11652,10 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadata) Syncing(
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncing{}
 }
 
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadata) Lifecycle() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle{}
+}
+
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataCreateTime struct{}
 
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataCreateTime) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
@@ -11154,6 +11687,23 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataUpdateTi
 }
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11330,20 +11880,20 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerRef
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayItemValue)
 }
 
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) ApiVersion() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Kind() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind {
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Version() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Name() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName {
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Uid() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid {
-	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Region() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Controller() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesController {
@@ -11354,21 +11904,8 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerRefer
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
-	return &UpdateSharedTokenRequestCAS_FieldSubPath{
-		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind struct{}
@@ -11385,6 +11922,23 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerRef
 }
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11405,20 +11959,20 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerRef
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
 	return &UpdateSharedTokenRequestCAS_FieldSubPath{
 		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11453,6 +12007,23 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerRef
 }
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11557,6 +12128,65 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncingR
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateSharedTokenRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle) State() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycle) BlockDeletion() UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateAssociateExistingProbeOnly struct{}

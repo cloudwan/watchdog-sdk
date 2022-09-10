@@ -244,6 +244,10 @@ func (fp *RegisterProbeRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RegisterProbeRequest_FieldPathSelectorValues
 }
 
+func (fp *RegisterProbeRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RegisterProbeRequest_FieldTerminalPath) WithIValue(value interface{}) RegisterProbeRequest_FieldPathValue {
 	switch fp.selector {
 	case RegisterProbeRequest_FieldPathSelectorName:
@@ -385,6 +389,10 @@ func (fpm *RegisterProbeRequest_FieldPathMap) IsLeaf() bool {
 	}
 }
 
+func (fpm *RegisterProbeRequest_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
 func (fpm *RegisterProbeRequest_FieldPathMap) WithIValue(value interface{}) RegisterProbeRequest_FieldPathValue {
 	switch fpm.selector {
 	case RegisterProbeRequest_FieldPathSelectorValues:
@@ -498,6 +506,12 @@ func (fps *RegisterProbeRequest_FieldSubPath) ClearValueRaw(item proto.Message) 
 // IsLeaf - whether field path is holds simple value
 func (fps *RegisterProbeRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RegisterProbeRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RegisterProbeRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RegisterProbeRequest_FieldSubPath) WithIValue(value interface{}) RegisterProbeRequest_FieldPathValue {
@@ -791,7 +805,11 @@ func (fpaiv *RegisterProbeRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(
 func (fpaiv *RegisterProbeRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *RegisterProbeRequest) bool {
 	slice := fpaiv.RegisterProbeRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1090,6 +1108,10 @@ func (fp *RegisterProbeResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == RegisterProbeResponse_FieldPathSelectorProbe
 }
 
+func (fp *RegisterProbeResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *RegisterProbeResponse_FieldTerminalPath) WithIValue(value interface{}) RegisterProbeResponse_FieldPathValue {
 	switch fp.selector {
 	case RegisterProbeResponse_FieldPathSelectorServiceAccount:
@@ -1212,6 +1234,12 @@ func (fps *RegisterProbeResponse_FieldSubPath) ClearValueRaw(item proto.Message)
 // IsLeaf - whether field path is holds simple value
 func (fps *RegisterProbeResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *RegisterProbeResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RegisterProbeResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *RegisterProbeResponse_FieldSubPath) WithIValue(value interface{}) RegisterProbeResponse_FieldPathValue {
@@ -1438,7 +1466,11 @@ func (fpaiv *RegisterProbeResponse_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *RegisterProbeResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RegisterProbeResponse) bool {
 	slice := fpaiv.RegisterProbeResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

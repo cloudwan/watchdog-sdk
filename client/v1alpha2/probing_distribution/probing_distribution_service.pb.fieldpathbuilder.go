@@ -316,6 +316,10 @@ func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime{}
 }
 
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) DeleteTime() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime{}
+}
+
 func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Uuid() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid {
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid{}
 }
@@ -352,6 +356,10 @@ func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing{}
 }
 
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Lifecycle() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle{}
+}
+
 type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime struct{}
 
 func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
@@ -383,6 +391,23 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 }
 
 func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -559,20 +584,20 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayItemValue)
 }
 
-func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) ApiVersion() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion {
-	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion{}
-}
-
 func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Kind() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind {
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind{}
+}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Version() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion{}
 }
 
 func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Name() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName {
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName{}
 }
 
-func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Uid() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid {
-	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid{}
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Region() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion{}
 }
 
 func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Controller() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesController {
@@ -583,21 +608,8 @@ func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion struct{}
-
-func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
-	return &BatchGetProbingDistributionsResponse_FieldSubPath{
-		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithValue(value string) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
-}
-
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) RequiresOwnerReference() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind struct{}
@@ -614,6 +626,23 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 }
 
 func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithValue(value string) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -634,20 +663,20 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid struct{}
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion struct{}
 
-func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
 	return &BatchGetProbingDistributionsResponse_FieldSubPath{
 		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithValue(value string) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithValue(value string) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -682,6 +711,23 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 }
 
 func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -786,6 +832,65 @@ func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMeta
 
 func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncingRegions) WithItemValue(value string) *BatchGetProbingDistributionsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) State() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState{}
+}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) BlockDeletion() BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion {
+	return BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion{}
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion struct{}
+
+func (BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) FieldPath() *BatchGetProbingDistributionsResponse_FieldSubPath {
+	return &BatchGetProbingDistributionsResponse_FieldSubPath{
+		selector: BatchGetProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithValue(value bool) *BatchGetProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetProbingDistributionsResponsePathSelectorProbingDistributionsSpec struct{}
@@ -2467,6 +2572,10 @@ func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) 
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime{}
 }
 
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) DeleteTime() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime{}
+}
+
 func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Uuid() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid {
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid{}
 }
@@ -2503,6 +2612,10 @@ func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) 
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing{}
 }
 
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Lifecycle() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle{}
+}
+
 type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime struct{}
 
 func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
@@ -2534,6 +2647,23 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 }
 
 func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2710,20 +2840,20 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingDistributionsResponse_FieldSubPathArrayItemValue)
 }
 
-func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) ApiVersion() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion {
-	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion{}
-}
-
 func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Kind() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind {
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind{}
+}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Version() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion{}
 }
 
 func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Name() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName {
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName{}
 }
 
-func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Uid() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid {
-	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid{}
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Region() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion{}
 }
 
 func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Controller() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesController {
@@ -2734,21 +2864,8 @@ func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOw
 	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion struct{}
-
-func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
-	return &ListProbingDistributionsResponse_FieldSubPath{
-		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithValue(value string) *ListProbingDistributionsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
-}
-
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) RequiresOwnerReference() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind struct{}
@@ -2765,6 +2882,23 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 }
 
 func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithValue(value string) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2785,20 +2919,20 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
-type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid struct{}
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion struct{}
 
-func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
 	return &ListProbingDistributionsResponse_FieldSubPath{
 		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithValue(value string) *ListProbingDistributionsResponse_FieldSubPathValue {
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithValue(value string) *ListProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2833,6 +2967,23 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 }
 
 func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2937,6 +3088,65 @@ func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 
 func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncingRegions) WithItemValue(value string) *ListProbingDistributionsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingDistributionsResponse_FieldSubPathArrayItemValue)
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) State() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState{}
+}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) BlockDeletion() ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion {
+	return ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion{}
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion struct{}
+
+func (ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) FieldPath() *ListProbingDistributionsResponse_FieldSubPath {
+	return &ListProbingDistributionsResponse_FieldSubPath{
+		selector: ListProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithValue(value bool) *ListProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ListProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
 type ListProbingDistributionsResponsePathSelectorProbingDistributionsSpec struct{}
@@ -4994,6 +5204,10 @@ func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadata) U
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataUpdateTime{}
 }
 
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadata) DeleteTime() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime{}
+}
+
 func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadata) Uuid() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataUuid {
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataUuid{}
 }
@@ -5030,6 +5244,10 @@ func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadata) S
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing{}
 }
 
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadata) Lifecycle() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle{}
+}
+
 type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataCreateTime struct{}
 
 func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataCreateTime) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
@@ -5061,6 +5279,23 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataU
 }
 
 func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5237,20 +5472,20 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingDistributionRequest_FieldSubPathArrayItemValue)
 }
 
-func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) ApiVersion() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion {
-	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion{}
-}
-
 func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Kind() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind {
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind{}
+}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Version() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion{}
 }
 
 func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Name() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesName {
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesName{}
 }
 
-func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Uid() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid {
-	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid{}
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Region() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion{}
 }
 
 func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Controller() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesController {
@@ -5261,21 +5496,8 @@ func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwn
 	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion struct{}
-
-func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
-	return &CreateProbingDistributionRequest_FieldSubPath{
-		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) WithValue(value string) *CreateProbingDistributionRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
-}
-
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) RequiresOwnerReference() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind struct{}
@@ -5292,6 +5514,23 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 }
 
 func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) WithValue(value string) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5312,20 +5551,20 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid struct{}
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion struct{}
 
-func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
 	return &CreateProbingDistributionRequest_FieldSubPath{
 		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) WithValue(value string) *CreateProbingDistributionRequest_FieldSubPathValue {
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) WithValue(value string) *CreateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5360,6 +5599,23 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 }
 
 func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5464,6 +5720,65 @@ func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataS
 
 func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncingRegions) WithItemValue(value string) *CreateProbingDistributionRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingDistributionRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) State() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState{}
+}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) BlockDeletion() CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion {
+	return CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion{}
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion struct{}
+
+func (CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) FieldPath() *CreateProbingDistributionRequest_FieldSubPath {
+	return &CreateProbingDistributionRequest_FieldSubPath{
+		selector: CreateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) WithValue(value bool) *CreateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *CreateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
 type CreateProbingDistributionRequestPathSelectorProbingDistributionSpec struct{}
@@ -6999,6 +7314,10 @@ func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadata) U
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataUpdateTime{}
 }
 
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadata) DeleteTime() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime{}
+}
+
 func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadata) Uuid() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataUuid {
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataUuid{}
 }
@@ -7035,6 +7354,10 @@ func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadata) S
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncing{}
 }
 
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadata) Lifecycle() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle{}
+}
+
 type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataCreateTime struct{}
 
 func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataCreateTime) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
@@ -7066,6 +7389,23 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataU
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7242,20 +7582,20 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) ApiVersion() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion {
-	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Kind() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind {
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Version() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Name() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesName {
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Uid() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid {
-	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid{}
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Region() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) Controller() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesController {
@@ -7266,21 +7606,8 @@ func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwn
 	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
-	return &UpdateProbingDistributionRequest_FieldSubPath{
-		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind struct{}
@@ -7297,6 +7624,23 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7317,20 +7661,20 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid struct{}
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
 	return &UpdateProbingDistributionRequest_FieldSubPath{
 		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7365,6 +7709,23 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataO
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7469,6 +7830,65 @@ func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataS
 
 func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingDistributionRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) State() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState{}
+}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycle) BlockDeletion() UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion {
+	return UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorProbingDistributionMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingDistributionRequestPathSelectorProbingDistributionSpec struct{}
@@ -9028,6 +9448,10 @@ func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadata) U
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadata) DeleteTime() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadata) Uuid() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataUuid {
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataUuid{}
 }
@@ -9064,6 +9488,10 @@ func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadata) S
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncing{}
 }
 
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadata) Lifecycle() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle{}
+}
+
 type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataCreateTime struct{}
 
 func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataCreateTime) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
@@ -9095,6 +9523,23 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataU
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9271,20 +9716,20 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataO
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) ApiVersion() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Kind() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind {
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Version() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Name() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName {
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Uid() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid {
-	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Region() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Controller() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesController {
@@ -9295,21 +9740,8 @@ func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwn
 	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
-	return &UpdateProbingDistributionRequest_FieldSubPath{
-		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
-}
-
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind struct{}
@@ -9326,6 +9758,23 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataO
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9346,20 +9795,20 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataO
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
 	return &UpdateProbingDistributionRequest_FieldSubPath{
 		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingDistributionRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9394,6 +9843,23 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataO
 }
 
 func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9498,6 +9964,65 @@ func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataS
 
 func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingDistributionRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle) State() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycle) BlockDeletion() UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingDistributionRequest_FieldSubPath {
+	return &UpdateProbingDistributionRequest_FieldSubPath{
+		selector: UpdateProbingDistributionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingDistributionRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingDistributionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingDistributionRequestPathSelectorCasConditionalStateSpec struct{}
@@ -11047,6 +11572,10 @@ func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata) 
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata) DeleteTime() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata) Uuid() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataUuid {
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataUuid{}
 }
@@ -11083,6 +11612,10 @@ func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata) 
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncing{}
 }
 
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata) Lifecycle() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle{}
+}
+
 type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataCreateTime struct{}
 
 func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataCreateTime) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
@@ -11114,6 +11647,23 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 }
 
 func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11290,20 +11840,20 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayItemValue)
 }
 
-func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) ApiVersion() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Kind() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind {
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Version() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Name() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName {
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Uid() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid {
-	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Region() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Controller() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesController {
@@ -11314,21 +11864,8 @@ func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOw
 	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
-	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
-		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind struct{}
@@ -11345,6 +11882,23 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 }
 
 func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11365,20 +11919,20 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
 	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
 		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11413,6 +11967,23 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 }
 
 func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -11517,6 +12088,65 @@ func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadata
 
 func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle) State() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycle) BlockDeletion() UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateProbingDistributionRequestCAS_FieldSubPath {
+	return &UpdateProbingDistributionRequestCAS_FieldSubPath{
+		selector: UpdateProbingDistributionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateProbingDistributionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingDistributionRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateProbingDistributionRequest_CASPathSelectorConditionalStateSpec struct{}
@@ -13240,6 +13870,10 @@ func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime{}
 }
 
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) DeleteTime() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime{}
+}
+
 func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Uuid() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid {
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUuid{}
 }
@@ -13276,6 +13910,10 @@ func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncing{}
 }
 
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata) Lifecycle() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle{}
+}
+
 type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime struct{}
 
 func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataCreateTime) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
@@ -13307,6 +13945,23 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 }
 
 func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -13483,20 +14138,20 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingDistributionsResponse_FieldSubPathArrayItemValue)
 }
 
-func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) ApiVersion() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion {
-	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion{}
-}
-
 func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Kind() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind {
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind{}
+}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Version() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion{}
 }
 
 func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Name() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName {
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesName{}
 }
 
-func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Uid() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid {
-	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid{}
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Region() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion{}
 }
 
 func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) Controller() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesController {
@@ -13507,21 +14162,8 @@ func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadata
 	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion struct{}
-
-func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
-	return &SearchProbingDistributionsResponse_FieldSubPath{
-		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithValue(value string) *SearchProbingDistributionsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
-}
-
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferences) RequiresOwnerReference() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind struct{}
@@ -13538,6 +14180,23 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 }
 
 func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithValue(value string) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -13558,20 +14217,20 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
-type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid struct{}
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion struct{}
 
-func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
 	return &SearchProbingDistributionsResponse_FieldSubPath{
 		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
-		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithValue(value string) *SearchProbingDistributionsResponse_FieldSubPathValue {
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithValue(value string) *SearchProbingDistributionsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
 }
 
-func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -13606,6 +14265,23 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 }
 
 func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -13710,6 +14386,65 @@ func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetada
 
 func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataSyncingRegions) WithItemValue(value string) *SearchProbingDistributionsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingDistributionsResponse_FieldSubPathArrayItemValue)
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) State() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState{}
+}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycle) BlockDeletion() SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion {
+	return SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion{}
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion struct{}
+
+func (SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) FieldPath() *SearchProbingDistributionsResponse_FieldSubPath {
+	return &SearchProbingDistributionsResponse_FieldSubPath{
+		selector: SearchProbingDistributionsResponse_FieldPathSelectorProbingDistributions,
+		subPath:  probing_distribution.NewProbingDistributionFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithValue(value bool) *SearchProbingDistributionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingDistributionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingDistributionsResponsePathSelectorProbingDistributionsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *SearchProbingDistributionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingDistributionsResponse_FieldSubPathArrayOfValues)
 }
 
 type SearchProbingDistributionsResponsePathSelectorProbingDistributionsSpec struct{}

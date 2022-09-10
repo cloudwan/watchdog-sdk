@@ -469,6 +469,10 @@ func (BatchGetTagsResponsePathSelectorTagsMetadata) UpdateTime() BatchGetTagsRes
 	return BatchGetTagsResponsePathSelectorTagsMetadataUpdateTime{}
 }
 
+func (BatchGetTagsResponsePathSelectorTagsMetadata) DeleteTime() BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime {
+	return BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime{}
+}
+
 func (BatchGetTagsResponsePathSelectorTagsMetadata) Uuid() BatchGetTagsResponsePathSelectorTagsMetadataUuid {
 	return BatchGetTagsResponsePathSelectorTagsMetadataUuid{}
 }
@@ -505,6 +509,10 @@ func (BatchGetTagsResponsePathSelectorTagsMetadata) Syncing() BatchGetTagsRespon
 	return BatchGetTagsResponsePathSelectorTagsMetadataSyncing{}
 }
 
+func (BatchGetTagsResponsePathSelectorTagsMetadata) Lifecycle() BatchGetTagsResponsePathSelectorTagsMetadataLifecycle {
+	return BatchGetTagsResponsePathSelectorTagsMetadataLifecycle{}
+}
+
 type BatchGetTagsResponsePathSelectorTagsMetadataCreateTime struct{}
 
 func (BatchGetTagsResponsePathSelectorTagsMetadataCreateTime) FieldPath() *BatchGetTagsResponse_FieldSubPath {
@@ -536,6 +544,23 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataUpdateTime) WithValue(value 
 }
 
 func (s BatchGetTagsResponsePathSelectorTagsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -712,20 +737,20 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) WithItemVal
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetTagsResponse_FieldSubPathArrayItemValue)
 }
 
-func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) ApiVersion() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion {
-	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion{}
-}
-
 func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Kind() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesKind {
 	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesKind{}
+}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Version() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion {
+	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion{}
 }
 
 func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Name() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesName {
 	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesName{}
 }
 
-func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Uid() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid {
-	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid{}
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Region() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion {
+	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion{}
 }
 
 func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) Controller() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesController {
@@ -736,21 +761,8 @@ func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) BlockOwnerDel
 	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion struct{}
-
-func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) FieldPath() *BatchGetTagsResponse_FieldSubPath {
-	return &BatchGetTagsResponse_FieldSubPath{
-		selector: BatchGetTagsResponse_FieldPathSelectorTags,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) WithValue(value string) *BatchGetTagsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
-}
-
-func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferences) RequiresOwnerReference() BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference {
+	return BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesKind struct{}
@@ -767,6 +779,23 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesKind) WithVal
 }
 
 func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) WithValue(value string) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -787,20 +816,20 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesName) WithArr
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
-type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid struct{}
+type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion struct{}
 
-func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) FieldPath() *BatchGetTagsResponse_FieldSubPath {
 	return &BatchGetTagsResponse_FieldSubPath{
 		selector: BatchGetTagsResponse_FieldPathSelectorTags,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) WithValue(value string) *BatchGetTagsResponse_FieldSubPathValue {
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) WithValue(value string) *BatchGetTagsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
 }
 
-func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -835,6 +864,23 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDel
 }
 
 func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -939,6 +985,65 @@ func (s BatchGetTagsResponsePathSelectorTagsMetadataSyncingRegions) WithArrayOfV
 
 func (s BatchGetTagsResponsePathSelectorTagsMetadataSyncingRegions) WithItemValue(value string) *BatchGetTagsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetTagsResponse_FieldSubPathArrayItemValue)
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataLifecycle struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataLifecycle) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataLifecycle) State() BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState {
+	return BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState{}
+}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataLifecycle) BlockDeletion() BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion {
+	return BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion{}
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion struct{}
+
+func (BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) FieldPath() *BatchGetTagsResponse_FieldSubPath {
+	return &BatchGetTagsResponse_FieldSubPath{
+		selector: BatchGetTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) WithValue(value bool) *BatchGetTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetTagsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *BatchGetTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetTagsResponse_FieldSubPathArrayOfValues)
 }
 
 type BatchGetTagsResponsePathSelectorMissing struct{}
@@ -1362,6 +1467,10 @@ func (ListTagsResponsePathSelectorTagsMetadata) UpdateTime() ListTagsResponsePat
 	return ListTagsResponsePathSelectorTagsMetadataUpdateTime{}
 }
 
+func (ListTagsResponsePathSelectorTagsMetadata) DeleteTime() ListTagsResponsePathSelectorTagsMetadataDeleteTime {
+	return ListTagsResponsePathSelectorTagsMetadataDeleteTime{}
+}
+
 func (ListTagsResponsePathSelectorTagsMetadata) Uuid() ListTagsResponsePathSelectorTagsMetadataUuid {
 	return ListTagsResponsePathSelectorTagsMetadataUuid{}
 }
@@ -1398,6 +1507,10 @@ func (ListTagsResponsePathSelectorTagsMetadata) Syncing() ListTagsResponsePathSe
 	return ListTagsResponsePathSelectorTagsMetadataSyncing{}
 }
 
+func (ListTagsResponsePathSelectorTagsMetadata) Lifecycle() ListTagsResponsePathSelectorTagsMetadataLifecycle {
+	return ListTagsResponsePathSelectorTagsMetadataLifecycle{}
+}
+
 type ListTagsResponsePathSelectorTagsMetadataCreateTime struct{}
 
 func (ListTagsResponsePathSelectorTagsMetadataCreateTime) FieldPath() *ListTagsResponse_FieldSubPath {
@@ -1429,6 +1542,23 @@ func (s ListTagsResponsePathSelectorTagsMetadataUpdateTime) WithValue(value *tim
 }
 
 func (s ListTagsResponsePathSelectorTagsMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListTagsResponsePathSelectorTagsMetadataDeleteTime struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataDeleteTime) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *ListTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1605,20 +1735,20 @@ func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferences) WithItemValue(v
 	return s.FieldPath().WithIArrayItemValue(value).(*ListTagsResponse_FieldSubPathArrayItemValue)
 }
 
-func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) ApiVersion() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion {
-	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion{}
-}
-
 func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Kind() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesKind {
 	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesKind{}
+}
+
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Version() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion {
+	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion{}
 }
 
 func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Name() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesName {
 	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesName{}
 }
 
-func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Uid() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid {
-	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid{}
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Region() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion {
+	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion{}
 }
 
 func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) Controller() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesController {
@@ -1629,21 +1759,8 @@ func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) BlockOwnerDeletio
 	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion struct{}
-
-func (ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) FieldPath() *ListTagsResponse_FieldSubPath {
-	return &ListTagsResponse_FieldSubPath{
-		selector: ListTagsResponse_FieldPathSelectorTags,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) WithValue(value string) *ListTagsResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
-}
-
-func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *ListTagsResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferences) RequiresOwnerReference() ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference {
+	return ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesKind struct{}
@@ -1660,6 +1777,23 @@ func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesKind) WithValue(v
 }
 
 func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) WithValue(value string) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *ListTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1680,20 +1814,20 @@ func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesName) WithArrayOf
 	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
-type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid struct{}
+type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion struct{}
 
-func (ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) FieldPath() *ListTagsResponse_FieldSubPath {
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) FieldPath() *ListTagsResponse_FieldSubPath {
 	return &ListTagsResponse_FieldSubPath{
 		selector: ListTagsResponse_FieldPathSelectorTags,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) WithValue(value string) *ListTagsResponse_FieldSubPathValue {
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) WithValue(value string) *ListTagsResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
 }
 
-func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *ListTagsResponse_FieldSubPathArrayOfValues {
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *ListTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1728,6 +1862,23 @@ func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDeletio
 }
 
 func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *ListTagsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1832,6 +1983,65 @@ func (s ListTagsResponsePathSelectorTagsMetadataSyncingRegions) WithArrayOfValue
 
 func (s ListTagsResponsePathSelectorTagsMetadataSyncingRegions) WithItemValue(value string) *ListTagsResponse_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ListTagsResponse_FieldSubPathArrayItemValue)
+}
+
+type ListTagsResponsePathSelectorTagsMetadataLifecycle struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataLifecycle) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+}
+
+func (ListTagsResponsePathSelectorTagsMetadataLifecycle) State() ListTagsResponsePathSelectorTagsMetadataLifecycleState {
+	return ListTagsResponsePathSelectorTagsMetadataLifecycleState{}
+}
+
+func (ListTagsResponsePathSelectorTagsMetadataLifecycle) BlockDeletion() ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion {
+	return ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion{}
+}
+
+type ListTagsResponsePathSelectorTagsMetadataLifecycleState struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataLifecycleState) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion struct{}
+
+func (ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) FieldPath() *ListTagsResponse_FieldSubPath {
+	return &ListTagsResponse_FieldSubPath{
+		selector: ListTagsResponse_FieldPathSelectorTags,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) WithValue(value bool) *ListTagsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListTagsResponse_FieldSubPathValue)
+}
+
+func (s ListTagsResponsePathSelectorTagsMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *ListTagsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListTagsResponse_FieldSubPathArrayOfValues)
 }
 
 type ListTagsResponsePathSelectorPrevPageToken struct{}
@@ -2631,6 +2841,10 @@ func (CreateTagRequestPathSelectorTagMetadata) UpdateTime() CreateTagRequestPath
 	return CreateTagRequestPathSelectorTagMetadataUpdateTime{}
 }
 
+func (CreateTagRequestPathSelectorTagMetadata) DeleteTime() CreateTagRequestPathSelectorTagMetadataDeleteTime {
+	return CreateTagRequestPathSelectorTagMetadataDeleteTime{}
+}
+
 func (CreateTagRequestPathSelectorTagMetadata) Uuid() CreateTagRequestPathSelectorTagMetadataUuid {
 	return CreateTagRequestPathSelectorTagMetadataUuid{}
 }
@@ -2667,6 +2881,10 @@ func (CreateTagRequestPathSelectorTagMetadata) Syncing() CreateTagRequestPathSel
 	return CreateTagRequestPathSelectorTagMetadataSyncing{}
 }
 
+func (CreateTagRequestPathSelectorTagMetadata) Lifecycle() CreateTagRequestPathSelectorTagMetadataLifecycle {
+	return CreateTagRequestPathSelectorTagMetadataLifecycle{}
+}
+
 type CreateTagRequestPathSelectorTagMetadataCreateTime struct{}
 
 func (CreateTagRequestPathSelectorTagMetadataCreateTime) FieldPath() *CreateTagRequest_FieldSubPath {
@@ -2698,6 +2916,23 @@ func (s CreateTagRequestPathSelectorTagMetadataUpdateTime) WithValue(value *time
 }
 
 func (s CreateTagRequestPathSelectorTagMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateTagRequestPathSelectorTagMetadataDeleteTime struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataDeleteTime) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *CreateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2874,20 +3109,20 @@ func (s CreateTagRequestPathSelectorTagMetadataOwnerReferences) WithItemValue(va
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateTagRequest_FieldSubPathArrayItemValue)
 }
 
-func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) ApiVersion() CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion {
-	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion{}
-}
-
 func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Kind() CreateTagRequestPathSelectorTagMetadataOwnerReferencesKind {
 	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesKind{}
+}
+
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Version() CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion {
+	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion{}
 }
 
 func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Name() CreateTagRequestPathSelectorTagMetadataOwnerReferencesName {
 	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesName{}
 }
 
-func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Uid() CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid {
-	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid{}
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Region() CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion {
+	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion{}
 }
 
 func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) Controller() CreateTagRequestPathSelectorTagMetadataOwnerReferencesController {
@@ -2898,21 +3133,8 @@ func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) BlockOwnerDeletion
 	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion struct{}
-
-func (CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) FieldPath() *CreateTagRequest_FieldSubPath {
-	return &CreateTagRequest_FieldSubPath{
-		selector: CreateTagRequest_FieldPathSelectorTag,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) WithValue(value string) *CreateTagRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
-}
-
-func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *CreateTagRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferences) RequiresOwnerReference() CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference {
+	return CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type CreateTagRequestPathSelectorTagMetadataOwnerReferencesKind struct{}
@@ -2929,6 +3151,23 @@ func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesKind) WithValue(va
 }
 
 func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) WithValue(value string) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *CreateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2949,20 +3188,20 @@ func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesName) WithArrayOfV
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
-type CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid struct{}
+type CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion struct{}
 
-func (CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid) FieldPath() *CreateTagRequest_FieldSubPath {
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) FieldPath() *CreateTagRequest_FieldSubPath {
 	return &CreateTagRequest_FieldSubPath{
 		selector: CreateTagRequest_FieldPathSelectorTag,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid) WithValue(value string) *CreateTagRequest_FieldSubPathValue {
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) WithValue(value string) *CreateTagRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
 }
 
-func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *CreateTagRequest_FieldSubPathArrayOfValues {
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *CreateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2997,6 +3236,23 @@ func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion
 }
 
 func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *CreateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3101,6 +3357,65 @@ func (s CreateTagRequestPathSelectorTagMetadataSyncingRegions) WithArrayOfValues
 
 func (s CreateTagRequestPathSelectorTagMetadataSyncingRegions) WithItemValue(value string) *CreateTagRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*CreateTagRequest_FieldSubPathArrayItemValue)
+}
+
+type CreateTagRequestPathSelectorTagMetadataLifecycle struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataLifecycle) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+}
+
+func (CreateTagRequestPathSelectorTagMetadataLifecycle) State() CreateTagRequestPathSelectorTagMetadataLifecycleState {
+	return CreateTagRequestPathSelectorTagMetadataLifecycleState{}
+}
+
+func (CreateTagRequestPathSelectorTagMetadataLifecycle) BlockDeletion() CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion {
+	return CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion{}
+}
+
+type CreateTagRequestPathSelectorTagMetadataLifecycleState struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataLifecycleState) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion struct{}
+
+func (CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) FieldPath() *CreateTagRequest_FieldSubPath {
+	return &CreateTagRequest_FieldSubPath{
+		selector: CreateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) WithValue(value bool) *CreateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateTagRequest_FieldSubPathValue)
+}
+
+func (s CreateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *CreateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateTagRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateTagRequestFieldPathBuilder struct{}
@@ -3378,6 +3693,10 @@ func (UpdateTagRequestPathSelectorTagMetadata) UpdateTime() UpdateTagRequestPath
 	return UpdateTagRequestPathSelectorTagMetadataUpdateTime{}
 }
 
+func (UpdateTagRequestPathSelectorTagMetadata) DeleteTime() UpdateTagRequestPathSelectorTagMetadataDeleteTime {
+	return UpdateTagRequestPathSelectorTagMetadataDeleteTime{}
+}
+
 func (UpdateTagRequestPathSelectorTagMetadata) Uuid() UpdateTagRequestPathSelectorTagMetadataUuid {
 	return UpdateTagRequestPathSelectorTagMetadataUuid{}
 }
@@ -3414,6 +3733,10 @@ func (UpdateTagRequestPathSelectorTagMetadata) Syncing() UpdateTagRequestPathSel
 	return UpdateTagRequestPathSelectorTagMetadataSyncing{}
 }
 
+func (UpdateTagRequestPathSelectorTagMetadata) Lifecycle() UpdateTagRequestPathSelectorTagMetadataLifecycle {
+	return UpdateTagRequestPathSelectorTagMetadataLifecycle{}
+}
+
 type UpdateTagRequestPathSelectorTagMetadataCreateTime struct{}
 
 func (UpdateTagRequestPathSelectorTagMetadataCreateTime) FieldPath() *UpdateTagRequest_FieldSubPath {
@@ -3445,6 +3768,23 @@ func (s UpdateTagRequestPathSelectorTagMetadataUpdateTime) WithValue(value *time
 }
 
 func (s UpdateTagRequestPathSelectorTagMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorTagMetadataDeleteTime struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataDeleteTime) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3621,20 +3961,20 @@ func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferences) WithItemValue(va
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) ApiVersion() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion {
-	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Kind() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesKind {
 	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesKind{}
+}
+
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Version() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion {
+	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Name() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesName {
 	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesName{}
 }
 
-func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Uid() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid {
-	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid{}
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Region() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion {
+	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) Controller() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesController {
@@ -3645,21 +3985,8 @@ func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) BlockOwnerDeletion
 	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) FieldPath() *UpdateTagRequest_FieldSubPath {
-	return &UpdateTagRequest_FieldSubPath{
-		selector: UpdateTagRequest_FieldPathSelectorTag,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
-}
-
-func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferences) RequiresOwnerReference() UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesKind struct{}
@@ -3676,6 +4003,23 @@ func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesKind) WithValue(va
 }
 
 func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3696,20 +4040,20 @@ func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesName) WithArrayOfV
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid struct{}
+type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion struct{}
 
-func (UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid) FieldPath() *UpdateTagRequest_FieldSubPath {
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) FieldPath() *UpdateTagRequest_FieldSubPath {
 	return &UpdateTagRequest_FieldSubPath{
 		selector: UpdateTagRequest_FieldPathSelectorTag,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
 }
 
-func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3744,6 +4088,23 @@ func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion
 }
 
 func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -3848,6 +4209,65 @@ func (s UpdateTagRequestPathSelectorTagMetadataSyncingRegions) WithArrayOfValues
 
 func (s UpdateTagRequestPathSelectorTagMetadataSyncingRegions) WithItemValue(value string) *UpdateTagRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateTagRequestPathSelectorTagMetadataLifecycle struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataLifecycle) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateTagRequestPathSelectorTagMetadataLifecycle) State() UpdateTagRequestPathSelectorTagMetadataLifecycleState {
+	return UpdateTagRequestPathSelectorTagMetadataLifecycleState{}
+}
+
+func (UpdateTagRequestPathSelectorTagMetadataLifecycle) BlockDeletion() UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion {
+	return UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateTagRequestPathSelectorTagMetadataLifecycleState struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataLifecycleState) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorTag,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorTagMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateTagRequestPathSelectorUpdateMask struct{}
@@ -4149,6 +4569,10 @@ func (UpdateTagRequestPathSelectorCasConditionalStateMetadata) UpdateTime() Upda
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadata) DeleteTime() UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateTagRequestPathSelectorCasConditionalStateMetadata) Uuid() UpdateTagRequestPathSelectorCasConditionalStateMetadataUuid {
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataUuid{}
 }
@@ -4185,6 +4609,10 @@ func (UpdateTagRequestPathSelectorCasConditionalStateMetadata) Syncing() UpdateT
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataSyncing{}
 }
 
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadata) Lifecycle() UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle{}
+}
+
 type UpdateTagRequestPathSelectorCasConditionalStateMetadataCreateTime struct{}
 
 func (UpdateTagRequestPathSelectorCasConditionalStateMetadataCreateTime) FieldPath() *UpdateTagRequest_FieldSubPath {
@@ -4216,6 +4644,23 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithV
 }
 
 func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4392,20 +4837,20 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) 
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequest_FieldSubPathArrayItemValue)
 }
 
-func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) ApiVersion() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Kind() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind {
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Version() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Name() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName {
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Uid() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid {
-	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Region() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Controller() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesController {
@@ -4416,21 +4861,8 @@ func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) Bl
 	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateTagRequest_FieldSubPath {
-	return &UpdateTagRequest_FieldSubPath{
-		selector: UpdateTagRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
-}
-
-func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind struct{}
@@ -4447,6 +4879,23 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKi
 }
 
 func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4467,20 +4916,20 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesNa
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
-type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateTagRequest_FieldSubPath {
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateTagRequest_FieldSubPath {
 	return &UpdateTagRequest_FieldSubPath{
 		selector: UpdateTagRequest_FieldPathSelectorCas,
-		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateTagRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
 }
 
-func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4515,6 +4964,23 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBl
 }
 
 func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
@@ -4619,6 +5085,65 @@ func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataSyncingRegions) W
 
 func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateTagRequest_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequest_FieldSubPathArrayItemValue)
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle) State() UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycle) BlockDeletion() UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateTagRequest_FieldSubPath {
+	return &UpdateTagRequest_FieldSubPath{
+		selector: UpdateTagRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateTagRequestCASFieldPathBuilder().ConditionalState().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateTagRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldSubPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorCasConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
 }
 
 type UpdateTagRequestPathSelectorCasFieldMask struct{}
@@ -4910,6 +5435,10 @@ func (UpdateTagRequest_CASPathSelectorConditionalStateMetadata) UpdateTime() Upd
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataUpdateTime{}
 }
 
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadata) DeleteTime() UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime{}
+}
+
 func (UpdateTagRequest_CASPathSelectorConditionalStateMetadata) Uuid() UpdateTagRequest_CASPathSelectorConditionalStateMetadataUuid {
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataUuid{}
 }
@@ -4946,6 +5475,10 @@ func (UpdateTagRequest_CASPathSelectorConditionalStateMetadata) Syncing() Update
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataSyncing{}
 }
 
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadata) Lifecycle() UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle{}
+}
+
 type UpdateTagRequest_CASPathSelectorConditionalStateMetadataCreateTime struct{}
 
 func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataCreateTime) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
@@ -4977,6 +5510,23 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataUpdateTime) With
 }
 
 func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().DeleteTime().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -5153,20 +5703,20 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences)
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequestCAS_FieldSubPathArrayItemValue)
 }
 
-func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) ApiVersion() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion {
-	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion{}
-}
-
 func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Kind() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind {
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind{}
+}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Version() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion{}
 }
 
 func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Name() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName {
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesName{}
 }
 
-func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Uid() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid {
-	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid{}
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Region() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion{}
 }
 
 func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) Controller() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesController {
@@ -5177,21 +5727,8 @@ func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) B
 	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion struct{}
-
-func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
-	return &UpdateTagRequestCAS_FieldSubPath{
-		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithValue(value string) *UpdateTagRequestCAS_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
-}
-
-func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferences) RequiresOwnerReference() UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind struct{}
@@ -5208,6 +5745,23 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesK
 }
 
 func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithValue(value string) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -5228,20 +5782,20 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesN
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
-type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid struct{}
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion struct{}
 
-func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
 	return &UpdateTagRequestCAS_FieldSubPath{
 		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
-		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Uid().FieldPath(),
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithValue(value string) *UpdateTagRequestCAS_FieldSubPathValue {
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithValue(value string) *UpdateTagRequestCAS_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
 }
 
-func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -5276,6 +5830,23 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesB
 }
 
 func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -5380,6 +5951,65 @@ func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) 
 
 func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataSyncingRegions) WithItemValue(value string) *UpdateTagRequestCAS_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*UpdateTagRequestCAS_FieldSubPathArrayItemValue)
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle) State() UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState{}
+}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycle) BlockDeletion() UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion {
+	return UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion{}
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion struct{}
+
+func (UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) FieldPath() *UpdateTagRequestCAS_FieldSubPath {
+	return &UpdateTagRequestCAS_FieldSubPath{
+		selector: UpdateTagRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  tag.NewTagFieldPathBuilder().Metadata().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithValue(value bool) *UpdateTagRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateTagRequest_CASPathSelectorConditionalStateMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *UpdateTagRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequestCAS_FieldSubPathArrayOfValues)
 }
 
 type UpdateTagRequest_CASPathSelectorFieldMask struct{}

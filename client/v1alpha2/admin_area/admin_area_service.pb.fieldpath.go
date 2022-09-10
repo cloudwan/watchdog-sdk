@@ -234,6 +234,10 @@ func (fp *GetAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == GetAdminAreaRequest_FieldPathSelectorView
 }
 
+func (fp *GetAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *GetAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}) GetAdminAreaRequest_FieldPathValue {
 	switch fp.selector {
 	case GetAdminAreaRequest_FieldPathSelectorName:
@@ -451,7 +455,11 @@ func (fpaiv *GetAdminAreaRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(s
 func (fpaiv *GetAdminAreaRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetAdminAreaRequest) bool {
 	slice := fpaiv.GetAdminAreaRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -696,6 +704,10 @@ func (fp *BatchGetAdminAreasRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == BatchGetAdminAreasRequest_FieldPathSelectorView
 }
 
+func (fp *BatchGetAdminAreasRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetAdminAreasRequest_FieldTerminalPath) WithIValue(value interface{}) BatchGetAdminAreasRequest_FieldPathValue {
 	switch fp.selector {
 	case BatchGetAdminAreasRequest_FieldPathSelectorNames:
@@ -902,7 +914,11 @@ func (fpaiv *BatchGetAdminAreasRequest_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *BatchGetAdminAreasRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetAdminAreasRequest) bool {
 	slice := fpaiv.BatchGetAdminAreasRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1141,6 +1157,10 @@ func (fp *BatchGetAdminAreasResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == BatchGetAdminAreasResponse_FieldPathSelectorMissing
 }
 
+func (fp *BatchGetAdminAreasResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *BatchGetAdminAreasResponse_FieldTerminalPath) WithIValue(value interface{}) BatchGetAdminAreasResponse_FieldPathValue {
 	switch fp.selector {
 	case BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas:
@@ -1271,6 +1291,12 @@ func (fps *BatchGetAdminAreasResponse_FieldSubPath) ClearValueRaw(item proto.Mes
 // IsLeaf - whether field path is holds simple value
 func (fps *BatchGetAdminAreasResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *BatchGetAdminAreasResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&BatchGetAdminAreasResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *BatchGetAdminAreasResponse_FieldSubPath) WithIValue(value interface{}) BatchGetAdminAreasResponse_FieldPathValue {
@@ -1488,7 +1514,11 @@ func (fpaiv *BatchGetAdminAreasResponse_FieldTerminalPathArrayItemValue) GetSing
 func (fpaiv *BatchGetAdminAreasResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *BatchGetAdminAreasResponse) bool {
 	slice := fpaiv.BatchGetAdminAreasResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -1812,6 +1842,10 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListAdminAreasRequest_FieldPathSelectorView
 }
 
+func (fp *ListAdminAreasRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListAdminAreasRequest_FieldTerminalPath) WithIValue(value interface{}) ListAdminAreasRequest_FieldPathValue {
 	switch fp.selector {
 	case ListAdminAreasRequest_FieldPathSelectorPageSize:
@@ -2056,7 +2090,11 @@ func (fpaiv *ListAdminAreasRequest_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *ListAdminAreasRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *ListAdminAreasRequest) bool {
 	slice := fpaiv.ListAdminAreasRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2336,6 +2374,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListAdminAreasResponse_FieldPathSelectorNextPageToken
 }
 
+func (fp *ListAdminAreasResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *ListAdminAreasResponse_FieldTerminalPath) WithIValue(value interface{}) ListAdminAreasResponse_FieldPathValue {
 	switch fp.selector {
 	case ListAdminAreasResponse_FieldPathSelectorAdminAreas:
@@ -2468,6 +2510,12 @@ func (fps *ListAdminAreasResponse_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *ListAdminAreasResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *ListAdminAreasResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&ListAdminAreasResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *ListAdminAreasResponse_FieldSubPath) WithIValue(value interface{}) ListAdminAreasResponse_FieldPathValue {
@@ -2689,7 +2737,11 @@ func (fpaiv *ListAdminAreasResponse_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *ListAdminAreasResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *ListAdminAreasResponse) bool {
 	slice := fpaiv.ListAdminAreasResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -2973,6 +3025,10 @@ func (fp *WatchAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchAdminAreaRequest_FieldPathSelectorView
 }
 
+func (fp *WatchAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}) WatchAdminAreaRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchAdminAreaRequest_FieldPathSelectorName:
@@ -3190,7 +3246,11 @@ func (fpaiv *WatchAdminAreaRequest_FieldTerminalPathArrayItemValue) GetSingleRaw
 func (fpaiv *WatchAdminAreaRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchAdminAreaRequest) bool {
 	slice := fpaiv.WatchAdminAreaRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3404,6 +3464,10 @@ func (fp *WatchAdminAreaResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == WatchAdminAreaResponse_FieldPathSelectorChange
 }
 
+func (fp *WatchAdminAreaResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchAdminAreaResponse_FieldTerminalPath) WithIValue(value interface{}) WatchAdminAreaResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchAdminAreaResponse_FieldPathSelectorChange:
@@ -3572,7 +3636,11 @@ func (fpaiv *WatchAdminAreaResponse_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *WatchAdminAreaResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchAdminAreaResponse) bool {
 	slice := fpaiv.WatchAdminAreaResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -3891,6 +3959,10 @@ func (fp *WatchAdminAreasRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchAdminAreasRequest_FieldPathSelectorMaxChunkSize
 }
 
+func (fp *WatchAdminAreasRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchAdminAreasRequest_FieldTerminalPath) WithIValue(value interface{}) WatchAdminAreasRequest_FieldPathValue {
 	switch fp.selector {
 	case WatchAdminAreasRequest_FieldPathSelectorType:
@@ -4195,7 +4267,11 @@ func (fpaiv *WatchAdminAreasRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *WatchAdminAreasRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchAdminAreasRequest) bool {
 	slice := fpaiv.WatchAdminAreasRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -4552,6 +4628,10 @@ func (fp *WatchAdminAreasResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchAdminAreasResponse_FieldPathSelectorIsHardReset
 }
 
+func (fp *WatchAdminAreasResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchAdminAreasResponse_FieldTerminalPath) WithIValue(value interface{}) WatchAdminAreasResponse_FieldPathValue {
 	switch fp.selector {
 	case WatchAdminAreasResponse_FieldPathSelectorAdminAreaChanges:
@@ -4696,6 +4776,12 @@ func (fps *WatchAdminAreasResponse_FieldSubPath) ClearValueRaw(item proto.Messag
 // IsLeaf - whether field path is holds simple value
 func (fps *WatchAdminAreasResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *WatchAdminAreasResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&WatchAdminAreasResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *WatchAdminAreasResponse_FieldSubPath) WithIValue(value interface{}) WatchAdminAreasResponse_FieldPathValue {
@@ -4989,7 +5075,11 @@ func (fpaiv *WatchAdminAreasResponse_FieldTerminalPathArrayItemValue) GetSingleR
 func (fpaiv *WatchAdminAreasResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchAdminAreasResponse) bool {
 	slice := fpaiv.WatchAdminAreasResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5291,6 +5381,10 @@ func (fp *WatchAdminAreasResponsePageTokenChange_FieldTerminalPath) IsLeaf() boo
 		fp.selector == WatchAdminAreasResponsePageTokenChange_FieldPathSelectorNextPageToken
 }
 
+func (fp *WatchAdminAreasResponsePageTokenChange_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *WatchAdminAreasResponsePageTokenChange_FieldTerminalPath) WithIValue(value interface{}) WatchAdminAreasResponsePageTokenChange_FieldPathValue {
 	switch fp.selector {
 	case WatchAdminAreasResponsePageTokenChange_FieldPathSelectorPrevPageToken:
@@ -5471,7 +5565,11 @@ func (fpaiv *WatchAdminAreasResponsePageTokenChange_FieldTerminalPathArrayItemVa
 func (fpaiv *WatchAdminAreasResponsePageTokenChange_FieldTerminalPathArrayItemValue) ContainsValue(source *WatchAdminAreasResponse_PageTokenChange) bool {
 	slice := fpaiv.WatchAdminAreasResponsePageTokenChange_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -5686,6 +5784,10 @@ func (fp *CreateAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
 	return false
 }
 
+func (fp *CreateAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *CreateAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}) CreateAdminAreaRequest_FieldPathValue {
 	switch fp.selector {
 	case CreateAdminAreaRequest_FieldPathSelectorAdminArea:
@@ -5804,6 +5906,12 @@ func (fps *CreateAdminAreaRequest_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *CreateAdminAreaRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *CreateAdminAreaRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&CreateAdminAreaRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *CreateAdminAreaRequest_FieldSubPath) WithIValue(value interface{}) CreateAdminAreaRequest_FieldPathValue {
@@ -6005,7 +6113,11 @@ func (fpaiv *CreateAdminAreaRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *CreateAdminAreaRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *CreateAdminAreaRequest) bool {
 	slice := fpaiv.CreateAdminAreaRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6289,6 +6401,10 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateAdminAreaRequest_FieldPathSelectorUpdateMask
 }
 
+func (fp *UpdateAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}) UpdateAdminAreaRequest_FieldPathValue {
 	switch fp.selector {
 	case UpdateAdminAreaRequest_FieldPathSelectorAdminArea:
@@ -6428,6 +6544,12 @@ func (fps *UpdateAdminAreaRequest_FieldSubPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateAdminAreaRequest_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateAdminAreaRequest_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateAdminAreaRequest_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateAdminAreaRequest_FieldSubPath) WithIValue(value interface{}) UpdateAdminAreaRequest_FieldPathValue {
@@ -6653,7 +6775,11 @@ func (fpaiv *UpdateAdminAreaRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *UpdateAdminAreaRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateAdminAreaRequest) bool {
 	slice := fpaiv.UpdateAdminAreaRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -6941,6 +7067,10 @@ func (fp *UpdateAdminAreaRequestCAS_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == UpdateAdminAreaRequestCAS_FieldPathSelectorFieldMask
 }
 
+func (fp *UpdateAdminAreaRequestCAS_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *UpdateAdminAreaRequestCAS_FieldTerminalPath) WithIValue(value interface{}) UpdateAdminAreaRequestCAS_FieldPathValue {
 	switch fp.selector {
 	case UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState:
@@ -7063,6 +7193,12 @@ func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
+}
+
+func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&UpdateAdminAreaRequestCAS_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
 }
 
 func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) WithIValue(value interface{}) UpdateAdminAreaRequestCAS_FieldPathValue {
@@ -7272,7 +7408,11 @@ func (fpaiv *UpdateAdminAreaRequestCAS_FieldTerminalPathArrayItemValue) GetSingl
 func (fpaiv *UpdateAdminAreaRequestCAS_FieldTerminalPathArrayItemValue) ContainsValue(source *UpdateAdminAreaRequest_CAS) bool {
 	slice := fpaiv.UpdateAdminAreaRequestCAS_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}
@@ -7517,6 +7657,10 @@ func (fp *DeleteAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == DeleteAdminAreaRequest_FieldPathSelectorName
 }
 
+func (fp *DeleteAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
 func (fp *DeleteAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}) DeleteAdminAreaRequest_FieldPathValue {
 	switch fp.selector {
 	case DeleteAdminAreaRequest_FieldPathSelectorName:
@@ -7702,7 +7846,11 @@ func (fpaiv *DeleteAdminAreaRequest_FieldTerminalPathArrayItemValue) GetSingleRa
 func (fpaiv *DeleteAdminAreaRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *DeleteAdminAreaRequest) bool {
 	slice := fpaiv.DeleteAdminAreaRequest_FieldTerminalPath.Get(source)
 	for _, v := range slice {
-		if reflect.DeepEqual(v, fpaiv.value) {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
 			return true
 		}
 	}

@@ -1317,6 +1317,10 @@ func (SharedTokenPathSelectorMetadata) UpdateTime() SharedTokenPathSelectorMetad
 	return SharedTokenPathSelectorMetadataUpdateTime{}
 }
 
+func (SharedTokenPathSelectorMetadata) DeleteTime() SharedTokenPathSelectorMetadataDeleteTime {
+	return SharedTokenPathSelectorMetadataDeleteTime{}
+}
+
 func (SharedTokenPathSelectorMetadata) Uuid() SharedTokenPathSelectorMetadataUuid {
 	return SharedTokenPathSelectorMetadataUuid{}
 }
@@ -1353,6 +1357,10 @@ func (SharedTokenPathSelectorMetadata) Syncing() SharedTokenPathSelectorMetadata
 	return SharedTokenPathSelectorMetadataSyncing{}
 }
 
+func (SharedTokenPathSelectorMetadata) Lifecycle() SharedTokenPathSelectorMetadataLifecycle {
+	return SharedTokenPathSelectorMetadataLifecycle{}
+}
+
 type SharedTokenPathSelectorMetadataCreateTime struct{}
 
 func (SharedTokenPathSelectorMetadataCreateTime) FieldPath() *SharedToken_FieldSubPath {
@@ -1384,6 +1392,23 @@ func (s SharedTokenPathSelectorMetadataUpdateTime) WithValue(value *timestamp.Ti
 }
 
 func (s SharedTokenPathSelectorMetadataUpdateTime) WithArrayOfValues(values []*timestamp.Timestamp) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+}
+
+type SharedTokenPathSelectorMetadataDeleteTime struct{}
+
+func (SharedTokenPathSelectorMetadataDeleteTime) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().DeleteTime().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataDeleteTime) WithValue(value *timestamp.Timestamp) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataDeleteTime) WithArrayOfValues(values []*timestamp.Timestamp) *SharedToken_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
@@ -1560,20 +1585,20 @@ func (s SharedTokenPathSelectorMetadataOwnerReferences) WithItemValue(value *ntt
 	return s.FieldPath().WithIArrayItemValue(value).(*SharedToken_FieldSubPathArrayItemValue)
 }
 
-func (SharedTokenPathSelectorMetadataOwnerReferences) ApiVersion() SharedTokenPathSelectorMetadataOwnerReferencesApiVersion {
-	return SharedTokenPathSelectorMetadataOwnerReferencesApiVersion{}
-}
-
 func (SharedTokenPathSelectorMetadataOwnerReferences) Kind() SharedTokenPathSelectorMetadataOwnerReferencesKind {
 	return SharedTokenPathSelectorMetadataOwnerReferencesKind{}
+}
+
+func (SharedTokenPathSelectorMetadataOwnerReferences) Version() SharedTokenPathSelectorMetadataOwnerReferencesVersion {
+	return SharedTokenPathSelectorMetadataOwnerReferencesVersion{}
 }
 
 func (SharedTokenPathSelectorMetadataOwnerReferences) Name() SharedTokenPathSelectorMetadataOwnerReferencesName {
 	return SharedTokenPathSelectorMetadataOwnerReferencesName{}
 }
 
-func (SharedTokenPathSelectorMetadataOwnerReferences) Uid() SharedTokenPathSelectorMetadataOwnerReferencesUid {
-	return SharedTokenPathSelectorMetadataOwnerReferencesUid{}
+func (SharedTokenPathSelectorMetadataOwnerReferences) Region() SharedTokenPathSelectorMetadataOwnerReferencesRegion {
+	return SharedTokenPathSelectorMetadataOwnerReferencesRegion{}
 }
 
 func (SharedTokenPathSelectorMetadataOwnerReferences) Controller() SharedTokenPathSelectorMetadataOwnerReferencesController {
@@ -1584,21 +1609,8 @@ func (SharedTokenPathSelectorMetadataOwnerReferences) BlockOwnerDeletion() Share
 	return SharedTokenPathSelectorMetadataOwnerReferencesBlockOwnerDeletion{}
 }
 
-type SharedTokenPathSelectorMetadataOwnerReferencesApiVersion struct{}
-
-func (SharedTokenPathSelectorMetadataOwnerReferencesApiVersion) FieldPath() *SharedToken_FieldSubPath {
-	return &SharedToken_FieldSubPath{
-		selector: SharedToken_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().ApiVersion().FieldPath(),
-	}
-}
-
-func (s SharedTokenPathSelectorMetadataOwnerReferencesApiVersion) WithValue(value string) *SharedToken_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
-}
-
-func (s SharedTokenPathSelectorMetadataOwnerReferencesApiVersion) WithArrayOfValues(values []string) *SharedToken_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+func (SharedTokenPathSelectorMetadataOwnerReferences) RequiresOwnerReference() SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference {
+	return SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference{}
 }
 
 type SharedTokenPathSelectorMetadataOwnerReferencesKind struct{}
@@ -1615,6 +1627,23 @@ func (s SharedTokenPathSelectorMetadataOwnerReferencesKind) WithValue(value stri
 }
 
 func (s SharedTokenPathSelectorMetadataOwnerReferencesKind) WithArrayOfValues(values []string) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+}
+
+type SharedTokenPathSelectorMetadataOwnerReferencesVersion struct{}
+
+func (SharedTokenPathSelectorMetadataOwnerReferencesVersion) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Version().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataOwnerReferencesVersion) WithValue(value string) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataOwnerReferencesVersion) WithArrayOfValues(values []string) *SharedToken_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
@@ -1635,20 +1664,20 @@ func (s SharedTokenPathSelectorMetadataOwnerReferencesName) WithArrayOfValues(va
 	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
-type SharedTokenPathSelectorMetadataOwnerReferencesUid struct{}
+type SharedTokenPathSelectorMetadataOwnerReferencesRegion struct{}
 
-func (SharedTokenPathSelectorMetadataOwnerReferencesUid) FieldPath() *SharedToken_FieldSubPath {
+func (SharedTokenPathSelectorMetadataOwnerReferencesRegion) FieldPath() *SharedToken_FieldSubPath {
 	return &SharedToken_FieldSubPath{
 		selector: SharedToken_FieldPathSelectorMetadata,
-		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Uid().FieldPath(),
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().Region().FieldPath(),
 	}
 }
 
-func (s SharedTokenPathSelectorMetadataOwnerReferencesUid) WithValue(value string) *SharedToken_FieldSubPathValue {
+func (s SharedTokenPathSelectorMetadataOwnerReferencesRegion) WithValue(value string) *SharedToken_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
 }
 
-func (s SharedTokenPathSelectorMetadataOwnerReferencesUid) WithArrayOfValues(values []string) *SharedToken_FieldSubPathArrayOfValues {
+func (s SharedTokenPathSelectorMetadataOwnerReferencesRegion) WithArrayOfValues(values []string) *SharedToken_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
@@ -1683,6 +1712,23 @@ func (s SharedTokenPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithVa
 }
 
 func (s SharedTokenPathSelectorMetadataOwnerReferencesBlockOwnerDeletion) WithArrayOfValues(values []bool) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+}
+
+type SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference struct{}
+
+func (SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().OwnerReferences().RequiresOwnerReference().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithValue(value bool) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataOwnerReferencesRequiresOwnerReference) WithArrayOfValues(values []bool) *SharedToken_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
@@ -1787,6 +1833,65 @@ func (s SharedTokenPathSelectorMetadataSyncingRegions) WithArrayOfValues(values 
 
 func (s SharedTokenPathSelectorMetadataSyncingRegions) WithItemValue(value string) *SharedToken_FieldSubPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*SharedToken_FieldSubPathArrayItemValue)
+}
+
+type SharedTokenPathSelectorMetadataLifecycle struct{}
+
+func (SharedTokenPathSelectorMetadataLifecycle) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycle) WithValue(value *ntt_meta.Lifecycle) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycle) WithArrayOfValues(values []*ntt_meta.Lifecycle) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+}
+
+func (SharedTokenPathSelectorMetadataLifecycle) State() SharedTokenPathSelectorMetadataLifecycleState {
+	return SharedTokenPathSelectorMetadataLifecycleState{}
+}
+
+func (SharedTokenPathSelectorMetadataLifecycle) BlockDeletion() SharedTokenPathSelectorMetadataLifecycleBlockDeletion {
+	return SharedTokenPathSelectorMetadataLifecycleBlockDeletion{}
+}
+
+type SharedTokenPathSelectorMetadataLifecycleState struct{}
+
+func (SharedTokenPathSelectorMetadataLifecycleState) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().State().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycleState) WithValue(value ntt_meta.Lifecycle_State) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycleState) WithArrayOfValues(values []ntt_meta.Lifecycle_State) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
+}
+
+type SharedTokenPathSelectorMetadataLifecycleBlockDeletion struct{}
+
+func (SharedTokenPathSelectorMetadataLifecycleBlockDeletion) FieldPath() *SharedToken_FieldSubPath {
+	return &SharedToken_FieldSubPath{
+		selector: SharedToken_FieldPathSelectorMetadata,
+		subPath:  ntt_meta.NewMetaFieldPathBuilder().Lifecycle().BlockDeletion().FieldPath(),
+	}
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycleBlockDeletion) WithValue(value bool) *SharedToken_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SharedToken_FieldSubPathValue)
+}
+
+func (s SharedTokenPathSelectorMetadataLifecycleBlockDeletion) WithArrayOfValues(values []bool) *SharedToken_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SharedToken_FieldSubPathArrayOfValues)
 }
 
 type SharedTokenPathSelectorAssociateExistingProbeOnly struct{}
