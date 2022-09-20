@@ -3212,6 +3212,10 @@ func (b *filterCndBuilderProbeTemplateSpecTargetServers) TargetAddressType() *fi
 	return &filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType{builder: b.builder}
 }
 
+func (b *filterCndBuilderProbeTemplateSpecTargetServers) TargetIpVersion() *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion {
+	return &filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion{builder: b.builder}
+}
+
 type filterCndBuilderProbeTemplateSpecTargetServersIcmpTarget struct {
 	builder *FilterBuilder
 }
@@ -3760,6 +3764,65 @@ func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetAddressType) compar
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                   op,
 		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetAddressType().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Eq(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Neq(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Gt(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Gte(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Lt(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) Lte(value common.IpVersion) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) In(values []common.IpVersion) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) NotIn(values []common.IpVersion) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		SharedToken_FieldPathArrayOfValues: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbeTemplateSpecTargetServersTargetIpVersion) compare(op gotenfilter.CompareOperator, value common.IpVersion) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                   op,
+		SharedToken_FieldPathValue: NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().WithValue(value),
 	})
 }
 

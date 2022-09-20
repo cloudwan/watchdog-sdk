@@ -898,6 +898,9 @@ func (o *Probe_Spec_TargetServers) MakeDiffFieldMask(other *Probe_Spec_TargetSer
 	if o.GetTargetAddressType() != other.GetTargetAddressType() {
 		res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetAddressType})
 	}
+	if o.GetTargetIpVersion() != other.GetTargetIpVersion() {
+		res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion})
+	}
 	return res
 }
 
@@ -914,6 +917,7 @@ func (o *Probe_Spec_TargetServers) Clone() *Probe_Spec_TargetServers {
 	result.UdpTarget = o.UdpTarget.Clone()
 	result.SpeedTestTarget = o.SpeedTestTarget.Clone()
 	result.TargetAddressType = o.TargetAddressType
+	result.TargetIpVersion = o.TargetIpVersion
 	return result
 }
 
@@ -941,6 +945,7 @@ func (o *Probe_Spec_TargetServers) Merge(source *Probe_Spec_TargetServers) {
 		o.SpeedTestTarget.Merge(source.GetSpeedTestTarget())
 	}
 	o.TargetAddressType = source.GetTargetAddressType()
+	o.TargetIpVersion = source.GetTargetIpVersion()
 }
 
 func (o *Probe_Spec_TargetServers) MergeRaw(source gotenobject.GotenObjectExt) {

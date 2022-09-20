@@ -5032,6 +5032,7 @@ const (
 	ProbeSpecTargetServers_FieldPathSelectorUdpTarget         ProbeSpecTargetServers_FieldPathSelector = 1
 	ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget   ProbeSpecTargetServers_FieldPathSelector = 2
 	ProbeSpecTargetServers_FieldPathSelectorTargetAddressType ProbeSpecTargetServers_FieldPathSelector = 3
+	ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion   ProbeSpecTargetServers_FieldPathSelector = 4
 )
 
 func (s ProbeSpecTargetServers_FieldPathSelector) String() string {
@@ -5044,6 +5045,8 @@ func (s ProbeSpecTargetServers_FieldPathSelector) String() string {
 		return "speed_test_target"
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return "target_address_type"
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		return "target_ip_version"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", s))
 	}
@@ -5063,6 +5066,8 @@ func BuildProbeSpecTargetServers_FieldPath(fp gotenobject.RawFieldPath) (ProbeSp
 			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget}, nil
 		case "target_address_type", "targetAddressType", "target-address-type":
 			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetAddressType}, nil
+		case "target_ip_version", "targetIpVersion", "target-ip-version":
+			return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -5143,6 +5148,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) Get(source *Probe_Spec_Targe
 			}
 		case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 			values = append(values, source.TargetAddressType)
+		case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+			values = append(values, source.TargetIpVersion)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 		}
@@ -5168,6 +5175,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetSingle(source *Probe_Spec
 		return res, res != nil
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return source.GetTargetAddressType(), source != nil
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		return source.GetTargetIpVersion(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 	}
@@ -5188,6 +5197,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetDefault() interface{} {
 		return (*Probe_Spec_TargetServers_SpeedTestTarget)(nil)
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return Probe_Spec_TargetServers_EXTERNAL_IP
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		return common.IpVersion_IP_VERSION_UNSPECIFIED
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 	}
@@ -5204,6 +5215,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) ClearValue(item *Probe_Spec_
 			item.SpeedTestTarget = nil
 		case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 			item.TargetAddressType = Probe_Spec_TargetServers_EXTERNAL_IP
+		case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+			item.TargetIpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 		}
@@ -5216,7 +5229,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) ClearValueRaw(item proto.Mes
 
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbeSpecTargetServers_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == ProbeSpecTargetServers_FieldPathSelectorTargetAddressType
+	return fp.selector == ProbeSpecTargetServers_FieldPathSelectorTargetAddressType ||
+		fp.selector == ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion
 }
 
 func (fp *ProbeSpecTargetServers_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -5233,6 +5247,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIValue(value interface{}
 		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers_SpeedTestTarget)}
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(Probe_Spec_TargetServers_TargetIPAddressType)}
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		return &ProbeSpecTargetServers_FieldTerminalPathValue{ProbeSpecTargetServers_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 	}
@@ -5253,6 +5269,8 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) WithIArrayOfValues(values in
 		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers_SpeedTestTarget)}
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]Probe_Spec_TargetServers_TargetIPAddressType)}
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		return &ProbeSpecTargetServers_FieldTerminalPathArrayOfValues{ProbeSpecTargetServers_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 	}
@@ -5466,6 +5484,10 @@ func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) AsTargetAddressTypeVal
 	res, ok := fpv.value.(Probe_Spec_TargetServers_TargetIPAddressType)
 	return res, ok
 }
+func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) AsTargetIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object TargetServers
 func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) SetTo(target **Probe_Spec_TargetServers) {
@@ -5481,6 +5503,8 @@ func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) SetTo(target **Probe_S
 		(*target).SpeedTestTarget = fpv.value.(*Probe_Spec_TargetServers_SpeedTestTarget)
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		(*target).TargetAddressType = fpv.value.(Probe_Spec_TargetServers_TargetIPAddressType)
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		(*target).TargetIpVersion = fpv.value.(common.IpVersion)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fpv.selector))
 	}
@@ -5503,6 +5527,16 @@ func (fpv *ProbeSpecTargetServers_FieldTerminalPathValue) CompareWith(source *Pr
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		leftValue := fpv.value.(Probe_Spec_TargetServers_TargetIPAddressType)
 		rightValue := source.GetTargetAddressType()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetTargetIpVersion()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -5732,6 +5766,10 @@ func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) GetRawValues
 		for _, v := range fpaov.values.([]Probe_Spec_TargetServers_TargetIPAddressType) {
 			values = append(values, v)
 		}
+	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -5749,6 +5787,10 @@ func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsSpeedTestT
 }
 func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsTargetAddressTypeArrayOfValues() ([]Probe_Spec_TargetServers_TargetIPAddressType, bool) {
 	res, ok := fpaov.values.([]Probe_Spec_TargetServers_TargetIPAddressType)
+	return res, ok
+}
+func (fpaov *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues) AsTargetIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
 	return res, ok
 }
 

@@ -124,6 +124,8 @@ message Probe {
 
       TargetIPAddressType target_address_type = 4;
 
+      IpVersion target_ip_version = 5;
+
       message IcmpTarget { bool enabled = 1; }
 
       message UdpTarget {

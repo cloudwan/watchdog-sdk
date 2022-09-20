@@ -1245,6 +1245,10 @@ func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTarge
 	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServers) TargetIpVersion() BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion {
+	return BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
@@ -1415,6 +1419,23 @@ func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTar
 }
 
 func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *BatchGetSharedTokensResponse_FieldSubPath {
+	return &BatchGetSharedTokensResponse_FieldSubPath{
+		selector: BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *BatchGetSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s BatchGetSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *BatchGetSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -3276,6 +3297,10 @@ func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetSer
 	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServers) TargetIpVersion() ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion {
+	return ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *ListSharedTokensResponse_FieldSubPath {
@@ -3446,6 +3471,23 @@ func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetS
 }
 
 func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *ListSharedTokensResponse_FieldSubPath {
+	return &ListSharedTokensResponse_FieldSubPath{
+		selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ListSharedTokensResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldSubPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorSharedTokensProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ListSharedTokensResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5683,6 +5725,10 @@ func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServ
 	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServers) TargetIpVersion() CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion {
+	return CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
@@ -5853,6 +5899,23 @@ func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 }
 
 func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *CreateSharedTokenRequest_FieldSubPath {
+	return &CreateSharedTokenRequest_FieldSubPath{
+		selector: CreateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *CreateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s CreateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *CreateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -7568,6 +7631,10 @@ func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServ
 	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServers) TargetIpVersion() UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion {
+	return UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -7738,6 +7805,23 @@ func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetSe
 }
 
 func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorSharedTokenProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -9477,6 +9561,10 @@ func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTa
 	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServers) TargetIpVersion() UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion {
+	return UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
@@ -9647,6 +9735,23 @@ func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpec
 }
 
 func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *UpdateSharedTokenRequest_FieldSubPath {
+	return &UpdateSharedTokenRequest_FieldSubPath{
+		selector: UpdateSharedTokenRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateSharedTokenRequestCASFieldPathBuilder().ConditionalState().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *UpdateSharedTokenRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorCasConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
 }
 
@@ -11376,6 +11481,10 @@ func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecT
 	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetAddressType{}
 }
 
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServers) TargetIpVersion() UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion {
+	return UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion{}
+}
+
 type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersIcmpTarget struct{}
 
 func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersIcmpTarget) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
@@ -11546,6 +11655,23 @@ func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpe
 }
 
 func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion struct{}
+
+func (UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) FieldPath() *UpdateSharedTokenRequestCAS_FieldSubPath {
+	return &UpdateSharedTokenRequestCAS_FieldSubPath{
+		selector: UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  shared_token.NewSharedTokenFieldPathBuilder().ProbeTemplate().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *UpdateSharedTokenRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateSharedTokenRequest_CASPathSelectorConditionalStateProbeTemplateSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequestCAS_FieldSubPathArrayOfValues)
 }
 

@@ -1884,6 +1884,10 @@ func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) TargetAddress
 	return ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServers) TargetIpVersion() ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion {
+	return ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion{}
+}
+
 type ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationRequestPathSelectorActivateProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequest_FieldSubPath {
@@ -2054,6 +2058,23 @@ func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddress
 }
 
 func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6037,6 +6058,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) TargetAddres
 	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServers) TargetIpVersion() ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion {
+	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -6207,6 +6232,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddres
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -10147,6 +10189,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) TargetAddre
 	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServers) TargetIpVersion() ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion {
+	return ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponse_FieldSubPath {
@@ -10317,6 +10363,23 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddre
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -14975,6 +15038,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) TargetAddr
 	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers) TargetIpVersion() ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersIcmpTarget) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -15145,6 +15212,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddr
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetAddressType) WithArrayOfValues(values []probe.Probe_Spec_TargetServers_TargetIPAddressType) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

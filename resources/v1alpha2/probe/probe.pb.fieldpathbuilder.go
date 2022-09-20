@@ -1787,6 +1787,10 @@ func (ProbePathSelectorSpecTargetServers) TargetAddressType() ProbePathSelectorS
 	return ProbePathSelectorSpecTargetServersTargetAddressType{}
 }
 
+func (ProbePathSelectorSpecTargetServers) TargetIpVersion() ProbePathSelectorSpecTargetServersTargetIpVersion {
+	return ProbePathSelectorSpecTargetServersTargetIpVersion{}
+}
+
 type ProbePathSelectorSpecTargetServersIcmpTarget struct{}
 
 func (ProbePathSelectorSpecTargetServersIcmpTarget) FieldPath() *Probe_FieldSubPath {
@@ -1957,6 +1961,23 @@ func (s ProbePathSelectorSpecTargetServersTargetAddressType) WithValue(value Pro
 }
 
 func (s ProbePathSelectorSpecTargetServersTargetAddressType) WithArrayOfValues(values []Probe_Spec_TargetServers_TargetIPAddressType) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorSpecTargetServersTargetIpVersion struct{}
+
+func (ProbePathSelectorSpecTargetServersTargetIpVersion) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorSpec,
+		subPath:  NewProbeSpecFieldPathBuilder().TargetServers().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorSpecTargetServersTargetIpVersion) WithValue(value common.IpVersion) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
@@ -5154,6 +5175,10 @@ func (Probe_SpecPathSelectorTargetServers) TargetAddressType() Probe_SpecPathSel
 	return Probe_SpecPathSelectorTargetServersTargetAddressType{}
 }
 
+func (Probe_SpecPathSelectorTargetServers) TargetIpVersion() Probe_SpecPathSelectorTargetServersTargetIpVersion {
+	return Probe_SpecPathSelectorTargetServersTargetIpVersion{}
+}
+
 type Probe_SpecPathSelectorTargetServersIcmpTarget struct{}
 
 func (Probe_SpecPathSelectorTargetServersIcmpTarget) FieldPath() *ProbeSpec_FieldSubPath {
@@ -5324,6 +5349,23 @@ func (s Probe_SpecPathSelectorTargetServersTargetAddressType) WithValue(value Pr
 }
 
 func (s Probe_SpecPathSelectorTargetServersTargetAddressType) WithArrayOfValues(values []Probe_Spec_TargetServers_TargetIPAddressType) *ProbeSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldSubPathArrayOfValues)
+}
+
+type Probe_SpecPathSelectorTargetServersTargetIpVersion struct{}
+
+func (Probe_SpecPathSelectorTargetServersTargetIpVersion) FieldPath() *ProbeSpec_FieldSubPath {
+	return &ProbeSpec_FieldSubPath{
+		selector: ProbeSpec_FieldPathSelectorTargetServers,
+		subPath:  NewProbeSpecTargetServersFieldPathBuilder().TargetIpVersion().FieldPath(),
+	}
+}
+
+func (s Probe_SpecPathSelectorTargetServersTargetIpVersion) WithValue(value common.IpVersion) *ProbeSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldSubPathValue)
+}
+
+func (s Probe_SpecPathSelectorTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ProbeSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldSubPathArrayOfValues)
 }
 
@@ -7546,6 +7588,9 @@ func (ProbeSpecTargetServersFieldPathBuilder) SpeedTestTarget() Probe_Spec_Targe
 func (ProbeSpecTargetServersFieldPathBuilder) TargetAddressType() Probe_Spec_TargetServersPathSelectorTargetAddressType {
 	return Probe_Spec_TargetServersPathSelectorTargetAddressType{}
 }
+func (ProbeSpecTargetServersFieldPathBuilder) TargetIpVersion() Probe_Spec_TargetServersPathSelectorTargetIpVersion {
+	return Probe_Spec_TargetServersPathSelectorTargetIpVersion{}
+}
 
 type Probe_Spec_TargetServersPathSelectorIcmpTarget struct{}
 
@@ -7753,6 +7798,20 @@ func (s Probe_Spec_TargetServersPathSelectorTargetAddressType) WithValue(value P
 }
 
 func (s Probe_Spec_TargetServersPathSelectorTargetAddressType) WithArrayOfValues(values []Probe_Spec_TargetServers_TargetIPAddressType) *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpecTargetServers_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Spec_TargetServersPathSelectorTargetIpVersion struct{}
+
+func (Probe_Spec_TargetServersPathSelectorTargetIpVersion) FieldPath() *ProbeSpecTargetServers_FieldTerminalPath {
+	return &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion}
+}
+
+func (s Probe_Spec_TargetServersPathSelectorTargetIpVersion) WithValue(value common.IpVersion) *ProbeSpecTargetServers_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpecTargetServers_FieldTerminalPathValue)
+}
+
+func (s Probe_Spec_TargetServersPathSelectorTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ProbeSpecTargetServers_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpecTargetServers_FieldTerminalPathArrayOfValues)
 }
 

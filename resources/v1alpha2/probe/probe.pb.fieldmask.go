@@ -1852,6 +1852,7 @@ func FullProbe_Spec_TargetServers_FieldMask() *Probe_Spec_TargetServers_FieldMas
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorUdpTarget})
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget})
 	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetAddressType})
+	res.Paths = append(res.Paths, &ProbeSpecTargetServers_FieldTerminalPath{selector: ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion})
 	return res
 }
 
@@ -1895,7 +1896,7 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpecTargetServers_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1925,7 +1926,7 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_TargetServers_FieldMask) Subtract(other *Probe_Spec_TargetServers_FieldMask) *Probe_Spec_TargetServers_FieldMask {
 	result := &Probe_Spec_TargetServers_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ProbeSpecTargetServers_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:      &Probe_Spec_TargetServers_IcmpTarget_FieldMask{},
 		ProbeSpecTargetServers_FieldPathSelectorUdpTarget:       &Probe_Spec_TargetServers_UdpTarget_FieldMask{},
@@ -2130,6 +2131,8 @@ func (fieldMask *Probe_Spec_TargetServers_FieldMask) Project(source *Probe_Spec_
 				wholeSpeedTestTargetAccepted = true
 			case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 				result.TargetAddressType = source.TargetAddressType
+			case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
+				result.TargetIpVersion = source.TargetIpVersion
 			}
 		case *ProbeSpecTargetServers_FieldSubPath:
 			switch tp.selector {
