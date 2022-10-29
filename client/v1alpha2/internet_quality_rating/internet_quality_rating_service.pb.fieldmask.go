@@ -25,28 +25,30 @@ import (
 	internet_quality_rating "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/internet_quality_rating"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	field_mask "google.golang.org/genproto/protobuf/field_mask"
 )
 
 // ensure the imports are used
 var (
-	_ = json.Marshaler(nil)
+	_ = new(json.Marshaler)
 	_ = strings.Builder{}
 
 	_ = firestorepb.Value{}
 	_ = codes.NotFound
 	_ = status.Status{}
-	_ = proto.Message(nil)
-	_ = preflect.Message(nil)
+	_ = new(proto.Message)
+	_ = new(preflect.Message)
 	_ = fieldmaskpb.FieldMask{}
 
-	_ = gotenobject.FieldMask(nil)
+	_ = new(gotenobject.FieldMask)
 )
 
 // make sure we're using proto imports
 var (
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
+	_ = &timestamp.Timestamp{}
 	_ = view.View(0)
 	_ = watch_type.WatchType(0)
 	_ = &internet_quality_rating.InternetQualityRating{}
@@ -1995,6 +1997,7 @@ func FullWatchInternetQualityRatingsRequest_FieldMask() *WatchInternetQualityRat
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorPageToken})
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorOrderBy})
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken})
+	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime})
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorView})
@@ -2042,7 +2045,7 @@ func (fieldMask *WatchInternetQualityRatingsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 10)
+	presentSelectors := make([]bool, 11)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*WatchInternetQualityRatingsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -2072,7 +2075,7 @@ func (fieldMask *WatchInternetQualityRatingsRequest_FieldMask) Reset() {
 
 func (fieldMask *WatchInternetQualityRatingsRequest_FieldMask) Subtract(other *WatchInternetQualityRatingsRequest_FieldMask) *WatchInternetQualityRatingsRequest_FieldMask {
 	result := &WatchInternetQualityRatingsRequest_FieldMask{}
-	removedSelectors := make([]bool, 10)
+	removedSelectors := make([]bool, 11)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -2238,6 +2241,8 @@ func (fieldMask *WatchInternetQualityRatingsRequest_FieldMask) Project(source *W
 				result.OrderBy = source.OrderBy
 			case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 				result.ResumeToken = source.ResumeToken
+			case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+				result.StartingTime = source.StartingTime
 			case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 				result.Filter = source.Filter
 			case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:

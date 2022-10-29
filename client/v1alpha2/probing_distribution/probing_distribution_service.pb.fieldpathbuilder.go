@@ -4689,6 +4689,9 @@ func (WatchProbingDistributionsRequestFieldPathBuilder) OrderBy() WatchProbingDi
 func (WatchProbingDistributionsRequestFieldPathBuilder) ResumeToken() WatchProbingDistributionsRequestPathSelectorResumeToken {
 	return WatchProbingDistributionsRequestPathSelectorResumeToken{}
 }
+func (WatchProbingDistributionsRequestFieldPathBuilder) StartingTime() WatchProbingDistributionsRequestPathSelectorStartingTime {
+	return WatchProbingDistributionsRequestPathSelectorStartingTime{}
+}
 func (WatchProbingDistributionsRequestFieldPathBuilder) Filter() WatchProbingDistributionsRequestPathSelectorFilter {
 	return WatchProbingDistributionsRequestPathSelectorFilter{}
 }
@@ -4783,6 +4786,20 @@ func (s WatchProbingDistributionsRequestPathSelectorResumeToken) WithValue(value
 }
 
 func (s WatchProbingDistributionsRequestPathSelectorResumeToken) WithArrayOfValues(values []string) *WatchProbingDistributionsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*WatchProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
+}
+
+type WatchProbingDistributionsRequestPathSelectorStartingTime struct{}
+
+func (WatchProbingDistributionsRequestPathSelectorStartingTime) FieldPath() *WatchProbingDistributionsRequest_FieldTerminalPath {
+	return &WatchProbingDistributionsRequest_FieldTerminalPath{selector: WatchProbingDistributionsRequest_FieldPathSelectorStartingTime}
+}
+
+func (s WatchProbingDistributionsRequestPathSelectorStartingTime) WithValue(value *timestamp.Timestamp) *WatchProbingDistributionsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*WatchProbingDistributionsRequest_FieldTerminalPathValue)
+}
+
+func (s WatchProbingDistributionsRequestPathSelectorStartingTime) WithArrayOfValues(values []*timestamp.Timestamp) *WatchProbingDistributionsRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*WatchProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
 }
 

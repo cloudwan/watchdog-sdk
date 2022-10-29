@@ -25,28 +25,30 @@ import (
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	tag "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/tag"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	field_mask "google.golang.org/genproto/protobuf/field_mask"
 )
 
 // ensure the imports are used
 var (
-	_ = json.Marshaler(nil)
+	_ = new(json.Marshaler)
 	_ = strings.Builder{}
 
 	_ = firestorepb.Value{}
 	_ = codes.NotFound
 	_ = status.Status{}
-	_ = proto.Message(nil)
-	_ = preflect.Message(nil)
+	_ = new(proto.Message)
+	_ = new(preflect.Message)
 	_ = fieldmaskpb.FieldMask{}
 
-	_ = gotenobject.FieldMask(nil)
+	_ = new(gotenobject.FieldMask)
 )
 
 // make sure we're using proto imports
 var (
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
+	_ = &timestamp.Timestamp{}
 	_ = view.View(0)
 	_ = watch_type.WatchType(0)
 	_ = &project.Project{}
@@ -1995,6 +1997,7 @@ func FullWatchTagsRequest_FieldMask() *WatchTagsRequest_FieldMask {
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorPageToken})
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorOrderBy})
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorResumeToken})
+	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorStartingTime})
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &WatchTagsRequest_FieldTerminalPath{selector: WatchTagsRequest_FieldPathSelectorView})
@@ -2042,7 +2045,7 @@ func (fieldMask *WatchTagsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 10)
+	presentSelectors := make([]bool, 11)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*WatchTagsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -2072,7 +2075,7 @@ func (fieldMask *WatchTagsRequest_FieldMask) Reset() {
 
 func (fieldMask *WatchTagsRequest_FieldMask) Subtract(other *WatchTagsRequest_FieldMask) *WatchTagsRequest_FieldMask {
 	result := &WatchTagsRequest_FieldMask{}
-	removedSelectors := make([]bool, 10)
+	removedSelectors := make([]bool, 11)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -2238,6 +2241,8 @@ func (fieldMask *WatchTagsRequest_FieldMask) Project(source *WatchTagsRequest) *
 				result.OrderBy = source.OrderBy
 			case WatchTagsRequest_FieldPathSelectorResumeToken:
 				result.ResumeToken = source.ResumeToken
+			case WatchTagsRequest_FieldPathSelectorStartingTime:
+				result.StartingTime = source.StartingTime
 			case WatchTagsRequest_FieldPathSelectorFilter:
 				result.Filter = source.Filter
 			case WatchTagsRequest_FieldPathSelectorFieldMask:

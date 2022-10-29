@@ -4279,6 +4279,9 @@ func (WatchSharedTokensRequestFieldPathBuilder) OrderBy() WatchSharedTokensReque
 func (WatchSharedTokensRequestFieldPathBuilder) ResumeToken() WatchSharedTokensRequestPathSelectorResumeToken {
 	return WatchSharedTokensRequestPathSelectorResumeToken{}
 }
+func (WatchSharedTokensRequestFieldPathBuilder) StartingTime() WatchSharedTokensRequestPathSelectorStartingTime {
+	return WatchSharedTokensRequestPathSelectorStartingTime{}
+}
 func (WatchSharedTokensRequestFieldPathBuilder) Filter() WatchSharedTokensRequestPathSelectorFilter {
 	return WatchSharedTokensRequestPathSelectorFilter{}
 }
@@ -4373,6 +4376,20 @@ func (s WatchSharedTokensRequestPathSelectorResumeToken) WithValue(value string)
 }
 
 func (s WatchSharedTokensRequestPathSelectorResumeToken) WithArrayOfValues(values []string) *WatchSharedTokensRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*WatchSharedTokensRequest_FieldTerminalPathArrayOfValues)
+}
+
+type WatchSharedTokensRequestPathSelectorStartingTime struct{}
+
+func (WatchSharedTokensRequestPathSelectorStartingTime) FieldPath() *WatchSharedTokensRequest_FieldTerminalPath {
+	return &WatchSharedTokensRequest_FieldTerminalPath{selector: WatchSharedTokensRequest_FieldPathSelectorStartingTime}
+}
+
+func (s WatchSharedTokensRequestPathSelectorStartingTime) WithValue(value *timestamp.Timestamp) *WatchSharedTokensRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*WatchSharedTokensRequest_FieldTerminalPathValue)
+}
+
+func (s WatchSharedTokensRequestPathSelectorStartingTime) WithArrayOfValues(values []*timestamp.Timestamp) *WatchSharedTokensRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*WatchSharedTokensRequest_FieldTerminalPathArrayOfValues)
 }
 

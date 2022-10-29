@@ -12518,6 +12518,10 @@ func (ActivationResponsePathSelectorActivatedServiceAccountKey) PrivateKeyData()
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyPrivateKeyData{}
 }
 
+func (ActivationResponsePathSelectorActivatedServiceAccountKey) ApiKey() ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey {
+	return ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey{}
+}
+
 func (ActivationResponsePathSelectorActivatedServiceAccountKey) Algorithm() ActivationResponsePathSelectorActivatedServiceAccountKeyAlgorithm {
 	return ActivationResponsePathSelectorActivatedServiceAccountKeyAlgorithm{}
 }
@@ -12599,6 +12603,23 @@ func (s ActivationResponsePathSelectorActivatedServiceAccountKeyPrivateKeyData) 
 }
 
 func (s ActivationResponsePathSelectorActivatedServiceAccountKeyPrivateKeyData) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey struct{}
+
+func (ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().ServiceAccountKey().ApiKey().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedServiceAccountKeyApiKey) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -17380,6 +17401,10 @@ func (ActivationResponse_ActivatedPathSelectorServiceAccountKey) PrivateKeyData(
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyPrivateKeyData{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKey) ApiKey() ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey {
+	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorServiceAccountKey) Algorithm() ActivationResponse_ActivatedPathSelectorServiceAccountKeyAlgorithm {
 	return ActivationResponse_ActivatedPathSelectorServiceAccountKeyAlgorithm{}
 }
@@ -17461,6 +17486,23 @@ func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyPrivateKeyData)
 }
 
 func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyPrivateKeyData) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey struct{}
+
+func (ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorServiceAccountKey,
+		subPath:  iam_service_account_key.NewServiceAccountKeyFieldPathBuilder().ApiKey().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorServiceAccountKeyApiKey) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

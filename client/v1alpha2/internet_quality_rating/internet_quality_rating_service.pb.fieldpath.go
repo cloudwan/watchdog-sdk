@@ -29,13 +29,14 @@ import (
 	internet_quality_rating "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/internet_quality_rating"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	field_mask "google.golang.org/genproto/protobuf/field_mask"
 )
 
 // ensure the imports are used
 var (
-	_ = json.Marshaler(nil)
-	_ = fmt.Stringer(nil)
+	_ = new(json.Marshaler)
+	_ = new(fmt.Stringer)
 	_ = reflect.DeepEqual
 	_ = strings.Builder{}
 	_ = time.Second
@@ -44,17 +45,18 @@ var (
 	_ = codes.NotFound
 	_ = status.Status{}
 	_ = protojson.UnmarshalOptions{}
-	_ = proto.Message(nil)
+	_ = new(proto.Message)
 	_ = protoregistry.GlobalTypes
 	_ = fieldmaskpb.FieldMask{}
 
-	_ = gotenobject.FieldPath(nil)
+	_ = new(gotenobject.FieldPath)
 )
 
 // make sure we're using proto imports
 var (
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
+	_ = &timestamp.Timestamp{}
 	_ = view.View(0)
 	_ = watch_type.WatchType(0)
 	_ = &internet_quality_rating.InternetQualityRating{}
@@ -3775,10 +3777,11 @@ const (
 	WatchInternetQualityRatingsRequest_FieldPathSelectorPageToken    WatchInternetQualityRatingsRequest_FieldPathSelector = 3
 	WatchInternetQualityRatingsRequest_FieldPathSelectorOrderBy      WatchInternetQualityRatingsRequest_FieldPathSelector = 4
 	WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken  WatchInternetQualityRatingsRequest_FieldPathSelector = 5
-	WatchInternetQualityRatingsRequest_FieldPathSelectorFilter       WatchInternetQualityRatingsRequest_FieldPathSelector = 6
-	WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask    WatchInternetQualityRatingsRequest_FieldPathSelector = 7
-	WatchInternetQualityRatingsRequest_FieldPathSelectorView         WatchInternetQualityRatingsRequest_FieldPathSelector = 8
-	WatchInternetQualityRatingsRequest_FieldPathSelectorMaxChunkSize WatchInternetQualityRatingsRequest_FieldPathSelector = 9
+	WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime WatchInternetQualityRatingsRequest_FieldPathSelector = 6
+	WatchInternetQualityRatingsRequest_FieldPathSelectorFilter       WatchInternetQualityRatingsRequest_FieldPathSelector = 7
+	WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask    WatchInternetQualityRatingsRequest_FieldPathSelector = 8
+	WatchInternetQualityRatingsRequest_FieldPathSelectorView         WatchInternetQualityRatingsRequest_FieldPathSelector = 9
+	WatchInternetQualityRatingsRequest_FieldPathSelectorMaxChunkSize WatchInternetQualityRatingsRequest_FieldPathSelector = 10
 )
 
 func (s WatchInternetQualityRatingsRequest_FieldPathSelector) String() string {
@@ -3795,6 +3798,8 @@ func (s WatchInternetQualityRatingsRequest_FieldPathSelector) String() string {
 		return "order_by"
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		return "resume_token"
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		return "starting_time"
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		return "filter"
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -3826,6 +3831,8 @@ func BuildWatchInternetQualityRatingsRequest_FieldPath(fp gotenobject.RawFieldPa
 			return &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorOrderBy}, nil
 		case "resume_token", "resumeToken", "resume-token":
 			return &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken}, nil
+		case "starting_time", "startingTime", "starting-time":
+			return &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime}, nil
 		case "filter":
 			return &WatchInternetQualityRatingsRequest_FieldTerminalPath{selector: WatchInternetQualityRatingsRequest_FieldPathSelectorFilter}, nil
 		case "field_mask", "fieldMask", "field-mask":
@@ -3897,6 +3904,10 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) Get(source *Watc
 			}
 		case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 			values = append(values, source.ResumeToken)
+		case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+			if source.StartingTime != nil {
+				values = append(values, source.StartingTime)
+			}
 		case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 			if source.Filter != nil {
 				values = append(values, source.Filter)
@@ -3938,6 +3949,9 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) GetSingle(source
 		return res, res != nil
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		return source.GetResumeToken(), source != nil
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		res := source.GetStartingTime()
+		return res, res != nil
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		res := source.GetFilter()
 		return res, res != nil
@@ -3972,6 +3986,8 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) GetDefault() int
 		return (*internet_quality_rating.OrderBy)(nil)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		return ""
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		return (*timestamp.Timestamp)(nil)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		return (*internet_quality_rating.Filter)(nil)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -4000,6 +4016,8 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) ClearValue(item 
 			item.OrderBy = nil
 		case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 			item.ResumeToken = ""
+		case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+			item.StartingTime = nil
 		case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 			item.Filter = nil
 		case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -4026,6 +4044,7 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorPageToken ||
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorOrderBy ||
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken ||
+		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime ||
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorFilter ||
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask ||
 		fp.selector == WatchInternetQualityRatingsRequest_FieldPathSelectorView ||
@@ -4050,6 +4069,8 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) WithIValue(value
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathValue{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.OrderBy)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathValue{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(string)}
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		return &WatchInternetQualityRatingsRequest_FieldTerminalPathValue{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathValue{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.Filter)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -4082,6 +4103,8 @@ func (fp *WatchInternetQualityRatingsRequest_FieldTerminalPath) WithIArrayOfValu
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.OrderBy)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]string)}
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		return &WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		return &WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{WatchInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.Filter)}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -4174,6 +4197,10 @@ func (fpv *WatchInternetQualityRatingsRequest_FieldTerminalPathValue) AsResumeTo
 	res, ok := fpv.value.(string)
 	return res, ok
 }
+func (fpv *WatchInternetQualityRatingsRequest_FieldTerminalPathValue) AsStartingTimeValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
 func (fpv *WatchInternetQualityRatingsRequest_FieldTerminalPathValue) AsFilterValue() (*internet_quality_rating.Filter, bool) {
 	res, ok := fpv.value.(*internet_quality_rating.Filter)
 	return res, ok
@@ -4209,6 +4236,8 @@ func (fpv *WatchInternetQualityRatingsRequest_FieldTerminalPathValue) SetTo(targ
 		(*target).OrderBy = fpv.value.(*internet_quality_rating.OrderBy)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorResumeToken:
 		(*target).ResumeToken = fpv.value.(string)
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		(*target).StartingTime = fpv.value.(*timestamp.Timestamp)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		(*target).Filter = fpv.value.(*internet_quality_rating.Filter)
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFieldMask:
@@ -4279,6 +4308,25 @@ func (fpv *WatchInternetQualityRatingsRequest_FieldTerminalPathValue) CompareWit
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetStartingTime()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
 			return -1, true
 		} else {
 			return 1, true
@@ -4439,6 +4487,10 @@ func (fpaov *WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) 
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
+	case WatchInternetQualityRatingsRequest_FieldPathSelectorStartingTime:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
 	case WatchInternetQualityRatingsRequest_FieldPathSelectorFilter:
 		for _, v := range fpaov.values.([]*internet_quality_rating.Filter) {
 			values = append(values, v)
@@ -4480,6 +4532,10 @@ func (fpaov *WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) 
 }
 func (fpaov *WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsResumeTokenArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsStartingTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
 	return res, ok
 }
 func (fpaov *WatchInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsFilterArrayOfValues() ([]*internet_quality_rating.Filter, bool) {

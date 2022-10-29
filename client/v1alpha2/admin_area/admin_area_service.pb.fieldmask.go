@@ -24,28 +24,30 @@ import (
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	field_mask "google.golang.org/genproto/protobuf/field_mask"
 )
 
 // ensure the imports are used
 var (
-	_ = json.Marshaler(nil)
+	_ = new(json.Marshaler)
 	_ = strings.Builder{}
 
 	_ = firestorepb.Value{}
 	_ = codes.NotFound
 	_ = status.Status{}
-	_ = proto.Message(nil)
-	_ = preflect.Message(nil)
+	_ = new(proto.Message)
+	_ = new(preflect.Message)
 	_ = fieldmaskpb.FieldMask{}
 
-	_ = gotenobject.FieldMask(nil)
+	_ = new(gotenobject.FieldMask)
 )
 
 // make sure we're using proto imports
 var (
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
+	_ = &timestamp.Timestamp{}
 	_ = view.View(0)
 	_ = watch_type.WatchType(0)
 	_ = &admin_area.BBox{}
@@ -1989,6 +1991,7 @@ func FullWatchAdminAreasRequest_FieldMask() *WatchAdminAreasRequest_FieldMask {
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorPageToken})
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorOrderBy})
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorResumeToken})
+	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorStartingTime})
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &WatchAdminAreasRequest_FieldTerminalPath{selector: WatchAdminAreasRequest_FieldPathSelectorView})
@@ -2036,7 +2039,7 @@ func (fieldMask *WatchAdminAreasRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 9)
+	presentSelectors := make([]bool, 10)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*WatchAdminAreasRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -2066,7 +2069,7 @@ func (fieldMask *WatchAdminAreasRequest_FieldMask) Reset() {
 
 func (fieldMask *WatchAdminAreasRequest_FieldMask) Subtract(other *WatchAdminAreasRequest_FieldMask) *WatchAdminAreasRequest_FieldMask {
 	result := &WatchAdminAreasRequest_FieldMask{}
-	removedSelectors := make([]bool, 9)
+	removedSelectors := make([]bool, 10)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -2230,6 +2233,8 @@ func (fieldMask *WatchAdminAreasRequest_FieldMask) Project(source *WatchAdminAre
 				result.OrderBy = source.OrderBy
 			case WatchAdminAreasRequest_FieldPathSelectorResumeToken:
 				result.ResumeToken = source.ResumeToken
+			case WatchAdminAreasRequest_FieldPathSelectorStartingTime:
+				result.StartingTime = source.StartingTime
 			case WatchAdminAreasRequest_FieldPathSelectorFilter:
 				result.Filter = source.Filter
 			case WatchAdminAreasRequest_FieldPathSelectorFieldMask:
