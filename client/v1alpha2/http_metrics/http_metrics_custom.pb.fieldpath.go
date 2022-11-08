@@ -2814,19 +2814,20 @@ type HTTPStat_FieldPath interface {
 type HTTPStat_FieldPathSelector int32
 
 const (
-	HTTPStat_FieldPathSelectorDnsLookupTime       HTTPStat_FieldPathSelector = 0
-	HTTPStat_FieldPathSelectorTcpConnectTime      HTTPStat_FieldPathSelector = 1
-	HTTPStat_FieldPathSelectorTlsHandshakeTime    HTTPStat_FieldPathSelector = 2
-	HTTPStat_FieldPathSelectorRequestSendTime     HTTPStat_FieldPathSelector = 3
-	HTTPStat_FieldPathSelectorTimeToFirstByte     HTTPStat_FieldPathSelector = 4
-	HTTPStat_FieldPathSelectorContentDownloadTime HTTPStat_FieldPathSelector = 5
-	HTTPStat_FieldPathSelectorTotalResponseTime   HTTPStat_FieldPathSelector = 6
-	HTTPStat_FieldPathSelectorResponseCode        HTTPStat_FieldPathSelector = 7
-	HTTPStat_FieldPathSelectorServerIpAddress     HTTPStat_FieldPathSelector = 8
-	HTTPStat_FieldPathSelectorIpVersion           HTTPStat_FieldPathSelector = 9
-	HTTPStat_FieldPathSelectorFailedStage         HTTPStat_FieldPathSelector = 10
-	HTTPStat_FieldPathSelectorTime                HTTPStat_FieldPathSelector = 11
-	HTTPStat_FieldPathSelectorTarget              HTTPStat_FieldPathSelector = 12
+	HTTPStat_FieldPathSelectorDnsLookupTime        HTTPStat_FieldPathSelector = 0
+	HTTPStat_FieldPathSelectorTcpConnectTime       HTTPStat_FieldPathSelector = 1
+	HTTPStat_FieldPathSelectorTlsHandshakeTime     HTTPStat_FieldPathSelector = 2
+	HTTPStat_FieldPathSelectorRequestSendTime      HTTPStat_FieldPathSelector = 3
+	HTTPStat_FieldPathSelectorTimeToFirstByte      HTTPStat_FieldPathSelector = 4
+	HTTPStat_FieldPathSelectorTtfbAfterRequestSend HTTPStat_FieldPathSelector = 5
+	HTTPStat_FieldPathSelectorContentDownloadTime  HTTPStat_FieldPathSelector = 6
+	HTTPStat_FieldPathSelectorTotalResponseTime    HTTPStat_FieldPathSelector = 7
+	HTTPStat_FieldPathSelectorResponseCode         HTTPStat_FieldPathSelector = 8
+	HTTPStat_FieldPathSelectorServerIpAddress      HTTPStat_FieldPathSelector = 9
+	HTTPStat_FieldPathSelectorIpVersion            HTTPStat_FieldPathSelector = 10
+	HTTPStat_FieldPathSelectorFailedStage          HTTPStat_FieldPathSelector = 11
+	HTTPStat_FieldPathSelectorTime                 HTTPStat_FieldPathSelector = 12
+	HTTPStat_FieldPathSelectorTarget               HTTPStat_FieldPathSelector = 13
 )
 
 func (s HTTPStat_FieldPathSelector) String() string {
@@ -2841,6 +2842,8 @@ func (s HTTPStat_FieldPathSelector) String() string {
 		return "request_send_time"
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
 		return "time_to_first_byte"
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		return "ttfb_after_request_send"
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		return "content_download_time"
 	case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -2878,6 +2881,8 @@ func BuildHTTPStat_FieldPath(fp gotenobject.RawFieldPath) (HTTPStat_FieldPath, e
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorRequestSendTime}, nil
 		case "time_to_first_byte", "timeToFirstByte", "time-to-first-byte":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTimeToFirstByte}, nil
+		case "ttfb_after_request_send", "ttfbAfterRequestSend", "ttfb-after-request-send":
+			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTtfbAfterRequestSend}, nil
 		case "content_download_time", "contentDownloadTime", "content-download-time":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorContentDownloadTime}, nil
 		case "total_response_time", "totalResponseTime", "total-response-time":
@@ -2949,6 +2954,8 @@ func (fp *HTTPStat_FieldTerminalPath) Get(source *HTTPStat) (values []interface{
 			values = append(values, source.RequestSendTime)
 		case HTTPStat_FieldPathSelectorTimeToFirstByte:
 			values = append(values, source.TimeToFirstByte)
+		case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+			values = append(values, source.TtfbAfterRequestSend)
 		case HTTPStat_FieldPathSelectorContentDownloadTime:
 			values = append(values, source.ContentDownloadTime)
 		case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -2993,6 +3000,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetSingle(source *HTTPStat) (interface{}, 
 		return source.GetRequestSendTime(), source != nil
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
 		return source.GetTimeToFirstByte(), source != nil
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		return source.GetTtfbAfterRequestSend(), source != nil
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		return source.GetContentDownloadTime(), source != nil
 	case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -3033,6 +3042,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetDefault() interface{} {
 		return float64(0)
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
 		return float64(0)
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		return float64(0)
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		return float64(0)
 	case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -3067,6 +3078,8 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValue(item *HTTPStat) {
 			item.RequestSendTime = float64(0)
 		case HTTPStat_FieldPathSelectorTimeToFirstByte:
 			item.TimeToFirstByte = float64(0)
+		case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+			item.TtfbAfterRequestSend = float64(0)
 		case HTTPStat_FieldPathSelectorContentDownloadTime:
 			item.ContentDownloadTime = float64(0)
 		case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -3100,6 +3113,7 @@ func (fp *HTTPStat_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HTTPStat_FieldPathSelectorTlsHandshakeTime ||
 		fp.selector == HTTPStat_FieldPathSelectorRequestSendTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTimeToFirstByte ||
+		fp.selector == HTTPStat_FieldPathSelectorTtfbAfterRequestSend ||
 		fp.selector == HTTPStat_FieldPathSelectorContentDownloadTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTotalResponseTime ||
 		fp.selector == HTTPStat_FieldPathSelectorResponseCode ||
@@ -3125,6 +3139,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIValue(value interface{}) HTTPStat_Fie
 	case HTTPStat_FieldPathSelectorRequestSendTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
+		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
@@ -3163,6 +3179,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIArrayOfValues(values interface{}) HTT
 	case HTTPStat_FieldPathSelectorRequestSendTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
+		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
@@ -3260,6 +3278,10 @@ func (fpv *HTTPStat_FieldTerminalPathValue) AsTimeToFirstByteValue() (float64, b
 	res, ok := fpv.value.(float64)
 	return res, ok
 }
+func (fpv *HTTPStat_FieldTerminalPathValue) AsTtfbAfterRequestSendValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
 func (fpv *HTTPStat_FieldTerminalPathValue) AsContentDownloadTimeValue() (float64, bool) {
 	res, ok := fpv.value.(float64)
 	return res, ok
@@ -3309,6 +3331,8 @@ func (fpv *HTTPStat_FieldTerminalPathValue) SetTo(target **HTTPStat) {
 		(*target).RequestSendTime = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
 		(*target).TimeToFirstByte = fpv.value.(float64)
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		(*target).TtfbAfterRequestSend = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		(*target).ContentDownloadTime = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorTotalResponseTime:
@@ -3381,6 +3405,16 @@ func (fpv *HTTPStat_FieldTerminalPathValue) CompareWith(source *HTTPStat) (int, 
 	case HTTPStat_FieldPathSelectorTimeToFirstByte:
 		leftValue := fpv.value.(float64)
 		rightValue := source.GetTimeToFirstByte()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetTtfbAfterRequestSend()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -3614,6 +3648,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) GetRawValues() (values []i
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
 		}
+	case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
 	case HTTPStat_FieldPathSelectorContentDownloadTime:
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
@@ -3666,6 +3704,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsRequestSendTimeArrayOfVa
 	return res, ok
 }
 func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTimeToFirstByteArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTtfbAfterRequestSendArrayOfValues() ([]float64, bool) {
 	res, ok := fpaov.values.([]float64)
 	return res, ok
 }

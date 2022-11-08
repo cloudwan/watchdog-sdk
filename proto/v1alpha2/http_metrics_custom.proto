@@ -77,6 +77,8 @@ message HTTPStat {
 
   double time_to_first_byte = 5;
 
+  double ttfb_after_request_send = 14;
+
   double content_download_time = 6;
 
   double total_response_time = 7;

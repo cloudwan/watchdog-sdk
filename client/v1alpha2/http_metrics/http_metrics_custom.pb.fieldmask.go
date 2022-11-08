@@ -1250,6 +1250,7 @@ func FullHTTPStat_FieldMask() *HTTPStat_FieldMask {
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTlsHandshakeTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorRequestSendTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTimeToFirstByte})
+	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTtfbAfterRequestSend})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorContentDownloadTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTotalResponseTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorResponseCode})
@@ -1301,7 +1302,7 @@ func (fieldMask *HTTPStat_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 13)
+	presentSelectors := make([]bool, 14)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*HTTPStat_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1331,7 +1332,7 @@ func (fieldMask *HTTPStat_FieldMask) Reset() {
 
 func (fieldMask *HTTPStat_FieldMask) Subtract(other *HTTPStat_FieldMask) *HTTPStat_FieldMask {
 	result := &HTTPStat_FieldMask{}
-	removedSelectors := make([]bool, 13)
+	removedSelectors := make([]bool, 14)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1495,6 +1496,8 @@ func (fieldMask *HTTPStat_FieldMask) Project(source *HTTPStat) *HTTPStat {
 				result.RequestSendTime = source.RequestSendTime
 			case HTTPStat_FieldPathSelectorTimeToFirstByte:
 				result.TimeToFirstByte = source.TimeToFirstByte
+			case HTTPStat_FieldPathSelectorTtfbAfterRequestSend:
+				result.TtfbAfterRequestSend = source.TtfbAfterRequestSend
 			case HTTPStat_FieldPathSelectorContentDownloadTime:
 				result.ContentDownloadTime = source.ContentDownloadTime
 			case HTTPStat_FieldPathSelectorTotalResponseTime:

@@ -145,6 +145,10 @@ func (ReportHTTPMetricsRequestPathSelectorHttpStats) TimeToFirstByte() ReportHTT
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsTimeToFirstByte{}
 }
 
+func (ReportHTTPMetricsRequestPathSelectorHttpStats) TtfbAfterRequestSend() ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend {
+	return ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend{}
+}
+
 func (ReportHTTPMetricsRequestPathSelectorHttpStats) ContentDownloadTime() ReportHTTPMetricsRequestPathSelectorHttpStatsContentDownloadTime {
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsContentDownloadTime{}
 }
@@ -259,6 +263,23 @@ func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTimeToFirstByte) WithValue(
 }
 
 func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTimeToFirstByte) WithArrayOfValues(values []float64) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
+}
+
+type ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend struct{}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
+	return &ReportHTTPMetricsRequest_FieldSubPath{
+		selector: ReportHTTPMetricsRequest_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().TtfbAfterRequestSend().FieldPath(),
+	}
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend) WithValue(value float64) *ReportHTTPMetricsRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHTTPMetricsRequest_FieldSubPathValue)
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTtfbAfterRequestSend) WithArrayOfValues(values []float64) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
 }
 
@@ -679,6 +700,10 @@ func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) TimeToFirstByte() 
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTimeToFirstByte{}
 }
 
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) TtfbAfterRequestSend() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend {
+	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend{}
+}
+
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) ContentDownloadTime() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsContentDownloadTime {
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsContentDownloadTime{}
 }
@@ -793,6 +818,23 @@ func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTimeToFirstByte) W
 }
 
 func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTimeToFirstByte) WithArrayOfValues(values []float64) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend struct{}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
+	return &GetHTTPMetricsResponse_FieldSubPath{
+		selector: GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics,
+		subPath:  NewGetHTTPMetricsResponseHTTPMetricsPerAgentTargetPairFieldPathBuilder().HttpStats().TtfbAfterRequestSend().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend) WithValue(value float64) *GetHTTPMetricsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponse_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTtfbAfterRequestSend) WithArrayOfValues(values []float64) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -1042,6 +1084,10 @@ func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats)
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTimeToFirstByte{}
 }
 
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) TtfbAfterRequestSend() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend {
+	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend{}
+}
+
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) ContentDownloadTime() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsContentDownloadTime {
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsContentDownloadTime{}
 }
@@ -1156,6 +1202,23 @@ func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStat
 }
 
 func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTimeToFirstByte) WithArrayOfValues(values []float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend struct{}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
+	return &GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath{
+		selector: GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().TtfbAfterRequestSend().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend) WithValue(value float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTtfbAfterRequestSend) WithArrayOfValues(values []float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
 }
 
@@ -1315,6 +1378,9 @@ func (HTTPStatFieldPathBuilder) RequestSendTime() HTTPStatPathSelectorRequestSen
 func (HTTPStatFieldPathBuilder) TimeToFirstByte() HTTPStatPathSelectorTimeToFirstByte {
 	return HTTPStatPathSelectorTimeToFirstByte{}
 }
+func (HTTPStatFieldPathBuilder) TtfbAfterRequestSend() HTTPStatPathSelectorTtfbAfterRequestSend {
+	return HTTPStatPathSelectorTtfbAfterRequestSend{}
+}
 func (HTTPStatFieldPathBuilder) ContentDownloadTime() HTTPStatPathSelectorContentDownloadTime {
 	return HTTPStatPathSelectorContentDownloadTime{}
 }
@@ -1407,6 +1473,20 @@ func (s HTTPStatPathSelectorTimeToFirstByte) WithValue(value float64) *HTTPStat_
 }
 
 func (s HTTPStatPathSelectorTimeToFirstByte) WithArrayOfValues(values []float64) *HTTPStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
+}
+
+type HTTPStatPathSelectorTtfbAfterRequestSend struct{}
+
+func (HTTPStatPathSelectorTtfbAfterRequestSend) FieldPath() *HTTPStat_FieldTerminalPath {
+	return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTtfbAfterRequestSend}
+}
+
+func (s HTTPStatPathSelectorTtfbAfterRequestSend) WithValue(value float64) *HTTPStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HTTPStat_FieldTerminalPathValue)
+}
+
+func (s HTTPStatPathSelectorTtfbAfterRequestSend) WithArrayOfValues(values []float64) *HTTPStat_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
 }
 

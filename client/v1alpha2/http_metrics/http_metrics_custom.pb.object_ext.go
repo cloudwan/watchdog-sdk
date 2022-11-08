@@ -514,6 +514,9 @@ func (o *HTTPStat) MakeDiffFieldMask(other *HTTPStat) *HTTPStat_FieldMask {
 	if o.GetTimeToFirstByte() != other.GetTimeToFirstByte() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTimeToFirstByte})
 	}
+	if o.GetTtfbAfterRequestSend() != other.GetTtfbAfterRequestSend() {
+		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTtfbAfterRequestSend})
+	}
 	if o.GetContentDownloadTime() != other.GetContentDownloadTime() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorContentDownloadTime})
 	}
@@ -555,6 +558,7 @@ func (o *HTTPStat) Clone() *HTTPStat {
 	result.TlsHandshakeTime = o.TlsHandshakeTime
 	result.RequestSendTime = o.RequestSendTime
 	result.TimeToFirstByte = o.TimeToFirstByte
+	result.TtfbAfterRequestSend = o.TtfbAfterRequestSend
 	result.ContentDownloadTime = o.ContentDownloadTime
 	result.TotalResponseTime = o.TotalResponseTime
 	result.ResponseCode = o.ResponseCode
@@ -585,6 +589,7 @@ func (o *HTTPStat) Merge(source *HTTPStat) {
 	o.TlsHandshakeTime = source.GetTlsHandshakeTime()
 	o.RequestSendTime = source.GetRequestSendTime()
 	o.TimeToFirstByte = source.GetTimeToFirstByte()
+	o.TtfbAfterRequestSend = source.GetTtfbAfterRequestSend()
 	o.ContentDownloadTime = source.GetContentDownloadTime()
 	o.TotalResponseTime = source.GetTotalResponseTime()
 	o.ResponseCode = source.GetResponseCode()
