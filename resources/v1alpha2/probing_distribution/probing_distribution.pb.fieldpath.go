@@ -903,6 +903,7 @@ const (
 	ProbingDistributionSpec_FieldPathSelectorTargetSelector  ProbingDistributionSpec_FieldPathSelector = 2
 	ProbingDistributionSpec_FieldPathSelectorConstraint      ProbingDistributionSpec_FieldPathSelector = 3
 	ProbingDistributionSpec_FieldPathSelectorProbingSettings ProbingDistributionSpec_FieldPathSelector = 4
+	ProbingDistributionSpec_FieldPathSelectorEnablePcap      ProbingDistributionSpec_FieldPathSelector = 5
 )
 
 func (s ProbingDistributionSpec_FieldPathSelector) String() string {
@@ -917,6 +918,8 @@ func (s ProbingDistributionSpec_FieldPathSelector) String() string {
 		return "constraint"
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		return "probing_settings"
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		return "enable_pcap"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", s))
 	}
@@ -938,6 +941,8 @@ func BuildProbingDistributionSpec_FieldPath(fp gotenobject.RawFieldPath) (Probin
 			return &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorConstraint}, nil
 		case "probing_settings", "probingSettings", "probing-settings":
 			return &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings}, nil
+		case "enable_pcap", "enablePcap", "enable-pcap":
+			return &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorEnablePcap}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1016,6 +1021,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) Get(source *ProbingDistribu
 			if source.ProbingSettings != nil {
 				values = append(values, source.ProbingSettings)
 			}
+		case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+			values = append(values, source.EnablePcap)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 		}
@@ -1044,6 +1051,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) GetSingle(source *ProbingDi
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		res := source.GetProbingSettings()
 		return res, res != nil
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		return source.GetEnablePcap(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 	}
@@ -1066,6 +1075,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.ProbingConstraint)(nil)
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		return (*common.ProbingSettings)(nil)
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 	}
@@ -1084,6 +1095,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) ClearValue(item *ProbingDis
 			item.Constraint = nil
 		case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 			item.ProbingSettings = nil
+		case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+			item.EnablePcap = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 		}
@@ -1098,7 +1111,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) ClearValueRaw(item proto.Me
 func (fp *ProbingDistributionSpec_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbingDistributionSpec_FieldPathSelectorEnabled ||
 		fp.selector == ProbingDistributionSpec_FieldPathSelectorProbeSelector ||
-		fp.selector == ProbingDistributionSpec_FieldPathSelectorTargetSelector
+		fp.selector == ProbingDistributionSpec_FieldPathSelectorTargetSelector ||
+		fp.selector == ProbingDistributionSpec_FieldPathSelectorEnablePcap
 }
 
 func (fp *ProbingDistributionSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1117,6 +1131,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) WithIValue(value interface{
 		return &ProbingDistributionSpec_FieldTerminalPathValue{ProbingDistributionSpec_FieldTerminalPath: *fp, value: value.(*common.ProbingConstraint)}
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		return &ProbingDistributionSpec_FieldTerminalPathValue{ProbingDistributionSpec_FieldTerminalPath: *fp, value: value.(*common.ProbingSettings)}
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		return &ProbingDistributionSpec_FieldTerminalPathValue{ProbingDistributionSpec_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 	}
@@ -1139,6 +1155,8 @@ func (fp *ProbingDistributionSpec_FieldTerminalPath) WithIArrayOfValues(values i
 		return &ProbingDistributionSpec_FieldTerminalPathArrayOfValues{ProbingDistributionSpec_FieldTerminalPath: *fp, values: values.([]*common.ProbingConstraint)}
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		return &ProbingDistributionSpec_FieldTerminalPathArrayOfValues{ProbingDistributionSpec_FieldTerminalPath: *fp, values: values.([]*common.ProbingSettings)}
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		return &ProbingDistributionSpec_FieldTerminalPathArrayOfValues{ProbingDistributionSpec_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fp.selector))
 	}
@@ -1343,6 +1361,10 @@ func (fpv *ProbingDistributionSpec_FieldTerminalPathValue) AsProbingSettingsValu
 	res, ok := fpv.value.(*common.ProbingSettings)
 	return res, ok
 }
+func (fpv *ProbingDistributionSpec_FieldTerminalPathValue) AsEnablePcapValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbingDistributionSpec_FieldTerminalPathValue) SetTo(target **ProbingDistribution_Spec) {
@@ -1360,6 +1382,8 @@ func (fpv *ProbingDistributionSpec_FieldTerminalPathValue) SetTo(target **Probin
 		(*target).Constraint = fpv.value.(*common.ProbingConstraint)
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		(*target).ProbingSettings = fpv.value.(*common.ProbingSettings)
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		(*target).EnablePcap = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fpv.selector))
 	}
@@ -1391,6 +1415,16 @@ func (fpv *ProbingDistributionSpec_FieldTerminalPathValue) CompareWith(source *P
 		return 0, false
 	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 		return 0, false
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnablePcap()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fpv.selector))
 	}
@@ -1603,6 +1637,10 @@ func (fpaov *ProbingDistributionSpec_FieldTerminalPathArrayOfValues) GetRawValue
 		for _, v := range fpaov.values.([]*common.ProbingSettings) {
 			values = append(values, v)
 		}
+	case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1624,6 +1662,10 @@ func (fpaov *ProbingDistributionSpec_FieldTerminalPathArrayOfValues) AsConstrain
 }
 func (fpaov *ProbingDistributionSpec_FieldTerminalPathArrayOfValues) AsProbingSettingsArrayOfValues() ([]*common.ProbingSettings, bool) {
 	res, ok := fpaov.values.([]*common.ProbingSettings)
+	return res, ok
+}
+func (fpaov *ProbingDistributionSpec_FieldTerminalPathArrayOfValues) AsEnablePcapArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 
@@ -1665,19 +1707,22 @@ type ProbingDistributionStatus_FieldPath interface {
 type ProbingDistributionStatus_FieldPathSelector int32
 
 const (
-	ProbingDistributionStatus_FieldPathSelectorTotalNumber         ProbingDistributionStatus_FieldPathSelector = 0
-	ProbingDistributionStatus_FieldPathSelectorRegionalCounts      ProbingDistributionStatus_FieldPathSelector = 1
-	ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount ProbingDistributionStatus_FieldPathSelector = 2
+	ProbingDistributionStatus_FieldPathSelectorTotalNumber              ProbingDistributionStatus_FieldPathSelector = 0
+	ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount      ProbingDistributionStatus_FieldPathSelector = 1
+	ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount ProbingDistributionStatus_FieldPathSelector = 2
+	ProbingDistributionStatus_FieldPathSelectorByRegion                 ProbingDistributionStatus_FieldPathSelector = 3
 )
 
 func (s ProbingDistributionStatus_FieldPathSelector) String() string {
 	switch s {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		return "total_number"
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return "regional_counts"
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		return "selected_target_count"
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		return "total_skipped_session_count"
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return "by_region"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", s))
 	}
@@ -1691,18 +1736,20 @@ func BuildProbingDistributionStatus_FieldPath(fp gotenobject.RawFieldPath) (Prob
 		switch fp[0] {
 		case "total_number", "totalNumber", "total-number":
 			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalNumber}, nil
-		case "regional_counts", "regionalCounts", "regional-counts":
-			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts}, nil
 		case "selected_target_count", "selectedTargetCount", "selected-target-count":
 			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount}, nil
+		case "total_skipped_session_count", "totalSkippedSessionCount", "total-skipped-session-count":
+			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount}, nil
+		case "by_region", "byRegion", "by-region":
+			return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorByRegion}, nil
 		}
 	} else {
 		switch fp[0] {
-		case "regional_counts", "regionalCounts", "regional-counts":
+		case "by_region", "byRegion", "by-region":
 			if len(fp) > 2 {
 				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object ProbingDistribution_Status)", fp)
 			}
-			return &ProbingDistributionStatus_FieldPathMap{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts, key: fp[1]}, nil
+			return &ProbingDistributionStatus_FieldPathMap{selector: ProbingDistributionStatus_FieldPathSelectorByRegion, key: fp[1]}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ProbingDistribution_Status", fp)
@@ -1750,10 +1797,14 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) Get(source *ProbingDistri
 		switch fp.selector {
 		case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 			values = append(values, source.TotalNumber)
-		case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-			values = append(values, source.RegionalCounts)
 		case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 			values = append(values, source.SelectedTargetCount)
+		case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+			values = append(values, source.TotalSkippedSessionCount)
+		case ProbingDistributionStatus_FieldPathSelectorByRegion:
+			if source.ByRegion != nil {
+				values = append(values, source.ByRegion)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 		}
@@ -1770,11 +1821,13 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) GetSingle(source *Probing
 	switch fp.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		return source.GetTotalNumber(), source != nil
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		res := source.GetRegionalCounts()
-		return res, res != nil
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		return source.GetSelectedTargetCount(), source != nil
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		return source.GetTotalSkippedSessionCount(), source != nil
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		res := source.GetByRegion()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1789,10 +1842,12 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) GetDefault() interface{} 
 	switch fp.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		return int64(0)
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return (map[string]int64)(nil)
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		return int64(0)
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		return int64(0)
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return (map[string]*ProbingDistribution_Status_Regional)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1803,10 +1858,12 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) ClearValue(item *ProbingD
 		switch fp.selector {
 		case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 			item.TotalNumber = int64(0)
-		case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-			item.RegionalCounts = nil
 		case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 			item.SelectedTargetCount = int64(0)
+		case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+			item.TotalSkippedSessionCount = int64(0)
+		case ProbingDistributionStatus_FieldPathSelectorByRegion:
+			item.ByRegion = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 		}
@@ -1820,8 +1877,8 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) ClearValueRaw(item proto.
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbingDistributionStatus_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbingDistributionStatus_FieldPathSelectorTotalNumber ||
-		fp.selector == ProbingDistributionStatus_FieldPathSelectorRegionalCounts ||
-		fp.selector == ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount
+		fp.selector == ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount ||
+		fp.selector == ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount
 }
 
 func (fp *ProbingDistributionStatus_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1832,10 +1889,12 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIValue(value interfac
 	switch fp.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(int64)}
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(map[string]int64)}
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return &ProbingDistributionStatus_FieldTerminalPathValue{ProbingDistributionStatus_FieldTerminalPath: *fp, value: value.(map[string]*ProbingDistribution_Status_Regional)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1850,10 +1909,12 @@ func (fp *ProbingDistributionStatus_FieldTerminalPath) WithIArrayOfValues(values
 	switch fp.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]int64)}
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]map[string]int64)}
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return &ProbingDistributionStatus_FieldTerminalPathArrayOfValues{ProbingDistributionStatus_FieldTerminalPath: *fp, values: values.([]map[string]*ProbingDistribution_Status_Regional)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fp.selector))
 	}
@@ -1904,8 +1965,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) JSONString() string {
 // Get returns all values pointed by selected field map key from source ProbingDistribution_Status
 func (fpm *ProbingDistributionStatus_FieldPathMap) Get(source *ProbingDistribution_Status) (values []interface{}) {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		if value, ok := source.GetRegionalCounts()[fpm.key]; ok {
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		if value, ok := source.GetByRegion()[fpm.key]; ok {
 			values = append(values, value)
 		}
 	default:
@@ -1921,8 +1982,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) GetRaw(source proto.Message) 
 // GetSingle returns value by selected field map key from source ProbingDistribution_Status
 func (fpm *ProbingDistributionStatus_FieldPathMap) GetSingle(source *ProbingDistribution_Status) (interface{}, bool) {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		res, ok := source.GetRegionalCounts()[fpm.key]
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		res, ok := source.GetByRegion()[fpm.key]
 		return res, ok
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
@@ -1936,8 +1997,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) GetSingleRaw(source proto.Mes
 // GetDefault returns a default value of the field type
 func (fpm *ProbingDistributionStatus_FieldPathMap) GetDefault() interface{} {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		var v int64
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		var v *ProbingDistribution_Status_Regional
 		return v
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
@@ -1947,8 +2008,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) GetDefault() interface{} {
 func (fpm *ProbingDistributionStatus_FieldPathMap) ClearValue(item *ProbingDistribution_Status) {
 	if item != nil {
 		switch fpm.selector {
-		case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-			delete(item.RegionalCounts, fpm.key)
+		case ProbingDistributionStatus_FieldPathSelectorByRegion:
+			delete(item.ByRegion, fpm.key)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
 		}
@@ -1962,8 +2023,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fpm *ProbingDistributionStatus_FieldPathMap) IsLeaf() bool {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return true
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
 	}
@@ -1975,8 +2036,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) SplitIntoTerminalIPaths() []g
 
 func (fpm *ProbingDistributionStatus_FieldPathMap) WithIValue(value interface{}) ProbingDistributionStatus_FieldPathValue {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return &ProbingDistributionStatus_FieldPathMapValue{ProbingDistributionStatus_FieldPathMap: *fpm, value: value.(int64)}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return &ProbingDistributionStatus_FieldPathMapValue{ProbingDistributionStatus_FieldPathMap: *fpm, value: value.(*ProbingDistribution_Status_Regional)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
 	}
@@ -1988,8 +2049,8 @@ func (fpm *ProbingDistributionStatus_FieldPathMap) WithRawIValue(value interface
 
 func (fpm *ProbingDistributionStatus_FieldPathMap) WithIArrayOfValues(values interface{}) ProbingDistributionStatus_FieldPathArrayOfValues {
 	switch fpm.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return &ProbingDistributionStatus_FieldPathMapArrayOfValues{ProbingDistributionStatus_FieldPathMap: *fpm, values: values.([]int64)}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return &ProbingDistributionStatus_FieldPathMapArrayOfValues{ProbingDistributionStatus_FieldPathMap: *fpm, values: values.([]*ProbingDistribution_Status_Regional)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpm.selector))
 	}
@@ -2050,12 +2111,16 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsTotalNumberValue(
 	res, ok := fpv.value.(int64)
 	return res, ok
 }
-func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsRegionalCountsValue() (map[string]int64, bool) {
-	res, ok := fpv.value.(map[string]int64)
-	return res, ok
-}
 func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsSelectedTargetCountValue() (int64, bool) {
 	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsTotalSkippedSessionCountValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) AsByRegionValue() (map[string]*ProbingDistribution_Status_Regional, bool) {
+	res, ok := fpv.value.(map[string]*ProbingDistribution_Status_Regional)
 	return res, ok
 }
 
@@ -2067,10 +2132,12 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) SetTo(target **Prob
 	switch fpv.selector {
 	case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 		(*target).TotalNumber = fpv.value.(int64)
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		(*target).RegionalCounts = fpv.value.(map[string]int64)
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		(*target).SelectedTargetCount = fpv.value.(int64)
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		(*target).TotalSkippedSessionCount = fpv.value.(int64)
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		(*target).ByRegion = fpv.value.(map[string]*ProbingDistribution_Status_Regional)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpv.selector))
 	}
@@ -2094,8 +2161,6 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) CompareWith(source 
 		} else {
 			return 1, true
 		}
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		return 0, false
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		leftValue := fpv.value.(int64)
 		rightValue := source.GetSelectedTargetCount()
@@ -2106,6 +2171,18 @@ func (fpv *ProbingDistributionStatus_FieldTerminalPathValue) CompareWith(source 
 		} else {
 			return 1, true
 		}
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetTotalSkippedSessionCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpv.selector))
 	}
@@ -2126,8 +2203,8 @@ var _ ProbingDistributionStatus_FieldPathValue = (*ProbingDistributionStatus_Fie
 func (fpmv *ProbingDistributionStatus_FieldPathMapValue) GetRawValue() interface{} {
 	return fpmv.value
 }
-func (fpmv *ProbingDistributionStatus_FieldPathMapValue) AsRegionalCountsElementValue() (int64, bool) {
-	res, ok := fpmv.value.(int64)
+func (fpmv *ProbingDistributionStatus_FieldPathMapValue) AsByRegionElementValue() (*ProbingDistribution_Status_Regional, bool) {
+	res, ok := fpmv.value.(*ProbingDistribution_Status_Regional)
 	return res, ok
 }
 
@@ -2137,11 +2214,11 @@ func (fpmv *ProbingDistributionStatus_FieldPathMapValue) SetTo(target **ProbingD
 		*target = new(ProbingDistribution_Status)
 	}
 	switch fpmv.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		if (*target).RegionalCounts == nil {
-			(*target).RegionalCounts = make(map[string]int64)
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		if (*target).ByRegion == nil {
+			(*target).ByRegion = make(map[string]*ProbingDistribution_Status_Regional)
 		}
-		(*target).RegionalCounts[fpmv.key] = fpmv.value.(int64)
+		(*target).ByRegion[fpmv.key] = fpmv.value.(*ProbingDistribution_Status_Regional)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpmv.selector))
 	}
@@ -2155,16 +2232,8 @@ func (fpmv *ProbingDistributionStatus_FieldPathMapValue) SetToRaw(target proto.M
 // CompareWith compares value in the 'ProbingDistributionStatus_FieldPathMapValue' with the value under path in 'ProbingDistribution_Status'.
 func (fpmv *ProbingDistributionStatus_FieldPathMapValue) CompareWith(source *ProbingDistribution_Status) (int, bool) {
 	switch fpmv.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		leftValue := fpmv.value.(int64)
-		rightValue := source.GetRegionalCounts()[fpmv.key]
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status: %d", fpmv.selector))
 	}
@@ -2277,12 +2346,16 @@ func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) GetRawVal
 		for _, v := range fpaov.values.([]int64) {
 			values = append(values, v)
 		}
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		for _, v := range fpaov.values.([]map[string]int64) {
-			values = append(values, v)
-		}
 	case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		for _, v := range fpaov.values.([]map[string]*ProbingDistribution_Status_Regional) {
 			values = append(values, v)
 		}
 	}
@@ -2292,12 +2365,16 @@ func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsTotalNu
 	res, ok := fpaov.values.([]int64)
 	return res, ok
 }
-func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsRegionalCountsArrayOfValues() ([]map[string]int64, bool) {
-	res, ok := fpaov.values.([]map[string]int64)
-	return res, ok
-}
 func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsSelectedTargetCountArrayOfValues() ([]int64, bool) {
 	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsTotalSkippedSessionCountArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatus_FieldTerminalPathArrayOfValues) AsByRegionArrayOfValues() ([]map[string]*ProbingDistribution_Status_Regional, bool) {
+	res, ok := fpaov.values.([]map[string]*ProbingDistribution_Status_Regional)
 	return res, ok
 }
 
@@ -2310,14 +2387,520 @@ var _ ProbingDistributionStatus_FieldPathArrayOfValues = (*ProbingDistributionSt
 
 func (fpmaov *ProbingDistributionStatus_FieldPathMapArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpmaov.selector {
-	case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-		for _, v := range fpmaov.values.([]int64) {
+	case ProbingDistributionStatus_FieldPathSelectorByRegion:
+		for _, v := range fpmaov.values.([]*ProbingDistribution_Status_Regional) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpmaov *ProbingDistributionStatus_FieldPathMapArrayOfValues) AsRegionalCountsArrayOfElementValues() ([]int64, bool) {
-	res, ok := fpmaov.values.([]int64)
+func (fpmaov *ProbingDistributionStatus_FieldPathMapArrayOfValues) AsByRegionArrayOfElementValues() ([]*ProbingDistribution_Status_Regional, bool) {
+	res, ok := fpmaov.values.([]*ProbingDistribution_Status_Regional)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbingDistributionStatusRegional_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbingDistributionStatusRegional_FieldPathSelector
+	Get(source *ProbingDistribution_Status_Regional) []interface{}
+	GetSingle(source *ProbingDistribution_Status_Regional) (interface{}, bool)
+	ClearValue(item *ProbingDistribution_Status_Regional)
+
+	// Those methods build corresponding ProbingDistributionStatusRegional_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbingDistributionStatusRegional_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbingDistributionStatusRegional_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbingDistributionStatusRegional_FieldPathArrayItemValue
+}
+
+type ProbingDistributionStatusRegional_FieldPathSelector int32
+
+const (
+	ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount         ProbingDistributionStatusRegional_FieldPathSelector = 0
+	ProbingDistributionStatusRegional_FieldPathSelectorTargetCount           ProbingDistributionStatusRegional_FieldPathSelector = 1
+	ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount   ProbingDistributionStatusRegional_FieldPathSelector = 2
+	ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions ProbingDistributionStatusRegional_FieldPathSelector = 3
+)
+
+func (s ProbingDistributionStatusRegional_FieldPathSelector) String() string {
+	switch s {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		return "assigned_count"
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		return "target_count"
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		return "skipped_session_count"
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return "sample_skipped_sessions"
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", s))
+	}
+}
+
+func BuildProbingDistributionStatusRegional_FieldPath(fp gotenobject.RawFieldPath) (ProbingDistributionStatusRegional_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object ProbingDistribution_Status_Regional")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "assigned_count", "assignedCount", "assigned-count":
+			return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount}, nil
+		case "target_count", "targetCount", "target-count":
+			return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorTargetCount}, nil
+		case "skipped_session_count", "skippedSessionCount", "skipped-session-count":
+			return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount}, nil
+		case "sample_skipped_sessions", "sampleSkippedSessions", "sample-skipped-sessions":
+			return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ProbingDistribution_Status_Regional", fp)
+}
+
+func ParseProbingDistributionStatusRegional_FieldPath(rawField string) (ProbingDistributionStatusRegional_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbingDistributionStatusRegional_FieldPath(fp)
+}
+
+func MustParseProbingDistributionStatusRegional_FieldPath(rawField string) ProbingDistributionStatusRegional_FieldPath {
+	fp, err := ParseProbingDistributionStatusRegional_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbingDistributionStatusRegional_FieldTerminalPath struct {
+	selector ProbingDistributionStatusRegional_FieldPathSelector
+}
+
+var _ ProbingDistributionStatusRegional_FieldPath = (*ProbingDistributionStatusRegional_FieldTerminalPath)(nil)
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) Selector() ProbingDistributionStatusRegional_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source ProbingDistribution_Status_Regional
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) Get(source *ProbingDistribution_Status_Regional) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+			values = append(values, source.AssignedCount)
+		case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+			values = append(values, source.TargetCount)
+		case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+			values = append(values, source.SkippedSessionCount)
+		case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+			for _, value := range source.GetSampleSkippedSessions() {
+				values = append(values, value)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*ProbingDistribution_Status_Regional))
+}
+
+// GetSingle returns value pointed by specific field of from source ProbingDistribution_Status_Regional
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) GetSingle(source *ProbingDistribution_Status_Regional) (interface{}, bool) {
+	switch fp.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		return source.GetAssignedCount(), source != nil
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		return source.GetTargetCount(), source != nil
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		return source.GetSkippedSessionCount(), source != nil
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		res := source.GetSampleSkippedSessions()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*ProbingDistribution_Status_Regional))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		return int64(0)
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		return int64(0)
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		return int64(0)
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return ([]string)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) ClearValue(item *ProbingDistribution_Status_Regional) {
+	if item != nil {
+		switch fp.selector {
+		case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+			item.AssignedCount = int64(0)
+		case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+			item.TargetCount = int64(0)
+		case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+			item.SkippedSessionCount = int64(0)
+		case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+			item.SampleSkippedSessions = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*ProbingDistribution_Status_Regional))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount ||
+		fp.selector == ProbingDistributionStatusRegional_FieldPathSelectorTargetCount ||
+		fp.selector == ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount ||
+		fp.selector == ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithIValue(value interface{}) ProbingDistributionStatusRegional_FieldPathValue {
+	switch fp.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathValue{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathValue{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathValue{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, value: value.(int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathValue{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, value: value.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbingDistributionStatusRegional_FieldPathArrayOfValues {
+	fpaov := &ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues{ProbingDistributionStatusRegional_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, values: values.([]int64)}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, values: values.([][]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingDistributionStatusRegional_FieldPathArrayItemValue {
+	switch fp.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return &ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue{ProbingDistributionStatusRegional_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fp.selector))
+	}
+}
+
+func (fp *ProbingDistributionStatusRegional_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbingDistributionStatusRegional_FieldPathValue allows storing values for Regional fields according to their type
+type ProbingDistributionStatusRegional_FieldPathValue interface {
+	ProbingDistributionStatusRegional_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **ProbingDistribution_Status_Regional)
+	CompareWith(*ProbingDistribution_Status_Regional) (cmp int, comparable bool)
+}
+
+func ParseProbingDistributionStatusRegional_FieldPathValue(pathStr, valueStr string) (ProbingDistributionStatusRegional_FieldPathValue, error) {
+	fp, err := ParseProbingDistributionStatusRegional_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Regional field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbingDistributionStatusRegional_FieldPathValue), nil
+}
+
+func MustParseProbingDistributionStatusRegional_FieldPathValue(pathStr, valueStr string) ProbingDistributionStatusRegional_FieldPathValue {
+	fpv, err := ParseProbingDistributionStatusRegional_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbingDistributionStatusRegional_FieldTerminalPathValue struct {
+	ProbingDistributionStatusRegional_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbingDistributionStatusRegional_FieldPathValue = (*ProbingDistributionStatusRegional_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'Regional' as interface{}
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) AsAssignedCountValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) AsTargetCountValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) AsSkippedSessionCountValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) AsSampleSkippedSessionsValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object Regional
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) SetTo(target **ProbingDistribution_Status_Regional) {
+	if *target == nil {
+		*target = new(ProbingDistribution_Status_Regional)
+	}
+	switch fpv.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		(*target).AssignedCount = fpv.value.(int64)
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		(*target).TargetCount = fpv.value.(int64)
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		(*target).SkippedSessionCount = fpv.value.(int64)
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		(*target).SampleSkippedSessions = fpv.value.([]string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*ProbingDistribution_Status_Regional)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbingDistributionStatusRegional_FieldTerminalPathValue' with the value under path in 'ProbingDistribution_Status_Regional'.
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) CompareWith(source *ProbingDistribution_Status_Regional) (int, bool) {
+	switch fpv.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetAssignedCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetTargetCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetSkippedSessionCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Status_Regional: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbingDistributionStatusRegional_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*ProbingDistribution_Status_Regional))
+}
+
+// ProbingDistributionStatusRegional_FieldPathArrayItemValue allows storing single item in Path-specific values for Regional according to their type
+// Present only for array (repeated) types.
+type ProbingDistributionStatusRegional_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbingDistributionStatusRegional_FieldPath
+	ContainsValue(*ProbingDistribution_Status_Regional) bool
+}
+
+// ParseProbingDistributionStatusRegional_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbingDistributionStatusRegional_FieldPathArrayItemValue(pathStr, valueStr string) (ProbingDistributionStatusRegional_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbingDistributionStatusRegional_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Regional field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbingDistributionStatusRegional_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbingDistributionStatusRegional_FieldPathArrayItemValue(pathStr, valueStr string) ProbingDistributionStatusRegional_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbingDistributionStatusRegional_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue struct {
+	ProbingDistributionStatusRegional_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbingDistributionStatusRegional_FieldPathArrayItemValue = (*ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object ProbingDistribution_Status_Regional as interface{}
+func (fpaiv *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+func (fpaiv *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue) AsSampleSkippedSessionsItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
+}
+
+func (fpaiv *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingDistribution_Status_Regional) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*ProbingDistribution_Status_Regional))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'Regional'
+func (fpaiv *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue) ContainsValue(source *ProbingDistribution_Status_Regional) bool {
+	slice := fpaiv.ProbingDistributionStatusRegional_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbingDistributionStatusRegional_FieldPathArrayOfValues allows storing slice of values for Regional fields according to their type
+type ProbingDistributionStatusRegional_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbingDistributionStatusRegional_FieldPath
+}
+
+func ParseProbingDistributionStatusRegional_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbingDistributionStatusRegional_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbingDistributionStatusRegional_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing Regional field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbingDistributionStatusRegional_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbingDistributionStatusRegional_FieldPathArrayOfValues(pathStr, valuesStr string) ProbingDistributionStatusRegional_FieldPathArrayOfValues {
+	fpaov, err := ParseProbingDistributionStatusRegional_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues struct {
+	ProbingDistributionStatusRegional_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbingDistributionStatusRegional_FieldPathArrayOfValues = (*ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+		for _, v := range fpaov.values.([][]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues) AsAssignedCountArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues) AsTargetCountArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues) AsSkippedSessionCountArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+func (fpaov *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues) AsSampleSkippedSessionsArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }

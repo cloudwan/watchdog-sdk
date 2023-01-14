@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package ntt.watchdog.v1alpha2;
 
-import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "edgelq-sdk/monitoring/proto/v3/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";

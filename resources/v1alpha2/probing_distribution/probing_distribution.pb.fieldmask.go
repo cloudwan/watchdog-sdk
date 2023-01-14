@@ -406,6 +406,7 @@ func FullProbingDistribution_Spec_FieldMask() *ProbingDistribution_Spec_FieldMas
 	res.Paths = append(res.Paths, &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorTargetSelector})
 	res.Paths = append(res.Paths, &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorConstraint})
 	res.Paths = append(res.Paths, &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings})
+	res.Paths = append(res.Paths, &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorEnablePcap})
 	return res
 }
 
@@ -449,7 +450,7 @@ func (fieldMask *ProbingDistribution_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 5)
+	presentSelectors := make([]bool, 6)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingDistributionSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -479,7 +480,7 @@ func (fieldMask *ProbingDistribution_Spec_FieldMask) Reset() {
 
 func (fieldMask *ProbingDistribution_Spec_FieldMask) Subtract(other *ProbingDistribution_Spec_FieldMask) *ProbingDistribution_Spec_FieldMask {
 	result := &ProbingDistribution_Spec_FieldMask{}
-	removedSelectors := make([]bool, 5)
+	removedSelectors := make([]bool, 6)
 	otherSubMasks := map[ProbingDistributionSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbingDistributionSpec_FieldPathSelectorConstraint:      &common.ProbingConstraint_FieldMask{},
 		ProbingDistributionSpec_FieldPathSelectorProbingSettings: &common.ProbingSettings_FieldMask{},
@@ -679,6 +680,8 @@ func (fieldMask *ProbingDistribution_Spec_FieldMask) Project(source *ProbingDist
 			case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
 				result.ProbingSettings = source.ProbingSettings
 				wholeProbingSettingsAccepted = true
+			case ProbingDistributionSpec_FieldPathSelectorEnablePcap:
+				result.EnablePcap = source.EnablePcap
 			}
 		case *ProbingDistributionSpec_FieldSubPath:
 			switch tp.selector {
@@ -716,8 +719,9 @@ type ProbingDistribution_Status_FieldMask struct {
 func FullProbingDistribution_Status_FieldMask() *ProbingDistribution_Status_FieldMask {
 	res := &ProbingDistribution_Status_FieldMask{}
 	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalNumber})
-	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts})
 	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount})
+	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount})
+	res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorByRegion})
 	return res
 }
 
@@ -761,7 +765,7 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingDistributionStatus_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -791,7 +795,7 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) Reset() {
 
 func (fieldMask *ProbingDistribution_Status_FieldMask) Subtract(other *ProbingDistribution_Status_FieldMask) *ProbingDistribution_Status_FieldMask {
 	result := &ProbingDistribution_Status_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -940,8 +944,8 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) Project(source *ProbingDi
 		return source
 	}
 	result := &ProbingDistribution_Status{}
-	var regionalCountsMapKeys []string
-	wholeRegionalCountsAccepted := false
+	var byRegionMapKeys []string
+	wholeByRegionAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -949,26 +953,28 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) Project(source *ProbingDi
 			switch tp.selector {
 			case ProbingDistributionStatus_FieldPathSelectorTotalNumber:
 				result.TotalNumber = source.TotalNumber
-			case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-				result.RegionalCounts = source.RegionalCounts
-				wholeRegionalCountsAccepted = true
 			case ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount:
 				result.SelectedTargetCount = source.SelectedTargetCount
+			case ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount:
+				result.TotalSkippedSessionCount = source.TotalSkippedSessionCount
+			case ProbingDistributionStatus_FieldPathSelectorByRegion:
+				result.ByRegion = source.ByRegion
+				wholeByRegionAccepted = true
 			}
 		case *ProbingDistributionStatus_FieldPathMap:
 			switch tp.selector {
-			case ProbingDistributionStatus_FieldPathSelectorRegionalCounts:
-				regionalCountsMapKeys = append(regionalCountsMapKeys, tp.key)
+			case ProbingDistributionStatus_FieldPathSelectorByRegion:
+				byRegionMapKeys = append(byRegionMapKeys, tp.key)
 			}
 		}
 	}
-	if wholeRegionalCountsAccepted == false && len(regionalCountsMapKeys) > 0 && source.GetRegionalCounts() != nil {
-		copiedMap := map[string]int64{}
-		sourceMap := source.GetRegionalCounts()
-		for _, key := range regionalCountsMapKeys {
+	if wholeByRegionAccepted == false && len(byRegionMapKeys) > 0 && source.GetByRegion() != nil {
+		copiedMap := map[string]*ProbingDistribution_Status_Regional{}
+		sourceMap := source.GetByRegion()
+		for _, key := range byRegionMapKeys {
 			copiedMap[key] = sourceMap[key]
 		}
-		result.RegionalCounts = copiedMap
+		result.ByRegion = copiedMap
 	}
 	return result
 }
@@ -978,6 +984,268 @@ func (fieldMask *ProbingDistribution_Status_FieldMask) ProjectRaw(source gotenob
 }
 
 func (fieldMask *ProbingDistribution_Status_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type ProbingDistribution_Status_Regional_FieldMask struct {
+	Paths []ProbingDistributionStatusRegional_FieldPath
+}
+
+func FullProbingDistribution_Status_Regional_FieldMask() *ProbingDistribution_Status_Regional_FieldMask {
+	res := &ProbingDistribution_Status_Regional_FieldMask{}
+	res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount})
+	res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorTargetCount})
+	res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount})
+	res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions})
+	return res
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbingDistributionStatusRegional_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 4)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbingDistributionStatusRegional_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbingDistributionStatusRegional_FieldPath(raw)
+	})
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) ProtoMessage() {}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Subtract(other *ProbingDistribution_Status_Regional_FieldMask) *ProbingDistribution_Status_Regional_FieldMask {
+	result := &ProbingDistribution_Status_Regional_FieldMask{}
+	removedSelectors := make([]bool, 4)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbingDistributionStatusRegional_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*ProbingDistribution_Status_Regional_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) FilterInputFields() *ProbingDistribution_Status_Regional_FieldMask {
+	result := &ProbingDistribution_Status_Regional_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbingDistributionStatusRegional_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbingDistributionStatusRegional_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask ProbingDistribution_Status_Regional_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask ProbingDistribution_Status_Regional_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) AppendPath(path ProbingDistributionStatusRegional_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbingDistributionStatusRegional_FieldPath))
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) GetPaths() []ProbingDistributionStatusRegional_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbingDistributionStatusRegional_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Set(target, source *ProbingDistribution_Status_Regional) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*ProbingDistribution_Status_Regional), source.(*ProbingDistribution_Status_Regional))
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) Project(source *ProbingDistribution_Status_Regional) *ProbingDistribution_Status_Regional {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &ProbingDistribution_Status_Regional{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbingDistributionStatusRegional_FieldTerminalPath:
+			switch tp.selector {
+			case ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount:
+				result.AssignedCount = source.AssignedCount
+			case ProbingDistributionStatusRegional_FieldPathSelectorTargetCount:
+				result.TargetCount = source.TargetCount
+			case ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount:
+				result.SkippedSessionCount = source.SkippedSessionCount
+			case ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions:
+				result.SampleSkippedSessions = source.SampleSkippedSessions
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*ProbingDistribution_Status_Regional))
+}
+
+func (fieldMask *ProbingDistribution_Status_Regional_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

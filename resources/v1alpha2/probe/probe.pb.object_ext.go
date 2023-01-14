@@ -320,6 +320,16 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 			}
 		}
 	}
+	{
+		subMask := o.GetPcapSettings().MakeDiffFieldMask(other.GetPcapSettings())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorPcapSettings})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorPcapSettings, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -365,6 +375,7 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 		result.ExternalIpCheckUrl[i] = sourceValue
 	}
 	result.TargetServers = o.TargetServers.Clone()
+	result.PcapSettings = o.PcapSettings.Clone()
 	return result
 }
 
@@ -450,6 +461,12 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 			o.TargetServers = new(Probe_Spec_TargetServers)
 		}
 		o.TargetServers.Merge(source.GetTargetServers())
+	}
+	if source.GetPcapSettings() != nil {
+		if o.PcapSettings == nil {
+			o.PcapSettings = new(Probe_Spec_PcapSettings)
+		}
+		o.PcapSettings.Merge(source.GetPcapSettings())
 	}
 }
 
@@ -950,6 +967,66 @@ func (o *Probe_Spec_TargetServers) Merge(source *Probe_Spec_TargetServers) {
 
 func (o *Probe_Spec_TargetServers) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*Probe_Spec_TargetServers))
+}
+
+func (o *Probe_Spec_PcapSettings) GotenObjectExt() {}
+
+func (o *Probe_Spec_PcapSettings) MakeFullFieldMask() *Probe_Spec_PcapSettings_FieldMask {
+	return FullProbe_Spec_PcapSettings_FieldMask()
+}
+
+func (o *Probe_Spec_PcapSettings) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Spec_PcapSettings_FieldMask()
+}
+
+func (o *Probe_Spec_PcapSettings) MakeDiffFieldMask(other *Probe_Spec_PcapSettings) *Probe_Spec_PcapSettings_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Spec_PcapSettings_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Spec_PcapSettings_FieldMask()
+	}
+
+	res := &Probe_Spec_PcapSettings_FieldMask{}
+	if o.GetEnable() != other.GetEnable() {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorEnable})
+	}
+	if o.GetCaptureFullPacket() != other.GetCaptureFullPacket() {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket})
+	}
+	if o.GetCaptureAllPackets() != other.GetCaptureAllPackets() {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets})
+	}
+	return res
+}
+
+func (o *Probe_Spec_PcapSettings) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Spec_PcapSettings))
+}
+
+func (o *Probe_Spec_PcapSettings) Clone() *Probe_Spec_PcapSettings {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Spec_PcapSettings{}
+	result.Enable = o.Enable
+	result.CaptureFullPacket = o.CaptureFullPacket
+	result.CaptureAllPackets = o.CaptureAllPackets
+	return result
+}
+
+func (o *Probe_Spec_PcapSettings) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Spec_PcapSettings) Merge(source *Probe_Spec_PcapSettings) {
+	o.Enable = source.GetEnable()
+	o.CaptureFullPacket = source.GetCaptureFullPacket()
+	o.CaptureAllPackets = source.GetCaptureAllPackets()
+}
+
+func (o *Probe_Spec_PcapSettings) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Spec_PcapSettings))
 }
 
 func (o *Probe_Spec_TargetServers_IcmpTarget) GotenObjectExt() {}

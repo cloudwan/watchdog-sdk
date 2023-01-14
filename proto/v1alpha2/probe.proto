@@ -4,7 +4,6 @@ package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/memo.proto";
 import "edgelq-sdk/common/types/meta.proto";
-import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
 import "google/protobuf/timestamp.proto";
@@ -81,6 +80,8 @@ message Probe {
 
     TargetServers target_servers = 17;
 
+    PcapSettings pcap_settings = 18;
+
     message ActivationSpec {
       ActivationType type = 1;
 
@@ -149,6 +150,19 @@ message Probe {
         // BOTH_INTERNAL_EXTERNAL = 2; This will leave gaps when switching and
         // might give false results with icmp between different IPs
       }
+    }
+
+    message PcapSettings {
+      // Enables pcap for all probing sessions for this agent
+      bool enable = 1;
+
+      // By default only 138 bytes are captured
+      bool capture_full_packet = 2;
+
+      // By default only probe packets, arp and dns are captured.
+      // capture_all_packets is helpful when running on demand tests to other
+      // destinations
+      bool capture_all_packets = 3;
     }
   }
 

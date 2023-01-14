@@ -18,20 +18,15 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -52,18 +47,13 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -2387,6 +2377,10 @@ func (b *filterCndBuilderSpec) ExternalIpCheckUrl() *filterCndBuilderSpecExterna
 
 func (b *filterCndBuilderSpec) TargetServers() *filterCndBuilderSpecTargetServers {
 	return &filterCndBuilderSpecTargetServers{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpec) PcapSettings() *filterCndBuilderSpecPcapSettings {
+	return &filterCndBuilderSpecPcapSettings{builder: b.builder}
 }
 
 type filterCndBuilderSpecProbeGroup struct {
@@ -5998,6 +5992,254 @@ func (b *filterCndBuilderSpecTargetServersTargetIpVersion) compare(op gotenfilte
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().TargetServers().TargetIpVersion().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecPcapSettings struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Eq(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Neq(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Gt(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Gte(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Lt(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Lte(value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettings) In(values []*Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettings) NotIn(values []*Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettings) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettings) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettings) compare(op gotenfilter.CompareOperator, value *Probe_Spec_PcapSettings) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettings) Enable() *filterCndBuilderSpecPcapSettingsEnable {
+	return &filterCndBuilderSpecPcapSettingsEnable{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecPcapSettings) CaptureFullPacket() *filterCndBuilderSpecPcapSettingsCaptureFullPacket {
+	return &filterCndBuilderSpecPcapSettingsCaptureFullPacket{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpecPcapSettings) CaptureAllPackets() *filterCndBuilderSpecPcapSettingsCaptureAllPackets {
+	return &filterCndBuilderSpecPcapSettingsCaptureAllPackets{builder: b.builder}
+}
+
+type filterCndBuilderSpecPcapSettingsEnable struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsEnable) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecPcapSettingsCaptureFullPacket struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecPcapSettingsCaptureAllPackets struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithValue(value),
 	})
 }
 

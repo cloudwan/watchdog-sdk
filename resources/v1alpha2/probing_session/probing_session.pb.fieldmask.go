@@ -427,6 +427,7 @@ func FullProbingSession_Spec_FieldMask() *ProbingSession_Spec_FieldMask {
 	res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorProxyConfiguration})
 	res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocationType})
 	res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocation})
+	res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorEnablePcap})
 	return res
 }
 
@@ -470,7 +471,7 @@ func (fieldMask *ProbingSession_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 17)
+	presentSelectors := make([]bool, 18)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingSessionSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -500,7 +501,7 @@ func (fieldMask *ProbingSession_Spec_FieldMask) Reset() {
 
 func (fieldMask *ProbingSession_Spec_FieldMask) Subtract(other *ProbingSession_Spec_FieldMask) *ProbingSession_Spec_FieldMask {
 	result := &ProbingSession_Spec_FieldMask{}
-	removedSelectors := make([]bool, 17)
+	removedSelectors := make([]bool, 18)
 	otherSubMasks := map[ProbingSessionSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSessionSpec_FieldPathSelectorPathProbing:        &common.PathProbe_FieldMask{},
 		ProbingSessionSpec_FieldPathSelectorSpeedtestSettings:  &common.SpeedTestSettings_FieldMask{},
@@ -745,6 +746,8 @@ func (fieldMask *ProbingSession_Spec_FieldMask) Project(source *ProbingSession_S
 			case ProbingSessionSpec_FieldPathSelectorLocation:
 				result.Location = source.Location
 				wholeLocationAccepted = true
+			case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+				result.EnablePcap = source.EnablePcap
 			}
 		case *ProbingSessionSpec_FieldSubPath:
 			switch tp.selector {

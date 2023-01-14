@@ -4,7 +4,6 @@ package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
 import "edgelq-sdk/common/types/multi_region_policy.proto";
-import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "google/api/resource.proto";
 
 option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project;project";

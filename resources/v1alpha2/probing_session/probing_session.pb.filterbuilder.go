@@ -18,13 +18,9 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
@@ -35,7 +31,6 @@ import (
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -56,18 +51,13 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -2352,6 +2342,10 @@ func (b *filterCndBuilderSpec) LocationType() *filterCndBuilderSpecLocationType 
 
 func (b *filterCndBuilderSpec) Location() *filterCndBuilderSpecLocation {
 	return &filterCndBuilderSpecLocation{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpec) EnablePcap() *filterCndBuilderSpecEnablePcap {
+	return &filterCndBuilderSpecEnablePcap{builder: b.builder}
 }
 
 type filterCndBuilderSpecProbe struct {
@@ -7298,6 +7292,65 @@ func (b *filterCndBuilderSpecLocationAccuracy) compare(op gotenfilter.CompareOpe
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                      op,
 		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().Location().Accuracy().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecEnablePcap struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().EnablePcap().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().Spec().EnablePcap().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().Spec().EnablePcap().WithValue(value),
 	})
 }
 

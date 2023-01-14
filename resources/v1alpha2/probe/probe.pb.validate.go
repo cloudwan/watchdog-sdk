@@ -137,6 +137,11 @@ func (obj *Probe_Spec) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Spec", "targetServers", obj.TargetServers, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.PcapSettings).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("Spec", "pcapSettings", obj.PcapSettings, "nested object validation failed", err)
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -233,6 +238,15 @@ func (obj *Probe_Spec_TargetServers) GotenValidate() error {
 		if err := subobj.GotenValidate(); err != nil {
 			return gotenvalidate.NewValidationError("TargetServers", "speedTestTarget", obj.SpeedTestTarget, "nested object validation failed", err)
 		}
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Spec_PcapSettings) GotenValidate() error {
+	if obj == nil {
+		return nil
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

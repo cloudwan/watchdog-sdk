@@ -4,7 +4,6 @@ package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/devices/proto/v1alpha2/devices.proto";
 import "edgelq-sdk/iam/proto/v1alpha2/iam.proto";
-import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/protobuf/empty.proto";
@@ -24,6 +23,8 @@ import "watchdog-sdk/proto/v1alpha2/http_metrics_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/http_metrics_service.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating_service.proto";
+import "watchdog-sdk/proto/v1alpha2/pcap_custom.proto";
+import "watchdog-sdk/proto/v1alpha2/pcap_service.proto";
 import "watchdog-sdk/proto/v1alpha2/ping_test_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/ping_test_service.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";

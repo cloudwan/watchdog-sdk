@@ -314,6 +314,9 @@ func (o *ProbingSession_Spec) MakeDiffFieldMask(other *ProbingSession_Spec) *Pro
 			}
 		}
 	}
+	if o.GetEnablePcap() != other.GetEnablePcap() {
+		res.Paths = append(res.Paths, &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorEnablePcap})
+	}
 	return res
 }
 
@@ -373,6 +376,7 @@ func (o *ProbingSession_Spec) Clone() *ProbingSession_Spec {
 	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
 	result.LocationType = o.LocationType
 	result.Location = o.Location.Clone()
+	result.EnablePcap = o.EnablePcap
 	return result
 }
 
@@ -475,6 +479,7 @@ func (o *ProbingSession_Spec) Merge(source *ProbingSession_Spec) {
 		}
 		o.Location.Merge(source.GetLocation())
 	}
+	o.EnablePcap = source.GetEnablePcap()
 }
 
 func (o *ProbingSession_Spec) MergeRaw(source gotenobject.GotenObjectExt) {

@@ -3,7 +3,6 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "edgelq-sdk/common/types/meta.proto";
-import "edgelq-sdk/meta/compilers/annotations/multi_region.proto";
 import "google/api/resource.proto";
 import "watchdog-sdk/proto/v1alpha2/common.proto";
 
@@ -74,18 +73,42 @@ message ProbingDistribution {
     // present settings are overridden
     ProbingSettings probing_settings = 8;
 
+    bool enable_pcap = 10;
+
     reserved 1, 2;
   }
 
   // Status
   message Status {
-    // total number of probes that have been assigned to this distribution.
+    // total number of probes that have been assigned to this
+    // distribution from all regions.
     int64 total_number = 1;
 
-    // number of assigned probes per each region.
-    map<string, int64> regional_counts = 2;
-
-    // selected target count
+    // total selected target count from all regions
     int64 selected_target_count = 3;
+
+    // total number of skipped sessions (due to limits) from all regions.
+    int64 total_skipped_session_count = 4;
+
+    // Statistics and errors by region.
+    map<string, Regional> by_region = 5;
+
+    // Regional contains stats for given region
+    message Regional {
+      // Number of probes assigned to distribution
+      int64 assigned_count = 1;
+
+      // Selected target count
+      int64 target_count = 2;
+
+      // Number of all sessions that were not selected due to limits.
+      int64 skipped_session_count = 3;
+
+      // Sample list of sessions that were not selected due to limits.
+      // If list gets too big its striped to samples only.
+      repeated string sample_skipped_sessions = 4;
+    }
+
+    reserved 2;
   }
 }

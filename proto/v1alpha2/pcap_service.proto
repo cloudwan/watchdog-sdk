@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "goten-sdk/runtime/api/view.proto";
+import "goten-sdk/runtime/api/watch_type.proto";
+import "watchdog-sdk/proto/v1alpha2/pcap_custom.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/pcap;pcap_client";
+option java_multiple_files = false;
+option java_outer_classname = "PcapServiceProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Pcap service API for Watchdog
+service PcapService {
+  option (google.api.default_host) = "watchdog.edgelq.com";
+  option (google.api.oauth_scopes) = "https://apis.edgelq.com";
+
+  // ReportPcap
+  rpc ReportPcap(ReportPcapRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post : "/v1alpha2/{name=projects/*/regions/*/probes/*}:reportPcap"
+    };
+  }
+
+  // GetPcap
+  rpc GetPcap(GetPcapRequest) returns (GetPcapResponse) {
+    option (google.api.http) = {
+      get : "/v1alpha2:getPcap"
+    };
+  }
+}

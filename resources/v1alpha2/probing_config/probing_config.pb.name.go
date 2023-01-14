@@ -415,7 +415,11 @@ func (ref *Reference) Resolve(resolved *ProbingConfig) {
 }
 
 func (ref *Reference) ResolveRaw(res gotenresource.Resource) error {
-	if typedRes, ok := res.(*ProbingConfig); ok && typedRes != nil {
+	if res == nil {
+		ref.Resolve(nil)
+		return nil
+	}
+	if typedRes, ok := res.(*ProbingConfig); ok {
 		ref.Resolve(typedRes)
 		return nil
 	}

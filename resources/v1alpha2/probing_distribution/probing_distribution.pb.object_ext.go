@@ -217,6 +217,9 @@ func (o *ProbingDistribution_Spec) MakeDiffFieldMask(other *ProbingDistribution_
 			}
 		}
 	}
+	if o.GetEnablePcap() != other.GetEnablePcap() {
+		res.Paths = append(res.Paths, &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorEnablePcap})
+	}
 	return res
 }
 
@@ -252,6 +255,7 @@ func (o *ProbingDistribution_Spec) Clone() *ProbingDistribution_Spec {
 	}
 	result.Constraint = o.Constraint.Clone()
 	result.ProbingSettings = o.ProbingSettings.Clone()
+	result.EnablePcap = o.EnablePcap
 	return result
 }
 
@@ -297,6 +301,7 @@ func (o *ProbingDistribution_Spec) Merge(source *ProbingDistribution_Spec) {
 		}
 		o.ProbingSettings.Merge(source.GetProbingSettings())
 	}
+	o.EnablePcap = source.GetEnablePcap()
 }
 
 func (o *ProbingDistribution_Spec) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -325,20 +330,23 @@ func (o *ProbingDistribution_Status) MakeDiffFieldMask(other *ProbingDistributio
 	if o.GetTotalNumber() != other.GetTotalNumber() {
 		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalNumber})
 	}
+	if o.GetSelectedTargetCount() != other.GetSelectedTargetCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount})
+	}
+	if o.GetTotalSkippedSessionCount() != other.GetTotalSkippedSessionCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount})
+	}
 
-	if len(o.GetRegionalCounts()) == len(other.GetRegionalCounts()) {
-		for i, lValue := range o.GetRegionalCounts() {
-			rValue := other.GetRegionalCounts()[i]
-			if lValue != rValue {
-				res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts})
+	if len(o.GetByRegion()) == len(other.GetByRegion()) {
+		for i, lValue := range o.GetByRegion() {
+			rValue := other.GetByRegion()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorByRegion})
 				break
 			}
 		}
 	} else {
-		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts})
-	}
-	if o.GetSelectedTargetCount() != other.GetSelectedTargetCount() {
-		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorSelectedTargetCount})
+		res.Paths = append(res.Paths, &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorByRegion})
 	}
 	return res
 }
@@ -353,11 +361,12 @@ func (o *ProbingDistribution_Status) Clone() *ProbingDistribution_Status {
 	}
 	result := &ProbingDistribution_Status{}
 	result.TotalNumber = o.TotalNumber
-	result.RegionalCounts = map[string]int64{}
-	for key, sourceValue := range o.RegionalCounts {
-		result.RegionalCounts[key] = sourceValue
-	}
 	result.SelectedTargetCount = o.SelectedTargetCount
+	result.TotalSkippedSessionCount = o.TotalSkippedSessionCount
+	result.ByRegion = map[string]*ProbingDistribution_Status_Regional{}
+	for key, sourceValue := range o.ByRegion {
+		result.ByRegion[key] = sourceValue.Clone()
+	}
 	return result
 }
 
@@ -367,17 +376,114 @@ func (o *ProbingDistribution_Status) CloneRaw() gotenobject.GotenObjectExt {
 
 func (o *ProbingDistribution_Status) Merge(source *ProbingDistribution_Status) {
 	o.TotalNumber = source.GetTotalNumber()
-	if source.GetRegionalCounts() != nil {
-		if o.RegionalCounts == nil {
-			o.RegionalCounts = make(map[string]int64, len(source.GetRegionalCounts()))
+	o.SelectedTargetCount = source.GetSelectedTargetCount()
+	o.TotalSkippedSessionCount = source.GetTotalSkippedSessionCount()
+	if source.GetByRegion() != nil {
+		if o.ByRegion == nil {
+			o.ByRegion = make(map[string]*ProbingDistribution_Status_Regional, len(source.GetByRegion()))
 		}
-		for key, sourceValue := range source.GetRegionalCounts() {
-			o.RegionalCounts[key] = sourceValue
+		for key, sourceValue := range source.GetByRegion() {
+			if sourceValue != nil {
+				if o.ByRegion[key] == nil {
+					o.ByRegion[key] = new(ProbingDistribution_Status_Regional)
+				}
+				o.ByRegion[key].Merge(sourceValue)
+			}
 		}
 	}
-	o.SelectedTargetCount = source.GetSelectedTargetCount()
 }
 
 func (o *ProbingDistribution_Status) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*ProbingDistribution_Status))
+}
+
+func (o *ProbingDistribution_Status_Regional) GotenObjectExt() {}
+
+func (o *ProbingDistribution_Status_Regional) MakeFullFieldMask() *ProbingDistribution_Status_Regional_FieldMask {
+	return FullProbingDistribution_Status_Regional_FieldMask()
+}
+
+func (o *ProbingDistribution_Status_Regional) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbingDistribution_Status_Regional_FieldMask()
+}
+
+func (o *ProbingDistribution_Status_Regional) MakeDiffFieldMask(other *ProbingDistribution_Status_Regional) *ProbingDistribution_Status_Regional_FieldMask {
+	if o == nil && other == nil {
+		return &ProbingDistribution_Status_Regional_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbingDistribution_Status_Regional_FieldMask()
+	}
+
+	res := &ProbingDistribution_Status_Regional_FieldMask{}
+	if o.GetAssignedCount() != other.GetAssignedCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount})
+	}
+	if o.GetTargetCount() != other.GetTargetCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorTargetCount})
+	}
+	if o.GetSkippedSessionCount() != other.GetSkippedSessionCount() {
+		res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount})
+	}
+
+	if len(o.GetSampleSkippedSessions()) == len(other.GetSampleSkippedSessions()) {
+		for i, lValue := range o.GetSampleSkippedSessions() {
+			rValue := other.GetSampleSkippedSessions()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions})
+	}
+	return res
+}
+
+func (o *ProbingDistribution_Status_Regional) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*ProbingDistribution_Status_Regional))
+}
+
+func (o *ProbingDistribution_Status_Regional) Clone() *ProbingDistribution_Status_Regional {
+	if o == nil {
+		return nil
+	}
+	result := &ProbingDistribution_Status_Regional{}
+	result.AssignedCount = o.AssignedCount
+	result.TargetCount = o.TargetCount
+	result.SkippedSessionCount = o.SkippedSessionCount
+	result.SampleSkippedSessions = make([]string, len(o.SampleSkippedSessions))
+	for i, sourceValue := range o.SampleSkippedSessions {
+		result.SampleSkippedSessions[i] = sourceValue
+	}
+	return result
+}
+
+func (o *ProbingDistribution_Status_Regional) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *ProbingDistribution_Status_Regional) Merge(source *ProbingDistribution_Status_Regional) {
+	o.AssignedCount = source.GetAssignedCount()
+	o.TargetCount = source.GetTargetCount()
+	o.SkippedSessionCount = source.GetSkippedSessionCount()
+	for _, sourceValue := range source.GetSampleSkippedSessions() {
+		exists := false
+		for _, currentValue := range o.SampleSkippedSessions {
+			if currentValue == sourceValue {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement string
+			newDstElement = sourceValue
+			o.SampleSkippedSessions = append(o.SampleSkippedSessions, newDstElement)
+		}
+	}
+
+}
+
+func (o *ProbingDistribution_Status_Regional) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*ProbingDistribution_Status_Regional))
 }

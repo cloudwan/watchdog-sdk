@@ -18,13 +18,9 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
@@ -34,7 +30,6 @@ import (
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -55,18 +50,13 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -2298,6 +2288,10 @@ func (b *filterCndBuilderSpec) Constraint() *filterCndBuilderSpecConstraint {
 
 func (b *filterCndBuilderSpec) ProbingSettings() *filterCndBuilderSpecProbingSettings {
 	return &filterCndBuilderSpecProbingSettings{builder: b.builder}
+}
+
+func (b *filterCndBuilderSpec) EnablePcap() *filterCndBuilderSpecEnablePcap {
+	return &filterCndBuilderSpecEnablePcap{builder: b.builder}
 }
 
 type filterCndBuilderSpecEnabled struct {
@@ -6127,6 +6121,65 @@ func (b *filterCndBuilderSpecProbingSettingsProxyConfigurationNoProxy) compare(o
 	})
 }
 
+type filterCndBuilderSpecEnablePcap struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Eq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Neq(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Gt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Gte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Lt(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) Lte(value bool) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecEnablePcap) In(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().EnablePcap().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) NotIn(values []bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Spec().EnablePcap().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecEnablePcap) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Spec().EnablePcap().WithValue(value),
+	})
+}
+
 type filterCndBuilderStatus struct {
 	builder *FilterBuilder
 }
@@ -6190,12 +6243,16 @@ func (b *filterCndBuilderStatus) TotalNumber() *filterCndBuilderStatusTotalNumbe
 	return &filterCndBuilderStatusTotalNumber{builder: b.builder}
 }
 
-func (b *filterCndBuilderStatus) RegionalCounts() *filterCndBuilderStatusRegionalCounts {
-	return &filterCndBuilderStatusRegionalCounts{builder: b.builder}
-}
-
 func (b *filterCndBuilderStatus) SelectedTargetCount() *filterCndBuilderStatusSelectedTargetCount {
 	return &filterCndBuilderStatusSelectedTargetCount{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatus) TotalSkippedSessionCount() *filterCndBuilderStatusTotalSkippedSessionCount {
+	return &filterCndBuilderStatusTotalSkippedSessionCount{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatus) ByRegion() *filterCndBuilderStatusByRegion {
+	return &filterCndBuilderStatusByRegion{builder: b.builder}
 }
 
 type filterCndBuilderStatusTotalNumber struct {
@@ -6257,129 +6314,6 @@ func (b *filterCndBuilderStatusTotalNumber) compare(op gotenfilter.CompareOperat
 	})
 }
 
-type filterCndBuilderStatusRegionalCounts struct {
-	builder *FilterBuilder
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Eq(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Eq, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Neq(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Neq, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Gt(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Gt, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Gte(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Gte, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Lt(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Lt, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) Lte(value map[string]int64) *FilterBuilder {
-	return b.compare(gotenfilter.Lte, value)
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) In(values []map[string]int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIn{
-		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) NotIn(values []map[string]int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionNotIn{
-		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithArrayOfValues(values),
-	})
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) IsNull() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) IsNan() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().FieldPath(),
-	})
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) compare(op gotenfilter.CompareOperator, value map[string]int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionCompare{
-		Operator:                           op,
-		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithValue(value),
-	})
-}
-
-func (b *filterCndBuilderStatusRegionalCounts) WithKey(key string) *mapFilterCndBuilderStatusRegionalCounts {
-	return &mapFilterCndBuilderStatusRegionalCounts{builder: b.builder, key: key}
-}
-
-type mapFilterCndBuilderStatusRegionalCounts struct {
-	builder *FilterBuilder
-	key     string
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Eq(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Eq, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Neq(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Neq, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Gt(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Gt, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Gte(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Gte, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Lt(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Lt, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) Lte(value int64) *FilterBuilder {
-	return b.compare(gotenfilter.Lte, value)
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) In(values []int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIn{
-		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).WithArrayOfValues(values),
-	})
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) NotIn(values []int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionNotIn{
-		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).WithArrayOfValues(values),
-	})
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) IsNull() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).FieldPath(),
-	})
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) IsNan() *FilterBuilder {
-	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).FieldPath(),
-	})
-}
-
-func (b *mapFilterCndBuilderStatusRegionalCounts) compare(op gotenfilter.CompareOperator, value int64) *FilterBuilder {
-	return b.builder.addCond(&FilterConditionCompare{
-		Operator:                           op,
-		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().RegionalCounts().WithKey(b.key).WithValue(value),
-	})
-}
-
 type filterCndBuilderStatusSelectedTargetCount struct {
 	builder *FilterBuilder
 }
@@ -6436,5 +6370,187 @@ func (b *filterCndBuilderStatusSelectedTargetCount) compare(op gotenfilter.Compa
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                           op,
 		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().SelectedTargetCount().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusTotalSkippedSessionCount struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Eq(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Neq(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Gt(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Gte(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Lt(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) Lte(value int64) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) In(values []int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().TotalSkippedSessionCount().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) NotIn(values []int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().TotalSkippedSessionCount().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().TotalSkippedSessionCount().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().TotalSkippedSessionCount().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusTotalSkippedSessionCount) compare(op gotenfilter.CompareOperator, value int64) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().TotalSkippedSessionCount().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusByRegion struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusByRegion) Eq(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) Neq(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) Gt(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) Gte(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) Lt(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) Lte(value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusByRegion) In(values []map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusByRegion) NotIn(values []map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusByRegion) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().ByRegion().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusByRegion) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().ByRegion().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusByRegion) compare(op gotenfilter.CompareOperator, value map[string]*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderStatusByRegion) WithKey(key string) *mapFilterCndBuilderStatusByRegion {
+	return &mapFilterCndBuilderStatusByRegion{builder: b.builder, key: key}
+}
+
+type mapFilterCndBuilderStatusByRegion struct {
+	builder *FilterBuilder
+	key     string
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Eq(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Neq(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Gt(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Gte(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Lt(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) Lte(value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) In(values []*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithKey(b.key).WithArrayOfValues(values),
+	})
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) NotIn(values []*ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingDistribution_FieldPathArrayOfValues: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithKey(b.key).WithArrayOfValues(values),
+	})
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithKey(b.key).FieldPath(),
+	})
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithKey(b.key).FieldPath(),
+	})
+}
+
+func (b *mapFilterCndBuilderStatusByRegion) compare(op gotenfilter.CompareOperator, value *ProbingDistribution_Status_Regional) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                           op,
+		ProbingDistribution_FieldPathValue: NewProbingDistributionFieldPathBuilder().Status().ByRegion().WithKey(b.key).WithValue(value),
 	})
 }

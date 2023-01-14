@@ -13,13 +13,9 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
@@ -30,7 +26,6 @@ import (
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -45,18 +40,13 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -833,6 +823,10 @@ func (ProbingSessionPathSelectorSpec) LocationType() ProbingSessionPathSelectorS
 
 func (ProbingSessionPathSelectorSpec) Location() ProbingSessionPathSelectorSpecLocation {
 	return ProbingSessionPathSelectorSpecLocation{}
+}
+
+func (ProbingSessionPathSelectorSpec) EnablePcap() ProbingSessionPathSelectorSpecEnablePcap {
+	return ProbingSessionPathSelectorSpecEnablePcap{}
 }
 
 type ProbingSessionPathSelectorSpecProbe struct{}
@@ -2438,6 +2432,23 @@ func (s ProbingSessionPathSelectorSpecLocationAccuracy) WithArrayOfValues(values
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
+type ProbingSessionPathSelectorSpecEnablePcap struct{}
+
+func (ProbingSessionPathSelectorSpecEnablePcap) FieldPath() *ProbingSession_FieldSubPath {
+	return &ProbingSession_FieldSubPath{
+		selector: ProbingSession_FieldPathSelectorSpec,
+		subPath:  NewProbingSessionSpecFieldPathBuilder().EnablePcap().FieldPath(),
+	}
+}
+
+func (s ProbingSessionPathSelectorSpecEnablePcap) WithValue(value bool) *ProbingSession_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
+}
+
+func (s ProbingSessionPathSelectorSpecEnablePcap) WithArrayOfValues(values []bool) *ProbingSession_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
+}
+
 type ProbingSessionPathSelectorProbingDistribution struct{}
 
 func (ProbingSessionPathSelectorProbingDistribution) FieldPath() *ProbingSession_FieldTerminalPath {
@@ -2537,6 +2548,9 @@ func (ProbingSessionSpecFieldPathBuilder) LocationType() ProbingSession_SpecPath
 }
 func (ProbingSessionSpecFieldPathBuilder) Location() ProbingSession_SpecPathSelectorLocation {
 	return ProbingSession_SpecPathSelectorLocation{}
+}
+func (ProbingSessionSpecFieldPathBuilder) EnablePcap() ProbingSession_SpecPathSelectorEnablePcap {
+	return ProbingSession_SpecPathSelectorEnablePcap{}
 }
 
 type ProbingSession_SpecPathSelectorProbe struct{}
@@ -4169,6 +4183,20 @@ func (s ProbingSession_SpecPathSelectorLocationAccuracy) WithValue(value float64
 
 func (s ProbingSession_SpecPathSelectorLocationAccuracy) WithArrayOfValues(values []float64) *ProbingSessionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
+}
+
+type ProbingSession_SpecPathSelectorEnablePcap struct{}
+
+func (ProbingSession_SpecPathSelectorEnablePcap) FieldPath() *ProbingSessionSpec_FieldTerminalPath {
+	return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorEnablePcap}
+}
+
+func (s ProbingSession_SpecPathSelectorEnablePcap) WithValue(value bool) *ProbingSessionSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldTerminalPathValue)
+}
+
+func (s ProbingSession_SpecPathSelectorEnablePcap) WithArrayOfValues(values []bool) *ProbingSessionSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldTerminalPathArrayOfValues)
 }
 
 type ProbingSessionStatusFieldPathBuilder struct{}

@@ -13,14 +13,10 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
 	iam_service_account_key "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account_key"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
@@ -28,7 +24,6 @@ import (
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -43,19 +38,14 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
 	_ = &iam_service_account_key.ServiceAccountKey{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -919,6 +909,10 @@ func (ActivationRequestPathSelectorActivateProbeSpec) ExternalIpCheckUrl() Activ
 
 func (ActivationRequestPathSelectorActivateProbeSpec) TargetServers() ActivationRequestPathSelectorActivateProbeSpecTargetServers {
 	return ActivationRequestPathSelectorActivateProbeSpecTargetServers{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpec) PcapSettings() ActivationRequestPathSelectorActivateProbeSpecPcapSettings {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettings{}
 }
 
 type ActivationRequestPathSelectorActivateProbeSpecProbeGroup struct{}
@@ -2077,6 +2071,86 @@ func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersi
 }
 
 func (s ActivationRequestPathSelectorActivateProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettings struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettings) WithValue(value *probe.Probe_Spec_PcapSettings) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettings) WithArrayOfValues(values []*probe.Probe_Spec_PcapSettings) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) Enable() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) CaptureFullPacket() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) CaptureAllPackets() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets{}
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().Enable().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5095,6 +5169,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpec) TargetServers() Activatio
 	return ActivationRequest_ActivatePathSelectorProbeSpecTargetServers{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpec) PcapSettings() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -6251,6 +6329,86 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVers
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) WithValue(value *probe.Probe_Spec_PcapSettings) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) WithArrayOfValues(values []*probe.Probe_Spec_PcapSettings) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) Enable() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) CaptureFullPacket() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) CaptureAllPackets() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -9226,6 +9384,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpec) TargetServers() Activati
 	return ActivationResponsePathSelectorActivatedProbeSpecTargetServers{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpec) PcapSettings() ActivationResponsePathSelectorActivatedProbeSpecPcapSettings {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettings{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecProbeGroup struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecProbeGroup) FieldPath() *ActivationResponse_FieldSubPath {
@@ -10382,6 +10544,86 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVer
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettings struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) WithValue(value *probe.Probe_Spec_PcapSettings) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) WithArrayOfValues(values []*probe.Probe_Spec_PcapSettings) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) Enable() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) CaptureFullPacket() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) CaptureAllPackets() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().Enable().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -14096,6 +14338,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpec) TargetServers() Activat
 	return ActivationResponse_ActivatedPathSelectorProbeSpecTargetServers{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpec) PcapSettings() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -15252,6 +15498,86 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVe
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecTargetServersTargetIpVersion) WithArrayOfValues(values []common.IpVersion) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) WithValue(value *probe.Probe_Spec_PcapSettings) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) WithArrayOfValues(values []*probe.Probe_Spec_PcapSettings) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) Enable() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) CaptureFullPacket() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) CaptureAllPackets() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().Enable().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureFullPacket().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

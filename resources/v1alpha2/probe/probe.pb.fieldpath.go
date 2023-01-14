@@ -1041,6 +1041,7 @@ const (
 	ProbeSpec_FieldPathSelectorAgentType          ProbeSpec_FieldPathSelector = 9
 	ProbeSpec_FieldPathSelectorExternalIpCheckUrl ProbeSpec_FieldPathSelector = 10
 	ProbeSpec_FieldPathSelectorTargetServers      ProbeSpec_FieldPathSelector = 11
+	ProbeSpec_FieldPathSelectorPcapSettings       ProbeSpec_FieldPathSelector = 12
 )
 
 func (s ProbeSpec_FieldPathSelector) String() string {
@@ -1069,6 +1070,8 @@ func (s ProbeSpec_FieldPathSelector) String() string {
 		return "external_ip_check_url"
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return "target_servers"
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return "pcap_settings"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", s))
 	}
@@ -1104,6 +1107,8 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorExternalIpCheckUrl}, nil
 		case "target_servers", "targetServers", "target-servers":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorTargetServers}, nil
+		case "pcap_settings", "pcapSettings", "pcap-settings":
+			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorPcapSettings}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1142,6 +1147,12 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 				return nil, err
 			} else {
 				return &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorTargetServers, subPath: subpath}, nil
+			}
+		case "pcap_settings", "pcapSettings", "pcap-settings":
+			if subpath, err := BuildProbeSpecPcapSettings_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeSpec_FieldSubPath{selector: ProbeSpec_FieldPathSelectorPcapSettings, subPath: subpath}, nil
 			}
 		}
 	}
@@ -1230,6 +1241,10 @@ func (fp *ProbeSpec_FieldTerminalPath) Get(source *Probe_Spec) (values []interfa
 			if source.TargetServers != nil {
 				values = append(values, source.TargetServers)
 			}
+		case ProbeSpec_FieldPathSelectorPcapSettings:
+			if source.PcapSettings != nil {
+				values = append(values, source.PcapSettings)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1277,6 +1292,9 @@ func (fp *ProbeSpec_FieldTerminalPath) GetSingle(source *Probe_Spec) (interface{
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		res := source.GetTargetServers()
 		return res, res != nil
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		res := source.GetPcapSettings()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1313,6 +1331,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetDefault() interface{} {
 		return ([]string)(nil)
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return (*Probe_Spec_TargetServers)(nil)
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return (*Probe_Spec_PcapSettings)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1345,6 +1365,8 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValue(item *Probe_Spec) {
 			item.ExternalIpCheckUrl = nil
 		case ProbeSpec_FieldPathSelectorTargetServers:
 			item.TargetServers = nil
+		case ProbeSpec_FieldPathSelectorPcapSettings:
+			item.PcapSettings = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 		}
@@ -1395,6 +1417,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_F
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.([]string)}
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*Probe_Spec_TargetServers)}
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*Probe_Spec_PcapSettings)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1431,6 +1455,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIArrayOfValues(values interface{}) Pr
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([][]string)}
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_TargetServers)}
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*Probe_Spec_PcapSettings)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fp.selector))
 	}
@@ -1488,6 +1514,10 @@ func (fps *ProbeSpec_FieldSubPath) AsTargetServersSubPath() (ProbeSpecTargetServ
 	res, ok := fps.subPath.(ProbeSpecTargetServers_FieldPath)
 	return res, ok
 }
+func (fps *ProbeSpec_FieldSubPath) AsPcapSettingsSubPath() (ProbeSpecPcapSettings_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeSpecPcapSettings_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ProbeSpec_FieldSubPath) String() string {
@@ -1513,6 +1543,8 @@ func (fps *ProbeSpec_FieldSubPath) Get(source *Probe_Spec) (values []interface{}
 		values = append(values, asAccessTokenSpecFieldPath.Get(source.GetAccessToken())...)
 	} else if asTargetServersFieldPath, ok := fps.AsTargetServersSubPath(); ok {
 		values = append(values, asTargetServersFieldPath.Get(source.GetTargetServers())...)
+	} else if asPcapSettingsFieldPath, ok := fps.AsPcapSettingsSubPath(); ok {
+		values = append(values, asPcapSettingsFieldPath.Get(source.GetPcapSettings())...)
 	} else {
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 	}
@@ -1556,6 +1588,11 @@ func (fps *ProbeSpec_FieldSubPath) GetSingle(source *Probe_Spec) (interface{}, b
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetTargetServers())
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		if source.GetPcapSettings() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetPcapSettings())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 	}
@@ -1585,6 +1622,8 @@ func (fps *ProbeSpec_FieldSubPath) ClearValue(item *Probe_Spec) {
 			fps.subPath.ClearValueRaw(item.AccessToken)
 		case ProbeSpec_FieldPathSelectorTargetServers:
 			fps.subPath.ClearValueRaw(item.TargetServers)
+		case ProbeSpec_FieldPathSelectorPcapSettings:
+			fps.subPath.ClearValueRaw(item.PcapSettings)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 		}
@@ -1717,6 +1756,10 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) AsTargetServersValue() (*Probe_Spec
 	res, ok := fpv.value.(*Probe_Spec_TargetServers)
 	return res, ok
 }
+func (fpv *ProbeSpec_FieldTerminalPathValue) AsPcapSettingsValue() (*Probe_Spec_PcapSettings, bool) {
+	res, ok := fpv.value.(*Probe_Spec_PcapSettings)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
@@ -1748,6 +1791,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
 		(*target).ExternalIpCheckUrl = fpv.value.([]string)
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		(*target).TargetServers = fpv.value.(*Probe_Spec_TargetServers)
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		(*target).PcapSettings = fpv.value.(*Probe_Spec_PcapSettings)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1843,6 +1888,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) CompareWith(source *Probe_Spec) (in
 		return 0, false
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return 0, false
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpv.selector))
 	}
@@ -1883,6 +1930,10 @@ func (fpvs *ProbeSpec_FieldSubPathValue) AsTargetServersPathValue() (ProbeSpecTa
 	res, ok := fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbeSpec_FieldSubPathValue) AsPcapSettingsPathValue() (ProbeSpecPcapSettings_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeSpecPcapSettings_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ProbeSpec_FieldSubPathValue) SetTo(target **Probe_Spec) {
 	if *target == nil {
@@ -1901,6 +1952,8 @@ func (fpvs *ProbeSpec_FieldSubPathValue) SetTo(target **Probe_Spec) {
 		fpvs.subPathValue.(ProbeSpecAccessTokenSpec_FieldPathValue).SetTo(&(*target).AccessToken)
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue).SetTo(&(*target).TargetServers)
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		fpvs.subPathValue.(ProbeSpecPcapSettings_FieldPathValue).SetTo(&(*target).PcapSettings)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpvs.Selector()))
 	}
@@ -1929,6 +1982,8 @@ func (fpvs *ProbeSpec_FieldSubPathValue) CompareWith(source *Probe_Spec) (int, b
 		return fpvs.subPathValue.(ProbeSpecAccessTokenSpec_FieldPathValue).CompareWith(source.GetAccessToken())
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return fpvs.subPathValue.(ProbeSpecTargetServers_FieldPathValue).CompareWith(source.GetTargetServers())
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return fpvs.subPathValue.(ProbeSpecPcapSettings_FieldPathValue).CompareWith(source.GetPcapSettings())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpvs.Selector()))
 	}
@@ -2039,6 +2094,10 @@ func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) AsTargetServersPathItemValue
 	res, ok := fpaivs.subPathItemValue.(ProbeSpecTargetServers_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) AsPcapSettingsPathItemValue() (ProbeSpecPcapSettings_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeSpecPcapSettings_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'Spec'
 func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) ContainsValue(source *Probe_Spec) bool {
@@ -2055,6 +2114,8 @@ func (fpaivs *ProbeSpec_FieldSubPathArrayItemValue) ContainsValue(source *Probe_
 		return fpaivs.subPathItemValue.(ProbeSpecAccessTokenSpec_FieldPathArrayItemValue).ContainsValue(source.GetAccessToken())
 	case ProbeSpec_FieldPathSelectorTargetServers:
 		return fpaivs.subPathItemValue.(ProbeSpecTargetServers_FieldPathArrayItemValue).ContainsValue(source.GetTargetServers())
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		return fpaivs.subPathItemValue.(ProbeSpecPcapSettings_FieldPathArrayItemValue).ContainsValue(source.GetPcapSettings())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fpaivs.Selector()))
 	}
@@ -2143,6 +2204,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 		for _, v := range fpaov.values.([]*Probe_Spec_TargetServers) {
 			values = append(values, v)
 		}
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		for _, v := range fpaov.values.([]*Probe_Spec_PcapSettings) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2194,6 +2259,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsTargetServersArrayOfVal
 	res, ok := fpaov.values.([]*Probe_Spec_TargetServers)
 	return res, ok
 }
+func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsPcapSettingsArrayOfValues() ([]*Probe_Spec_PcapSettings, bool) {
+	res, ok := fpaov.values.([]*Probe_Spec_PcapSettings)
+	return res, ok
+}
 
 type ProbeSpec_FieldSubPathArrayOfValues struct {
 	ProbeSpec_FieldPath
@@ -2227,6 +2296,10 @@ func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsAccessTokenPathArrayOfValue
 }
 func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsTargetServersPathArrayOfValues() (ProbeSpecTargetServers_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServers_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeSpec_FieldSubPathArrayOfValues) AsPcapSettingsPathArrayOfValues() (ProbeSpecPcapSettings_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecPcapSettings_FieldPathArrayOfValues)
 	return res, ok
 }
 
@@ -5814,6 +5887,469 @@ func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) AsUdpTargetPathA
 }
 func (fpsaov *ProbeSpecTargetServers_FieldSubPathArrayOfValues) AsSpeedTestTargetPathArrayOfValues() (ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(ProbeSpecTargetServersSpeedTestTarget_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeSpecPcapSettings_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeSpecPcapSettings_FieldPathSelector
+	Get(source *Probe_Spec_PcapSettings) []interface{}
+	GetSingle(source *Probe_Spec_PcapSettings) (interface{}, bool)
+	ClearValue(item *Probe_Spec_PcapSettings)
+
+	// Those methods build corresponding ProbeSpecPcapSettings_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeSpecPcapSettings_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeSpecPcapSettings_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeSpecPcapSettings_FieldPathArrayItemValue
+}
+
+type ProbeSpecPcapSettings_FieldPathSelector int32
+
+const (
+	ProbeSpecPcapSettings_FieldPathSelectorEnable            ProbeSpecPcapSettings_FieldPathSelector = 0
+	ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket ProbeSpecPcapSettings_FieldPathSelector = 1
+	ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets ProbeSpecPcapSettings_FieldPathSelector = 2
+)
+
+func (s ProbeSpecPcapSettings_FieldPathSelector) String() string {
+	switch s {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		return "enable"
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		return "capture_full_packet"
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		return "capture_all_packets"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", s))
+	}
+}
+
+func BuildProbeSpecPcapSettings_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpecPcapSettings_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Spec_PcapSettings")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "enable":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorEnable}, nil
+		case "capture_full_packet", "captureFullPacket", "capture-full-packet":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket}, nil
+		case "capture_all_packets", "captureAllPackets", "capture-all-packets":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_PcapSettings", fp)
+}
+
+func ParseProbeSpecPcapSettings_FieldPath(rawField string) (ProbeSpecPcapSettings_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeSpecPcapSettings_FieldPath(fp)
+}
+
+func MustParseProbeSpecPcapSettings_FieldPath(rawField string) ProbeSpecPcapSettings_FieldPath {
+	fp, err := ParseProbeSpecPcapSettings_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeSpecPcapSettings_FieldTerminalPath struct {
+	selector ProbeSpecPcapSettings_FieldPathSelector
+}
+
+var _ ProbeSpecPcapSettings_FieldPath = (*ProbeSpecPcapSettings_FieldTerminalPath)(nil)
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) Selector() ProbeSpecPcapSettings_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Spec_PcapSettings
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) Get(source *Probe_Spec_PcapSettings) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+			values = append(values, source.Enable)
+		case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+			values = append(values, source.CaptureFullPacket)
+		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+			values = append(values, source.CaptureAllPackets)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Spec_PcapSettings))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Spec_PcapSettings
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetSingle(source *Probe_Spec_PcapSettings) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		return source.GetEnable(), source != nil
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		return source.GetCaptureFullPacket(), source != nil
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		return source.GetCaptureAllPackets(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Spec_PcapSettings))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		return false
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		return false
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		return false
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValue(item *Probe_Spec_PcapSettings) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+			item.Enable = false
+		case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+			item.CaptureFullPacket = false
+		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+			item.CaptureAllPackets = false
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Spec_PcapSettings))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbeSpecPcapSettings_FieldPathSelectorEnable ||
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket ||
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIValue(value interface{}) ProbeSpecPcapSettings_FieldPathValue {
+	switch fp.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeSpecPcapSettings_FieldPathArrayOfValues {
+	fpaov := &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeSpecPcapSettings_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbeSpecPcapSettings_FieldPathValue allows storing values for PcapSettings fields according to their type
+type ProbeSpecPcapSettings_FieldPathValue interface {
+	ProbeSpecPcapSettings_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Spec_PcapSettings)
+	CompareWith(*Probe_Spec_PcapSettings) (cmp int, comparable bool)
+}
+
+func ParseProbeSpecPcapSettings_FieldPathValue(pathStr, valueStr string) (ProbeSpecPcapSettings_FieldPathValue, error) {
+	fp, err := ParseProbeSpecPcapSettings_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing PcapSettings field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeSpecPcapSettings_FieldPathValue), nil
+}
+
+func MustParseProbeSpecPcapSettings_FieldPathValue(pathStr, valueStr string) ProbeSpecPcapSettings_FieldPathValue {
+	fpv, err := ParseProbeSpecPcapSettings_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeSpecPcapSettings_FieldTerminalPathValue struct {
+	ProbeSpecPcapSettings_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecPcapSettings_FieldPathValue = (*ProbeSpecPcapSettings_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'PcapSettings' as interface{}
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsEnableValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsCaptureFullPacketValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsCaptureAllPacketsValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object PcapSettings
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) SetTo(target **Probe_Spec_PcapSettings) {
+	if *target == nil {
+		*target = new(Probe_Spec_PcapSettings)
+	}
+	switch fpv.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		(*target).Enable = fpv.value.(bool)
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		(*target).CaptureFullPacket = fpv.value.(bool)
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		(*target).CaptureAllPackets = fpv.value.(bool)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Spec_PcapSettings)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeSpecPcapSettings_FieldTerminalPathValue' with the value under path in 'Probe_Spec_PcapSettings'.
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) CompareWith(source *Probe_Spec_PcapSettings) (int, bool) {
+	switch fpv.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnable()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetCaptureFullPacket()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetCaptureAllPackets()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Spec_PcapSettings))
+}
+
+// ProbeSpecPcapSettings_FieldPathArrayItemValue allows storing single item in Path-specific values for PcapSettings according to their type
+// Present only for array (repeated) types.
+type ProbeSpecPcapSettings_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeSpecPcapSettings_FieldPath
+	ContainsValue(*Probe_Spec_PcapSettings) bool
+}
+
+// ParseProbeSpecPcapSettings_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeSpecPcapSettings_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeSpecPcapSettings_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeSpecPcapSettings_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing PcapSettings field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeSpecPcapSettings_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeSpecPcapSettings_FieldPathArrayItemValue(pathStr, valueStr string) ProbeSpecPcapSettings_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeSpecPcapSettings_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue struct {
+	ProbeSpecPcapSettings_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeSpecPcapSettings_FieldPathArrayItemValue = (*ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Spec_PcapSettings as interface{}
+func (fpaiv *ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Spec_PcapSettings) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Spec_PcapSettings))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'PcapSettings'
+func (fpaiv *ProbeSpecPcapSettings_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Spec_PcapSettings) bool {
+	slice := fpaiv.ProbeSpecPcapSettings_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbeSpecPcapSettings_FieldPathArrayOfValues allows storing slice of values for PcapSettings fields according to their type
+type ProbeSpecPcapSettings_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeSpecPcapSettings_FieldPath
+}
+
+func ParseProbeSpecPcapSettings_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeSpecPcapSettings_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeSpecPcapSettings_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing PcapSettings field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeSpecPcapSettings_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeSpecPcapSettings_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeSpecPcapSettings_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeSpecPcapSettings_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues struct {
+	ProbeSpecPcapSettings_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeSpecPcapSettings_FieldPathArrayOfValues = (*ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeSpecPcapSettings_FieldPathSelectorEnable:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsEnableArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureFullPacketArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureAllPacketsArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

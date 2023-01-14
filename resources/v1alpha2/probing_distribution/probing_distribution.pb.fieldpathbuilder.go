@@ -13,13 +13,9 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
@@ -29,7 +25,6 @@ import (
 	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -44,18 +39,13 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -780,6 +770,10 @@ func (ProbingDistributionPathSelectorSpec) Constraint() ProbingDistributionPathS
 
 func (ProbingDistributionPathSelectorSpec) ProbingSettings() ProbingDistributionPathSelectorSpecProbingSettings {
 	return ProbingDistributionPathSelectorSpecProbingSettings{}
+}
+
+func (ProbingDistributionPathSelectorSpec) EnablePcap() ProbingDistributionPathSelectorSpecEnablePcap {
+	return ProbingDistributionPathSelectorSpecEnablePcap{}
 }
 
 type ProbingDistributionPathSelectorSpecEnabled struct{}
@@ -2051,6 +2045,23 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsProxyConfigurationNoPr
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
+type ProbingDistributionPathSelectorSpecEnablePcap struct{}
+
+func (ProbingDistributionPathSelectorSpecEnablePcap) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorSpec,
+		subPath:  NewProbingDistributionSpecFieldPathBuilder().EnablePcap().FieldPath(),
+	}
+}
+
+func (s ProbingDistributionPathSelectorSpecEnablePcap) WithValue(value bool) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionPathSelectorSpecEnablePcap) WithArrayOfValues(values []bool) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
 type ProbingDistributionPathSelectorStatus struct{}
 
 func (ProbingDistributionPathSelectorStatus) FieldPath() *ProbingDistribution_FieldTerminalPath {
@@ -2085,12 +2096,16 @@ func (ProbingDistributionPathSelectorStatus) TotalNumber() ProbingDistributionPa
 	return ProbingDistributionPathSelectorStatusTotalNumber{}
 }
 
-func (ProbingDistributionPathSelectorStatus) RegionalCounts() ProbingDistributionPathSelectorStatusRegionalCounts {
-	return ProbingDistributionPathSelectorStatusRegionalCounts{}
-}
-
 func (ProbingDistributionPathSelectorStatus) SelectedTargetCount() ProbingDistributionPathSelectorStatusSelectedTargetCount {
 	return ProbingDistributionPathSelectorStatusSelectedTargetCount{}
+}
+
+func (ProbingDistributionPathSelectorStatus) TotalSkippedSessionCount() ProbingDistributionPathSelectorStatusTotalSkippedSessionCount {
+	return ProbingDistributionPathSelectorStatusTotalSkippedSessionCount{}
+}
+
+func (ProbingDistributionPathSelectorStatus) ByRegion() ProbingDistributionPathSelectorStatusByRegion {
+	return ProbingDistributionPathSelectorStatusByRegion{}
 }
 
 type ProbingDistributionPathSelectorStatusTotalNumber struct{}
@@ -2110,46 +2125,6 @@ func (s ProbingDistributionPathSelectorStatusTotalNumber) WithArrayOfValues(valu
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorStatusRegionalCounts struct{}
-
-func (ProbingDistributionPathSelectorStatusRegionalCounts) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorStatus,
-		subPath:  NewProbingDistributionStatusFieldPathBuilder().RegionalCounts().FieldPath(),
-	}
-}
-
-func (s ProbingDistributionPathSelectorStatusRegionalCounts) WithValue(value map[string]int64) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionPathSelectorStatusRegionalCounts) WithArrayOfValues(values []map[string]int64) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-func (ProbingDistributionPathSelectorStatusRegionalCounts) WithKey(key string) ProbingDistributionMapPathSelectorStatusRegionalCounts {
-	return ProbingDistributionMapPathSelectorStatusRegionalCounts{key: key}
-}
-
-type ProbingDistributionMapPathSelectorStatusRegionalCounts struct {
-	key string
-}
-
-func (s ProbingDistributionMapPathSelectorStatusRegionalCounts) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorStatus,
-		subPath:  NewProbingDistributionStatusFieldPathBuilder().RegionalCounts().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingDistributionMapPathSelectorStatusRegionalCounts) WithValue(value int64) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionMapPathSelectorStatusRegionalCounts) WithArrayOfValues(values []int64) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
 type ProbingDistributionPathSelectorStatusSelectedTargetCount struct{}
 
 func (ProbingDistributionPathSelectorStatusSelectedTargetCount) FieldPath() *ProbingDistribution_FieldSubPath {
@@ -2164,6 +2139,63 @@ func (s ProbingDistributionPathSelectorStatusSelectedTargetCount) WithValue(valu
 }
 
 func (s ProbingDistributionPathSelectorStatusSelectedTargetCount) WithArrayOfValues(values []int64) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistributionPathSelectorStatusTotalSkippedSessionCount struct{}
+
+func (ProbingDistributionPathSelectorStatusTotalSkippedSessionCount) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorStatus,
+		subPath:  NewProbingDistributionStatusFieldPathBuilder().TotalSkippedSessionCount().FieldPath(),
+	}
+}
+
+func (s ProbingDistributionPathSelectorStatusTotalSkippedSessionCount) WithValue(value int64) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionPathSelectorStatusTotalSkippedSessionCount) WithArrayOfValues(values []int64) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
+type ProbingDistributionPathSelectorStatusByRegion struct{}
+
+func (ProbingDistributionPathSelectorStatusByRegion) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorStatus,
+		subPath:  NewProbingDistributionStatusFieldPathBuilder().ByRegion().FieldPath(),
+	}
+}
+
+func (s ProbingDistributionPathSelectorStatusByRegion) WithValue(value map[string]*ProbingDistribution_Status_Regional) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionPathSelectorStatusByRegion) WithArrayOfValues(values []map[string]*ProbingDistribution_Status_Regional) *ProbingDistribution_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
+}
+
+func (ProbingDistributionPathSelectorStatusByRegion) WithKey(key string) ProbingDistributionMapPathSelectorStatusByRegion {
+	return ProbingDistributionMapPathSelectorStatusByRegion{key: key}
+}
+
+type ProbingDistributionMapPathSelectorStatusByRegion struct {
+	key string
+}
+
+func (s ProbingDistributionMapPathSelectorStatusByRegion) FieldPath() *ProbingDistribution_FieldSubPath {
+	return &ProbingDistribution_FieldSubPath{
+		selector: ProbingDistribution_FieldPathSelectorStatus,
+		subPath:  NewProbingDistributionStatusFieldPathBuilder().ByRegion().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s ProbingDistributionMapPathSelectorStatusByRegion) WithValue(value *ProbingDistribution_Status_Regional) *ProbingDistribution_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
+}
+
+func (s ProbingDistributionMapPathSelectorStatusByRegion) WithArrayOfValues(values []*ProbingDistribution_Status_Regional) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -2186,6 +2218,9 @@ func (ProbingDistributionSpecFieldPathBuilder) Constraint() ProbingDistribution_
 }
 func (ProbingDistributionSpecFieldPathBuilder) ProbingSettings() ProbingDistribution_SpecPathSelectorProbingSettings {
 	return ProbingDistribution_SpecPathSelectorProbingSettings{}
+}
+func (ProbingDistributionSpecFieldPathBuilder) EnablePcap() ProbingDistribution_SpecPathSelectorEnablePcap {
+	return ProbingDistribution_SpecPathSelectorEnablePcap{}
 }
 
 type ProbingDistribution_SpecPathSelectorEnabled struct{}
@@ -3474,6 +3509,20 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsProxyConfigurationNoP
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
+type ProbingDistribution_SpecPathSelectorEnablePcap struct{}
+
+func (ProbingDistribution_SpecPathSelectorEnablePcap) FieldPath() *ProbingDistributionSpec_FieldTerminalPath {
+	return &ProbingDistributionSpec_FieldTerminalPath{selector: ProbingDistributionSpec_FieldPathSelectorEnablePcap}
+}
+
+func (s ProbingDistribution_SpecPathSelectorEnablePcap) WithValue(value bool) *ProbingDistributionSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_SpecPathSelectorEnablePcap) WithArrayOfValues(values []bool) *ProbingDistributionSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldTerminalPathArrayOfValues)
+}
+
 type ProbingDistributionStatusFieldPathBuilder struct{}
 
 func NewProbingDistributionStatusFieldPathBuilder() ProbingDistributionStatusFieldPathBuilder {
@@ -3482,11 +3531,14 @@ func NewProbingDistributionStatusFieldPathBuilder() ProbingDistributionStatusFie
 func (ProbingDistributionStatusFieldPathBuilder) TotalNumber() ProbingDistribution_StatusPathSelectorTotalNumber {
 	return ProbingDistribution_StatusPathSelectorTotalNumber{}
 }
-func (ProbingDistributionStatusFieldPathBuilder) RegionalCounts() ProbingDistribution_StatusPathSelectorRegionalCounts {
-	return ProbingDistribution_StatusPathSelectorRegionalCounts{}
-}
 func (ProbingDistributionStatusFieldPathBuilder) SelectedTargetCount() ProbingDistribution_StatusPathSelectorSelectedTargetCount {
 	return ProbingDistribution_StatusPathSelectorSelectedTargetCount{}
+}
+func (ProbingDistributionStatusFieldPathBuilder) TotalSkippedSessionCount() ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount {
+	return ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount{}
+}
+func (ProbingDistributionStatusFieldPathBuilder) ByRegion() ProbingDistribution_StatusPathSelectorByRegion {
+	return ProbingDistribution_StatusPathSelectorByRegion{}
 }
 
 type ProbingDistribution_StatusPathSelectorTotalNumber struct{}
@@ -3503,40 +3555,6 @@ func (s ProbingDistribution_StatusPathSelectorTotalNumber) WithArrayOfValues(val
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldTerminalPathArrayOfValues)
 }
 
-type ProbingDistribution_StatusPathSelectorRegionalCounts struct{}
-
-func (ProbingDistribution_StatusPathSelectorRegionalCounts) FieldPath() *ProbingDistributionStatus_FieldTerminalPath {
-	return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts}
-}
-
-func (s ProbingDistribution_StatusPathSelectorRegionalCounts) WithValue(value map[string]int64) *ProbingDistributionStatus_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatus_FieldTerminalPathValue)
-}
-
-func (s ProbingDistribution_StatusPathSelectorRegionalCounts) WithArrayOfValues(values []map[string]int64) *ProbingDistributionStatus_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldTerminalPathArrayOfValues)
-}
-
-func (ProbingDistribution_StatusPathSelectorRegionalCounts) WithKey(key string) ProbingDistribution_StatusMapPathSelectorRegionalCounts {
-	return ProbingDistribution_StatusMapPathSelectorRegionalCounts{key: key}
-}
-
-type ProbingDistribution_StatusMapPathSelectorRegionalCounts struct {
-	key string
-}
-
-func (s ProbingDistribution_StatusMapPathSelectorRegionalCounts) FieldPath() *ProbingDistributionStatus_FieldPathMap {
-	return &ProbingDistributionStatus_FieldPathMap{selector: ProbingDistributionStatus_FieldPathSelectorRegionalCounts, key: s.key}
-}
-
-func (s ProbingDistribution_StatusMapPathSelectorRegionalCounts) WithValue(value int64) *ProbingDistributionStatus_FieldPathMapValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatus_FieldPathMapValue)
-}
-
-func (s ProbingDistribution_StatusMapPathSelectorRegionalCounts) WithArrayOfValues(values []int64) *ProbingDistributionStatus_FieldPathMapArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldPathMapArrayOfValues)
-}
-
 type ProbingDistribution_StatusPathSelectorSelectedTargetCount struct{}
 
 func (ProbingDistribution_StatusPathSelectorSelectedTargetCount) FieldPath() *ProbingDistributionStatus_FieldTerminalPath {
@@ -3549,4 +3567,130 @@ func (s ProbingDistribution_StatusPathSelectorSelectedTargetCount) WithValue(val
 
 func (s ProbingDistribution_StatusPathSelectorSelectedTargetCount) WithArrayOfValues(values []int64) *ProbingDistributionStatus_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount struct{}
+
+func (ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount) FieldPath() *ProbingDistributionStatus_FieldTerminalPath {
+	return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorTotalSkippedSessionCount}
+}
+
+func (s ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount) WithValue(value int64) *ProbingDistributionStatus_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatus_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_StatusPathSelectorTotalSkippedSessionCount) WithArrayOfValues(values []int64) *ProbingDistributionStatus_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingDistribution_StatusPathSelectorByRegion struct{}
+
+func (ProbingDistribution_StatusPathSelectorByRegion) FieldPath() *ProbingDistributionStatus_FieldTerminalPath {
+	return &ProbingDistributionStatus_FieldTerminalPath{selector: ProbingDistributionStatus_FieldPathSelectorByRegion}
+}
+
+func (s ProbingDistribution_StatusPathSelectorByRegion) WithValue(value map[string]*ProbingDistribution_Status_Regional) *ProbingDistributionStatus_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatus_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_StatusPathSelectorByRegion) WithArrayOfValues(values []map[string]*ProbingDistribution_Status_Regional) *ProbingDistributionStatus_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingDistribution_StatusPathSelectorByRegion) WithKey(key string) ProbingDistribution_StatusMapPathSelectorByRegion {
+	return ProbingDistribution_StatusMapPathSelectorByRegion{key: key}
+}
+
+type ProbingDistribution_StatusMapPathSelectorByRegion struct {
+	key string
+}
+
+func (s ProbingDistribution_StatusMapPathSelectorByRegion) FieldPath() *ProbingDistributionStatus_FieldPathMap {
+	return &ProbingDistributionStatus_FieldPathMap{selector: ProbingDistributionStatus_FieldPathSelectorByRegion, key: s.key}
+}
+
+func (s ProbingDistribution_StatusMapPathSelectorByRegion) WithValue(value *ProbingDistribution_Status_Regional) *ProbingDistributionStatus_FieldPathMapValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatus_FieldPathMapValue)
+}
+
+func (s ProbingDistribution_StatusMapPathSelectorByRegion) WithArrayOfValues(values []*ProbingDistribution_Status_Regional) *ProbingDistributionStatus_FieldPathMapArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatus_FieldPathMapArrayOfValues)
+}
+
+type ProbingDistributionStatusRegionalFieldPathBuilder struct{}
+
+func NewProbingDistributionStatusRegionalFieldPathBuilder() ProbingDistributionStatusRegionalFieldPathBuilder {
+	return ProbingDistributionStatusRegionalFieldPathBuilder{}
+}
+func (ProbingDistributionStatusRegionalFieldPathBuilder) AssignedCount() ProbingDistribution_Status_RegionalPathSelectorAssignedCount {
+	return ProbingDistribution_Status_RegionalPathSelectorAssignedCount{}
+}
+func (ProbingDistributionStatusRegionalFieldPathBuilder) TargetCount() ProbingDistribution_Status_RegionalPathSelectorTargetCount {
+	return ProbingDistribution_Status_RegionalPathSelectorTargetCount{}
+}
+func (ProbingDistributionStatusRegionalFieldPathBuilder) SkippedSessionCount() ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount {
+	return ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount{}
+}
+func (ProbingDistributionStatusRegionalFieldPathBuilder) SampleSkippedSessions() ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions {
+	return ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions{}
+}
+
+type ProbingDistribution_Status_RegionalPathSelectorAssignedCount struct{}
+
+func (ProbingDistribution_Status_RegionalPathSelectorAssignedCount) FieldPath() *ProbingDistributionStatusRegional_FieldTerminalPath {
+	return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorAssignedCount}
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorAssignedCount) WithValue(value int64) *ProbingDistributionStatusRegional_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatusRegional_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorAssignedCount) WithArrayOfValues(values []int64) *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingDistribution_Status_RegionalPathSelectorTargetCount struct{}
+
+func (ProbingDistribution_Status_RegionalPathSelectorTargetCount) FieldPath() *ProbingDistributionStatusRegional_FieldTerminalPath {
+	return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorTargetCount}
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorTargetCount) WithValue(value int64) *ProbingDistributionStatusRegional_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatusRegional_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorTargetCount) WithArrayOfValues(values []int64) *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount struct{}
+
+func (ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount) FieldPath() *ProbingDistributionStatusRegional_FieldTerminalPath {
+	return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSkippedSessionCount}
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount) WithValue(value int64) *ProbingDistributionStatusRegional_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatusRegional_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorSkippedSessionCount) WithArrayOfValues(values []int64) *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions struct{}
+
+func (ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions) FieldPath() *ProbingDistributionStatusRegional_FieldTerminalPath {
+	return &ProbingDistributionStatusRegional_FieldTerminalPath{selector: ProbingDistributionStatusRegional_FieldPathSelectorSampleSkippedSessions}
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions) WithValue(value []string) *ProbingDistributionStatusRegional_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingDistributionStatusRegional_FieldTerminalPathValue)
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions) WithArrayOfValues(values [][]string) *ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionStatusRegional_FieldTerminalPathArrayOfValues)
+}
+
+func (s ProbingDistribution_Status_RegionalPathSelectorSampleSkippedSessions) WithItemValue(value string) *ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ProbingDistributionStatusRegional_FieldTerminalPathArrayItemValue)
 }

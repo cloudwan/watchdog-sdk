@@ -118,3 +118,12 @@ func (obj *ProbingDistribution_Status) GotenValidate() error {
 	}
 	return nil
 }
+func (obj *ProbingDistribution_Status_Regional) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}

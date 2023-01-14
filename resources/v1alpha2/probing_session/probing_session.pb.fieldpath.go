@@ -975,6 +975,7 @@ const (
 	ProbingSessionSpec_FieldPathSelectorProxyConfiguration ProbingSessionSpec_FieldPathSelector = 14
 	ProbingSessionSpec_FieldPathSelectorLocationType       ProbingSessionSpec_FieldPathSelector = 15
 	ProbingSessionSpec_FieldPathSelectorLocation           ProbingSessionSpec_FieldPathSelector = 16
+	ProbingSessionSpec_FieldPathSelectorEnablePcap         ProbingSessionSpec_FieldPathSelector = 17
 )
 
 func (s ProbingSessionSpec_FieldPathSelector) String() string {
@@ -1013,6 +1014,8 @@ func (s ProbingSessionSpec_FieldPathSelector) String() string {
 		return "location_type"
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		return "location"
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		return "enable_pcap"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", s))
 	}
@@ -1058,6 +1061,8 @@ func BuildProbingSessionSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbingSess
 			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocationType}, nil
 		case "location":
 			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorLocation}, nil
+		case "enable_pcap", "enablePcap", "enable-pcap":
+			return &ProbingSessionSpec_FieldTerminalPath{selector: ProbingSessionSpec_FieldPathSelectorEnablePcap}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -1190,6 +1195,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) Get(source *ProbingSession_Spec)
 			if source.Location != nil {
 				values = append(values, source.Location)
 			}
+		case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+			values = append(values, source.EnablePcap)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 		}
@@ -1248,6 +1255,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) GetSingle(source *ProbingSession
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		res := source.GetLocation()
 		return res, res != nil
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		return source.GetEnablePcap(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1294,6 +1303,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) GetDefault() interface{} {
 		return common.LocationType_LOCATION_TYPE_UNSPECIFIED
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		return (*common.Location)(nil)
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1336,6 +1347,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) ClearValue(item *ProbingSession_
 			item.LocationType = common.LocationType_LOCATION_TYPE_UNSPECIFIED
 		case ProbingSessionSpec_FieldPathSelectorLocation:
 			item.Location = nil
+		case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+			item.EnablePcap = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 		}
@@ -1359,7 +1372,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbingSessionSpec_FieldPathSelectorType ||
 		fp.selector == ProbingSessionSpec_FieldPathSelectorInterval ||
 		fp.selector == ProbingSessionSpec_FieldPathSelectorTos ||
-		fp.selector == ProbingSessionSpec_FieldPathSelectorLocationType
+		fp.selector == ProbingSessionSpec_FieldPathSelectorLocationType ||
+		fp.selector == ProbingSessionSpec_FieldPathSelectorEnablePcap
 }
 
 func (fp *ProbingSessionSpec_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1402,6 +1416,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) WithIValue(value interface{}) Pr
 		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(common.LocationType)}
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(*common.Location)}
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		return &ProbingSessionSpec_FieldTerminalPathValue{ProbingSessionSpec_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1448,6 +1464,8 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]common.LocationType)}
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]*common.Location)}
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		return &ProbingSessionSpec_FieldTerminalPathArrayOfValues{ProbingSessionSpec_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fp.selector))
 	}
@@ -1741,6 +1759,10 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) AsLocationValue() (*common
 	res, ok := fpv.value.(*common.Location)
 	return res, ok
 }
+func (fpv *ProbingSessionSpec_FieldTerminalPathValue) AsEnablePcapValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Spec
 func (fpv *ProbingSessionSpec_FieldTerminalPathValue) SetTo(target **ProbingSession_Spec) {
@@ -1782,6 +1804,8 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) SetTo(target **ProbingSess
 		(*target).LocationType = fpv.value.(common.LocationType)
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		(*target).Location = fpv.value.(*common.Location)
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		(*target).EnablePcap = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpv.selector))
 	}
@@ -1953,6 +1977,16 @@ func (fpv *ProbingSessionSpec_FieldTerminalPathValue) CompareWith(source *Probin
 		}
 	case ProbingSessionSpec_FieldPathSelectorLocation:
 		return 0, false
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetEnablePcap()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fpv.selector))
 	}
@@ -2259,6 +2293,10 @@ func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]*common.Location) {
 			values = append(values, v)
 		}
+	case ProbingSessionSpec_FieldPathSelectorEnablePcap:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2328,6 +2366,10 @@ func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsLocationTypeAr
 }
 func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsLocationArrayOfValues() ([]*common.Location, bool) {
 	res, ok := fpaov.values.([]*common.Location)
+	return res, ok
+}
+func (fpaov *ProbingSessionSpec_FieldTerminalPathArrayOfValues) AsEnablePcapArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

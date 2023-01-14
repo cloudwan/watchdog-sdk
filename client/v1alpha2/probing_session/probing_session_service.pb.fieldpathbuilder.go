@@ -13,13 +13,9 @@ import (
 	devices_project "github.com/cloudwan/edgelq-sdk/devices/resources/v1alpha2/project"
 	iam_attestation_domain "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/attestation_domain"
 	iam_iam_common "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/common"
-	iam_condition "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/condition"
 	iam_organization "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/organization"
-	iam_permission "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/permission"
 	iam_project "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/project"
-	iam_role "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/role"
 	iam_service_account "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/service_account"
-	iam_user "github.com/cloudwan/edgelq-sdk/iam/resources/v1alpha2/user"
 	meta_service "github.com/cloudwan/edgelq-sdk/meta/resources/v1alpha2/service"
 	view "github.com/cloudwan/goten-sdk/runtime/api/view"
 	watch_type "github.com/cloudwan/goten-sdk/runtime/api/watch_type"
@@ -34,7 +30,6 @@ import (
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	structpb "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	latlng "google.golang.org/genproto/googleapis/type/latlng"
@@ -49,19 +44,14 @@ var (
 	_ = &devices_device.Device{}
 	_ = &devices_project.Project{}
 	_ = &iam_attestation_domain.AttestationDomain{}
-	_ = &iam_iam_common.Actor{}
-	_ = &iam_condition.Condition{}
+	_ = &iam_iam_common.PCR{}
 	_ = &iam_organization.Organization{}
-	_ = &iam_permission.Permission{}
 	_ = &iam_project.Project{}
-	_ = &iam_role.Role{}
 	_ = &iam_service_account.ServiceAccount{}
-	_ = &iam_user.User{}
 	_ = &meta_service.Service{}
 	_ = &duration.Duration{}
 	_ = &empty.Empty{}
 	_ = &field_mask.FieldMask{}
-	_ = &structpb.Struct{}
 	_ = &timestamp.Timestamp{}
 	_ = &wrappers.DoubleValue{}
 	_ = &latlng.LatLng{}
@@ -984,6 +974,10 @@ func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpec) LocationTy
 
 func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpec) Location() BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecLocation {
 	return BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecLocation{}
+}
+
+func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpec) EnablePcap() BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap {
+	return BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap{}
 }
 
 type BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecProbe struct{}
@@ -2589,6 +2583,23 @@ func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecLocationAc
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap struct{}
+
+func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) FieldPath() *BatchGetProbingSessionsResponse_FieldSubPath {
+	return &BatchGetProbingSessionsResponse_FieldSubPath{
+		selector: BatchGetProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithValue(value bool) *BatchGetProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithArrayOfValues(values []bool) *BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
 type BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution struct{}
 
 func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution) FieldPath() *BatchGetProbingSessionsResponse_FieldSubPath {
@@ -3557,6 +3568,10 @@ func (ListProbingSessionsResponsePathSelectorProbingSessionsSpec) LocationType()
 
 func (ListProbingSessionsResponsePathSelectorProbingSessionsSpec) Location() ListProbingSessionsResponsePathSelectorProbingSessionsSpecLocation {
 	return ListProbingSessionsResponsePathSelectorProbingSessionsSpecLocation{}
+}
+
+func (ListProbingSessionsResponsePathSelectorProbingSessionsSpec) EnablePcap() ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap {
+	return ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap{}
 }
 
 type ListProbingSessionsResponsePathSelectorProbingSessionsSpecProbe struct{}
@@ -5162,6 +5177,23 @@ func (s ListProbingSessionsResponsePathSelectorProbingSessionsSpecLocationAccura
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap struct{}
+
+func (ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) FieldPath() *ListProbingSessionsResponse_FieldSubPath {
+	return &ListProbingSessionsResponse_FieldSubPath{
+		selector: ListProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithValue(value bool) *ListProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithArrayOfValues(values []bool) *ListProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
 type ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution struct{}
 
 func (ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution) FieldPath() *ListProbingSessionsResponse_FieldSubPath {
@@ -6523,6 +6555,10 @@ func (CreateProbingSessionRequestPathSelectorProbingSessionSpec) LocationType() 
 
 func (CreateProbingSessionRequestPathSelectorProbingSessionSpec) Location() CreateProbingSessionRequestPathSelectorProbingSessionSpecLocation {
 	return CreateProbingSessionRequestPathSelectorProbingSessionSpecLocation{}
+}
+
+func (CreateProbingSessionRequestPathSelectorProbingSessionSpec) EnablePcap() CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap {
+	return CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap{}
 }
 
 type CreateProbingSessionRequestPathSelectorProbingSessionSpecProbe struct{}
@@ -8128,6 +8164,23 @@ func (s CreateProbingSessionRequestPathSelectorProbingSessionSpecLocationAccurac
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap struct{}
+
+func (CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) FieldPath() *CreateProbingSessionRequest_FieldSubPath {
+	return &CreateProbingSessionRequest_FieldSubPath{
+		selector: CreateProbingSessionRequest_FieldPathSelectorProbingSession,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) WithValue(value bool) *CreateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) WithArrayOfValues(values []bool) *CreateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
 type CreateProbingSessionRequestPathSelectorProbingSessionProbingDistribution struct{}
 
 func (CreateProbingSessionRequestPathSelectorProbingSessionProbingDistribution) FieldPath() *CreateProbingSessionRequest_FieldSubPath {
@@ -8950,6 +9003,10 @@ func (UpdateProbingSessionRequestPathSelectorProbingSessionSpec) LocationType() 
 
 func (UpdateProbingSessionRequestPathSelectorProbingSessionSpec) Location() UpdateProbingSessionRequestPathSelectorProbingSessionSpecLocation {
 	return UpdateProbingSessionRequestPathSelectorProbingSessionSpecLocation{}
+}
+
+func (UpdateProbingSessionRequestPathSelectorProbingSessionSpec) EnablePcap() UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap {
+	return UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap{}
 }
 
 type UpdateProbingSessionRequestPathSelectorProbingSessionSpecProbe struct{}
@@ -10555,6 +10612,23 @@ func (s UpdateProbingSessionRequestPathSelectorProbingSessionSpecLocationAccurac
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap struct{}
+
+func (UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
+	return &UpdateProbingSessionRequest_FieldSubPath{
+		selector: UpdateProbingSessionRequest_FieldPathSelectorProbingSession,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) WithValue(value bool) *UpdateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionSpecEnablePcap) WithArrayOfValues(values []bool) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistribution struct{}
 
 func (UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistribution) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
@@ -11401,6 +11475,10 @@ func (UpdateProbingSessionRequestPathSelectorCasConditionalStateSpec) LocationTy
 
 func (UpdateProbingSessionRequestPathSelectorCasConditionalStateSpec) Location() UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecLocation {
 	return UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecLocation{}
+}
+
+func (UpdateProbingSessionRequestPathSelectorCasConditionalStateSpec) EnablePcap() UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap {
+	return UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap{}
 }
 
 type UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecProbe struct{}
@@ -13006,6 +13084,23 @@ func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecLocationAc
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap struct{}
+
+func (UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
+	return &UpdateProbingSessionRequest_FieldSubPath{
+		selector: UpdateProbingSessionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingSessionRequestCASFieldPathBuilder().ConditionalState().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap) WithValue(value bool) *UpdateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateSpecEnablePcap) WithArrayOfValues(values []bool) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistribution struct{}
 
 func (UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistribution) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
@@ -13842,6 +13937,10 @@ func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpec) LocationT
 
 func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpec) Location() UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecLocation {
 	return UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecLocation{}
+}
+
+func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpec) EnablePcap() UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap {
+	return UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap{}
 }
 
 type UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecProbe struct{}
@@ -15447,6 +15546,23 @@ func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecLocationA
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap struct{}
+
+func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap) FieldPath() *UpdateProbingSessionRequestCAS_FieldSubPath {
+	return &UpdateProbingSessionRequestCAS_FieldSubPath{
+		selector: UpdateProbingSessionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap) WithValue(value bool) *UpdateProbingSessionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateSpecEnablePcap) WithArrayOfValues(values []bool) *UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues)
+}
+
 type UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistribution struct{}
 
 func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistribution) FieldPath() *UpdateProbingSessionRequestCAS_FieldSubPath {
@@ -16457,6 +16573,10 @@ func (SearchProbingSessionsResponsePathSelectorProbingSessionsSpec) LocationType
 
 func (SearchProbingSessionsResponsePathSelectorProbingSessionsSpec) Location() SearchProbingSessionsResponsePathSelectorProbingSessionsSpecLocation {
 	return SearchProbingSessionsResponsePathSelectorProbingSessionsSpecLocation{}
+}
+
+func (SearchProbingSessionsResponsePathSelectorProbingSessionsSpec) EnablePcap() SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap {
+	return SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap{}
 }
 
 type SearchProbingSessionsResponsePathSelectorProbingSessionsSpecProbe struct{}
@@ -18059,6 +18179,23 @@ func (s SearchProbingSessionsResponsePathSelectorProbingSessionsSpecLocationAccu
 }
 
 func (s SearchProbingSessionsResponsePathSelectorProbingSessionsSpecLocationAccuracy) WithArrayOfValues(values []float64) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap struct{}
+
+func (SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) FieldPath() *SearchProbingSessionsResponse_FieldSubPath {
+	return &SearchProbingSessionsResponse_FieldSubPath{
+		selector: SearchProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().Spec().EnablePcap().FieldPath(),
+	}
+}
+
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithValue(value bool) *SearchProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsSpecEnablePcap) WithArrayOfValues(values []bool) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
