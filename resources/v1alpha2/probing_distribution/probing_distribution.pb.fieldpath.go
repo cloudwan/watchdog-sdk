@@ -380,13 +380,14 @@ func (fps *ProbingDistribution_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingDistribution
 func (fps *ProbingDistribution_FieldSubPath) Get(source *ProbingDistribution) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asSpecFieldPath, ok := fps.AsSpecSubPath(); ok {
-		values = append(values, asSpecFieldPath.Get(source.GetSpec())...)
-	} else if asStatusFieldPath, ok := fps.AsStatusSubPath(); ok {
-		values = append(values, asStatusFieldPath.Get(source.GetStatus())...)
-	} else {
+	switch fps.selector {
+	case ProbingDistribution_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case ProbingDistribution_FieldPathSelectorSpec:
+		values = append(values, fps.subPath.GetRaw(source.GetSpec())...)
+	case ProbingDistribution_FieldPathSelectorStatus:
+		values = append(values, fps.subPath.GetRaw(source.GetStatus())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution: %d", fps.selector))
 	}
 	return
@@ -1209,11 +1210,12 @@ func (fps *ProbingDistributionSpec_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingDistribution_Spec
 func (fps *ProbingDistributionSpec_FieldSubPath) Get(source *ProbingDistribution_Spec) (values []interface{}) {
-	if asProbingConstraintFieldPath, ok := fps.AsConstraintSubPath(); ok {
-		values = append(values, asProbingConstraintFieldPath.Get(source.GetConstraint())...)
-	} else if asProbingSettingsFieldPath, ok := fps.AsProbingSettingsSubPath(); ok {
-		values = append(values, asProbingSettingsFieldPath.Get(source.GetProbingSettings())...)
-	} else {
+	switch fps.selector {
+	case ProbingDistributionSpec_FieldPathSelectorConstraint:
+		values = append(values, fps.subPath.GetRaw(source.GetConstraint())...)
+	case ProbingDistributionSpec_FieldPathSelectorProbingSettings:
+		values = append(values, fps.subPath.GetRaw(source.GetProbingSettings())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingDistribution_Spec: %d", fps.selector))
 	}
 	return

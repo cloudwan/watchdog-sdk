@@ -899,6 +899,7 @@ func FullListProbingSessionsRequest_FieldMask() *ListProbingSessionsRequest_Fiel
 	res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListProbingSessionsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbingSessionsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListProbingSessionsRequest_FieldMask) Reset() {
 
 func (fieldMask *ListProbingSessionsRequest_FieldMask) Subtract(other *ListProbingSessionsRequest_FieldMask) *ListProbingSessionsRequest_FieldMask {
 	result := &ListProbingSessionsRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListProbingSessionsRequest_FieldMask) Project(source *ListProbi
 				result.FieldMask = source.FieldMask
 			case ListProbingSessionsRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListProbingSessionsRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListProbingSessionsResponse_FieldMask() *ListProbingSessionsResponse_Fi
 	res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorProbingSessions})
 	res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListProbingSessionsResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbingSessionsResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListProbingSessionsResponse_FieldMask) Reset() {
 
 func (fieldMask *ListProbingSessionsResponse_FieldMask) Subtract(other *ListProbingSessionsResponse_FieldMask) *ListProbingSessionsResponse_FieldMask {
 	result := &ListProbingSessionsResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListProbingSessionsResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListProbingSessionsResponse_FieldPathSelectorProbingSessions: &probing_session.ProbingSession_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListProbingSessionsResponse_FieldMask) Project(source *ListProb
 				result.PrevPageToken = source.PrevPageToken
 			case ListProbingSessionsResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListProbingSessionsResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListProbingSessionsResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListProbingSessionsResponse_FieldSubPath:
 			switch tp.selector {

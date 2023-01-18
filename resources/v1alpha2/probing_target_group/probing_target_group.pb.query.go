@@ -74,9 +74,10 @@ func (q *GetQuery) SetFieldMask(mask gotenobject.FieldMask) {
 }
 
 type ListQuery struct {
-	Filter *Filter
-	Pager  *PagerQuery
-	Mask   *ProbingTargetGroup_FieldMask
+	Filter         *Filter
+	Pager          *PagerQuery
+	Mask           *ProbingTargetGroup_FieldMask
+	WithPagingInfo bool
 }
 
 func (q *ListQuery) GotenQuery() {}
@@ -101,6 +102,10 @@ func (q *ListQuery) GetFieldMask() gotenobject.FieldMask {
 	return q.Mask
 }
 
+func (q *ListQuery) GetWithPagingInfo() bool {
+	return q.WithPagingInfo
+}
+
 func (q *ListQuery) SetFilter(filter gotenresource.Filter) {
 	if filter != nil {
 		q.Filter = filter.(*Filter)
@@ -123,6 +128,10 @@ func (q *ListQuery) SetFieldMask(mask gotenobject.FieldMask) {
 	} else {
 		q.Mask = nil
 	}
+}
+
+func (q *ListQuery) SetWithPagingInfo(with bool) {
+	q.WithPagingInfo = with
 }
 
 type WatchQuery struct {
@@ -186,10 +195,16 @@ func (q *SearchQuery) SetPhrase(phrase string) {
 	q.Phrase = phrase
 }
 
+func (q *SearchQuery) GetWithPagingInfo() bool {
+	return true
+}
+
 type QueryResultSnapshot struct {
 	ProbingTargetGroups []*ProbingTargetGroup
 	PrevPageCursor      *PagerCursor
 	NextPageCursor      *PagerCursor
+	TotalResultsCount   int32
+	CurrentOffset       int32
 }
 
 func (qr *QueryResultSnapshot) GetResults() gotenresource.ResourceList {
@@ -202,6 +217,10 @@ func (qr *QueryResultSnapshot) GetNextPageCursor() gotenresource.Cursor {
 
 func (qr *QueryResultSnapshot) GetPrevPageCursor() gotenresource.Cursor {
 	return qr.PrevPageCursor
+}
+
+func (qr *QueryResultSnapshot) GetPagingInfo() (totalCount, offset int32) {
+	return qr.TotalResultsCount, qr.CurrentOffset
 }
 
 func (qr *QueryResultSnapshot) SetResults(results gotenresource.ResourceList) {
@@ -223,6 +242,11 @@ func (qr *QueryResultSnapshot) SetCursors(nextPageCursor, prevPageCursor gotenre
 	} else {
 		qr.PrevPageCursor = nil
 	}
+}
+
+func (qr *QueryResultSnapshot) SetPagingInfo(totalCount, offset int32) {
+	qr.TotalResultsCount = totalCount
+	qr.CurrentOffset = offset
 }
 
 type QueryResultChange struct {
@@ -307,19 +331,4 @@ func (qr *QueryResultChange) SetSnapshotSize(size int64) {
 
 func (qr *QueryResultChange) SetResumeToken(token string) {
 	qr.ResumeToken = token
-}
-
-type SearchQueryResultSnapshot struct {
-	QueryResultSnapshot
-	TotalResultsCount int32
-	CurrentOffset     int32
-}
-
-func (sqr *SearchQueryResultSnapshot) GetPagingInfo() (totalCount, offset int32) {
-	return sqr.TotalResultsCount, sqr.CurrentOffset
-}
-
-func (sqr *SearchQueryResultSnapshot) SetPagingInfo(totalCount, offset int32) {
-	sqr.TotalResultsCount = totalCount
-	sqr.CurrentOffset = offset
 }

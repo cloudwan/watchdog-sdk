@@ -427,11 +427,12 @@ func (fps *SharedToken_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source SharedToken
 func (fps *SharedToken_FieldSubPath) Get(source *SharedToken) (values []interface{}) {
-	if asProbeTemplateFieldPath, ok := fps.AsProbeTemplateSubPath(); ok {
-		values = append(values, asProbeTemplateFieldPath.Get(source.GetProbeTemplate())...)
-	} else if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else {
+	switch fps.selector {
+	case SharedToken_FieldPathSelectorProbeTemplate:
+		values = append(values, fps.subPath.GetRaw(source.GetProbeTemplate())...)
+	case SharedToken_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken: %d", fps.selector))
 	}
 	return
@@ -1245,11 +1246,12 @@ func (fps *SharedTokenProbeTemplate_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source SharedToken_ProbeTemplate
 func (fps *SharedTokenProbeTemplate_FieldSubPath) Get(source *SharedToken_ProbeTemplate) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asSpecFieldPath, ok := fps.AsSpecSubPath(); ok {
-		values = append(values, asSpecFieldPath.Get(source.GetSpec())...)
-	} else {
+	switch fps.selector {
+	case SharedTokenProbeTemplate_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case SharedTokenProbeTemplate_FieldPathSelectorSpec:
+		values = append(values, fps.subPath.GetRaw(source.GetSpec())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate: %d", fps.selector))
 	}
 	return
@@ -2757,15 +2759,16 @@ func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source SharedToken_ProbeTemplate_Spec
 func (fps *SharedTokenProbeTemplateSpec_FieldSubPath) Get(source *SharedToken_ProbeTemplate_Spec) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsPrimaryLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetPrimaryLocation())...)
-	} else if asLocationDiscoverySpecFieldPath, ok := fps.AsLocationDiscoverySubPath(); ok {
-		values = append(values, asLocationDiscoverySpecFieldPath.Get(source.GetLocationDiscovery())...)
-	} else if asContactInformationFieldPath, ok := fps.AsContactInfoSubPath(); ok {
-		values = append(values, asContactInformationFieldPath.Get(source.GetContactInfo())...)
-	} else if asTargetServersFieldPath, ok := fps.AsTargetServersSubPath(); ok {
-		values = append(values, asTargetServersFieldPath.Get(source.GetTargetServers())...)
-	} else {
+	switch fps.selector {
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorPrimaryLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetPrimaryLocation())...)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorLocationDiscovery:
+		values = append(values, fps.subPath.GetRaw(source.GetLocationDiscovery())...)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorContactInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetContactInfo())...)
+	case SharedTokenProbeTemplateSpec_FieldPathSelectorTargetServers:
+		values = append(values, fps.subPath.GetRaw(source.GetTargetServers())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for SharedToken_ProbeTemplate_Spec: %d", fps.selector))
 	}
 	return

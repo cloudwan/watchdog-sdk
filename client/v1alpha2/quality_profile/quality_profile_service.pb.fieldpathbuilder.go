@@ -1291,6 +1291,9 @@ func (ListQualityProfilesRequestFieldPathBuilder) FieldMask() ListQualityProfile
 func (ListQualityProfilesRequestFieldPathBuilder) View() ListQualityProfilesRequestPathSelectorView {
 	return ListQualityProfilesRequestPathSelectorView{}
 }
+func (ListQualityProfilesRequestFieldPathBuilder) IncludePagingInfo() ListQualityProfilesRequestPathSelectorIncludePagingInfo {
+	return ListQualityProfilesRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListQualityProfilesRequestPathSelectorParent struct{}
 
@@ -1390,6 +1393,20 @@ func (s ListQualityProfilesRequestPathSelectorView) WithArrayOfValues(values []v
 	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListQualityProfilesRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListQualityProfilesRequestPathSelectorIncludePagingInfo) FieldPath() *ListQualityProfilesRequest_FieldTerminalPath {
+	return &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListQualityProfilesRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListQualityProfilesRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListQualityProfilesRequest_FieldTerminalPathValue)
+}
+
+func (s ListQualityProfilesRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListQualityProfilesRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListQualityProfilesResponseFieldPathBuilder struct{}
 
 func NewListQualityProfilesResponseFieldPathBuilder() ListQualityProfilesResponseFieldPathBuilder {
@@ -1403,6 +1420,12 @@ func (ListQualityProfilesResponseFieldPathBuilder) PrevPageToken() ListQualityPr
 }
 func (ListQualityProfilesResponseFieldPathBuilder) NextPageToken() ListQualityProfilesResponsePathSelectorNextPageToken {
 	return ListQualityProfilesResponsePathSelectorNextPageToken{}
+}
+func (ListQualityProfilesResponseFieldPathBuilder) CurrentOffset() ListQualityProfilesResponsePathSelectorCurrentOffset {
+	return ListQualityProfilesResponsePathSelectorCurrentOffset{}
+}
+func (ListQualityProfilesResponseFieldPathBuilder) TotalResultsCount() ListQualityProfilesResponsePathSelectorTotalResultsCount {
+	return ListQualityProfilesResponsePathSelectorTotalResultsCount{}
 }
 
 type ListQualityProfilesResponsePathSelectorQualityProfiles struct{}
@@ -2513,6 +2536,34 @@ func (s ListQualityProfilesResponsePathSelectorNextPageToken) WithValue(value *q
 }
 
 func (s ListQualityProfilesResponsePathSelectorNextPageToken) WithArrayOfValues(values []*quality_profile.PagerCursor) *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListQualityProfilesResponsePathSelectorCurrentOffset struct{}
+
+func (ListQualityProfilesResponsePathSelectorCurrentOffset) FieldPath() *ListQualityProfilesResponse_FieldTerminalPath {
+	return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListQualityProfilesResponsePathSelectorCurrentOffset) WithValue(value int32) *ListQualityProfilesResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListQualityProfilesResponse_FieldTerminalPathValue)
+}
+
+func (s ListQualityProfilesResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListQualityProfilesResponsePathSelectorTotalResultsCount struct{}
+
+func (ListQualityProfilesResponsePathSelectorTotalResultsCount) FieldPath() *ListQualityProfilesResponse_FieldTerminalPath {
+	return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListQualityProfilesResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListQualityProfilesResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListQualityProfilesResponse_FieldTerminalPathValue)
+}
+
+func (s ListQualityProfilesResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListQualityProfilesResponse_FieldTerminalPathArrayOfValues)
 }
 

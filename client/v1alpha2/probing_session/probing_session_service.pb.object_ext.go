@@ -419,6 +419,9 @@ func (o *ListProbingSessionsRequest) MakeDiffFieldMask(other *ListProbingSession
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListProbingSessionsRequest) Clone() *ListProbingSessionsRequest {
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*probing_session.ProbingSession_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListProbingSessionsRequest) Merge(source *ListProbingSessionsRequest) {
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListProbingSessionsRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListProbingSessionsResponse) MakeDiffFieldMask(other *ListProbingSessio
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListProbingSessionsResponse) Clone() *ListProbingSessionsResponse {
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListProbingSessionsResponse) Merge(source *ListProbingSessionsResponse)
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListProbingSessionsResponse) MergeRaw(source gotenobject.GotenObjectExt) {

@@ -1152,11 +1152,12 @@ func (fps *RunHopMonitorResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RunHopMonitorResponse
 func (fps *RunHopMonitorResponse_FieldSubPath) Get(source *RunHopMonitorResponse) (values []interface{}) {
-	if asPathFieldPath, ok := fps.AsPathsSubPath(); ok {
+	switch fps.selector {
+	case RunHopMonitorResponse_FieldPathSelectorPaths:
 		for _, item := range source.GetPaths() {
-			values = append(values, asPathFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fps.selector))
 	}
 	return

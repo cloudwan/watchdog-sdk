@@ -414,6 +414,9 @@ func (o *ListAdminAreasRequest) MakeDiffFieldMask(other *ListAdminAreasRequest) 
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -459,6 +462,7 @@ func (o *ListAdminAreasRequest) Clone() *ListAdminAreasRequest {
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*admin_area.AdminArea_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -514,6 +518,7 @@ func (o *ListAdminAreasRequest) Merge(source *ListAdminAreasRequest) {
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListAdminAreasRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -557,6 +562,12 @@ func (o *ListAdminAreasResponse) MakeDiffFieldMask(other *ListAdminAreasResponse
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -593,6 +604,8 @@ func (o *ListAdminAreasResponse) Clone() *ListAdminAreasResponse {
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -643,6 +656,8 @@ func (o *ListAdminAreasResponse) Merge(source *ListAdminAreasResponse) {
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListAdminAreasResponse) MergeRaw(source gotenobject.GotenObjectExt) {

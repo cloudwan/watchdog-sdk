@@ -1323,6 +1323,9 @@ func (ListAdminAreasRequestFieldPathBuilder) FieldMask() ListAdminAreasRequestPa
 func (ListAdminAreasRequestFieldPathBuilder) View() ListAdminAreasRequestPathSelectorView {
 	return ListAdminAreasRequestPathSelectorView{}
 }
+func (ListAdminAreasRequestFieldPathBuilder) IncludePagingInfo() ListAdminAreasRequestPathSelectorIncludePagingInfo {
+	return ListAdminAreasRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListAdminAreasRequestPathSelectorPageSize struct{}
 
@@ -1408,6 +1411,20 @@ func (s ListAdminAreasRequestPathSelectorView) WithArrayOfValues(values []view.V
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListAdminAreasRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListAdminAreasRequestPathSelectorIncludePagingInfo) FieldPath() *ListAdminAreasRequest_FieldTerminalPath {
+	return &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListAdminAreasRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListAdminAreasRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasRequest_FieldTerminalPathValue)
+}
+
+func (s ListAdminAreasRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListAdminAreasRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListAdminAreasResponseFieldPathBuilder struct{}
 
 func NewListAdminAreasResponseFieldPathBuilder() ListAdminAreasResponseFieldPathBuilder {
@@ -1421,6 +1438,12 @@ func (ListAdminAreasResponseFieldPathBuilder) PrevPageToken() ListAdminAreasResp
 }
 func (ListAdminAreasResponseFieldPathBuilder) NextPageToken() ListAdminAreasResponsePathSelectorNextPageToken {
 	return ListAdminAreasResponsePathSelectorNextPageToken{}
+}
+func (ListAdminAreasResponseFieldPathBuilder) CurrentOffset() ListAdminAreasResponsePathSelectorCurrentOffset {
+	return ListAdminAreasResponsePathSelectorCurrentOffset{}
+}
+func (ListAdminAreasResponseFieldPathBuilder) TotalResultsCount() ListAdminAreasResponsePathSelectorTotalResultsCount {
+	return ListAdminAreasResponsePathSelectorTotalResultsCount{}
 }
 
 type ListAdminAreasResponsePathSelectorAdminAreas struct{}
@@ -2572,6 +2595,34 @@ func (s ListAdminAreasResponsePathSelectorNextPageToken) WithValue(value *admin_
 }
 
 func (s ListAdminAreasResponsePathSelectorNextPageToken) WithArrayOfValues(values []*admin_area.PagerCursor) *ListAdminAreasResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorCurrentOffset struct{}
+
+func (ListAdminAreasResponsePathSelectorCurrentOffset) FieldPath() *ListAdminAreasResponse_FieldTerminalPath {
+	return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListAdminAreasResponsePathSelectorCurrentOffset) WithValue(value int32) *ListAdminAreasResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldTerminalPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListAdminAreasResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListAdminAreasResponsePathSelectorTotalResultsCount struct{}
+
+func (ListAdminAreasResponsePathSelectorTotalResultsCount) FieldPath() *ListAdminAreasResponse_FieldTerminalPath {
+	return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListAdminAreasResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListAdminAreasResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListAdminAreasResponse_FieldTerminalPathValue)
+}
+
+func (s ListAdminAreasResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListAdminAreasResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListAdminAreasResponse_FieldTerminalPathArrayOfValues)
 }
 

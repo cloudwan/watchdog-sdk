@@ -927,6 +927,9 @@ func (ListProbingTargetGroupsRequestFieldPathBuilder) FieldMask() ListProbingTar
 func (ListProbingTargetGroupsRequestFieldPathBuilder) View() ListProbingTargetGroupsRequestPathSelectorView {
 	return ListProbingTargetGroupsRequestPathSelectorView{}
 }
+func (ListProbingTargetGroupsRequestFieldPathBuilder) IncludePagingInfo() ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo {
+	return ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListProbingTargetGroupsRequestPathSelectorParent struct{}
 
@@ -1026,6 +1029,20 @@ func (s ListProbingTargetGroupsRequestPathSelectorView) WithArrayOfValues(values
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo) FieldPath() *ListProbingTargetGroupsRequest_FieldTerminalPath {
+	return &ListProbingTargetGroupsRequest_FieldTerminalPath{selector: ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListProbingTargetGroupsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsRequest_FieldTerminalPathValue)
+}
+
+func (s ListProbingTargetGroupsRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListProbingTargetGroupsResponseFieldPathBuilder struct{}
 
 func NewListProbingTargetGroupsResponseFieldPathBuilder() ListProbingTargetGroupsResponseFieldPathBuilder {
@@ -1039,6 +1056,12 @@ func (ListProbingTargetGroupsResponseFieldPathBuilder) PrevPageToken() ListProbi
 }
 func (ListProbingTargetGroupsResponseFieldPathBuilder) NextPageToken() ListProbingTargetGroupsResponsePathSelectorNextPageToken {
 	return ListProbingTargetGroupsResponsePathSelectorNextPageToken{}
+}
+func (ListProbingTargetGroupsResponseFieldPathBuilder) CurrentOffset() ListProbingTargetGroupsResponsePathSelectorCurrentOffset {
+	return ListProbingTargetGroupsResponsePathSelectorCurrentOffset{}
+}
+func (ListProbingTargetGroupsResponseFieldPathBuilder) TotalResultsCount() ListProbingTargetGroupsResponsePathSelectorTotalResultsCount {
+	return ListProbingTargetGroupsResponsePathSelectorTotalResultsCount{}
 }
 
 type ListProbingTargetGroupsResponsePathSelectorProbingTargetGroups struct{}
@@ -1789,6 +1812,34 @@ func (s ListProbingTargetGroupsResponsePathSelectorNextPageToken) WithValue(valu
 }
 
 func (s ListProbingTargetGroupsResponsePathSelectorNextPageToken) WithArrayOfValues(values []*probing_target_group.PagerCursor) *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorCurrentOffset struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorCurrentOffset) FieldPath() *ListProbingTargetGroupsResponse_FieldTerminalPath {
+	return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorCurrentOffset) WithValue(value int32) *ListProbingTargetGroupsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingTargetGroupsResponsePathSelectorTotalResultsCount struct{}
+
+func (ListProbingTargetGroupsResponsePathSelectorTotalResultsCount) FieldPath() *ListProbingTargetGroupsResponse_FieldTerminalPath {
+	return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListProbingTargetGroupsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetGroupsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingTargetGroupsResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues)
 }
 

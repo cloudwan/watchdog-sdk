@@ -388,9 +388,10 @@ func (fps *RunDNSQueryTestRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RunDNSQueryTestRequest
 func (fps *RunDNSQueryTestRequest_FieldSubPath) Get(source *RunDNSQueryTestRequest) (values []interface{}) {
-	if asDNSQueryFieldPath, ok := fps.AsQuerySubPath(); ok {
-		values = append(values, asDNSQueryFieldPath.Get(source.GetQuery())...)
-	} else {
+	switch fps.selector {
+	case RunDNSQueryTestRequest_FieldPathSelectorQuery:
+		values = append(values, fps.subPath.GetRaw(source.GetQuery())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fps.selector))
 	}
 	return
@@ -1297,23 +1298,24 @@ func (fps *RunDNSQueryTestResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RunDNSQueryTestResponse
 func (fps *RunDNSQueryTestResponse_FieldSubPath) Get(source *RunDNSQueryTestResponse) (values []interface{}) {
-	if asDNSQueryFieldPath, ok := fps.AsQueriesSubPath(); ok {
+	switch fps.selector {
+	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
 		for _, item := range source.GetQueries() {
-			values = append(values, asDNSQueryFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asDNSResourceRecordFieldPath, ok := fps.AsAnswersSubPath(); ok {
+	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
 		for _, item := range source.GetAnswers() {
-			values = append(values, asDNSResourceRecordFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asDNSResourceRecordFieldPath, ok := fps.AsNsSubPath(); ok {
+	case RunDNSQueryTestResponse_FieldPathSelectorNs:
 		for _, item := range source.GetNs() {
-			values = append(values, asDNSResourceRecordFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asDNSResourceRecordFieldPath, ok := fps.AsExtrasSubPath(); ok {
+	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
 		for _, item := range source.GetExtras() {
-			values = append(values, asDNSResourceRecordFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fps.selector))
 	}
 	return
@@ -2227,9 +2229,10 @@ func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RunDNSQueryTestRequestToProbe
 func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) Get(source *RunDNSQueryTestRequestToProbe) (values []interface{}) {
-	if asDNSQueryFieldPath, ok := fps.AsQuerySubPath(); ok {
-		values = append(values, asDNSQueryFieldPath.Get(source.GetQuery())...)
-	} else {
+	switch fps.selector {
+	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
+		values = append(values, fps.subPath.GetRaw(source.GetQuery())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fps.selector))
 	}
 	return

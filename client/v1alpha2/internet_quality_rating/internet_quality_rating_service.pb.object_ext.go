@@ -419,6 +419,9 @@ func (o *ListInternetQualityRatingsRequest) MakeDiffFieldMask(other *ListInterne
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListInternetQualityRatingsRequest) Clone() *ListInternetQualityRatingsR
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*internet_quality_rating.InternetQualityRating_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListInternetQualityRatingsRequest) Merge(source *ListInternetQualityRat
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListInternetQualityRatingsRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListInternetQualityRatingsResponse) MakeDiffFieldMask(other *ListIntern
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListInternetQualityRatingsResponse) Clone() *ListInternetQualityRatings
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListInternetQualityRatingsResponse) Merge(source *ListInternetQualityRa
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListInternetQualityRatingsResponse) MergeRaw(source gotenobject.GotenObjectExt) {

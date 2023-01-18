@@ -81,8 +81,9 @@ func (a *apiTagAccess) BatchGetTags(ctx context.Context, refs []*tag.Reference, 
 
 func (a *apiTagAccess) QueryTags(ctx context.Context, query *tag.ListQuery) (*tag.QueryResultSnapshot, error) {
 	request := &tag_client.ListTagsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,9 +95,11 @@ func (a *apiTagAccess) QueryTags(ctx context.Context, query *tag.ListQuery) (*ta
 		return nil, err
 	}
 	return &tag.QueryResultSnapshot{
-		Tags:           resp.Tags,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		Tags:              resp.Tags,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 

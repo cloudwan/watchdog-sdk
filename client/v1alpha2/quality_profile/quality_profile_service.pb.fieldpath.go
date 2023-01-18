@@ -1239,11 +1239,12 @@ func (fps *BatchGetQualityProfilesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BatchGetQualityProfilesResponse
 func (fps *BatchGetQualityProfilesResponse_FieldSubPath) Get(source *BatchGetQualityProfilesResponse) (values []interface{}) {
-	if asQualityProfileFieldPath, ok := fps.AsQualityProfilesSubPath(); ok {
+	switch fps.selector {
+	case BatchGetQualityProfilesResponse_FieldPathSelectorQualityProfiles:
 		for _, item := range source.GetQualityProfiles() {
-			values = append(values, asQualityProfileFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetQualityProfilesResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListQualityProfilesRequest_FieldPath interface {
 type ListQualityProfilesRequest_FieldPathSelector int32
 
 const (
-	ListQualityProfilesRequest_FieldPathSelectorParent    ListQualityProfilesRequest_FieldPathSelector = 0
-	ListQualityProfilesRequest_FieldPathSelectorPageSize  ListQualityProfilesRequest_FieldPathSelector = 1
-	ListQualityProfilesRequest_FieldPathSelectorPageToken ListQualityProfilesRequest_FieldPathSelector = 2
-	ListQualityProfilesRequest_FieldPathSelectorOrderBy   ListQualityProfilesRequest_FieldPathSelector = 3
-	ListQualityProfilesRequest_FieldPathSelectorFilter    ListQualityProfilesRequest_FieldPathSelector = 4
-	ListQualityProfilesRequest_FieldPathSelectorFieldMask ListQualityProfilesRequest_FieldPathSelector = 5
-	ListQualityProfilesRequest_FieldPathSelectorView      ListQualityProfilesRequest_FieldPathSelector = 6
+	ListQualityProfilesRequest_FieldPathSelectorParent            ListQualityProfilesRequest_FieldPathSelector = 0
+	ListQualityProfilesRequest_FieldPathSelectorPageSize          ListQualityProfilesRequest_FieldPathSelector = 1
+	ListQualityProfilesRequest_FieldPathSelectorPageToken         ListQualityProfilesRequest_FieldPathSelector = 2
+	ListQualityProfilesRequest_FieldPathSelectorOrderBy           ListQualityProfilesRequest_FieldPathSelector = 3
+	ListQualityProfilesRequest_FieldPathSelectorFilter            ListQualityProfilesRequest_FieldPathSelector = 4
+	ListQualityProfilesRequest_FieldPathSelectorFieldMask         ListQualityProfilesRequest_FieldPathSelector = 5
+	ListQualityProfilesRequest_FieldPathSelectorView              ListQualityProfilesRequest_FieldPathSelector = 6
+	ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo ListQualityProfilesRequest_FieldPathSelector = 7
 )
 
 func (s ListQualityProfilesRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListQualityProfilesRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		return "view"
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListQualityProfilesRequest_FieldPath(fp gotenobject.RawFieldPath) (Lis
 			return &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListQualityProfilesRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) Get(source *ListQualityP
 			}
 		case ListQualityProfilesRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) GetSingle(source *ListQu
 		return res, res != nil
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) GetDefault() interface{}
 		return (*quality_profile.QualityProfile_FieldMask)(nil)
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) ClearValue(item *ListQua
 			item.FieldMask = nil
 		case ListQualityProfilesRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListQualityProfilesRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListQualityProfilesRequest_FieldPathSelectorFilter ||
 		fp.selector == ListQualityProfilesRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListQualityProfilesRequest_FieldPathSelectorView
+		fp.selector == ListQualityProfilesRequest_FieldPathSelectorView ||
+		fp.selector == ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListQualityProfilesRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) WithIValue(value interfa
 		return &ListQualityProfilesRequest_FieldTerminalPathValue{ListQualityProfilesRequest_FieldTerminalPath: *fp, value: value.(*quality_profile.QualityProfile_FieldMask)}
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		return &ListQualityProfilesRequest_FieldTerminalPathValue{ListQualityProfilesRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListQualityProfilesRequest_FieldTerminalPathValue{ListQualityProfilesRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListQualityProfilesRequest_FieldTerminalPath) WithIArrayOfValues(value
 		return &ListQualityProfilesRequest_FieldTerminalPathArrayOfValues{ListQualityProfilesRequest_FieldTerminalPath: *fp, values: values.([]*quality_profile.QualityProfile_FieldMask)}
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		return &ListQualityProfilesRequest_FieldTerminalPathArrayOfValues{ListQualityProfilesRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListQualityProfilesRequest_FieldTerminalPathArrayOfValues{ListQualityProfilesRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListQualityProfilesRequest_FieldTerminalPathValue) AsViewValue() (vie
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListQualityProfilesRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListQualityProfilesRequest
 func (fpv *ListQualityProfilesRequest_FieldTerminalPathValue) SetTo(target **ListQualityProfilesRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListQualityProfilesRequest_FieldTerminalPathValue) SetTo(target **Lis
 		(*target).FieldMask = fpv.value.(*quality_profile.QualityProfile_FieldMask)
 	case ListQualityProfilesRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListQualityProfilesRequest_FieldTerminalPathValue) CompareWith(source
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListQualityProfilesRequest_FieldTerminalPathArrayOfValues) GetRawVa
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListQualityProfilesRequest_FieldTerminalPathArrayOfValues) AsViewAr
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListQualityProfilesRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2265,9 +2308,11 @@ type ListQualityProfilesResponse_FieldPath interface {
 type ListQualityProfilesResponse_FieldPathSelector int32
 
 const (
-	ListQualityProfilesResponse_FieldPathSelectorQualityProfiles ListQualityProfilesResponse_FieldPathSelector = 0
-	ListQualityProfilesResponse_FieldPathSelectorPrevPageToken   ListQualityProfilesResponse_FieldPathSelector = 1
-	ListQualityProfilesResponse_FieldPathSelectorNextPageToken   ListQualityProfilesResponse_FieldPathSelector = 2
+	ListQualityProfilesResponse_FieldPathSelectorQualityProfiles   ListQualityProfilesResponse_FieldPathSelector = 0
+	ListQualityProfilesResponse_FieldPathSelectorPrevPageToken     ListQualityProfilesResponse_FieldPathSelector = 1
+	ListQualityProfilesResponse_FieldPathSelectorNextPageToken     ListQualityProfilesResponse_FieldPathSelector = 2
+	ListQualityProfilesResponse_FieldPathSelectorCurrentOffset     ListQualityProfilesResponse_FieldPathSelector = 3
+	ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount ListQualityProfilesResponse_FieldPathSelector = 4
 )
 
 func (s ListQualityProfilesResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListQualityProfilesResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListQualityProfilesResponse_FieldPath(fp gotenobject.RawFieldPath) (Li
 			return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) Get(source *ListQuality
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) GetSingle(source *ListQ
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) GetDefault() interface{
 		return (*quality_profile.PagerCursor)(nil)
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		return (*quality_profile.PagerCursor)(nil)
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) ClearValue(item *ListQu
 			item.PrevPageToken = nil
 		case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) ClearValueRaw(item prot
 // IsLeaf - whether field path is holds simple value
 func (fp *ListQualityProfilesResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListQualityProfilesResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListQualityProfilesResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListQualityProfilesResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListQualityProfilesResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListQualityProfilesResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) WithIValue(value interf
 		return &ListQualityProfilesResponse_FieldTerminalPathValue{ListQualityProfilesResponse_FieldTerminalPath: *fp, value: value.(*quality_profile.PagerCursor)}
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		return &ListQualityProfilesResponse_FieldTerminalPathValue{ListQualityProfilesResponse_FieldTerminalPath: *fp, value: value.(*quality_profile.PagerCursor)}
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		return &ListQualityProfilesResponse_FieldTerminalPathValue{ListQualityProfilesResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		return &ListQualityProfilesResponse_FieldTerminalPathValue{ListQualityProfilesResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListQualityProfilesResponse_FieldTerminalPath) WithIArrayOfValues(valu
 		return &ListQualityProfilesResponse_FieldTerminalPathArrayOfValues{ListQualityProfilesResponse_FieldTerminalPath: *fp, values: values.([]*quality_profile.PagerCursor)}
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		return &ListQualityProfilesResponse_FieldTerminalPathArrayOfValues{ListQualityProfilesResponse_FieldTerminalPath: *fp, values: values.([]*quality_profile.PagerCursor)}
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		return &ListQualityProfilesResponse_FieldTerminalPathArrayOfValues{ListQualityProfilesResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		return &ListQualityProfilesResponse_FieldTerminalPathArrayOfValues{ListQualityProfilesResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListQualityProfilesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListQualityProfilesResponse
 func (fps *ListQualityProfilesResponse_FieldSubPath) Get(source *ListQualityProfilesResponse) (values []interface{}) {
-	if asQualityProfileFieldPath, ok := fps.AsQualityProfilesSubPath(); ok {
+	switch fps.selector {
+	case ListQualityProfilesResponse_FieldPathSelectorQualityProfiles:
 		for _, item := range source.GetQualityProfiles() {
-			values = append(values, asQualityProfileFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) AsNextPageTokenVa
 	res, ok := fpv.value.(*quality_profile.PagerCursor)
 	return res, ok
 }
+func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListQualityProfilesResponse
 func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) SetTo(target **ListQualityProfilesResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) SetTo(target **Li
 		(*target).PrevPageToken = fpv.value.(*quality_profile.PagerCursor)
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*quality_profile.PagerCursor)
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListQualityProfilesResponse_FieldTerminalPathValue) CompareWith(sourc
 		return 0, false
 	case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListQualityProfilesResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues) GetRawV
 		for _, v := range fpaov.values.([]*quality_profile.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues) AsPrevP
 }
 func (fpaov *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*quality_profile.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*quality_profile.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListQualityProfilesResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchQualityProfilesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchQualityProfilesResponse
 func (fps *WatchQualityProfilesResponse_FieldSubPath) Get(source *WatchQualityProfilesResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchQualityProfilesResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchQualityProfilesResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateQualityProfileRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateQualityProfileRequest
 func (fps *CreateQualityProfileRequest_FieldSubPath) Get(source *CreateQualityProfileRequest) (values []interface{}) {
-	if asQualityProfileFieldPath, ok := fps.AsQualityProfileSubPath(); ok {
-		values = append(values, asQualityProfileFieldPath.Get(source.GetQualityProfile())...)
-	} else {
+	switch fps.selector {
+	case CreateQualityProfileRequest_FieldPathSelectorQualityProfile:
+		values = append(values, fps.subPath.GetRaw(source.GetQualityProfile())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateQualityProfileRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateQualityProfileRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateQualityProfileRequest
 func (fps *UpdateQualityProfileRequest_FieldSubPath) Get(source *UpdateQualityProfileRequest) (values []interface{}) {
-	if asQualityProfileFieldPath, ok := fps.AsQualityProfileSubPath(); ok {
-		values = append(values, asQualityProfileFieldPath.Get(source.GetQualityProfile())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateQualityProfileRequest_FieldPathSelectorQualityProfile:
+		values = append(values, fps.subPath.GetRaw(source.GetQualityProfile())...)
+	case UpdateQualityProfileRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateQualityProfileRequestCAS_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateQualityProfileRequest_CAS
 func (fps *UpdateQualityProfileRequestCAS_FieldSubPath) Get(source *UpdateQualityProfileRequest_CAS) (values []interface{}) {
-	if asQualityProfileFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asQualityProfileFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateQualityProfileRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest_CAS: %d", fps.selector))
 	}
 	return

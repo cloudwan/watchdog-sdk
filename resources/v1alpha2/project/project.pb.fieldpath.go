@@ -451,13 +451,14 @@ func (fps *Project_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Project
 func (fps *Project_FieldSubPath) Get(source *Project) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asMultiRegionPolicyFieldPath, ok := fps.AsMultiRegionPolicySubPath(); ok {
-		values = append(values, asMultiRegionPolicyFieldPath.Get(source.GetMultiRegionPolicy())...)
-	} else if asLocaleFieldPath, ok := fps.AsPreferredLocaleSubPath(); ok {
-		values = append(values, asLocaleFieldPath.Get(source.GetPreferredLocale())...)
-	} else {
+	switch fps.selector {
+	case Project_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case Project_FieldPathSelectorMultiRegionPolicy:
+		values = append(values, fps.subPath.GetRaw(source.GetMultiRegionPolicy())...)
+	case Project_FieldPathSelectorPreferredLocale:
+		values = append(values, fps.subPath.GetRaw(source.GetPreferredLocale())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Project: %d", fps.selector))
 	}
 	return

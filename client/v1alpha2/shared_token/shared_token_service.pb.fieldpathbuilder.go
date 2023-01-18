@@ -2132,6 +2132,9 @@ func (ListSharedTokensRequestFieldPathBuilder) FieldMask() ListSharedTokensReque
 func (ListSharedTokensRequestFieldPathBuilder) View() ListSharedTokensRequestPathSelectorView {
 	return ListSharedTokensRequestPathSelectorView{}
 }
+func (ListSharedTokensRequestFieldPathBuilder) IncludePagingInfo() ListSharedTokensRequestPathSelectorIncludePagingInfo {
+	return ListSharedTokensRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListSharedTokensRequestPathSelectorParent struct{}
 
@@ -2231,6 +2234,20 @@ func (s ListSharedTokensRequestPathSelectorView) WithArrayOfValues(values []view
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListSharedTokensRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListSharedTokensRequestPathSelectorIncludePagingInfo) FieldPath() *ListSharedTokensRequest_FieldTerminalPath {
+	return &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListSharedTokensRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListSharedTokensRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensRequest_FieldTerminalPathValue)
+}
+
+func (s ListSharedTokensRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListSharedTokensRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListSharedTokensResponseFieldPathBuilder struct{}
 
 func NewListSharedTokensResponseFieldPathBuilder() ListSharedTokensResponseFieldPathBuilder {
@@ -2244,6 +2261,12 @@ func (ListSharedTokensResponseFieldPathBuilder) PrevPageToken() ListSharedTokens
 }
 func (ListSharedTokensResponseFieldPathBuilder) NextPageToken() ListSharedTokensResponsePathSelectorNextPageToken {
 	return ListSharedTokensResponsePathSelectorNextPageToken{}
+}
+func (ListSharedTokensResponseFieldPathBuilder) CurrentOffset() ListSharedTokensResponsePathSelectorCurrentOffset {
+	return ListSharedTokensResponsePathSelectorCurrentOffset{}
+}
+func (ListSharedTokensResponseFieldPathBuilder) TotalResultsCount() ListSharedTokensResponsePathSelectorTotalResultsCount {
+	return ListSharedTokensResponsePathSelectorTotalResultsCount{}
 }
 
 type ListSharedTokensResponsePathSelectorSharedTokens struct{}
@@ -4165,6 +4188,34 @@ func (s ListSharedTokensResponsePathSelectorNextPageToken) WithValue(value *shar
 }
 
 func (s ListSharedTokensResponsePathSelectorNextPageToken) WithArrayOfValues(values []*shared_token.PagerCursor) *ListSharedTokensResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorCurrentOffset struct{}
+
+func (ListSharedTokensResponsePathSelectorCurrentOffset) FieldPath() *ListSharedTokensResponse_FieldTerminalPath {
+	return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListSharedTokensResponsePathSelectorCurrentOffset) WithValue(value int32) *ListSharedTokensResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldTerminalPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListSharedTokensResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListSharedTokensResponsePathSelectorTotalResultsCount struct{}
+
+func (ListSharedTokensResponsePathSelectorTotalResultsCount) FieldPath() *ListSharedTokensResponse_FieldTerminalPath {
+	return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListSharedTokensResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListSharedTokensResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListSharedTokensResponse_FieldTerminalPathValue)
+}
+
+func (s ListSharedTokensResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListSharedTokensResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListSharedTokensResponse_FieldTerminalPathArrayOfValues)
 }
 

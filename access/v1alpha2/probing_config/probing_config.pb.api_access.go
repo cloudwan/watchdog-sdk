@@ -81,8 +81,9 @@ func (a *apiProbingConfigAccess) BatchGetProbingConfigs(ctx context.Context, ref
 
 func (a *apiProbingConfigAccess) QueryProbingConfigs(ctx context.Context, query *probing_config.ListQuery) (*probing_config.QueryResultSnapshot, error) {
 	request := &probing_config_client.ListProbingConfigsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,9 +95,11 @@ func (a *apiProbingConfigAccess) QueryProbingConfigs(ctx context.Context, query 
 		return nil, err
 	}
 	return &probing_config.QueryResultSnapshot{
-		ProbingConfigs: resp.ProbingConfigs,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		ProbingConfigs:    resp.ProbingConfigs,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 

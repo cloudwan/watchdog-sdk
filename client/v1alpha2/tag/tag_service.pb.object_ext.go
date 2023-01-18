@@ -419,6 +419,9 @@ func (o *ListTagsRequest) MakeDiffFieldMask(other *ListTagsRequest) *ListTagsReq
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListTagsRequest_FieldTerminalPath{selector: ListTagsRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListTagsRequest_FieldTerminalPath{selector: ListTagsRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListTagsRequest) Clone() *ListTagsRequest {
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*tag.Tag_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListTagsRequest) Merge(source *ListTagsRequest) {
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListTagsRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListTagsResponse) MakeDiffFieldMask(other *ListTagsResponse) *ListTagsR
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListTagsResponse) Clone() *ListTagsResponse {
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListTagsResponse) Merge(source *ListTagsResponse) {
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListTagsResponse) MergeRaw(source gotenobject.GotenObjectExt) {

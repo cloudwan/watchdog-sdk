@@ -346,11 +346,12 @@ func (fps *Tag_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Tag
 func (fps *Tag_FieldSubPath) Get(source *Tag) (values []interface{}) {
-	if asStateFieldPath, ok := fps.AsStateSubPath(); ok {
-		values = append(values, asStateFieldPath.Get(source.GetState())...)
-	} else if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else {
+	switch fps.selector {
+	case Tag_FieldPathSelectorState:
+		values = append(values, fps.subPath.GetRaw(source.GetState())...)
+	case Tag_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Tag: %d", fps.selector))
 	}
 	return

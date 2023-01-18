@@ -1239,11 +1239,12 @@ func (fps *BatchGetProbesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BatchGetProbesResponse
 func (fps *BatchGetProbesResponse_FieldSubPath) Get(source *BatchGetProbesResponse) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbesSubPath(); ok {
+	switch fps.selector {
+	case BatchGetProbesResponse_FieldPathSelectorProbes:
 		for _, item := range source.GetProbes() {
-			values = append(values, asProbeFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetProbesResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListProbesRequest_FieldPath interface {
 type ListProbesRequest_FieldPathSelector int32
 
 const (
-	ListProbesRequest_FieldPathSelectorParent    ListProbesRequest_FieldPathSelector = 0
-	ListProbesRequest_FieldPathSelectorPageSize  ListProbesRequest_FieldPathSelector = 1
-	ListProbesRequest_FieldPathSelectorPageToken ListProbesRequest_FieldPathSelector = 2
-	ListProbesRequest_FieldPathSelectorOrderBy   ListProbesRequest_FieldPathSelector = 3
-	ListProbesRequest_FieldPathSelectorFilter    ListProbesRequest_FieldPathSelector = 4
-	ListProbesRequest_FieldPathSelectorFieldMask ListProbesRequest_FieldPathSelector = 5
-	ListProbesRequest_FieldPathSelectorView      ListProbesRequest_FieldPathSelector = 6
+	ListProbesRequest_FieldPathSelectorParent            ListProbesRequest_FieldPathSelector = 0
+	ListProbesRequest_FieldPathSelectorPageSize          ListProbesRequest_FieldPathSelector = 1
+	ListProbesRequest_FieldPathSelectorPageToken         ListProbesRequest_FieldPathSelector = 2
+	ListProbesRequest_FieldPathSelectorOrderBy           ListProbesRequest_FieldPathSelector = 3
+	ListProbesRequest_FieldPathSelectorFilter            ListProbesRequest_FieldPathSelector = 4
+	ListProbesRequest_FieldPathSelectorFieldMask         ListProbesRequest_FieldPathSelector = 5
+	ListProbesRequest_FieldPathSelectorView              ListProbesRequest_FieldPathSelector = 6
+	ListProbesRequest_FieldPathSelectorIncludePagingInfo ListProbesRequest_FieldPathSelector = 7
 )
 
 func (s ListProbesRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListProbesRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListProbesRequest_FieldPathSelectorView:
 		return "view"
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListProbesRequest_FieldPath(fp gotenobject.RawFieldPath) (ListProbesRe
 			return &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListProbesRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) Get(source *ListProbesRequest) (v
 			}
 		case ListProbesRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) GetSingle(source *ListProbesReque
 		return res, res != nil
 	case ListProbesRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*probe.Probe_FieldMask)(nil)
 	case ListProbesRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) ClearValue(item *ListProbesReques
 			item.FieldMask = nil
 		case ListProbesRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListProbesRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListProbesRequest_FieldPathSelectorFilter ||
 		fp.selector == ListProbesRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListProbesRequest_FieldPathSelectorView
+		fp.selector == ListProbesRequest_FieldPathSelectorView ||
+		fp.selector == ListProbesRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListProbesRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) WithIValue(value interface{}) Lis
 		return &ListProbesRequest_FieldTerminalPathValue{ListProbesRequest_FieldTerminalPath: *fp, value: value.(*probe.Probe_FieldMask)}
 	case ListProbesRequest_FieldPathSelectorView:
 		return &ListProbesRequest_FieldTerminalPathValue{ListProbesRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListProbesRequest_FieldTerminalPathValue{ListProbesRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListProbesRequest_FieldTerminalPath) WithIArrayOfValues(values interfa
 		return &ListProbesRequest_FieldTerminalPathArrayOfValues{ListProbesRequest_FieldTerminalPath: *fp, values: values.([]*probe.Probe_FieldMask)}
 	case ListProbesRequest_FieldPathSelectorView:
 		return &ListProbesRequest_FieldTerminalPathArrayOfValues{ListProbesRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListProbesRequest_FieldTerminalPathArrayOfValues{ListProbesRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListProbesRequest_FieldTerminalPathValue) AsViewValue() (view.View, b
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListProbesRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListProbesRequest
 func (fpv *ListProbesRequest_FieldTerminalPathValue) SetTo(target **ListProbesRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListProbesRequest_FieldTerminalPathValue) SetTo(target **ListProbesRe
 		(*target).FieldMask = fpv.value.(*probe.Probe_FieldMask)
 	case ListProbesRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListProbesRequest_FieldTerminalPathValue) CompareWith(source *ListPro
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListProbesRequest_FieldTerminalPathArrayOfValues) GetRawValues() (v
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListProbesRequest_FieldTerminalPathArrayOfValues) AsViewArrayOfValu
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListProbesRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2265,9 +2308,11 @@ type ListProbesResponse_FieldPath interface {
 type ListProbesResponse_FieldPathSelector int32
 
 const (
-	ListProbesResponse_FieldPathSelectorProbes        ListProbesResponse_FieldPathSelector = 0
-	ListProbesResponse_FieldPathSelectorPrevPageToken ListProbesResponse_FieldPathSelector = 1
-	ListProbesResponse_FieldPathSelectorNextPageToken ListProbesResponse_FieldPathSelector = 2
+	ListProbesResponse_FieldPathSelectorProbes            ListProbesResponse_FieldPathSelector = 0
+	ListProbesResponse_FieldPathSelectorPrevPageToken     ListProbesResponse_FieldPathSelector = 1
+	ListProbesResponse_FieldPathSelectorNextPageToken     ListProbesResponse_FieldPathSelector = 2
+	ListProbesResponse_FieldPathSelectorCurrentOffset     ListProbesResponse_FieldPathSelector = 3
+	ListProbesResponse_FieldPathSelectorTotalResultsCount ListProbesResponse_FieldPathSelector = 4
 )
 
 func (s ListProbesResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListProbesResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListProbesResponse_FieldPath(fp gotenobject.RawFieldPath) (ListProbesR
 			return &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) Get(source *ListProbesResponse) 
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListProbesResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) GetSingle(source *ListProbesResp
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) GetDefault() interface{} {
 		return (*probe.PagerCursor)(nil)
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		return (*probe.PagerCursor)(nil)
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) ClearValue(item *ListProbesRespo
 			item.PrevPageToken = nil
 		case ListProbesResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListProbesResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListProbesResponse_FieldTerminalPath) ClearValueRaw(item proto.Message
 // IsLeaf - whether field path is holds simple value
 func (fp *ListProbesResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListProbesResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListProbesResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListProbesResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListProbesResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListProbesResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListProbesResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) WithIValue(value interface{}) Li
 		return &ListProbesResponse_FieldTerminalPathValue{ListProbesResponse_FieldTerminalPath: *fp, value: value.(*probe.PagerCursor)}
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		return &ListProbesResponse_FieldTerminalPathValue{ListProbesResponse_FieldTerminalPath: *fp, value: value.(*probe.PagerCursor)}
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		return &ListProbesResponse_FieldTerminalPathValue{ListProbesResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		return &ListProbesResponse_FieldTerminalPathValue{ListProbesResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListProbesResponse_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &ListProbesResponse_FieldTerminalPathArrayOfValues{ListProbesResponse_FieldTerminalPath: *fp, values: values.([]*probe.PagerCursor)}
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		return &ListProbesResponse_FieldTerminalPathArrayOfValues{ListProbesResponse_FieldTerminalPath: *fp, values: values.([]*probe.PagerCursor)}
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		return &ListProbesResponse_FieldTerminalPathArrayOfValues{ListProbesResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		return &ListProbesResponse_FieldTerminalPathArrayOfValues{ListProbesResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListProbesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListProbesResponse
 func (fps *ListProbesResponse_FieldSubPath) Get(source *ListProbesResponse) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbesSubPath(); ok {
+	switch fps.selector {
+	case ListProbesResponse_FieldPathSelectorProbes:
 		for _, item := range source.GetProbes() {
-			values = append(values, asProbeFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListProbesResponse_FieldTerminalPathValue) AsNextPageTokenValue() (*p
 	res, ok := fpv.value.(*probe.PagerCursor)
 	return res, ok
 }
+func (fpv *ListProbesResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListProbesResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListProbesResponse
 func (fpv *ListProbesResponse_FieldTerminalPathValue) SetTo(target **ListProbesResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListProbesResponse_FieldTerminalPathValue) SetTo(target **ListProbesR
 		(*target).PrevPageToken = fpv.value.(*probe.PagerCursor)
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*probe.PagerCursor)
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListProbesResponse_FieldTerminalPathValue) CompareWith(source *ListPr
 		return 0, false
 	case ListProbesResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbesResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListProbesResponse_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]*probe.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListProbesResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListProbesResponse_FieldTerminalPathArrayOfValues) AsPrevPageTokenA
 }
 func (fpaov *ListProbesResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*probe.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*probe.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListProbesResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListProbesResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchProbesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchProbesResponse
 func (fps *WatchProbesResponse_FieldSubPath) Get(source *WatchProbesResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchProbesResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchProbesResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateProbeRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateProbeRequest
 func (fps *CreateProbeRequest_FieldSubPath) Get(source *CreateProbeRequest) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbeSubPath(); ok {
-		values = append(values, asProbeFieldPath.Get(source.GetProbe())...)
-	} else {
+	switch fps.selector {
+	case CreateProbeRequest_FieldPathSelectorProbe:
+		values = append(values, fps.subPath.GetRaw(source.GetProbe())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateProbeRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateProbeRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateProbeRequest
 func (fps *UpdateProbeRequest_FieldSubPath) Get(source *UpdateProbeRequest) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbeSubPath(); ok {
-		values = append(values, asProbeFieldPath.Get(source.GetProbe())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateProbeRequest_FieldPathSelectorProbe:
+		values = append(values, fps.subPath.GetRaw(source.GetProbe())...)
+	case UpdateProbeRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateProbeRequestCAS_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateProbeRequest_CAS
 func (fps *UpdateProbeRequestCAS_FieldSubPath) Get(source *UpdateProbeRequest_CAS) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asProbeFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateProbeRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeRequest_CAS: %d", fps.selector))
 	}
 	return
@@ -9090,11 +9222,12 @@ func (fps *SearchProbesResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source SearchProbesResponse
 func (fps *SearchProbesResponse_FieldSubPath) Get(source *SearchProbesResponse) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbesSubPath(); ok {
+	switch fps.selector {
+	case SearchProbesResponse_FieldPathSelectorProbes:
 		for _, item := range source.GetProbes() {
-			values = append(values, asProbeFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for SearchProbesResponse: %d", fps.selector))
 	}
 	return

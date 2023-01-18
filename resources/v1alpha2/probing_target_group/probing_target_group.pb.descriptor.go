@@ -92,10 +92,6 @@ func (d *Descriptor) NewQueryResultSnapshot() gotenresource.QueryResultSnapshot 
 	return &QueryResultSnapshot{}
 }
 
-func (d *Descriptor) NewSearchQueryResultSnapshot() gotenresource.SearchQueryResultSnapshot {
-	return &SearchQueryResultSnapshot{}
-}
-
 func (d *Descriptor) NewQueryResultChange() gotenresource.QueryResultChange {
 	return &QueryResultChange{}
 }

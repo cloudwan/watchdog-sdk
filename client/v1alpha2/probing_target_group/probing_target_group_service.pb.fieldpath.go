@@ -1239,11 +1239,12 @@ func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) JSONString() string
 
 // Get returns all values pointed by selected field from source BatchGetProbingTargetGroupsResponse
 func (fps *BatchGetProbingTargetGroupsResponse_FieldSubPath) Get(source *BatchGetProbingTargetGroupsResponse) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsProbingTargetGroupsSubPath(); ok {
+	switch fps.selector {
+	case BatchGetProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
 		for _, item := range source.GetProbingTargetGroups() {
-			values = append(values, asProbingTargetGroupFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetProbingTargetGroupsResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListProbingTargetGroupsRequest_FieldPath interface {
 type ListProbingTargetGroupsRequest_FieldPathSelector int32
 
 const (
-	ListProbingTargetGroupsRequest_FieldPathSelectorParent    ListProbingTargetGroupsRequest_FieldPathSelector = 0
-	ListProbingTargetGroupsRequest_FieldPathSelectorPageSize  ListProbingTargetGroupsRequest_FieldPathSelector = 1
-	ListProbingTargetGroupsRequest_FieldPathSelectorPageToken ListProbingTargetGroupsRequest_FieldPathSelector = 2
-	ListProbingTargetGroupsRequest_FieldPathSelectorOrderBy   ListProbingTargetGroupsRequest_FieldPathSelector = 3
-	ListProbingTargetGroupsRequest_FieldPathSelectorFilter    ListProbingTargetGroupsRequest_FieldPathSelector = 4
-	ListProbingTargetGroupsRequest_FieldPathSelectorFieldMask ListProbingTargetGroupsRequest_FieldPathSelector = 5
-	ListProbingTargetGroupsRequest_FieldPathSelectorView      ListProbingTargetGroupsRequest_FieldPathSelector = 6
+	ListProbingTargetGroupsRequest_FieldPathSelectorParent            ListProbingTargetGroupsRequest_FieldPathSelector = 0
+	ListProbingTargetGroupsRequest_FieldPathSelectorPageSize          ListProbingTargetGroupsRequest_FieldPathSelector = 1
+	ListProbingTargetGroupsRequest_FieldPathSelectorPageToken         ListProbingTargetGroupsRequest_FieldPathSelector = 2
+	ListProbingTargetGroupsRequest_FieldPathSelectorOrderBy           ListProbingTargetGroupsRequest_FieldPathSelector = 3
+	ListProbingTargetGroupsRequest_FieldPathSelectorFilter            ListProbingTargetGroupsRequest_FieldPathSelector = 4
+	ListProbingTargetGroupsRequest_FieldPathSelectorFieldMask         ListProbingTargetGroupsRequest_FieldPathSelector = 5
+	ListProbingTargetGroupsRequest_FieldPathSelectorView              ListProbingTargetGroupsRequest_FieldPathSelector = 6
+	ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo ListProbingTargetGroupsRequest_FieldPathSelector = 7
 )
 
 func (s ListProbingTargetGroupsRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListProbingTargetGroupsRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		return "view"
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListProbingTargetGroupsRequest_FieldPath(fp gotenobject.RawFieldPath) 
 			return &ListProbingTargetGroupsRequest_FieldTerminalPath{selector: ListProbingTargetGroupsRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListProbingTargetGroupsRequest_FieldTerminalPath{selector: ListProbingTargetGroupsRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListProbingTargetGroupsRequest_FieldTerminalPath{selector: ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListProbingTargetGroupsRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) Get(source *ListProb
 			}
 		case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) GetSingle(source *Li
 		return res, res != nil
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) GetDefault() interfa
 		return (*probing_target_group.ProbingTargetGroup_FieldMask)(nil)
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) ClearValue(item *Lis
 			item.FieldMask = nil
 		case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorFilter ||
 		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorView
+		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorView ||
+		fp.selector == ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) WithIValue(value int
 		return &ListProbingTargetGroupsRequest_FieldTerminalPathValue{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, value: value.(*probing_target_group.ProbingTargetGroup_FieldMask)}
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		return &ListProbingTargetGroupsRequest_FieldTerminalPathValue{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListProbingTargetGroupsRequest_FieldTerminalPathValue{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListProbingTargetGroupsRequest_FieldTerminalPath) WithIArrayOfValues(v
 		return &ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, values: values.([]*probing_target_group.ProbingTargetGroup_FieldMask)}
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		return &ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListProbingTargetGroupsRequest_FieldTerminalPathValue) AsViewValue() 
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListProbingTargetGroupsRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListProbingTargetGroupsRequest
 func (fpv *ListProbingTargetGroupsRequest_FieldTerminalPathValue) SetTo(target **ListProbingTargetGroupsRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListProbingTargetGroupsRequest_FieldTerminalPathValue) SetTo(target *
 		(*target).FieldMask = fpv.value.(*probing_target_group.ProbingTargetGroup_FieldMask)
 	case ListProbingTargetGroupsRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListProbingTargetGroupsRequest_FieldTerminalPathValue) CompareWith(so
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues) GetR
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListProbingTargetGroupsRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues) AsVi
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListProbingTargetGroupsRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2268,6 +2311,8 @@ const (
 	ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups ListProbingTargetGroupsResponse_FieldPathSelector = 0
 	ListProbingTargetGroupsResponse_FieldPathSelectorPrevPageToken       ListProbingTargetGroupsResponse_FieldPathSelector = 1
 	ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken       ListProbingTargetGroupsResponse_FieldPathSelector = 2
+	ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset       ListProbingTargetGroupsResponse_FieldPathSelector = 3
+	ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount   ListProbingTargetGroupsResponse_FieldPathSelector = 4
 )
 
 func (s ListProbingTargetGroupsResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListProbingTargetGroupsResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListProbingTargetGroupsResponse_FieldPath(fp gotenobject.RawFieldPath)
 			return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListProbingTargetGroupsResponse_FieldTerminalPath{selector: ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) Get(source *ListPro
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) GetSingle(source *L
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) GetDefault() interf
 		return (*probing_target_group.PagerCursor)(nil)
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		return (*probing_target_group.PagerCursor)(nil)
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) ClearValue(item *Li
 			item.PrevPageToken = nil
 		case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) ClearValueRaw(item 
 // IsLeaf - whether field path is holds simple value
 func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) WithIValue(value in
 		return &ListProbingTargetGroupsResponse_FieldTerminalPathValue{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, value: value.(*probing_target_group.PagerCursor)}
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		return &ListProbingTargetGroupsResponse_FieldTerminalPathValue{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, value: value.(*probing_target_group.PagerCursor)}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		return &ListProbingTargetGroupsResponse_FieldTerminalPathValue{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListProbingTargetGroupsResponse_FieldTerminalPathValue{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListProbingTargetGroupsResponse_FieldTerminalPath) WithIArrayOfValues(
 		return &ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, values: values.([]*probing_target_group.PagerCursor)}
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		return &ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, values: values.([]*probing_target_group.PagerCursor)}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		return &ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues{ListProbingTargetGroupsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListProbingTargetGroupsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListProbingTargetGroupsResponse
 func (fps *ListProbingTargetGroupsResponse_FieldSubPath) Get(source *ListProbingTargetGroupsResponse) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsProbingTargetGroupsSubPath(); ok {
+	switch fps.selector {
+	case ListProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
 		for _, item := range source.GetProbingTargetGroups() {
-			values = append(values, asProbingTargetGroupFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) AsNextPageTok
 	res, ok := fpv.value.(*probing_target_group.PagerCursor)
 	return res, ok
 }
+func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListProbingTargetGroupsResponse
 func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) SetTo(target **ListProbingTargetGroupsResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) SetTo(target 
 		(*target).PrevPageToken = fpv.value.(*probing_target_group.PagerCursor)
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*probing_target_group.PagerCursor)
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListProbingTargetGroupsResponse_FieldTerminalPathValue) CompareWith(s
 		return 0, false
 	case ListProbingTargetGroupsResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListProbingTargetGroupsResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues) Get
 		for _, v := range fpaov.values.([]*probing_target_group.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListProbingTargetGroupsResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues) AsP
 }
 func (fpaov *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*probing_target_group.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*probing_target_group.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListProbingTargetGroupsResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchProbingTargetGroupsResponse
 func (fps *WatchProbingTargetGroupsResponse_FieldSubPath) Get(source *WatchProbingTargetGroupsResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchProbingTargetGroupsResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchProbingTargetGroupsResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateProbingTargetGroupRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateProbingTargetGroupRequest
 func (fps *CreateProbingTargetGroupRequest_FieldSubPath) Get(source *CreateProbingTargetGroupRequest) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsProbingTargetGroupSubPath(); ok {
-		values = append(values, asProbingTargetGroupFieldPath.Get(source.GetProbingTargetGroup())...)
-	} else {
+	switch fps.selector {
+	case CreateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup:
+		values = append(values, fps.subPath.GetRaw(source.GetProbingTargetGroup())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateProbingTargetGroupRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateProbingTargetGroupRequest
 func (fps *UpdateProbingTargetGroupRequest_FieldSubPath) Get(source *UpdateProbingTargetGroupRequest) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsProbingTargetGroupSubPath(); ok {
-		values = append(values, asProbingTargetGroupFieldPath.Get(source.GetProbingTargetGroup())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup:
+		values = append(values, fps.subPath.GetRaw(source.GetProbingTargetGroup())...)
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) JSONString() string 
 
 // Get returns all values pointed by selected field from source UpdateProbingTargetGroupRequest_CAS
 func (fps *UpdateProbingTargetGroupRequestCAS_FieldSubPath) Get(source *UpdateProbingTargetGroupRequest_CAS) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asProbingTargetGroupFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateProbingTargetGroupRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest_CAS: %d", fps.selector))
 	}
 	return
@@ -9090,11 +9222,12 @@ func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source SearchProbingTargetGroupsResponse
 func (fps *SearchProbingTargetGroupsResponse_FieldSubPath) Get(source *SearchProbingTargetGroupsResponse) (values []interface{}) {
-	if asProbingTargetGroupFieldPath, ok := fps.AsProbingTargetGroupsSubPath(); ok {
+	switch fps.selector {
+	case SearchProbingTargetGroupsResponse_FieldPathSelectorProbingTargetGroups:
 		for _, item := range source.GetProbingTargetGroups() {
-			values = append(values, asProbingTargetGroupFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for SearchProbingTargetGroupsResponse: %d", fps.selector))
 	}
 	return

@@ -899,6 +899,7 @@ func FullListQualityProfilesRequest_FieldMask() *ListQualityProfilesRequest_Fiel
 	res.Paths = append(res.Paths, &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListQualityProfilesRequest_FieldTerminalPath{selector: ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListQualityProfilesRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListQualityProfilesRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListQualityProfilesRequest_FieldMask) Reset() {
 
 func (fieldMask *ListQualityProfilesRequest_FieldMask) Subtract(other *ListQualityProfilesRequest_FieldMask) *ListQualityProfilesRequest_FieldMask {
 	result := &ListQualityProfilesRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListQualityProfilesRequest_FieldMask) Project(source *ListQuali
 				result.FieldMask = source.FieldMask
 			case ListQualityProfilesRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListQualityProfilesRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListQualityProfilesResponse_FieldMask() *ListQualityProfilesResponse_Fi
 	res.Paths = append(res.Paths, &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorQualityProfiles})
 	res.Paths = append(res.Paths, &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListQualityProfilesResponse_FieldTerminalPath{selector: ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListQualityProfilesResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListQualityProfilesResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListQualityProfilesResponse_FieldMask) Reset() {
 
 func (fieldMask *ListQualityProfilesResponse_FieldMask) Subtract(other *ListQualityProfilesResponse_FieldMask) *ListQualityProfilesResponse_FieldMask {
 	result := &ListQualityProfilesResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListQualityProfilesResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListQualityProfilesResponse_FieldPathSelectorQualityProfiles: &quality_profile.QualityProfile_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListQualityProfilesResponse_FieldMask) Project(source *ListQual
 				result.PrevPageToken = source.PrevPageToken
 			case ListQualityProfilesResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListQualityProfilesResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListQualityProfilesResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListQualityProfilesResponse_FieldSubPath:
 			switch tp.selector {

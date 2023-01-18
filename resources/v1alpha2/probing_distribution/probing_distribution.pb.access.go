@@ -49,7 +49,7 @@ type ProbingDistributionAccess interface {
 	GetProbingDistribution(context.Context, *GetQuery) (*ProbingDistribution, error)
 	BatchGetProbingDistributions(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbingDistributions(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbingDistributions(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbingDistributions(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbingDistribution(context.Context, *GetQuery, func(*ProbingDistributionChange) error) error
 	WatchProbingDistributions(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbingDistribution(context.Context, *ProbingDistribution, ...gotenresource.SaveOption) error
@@ -82,7 +82,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbingDistributionQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbingDistributions(ctx, asProbingDistributionQuery)
 	}

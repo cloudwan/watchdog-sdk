@@ -419,6 +419,9 @@ func (o *ListProbesRequest) MakeDiffFieldMask(other *ListProbesRequest) *ListPro
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListProbesRequest) Clone() *ListProbesRequest {
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*probe.Probe_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListProbesRequest) Merge(source *ListProbesRequest) {
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListProbesRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListProbesResponse) MakeDiffFieldMask(other *ListProbesResponse) *ListP
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListProbesResponse) Clone() *ListProbesResponse {
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListProbesResponse) Merge(source *ListProbesResponse) {
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListProbesResponse) MergeRaw(source gotenobject.GotenObjectExt) {

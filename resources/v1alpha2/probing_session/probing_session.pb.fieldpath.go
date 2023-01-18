@@ -407,13 +407,14 @@ func (fps *ProbingSession_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingSession
 func (fps *ProbingSession_FieldSubPath) Get(source *ProbingSession) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asSpecFieldPath, ok := fps.AsSpecSubPath(); ok {
-		values = append(values, asSpecFieldPath.Get(source.GetSpec())...)
-	} else if asStatusFieldPath, ok := fps.AsStatusSubPath(); ok {
-		values = append(values, asStatusFieldPath.Get(source.GetStatus())...)
-	} else {
+	switch fps.selector {
+	case ProbingSession_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case ProbingSession_FieldPathSelectorSpec:
+		values = append(values, fps.subPath.GetRaw(source.GetSpec())...)
+	case ProbingSession_FieldPathSelectorStatus:
+		values = append(values, fps.subPath.GetRaw(source.GetStatus())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fps.selector))
 	}
 	return
@@ -1532,17 +1533,18 @@ func (fps *ProbingSessionSpec_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingSession_Spec
 func (fps *ProbingSessionSpec_FieldSubPath) Get(source *ProbingSession_Spec) (values []interface{}) {
-	if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
-		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
-	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
-		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
-	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
-		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
-	} else if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else {
+	switch fps.selector {
+	case ProbingSessionSpec_FieldPathSelectorPathProbing:
+		values = append(values, fps.subPath.GetRaw(source.GetPathProbing())...)
+	case ProbingSessionSpec_FieldPathSelectorSpeedtestSettings:
+		values = append(values, fps.subPath.GetRaw(source.GetSpeedtestSettings())...)
+	case ProbingSessionSpec_FieldPathSelectorHttpProbingConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetHttpProbingConfig())...)
+	case ProbingSessionSpec_FieldPathSelectorProxyConfiguration:
+		values = append(values, fps.subPath.GetRaw(source.GetProxyConfiguration())...)
+	case ProbingSessionSpec_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession_Spec: %d", fps.selector))
 	}
 	return

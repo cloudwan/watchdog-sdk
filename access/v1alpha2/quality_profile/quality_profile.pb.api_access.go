@@ -81,8 +81,9 @@ func (a *apiQualityProfileAccess) BatchGetQualityProfiles(ctx context.Context, r
 
 func (a *apiQualityProfileAccess) QueryQualityProfiles(ctx context.Context, query *quality_profile.ListQuery) (*quality_profile.QueryResultSnapshot, error) {
 	request := &quality_profile_client.ListQualityProfilesRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,9 +95,11 @@ func (a *apiQualityProfileAccess) QueryQualityProfiles(ctx context.Context, quer
 		return nil, err
 	}
 	return &quality_profile.QueryResultSnapshot{
-		QualityProfiles: resp.QualityProfiles,
-		NextPageCursor:  resp.NextPageToken,
-		PrevPageCursor:  resp.PrevPageToken,
+		QualityProfiles:   resp.QualityProfiles,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 

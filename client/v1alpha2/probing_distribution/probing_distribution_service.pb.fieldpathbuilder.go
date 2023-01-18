@@ -2380,6 +2380,9 @@ func (ListProbingDistributionsRequestFieldPathBuilder) FieldMask() ListProbingDi
 func (ListProbingDistributionsRequestFieldPathBuilder) View() ListProbingDistributionsRequestPathSelectorView {
 	return ListProbingDistributionsRequestPathSelectorView{}
 }
+func (ListProbingDistributionsRequestFieldPathBuilder) IncludePagingInfo() ListProbingDistributionsRequestPathSelectorIncludePagingInfo {
+	return ListProbingDistributionsRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListProbingDistributionsRequestPathSelectorParent struct{}
 
@@ -2479,6 +2482,20 @@ func (s ListProbingDistributionsRequestPathSelectorView) WithArrayOfValues(value
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListProbingDistributionsRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListProbingDistributionsRequestPathSelectorIncludePagingInfo) FieldPath() *ListProbingDistributionsRequest_FieldTerminalPath {
+	return &ListProbingDistributionsRequest_FieldTerminalPath{selector: ListProbingDistributionsRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListProbingDistributionsRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListProbingDistributionsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsRequest_FieldTerminalPathValue)
+}
+
+func (s ListProbingDistributionsRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListProbingDistributionsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListProbingDistributionsResponseFieldPathBuilder struct{}
 
 func NewListProbingDistributionsResponseFieldPathBuilder() ListProbingDistributionsResponseFieldPathBuilder {
@@ -2492,6 +2509,12 @@ func (ListProbingDistributionsResponseFieldPathBuilder) PrevPageToken() ListProb
 }
 func (ListProbingDistributionsResponseFieldPathBuilder) NextPageToken() ListProbingDistributionsResponsePathSelectorNextPageToken {
 	return ListProbingDistributionsResponsePathSelectorNextPageToken{}
+}
+func (ListProbingDistributionsResponseFieldPathBuilder) CurrentOffset() ListProbingDistributionsResponsePathSelectorCurrentOffset {
+	return ListProbingDistributionsResponsePathSelectorCurrentOffset{}
+}
+func (ListProbingDistributionsResponseFieldPathBuilder) TotalResultsCount() ListProbingDistributionsResponsePathSelectorTotalResultsCount {
+	return ListProbingDistributionsResponsePathSelectorTotalResultsCount{}
 }
 
 type ListProbingDistributionsResponsePathSelectorProbingDistributions struct{}
@@ -4659,6 +4682,34 @@ func (s ListProbingDistributionsResponsePathSelectorNextPageToken) WithValue(val
 }
 
 func (s ListProbingDistributionsResponsePathSelectorNextPageToken) WithArrayOfValues(values []*probing_distribution.PagerCursor) *ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorCurrentOffset struct{}
+
+func (ListProbingDistributionsResponsePathSelectorCurrentOffset) FieldPath() *ListProbingDistributionsResponse_FieldTerminalPath {
+	return &ListProbingDistributionsResponse_FieldTerminalPath{selector: ListProbingDistributionsResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorCurrentOffset) WithValue(value int32) *ListProbingDistributionsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingDistributionsResponsePathSelectorTotalResultsCount struct{}
+
+func (ListProbingDistributionsResponsePathSelectorTotalResultsCount) FieldPath() *ListProbingDistributionsResponse_FieldTerminalPath {
+	return &ListProbingDistributionsResponse_FieldTerminalPath{selector: ListProbingDistributionsResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListProbingDistributionsResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListProbingDistributionsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingDistributionsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingDistributionsResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingDistributionsResponse_FieldTerminalPathArrayOfValues)
 }
 

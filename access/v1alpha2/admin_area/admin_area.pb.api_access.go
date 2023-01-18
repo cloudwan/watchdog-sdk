@@ -81,8 +81,9 @@ func (a *apiAdminAreaAccess) BatchGetAdminAreas(ctx context.Context, refs []*adm
 
 func (a *apiAdminAreaAccess) QueryAdminAreas(ctx context.Context, query *admin_area.ListQuery) (*admin_area.QueryResultSnapshot, error) {
 	request := &admin_area_client.ListAdminAreasRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,9 +95,11 @@ func (a *apiAdminAreaAccess) QueryAdminAreas(ctx context.Context, query *admin_a
 		return nil, err
 	}
 	return &admin_area.QueryResultSnapshot{
-		AdminAreas:     resp.AdminAreas,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		AdminAreas:        resp.AdminAreas,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 

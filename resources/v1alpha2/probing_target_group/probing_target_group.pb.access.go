@@ -43,7 +43,7 @@ type ProbingTargetGroupAccess interface {
 	GetProbingTargetGroup(context.Context, *GetQuery) (*ProbingTargetGroup, error)
 	BatchGetProbingTargetGroups(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbingTargetGroups(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbingTargetGroups(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbingTargetGroups(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbingTargetGroup(context.Context, *GetQuery, func(*ProbingTargetGroupChange) error) error
 	WatchProbingTargetGroups(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbingTargetGroup(context.Context, *ProbingTargetGroup, ...gotenresource.SaveOption) error
@@ -76,7 +76,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbingTargetGroupQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbingTargetGroups(ctx, asProbingTargetGroupQuery)
 	}

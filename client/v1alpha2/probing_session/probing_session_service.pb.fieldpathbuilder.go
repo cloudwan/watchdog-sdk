@@ -2678,6 +2678,9 @@ func (ListProbingSessionsRequestFieldPathBuilder) FieldMask() ListProbingSession
 func (ListProbingSessionsRequestFieldPathBuilder) View() ListProbingSessionsRequestPathSelectorView {
 	return ListProbingSessionsRequestPathSelectorView{}
 }
+func (ListProbingSessionsRequestFieldPathBuilder) IncludePagingInfo() ListProbingSessionsRequestPathSelectorIncludePagingInfo {
+	return ListProbingSessionsRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListProbingSessionsRequestPathSelectorParent struct{}
 
@@ -2777,6 +2780,20 @@ func (s ListProbingSessionsRequestPathSelectorView) WithArrayOfValues(values []v
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListProbingSessionsRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListProbingSessionsRequestPathSelectorIncludePagingInfo) FieldPath() *ListProbingSessionsRequest_FieldTerminalPath {
+	return &ListProbingSessionsRequest_FieldTerminalPath{selector: ListProbingSessionsRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListProbingSessionsRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListProbingSessionsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingSessionsRequest_FieldTerminalPathValue)
+}
+
+func (s ListProbingSessionsRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListProbingSessionsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListProbingSessionsResponseFieldPathBuilder struct{}
 
 func NewListProbingSessionsResponseFieldPathBuilder() ListProbingSessionsResponseFieldPathBuilder {
@@ -2790,6 +2807,12 @@ func (ListProbingSessionsResponseFieldPathBuilder) PrevPageToken() ListProbingSe
 }
 func (ListProbingSessionsResponseFieldPathBuilder) NextPageToken() ListProbingSessionsResponsePathSelectorNextPageToken {
 	return ListProbingSessionsResponsePathSelectorNextPageToken{}
+}
+func (ListProbingSessionsResponseFieldPathBuilder) CurrentOffset() ListProbingSessionsResponsePathSelectorCurrentOffset {
+	return ListProbingSessionsResponsePathSelectorCurrentOffset{}
+}
+func (ListProbingSessionsResponseFieldPathBuilder) TotalResultsCount() ListProbingSessionsResponsePathSelectorTotalResultsCount {
+	return ListProbingSessionsResponsePathSelectorTotalResultsCount{}
 }
 
 type ListProbingSessionsResponsePathSelectorProbingSessions struct{}
@@ -5253,6 +5276,34 @@ func (s ListProbingSessionsResponsePathSelectorNextPageToken) WithValue(value *p
 }
 
 func (s ListProbingSessionsResponsePathSelectorNextPageToken) WithArrayOfValues(values []*probing_session.PagerCursor) *ListProbingSessionsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingSessionsResponsePathSelectorCurrentOffset struct{}
+
+func (ListProbingSessionsResponsePathSelectorCurrentOffset) FieldPath() *ListProbingSessionsResponse_FieldTerminalPath {
+	return &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListProbingSessionsResponsePathSelectorCurrentOffset) WithValue(value int32) *ListProbingSessionsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingSessionsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingSessionsResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListProbingSessionsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListProbingSessionsResponsePathSelectorTotalResultsCount struct{}
+
+func (ListProbingSessionsResponsePathSelectorTotalResultsCount) FieldPath() *ListProbingSessionsResponse_FieldTerminalPath {
+	return &ListProbingSessionsResponse_FieldTerminalPath{selector: ListProbingSessionsResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListProbingSessionsResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListProbingSessionsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingSessionsResponse_FieldTerminalPathValue)
+}
+
+func (s ListProbingSessionsResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListProbingSessionsResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldTerminalPathArrayOfValues)
 }
 

@@ -81,8 +81,9 @@ func (a *apiSharedTokenAccess) BatchGetSharedTokens(ctx context.Context, refs []
 
 func (a *apiSharedTokenAccess) QuerySharedTokens(ctx context.Context, query *shared_token.ListQuery) (*shared_token.QueryResultSnapshot, error) {
 	request := &shared_token_client.ListSharedTokensRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,9 +95,11 @@ func (a *apiSharedTokenAccess) QuerySharedTokens(ctx context.Context, query *sha
 		return nil, err
 	}
 	return &shared_token.QueryResultSnapshot{
-		SharedTokens:   resp.SharedTokens,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		SharedTokens:      resp.SharedTokens,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 

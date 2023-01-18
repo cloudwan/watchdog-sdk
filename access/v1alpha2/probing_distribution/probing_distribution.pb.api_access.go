@@ -81,8 +81,9 @@ func (a *apiProbingDistributionAccess) BatchGetProbingDistributions(ctx context.
 
 func (a *apiProbingDistributionAccess) QueryProbingDistributions(ctx context.Context, query *probing_distribution.ListQuery) (*probing_distribution.QueryResultSnapshot, error) {
 	request := &probing_distribution_client.ListProbingDistributionsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -97,10 +98,12 @@ func (a *apiProbingDistributionAccess) QueryProbingDistributions(ctx context.Con
 		ProbingDistributions: resp.ProbingDistributions,
 		NextPageCursor:       resp.NextPageToken,
 		PrevPageCursor:       resp.PrevPageToken,
+		TotalResultsCount:    resp.TotalResultsCount,
+		CurrentOffset:        resp.CurrentOffset,
 	}, nil
 }
 
-func (a *apiProbingDistributionAccess) SearchProbingDistributions(ctx context.Context, query *probing_distribution.SearchQuery) (*probing_distribution.SearchQueryResultSnapshot, error) {
+func (a *apiProbingDistributionAccess) SearchProbingDistributions(ctx context.Context, query *probing_distribution.SearchQuery) (*probing_distribution.QueryResultSnapshot, error) {
 	request := &probing_distribution_client.SearchProbingDistributionsRequest{
 		Phrase:    query.Phrase,
 		Filter:    query.Filter,
@@ -115,14 +118,12 @@ func (a *apiProbingDistributionAccess) SearchProbingDistributions(ctx context.Co
 	if err != nil {
 		return nil, err
 	}
-	return &probing_distribution.SearchQueryResultSnapshot{
-		QueryResultSnapshot: probing_distribution.QueryResultSnapshot{
-			ProbingDistributions: resp.ProbingDistributions,
-			NextPageCursor:       resp.NextPageToken,
-			PrevPageCursor:       resp.PrevPageToken,
-		},
-		CurrentOffset:     resp.CurrentOffset,
-		TotalResultsCount: resp.TotalResultsCount,
+	return &probing_distribution.QueryResultSnapshot{
+		ProbingDistributions: resp.ProbingDistributions,
+		NextPageCursor:       resp.NextPageToken,
+		PrevPageCursor:       resp.PrevPageToken,
+		CurrentOffset:        resp.CurrentOffset,
+		TotalResultsCount:    resp.TotalResultsCount,
 	}, nil
 }
 

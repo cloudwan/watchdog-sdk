@@ -804,13 +804,14 @@ func (fps *ResolveGeoIPResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ResolveGeoIPResponse
 func (fps *ResolveGeoIPResponse_FieldSubPath) Get(source *ResolveGeoIPResponse) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asASInfoFieldPath, ok := fps.AsAsInfoSubPath(); ok {
-		values = append(values, asASInfoFieldPath.Get(source.GetAsInfo())...)
-	} else if asCarrierFieldPath, ok := fps.AsCarrierSubPath(); ok {
-		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
-	} else {
+	switch fps.selector {
+	case ResolveGeoIPResponse_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	case ResolveGeoIPResponse_FieldPathSelectorAsInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetAsInfo())...)
+	case ResolveGeoIPResponse_FieldPathSelectorCarrier:
+		values = append(values, fps.subPath.GetRaw(source.GetCarrier())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveGeoIPResponse: %d", fps.selector))
 	}
 	return
@@ -1953,11 +1954,12 @@ func (fps *BulkResolveGeoIPResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BulkResolveGeoIPResponse
 func (fps *BulkResolveGeoIPResponse_FieldSubPath) Get(source *BulkResolveGeoIPResponse) (values []interface{}) {
-	if asGeoIPDataFieldPath, ok := fps.AsGeoIpInfoSubPath(); ok {
+	switch fps.selector {
+	case BulkResolveGeoIPResponse_FieldPathSelectorGeoIpInfo:
 		for _, item := range source.GetGeoIpInfo() {
-			values = append(values, asGeoIPDataFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BulkResolveGeoIPResponse: %d", fps.selector))
 	}
 	return
@@ -2653,13 +2655,14 @@ func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BulkResolveGeoIPResponse_GeoIPData
 func (fps *BulkResolveGeoIPResponseGeoIPData_FieldSubPath) Get(source *BulkResolveGeoIPResponse_GeoIPData) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asASInfoFieldPath, ok := fps.AsAsInfoSubPath(); ok {
-		values = append(values, asASInfoFieldPath.Get(source.GetAsInfo())...)
-	} else if asCarrierFieldPath, ok := fps.AsCarrierSubPath(); ok {
-		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
-	} else {
+	switch fps.selector {
+	case BulkResolveGeoIPResponseGeoIPData_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	case BulkResolveGeoIPResponseGeoIPData_FieldPathSelectorAsInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetAsInfo())...)
+	case BulkResolveGeoIPResponseGeoIPData_FieldPathSelectorCarrier:
+		values = append(values, fps.subPath.GetRaw(source.GetCarrier())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for BulkResolveGeoIPResponse_GeoIPData: %d", fps.selector))
 	}
 	return
@@ -3430,11 +3433,12 @@ func (fps *ResolveEnvironmentRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ResolveEnvironmentRequest
 func (fps *ResolveEnvironmentRequest_FieldSubPath) Get(source *ResolveEnvironmentRequest) (values []interface{}) {
-	if asWLANFieldPath, ok := fps.AsWlansSubPath(); ok {
+	switch fps.selector {
+	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		for _, item := range source.GetWlans() {
-			values = append(values, asWLANFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fps.selector))
 	}
 	return
@@ -4164,15 +4168,16 @@ func (fps *ResolveEnvironmentResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ResolveEnvironmentResponse
 func (fps *ResolveEnvironmentResponse_FieldSubPath) Get(source *ResolveEnvironmentResponse) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asASInfoFieldPath, ok := fps.AsAsInfoSubPath(); ok {
-		values = append(values, asASInfoFieldPath.Get(source.GetAsInfo())...)
-	} else if asCarrierFieldPath, ok := fps.AsCarrierSubPath(); ok {
-		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
-	} else if asLocationFieldPath, ok := fps.AsDiscoveredLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetDiscoveredLocation())...)
-	} else {
+	switch fps.selector {
+	case ResolveEnvironmentResponse_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	case ResolveEnvironmentResponse_FieldPathSelectorAsInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetAsInfo())...)
+	case ResolveEnvironmentResponse_FieldPathSelectorCarrier:
+		values = append(values, fps.subPath.GetRaw(source.GetCarrier())...)
+	case ResolveEnvironmentResponse_FieldPathSelectorDiscoveredLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetDiscoveredLocation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentResponse: %d", fps.selector))
 	}
 	return

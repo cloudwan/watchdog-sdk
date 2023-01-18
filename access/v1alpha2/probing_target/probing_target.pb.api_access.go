@@ -81,8 +81,9 @@ func (a *apiProbingTargetAccess) BatchGetProbingTargets(ctx context.Context, ref
 
 func (a *apiProbingTargetAccess) QueryProbingTargets(ctx context.Context, query *probing_target.ListQuery) (*probing_target.QueryResultSnapshot, error) {
 	request := &probing_target_client.ListProbingTargetsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,13 +95,15 @@ func (a *apiProbingTargetAccess) QueryProbingTargets(ctx context.Context, query 
 		return nil, err
 	}
 	return &probing_target.QueryResultSnapshot{
-		ProbingTargets: resp.ProbingTargets,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		ProbingTargets:    resp.ProbingTargets,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 
-func (a *apiProbingTargetAccess) SearchProbingTargets(ctx context.Context, query *probing_target.SearchQuery) (*probing_target.SearchQueryResultSnapshot, error) {
+func (a *apiProbingTargetAccess) SearchProbingTargets(ctx context.Context, query *probing_target.SearchQuery) (*probing_target.QueryResultSnapshot, error) {
 	request := &probing_target_client.SearchProbingTargetsRequest{
 		Phrase:    query.Phrase,
 		Filter:    query.Filter,
@@ -115,12 +118,10 @@ func (a *apiProbingTargetAccess) SearchProbingTargets(ctx context.Context, query
 	if err != nil {
 		return nil, err
 	}
-	return &probing_target.SearchQueryResultSnapshot{
-		QueryResultSnapshot: probing_target.QueryResultSnapshot{
-			ProbingTargets: resp.ProbingTargets,
-			NextPageCursor: resp.NextPageToken,
-			PrevPageCursor: resp.PrevPageToken,
-		},
+	return &probing_target.QueryResultSnapshot{
+		ProbingTargets:    resp.ProbingTargets,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
 		CurrentOffset:     resp.CurrentOffset,
 		TotalResultsCount: resp.TotalResultsCount,
 	}, nil

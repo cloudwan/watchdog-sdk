@@ -419,6 +419,9 @@ func (o *ListSharedTokensRequest) MakeDiffFieldMask(other *ListSharedTokensReque
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListSharedTokensRequest) Clone() *ListSharedTokensRequest {
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*shared_token.SharedToken_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListSharedTokensRequest) Merge(source *ListSharedTokensRequest) {
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListSharedTokensRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListSharedTokensResponse) MakeDiffFieldMask(other *ListSharedTokensResp
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListSharedTokensResponse) Clone() *ListSharedTokensResponse {
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListSharedTokensResponse) Merge(source *ListSharedTokensResponse) {
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListSharedTokensResponse) MergeRaw(source gotenobject.GotenObjectExt) {

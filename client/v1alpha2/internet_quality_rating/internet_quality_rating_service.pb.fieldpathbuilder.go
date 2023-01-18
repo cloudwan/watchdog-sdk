@@ -938,6 +938,9 @@ func (ListInternetQualityRatingsRequestFieldPathBuilder) FieldMask() ListInterne
 func (ListInternetQualityRatingsRequestFieldPathBuilder) View() ListInternetQualityRatingsRequestPathSelectorView {
 	return ListInternetQualityRatingsRequestPathSelectorView{}
 }
+func (ListInternetQualityRatingsRequestFieldPathBuilder) IncludePagingInfo() ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo {
+	return ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo{}
+}
 
 type ListInternetQualityRatingsRequestPathSelectorParent struct{}
 
@@ -1037,6 +1040,20 @@ func (s ListInternetQualityRatingsRequestPathSelectorView) WithArrayOfValues(val
 	return s.FieldPath().WithIArrayOfValues(values).(*ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues)
 }
 
+type ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo struct{}
+
+func (ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo) FieldPath() *ListInternetQualityRatingsRequest_FieldTerminalPath {
+	return &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo}
+}
+
+func (s ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo) WithValue(value bool) *ListInternetQualityRatingsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListInternetQualityRatingsRequest_FieldTerminalPathValue)
+}
+
+func (s ListInternetQualityRatingsRequestPathSelectorIncludePagingInfo) WithArrayOfValues(values []bool) *ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues)
+}
+
 type ListInternetQualityRatingsResponseFieldPathBuilder struct{}
 
 func NewListInternetQualityRatingsResponseFieldPathBuilder() ListInternetQualityRatingsResponseFieldPathBuilder {
@@ -1050,6 +1067,12 @@ func (ListInternetQualityRatingsResponseFieldPathBuilder) PrevPageToken() ListIn
 }
 func (ListInternetQualityRatingsResponseFieldPathBuilder) NextPageToken() ListInternetQualityRatingsResponsePathSelectorNextPageToken {
 	return ListInternetQualityRatingsResponsePathSelectorNextPageToken{}
+}
+func (ListInternetQualityRatingsResponseFieldPathBuilder) CurrentOffset() ListInternetQualityRatingsResponsePathSelectorCurrentOffset {
+	return ListInternetQualityRatingsResponsePathSelectorCurrentOffset{}
+}
+func (ListInternetQualityRatingsResponseFieldPathBuilder) TotalResultsCount() ListInternetQualityRatingsResponsePathSelectorTotalResultsCount {
+	return ListInternetQualityRatingsResponsePathSelectorTotalResultsCount{}
 }
 
 type ListInternetQualityRatingsResponsePathSelectorInternetQualityRatings struct{}
@@ -1779,6 +1802,34 @@ func (s ListInternetQualityRatingsResponsePathSelectorNextPageToken) WithValue(v
 }
 
 func (s ListInternetQualityRatingsResponsePathSelectorNextPageToken) WithArrayOfValues(values []*internet_quality_rating.PagerCursor) *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListInternetQualityRatingsResponsePathSelectorCurrentOffset struct{}
+
+func (ListInternetQualityRatingsResponsePathSelectorCurrentOffset) FieldPath() *ListInternetQualityRatingsResponse_FieldTerminalPath {
+	return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset}
+}
+
+func (s ListInternetQualityRatingsResponsePathSelectorCurrentOffset) WithValue(value int32) *ListInternetQualityRatingsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListInternetQualityRatingsResponse_FieldTerminalPathValue)
+}
+
+func (s ListInternetQualityRatingsResponsePathSelectorCurrentOffset) WithArrayOfValues(values []int32) *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues)
+}
+
+type ListInternetQualityRatingsResponsePathSelectorTotalResultsCount struct{}
+
+func (ListInternetQualityRatingsResponsePathSelectorTotalResultsCount) FieldPath() *ListInternetQualityRatingsResponse_FieldTerminalPath {
+	return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount}
+}
+
+func (s ListInternetQualityRatingsResponsePathSelectorTotalResultsCount) WithValue(value int32) *ListInternetQualityRatingsResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ListInternetQualityRatingsResponse_FieldTerminalPathValue)
+}
+
+func (s ListInternetQualityRatingsResponsePathSelectorTotalResultsCount) WithArrayOfValues(values []int32) *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues)
 }
 

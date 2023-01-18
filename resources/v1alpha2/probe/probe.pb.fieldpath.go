@@ -436,17 +436,18 @@ func (fps *Probe_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe
 func (fps *Probe_FieldSubPath) Get(source *Probe) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asSpecFieldPath, ok := fps.AsSpecSubPath(); ok {
-		values = append(values, asSpecFieldPath.Get(source.GetSpec())...)
-	} else if asStatusFieldPath, ok := fps.AsStatusSubPath(); ok {
-		values = append(values, asStatusFieldPath.Get(source.GetStatus())...)
-	} else if asMemoFieldPath, ok := fps.AsMemoSubPath(); ok {
+	switch fps.selector {
+	case Probe_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case Probe_FieldPathSelectorSpec:
+		values = append(values, fps.subPath.GetRaw(source.GetSpec())...)
+	case Probe_FieldPathSelectorStatus:
+		values = append(values, fps.subPath.GetRaw(source.GetStatus())...)
+	case Probe_FieldPathSelectorMemo:
 		for _, item := range source.GetMemo() {
-			values = append(values, asMemoFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe: %d", fps.selector))
 	}
 	return
@@ -1531,21 +1532,22 @@ func (fps *ProbeSpec_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe_Spec
 func (fps *ProbeSpec_FieldSubPath) Get(source *Probe_Spec) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsPrimaryLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetPrimaryLocation())...)
-	} else if asLocationDiscoverySpecFieldPath, ok := fps.AsLocationDiscoverySubPath(); ok {
-		values = append(values, asLocationDiscoverySpecFieldPath.Get(source.GetLocationDiscovery())...)
-	} else if asContactInformationFieldPath, ok := fps.AsContactInfoSubPath(); ok {
-		values = append(values, asContactInformationFieldPath.Get(source.GetContactInfo())...)
-	} else if asActivationSpecFieldPath, ok := fps.AsActivationSubPath(); ok {
-		values = append(values, asActivationSpecFieldPath.Get(source.GetActivation())...)
-	} else if asAccessTokenSpecFieldPath, ok := fps.AsAccessTokenSubPath(); ok {
-		values = append(values, asAccessTokenSpecFieldPath.Get(source.GetAccessToken())...)
-	} else if asTargetServersFieldPath, ok := fps.AsTargetServersSubPath(); ok {
-		values = append(values, asTargetServersFieldPath.Get(source.GetTargetServers())...)
-	} else if asPcapSettingsFieldPath, ok := fps.AsPcapSettingsSubPath(); ok {
-		values = append(values, asPcapSettingsFieldPath.Get(source.GetPcapSettings())...)
-	} else {
+	switch fps.selector {
+	case ProbeSpec_FieldPathSelectorPrimaryLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetPrimaryLocation())...)
+	case ProbeSpec_FieldPathSelectorLocationDiscovery:
+		values = append(values, fps.subPath.GetRaw(source.GetLocationDiscovery())...)
+	case ProbeSpec_FieldPathSelectorContactInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetContactInfo())...)
+	case ProbeSpec_FieldPathSelectorActivation:
+		values = append(values, fps.subPath.GetRaw(source.GetActivation())...)
+	case ProbeSpec_FieldPathSelectorAccessToken:
+		values = append(values, fps.subPath.GetRaw(source.GetAccessToken())...)
+	case ProbeSpec_FieldPathSelectorTargetServers:
+		values = append(values, fps.subPath.GetRaw(source.GetTargetServers())...)
+	case ProbeSpec_FieldPathSelectorPcapSettings:
+		values = append(values, fps.subPath.GetRaw(source.GetPcapSettings())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec: %d", fps.selector))
 	}
 	return
@@ -3003,23 +3005,24 @@ func (fps *ProbeStatus_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe_Status
 func (fps *ProbeStatus_FieldSubPath) Get(source *Probe_Status) (values []interface{}) {
-	if asASInfoFieldPath, ok := fps.AsAsInfoSubPath(); ok {
-		values = append(values, asASInfoFieldPath.Get(source.GetAsInfo())...)
-	} else if asCarrierFieldPath, ok := fps.AsCarrierSubPath(); ok {
-		values = append(values, asCarrierFieldPath.Get(source.GetCarrier())...)
-	} else if asLocationFieldPath, ok := fps.AsActiveLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetActiveLocation())...)
-	} else if asLocationFieldPath, ok := fps.AsDiscoveredLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetDiscoveredLocation())...)
-	} else if asSoftwareVersionFieldPath, ok := fps.AsSoftwareVersionSubPath(); ok {
-		values = append(values, asSoftwareVersionFieldPath.Get(source.GetSoftwareVersion())...)
-	} else if asSystemFieldPath, ok := fps.AsSystemInfoSubPath(); ok {
-		values = append(values, asSystemFieldPath.Get(source.GetSystemInfo())...)
-	} else if asActivationStateFieldPath, ok := fps.AsActivationSubPath(); ok {
-		values = append(values, asActivationStateFieldPath.Get(source.GetActivation())...)
-	} else if asBandwidthFieldPath, ok := fps.AsBandwidthSubPath(); ok {
-		values = append(values, asBandwidthFieldPath.Get(source.GetBandwidth())...)
-	} else {
+	switch fps.selector {
+	case ProbeStatus_FieldPathSelectorAsInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetAsInfo())...)
+	case ProbeStatus_FieldPathSelectorCarrier:
+		values = append(values, fps.subPath.GetRaw(source.GetCarrier())...)
+	case ProbeStatus_FieldPathSelectorActiveLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetActiveLocation())...)
+	case ProbeStatus_FieldPathSelectorDiscoveredLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetDiscoveredLocation())...)
+	case ProbeStatus_FieldPathSelectorSoftwareVersion:
+		values = append(values, fps.subPath.GetRaw(source.GetSoftwareVersion())...)
+	case ProbeStatus_FieldPathSelectorSystemInfo:
+		values = append(values, fps.subPath.GetRaw(source.GetSystemInfo())...)
+	case ProbeStatus_FieldPathSelectorActivation:
+		values = append(values, fps.subPath.GetRaw(source.GetActivation())...)
+	case ProbeStatus_FieldPathSelectorBandwidth:
+		values = append(values, fps.subPath.GetRaw(source.GetBandwidth())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fps.selector))
 	}
 	return
@@ -5400,13 +5403,14 @@ func (fps *ProbeSpecTargetServers_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe_Spec_TargetServers
 func (fps *ProbeSpecTargetServers_FieldSubPath) Get(source *Probe_Spec_TargetServers) (values []interface{}) {
-	if asIcmpTargetFieldPath, ok := fps.AsIcmpTargetSubPath(); ok {
-		values = append(values, asIcmpTargetFieldPath.Get(source.GetIcmpTarget())...)
-	} else if asUdpTargetFieldPath, ok := fps.AsUdpTargetSubPath(); ok {
-		values = append(values, asUdpTargetFieldPath.Get(source.GetUdpTarget())...)
-	} else if asSpeedTestTargetFieldPath, ok := fps.AsSpeedTestTargetSubPath(); ok {
-		values = append(values, asSpeedTestTargetFieldPath.Get(source.GetSpeedTestTarget())...)
-	} else {
+	switch fps.selector {
+	case ProbeSpecTargetServers_FieldPathSelectorIcmpTarget:
+		values = append(values, fps.subPath.GetRaw(source.GetIcmpTarget())...)
+	case ProbeSpecTargetServers_FieldPathSelectorUdpTarget:
+		values = append(values, fps.subPath.GetRaw(source.GetUdpTarget())...)
+	case ProbeSpecTargetServers_FieldPathSelectorSpeedTestTarget:
+		values = append(values, fps.subPath.GetRaw(source.GetSpeedTestTarget())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fps.selector))
 	}
 	return
@@ -7940,9 +7944,10 @@ func (fps *ProbeStatusSystem_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe_Status_System
 func (fps *ProbeStatusSystem_FieldSubPath) Get(source *Probe_Status_System) (values []interface{}) {
-	if asOSFieldPath, ok := fps.AsOsSubPath(); ok {
-		values = append(values, asOSFieldPath.Get(source.GetOs())...)
-	} else {
+	switch fps.selector {
+	case ProbeStatusSystem_FieldPathSelectorOs:
+		values = append(values, fps.subPath.GetRaw(source.GetOs())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_System: %d", fps.selector))
 	}
 	return
@@ -8779,11 +8784,12 @@ func (fps *ProbeStatusActivationState_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Probe_Status_ActivationState
 func (fps *ProbeStatusActivationState_FieldSubPath) Get(source *Probe_Status_ActivationState) (values []interface{}) {
-	if asSessionFieldPath, ok := fps.AsCurrentSessionSubPath(); ok {
-		values = append(values, asSessionFieldPath.Get(source.GetCurrentSession())...)
-	} else if asInvitationStateFieldPath, ok := fps.AsLastInvitationSubPath(); ok {
-		values = append(values, asInvitationStateFieldPath.Get(source.GetLastInvitation())...)
-	} else {
+	switch fps.selector {
+	case ProbeStatusActivationState_FieldPathSelectorCurrentSession:
+		values = append(values, fps.subPath.GetRaw(source.GetCurrentSession())...)
+	case ProbeStatusActivationState_FieldPathSelectorLastInvitation:
+		values = append(values, fps.subPath.GetRaw(source.GetLastInvitation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState: %d", fps.selector))
 	}
 	return

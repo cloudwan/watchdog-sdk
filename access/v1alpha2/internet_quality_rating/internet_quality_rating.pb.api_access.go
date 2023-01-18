@@ -81,8 +81,9 @@ func (a *apiInternetQualityRatingAccess) BatchGetInternetQualityRatings(ctx cont
 
 func (a *apiInternetQualityRatingAccess) QueryInternetQualityRatings(ctx context.Context, query *internet_quality_rating.ListQuery) (*internet_quality_rating.QueryResultSnapshot, error) {
 	request := &internet_quality_rating_client.ListInternetQualityRatingsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -97,6 +98,8 @@ func (a *apiInternetQualityRatingAccess) QueryInternetQualityRatings(ctx context
 		InternetQualityRatings: resp.InternetQualityRatings,
 		NextPageCursor:         resp.NextPageToken,
 		PrevPageCursor:         resp.PrevPageToken,
+		TotalResultsCount:      resp.TotalResultsCount,
+		CurrentOffset:          resp.CurrentOffset,
 	}, nil
 }
 

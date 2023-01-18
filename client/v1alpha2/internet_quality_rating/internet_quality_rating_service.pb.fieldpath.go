@@ -1239,11 +1239,12 @@ func (fps *BatchGetInternetQualityRatingsResponse_FieldSubPath) JSONString() str
 
 // Get returns all values pointed by selected field from source BatchGetInternetQualityRatingsResponse
 func (fps *BatchGetInternetQualityRatingsResponse_FieldSubPath) Get(source *BatchGetInternetQualityRatingsResponse) (values []interface{}) {
-	if asInternetQualityRatingFieldPath, ok := fps.AsInternetQualityRatingsSubPath(); ok {
+	switch fps.selector {
+	case BatchGetInternetQualityRatingsResponse_FieldPathSelectorInternetQualityRatings:
 		for _, item := range source.GetInternetQualityRatings() {
-			values = append(values, asInternetQualityRatingFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetInternetQualityRatingsResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListInternetQualityRatingsRequest_FieldPath interface {
 type ListInternetQualityRatingsRequest_FieldPathSelector int32
 
 const (
-	ListInternetQualityRatingsRequest_FieldPathSelectorParent    ListInternetQualityRatingsRequest_FieldPathSelector = 0
-	ListInternetQualityRatingsRequest_FieldPathSelectorPageSize  ListInternetQualityRatingsRequest_FieldPathSelector = 1
-	ListInternetQualityRatingsRequest_FieldPathSelectorPageToken ListInternetQualityRatingsRequest_FieldPathSelector = 2
-	ListInternetQualityRatingsRequest_FieldPathSelectorOrderBy   ListInternetQualityRatingsRequest_FieldPathSelector = 3
-	ListInternetQualityRatingsRequest_FieldPathSelectorFilter    ListInternetQualityRatingsRequest_FieldPathSelector = 4
-	ListInternetQualityRatingsRequest_FieldPathSelectorFieldMask ListInternetQualityRatingsRequest_FieldPathSelector = 5
-	ListInternetQualityRatingsRequest_FieldPathSelectorView      ListInternetQualityRatingsRequest_FieldPathSelector = 6
+	ListInternetQualityRatingsRequest_FieldPathSelectorParent            ListInternetQualityRatingsRequest_FieldPathSelector = 0
+	ListInternetQualityRatingsRequest_FieldPathSelectorPageSize          ListInternetQualityRatingsRequest_FieldPathSelector = 1
+	ListInternetQualityRatingsRequest_FieldPathSelectorPageToken         ListInternetQualityRatingsRequest_FieldPathSelector = 2
+	ListInternetQualityRatingsRequest_FieldPathSelectorOrderBy           ListInternetQualityRatingsRequest_FieldPathSelector = 3
+	ListInternetQualityRatingsRequest_FieldPathSelectorFilter            ListInternetQualityRatingsRequest_FieldPathSelector = 4
+	ListInternetQualityRatingsRequest_FieldPathSelectorFieldMask         ListInternetQualityRatingsRequest_FieldPathSelector = 5
+	ListInternetQualityRatingsRequest_FieldPathSelectorView              ListInternetQualityRatingsRequest_FieldPathSelector = 6
+	ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo ListInternetQualityRatingsRequest_FieldPathSelector = 7
 )
 
 func (s ListInternetQualityRatingsRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListInternetQualityRatingsRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		return "view"
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListInternetQualityRatingsRequest_FieldPath(fp gotenobject.RawFieldPat
 			return &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListInternetQualityRatingsRequest_FieldTerminalPath{selector: ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListInternetQualityRatingsRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) Get(source *ListI
 			}
 		case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) GetSingle(source 
 		return res, res != nil
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) GetDefault() inte
 		return (*internet_quality_rating.InternetQualityRating_FieldMask)(nil)
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) ClearValue(item *
 			item.FieldMask = nil
 		case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorFilter ||
 		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorView
+		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorView ||
+		fp.selector == ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) WithIValue(value 
 		return &ListInternetQualityRatingsRequest_FieldTerminalPathValue{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.InternetQualityRating_FieldMask)}
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		return &ListInternetQualityRatingsRequest_FieldTerminalPathValue{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListInternetQualityRatingsRequest_FieldTerminalPathValue{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListInternetQualityRatingsRequest_FieldTerminalPath) WithIArrayOfValue
 		return &ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.InternetQualityRating_FieldMask)}
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		return &ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListInternetQualityRatingsRequest_FieldTerminalPathValue) AsViewValue
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListInternetQualityRatingsRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListInternetQualityRatingsRequest
 func (fpv *ListInternetQualityRatingsRequest_FieldTerminalPathValue) SetTo(target **ListInternetQualityRatingsRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListInternetQualityRatingsRequest_FieldTerminalPathValue) SetTo(targe
 		(*target).FieldMask = fpv.value.(*internet_quality_rating.InternetQualityRating_FieldMask)
 	case ListInternetQualityRatingsRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListInternetQualityRatingsRequest_FieldTerminalPathValue) CompareWith
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) G
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListInternetQualityRatingsRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) A
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListInternetQualityRatingsRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2268,6 +2311,8 @@ const (
 	ListInternetQualityRatingsResponse_FieldPathSelectorInternetQualityRatings ListInternetQualityRatingsResponse_FieldPathSelector = 0
 	ListInternetQualityRatingsResponse_FieldPathSelectorPrevPageToken          ListInternetQualityRatingsResponse_FieldPathSelector = 1
 	ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken          ListInternetQualityRatingsResponse_FieldPathSelector = 2
+	ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset          ListInternetQualityRatingsResponse_FieldPathSelector = 3
+	ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount      ListInternetQualityRatingsResponse_FieldPathSelector = 4
 )
 
 func (s ListInternetQualityRatingsResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListInternetQualityRatingsResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListInternetQualityRatingsResponse_FieldPath(fp gotenobject.RawFieldPa
 			return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListInternetQualityRatingsResponse_FieldTerminalPath{selector: ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) Get(source *List
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) GetSingle(source
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) GetDefault() int
 		return (*internet_quality_rating.PagerCursor)(nil)
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		return (*internet_quality_rating.PagerCursor)(nil)
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) ClearValue(item 
 			item.PrevPageToken = nil
 		case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) ClearValueRaw(it
 // IsLeaf - whether field path is holds simple value
 func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListInternetQualityRatingsResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) WithIValue(value
 		return &ListInternetQualityRatingsResponse_FieldTerminalPathValue{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.PagerCursor)}
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		return &ListInternetQualityRatingsResponse_FieldTerminalPathValue{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.PagerCursor)}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		return &ListInternetQualityRatingsResponse_FieldTerminalPathValue{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListInternetQualityRatingsResponse_FieldTerminalPathValue{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListInternetQualityRatingsResponse_FieldTerminalPath) WithIArrayOfValu
 		return &ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.PagerCursor)}
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		return &ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.PagerCursor)}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		return &ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues{ListInternetQualityRatingsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListInternetQualityRatingsResponse_FieldSubPath) JSONString() string 
 
 // Get returns all values pointed by selected field from source ListInternetQualityRatingsResponse
 func (fps *ListInternetQualityRatingsResponse_FieldSubPath) Get(source *ListInternetQualityRatingsResponse) (values []interface{}) {
-	if asInternetQualityRatingFieldPath, ok := fps.AsInternetQualityRatingsSubPath(); ok {
+	switch fps.selector {
+	case ListInternetQualityRatingsResponse_FieldPathSelectorInternetQualityRatings:
 		for _, item := range source.GetInternetQualityRatings() {
-			values = append(values, asInternetQualityRatingFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) AsNextPage
 	res, ok := fpv.value.(*internet_quality_rating.PagerCursor)
 	return res, ok
 }
+func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListInternetQualityRatingsResponse
 func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) SetTo(target **ListInternetQualityRatingsResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) SetTo(targ
 		(*target).PrevPageToken = fpv.value.(*internet_quality_rating.PagerCursor)
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*internet_quality_rating.PagerCursor)
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListInternetQualityRatingsResponse_FieldTerminalPathValue) CompareWit
 		return 0, false
 	case ListInternetQualityRatingsResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListInternetQualityRatingsResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues) 
 		for _, v := range fpaov.values.([]*internet_quality_rating.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListInternetQualityRatingsResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues) 
 }
 func (fpaov *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*internet_quality_rating.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*internet_quality_rating.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListInternetQualityRatingsResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchInternetQualityRatingsResponse_FieldSubPath) JSONString() string
 
 // Get returns all values pointed by selected field from source WatchInternetQualityRatingsResponse
 func (fps *WatchInternetQualityRatingsResponse_FieldSubPath) Get(source *WatchInternetQualityRatingsResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchInternetQualityRatingsResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchInternetQualityRatingsResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateInternetQualityRatingRequest_FieldSubPath) JSONString() string 
 
 // Get returns all values pointed by selected field from source CreateInternetQualityRatingRequest
 func (fps *CreateInternetQualityRatingRequest_FieldSubPath) Get(source *CreateInternetQualityRatingRequest) (values []interface{}) {
-	if asInternetQualityRatingFieldPath, ok := fps.AsInternetQualityRatingSubPath(); ok {
-		values = append(values, asInternetQualityRatingFieldPath.Get(source.GetInternetQualityRating())...)
-	} else {
+	switch fps.selector {
+	case CreateInternetQualityRatingRequest_FieldPathSelectorInternetQualityRating:
+		values = append(values, fps.subPath.GetRaw(source.GetInternetQualityRating())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateInternetQualityRatingRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateInternetQualityRatingRequest_FieldSubPath) JSONString() string 
 
 // Get returns all values pointed by selected field from source UpdateInternetQualityRatingRequest
 func (fps *UpdateInternetQualityRatingRequest_FieldSubPath) Get(source *UpdateInternetQualityRatingRequest) (values []interface{}) {
-	if asInternetQualityRatingFieldPath, ok := fps.AsInternetQualityRatingSubPath(); ok {
-		values = append(values, asInternetQualityRatingFieldPath.Get(source.GetInternetQualityRating())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorInternetQualityRating:
+		values = append(values, fps.subPath.GetRaw(source.GetInternetQualityRating())...)
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateInternetQualityRatingRequestCAS_FieldSubPath) JSONString() stri
 
 // Get returns all values pointed by selected field from source UpdateInternetQualityRatingRequest_CAS
 func (fps *UpdateInternetQualityRatingRequestCAS_FieldSubPath) Get(source *UpdateInternetQualityRatingRequest_CAS) (values []interface{}) {
-	if asInternetQualityRatingFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asInternetQualityRatingFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateInternetQualityRatingRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest_CAS: %d", fps.selector))
 	}
 	return

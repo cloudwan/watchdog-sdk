@@ -896,6 +896,7 @@ func FullListAdminAreasRequest_FieldMask() *ListAdminAreasRequest_FieldMask {
 	res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -939,7 +940,7 @@ func (fieldMask *ListAdminAreasRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 6)
+	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListAdminAreasRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -969,7 +970,7 @@ func (fieldMask *ListAdminAreasRequest_FieldMask) Reset() {
 
 func (fieldMask *ListAdminAreasRequest_FieldMask) Subtract(other *ListAdminAreasRequest_FieldMask) *ListAdminAreasRequest_FieldMask {
 	result := &ListAdminAreasRequest_FieldMask{}
-	removedSelectors := make([]bool, 6)
+	removedSelectors := make([]bool, 7)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1135,6 +1136,8 @@ func (fieldMask *ListAdminAreasRequest_FieldMask) Project(source *ListAdminAreas
 				result.FieldMask = source.FieldMask
 			case ListAdminAreasRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1161,6 +1164,8 @@ func FullListAdminAreasResponse_FieldMask() *ListAdminAreasResponse_FieldMask {
 	res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorAdminAreas})
 	res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1204,7 +1209,7 @@ func (fieldMask *ListAdminAreasResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListAdminAreasResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1234,7 +1239,7 @@ func (fieldMask *ListAdminAreasResponse_FieldMask) Reset() {
 
 func (fieldMask *ListAdminAreasResponse_FieldMask) Subtract(other *ListAdminAreasResponse_FieldMask) *ListAdminAreasResponse_FieldMask {
 	result := &ListAdminAreasResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListAdminAreasResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListAdminAreasResponse_FieldPathSelectorAdminAreas: &admin_area.AdminArea_FieldMask{},
 	}
@@ -1441,6 +1446,10 @@ func (fieldMask *ListAdminAreasResponse_FieldMask) Project(source *ListAdminArea
 				result.PrevPageToken = source.PrevPageToken
 			case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListAdminAreasResponse_FieldSubPath:
 			switch tp.selector {

@@ -1237,11 +1237,12 @@ func (fps *BatchGetAdminAreasResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BatchGetAdminAreasResponse
 func (fps *BatchGetAdminAreasResponse_FieldSubPath) Get(source *BatchGetAdminAreasResponse) (values []interface{}) {
-	if asAdminAreaFieldPath, ok := fps.AsAdminAreasSubPath(); ok {
+	switch fps.selector {
+	case BatchGetAdminAreasResponse_FieldPathSelectorAdminAreas:
 		for _, item := range source.GetAdminAreas() {
-			values = append(values, asAdminAreaFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetAdminAreasResponse: %d", fps.selector))
 	}
 	return
@@ -1640,12 +1641,13 @@ type ListAdminAreasRequest_FieldPath interface {
 type ListAdminAreasRequest_FieldPathSelector int32
 
 const (
-	ListAdminAreasRequest_FieldPathSelectorPageSize  ListAdminAreasRequest_FieldPathSelector = 0
-	ListAdminAreasRequest_FieldPathSelectorPageToken ListAdminAreasRequest_FieldPathSelector = 1
-	ListAdminAreasRequest_FieldPathSelectorOrderBy   ListAdminAreasRequest_FieldPathSelector = 2
-	ListAdminAreasRequest_FieldPathSelectorFilter    ListAdminAreasRequest_FieldPathSelector = 3
-	ListAdminAreasRequest_FieldPathSelectorFieldMask ListAdminAreasRequest_FieldPathSelector = 4
-	ListAdminAreasRequest_FieldPathSelectorView      ListAdminAreasRequest_FieldPathSelector = 5
+	ListAdminAreasRequest_FieldPathSelectorPageSize          ListAdminAreasRequest_FieldPathSelector = 0
+	ListAdminAreasRequest_FieldPathSelectorPageToken         ListAdminAreasRequest_FieldPathSelector = 1
+	ListAdminAreasRequest_FieldPathSelectorOrderBy           ListAdminAreasRequest_FieldPathSelector = 2
+	ListAdminAreasRequest_FieldPathSelectorFilter            ListAdminAreasRequest_FieldPathSelector = 3
+	ListAdminAreasRequest_FieldPathSelectorFieldMask         ListAdminAreasRequest_FieldPathSelector = 4
+	ListAdminAreasRequest_FieldPathSelectorView              ListAdminAreasRequest_FieldPathSelector = 5
+	ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo ListAdminAreasRequest_FieldPathSelector = 6
 )
 
 func (s ListAdminAreasRequest_FieldPathSelector) String() string {
@@ -1662,6 +1664,8 @@ func (s ListAdminAreasRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		return "view"
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", s))
 	}
@@ -1685,6 +1689,8 @@ func BuildListAdminAreasRequest_FieldPath(fp gotenobject.RawFieldPath) (ListAdmi
 			return &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListAdminAreasRequest_FieldTerminalPath{selector: ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListAdminAreasRequest", fp)
@@ -1750,6 +1756,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) Get(source *ListAdminAreasReq
 			}
 		case ListAdminAreasRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 		}
@@ -1780,6 +1788,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) GetSingle(source *ListAdminAr
 		return res, res != nil
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 	}
@@ -1804,6 +1814,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*admin_area.AdminArea_FieldMask)(nil)
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 	}
@@ -1824,6 +1836,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) ClearValue(item *ListAdminAre
 			item.FieldMask = nil
 		case ListAdminAreasRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 		}
@@ -1841,7 +1855,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListAdminAreasRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListAdminAreasRequest_FieldPathSelectorFilter ||
 		fp.selector == ListAdminAreasRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListAdminAreasRequest_FieldPathSelectorView
+		fp.selector == ListAdminAreasRequest_FieldPathSelectorView ||
+		fp.selector == ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListAdminAreasRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1862,6 +1877,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) WithIValue(value interface{})
 		return &ListAdminAreasRequest_FieldTerminalPathValue{ListAdminAreasRequest_FieldTerminalPath: *fp, value: value.(*admin_area.AdminArea_FieldMask)}
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		return &ListAdminAreasRequest_FieldTerminalPathValue{ListAdminAreasRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListAdminAreasRequest_FieldTerminalPathValue{ListAdminAreasRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 	}
@@ -1886,6 +1903,8 @@ func (fp *ListAdminAreasRequest_FieldTerminalPath) WithIArrayOfValues(values int
 		return &ListAdminAreasRequest_FieldTerminalPathArrayOfValues{ListAdminAreasRequest_FieldTerminalPath: *fp, values: values.([]*admin_area.AdminArea_FieldMask)}
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		return &ListAdminAreasRequest_FieldTerminalPathArrayOfValues{ListAdminAreasRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListAdminAreasRequest_FieldTerminalPathArrayOfValues{ListAdminAreasRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fp.selector))
 	}
@@ -1970,6 +1989,10 @@ func (fpv *ListAdminAreasRequest_FieldTerminalPathValue) AsViewValue() (view.Vie
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListAdminAreasRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListAdminAreasRequest
 func (fpv *ListAdminAreasRequest_FieldTerminalPathValue) SetTo(target **ListAdminAreasRequest) {
@@ -1989,6 +2012,8 @@ func (fpv *ListAdminAreasRequest_FieldTerminalPathValue) SetTo(target **ListAdmi
 		(*target).FieldMask = fpv.value.(*admin_area.AdminArea_FieldMask)
 	case ListAdminAreasRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasRequest: %d", fpv.selector))
 	}
@@ -2026,6 +2051,16 @@ func (fpv *ListAdminAreasRequest_FieldTerminalPathValue) CompareWith(source *Lis
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2162,6 +2197,10 @@ func (fpaov *ListAdminAreasRequest_FieldTerminalPathArrayOfValues) GetRawValues(
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListAdminAreasRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2189,6 +2228,10 @@ func (fpaov *ListAdminAreasRequest_FieldTerminalPathArrayOfValues) AsViewArrayOf
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListAdminAreasRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2209,9 +2252,11 @@ type ListAdminAreasResponse_FieldPath interface {
 type ListAdminAreasResponse_FieldPathSelector int32
 
 const (
-	ListAdminAreasResponse_FieldPathSelectorAdminAreas    ListAdminAreasResponse_FieldPathSelector = 0
-	ListAdminAreasResponse_FieldPathSelectorPrevPageToken ListAdminAreasResponse_FieldPathSelector = 1
-	ListAdminAreasResponse_FieldPathSelectorNextPageToken ListAdminAreasResponse_FieldPathSelector = 2
+	ListAdminAreasResponse_FieldPathSelectorAdminAreas        ListAdminAreasResponse_FieldPathSelector = 0
+	ListAdminAreasResponse_FieldPathSelectorPrevPageToken     ListAdminAreasResponse_FieldPathSelector = 1
+	ListAdminAreasResponse_FieldPathSelectorNextPageToken     ListAdminAreasResponse_FieldPathSelector = 2
+	ListAdminAreasResponse_FieldPathSelectorCurrentOffset     ListAdminAreasResponse_FieldPathSelector = 3
+	ListAdminAreasResponse_FieldPathSelectorTotalResultsCount ListAdminAreasResponse_FieldPathSelector = 4
 )
 
 func (s ListAdminAreasResponse_FieldPathSelector) String() string {
@@ -2222,6 +2267,10 @@ func (s ListAdminAreasResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", s))
 	}
@@ -2239,6 +2288,10 @@ func BuildListAdminAreasResponse_FieldPath(fp gotenobject.RawFieldPath) (ListAdm
 			return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListAdminAreasResponse_FieldTerminalPath{selector: ListAdminAreasResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2305,6 +2358,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) Get(source *ListAdminAreasRe
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 		}
@@ -2328,6 +2385,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) GetSingle(source *ListAdminA
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 	}
@@ -2346,6 +2407,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) GetDefault() interface{} {
 		return (*admin_area.PagerCursor)(nil)
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		return (*admin_area.PagerCursor)(nil)
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 	}
@@ -2360,6 +2425,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) ClearValue(item *ListAdminAr
 			item.PrevPageToken = nil
 		case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 		}
@@ -2373,7 +2442,9 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) ClearValueRaw(item proto.Mes
 // IsLeaf - whether field path is holds simple value
 func (fp *ListAdminAreasResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListAdminAreasResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListAdminAreasResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListAdminAreasResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListAdminAreasResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListAdminAreasResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListAdminAreasResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2388,6 +2459,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) WithIValue(value interface{}
 		return &ListAdminAreasResponse_FieldTerminalPathValue{ListAdminAreasResponse_FieldTerminalPath: *fp, value: value.(*admin_area.PagerCursor)}
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		return &ListAdminAreasResponse_FieldTerminalPathValue{ListAdminAreasResponse_FieldTerminalPath: *fp, value: value.(*admin_area.PagerCursor)}
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		return &ListAdminAreasResponse_FieldTerminalPathValue{ListAdminAreasResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		return &ListAdminAreasResponse_FieldTerminalPathValue{ListAdminAreasResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 	}
@@ -2406,6 +2481,10 @@ func (fp *ListAdminAreasResponse_FieldTerminalPath) WithIArrayOfValues(values in
 		return &ListAdminAreasResponse_FieldTerminalPathArrayOfValues{ListAdminAreasResponse_FieldTerminalPath: *fp, values: values.([]*admin_area.PagerCursor)}
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		return &ListAdminAreasResponse_FieldTerminalPathArrayOfValues{ListAdminAreasResponse_FieldTerminalPath: *fp, values: values.([]*admin_area.PagerCursor)}
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		return &ListAdminAreasResponse_FieldTerminalPathArrayOfValues{ListAdminAreasResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		return &ListAdminAreasResponse_FieldTerminalPathArrayOfValues{ListAdminAreasResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fp.selector))
 	}
@@ -2456,11 +2535,12 @@ func (fps *ListAdminAreasResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListAdminAreasResponse
 func (fps *ListAdminAreasResponse_FieldSubPath) Get(source *ListAdminAreasResponse) (values []interface{}) {
-	if asAdminAreaFieldPath, ok := fps.AsAdminAreasSubPath(); ok {
+	switch fps.selector {
+	case ListAdminAreasResponse_FieldPathSelectorAdminAreas:
 		for _, item := range source.GetAdminAreas() {
-			values = append(values, asAdminAreaFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fps.selector))
 	}
 	return
@@ -2595,6 +2675,14 @@ func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) AsNextPageTokenValue()
 	res, ok := fpv.value.(*admin_area.PagerCursor)
 	return res, ok
 }
+func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListAdminAreasResponse
 func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) SetTo(target **ListAdminAreasResponse) {
@@ -2608,6 +2696,10 @@ func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) SetTo(target **ListAdm
 		(*target).PrevPageToken = fpv.value.(*admin_area.PagerCursor)
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*admin_area.PagerCursor)
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fpv.selector))
 	}
@@ -2627,6 +2719,26 @@ func (fpv *ListAdminAreasResponse_FieldTerminalPathValue) CompareWith(source *Li
 		return 0, false
 	case ListAdminAreasResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListAdminAreasResponse: %d", fpv.selector))
 	}
@@ -2821,6 +2933,14 @@ func (fpaov *ListAdminAreasResponse_FieldTerminalPathArrayOfValues) GetRawValues
 		for _, v := range fpaov.values.([]*admin_area.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListAdminAreasResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListAdminAreasResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2834,6 +2954,14 @@ func (fpaov *ListAdminAreasResponse_FieldTerminalPathArrayOfValues) AsPrevPageTo
 }
 func (fpaov *ListAdminAreasResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*admin_area.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*admin_area.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListAdminAreasResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListAdminAreasResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4780,9 +4908,10 @@ func (fps *WatchAdminAreasResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchAdminAreasResponse
 func (fps *WatchAdminAreasResponse_FieldSubPath) Get(source *WatchAdminAreasResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchAdminAreasResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchAdminAreasResponse: %d", fps.selector))
 	}
 	return
@@ -5910,9 +6039,10 @@ func (fps *CreateAdminAreaRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateAdminAreaRequest
 func (fps *CreateAdminAreaRequest_FieldSubPath) Get(source *CreateAdminAreaRequest) (values []interface{}) {
-	if asAdminAreaFieldPath, ok := fps.AsAdminAreaSubPath(); ok {
-		values = append(values, asAdminAreaFieldPath.Get(source.GetAdminArea())...)
-	} else {
+	switch fps.selector {
+	case CreateAdminAreaRequest_FieldPathSelectorAdminArea:
+		values = append(values, fps.subPath.GetRaw(source.GetAdminArea())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateAdminAreaRequest: %d", fps.selector))
 	}
 	return
@@ -6539,11 +6669,12 @@ func (fps *UpdateAdminAreaRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateAdminAreaRequest
 func (fps *UpdateAdminAreaRequest_FieldSubPath) Get(source *UpdateAdminAreaRequest) (values []interface{}) {
-	if asAdminAreaFieldPath, ok := fps.AsAdminAreaSubPath(); ok {
-		values = append(values, asAdminAreaFieldPath.Get(source.GetAdminArea())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateAdminAreaRequest_FieldPathSelectorAdminArea:
+		values = append(values, fps.subPath.GetRaw(source.GetAdminArea())...)
+	case UpdateAdminAreaRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fps.selector))
 	}
 	return
@@ -7197,9 +7328,10 @@ func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateAdminAreaRequest_CAS
 func (fps *UpdateAdminAreaRequestCAS_FieldSubPath) Get(source *UpdateAdminAreaRequest_CAS) (values []interface{}) {
-	if asAdminAreaFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asAdminAreaFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateAdminAreaRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest_CAS: %d", fps.selector))
 	}
 	return

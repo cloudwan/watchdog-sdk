@@ -782,11 +782,12 @@ func (fps *ContactInformation_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ContactInformation
 func (fps *ContactInformation_FieldSubPath) Get(source *ContactInformation) (values []interface{}) {
-	if asPhoneNumberFieldPath, ok := fps.AsPhonesSubPath(); ok {
+	switch fps.selector {
+	case ContactInformation_FieldPathSelectorPhones:
 		for _, item := range source.GetPhones() {
-			values = append(values, asPhoneNumberFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ContactInformation: %d", fps.selector))
 	}
 	return
@@ -2621,11 +2622,12 @@ func (fps *Location_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Location
 func (fps *Location_FieldSubPath) Get(source *Location) (values []interface{}) {
-	if asAddressFieldPath, ok := fps.AsAddressSubPath(); ok {
-		values = append(values, asAddressFieldPath.Get(source.GetAddress())...)
-	} else if asAdminHierarchyFieldPath, ok := fps.AsAdminHierarchySubPath(); ok {
-		values = append(values, asAdminHierarchyFieldPath.Get(source.GetAdminHierarchy())...)
-	} else {
+	switch fps.selector {
+	case Location_FieldPathSelectorAddress:
+		values = append(values, fps.subPath.GetRaw(source.GetAddress())...)
+	case Location_FieldPathSelectorAdminHierarchy:
+		values = append(values, fps.subPath.GetRaw(source.GetAdminHierarchy())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Location: %d", fps.selector))
 	}
 	return
@@ -4774,9 +4776,10 @@ func (fps *ProbingConstraint_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConstraint
 func (fps *ProbingConstraint_FieldSubPath) Get(source *ProbingConstraint) (values []interface{}) {
-	if asAdminHierachyFieldPath, ok := fps.AsMaxSessionsPerAgentLocationSubPath(); ok {
-		values = append(values, asAdminHierachyFieldPath.Get(source.GetMaxSessionsPerAgentLocation())...)
-	} else {
+	switch fps.selector {
+	case ProbingConstraint_FieldPathSelectorMaxSessionsPerAgentLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetMaxSessionsPerAgentLocation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConstraint: %d", fps.selector))
 	}
 	return
@@ -6667,15 +6670,16 @@ func (fps *ProbingSettings_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingSettings
 func (fps *ProbingSettings_FieldSubPath) Get(source *ProbingSettings) (values []interface{}) {
-	if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
-		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
-	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
-		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
-	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
-		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
-	} else {
+	switch fps.selector {
+	case ProbingSettings_FieldPathSelectorPathProbing:
+		values = append(values, fps.subPath.GetRaw(source.GetPathProbing())...)
+	case ProbingSettings_FieldPathSelectorSpeedtestSettings:
+		values = append(values, fps.subPath.GetRaw(source.GetSpeedtestSettings())...)
+	case ProbingSettings_FieldPathSelectorHttpProbingConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetHttpProbingConfig())...)
+	case ProbingSettings_FieldPathSelectorProxyConfiguration:
+		values = append(values, fps.subPath.GetRaw(source.GetProxyConfiguration())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSettings: %d", fps.selector))
 	}
 	return
@@ -8871,11 +8875,12 @@ func (fps *HTTPProbingConfig_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source HTTPProbingConfig
 func (fps *HTTPProbingConfig_FieldSubPath) Get(source *HTTPProbingConfig) (values []interface{}) {
-	if asHTTPRequestFieldPath, ok := fps.AsHttpRequestSubPath(); ok {
-		values = append(values, asHTTPRequestFieldPath.Get(source.GetHttpRequest())...)
-	} else if asHTTPAuthFieldPath, ok := fps.AsAuthConfigSubPath(); ok {
-		values = append(values, asHTTPAuthFieldPath.Get(source.GetAuthConfig())...)
-	} else {
+	switch fps.selector {
+	case HTTPProbingConfig_FieldPathSelectorHttpRequest:
+		values = append(values, fps.subPath.GetRaw(source.GetHttpRequest())...)
+	case HTTPProbingConfig_FieldPathSelectorAuthConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetAuthConfig())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig: %d", fps.selector))
 	}
 	return
@@ -10534,9 +10539,10 @@ func (fps *HTTPProbingConfigHTTPAuth_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source HTTPProbingConfig_HTTPAuth
 func (fps *HTTPProbingConfigHTTPAuth_FieldSubPath) Get(source *HTTPProbingConfig_HTTPAuth) (values []interface{}) {
-	if asHTTPRequestFieldPath, ok := fps.AsTokenRequestSubPath(); ok {
-		values = append(values, asHTTPRequestFieldPath.Get(source.GetTokenRequest())...)
-	} else {
+	switch fps.selector {
+	case HTTPProbingConfigHTTPAuth_FieldPathSelectorTokenRequest:
+		values = append(values, fps.subPath.GetRaw(source.GetTokenRequest())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPAuth: %d", fps.selector))
 	}
 	return
@@ -13213,13 +13219,14 @@ func (fps *HopStat_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source HopStat
 func (fps *HopStat_FieldSubPath) Get(source *HopStat) (values []interface{}) {
-	if asDurationStatsMilliSecondsFieldPath, ok := fps.AsTtlExceededLatencySubPath(); ok {
-		values = append(values, asDurationStatsMilliSecondsFieldPath.Get(source.GetTtlExceededLatency())...)
-	} else if asDurationStatsMilliSecondsFieldPath, ok := fps.AsIcmpLatencySubPath(); ok {
-		values = append(values, asDurationStatsMilliSecondsFieldPath.Get(source.GetIcmpLatency())...)
-	} else if asLossStatsFieldPath, ok := fps.AsLossSubPath(); ok {
-		values = append(values, asLossStatsFieldPath.Get(source.GetLoss())...)
-	} else {
+	switch fps.selector {
+	case HopStat_FieldPathSelectorTtlExceededLatency:
+		values = append(values, fps.subPath.GetRaw(source.GetTtlExceededLatency())...)
+	case HopStat_FieldPathSelectorIcmpLatency:
+		values = append(values, fps.subPath.GetRaw(source.GetIcmpLatency())...)
+	case HopStat_FieldPathSelectorLoss:
+		values = append(values, fps.subPath.GetRaw(source.GetLoss())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for HopStat: %d", fps.selector))
 	}
 	return

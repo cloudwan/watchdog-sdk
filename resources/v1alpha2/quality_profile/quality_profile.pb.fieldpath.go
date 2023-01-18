@@ -377,17 +377,18 @@ func (fps *Profile_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Profile
 func (fps *Profile_FieldSubPath) Get(source *Profile) (values []interface{}) {
-	if asFilterFieldPath, ok := fps.AsFilterSubPath(); ok {
-		values = append(values, asFilterFieldPath.Get(source.GetFilter())...)
-	} else if asMetricThresholdFieldPath, ok := fps.AsMetricThresholdsSubPath(); ok {
+	switch fps.selector {
+	case Profile_FieldPathSelectorFilter:
+		values = append(values, fps.subPath.GetRaw(source.GetFilter())...)
+	case Profile_FieldPathSelectorMetricThresholds:
 		for _, item := range source.GetMetricThresholds() {
-			values = append(values, asMetricThresholdFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asProfileFieldPath, ok := fps.AsOverridesSubPath(); ok {
+	case Profile_FieldPathSelectorOverrides:
 		for _, item := range source.GetOverrides() {
-			values = append(values, asProfileFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for Profile: %d", fps.selector))
 	}
 	return
@@ -1658,11 +1659,12 @@ func (fps *ProfileFilter_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Profile_Filter
 func (fps *ProfileFilter_FieldSubPath) Get(source *Profile_Filter) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsSourceLocationsSubPath(); ok {
+	switch fps.selector {
+	case ProfileFilter_FieldPathSelectorSourceLocations:
 		for _, item := range source.GetSourceLocations() {
-			values = append(values, asLocationFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for Profile_Filter: %d", fps.selector))
 	}
 	return
@@ -2857,13 +2859,14 @@ func (fps *QualityProfile_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source QualityProfile
 func (fps *QualityProfile_FieldSubPath) Get(source *QualityProfile) (values []interface{}) {
-	if asProfileFieldPath, ok := fps.AsProfilesSubPath(); ok {
+	switch fps.selector {
+	case QualityProfile_FieldPathSelectorProfiles:
 		for _, item := range source.GetProfiles() {
-			values = append(values, asProfileFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else {
+	case QualityProfile_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for QualityProfile: %d", fps.selector))
 	}
 	return

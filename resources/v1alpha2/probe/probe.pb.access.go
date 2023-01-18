@@ -55,7 +55,7 @@ type ProbeAccess interface {
 	GetProbe(context.Context, *GetQuery) (*Probe, error)
 	BatchGetProbes(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbes(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbes(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbes(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbe(context.Context, *GetQuery, func(*ProbeChange) error) error
 	WatchProbes(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbe(context.Context, *Probe, ...gotenresource.SaveOption) error
@@ -88,7 +88,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbeQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbes(ctx, asProbeQuery)
 	}

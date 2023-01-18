@@ -652,11 +652,12 @@ func (fps *ReportHopsRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ReportHopsRequest
 func (fps *ReportHopsRequest_FieldSubPath) Get(source *ReportHopsRequest) (values []interface{}) {
-	if asPathFieldPath, ok := fps.AsPathsSubPath(); ok {
+	switch fps.selector {
+	case ReportHopsRequest_FieldPathSelectorPaths:
 		for _, item := range source.GetPaths() {
-			values = append(values, asPathFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fps.selector))
 	}
 	return
@@ -2155,11 +2156,12 @@ func (fps *PathStats_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source PathStats
 func (fps *PathStats_FieldSubPath) Get(source *PathStats) (values []interface{}) {
-	if asPathFieldPath, ok := fps.AsPathsSubPath(); ok {
+	switch fps.selector {
+	case PathStats_FieldPathSelectorPaths:
 		for _, item := range source.GetPaths() {
-			values = append(values, asPathFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for PathStats: %d", fps.selector))
 	}
 	return
@@ -2988,9 +2990,10 @@ func (fps *GetHopReportsRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source GetHopReportsRequest
 func (fps *GetHopReportsRequest_FieldSubPath) Get(source *GetHopReportsRequest) (values []interface{}) {
-	if asTimeIntervalFieldPath, ok := fps.AsIntervalSubPath(); ok {
-		values = append(values, asTimeIntervalFieldPath.Get(source.GetInterval())...)
-	} else {
+	switch fps.selector {
+	case GetHopReportsRequest_FieldPathSelectorInterval:
+		values = append(values, fps.subPath.GetRaw(source.GetInterval())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetHopReportsRequest: %d", fps.selector))
 	}
 	return
@@ -3796,11 +3799,12 @@ func (fps *HopsReport_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source HopsReport
 func (fps *HopsReport_FieldSubPath) Get(source *HopsReport) (values []interface{}) {
-	if asPathStatsFieldPath, ok := fps.AsPathStatsSubPath(); ok {
+	switch fps.selector {
+	case HopsReport_FieldPathSelectorPathStats:
 		for _, item := range source.GetPathStats() {
-			values = append(values, asPathStatsFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for HopsReport: %d", fps.selector))
 	}
 	return
@@ -4721,11 +4725,12 @@ func (fps *GetHopReportsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source GetHopReportsResponse
 func (fps *GetHopReportsResponse_FieldSubPath) Get(source *GetHopReportsResponse) (values []interface{}) {
-	if asHopsReportFieldPath, ok := fps.AsHopsReportSubPath(); ok {
+	switch fps.selector {
+	case GetHopReportsResponse_FieldPathSelectorHopsReport:
 		for _, item := range source.GetHopsReport() {
-			values = append(values, asHopsReportFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetHopReportsResponse: %d", fps.selector))
 	}
 	return

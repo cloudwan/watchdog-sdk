@@ -910,9 +910,10 @@ func (fps *GetPcapRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source GetPcapRequest
 func (fps *GetPcapRequest_FieldSubPath) Get(source *GetPcapRequest) (values []interface{}) {
-	if asTimeIntervalFieldPath, ok := fps.AsIntervalSubPath(); ok {
-		values = append(values, asTimeIntervalFieldPath.Get(source.GetInterval())...)
-	} else {
+	switch fps.selector {
+	case GetPcapRequest_FieldPathSelectorInterval:
+		values = append(values, fps.subPath.GetRaw(source.GetInterval())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetPcapRequest: %d", fps.selector))
 	}
 	return

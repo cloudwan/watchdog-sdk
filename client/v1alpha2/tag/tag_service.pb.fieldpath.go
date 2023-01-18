@@ -1239,11 +1239,12 @@ func (fps *BatchGetTagsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BatchGetTagsResponse
 func (fps *BatchGetTagsResponse_FieldSubPath) Get(source *BatchGetTagsResponse) (values []interface{}) {
-	if asTagFieldPath, ok := fps.AsTagsSubPath(); ok {
+	switch fps.selector {
+	case BatchGetTagsResponse_FieldPathSelectorTags:
 		for _, item := range source.GetTags() {
-			values = append(values, asTagFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetTagsResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListTagsRequest_FieldPath interface {
 type ListTagsRequest_FieldPathSelector int32
 
 const (
-	ListTagsRequest_FieldPathSelectorParent    ListTagsRequest_FieldPathSelector = 0
-	ListTagsRequest_FieldPathSelectorPageSize  ListTagsRequest_FieldPathSelector = 1
-	ListTagsRequest_FieldPathSelectorPageToken ListTagsRequest_FieldPathSelector = 2
-	ListTagsRequest_FieldPathSelectorOrderBy   ListTagsRequest_FieldPathSelector = 3
-	ListTagsRequest_FieldPathSelectorFilter    ListTagsRequest_FieldPathSelector = 4
-	ListTagsRequest_FieldPathSelectorFieldMask ListTagsRequest_FieldPathSelector = 5
-	ListTagsRequest_FieldPathSelectorView      ListTagsRequest_FieldPathSelector = 6
+	ListTagsRequest_FieldPathSelectorParent            ListTagsRequest_FieldPathSelector = 0
+	ListTagsRequest_FieldPathSelectorPageSize          ListTagsRequest_FieldPathSelector = 1
+	ListTagsRequest_FieldPathSelectorPageToken         ListTagsRequest_FieldPathSelector = 2
+	ListTagsRequest_FieldPathSelectorOrderBy           ListTagsRequest_FieldPathSelector = 3
+	ListTagsRequest_FieldPathSelectorFilter            ListTagsRequest_FieldPathSelector = 4
+	ListTagsRequest_FieldPathSelectorFieldMask         ListTagsRequest_FieldPathSelector = 5
+	ListTagsRequest_FieldPathSelectorView              ListTagsRequest_FieldPathSelector = 6
+	ListTagsRequest_FieldPathSelectorIncludePagingInfo ListTagsRequest_FieldPathSelector = 7
 )
 
 func (s ListTagsRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListTagsRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListTagsRequest_FieldPathSelectorView:
 		return "view"
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListTagsRequest_FieldPath(fp gotenobject.RawFieldPath) (ListTagsReques
 			return &ListTagsRequest_FieldTerminalPath{selector: ListTagsRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListTagsRequest_FieldTerminalPath{selector: ListTagsRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListTagsRequest_FieldTerminalPath{selector: ListTagsRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListTagsRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) Get(source *ListTagsRequest) (value
 			}
 		case ListTagsRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) GetSingle(source *ListTagsRequest) 
 		return res, res != nil
 	case ListTagsRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*tag.Tag_FieldMask)(nil)
 	case ListTagsRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) ClearValue(item *ListTagsRequest) {
 			item.FieldMask = nil
 		case ListTagsRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListTagsRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListTagsRequest_FieldPathSelectorFilter ||
 		fp.selector == ListTagsRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListTagsRequest_FieldPathSelectorView
+		fp.selector == ListTagsRequest_FieldPathSelectorView ||
+		fp.selector == ListTagsRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListTagsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) WithIValue(value interface{}) ListT
 		return &ListTagsRequest_FieldTerminalPathValue{ListTagsRequest_FieldTerminalPath: *fp, value: value.(*tag.Tag_FieldMask)}
 	case ListTagsRequest_FieldPathSelectorView:
 		return &ListTagsRequest_FieldTerminalPathValue{ListTagsRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListTagsRequest_FieldTerminalPathValue{ListTagsRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListTagsRequest_FieldTerminalPath) WithIArrayOfValues(values interface
 		return &ListTagsRequest_FieldTerminalPathArrayOfValues{ListTagsRequest_FieldTerminalPath: *fp, values: values.([]*tag.Tag_FieldMask)}
 	case ListTagsRequest_FieldPathSelectorView:
 		return &ListTagsRequest_FieldTerminalPathArrayOfValues{ListTagsRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListTagsRequest_FieldTerminalPathArrayOfValues{ListTagsRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListTagsRequest_FieldTerminalPathValue) AsViewValue() (view.View, boo
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListTagsRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListTagsRequest
 func (fpv *ListTagsRequest_FieldTerminalPathValue) SetTo(target **ListTagsRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListTagsRequest_FieldTerminalPathValue) SetTo(target **ListTagsReques
 		(*target).FieldMask = fpv.value.(*tag.Tag_FieldMask)
 	case ListTagsRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListTagsRequest_FieldTerminalPathValue) CompareWith(source *ListTagsR
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListTagsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (val
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListTagsRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListTagsRequest_FieldTerminalPathArrayOfValues) AsViewArrayOfValues
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListTagsRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2265,9 +2308,11 @@ type ListTagsResponse_FieldPath interface {
 type ListTagsResponse_FieldPathSelector int32
 
 const (
-	ListTagsResponse_FieldPathSelectorTags          ListTagsResponse_FieldPathSelector = 0
-	ListTagsResponse_FieldPathSelectorPrevPageToken ListTagsResponse_FieldPathSelector = 1
-	ListTagsResponse_FieldPathSelectorNextPageToken ListTagsResponse_FieldPathSelector = 2
+	ListTagsResponse_FieldPathSelectorTags              ListTagsResponse_FieldPathSelector = 0
+	ListTagsResponse_FieldPathSelectorPrevPageToken     ListTagsResponse_FieldPathSelector = 1
+	ListTagsResponse_FieldPathSelectorNextPageToken     ListTagsResponse_FieldPathSelector = 2
+	ListTagsResponse_FieldPathSelectorCurrentOffset     ListTagsResponse_FieldPathSelector = 3
+	ListTagsResponse_FieldPathSelectorTotalResultsCount ListTagsResponse_FieldPathSelector = 4
 )
 
 func (s ListTagsResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListTagsResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListTagsResponse_FieldPath(fp gotenobject.RawFieldPath) (ListTagsRespo
 			return &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListTagsResponse_FieldTerminalPath{selector: ListTagsResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) Get(source *ListTagsResponse) (val
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListTagsResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) GetSingle(source *ListTagsResponse
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) GetDefault() interface{} {
 		return (*tag.PagerCursor)(nil)
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		return (*tag.PagerCursor)(nil)
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) ClearValue(item *ListTagsResponse)
 			item.PrevPageToken = nil
 		case ListTagsResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListTagsResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListTagsResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) 
 // IsLeaf - whether field path is holds simple value
 func (fp *ListTagsResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListTagsResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListTagsResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListTagsResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListTagsResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListTagsResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListTagsResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) WithIValue(value interface{}) List
 		return &ListTagsResponse_FieldTerminalPathValue{ListTagsResponse_FieldTerminalPath: *fp, value: value.(*tag.PagerCursor)}
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		return &ListTagsResponse_FieldTerminalPathValue{ListTagsResponse_FieldTerminalPath: *fp, value: value.(*tag.PagerCursor)}
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		return &ListTagsResponse_FieldTerminalPathValue{ListTagsResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListTagsResponse_FieldTerminalPathValue{ListTagsResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListTagsResponse_FieldTerminalPath) WithIArrayOfValues(values interfac
 		return &ListTagsResponse_FieldTerminalPathArrayOfValues{ListTagsResponse_FieldTerminalPath: *fp, values: values.([]*tag.PagerCursor)}
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		return &ListTagsResponse_FieldTerminalPathArrayOfValues{ListTagsResponse_FieldTerminalPath: *fp, values: values.([]*tag.PagerCursor)}
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		return &ListTagsResponse_FieldTerminalPathArrayOfValues{ListTagsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		return &ListTagsResponse_FieldTerminalPathArrayOfValues{ListTagsResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListTagsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListTagsResponse
 func (fps *ListTagsResponse_FieldSubPath) Get(source *ListTagsResponse) (values []interface{}) {
-	if asTagFieldPath, ok := fps.AsTagsSubPath(); ok {
+	switch fps.selector {
+	case ListTagsResponse_FieldPathSelectorTags:
 		for _, item := range source.GetTags() {
-			values = append(values, asTagFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListTagsResponse_FieldTerminalPathValue) AsNextPageTokenValue() (*tag
 	res, ok := fpv.value.(*tag.PagerCursor)
 	return res, ok
 }
+func (fpv *ListTagsResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListTagsResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListTagsResponse
 func (fpv *ListTagsResponse_FieldTerminalPathValue) SetTo(target **ListTagsResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListTagsResponse_FieldTerminalPathValue) SetTo(target **ListTagsRespo
 		(*target).PrevPageToken = fpv.value.(*tag.PagerCursor)
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*tag.PagerCursor)
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListTagsResponse_FieldTerminalPathValue) CompareWith(source *ListTags
 		return 0, false
 	case ListTagsResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListTagsResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListTagsResponse_FieldTerminalPathArrayOfValues) GetRawValues() (va
 		for _, v := range fpaov.values.([]*tag.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListTagsResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListTagsResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListTagsResponse_FieldTerminalPathArrayOfValues) AsPrevPageTokenArr
 }
 func (fpaov *ListTagsResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*tag.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*tag.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListTagsResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListTagsResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchTagsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchTagsResponse
 func (fps *WatchTagsResponse_FieldSubPath) Get(source *WatchTagsResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchTagsResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchTagsResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateTagRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateTagRequest
 func (fps *CreateTagRequest_FieldSubPath) Get(source *CreateTagRequest) (values []interface{}) {
-	if asTagFieldPath, ok := fps.AsTagSubPath(); ok {
-		values = append(values, asTagFieldPath.Get(source.GetTag())...)
-	} else {
+	switch fps.selector {
+	case CreateTagRequest_FieldPathSelectorTag:
+		values = append(values, fps.subPath.GetRaw(source.GetTag())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateTagRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateTagRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateTagRequest
 func (fps *UpdateTagRequest_FieldSubPath) Get(source *UpdateTagRequest) (values []interface{}) {
-	if asTagFieldPath, ok := fps.AsTagSubPath(); ok {
-		values = append(values, asTagFieldPath.Get(source.GetTag())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateTagRequest_FieldPathSelectorTag:
+		values = append(values, fps.subPath.GetRaw(source.GetTag())...)
+	case UpdateTagRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateTagRequestCAS_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateTagRequest_CAS
 func (fps *UpdateTagRequestCAS_FieldSubPath) Get(source *UpdateTagRequest_CAS) (values []interface{}) {
-	if asTagFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asTagFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateTagRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest_CAS: %d", fps.selector))
 	}
 	return

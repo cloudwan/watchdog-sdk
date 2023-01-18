@@ -49,7 +49,7 @@ type ProbingTargetAccess interface {
 	GetProbingTarget(context.Context, *GetQuery) (*ProbingTarget, error)
 	BatchGetProbingTargets(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbingTargets(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbingTargets(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbingTargets(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbingTarget(context.Context, *GetQuery, func(*ProbingTargetChange) error) error
 	WatchProbingTargets(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbingTarget(context.Context, *ProbingTarget, ...gotenresource.SaveOption) error
@@ -82,7 +82,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbingTargetQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbingTargets(ctx, asProbingTargetQuery)
 	}

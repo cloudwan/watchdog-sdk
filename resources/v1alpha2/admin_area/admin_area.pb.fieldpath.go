@@ -707,9 +707,10 @@ func (fps *Geometry_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source Geometry
 func (fps *Geometry_FieldSubPath) Get(source *Geometry) (values []interface{}) {
-	if asBBoxFieldPath, ok := fps.AsBboxSubPath(); ok {
-		values = append(values, asBBoxFieldPath.Get(source.GetBbox())...)
-	} else {
+	switch fps.selector {
+	case Geometry_FieldPathSelectorBbox:
+		values = append(values, fps.subPath.GetRaw(source.GetBbox())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for Geometry: %d", fps.selector))
 	}
 	return
@@ -2319,15 +2320,16 @@ func (fps *AdminArea_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source AdminArea
 func (fps *AdminArea_FieldSubPath) Get(source *AdminArea) (values []interface{}) {
-	if asAdminHierarchyFieldPath, ok := fps.AsHierarchySubPath(); ok {
-		values = append(values, asAdminHierarchyFieldPath.Get(source.GetHierarchy())...)
-	} else if asGeometryFieldPath, ok := fps.AsLabelGeometrySubPath(); ok {
-		values = append(values, asGeometryFieldPath.Get(source.GetLabelGeometry())...)
-	} else if asGeometryFieldPath, ok := fps.AsGeometrySubPath(); ok {
-		values = append(values, asGeometryFieldPath.Get(source.GetGeometry())...)
-	} else if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else {
+	switch fps.selector {
+	case AdminArea_FieldPathSelectorHierarchy:
+		values = append(values, fps.subPath.GetRaw(source.GetHierarchy())...)
+	case AdminArea_FieldPathSelectorLabelGeometry:
+		values = append(values, fps.subPath.GetRaw(source.GetLabelGeometry())...)
+	case AdminArea_FieldPathSelectorGeometry:
+		values = append(values, fps.subPath.GetRaw(source.GetGeometry())...)
+	case AdminArea_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for AdminArea: %d", fps.selector))
 	}
 	return

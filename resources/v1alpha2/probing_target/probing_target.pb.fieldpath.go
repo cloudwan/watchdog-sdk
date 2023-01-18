@@ -589,13 +589,14 @@ func (fps *ProbingTarget_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingTarget
 func (fps *ProbingTarget_FieldSubPath) Get(source *ProbingTarget) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
-		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
-	} else {
+	switch fps.selector {
+	case ProbingTarget_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case ProbingTarget_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetHttpProbingConfig())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fps.selector))
 	}
 	return

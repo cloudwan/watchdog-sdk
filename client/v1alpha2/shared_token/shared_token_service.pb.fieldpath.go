@@ -1239,11 +1239,12 @@ func (fps *BatchGetSharedTokensResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source BatchGetSharedTokensResponse
 func (fps *BatchGetSharedTokensResponse_FieldSubPath) Get(source *BatchGetSharedTokensResponse) (values []interface{}) {
-	if asSharedTokenFieldPath, ok := fps.AsSharedTokensSubPath(); ok {
+	switch fps.selector {
+	case BatchGetSharedTokensResponse_FieldPathSelectorSharedTokens:
 		for _, item := range source.GetSharedTokens() {
-			values = append(values, asSharedTokenFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for BatchGetSharedTokensResponse: %d", fps.selector))
 	}
 	return
@@ -1642,13 +1643,14 @@ type ListSharedTokensRequest_FieldPath interface {
 type ListSharedTokensRequest_FieldPathSelector int32
 
 const (
-	ListSharedTokensRequest_FieldPathSelectorParent    ListSharedTokensRequest_FieldPathSelector = 0
-	ListSharedTokensRequest_FieldPathSelectorPageSize  ListSharedTokensRequest_FieldPathSelector = 1
-	ListSharedTokensRequest_FieldPathSelectorPageToken ListSharedTokensRequest_FieldPathSelector = 2
-	ListSharedTokensRequest_FieldPathSelectorOrderBy   ListSharedTokensRequest_FieldPathSelector = 3
-	ListSharedTokensRequest_FieldPathSelectorFilter    ListSharedTokensRequest_FieldPathSelector = 4
-	ListSharedTokensRequest_FieldPathSelectorFieldMask ListSharedTokensRequest_FieldPathSelector = 5
-	ListSharedTokensRequest_FieldPathSelectorView      ListSharedTokensRequest_FieldPathSelector = 6
+	ListSharedTokensRequest_FieldPathSelectorParent            ListSharedTokensRequest_FieldPathSelector = 0
+	ListSharedTokensRequest_FieldPathSelectorPageSize          ListSharedTokensRequest_FieldPathSelector = 1
+	ListSharedTokensRequest_FieldPathSelectorPageToken         ListSharedTokensRequest_FieldPathSelector = 2
+	ListSharedTokensRequest_FieldPathSelectorOrderBy           ListSharedTokensRequest_FieldPathSelector = 3
+	ListSharedTokensRequest_FieldPathSelectorFilter            ListSharedTokensRequest_FieldPathSelector = 4
+	ListSharedTokensRequest_FieldPathSelectorFieldMask         ListSharedTokensRequest_FieldPathSelector = 5
+	ListSharedTokensRequest_FieldPathSelectorView              ListSharedTokensRequest_FieldPathSelector = 6
+	ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo ListSharedTokensRequest_FieldPathSelector = 7
 )
 
 func (s ListSharedTokensRequest_FieldPathSelector) String() string {
@@ -1667,6 +1669,8 @@ func (s ListSharedTokensRequest_FieldPathSelector) String() string {
 		return "field_mask"
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		return "view"
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		return "include_paging_info"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", s))
 	}
@@ -1692,6 +1696,8 @@ func BuildListSharedTokensRequest_FieldPath(fp gotenobject.RawFieldPath) (ListSh
 			return &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorFieldMask}, nil
 		case "view":
 			return &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorView}, nil
+		case "include_paging_info", "includePagingInfo", "include-paging-info":
+			return &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object ListSharedTokensRequest", fp)
@@ -1761,6 +1767,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) Get(source *ListSharedToken
 			}
 		case ListSharedTokensRequest_FieldPathSelectorView:
 			values = append(values, source.View)
+		case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+			values = append(values, source.IncludePagingInfo)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 		}
@@ -1794,6 +1802,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) GetSingle(source *ListShare
 		return res, res != nil
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		return source.GetView(), source != nil
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		return source.GetIncludePagingInfo(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 	}
@@ -1820,6 +1830,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*shared_token.SharedToken_FieldMask)(nil)
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		return view.View_UNSPECIFIED
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 	}
@@ -1842,6 +1854,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) ClearValue(item *ListShared
 			item.FieldMask = nil
 		case ListSharedTokensRequest_FieldPathSelectorView:
 			item.View = view.View_UNSPECIFIED
+		case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+			item.IncludePagingInfo = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 		}
@@ -1860,7 +1874,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ListSharedTokensRequest_FieldPathSelectorOrderBy ||
 		fp.selector == ListSharedTokensRequest_FieldPathSelectorFilter ||
 		fp.selector == ListSharedTokensRequest_FieldPathSelectorFieldMask ||
-		fp.selector == ListSharedTokensRequest_FieldPathSelectorView
+		fp.selector == ListSharedTokensRequest_FieldPathSelectorView ||
+		fp.selector == ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo
 }
 
 func (fp *ListSharedTokensRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1883,6 +1898,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) WithIValue(value interface{
 		return &ListSharedTokensRequest_FieldTerminalPathValue{ListSharedTokensRequest_FieldTerminalPath: *fp, value: value.(*shared_token.SharedToken_FieldMask)}
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		return &ListSharedTokensRequest_FieldTerminalPathValue{ListSharedTokensRequest_FieldTerminalPath: *fp, value: value.(view.View)}
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListSharedTokensRequest_FieldTerminalPathValue{ListSharedTokensRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 	}
@@ -1909,6 +1926,8 @@ func (fp *ListSharedTokensRequest_FieldTerminalPath) WithIArrayOfValues(values i
 		return &ListSharedTokensRequest_FieldTerminalPathArrayOfValues{ListSharedTokensRequest_FieldTerminalPath: *fp, values: values.([]*shared_token.SharedToken_FieldMask)}
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		return &ListSharedTokensRequest_FieldTerminalPathArrayOfValues{ListSharedTokensRequest_FieldTerminalPath: *fp, values: values.([]view.View)}
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		return &ListSharedTokensRequest_FieldTerminalPathArrayOfValues{ListSharedTokensRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fp.selector))
 	}
@@ -1997,6 +2016,10 @@ func (fpv *ListSharedTokensRequest_FieldTerminalPathValue) AsViewValue() (view.V
 	res, ok := fpv.value.(view.View)
 	return res, ok
 }
+func (fpv *ListSharedTokensRequest_FieldTerminalPathValue) AsIncludePagingInfoValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListSharedTokensRequest
 func (fpv *ListSharedTokensRequest_FieldTerminalPathValue) SetTo(target **ListSharedTokensRequest) {
@@ -2018,6 +2041,8 @@ func (fpv *ListSharedTokensRequest_FieldTerminalPathValue) SetTo(target **ListSh
 		(*target).FieldMask = fpv.value.(*shared_token.SharedToken_FieldMask)
 	case ListSharedTokensRequest_FieldPathSelectorView:
 		(*target).View = fpv.value.(view.View)
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		(*target).IncludePagingInfo = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensRequest: %d", fpv.selector))
 	}
@@ -2074,6 +2099,16 @@ func (fpv *ListSharedTokensRequest_FieldTerminalPathValue) CompareWith(source *L
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIncludePagingInfo()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2214,6 +2249,10 @@ func (fpaov *ListSharedTokensRequest_FieldTerminalPathArrayOfValues) GetRawValue
 		for _, v := range fpaov.values.([]view.View) {
 			values = append(values, v)
 		}
+	case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2245,6 +2284,10 @@ func (fpaov *ListSharedTokensRequest_FieldTerminalPathArrayOfValues) AsViewArray
 	res, ok := fpaov.values.([]view.View)
 	return res, ok
 }
+func (fpaov *ListSharedTokensRequest_FieldTerminalPathArrayOfValues) AsIncludePagingInfoArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -2265,9 +2308,11 @@ type ListSharedTokensResponse_FieldPath interface {
 type ListSharedTokensResponse_FieldPathSelector int32
 
 const (
-	ListSharedTokensResponse_FieldPathSelectorSharedTokens  ListSharedTokensResponse_FieldPathSelector = 0
-	ListSharedTokensResponse_FieldPathSelectorPrevPageToken ListSharedTokensResponse_FieldPathSelector = 1
-	ListSharedTokensResponse_FieldPathSelectorNextPageToken ListSharedTokensResponse_FieldPathSelector = 2
+	ListSharedTokensResponse_FieldPathSelectorSharedTokens      ListSharedTokensResponse_FieldPathSelector = 0
+	ListSharedTokensResponse_FieldPathSelectorPrevPageToken     ListSharedTokensResponse_FieldPathSelector = 1
+	ListSharedTokensResponse_FieldPathSelectorNextPageToken     ListSharedTokensResponse_FieldPathSelector = 2
+	ListSharedTokensResponse_FieldPathSelectorCurrentOffset     ListSharedTokensResponse_FieldPathSelector = 3
+	ListSharedTokensResponse_FieldPathSelectorTotalResultsCount ListSharedTokensResponse_FieldPathSelector = 4
 )
 
 func (s ListSharedTokensResponse_FieldPathSelector) String() string {
@@ -2278,6 +2323,10 @@ func (s ListSharedTokensResponse_FieldPathSelector) String() string {
 		return "prev_page_token"
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		return "next_page_token"
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		return "current_offset"
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		return "total_results_count"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", s))
 	}
@@ -2295,6 +2344,10 @@ func BuildListSharedTokensResponse_FieldPath(fp gotenobject.RawFieldPath) (ListS
 			return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorPrevPageToken}, nil
 		case "next_page_token", "nextPageToken", "next-page-token":
 			return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorNextPageToken}, nil
+		case "current_offset", "currentOffset", "current-offset":
+			return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorCurrentOffset}, nil
+		case "total_results_count", "totalResultsCount", "total-results-count":
+			return &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorTotalResultsCount}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2361,6 +2414,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) Get(source *ListSharedToke
 			if source.NextPageToken != nil {
 				values = append(values, source.NextPageToken)
 			}
+		case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+			values = append(values, source.CurrentOffset)
+		case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+			values = append(values, source.TotalResultsCount)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 		}
@@ -2384,6 +2441,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) GetSingle(source *ListShar
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		res := source.GetNextPageToken()
 		return res, res != nil
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		return source.GetCurrentOffset(), source != nil
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		return source.GetTotalResultsCount(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 	}
@@ -2402,6 +2463,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) GetDefault() interface{} {
 		return (*shared_token.PagerCursor)(nil)
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		return (*shared_token.PagerCursor)(nil)
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		return int32(0)
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		return int32(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 	}
@@ -2416,6 +2481,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) ClearValue(item *ListShare
 			item.PrevPageToken = nil
 		case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 			item.NextPageToken = nil
+		case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+			item.CurrentOffset = int32(0)
+		case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+			item.TotalResultsCount = int32(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 		}
@@ -2429,7 +2498,9 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) ClearValueRaw(item proto.M
 // IsLeaf - whether field path is holds simple value
 func (fp *ListSharedTokensResponse_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ListSharedTokensResponse_FieldPathSelectorPrevPageToken ||
-		fp.selector == ListSharedTokensResponse_FieldPathSelectorNextPageToken
+		fp.selector == ListSharedTokensResponse_FieldPathSelectorNextPageToken ||
+		fp.selector == ListSharedTokensResponse_FieldPathSelectorCurrentOffset ||
+		fp.selector == ListSharedTokensResponse_FieldPathSelectorTotalResultsCount
 }
 
 func (fp *ListSharedTokensResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -2444,6 +2515,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) WithIValue(value interface
 		return &ListSharedTokensResponse_FieldTerminalPathValue{ListSharedTokensResponse_FieldTerminalPath: *fp, value: value.(*shared_token.PagerCursor)}
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		return &ListSharedTokensResponse_FieldTerminalPathValue{ListSharedTokensResponse_FieldTerminalPath: *fp, value: value.(*shared_token.PagerCursor)}
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		return &ListSharedTokensResponse_FieldTerminalPathValue{ListSharedTokensResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		return &ListSharedTokensResponse_FieldTerminalPathValue{ListSharedTokensResponse_FieldTerminalPath: *fp, value: value.(int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 	}
@@ -2462,6 +2537,10 @@ func (fp *ListSharedTokensResponse_FieldTerminalPath) WithIArrayOfValues(values 
 		return &ListSharedTokensResponse_FieldTerminalPathArrayOfValues{ListSharedTokensResponse_FieldTerminalPath: *fp, values: values.([]*shared_token.PagerCursor)}
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		return &ListSharedTokensResponse_FieldTerminalPathArrayOfValues{ListSharedTokensResponse_FieldTerminalPath: *fp, values: values.([]*shared_token.PagerCursor)}
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		return &ListSharedTokensResponse_FieldTerminalPathArrayOfValues{ListSharedTokensResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		return &ListSharedTokensResponse_FieldTerminalPathArrayOfValues{ListSharedTokensResponse_FieldTerminalPath: *fp, values: values.([]int32)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fp.selector))
 	}
@@ -2512,11 +2591,12 @@ func (fps *ListSharedTokensResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ListSharedTokensResponse
 func (fps *ListSharedTokensResponse_FieldSubPath) Get(source *ListSharedTokensResponse) (values []interface{}) {
-	if asSharedTokenFieldPath, ok := fps.AsSharedTokensSubPath(); ok {
+	switch fps.selector {
+	case ListSharedTokensResponse_FieldPathSelectorSharedTokens:
 		for _, item := range source.GetSharedTokens() {
-			values = append(values, asSharedTokenFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fps.selector))
 	}
 	return
@@ -2651,6 +2731,14 @@ func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) AsNextPageTokenValue
 	res, ok := fpv.value.(*shared_token.PagerCursor)
 	return res, ok
 }
+func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) AsCurrentOffsetValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) AsTotalResultsCountValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ListSharedTokensResponse
 func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) SetTo(target **ListSharedTokensResponse) {
@@ -2664,6 +2752,10 @@ func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) SetTo(target **ListS
 		(*target).PrevPageToken = fpv.value.(*shared_token.PagerCursor)
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		(*target).NextPageToken = fpv.value.(*shared_token.PagerCursor)
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		(*target).CurrentOffset = fpv.value.(int32)
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		(*target).TotalResultsCount = fpv.value.(int32)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fpv.selector))
 	}
@@ -2683,6 +2775,26 @@ func (fpv *ListSharedTokensResponse_FieldTerminalPathValue) CompareWith(source *
 		return 0, false
 	case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 		return 0, false
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetCurrentOffset()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTotalResultsCount()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ListSharedTokensResponse: %d", fpv.selector))
 	}
@@ -2877,6 +2989,14 @@ func (fpaov *ListSharedTokensResponse_FieldTerminalPathArrayOfValues) GetRawValu
 		for _, v := range fpaov.values.([]*shared_token.PagerCursor) {
 			values = append(values, v)
 		}
+	case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -2890,6 +3010,14 @@ func (fpaov *ListSharedTokensResponse_FieldTerminalPathArrayOfValues) AsPrevPage
 }
 func (fpaov *ListSharedTokensResponse_FieldTerminalPathArrayOfValues) AsNextPageTokenArrayOfValues() ([]*shared_token.PagerCursor, bool) {
 	res, ok := fpaov.values.([]*shared_token.PagerCursor)
+	return res, ok
+}
+func (fpaov *ListSharedTokensResponse_FieldTerminalPathArrayOfValues) AsCurrentOffsetArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *ListSharedTokensResponse_FieldTerminalPathArrayOfValues) AsTotalResultsCountArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 
@@ -4890,9 +5018,10 @@ func (fps *WatchSharedTokensResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source WatchSharedTokensResponse
 func (fps *WatchSharedTokensResponse_FieldSubPath) Get(source *WatchSharedTokensResponse) (values []interface{}) {
-	if asPageTokenChangeFieldPath, ok := fps.AsPageTokenChangeSubPath(); ok {
-		values = append(values, asPageTokenChangeFieldPath.Get(source.GetPageTokenChange())...)
-	} else {
+	switch fps.selector {
+	case WatchSharedTokensResponse_FieldPathSelectorPageTokenChange:
+		values = append(values, fps.subPath.GetRaw(source.GetPageTokenChange())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for WatchSharedTokensResponse: %d", fps.selector))
 	}
 	return
@@ -6040,9 +6169,10 @@ func (fps *CreateSharedTokenRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source CreateSharedTokenRequest
 func (fps *CreateSharedTokenRequest_FieldSubPath) Get(source *CreateSharedTokenRequest) (values []interface{}) {
-	if asSharedTokenFieldPath, ok := fps.AsSharedTokenSubPath(); ok {
-		values = append(values, asSharedTokenFieldPath.Get(source.GetSharedToken())...)
-	} else {
+	switch fps.selector {
+	case CreateSharedTokenRequest_FieldPathSelectorSharedToken:
+		values = append(values, fps.subPath.GetRaw(source.GetSharedToken())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for CreateSharedTokenRequest: %d", fps.selector))
 	}
 	return
@@ -6702,11 +6832,12 @@ func (fps *UpdateSharedTokenRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateSharedTokenRequest
 func (fps *UpdateSharedTokenRequest_FieldSubPath) Get(source *UpdateSharedTokenRequest) (values []interface{}) {
-	if asSharedTokenFieldPath, ok := fps.AsSharedTokenSubPath(); ok {
-		values = append(values, asSharedTokenFieldPath.Get(source.GetSharedToken())...)
-	} else if asCASFieldPath, ok := fps.AsCasSubPath(); ok {
-		values = append(values, asCASFieldPath.Get(source.GetCas())...)
-	} else {
+	switch fps.selector {
+	case UpdateSharedTokenRequest_FieldPathSelectorSharedToken:
+		values = append(values, fps.subPath.GetRaw(source.GetSharedToken())...)
+	case UpdateSharedTokenRequest_FieldPathSelectorCas:
+		values = append(values, fps.subPath.GetRaw(source.GetCas())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fps.selector))
 	}
 	return
@@ -7360,9 +7491,10 @@ func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source UpdateSharedTokenRequest_CAS
 func (fps *UpdateSharedTokenRequestCAS_FieldSubPath) Get(source *UpdateSharedTokenRequest_CAS) (values []interface{}) {
-	if asSharedTokenFieldPath, ok := fps.AsConditionalStateSubPath(); ok {
-		values = append(values, asSharedTokenFieldPath.Get(source.GetConditionalState())...)
-	} else {
+	switch fps.selector {
+	case UpdateSharedTokenRequestCAS_FieldPathSelectorConditionalState:
+		values = append(values, fps.subPath.GetRaw(source.GetConditionalState())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest_CAS: %d", fps.selector))
 	}
 	return

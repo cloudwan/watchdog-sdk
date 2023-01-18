@@ -81,8 +81,9 @@ func (a *apiProbeAccess) BatchGetProbes(ctx context.Context, refs []*probe.Refer
 
 func (a *apiProbeAccess) QueryProbes(ctx context.Context, query *probe.ListQuery) (*probe.QueryResultSnapshot, error) {
 	request := &probe_client.ListProbesRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,13 +95,15 @@ func (a *apiProbeAccess) QueryProbes(ctx context.Context, query *probe.ListQuery
 		return nil, err
 	}
 	return &probe.QueryResultSnapshot{
-		Probes:         resp.Probes,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		Probes:            resp.Probes,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 
-func (a *apiProbeAccess) SearchProbes(ctx context.Context, query *probe.SearchQuery) (*probe.SearchQueryResultSnapshot, error) {
+func (a *apiProbeAccess) SearchProbes(ctx context.Context, query *probe.SearchQuery) (*probe.QueryResultSnapshot, error) {
 	request := &probe_client.SearchProbesRequest{
 		Phrase:    query.Phrase,
 		Filter:    query.Filter,
@@ -115,12 +118,10 @@ func (a *apiProbeAccess) SearchProbes(ctx context.Context, query *probe.SearchQu
 	if err != nil {
 		return nil, err
 	}
-	return &probe.SearchQueryResultSnapshot{
-		QueryResultSnapshot: probe.QueryResultSnapshot{
-			Probes:         resp.Probes,
-			NextPageCursor: resp.NextPageToken,
-			PrevPageCursor: resp.PrevPageToken,
-		},
+	return &probe.QueryResultSnapshot{
+		Probes:            resp.Probes,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
 		CurrentOffset:     resp.CurrentOffset,
 		TotalResultsCount: resp.TotalResultsCount,
 	}, nil

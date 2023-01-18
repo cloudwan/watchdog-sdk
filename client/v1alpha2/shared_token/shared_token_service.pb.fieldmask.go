@@ -899,6 +899,7 @@ func FullListSharedTokensRequest_FieldMask() *ListSharedTokensRequest_FieldMask 
 	res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListSharedTokensRequest_FieldTerminalPath{selector: ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListSharedTokensRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListSharedTokensRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListSharedTokensRequest_FieldMask) Reset() {
 
 func (fieldMask *ListSharedTokensRequest_FieldMask) Subtract(other *ListSharedTokensRequest_FieldMask) *ListSharedTokensRequest_FieldMask {
 	result := &ListSharedTokensRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListSharedTokensRequest_FieldMask) Project(source *ListSharedTo
 				result.FieldMask = source.FieldMask
 			case ListSharedTokensRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListSharedTokensRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListSharedTokensResponse_FieldMask() *ListSharedTokensResponse_FieldMas
 	res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorSharedTokens})
 	res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListSharedTokensResponse_FieldTerminalPath{selector: ListSharedTokensResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListSharedTokensResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListSharedTokensResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListSharedTokensResponse_FieldMask) Reset() {
 
 func (fieldMask *ListSharedTokensResponse_FieldMask) Subtract(other *ListSharedTokensResponse_FieldMask) *ListSharedTokensResponse_FieldMask {
 	result := &ListSharedTokensResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListSharedTokensResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListSharedTokensResponse_FieldPathSelectorSharedTokens: &shared_token.SharedToken_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListSharedTokensResponse_FieldMask) Project(source *ListSharedT
 				result.PrevPageToken = source.PrevPageToken
 			case ListSharedTokensResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListSharedTokensResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListSharedTokensResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListSharedTokensResponse_FieldSubPath:
 			switch tp.selector {

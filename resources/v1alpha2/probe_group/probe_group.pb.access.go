@@ -43,7 +43,7 @@ type ProbeGroupAccess interface {
 	GetProbeGroup(context.Context, *GetQuery) (*ProbeGroup, error)
 	BatchGetProbeGroups(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbeGroups(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbeGroups(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbeGroups(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbeGroup(context.Context, *GetQuery, func(*ProbeGroupChange) error) error
 	WatchProbeGroups(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbeGroup(context.Context, *ProbeGroup, ...gotenresource.SaveOption) error
@@ -76,7 +76,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbeGroupQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbeGroups(ctx, asProbeGroupQuery)
 	}

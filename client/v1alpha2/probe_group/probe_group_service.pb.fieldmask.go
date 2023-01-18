@@ -899,6 +899,7 @@ func FullListProbeGroupsRequest_FieldMask() *ListProbeGroupsRequest_FieldMask {
 	res.Paths = append(res.Paths, &ListProbeGroupsRequest_FieldTerminalPath{selector: ListProbeGroupsRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListProbeGroupsRequest_FieldTerminalPath{selector: ListProbeGroupsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListProbeGroupsRequest_FieldTerminalPath{selector: ListProbeGroupsRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListProbeGroupsRequest_FieldTerminalPath{selector: ListProbeGroupsRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListProbeGroupsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbeGroupsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListProbeGroupsRequest_FieldMask) Reset() {
 
 func (fieldMask *ListProbeGroupsRequest_FieldMask) Subtract(other *ListProbeGroupsRequest_FieldMask) *ListProbeGroupsRequest_FieldMask {
 	result := &ListProbeGroupsRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListProbeGroupsRequest_FieldMask) Project(source *ListProbeGrou
 				result.FieldMask = source.FieldMask
 			case ListProbeGroupsRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListProbeGroupsRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListProbeGroupsResponse_FieldMask() *ListProbeGroupsResponse_FieldMask 
 	res.Paths = append(res.Paths, &ListProbeGroupsResponse_FieldTerminalPath{selector: ListProbeGroupsResponse_FieldPathSelectorProbeGroups})
 	res.Paths = append(res.Paths, &ListProbeGroupsResponse_FieldTerminalPath{selector: ListProbeGroupsResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListProbeGroupsResponse_FieldTerminalPath{selector: ListProbeGroupsResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListProbeGroupsResponse_FieldTerminalPath{selector: ListProbeGroupsResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListProbeGroupsResponse_FieldTerminalPath{selector: ListProbeGroupsResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListProbeGroupsResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbeGroupsResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListProbeGroupsResponse_FieldMask) Reset() {
 
 func (fieldMask *ListProbeGroupsResponse_FieldMask) Subtract(other *ListProbeGroupsResponse_FieldMask) *ListProbeGroupsResponse_FieldMask {
 	result := &ListProbeGroupsResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListProbeGroupsResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListProbeGroupsResponse_FieldPathSelectorProbeGroups: &probe_group.ProbeGroup_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListProbeGroupsResponse_FieldMask) Project(source *ListProbeGro
 				result.PrevPageToken = source.PrevPageToken
 			case ListProbeGroupsResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListProbeGroupsResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListProbeGroupsResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListProbeGroupsResponse_FieldSubPath:
 			switch tp.selector {

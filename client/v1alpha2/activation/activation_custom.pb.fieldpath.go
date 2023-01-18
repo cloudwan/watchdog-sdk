@@ -314,11 +314,12 @@ func (fps *ActivationRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ActivationRequest
 func (fps *ActivationRequest_FieldSubPath) Get(source *ActivationRequest) (values []interface{}) {
-	if asActivateFieldPath, ok := fps.AsActivateSubPath(); ok {
-		values = append(values, asActivateFieldPath.Get(source.GetActivate())...)
-	} else if asConfirmActivationFieldPath, ok := fps.AsConfirmActivationSubPath(); ok {
-		values = append(values, asConfirmActivationFieldPath.Get(source.GetConfirmActivation())...)
-	} else {
+	switch fps.selector {
+	case ActivationRequest_FieldPathSelectorActivate:
+		values = append(values, fps.subPath.GetRaw(source.GetActivate())...)
+	case ActivationRequest_FieldPathSelectorConfirmActivation:
+		values = append(values, fps.subPath.GetRaw(source.GetConfirmActivation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest: %d", fps.selector))
 	}
 	return
@@ -1147,9 +1148,10 @@ func (fps *ActivationRequestActivate_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ActivationRequest_Activate
 func (fps *ActivationRequestActivate_FieldSubPath) Get(source *ActivationRequest_Activate) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbeSubPath(); ok {
-		values = append(values, asProbeFieldPath.Get(source.GetProbe())...)
-	} else {
+	switch fps.selector {
+	case ActivationRequestActivate_FieldPathSelectorProbe:
+		values = append(values, fps.subPath.GetRaw(source.GetProbe())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fps.selector))
 	}
 	return
@@ -2287,11 +2289,12 @@ func (fps *ActivationResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ActivationResponse
 func (fps *ActivationResponse_FieldSubPath) Get(source *ActivationResponse) (values []interface{}) {
-	if asActivatedFieldPath, ok := fps.AsActivatedSubPath(); ok {
-		values = append(values, asActivatedFieldPath.Get(source.GetActivated())...)
-	} else if asConfirmActivationAckFieldPath, ok := fps.AsConfirmActivationAckSubPath(); ok {
-		values = append(values, asConfirmActivationAckFieldPath.Get(source.GetConfirmActivationAck())...)
-	} else {
+	switch fps.selector {
+	case ActivationResponse_FieldPathSelectorActivated:
+		values = append(values, fps.subPath.GetRaw(source.GetActivated())...)
+	case ActivationResponse_FieldPathSelectorConfirmActivationAck:
+		values = append(values, fps.subPath.GetRaw(source.GetConfirmActivationAck())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationResponse: %d", fps.selector))
 	}
 	return
@@ -2959,11 +2962,12 @@ func (fps *ActivationResponseActivated_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ActivationResponse_Activated
 func (fps *ActivationResponseActivated_FieldSubPath) Get(source *ActivationResponse_Activated) (values []interface{}) {
-	if asProbeFieldPath, ok := fps.AsProbeSubPath(); ok {
-		values = append(values, asProbeFieldPath.Get(source.GetProbe())...)
-	} else if asServiceAccountKeyFieldPath, ok := fps.AsServiceAccountKeySubPath(); ok {
-		values = append(values, asServiceAccountKeyFieldPath.Get(source.GetServiceAccountKey())...)
-	} else {
+	switch fps.selector {
+	case ActivationResponseActivated_FieldPathSelectorProbe:
+		values = append(values, fps.subPath.GetRaw(source.GetProbe())...)
+	case ActivationResponseActivated_FieldPathSelectorServiceAccountKey:
+		values = append(values, fps.subPath.GetRaw(source.GetServiceAccountKey())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationResponse_Activated: %d", fps.selector))
 	}
 	return

@@ -899,6 +899,7 @@ func FullListProbesRequest_FieldMask() *ListProbesRequest_FieldMask {
 	res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListProbesRequest_FieldTerminalPath{selector: ListProbesRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListProbesRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbesRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListProbesRequest_FieldMask) Reset() {
 
 func (fieldMask *ListProbesRequest_FieldMask) Subtract(other *ListProbesRequest_FieldMask) *ListProbesRequest_FieldMask {
 	result := &ListProbesRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListProbesRequest_FieldMask) Project(source *ListProbesRequest)
 				result.FieldMask = source.FieldMask
 			case ListProbesRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListProbesRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListProbesResponse_FieldMask() *ListProbesResponse_FieldMask {
 	res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorProbes})
 	res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListProbesResponse_FieldTerminalPath{selector: ListProbesResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListProbesResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbesResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListProbesResponse_FieldMask) Reset() {
 
 func (fieldMask *ListProbesResponse_FieldMask) Subtract(other *ListProbesResponse_FieldMask) *ListProbesResponse_FieldMask {
 	result := &ListProbesResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListProbesResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListProbesResponse_FieldPathSelectorProbes: &probe.Probe_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListProbesResponse_FieldMask) Project(source *ListProbesRespons
 				result.PrevPageToken = source.PrevPageToken
 			case ListProbesResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListProbesResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListProbesResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListProbesResponse_FieldSubPath:
 			switch tp.selector {

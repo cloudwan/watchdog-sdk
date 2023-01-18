@@ -899,6 +899,7 @@ func FullListProbingTargetsRequest_FieldMask() *ListProbingTargetsRequest_FieldM
 	res.Paths = append(res.Paths, &ListProbingTargetsRequest_FieldTerminalPath{selector: ListProbingTargetsRequest_FieldPathSelectorFilter})
 	res.Paths = append(res.Paths, &ListProbingTargetsRequest_FieldTerminalPath{selector: ListProbingTargetsRequest_FieldPathSelectorFieldMask})
 	res.Paths = append(res.Paths, &ListProbingTargetsRequest_FieldTerminalPath{selector: ListProbingTargetsRequest_FieldPathSelectorView})
+	res.Paths = append(res.Paths, &ListProbingTargetsRequest_FieldTerminalPath{selector: ListProbingTargetsRequest_FieldPathSelectorIncludePagingInfo})
 	return res
 }
 
@@ -942,7 +943,7 @@ func (fieldMask *ListProbingTargetsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbingTargetsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -972,7 +973,7 @@ func (fieldMask *ListProbingTargetsRequest_FieldMask) Reset() {
 
 func (fieldMask *ListProbingTargetsRequest_FieldMask) Subtract(other *ListProbingTargetsRequest_FieldMask) *ListProbingTargetsRequest_FieldMask {
 	result := &ListProbingTargetsRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1140,6 +1141,8 @@ func (fieldMask *ListProbingTargetsRequest_FieldMask) Project(source *ListProbin
 				result.FieldMask = source.FieldMask
 			case ListProbingTargetsRequest_FieldPathSelectorView:
 				result.View = source.View
+			case ListProbingTargetsRequest_FieldPathSelectorIncludePagingInfo:
+				result.IncludePagingInfo = source.IncludePagingInfo
 			}
 		}
 	}
@@ -1166,6 +1169,8 @@ func FullListProbingTargetsResponse_FieldMask() *ListProbingTargetsResponse_Fiel
 	res.Paths = append(res.Paths, &ListProbingTargetsResponse_FieldTerminalPath{selector: ListProbingTargetsResponse_FieldPathSelectorProbingTargets})
 	res.Paths = append(res.Paths, &ListProbingTargetsResponse_FieldTerminalPath{selector: ListProbingTargetsResponse_FieldPathSelectorPrevPageToken})
 	res.Paths = append(res.Paths, &ListProbingTargetsResponse_FieldTerminalPath{selector: ListProbingTargetsResponse_FieldPathSelectorNextPageToken})
+	res.Paths = append(res.Paths, &ListProbingTargetsResponse_FieldTerminalPath{selector: ListProbingTargetsResponse_FieldPathSelectorCurrentOffset})
+	res.Paths = append(res.Paths, &ListProbingTargetsResponse_FieldTerminalPath{selector: ListProbingTargetsResponse_FieldPathSelectorTotalResultsCount})
 	return res
 }
 
@@ -1209,7 +1214,7 @@ func (fieldMask *ListProbingTargetsResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ListProbingTargetsResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1239,7 +1244,7 @@ func (fieldMask *ListProbingTargetsResponse_FieldMask) Reset() {
 
 func (fieldMask *ListProbingTargetsResponse_FieldMask) Subtract(other *ListProbingTargetsResponse_FieldMask) *ListProbingTargetsResponse_FieldMask {
 	result := &ListProbingTargetsResponse_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ListProbingTargetsResponse_FieldPathSelector]gotenobject.FieldMask{
 		ListProbingTargetsResponse_FieldPathSelectorProbingTargets: &probing_target.ProbingTarget_FieldMask{},
 	}
@@ -1446,6 +1451,10 @@ func (fieldMask *ListProbingTargetsResponse_FieldMask) Project(source *ListProbi
 				result.PrevPageToken = source.PrevPageToken
 			case ListProbingTargetsResponse_FieldPathSelectorNextPageToken:
 				result.NextPageToken = source.NextPageToken
+			case ListProbingTargetsResponse_FieldPathSelectorCurrentOffset:
+				result.CurrentOffset = source.CurrentOffset
+			case ListProbingTargetsResponse_FieldPathSelectorTotalResultsCount:
+				result.TotalResultsCount = source.TotalResultsCount
 			}
 		case *ListProbingTargetsResponse_FieldSubPath:
 			switch tp.selector {

@@ -302,11 +302,12 @@ func (fps *ReportHTTPMetricsRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ReportHTTPMetricsRequest
 func (fps *ReportHTTPMetricsRequest_FieldSubPath) Get(source *ReportHTTPMetricsRequest) (values []interface{}) {
-	if asHTTPStatFieldPath, ok := fps.AsHttpStatsSubPath(); ok {
+	switch fps.selector {
+	case ReportHTTPMetricsRequest_FieldPathSelectorHttpStats:
 		for _, item := range source.GetHttpStats() {
-			values = append(values, asHTTPStatFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHTTPMetricsRequest: %d", fps.selector))
 	}
 	return
@@ -999,9 +1000,10 @@ func (fps *GetHTTPMetricsRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source GetHTTPMetricsRequest
 func (fps *GetHTTPMetricsRequest_FieldSubPath) Get(source *GetHTTPMetricsRequest) (values []interface{}) {
-	if asTimeIntervalFieldPath, ok := fps.AsIntervalSubPath(); ok {
-		values = append(values, asTimeIntervalFieldPath.Get(source.GetInterval())...)
-	} else {
+	switch fps.selector {
+	case GetHTTPMetricsRequest_FieldPathSelectorInterval:
+		values = append(values, fps.subPath.GetRaw(source.GetInterval())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetHTTPMetricsRequest: %d", fps.selector))
 	}
 	return
@@ -1711,11 +1713,12 @@ func (fps *GetHTTPMetricsResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source GetHTTPMetricsResponse
 func (fps *GetHTTPMetricsResponse_FieldSubPath) Get(source *GetHTTPMetricsResponse) (values []interface{}) {
-	if asHTTPMetricsPerAgentTargetPairFieldPath, ok := fps.AsHttpMetricsSubPath(); ok {
+	switch fps.selector {
+	case GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics:
 		for _, item := range source.GetHttpMetrics() {
-			values = append(values, asHTTPMetricsPerAgentTargetPairFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetHTTPMetricsResponse: %d", fps.selector))
 	}
 	return
@@ -2365,11 +2368,12 @@ func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) JSO
 
 // Get returns all values pointed by selected field from source GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPair
 func (fps *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath) Get(source *GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPair) (values []interface{}) {
-	if asHTTPStatFieldPath, ok := fps.AsHttpStatsSubPath(); ok {
+	switch fps.selector {
+	case GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats:
 		for _, item := range source.GetHttpStats() {
-			values = append(values, asHTTPStatFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPair: %d", fps.selector))
 	}
 	return

@@ -384,13 +384,14 @@ func (fps *ProbingConfig_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConfig
 func (fps *ProbingConfig_FieldSubPath) Get(source *ProbingConfig) (values []interface{}) {
-	if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else if asSpecFieldPath, ok := fps.AsSpecSubPath(); ok {
-		values = append(values, asSpecFieldPath.Get(source.GetSpec())...)
-	} else if asStatusFieldPath, ok := fps.AsStatusSubPath(); ok {
-		values = append(values, asStatusFieldPath.Get(source.GetStatus())...)
-	} else {
+	switch fps.selector {
+	case ProbingConfig_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	case ProbingConfig_FieldPathSelectorSpec:
+		values = append(values, fps.subPath.GetRaw(source.GetSpec())...)
+	case ProbingConfig_FieldPathSelectorStatus:
+		values = append(values, fps.subPath.GetRaw(source.GetStatus())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig: %d", fps.selector))
 	}
 	return
@@ -1491,17 +1492,18 @@ func (fps *ProbingConfigProbingSession_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConfig_ProbingSession
 func (fps *ProbingConfigProbingSession_FieldSubPath) Get(source *ProbingConfig_ProbingSession) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else if asPathProbeFieldPath, ok := fps.AsPathProbingSubPath(); ok {
-		values = append(values, asPathProbeFieldPath.Get(source.GetPathProbing())...)
-	} else if asSpeedTestSettingsFieldPath, ok := fps.AsSpeedtestSettingsSubPath(); ok {
-		values = append(values, asSpeedTestSettingsFieldPath.Get(source.GetSpeedtestSettings())...)
-	} else if asHTTPProbingConfigFieldPath, ok := fps.AsHttpProbingConfigSubPath(); ok {
-		values = append(values, asHTTPProbingConfigFieldPath.Get(source.GetHttpProbingConfig())...)
-	} else if asProxyConfigurationFieldPath, ok := fps.AsProxyConfigurationSubPath(); ok {
-		values = append(values, asProxyConfigurationFieldPath.Get(source.GetProxyConfiguration())...)
-	} else {
+	switch fps.selector {
+	case ProbingConfigProbingSession_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	case ProbingConfigProbingSession_FieldPathSelectorPathProbing:
+		values = append(values, fps.subPath.GetRaw(source.GetPathProbing())...)
+	case ProbingConfigProbingSession_FieldPathSelectorSpeedtestSettings:
+		values = append(values, fps.subPath.GetRaw(source.GetSpeedtestSettings())...)
+	case ProbingConfigProbingSession_FieldPathSelectorHttpProbingConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetHttpProbingConfig())...)
+	case ProbingConfigProbingSession_FieldPathSelectorProxyConfiguration:
+		values = append(values, fps.subPath.GetRaw(source.GetProxyConfiguration())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_ProbingSession: %d", fps.selector))
 	}
 	return
@@ -2685,17 +2687,18 @@ func (fps *ProbingConfigSpec_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConfig_Spec
 func (fps *ProbingConfigSpec_FieldSubPath) Get(source *ProbingConfig_Spec) (values []interface{}) {
-	if asProbingSessionFieldPath, ok := fps.AsProbingSessionsSubPath(); ok {
+	switch fps.selector {
+	case ProbingConfigSpec_FieldPathSelectorProbingSessions:
 		for _, item := range source.GetProbingSessions() {
-			values = append(values, asProbingSessionFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else if asSpeedTestFieldPath, ok := fps.AsSpeedtestSubPath(); ok {
-		values = append(values, asSpeedTestFieldPath.Get(source.GetSpeedtest())...)
-	} else if asProbingSessionFieldPath, ok := fps.AsTargetSessionsSubPath(); ok {
+	case ProbingConfigSpec_FieldPathSelectorSpeedtest:
+		values = append(values, fps.subPath.GetRaw(source.GetSpeedtest())...)
+	case ProbingConfigSpec_FieldPathSelectorTargetSessions:
 		for _, item := range source.GetTargetSessions() {
-			values = append(values, asProbingSessionFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec: %d", fps.selector))
 	}
 	return
@@ -3792,11 +3795,12 @@ func (fps *ProbingConfigSpecSpeedTest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConfig_Spec_SpeedTest
 func (fps *ProbingConfigSpecSpeedTest_FieldSubPath) Get(source *ProbingConfig_Spec_SpeedTest) (values []interface{}) {
-	if asServerFieldPath, ok := fps.AsServersSubPath(); ok {
+	switch fps.selector {
+	case ProbingConfigSpecSpeedTest_FieldPathSelectorServers:
 		for _, item := range source.GetServers() {
-			values = append(values, asServerFieldPath.Get(item)...)
+			values = append(values, fps.subPath.GetRaw(item)...)
 		}
-	} else {
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec_SpeedTest: %d", fps.selector))
 	}
 	return
@@ -4521,9 +4525,10 @@ func (fps *ProbingConfigSpecSpeedTestServer_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingConfig_Spec_SpeedTest_Server
 func (fps *ProbingConfigSpecSpeedTestServer_FieldSubPath) Get(source *ProbingConfig_Spec_SpeedTest_Server) (values []interface{}) {
-	if asLocationFieldPath, ok := fps.AsLocationSubPath(); ok {
-		values = append(values, asLocationFieldPath.Get(source.GetLocation())...)
-	} else {
+	switch fps.selector {
+	case ProbingConfigSpecSpeedTestServer_FieldPathSelectorLocation:
+		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingConfig_Spec_SpeedTest_Server: %d", fps.selector))
 	}
 	return

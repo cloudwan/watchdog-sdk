@@ -55,7 +55,7 @@ type ProbingSessionAccess interface {
 	GetProbingSession(context.Context, *GetQuery) (*ProbingSession, error)
 	BatchGetProbingSessions(context.Context, []*Reference, ...gotenresource.BatchGetOption) error
 	QueryProbingSessions(context.Context, *ListQuery) (*QueryResultSnapshot, error)
-	SearchProbingSessions(context.Context, *SearchQuery) (*SearchQueryResultSnapshot, error)
+	SearchProbingSessions(context.Context, *SearchQuery) (*QueryResultSnapshot, error)
 	WatchProbingSession(context.Context, *GetQuery, func(*ProbingSessionChange) error) error
 	WatchProbingSessions(context.Context, *WatchQuery, func(*QueryResultChange) error) error
 	SaveProbingSession(context.Context, *ProbingSession, ...gotenresource.SaveOption) error
@@ -88,7 +88,7 @@ func (a *anyCastAccess) Query(ctx context.Context, q gotenresource.ListQuery) (g
 		q.GetResourceDescriptor().GetResourceTypeName().FullyQualifiedTypeName())
 }
 
-func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.SearchQueryResultSnapshot, error) {
+func (a *anyCastAccess) Search(ctx context.Context, q gotenresource.SearchQuery) (gotenresource.QueryResultSnapshot, error) {
 	if asProbingSessionQuery, ok := q.(*SearchQuery); ok {
 		return a.SearchProbingSessions(ctx, asProbingSessionQuery)
 	}

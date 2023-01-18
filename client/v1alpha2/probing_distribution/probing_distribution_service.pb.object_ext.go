@@ -419,6 +419,9 @@ func (o *ListProbingDistributionsRequest) MakeDiffFieldMask(other *ListProbingDi
 	if o.GetView() != other.GetView() {
 		res.Paths = append(res.Paths, &ListProbingDistributionsRequest_FieldTerminalPath{selector: ListProbingDistributionsRequest_FieldPathSelectorView})
 	}
+	if o.GetIncludePagingInfo() != other.GetIncludePagingInfo() {
+		res.Paths = append(res.Paths, &ListProbingDistributionsRequest_FieldTerminalPath{selector: ListProbingDistributionsRequest_FieldPathSelectorIncludePagingInfo})
+	}
 	return res
 }
 
@@ -474,6 +477,7 @@ func (o *ListProbingDistributionsRequest) Clone() *ListProbingDistributionsReque
 	}
 	result.FieldMask = proto.Clone(o.FieldMask).(*probing_distribution.ProbingDistribution_FieldMask)
 	result.View = o.View
+	result.IncludePagingInfo = o.IncludePagingInfo
 	return result
 }
 
@@ -541,6 +545,7 @@ func (o *ListProbingDistributionsRequest) Merge(source *ListProbingDistributions
 		}
 	}
 	o.View = source.GetView()
+	o.IncludePagingInfo = source.GetIncludePagingInfo()
 }
 
 func (o *ListProbingDistributionsRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -584,6 +589,12 @@ func (o *ListProbingDistributionsResponse) MakeDiffFieldMask(other *ListProbingD
 	if o.GetNextPageToken().String() != other.GetNextPageToken().String() {
 		res.Paths = append(res.Paths, &ListProbingDistributionsResponse_FieldTerminalPath{selector: ListProbingDistributionsResponse_FieldPathSelectorNextPageToken})
 	}
+	if o.GetCurrentOffset() != other.GetCurrentOffset() {
+		res.Paths = append(res.Paths, &ListProbingDistributionsResponse_FieldTerminalPath{selector: ListProbingDistributionsResponse_FieldPathSelectorCurrentOffset})
+	}
+	if o.GetTotalResultsCount() != other.GetTotalResultsCount() {
+		res.Paths = append(res.Paths, &ListProbingDistributionsResponse_FieldTerminalPath{selector: ListProbingDistributionsResponse_FieldPathSelectorTotalResultsCount})
+	}
 	return res
 }
 
@@ -620,6 +631,8 @@ func (o *ListProbingDistributionsResponse) Clone() *ListProbingDistributionsResp
 			panic(err)
 		}
 	}
+	result.CurrentOffset = o.CurrentOffset
+	result.TotalResultsCount = o.TotalResultsCount
 	return result
 }
 
@@ -670,6 +683,8 @@ func (o *ListProbingDistributionsResponse) Merge(source *ListProbingDistribution
 	} else {
 		o.NextPageToken = nil
 	}
+	o.CurrentOffset = source.GetCurrentOffset()
+	o.TotalResultsCount = source.GetTotalResultsCount()
 }
 
 func (o *ListProbingDistributionsResponse) MergeRaw(source gotenobject.GotenObjectExt) {

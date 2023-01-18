@@ -454,9 +454,10 @@ func (fps *RegisterProbeRequest_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RegisterProbeRequest
 func (fps *RegisterProbeRequest_FieldSubPath) Get(source *RegisterProbeRequest) (values []interface{}) {
-	if asStatusFieldPath, ok := fps.AsStatusSubPath(); ok {
-		values = append(values, asStatusFieldPath.Get(source.GetStatus())...)
-	} else {
+	switch fps.selector {
+	case RegisterProbeRequest_FieldPathSelectorStatus:
+		values = append(values, fps.subPath.GetRaw(source.GetStatus())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for RegisterProbeRequest: %d", fps.selector))
 	}
 	return
@@ -1182,9 +1183,10 @@ func (fps *RegisterProbeResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RegisterProbeResponse
 func (fps *RegisterProbeResponse_FieldSubPath) Get(source *RegisterProbeResponse) (values []interface{}) {
-	if asServiceAccountFieldPath, ok := fps.AsServiceAccountSubPath(); ok {
-		values = append(values, asServiceAccountFieldPath.Get(source.GetServiceAccount())...)
-	} else {
+	switch fps.selector {
+	case RegisterProbeResponse_FieldPathSelectorServiceAccount:
+		values = append(values, fps.subPath.GetRaw(source.GetServiceAccount())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for RegisterProbeResponse: %d", fps.selector))
 	}
 	return

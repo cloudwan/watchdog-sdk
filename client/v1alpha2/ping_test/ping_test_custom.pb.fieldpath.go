@@ -1179,9 +1179,10 @@ func (fps *RunPingTestResponse_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source RunPingTestResponse
 func (fps *RunPingTestResponse_FieldSubPath) Get(source *RunPingTestResponse) (values []interface{}) {
-	if asSummaryStatsFieldPath, ok := fps.AsSummarySubPath(); ok {
-		values = append(values, asSummaryStatsFieldPath.Get(source.GetSummary())...)
-	} else {
+	switch fps.selector {
+	case RunPingTestResponse_FieldPathSelectorSummary:
+		values = append(values, fps.subPath.GetRaw(source.GetSummary())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fps.selector))
 	}
 	return

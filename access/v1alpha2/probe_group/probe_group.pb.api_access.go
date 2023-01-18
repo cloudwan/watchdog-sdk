@@ -81,8 +81,9 @@ func (a *apiProbeGroupAccess) BatchGetProbeGroups(ctx context.Context, refs []*p
 
 func (a *apiProbeGroupAccess) QueryProbeGroups(ctx context.Context, query *probe_group.ListQuery) (*probe_group.QueryResultSnapshot, error) {
 	request := &probe_group_client.ListProbeGroupsRequest{
-		Filter:    query.Filter,
-		FieldMask: query.Mask,
+		Filter:            query.Filter,
+		FieldMask:         query.Mask,
+		IncludePagingInfo: query.WithPagingInfo,
 	}
 	if query.Pager != nil {
 		request.PageSize = int32(query.Pager.Limit)
@@ -94,13 +95,15 @@ func (a *apiProbeGroupAccess) QueryProbeGroups(ctx context.Context, query *probe
 		return nil, err
 	}
 	return &probe_group.QueryResultSnapshot{
-		ProbeGroups:    resp.ProbeGroups,
-		NextPageCursor: resp.NextPageToken,
-		PrevPageCursor: resp.PrevPageToken,
+		ProbeGroups:       resp.ProbeGroups,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
+		TotalResultsCount: resp.TotalResultsCount,
+		CurrentOffset:     resp.CurrentOffset,
 	}, nil
 }
 
-func (a *apiProbeGroupAccess) SearchProbeGroups(ctx context.Context, query *probe_group.SearchQuery) (*probe_group.SearchQueryResultSnapshot, error) {
+func (a *apiProbeGroupAccess) SearchProbeGroups(ctx context.Context, query *probe_group.SearchQuery) (*probe_group.QueryResultSnapshot, error) {
 	request := &probe_group_client.SearchProbeGroupsRequest{
 		Phrase:    query.Phrase,
 		Filter:    query.Filter,
@@ -115,12 +118,10 @@ func (a *apiProbeGroupAccess) SearchProbeGroups(ctx context.Context, query *prob
 	if err != nil {
 		return nil, err
 	}
-	return &probe_group.SearchQueryResultSnapshot{
-		QueryResultSnapshot: probe_group.QueryResultSnapshot{
-			ProbeGroups:    resp.ProbeGroups,
-			NextPageCursor: resp.NextPageToken,
-			PrevPageCursor: resp.PrevPageToken,
-		},
+	return &probe_group.QueryResultSnapshot{
+		ProbeGroups:       resp.ProbeGroups,
+		NextPageCursor:    resp.NextPageToken,
+		PrevPageCursor:    resp.PrevPageToken,
 		CurrentOffset:     resp.CurrentOffset,
 		TotalResultsCount: resp.TotalResultsCount,
 	}, nil

@@ -344,11 +344,12 @@ func (fps *ProbingTargetGroup_FieldSubPath) JSONString() string {
 
 // Get returns all values pointed by selected field from source ProbingTargetGroup
 func (fps *ProbingTargetGroup_FieldSubPath) Get(source *ProbingTargetGroup) (values []interface{}) {
-	if asStateFieldPath, ok := fps.AsStateSubPath(); ok {
-		values = append(values, asStateFieldPath.Get(source.GetState())...)
-	} else if asMetaFieldPath, ok := fps.AsMetadataSubPath(); ok {
-		values = append(values, asMetaFieldPath.Get(source.GetMetadata())...)
-	} else {
+	switch fps.selector {
+	case ProbingTargetGroup_FieldPathSelectorState:
+		values = append(values, fps.subPath.GetRaw(source.GetState())...)
+	case ProbingTargetGroup_FieldPathSelectorMetadata:
+		values = append(values, fps.subPath.GetRaw(source.GetMetadata())...)
+	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTargetGroup: %d", fps.selector))
 	}
 	return
