@@ -80,6 +80,9 @@ func (ProbingSessionFieldPathBuilder) Spec() ProbingSessionPathSelectorSpec {
 func (ProbingSessionFieldPathBuilder) ProbingDistribution() ProbingSessionPathSelectorProbingDistribution {
 	return ProbingSessionPathSelectorProbingDistribution{}
 }
+func (ProbingSessionFieldPathBuilder) ProbingDistributions() ProbingSessionPathSelectorProbingDistributions {
+	return ProbingSessionPathSelectorProbingDistributions{}
+}
 func (ProbingSessionFieldPathBuilder) Status() ProbingSessionPathSelectorStatus {
 	return ProbingSessionPathSelectorStatus{}
 }
@@ -2461,6 +2464,24 @@ func (s ProbingSessionPathSelectorProbingDistribution) WithValue(value *probing_
 
 func (s ProbingSessionPathSelectorProbingDistribution) WithArrayOfValues(values []*probing_distribution.Reference) *ProbingSession_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingSessionPathSelectorProbingDistributions struct{}
+
+func (ProbingSessionPathSelectorProbingDistributions) FieldPath() *ProbingSession_FieldTerminalPath {
+	return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistributions}
+}
+
+func (s ProbingSessionPathSelectorProbingDistributions) WithValue(value []*probing_distribution.Reference) *ProbingSession_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldTerminalPathValue)
+}
+
+func (s ProbingSessionPathSelectorProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *ProbingSession_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldTerminalPathArrayOfValues)
+}
+
+func (s ProbingSessionPathSelectorProbingDistributions) WithItemValue(value *probing_distribution.Reference) *ProbingSession_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ProbingSession_FieldTerminalPathArrayItemValue)
 }
 
 type ProbingSessionPathSelectorStatus struct{}

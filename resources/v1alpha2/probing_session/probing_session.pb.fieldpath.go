@@ -84,12 +84,13 @@ type ProbingSession_FieldPath interface {
 type ProbingSession_FieldPathSelector int32
 
 const (
-	ProbingSession_FieldPathSelectorName                ProbingSession_FieldPathSelector = 0
-	ProbingSession_FieldPathSelectorDisplayName         ProbingSession_FieldPathSelector = 1
-	ProbingSession_FieldPathSelectorMetadata            ProbingSession_FieldPathSelector = 2
-	ProbingSession_FieldPathSelectorSpec                ProbingSession_FieldPathSelector = 3
-	ProbingSession_FieldPathSelectorProbingDistribution ProbingSession_FieldPathSelector = 4
-	ProbingSession_FieldPathSelectorStatus              ProbingSession_FieldPathSelector = 5
+	ProbingSession_FieldPathSelectorName                 ProbingSession_FieldPathSelector = 0
+	ProbingSession_FieldPathSelectorDisplayName          ProbingSession_FieldPathSelector = 1
+	ProbingSession_FieldPathSelectorMetadata             ProbingSession_FieldPathSelector = 2
+	ProbingSession_FieldPathSelectorSpec                 ProbingSession_FieldPathSelector = 3
+	ProbingSession_FieldPathSelectorProbingDistribution  ProbingSession_FieldPathSelector = 4
+	ProbingSession_FieldPathSelectorProbingDistributions ProbingSession_FieldPathSelector = 5
+	ProbingSession_FieldPathSelectorStatus               ProbingSession_FieldPathSelector = 6
 )
 
 func (s ProbingSession_FieldPathSelector) String() string {
@@ -104,6 +105,8 @@ func (s ProbingSession_FieldPathSelector) String() string {
 		return "spec"
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		return "probing_distribution"
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return "probing_distributions"
 	case ProbingSession_FieldPathSelectorStatus:
 		return "status"
 	default:
@@ -127,6 +130,8 @@ func BuildProbingSession_FieldPath(fp gotenobject.RawFieldPath) (ProbingSession_
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpec}, nil
 		case "probing_distribution", "probingDistribution", "probing-distribution":
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistribution}, nil
+		case "probing_distributions", "probingDistributions", "probing-distributions":
+			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistributions}, nil
 		case "status":
 			return &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorStatus}, nil
 		}
@@ -213,6 +218,10 @@ func (fp *ProbingSession_FieldTerminalPath) Get(source *ProbingSession) (values 
 			if source.ProbingDistribution != nil {
 				values = append(values, source.ProbingDistribution)
 			}
+		case ProbingSession_FieldPathSelectorProbingDistributions:
+			for _, value := range source.GetProbingDistributions() {
+				values = append(values, value)
+			}
 		case ProbingSession_FieldPathSelectorStatus:
 			if source.Status != nil {
 				values = append(values, source.Status)
@@ -245,6 +254,9 @@ func (fp *ProbingSession_FieldTerminalPath) GetSingle(source *ProbingSession) (i
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		res := source.GetProbingDistribution()
 		return res, res != nil
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		res := source.GetProbingDistributions()
+		return res, res != nil
 	case ProbingSession_FieldPathSelectorStatus:
 		res := source.GetStatus()
 		return res, res != nil
@@ -270,6 +282,8 @@ func (fp *ProbingSession_FieldTerminalPath) GetDefault() interface{} {
 		return (*ProbingSession_Spec)(nil)
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		return (*probing_distribution.Reference)(nil)
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return ([]*probing_distribution.Reference)(nil)
 	case ProbingSession_FieldPathSelectorStatus:
 		return (*ProbingSession_Status)(nil)
 	default:
@@ -290,6 +304,8 @@ func (fp *ProbingSession_FieldTerminalPath) ClearValue(item *ProbingSession) {
 			item.Spec = nil
 		case ProbingSession_FieldPathSelectorProbingDistribution:
 			item.ProbingDistribution = nil
+		case ProbingSession_FieldPathSelectorProbingDistributions:
+			item.ProbingDistributions = nil
 		case ProbingSession_FieldPathSelectorStatus:
 			item.Status = nil
 		default:
@@ -306,7 +322,8 @@ func (fp *ProbingSession_FieldTerminalPath) ClearValueRaw(item proto.Message) {
 func (fp *ProbingSession_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbingSession_FieldPathSelectorName ||
 		fp.selector == ProbingSession_FieldPathSelectorDisplayName ||
-		fp.selector == ProbingSession_FieldPathSelectorProbingDistribution
+		fp.selector == ProbingSession_FieldPathSelectorProbingDistribution ||
+		fp.selector == ProbingSession_FieldPathSelectorProbingDistributions
 }
 
 func (fp *ProbingSession_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -325,6 +342,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithIValue(value interface{}) Probin
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*ProbingSession_Spec)}
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*probing_distribution.Reference)}
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.([]*probing_distribution.Reference)}
 	case ProbingSession_FieldPathSelectorStatus:
 		return &ProbingSession_FieldTerminalPathValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*ProbingSession_Status)}
 	default:
@@ -349,6 +368,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithIArrayOfValues(values interface{
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*ProbingSession_Spec)}
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*probing_distribution.Reference)}
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([][]*probing_distribution.Reference)}
 	case ProbingSession_FieldPathSelectorStatus:
 		return &ProbingSession_FieldTerminalPathArrayOfValues{ProbingSession_FieldTerminalPath: *fp, values: values.([]*ProbingSession_Status)}
 	default:
@@ -363,6 +384,8 @@ func (fp *ProbingSession_FieldTerminalPath) WithRawIArrayOfValues(values interfa
 
 func (fp *ProbingSession_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbingSession_FieldPathArrayItemValue {
 	switch fp.selector {
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return &ProbingSession_FieldTerminalPathArrayItemValue{ProbingSession_FieldTerminalPath: *fp, value: value.(*probing_distribution.Reference)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingSession: %d", fp.selector))
 	}
@@ -569,6 +592,10 @@ func (fpv *ProbingSession_FieldTerminalPathValue) AsProbingDistributionValue() (
 	res, ok := fpv.value.(*probing_distribution.Reference)
 	return res, ok
 }
+func (fpv *ProbingSession_FieldTerminalPathValue) AsProbingDistributionsValue() ([]*probing_distribution.Reference, bool) {
+	res, ok := fpv.value.([]*probing_distribution.Reference)
+	return res, ok
+}
 func (fpv *ProbingSession_FieldTerminalPathValue) AsStatusValue() (*ProbingSession_Status, bool) {
 	res, ok := fpv.value.(*ProbingSession_Status)
 	return res, ok
@@ -590,6 +617,8 @@ func (fpv *ProbingSession_FieldTerminalPathValue) SetTo(target **ProbingSession)
 		(*target).Spec = fpv.value.(*ProbingSession_Spec)
 	case ProbingSession_FieldPathSelectorProbingDistribution:
 		(*target).ProbingDistribution = fpv.value.(*probing_distribution.Reference)
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		(*target).ProbingDistributions = fpv.value.([]*probing_distribution.Reference)
 	case ProbingSession_FieldPathSelectorStatus:
 		(*target).Status = fpv.value.(*ProbingSession_Status)
 	default:
@@ -657,6 +686,8 @@ func (fpv *ProbingSession_FieldTerminalPathValue) CompareWith(source *ProbingSes
 		} else {
 			return 1, true
 		}
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		return 0, false
 	case ProbingSession_FieldPathSelectorStatus:
 		return 0, false
 	default:
@@ -769,6 +800,10 @@ var _ ProbingSession_FieldPathArrayItemValue = (*ProbingSession_FieldTerminalPat
 // GetRawValue returns stored element value for array in object ProbingSession as interface{}
 func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
+}
+func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) AsProbingDistributionsItemValue() (*probing_distribution.Reference, bool) {
+	res, ok := fpaiv.value.(*probing_distribution.Reference)
+	return res, ok
 }
 
 func (fpaiv *ProbingSession_FieldTerminalPathArrayItemValue) GetSingle(source *ProbingSession) (interface{}, bool) {
@@ -885,6 +920,10 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) GetRawValues() (valu
 		for _, v := range fpaov.values.([]*probing_distribution.Reference) {
 			values = append(values, v)
 		}
+	case ProbingSession_FieldPathSelectorProbingDistributions:
+		for _, v := range fpaov.values.([][]*probing_distribution.Reference) {
+			values = append(values, v)
+		}
 	case ProbingSession_FieldPathSelectorStatus:
 		for _, v := range fpaov.values.([]*ProbingSession_Status) {
 			values = append(values, v)
@@ -910,6 +949,10 @@ func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsSpecArrayOfValues(
 }
 func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsProbingDistributionArrayOfValues() ([]*probing_distribution.Reference, bool) {
 	res, ok := fpaov.values.([]*probing_distribution.Reference)
+	return res, ok
+}
+func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsProbingDistributionsArrayOfValues() ([][]*probing_distribution.Reference, bool) {
+	res, ok := fpaov.values.([][]*probing_distribution.Reference)
 	return res, ok
 }
 func (fpaov *ProbingSession_FieldTerminalPathArrayOfValues) AsStatusArrayOfValues() ([]*ProbingSession_Status, bool) {

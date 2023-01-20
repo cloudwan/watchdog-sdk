@@ -68,6 +68,7 @@ func FullProbingSession_FieldMask() *ProbingSession_FieldMask {
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorMetadata})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorSpec})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistribution})
+	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistributions})
 	res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorStatus})
 	return res
 }
@@ -112,7 +113,7 @@ func (fieldMask *ProbingSession_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 6)
+	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingSession_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -142,7 +143,7 @@ func (fieldMask *ProbingSession_FieldMask) Reset() {
 
 func (fieldMask *ProbingSession_FieldMask) Subtract(other *ProbingSession_FieldMask) *ProbingSession_FieldMask {
 	result := &ProbingSession_FieldMask{}
-	removedSelectors := make([]bool, 6)
+	removedSelectors := make([]bool, 7)
 	otherSubMasks := map[ProbingSession_FieldPathSelector]gotenobject.FieldMask{
 		ProbingSession_FieldPathSelectorMetadata: &ntt_meta.Meta_FieldMask{},
 		ProbingSession_FieldPathSelectorSpec:     &ProbingSession_Spec_FieldMask{},
@@ -366,6 +367,8 @@ func (fieldMask *ProbingSession_FieldMask) Project(source *ProbingSession) *Prob
 				wholeSpecAccepted = true
 			case ProbingSession_FieldPathSelectorProbingDistribution:
 				result.ProbingDistribution = source.ProbingDistribution
+			case ProbingSession_FieldPathSelectorProbingDistributions:
+				result.ProbingDistributions = source.ProbingDistributions
 			case ProbingSession_FieldPathSelectorStatus:
 				result.Status = source.Status
 				wholeStatusAccepted = true

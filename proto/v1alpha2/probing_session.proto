@@ -35,6 +35,9 @@ message ProbingSession {
   string probing_distribution = 5
       [ (google.api.resource_reference) = {type : "ProbingDistribution"} ];
 
+  repeated string probing_distributions = 7
+      [ (google.api.resource_reference) = {type : "ProbingDistribution"} ];
+
   // status shows the current status of the ProbingSession
   Status status = 6;
 

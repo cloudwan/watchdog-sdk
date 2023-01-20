@@ -97,6 +97,18 @@ func (o *ProbingSession) MakeDiffFieldMask(other *ProbingSession) *ProbingSessio
 	if o.GetProbingDistribution().String() != other.GetProbingDistribution().String() {
 		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistribution})
 	}
+
+	if len(o.GetProbingDistributions()) == len(other.GetProbingDistributions()) {
+		for i, lValue := range o.GetProbingDistributions() {
+			rValue := other.GetProbingDistributions()[i]
+			if lValue.String() != rValue.String() {
+				res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistributions})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &ProbingSession_FieldTerminalPath{selector: ProbingSession_FieldPathSelectorProbingDistributions})
+	}
 	{
 		subMask := o.GetStatus().MakeDiffFieldMask(other.GetStatus())
 		if subMask.IsFull() {
@@ -140,6 +152,19 @@ func (o *ProbingSession) Clone() *ProbingSession {
 		result.ProbingDistribution = &probing_distribution.Reference{}
 		if err := result.ProbingDistribution.ParseProtoString(data); err != nil {
 			panic(err)
+		}
+	}
+	result.ProbingDistributions = make([]*probing_distribution.Reference, len(o.ProbingDistributions))
+	for i, sourceValue := range o.ProbingDistributions {
+		if sourceValue == nil {
+			result.ProbingDistributions[i] = nil
+		} else if data, err := sourceValue.ProtoString(); err != nil {
+			panic(err)
+		} else {
+			result.ProbingDistributions[i] = &probing_distribution.Reference{}
+			if err := result.ProbingDistributions[i].ParseProtoString(data); err != nil {
+				panic(err)
+			}
 		}
 	}
 	result.Status = o.Status.Clone()
@@ -188,6 +213,32 @@ func (o *ProbingSession) Merge(source *ProbingSession) {
 	} else {
 		o.ProbingDistribution = nil
 	}
+	for _, sourceValue := range source.GetProbingDistributions() {
+		exists := false
+		for _, currentValue := range o.ProbingDistributions {
+			leftProtoStr, _ := currentValue.ProtoString()
+			rightProtoStr, _ := sourceValue.ProtoString()
+			if leftProtoStr == rightProtoStr {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			var newDstElement *probing_distribution.Reference
+			if sourceValue != nil {
+				if data, err := sourceValue.ProtoString(); err != nil {
+					panic(err)
+				} else {
+					newDstElement = &probing_distribution.Reference{}
+					if err := newDstElement.ParseProtoString(data); err != nil {
+						panic(err)
+					}
+				}
+			}
+			o.ProbingDistributions = append(o.ProbingDistributions, newDstElement)
+		}
+	}
+
 	if source.GetStatus() != nil {
 		if o.Status == nil {
 			o.Status = new(ProbingSession_Status)

@@ -251,6 +251,10 @@ func (BatchGetProbingSessionsResponsePathSelectorProbingSessions) ProbingDistrib
 	return BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution{}
 }
 
+func (BatchGetProbingSessionsResponsePathSelectorProbingSessions) ProbingDistributions() BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions {
+	return BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions{}
+}
+
 func (BatchGetProbingSessionsResponsePathSelectorProbingSessions) Status() BatchGetProbingSessionsResponsePathSelectorProbingSessionsStatus {
 	return BatchGetProbingSessionsResponsePathSelectorProbingSessionsStatus{}
 }
@@ -2617,6 +2621,27 @@ func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistrib
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
+type BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions struct{}
+
+func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) FieldPath() *BatchGetProbingSessionsResponse_FieldSubPath {
+	return &BatchGetProbingSessionsResponse_FieldSubPath{
+		selector: BatchGetProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithValue(value []*probing_distribution.Reference) *BatchGetProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s BatchGetProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithItemValue(value *probing_distribution.Reference) *BatchGetProbingSessionsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*BatchGetProbingSessionsResponse_FieldSubPathArrayItemValue)
+}
+
 type BatchGetProbingSessionsResponsePathSelectorProbingSessionsStatus struct{}
 
 func (BatchGetProbingSessionsResponsePathSelectorProbingSessionsStatus) FieldPath() *BatchGetProbingSessionsResponse_FieldSubPath {
@@ -2866,6 +2891,10 @@ func (ListProbingSessionsResponsePathSelectorProbingSessions) Spec() ListProbing
 
 func (ListProbingSessionsResponsePathSelectorProbingSessions) ProbingDistribution() ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution {
 	return ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution{}
+}
+
+func (ListProbingSessionsResponsePathSelectorProbingSessions) ProbingDistributions() ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions {
+	return ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions{}
 }
 
 func (ListProbingSessionsResponsePathSelectorProbingSessions) Status() ListProbingSessionsResponsePathSelectorProbingSessionsStatus {
@@ -5234,6 +5263,27 @@ func (s ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributio
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldSubPathArrayOfValues)
 }
 
+type ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions struct{}
+
+func (ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) FieldPath() *ListProbingSessionsResponse_FieldSubPath {
+	return &ListProbingSessionsResponse_FieldSubPath{
+		selector: ListProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithValue(value []*probing_distribution.Reference) *ListProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *ListProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s ListProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithItemValue(value *probing_distribution.Reference) *ListProbingSessionsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*ListProbingSessionsResponse_FieldSubPathArrayItemValue)
+}
+
 type ListProbingSessionsResponsePathSelectorProbingSessionsStatus struct{}
 
 func (ListProbingSessionsResponsePathSelectorProbingSessionsStatus) FieldPath() *ListProbingSessionsResponse_FieldSubPath {
@@ -5881,6 +5931,10 @@ func (CreateProbingSessionRequestPathSelectorProbingSession) Spec() CreateProbin
 
 func (CreateProbingSessionRequestPathSelectorProbingSession) ProbingDistribution() CreateProbingSessionRequestPathSelectorProbingSessionProbingDistribution {
 	return CreateProbingSessionRequestPathSelectorProbingSessionProbingDistribution{}
+}
+
+func (CreateProbingSessionRequestPathSelectorProbingSession) ProbingDistributions() CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions {
+	return CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions{}
 }
 
 func (CreateProbingSessionRequestPathSelectorProbingSession) Status() CreateProbingSessionRequestPathSelectorProbingSessionStatus {
@@ -8249,6 +8303,27 @@ func (s CreateProbingSessionRequestPathSelectorProbingSessionProbingDistribution
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions struct{}
+
+func (CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) FieldPath() *CreateProbingSessionRequest_FieldSubPath {
+	return &CreateProbingSessionRequest_FieldSubPath{
+		selector: CreateProbingSessionRequest_FieldPathSelectorProbingSession,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithValue(value []*probing_distribution.Reference) *CreateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *CreateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
+func (s CreateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithItemValue(value *probing_distribution.Reference) *CreateProbingSessionRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*CreateProbingSessionRequest_FieldSubPathArrayItemValue)
+}
+
 type CreateProbingSessionRequestPathSelectorProbingSessionStatus struct{}
 
 func (CreateProbingSessionRequestPathSelectorProbingSessionStatus) FieldPath() *CreateProbingSessionRequest_FieldSubPath {
@@ -8329,6 +8404,10 @@ func (UpdateProbingSessionRequestPathSelectorProbingSession) Spec() UpdateProbin
 
 func (UpdateProbingSessionRequestPathSelectorProbingSession) ProbingDistribution() UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistribution {
 	return UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistribution{}
+}
+
+func (UpdateProbingSessionRequestPathSelectorProbingSession) ProbingDistributions() UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions {
+	return UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions{}
 }
 
 func (UpdateProbingSessionRequestPathSelectorProbingSession) Status() UpdateProbingSessionRequestPathSelectorProbingSessionStatus {
@@ -10697,6 +10776,27 @@ func (s UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistribution
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions struct{}
+
+func (UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
+	return &UpdateProbingSessionRequest_FieldSubPath{
+		selector: UpdateProbingSessionRequest_FieldPathSelectorProbingSession,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithValue(value []*probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorProbingSessionProbingDistributions) WithItemValue(value *probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingSessionRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingSessionRequestPathSelectorProbingSessionStatus struct{}
 
 func (UpdateProbingSessionRequestPathSelectorProbingSessionStatus) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
@@ -10801,6 +10901,10 @@ func (UpdateProbingSessionRequestPathSelectorCasConditionalState) Spec() UpdateP
 
 func (UpdateProbingSessionRequestPathSelectorCasConditionalState) ProbingDistribution() UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistribution {
 	return UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistribution{}
+}
+
+func (UpdateProbingSessionRequestPathSelectorCasConditionalState) ProbingDistributions() UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions {
+	return UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions{}
 }
 
 func (UpdateProbingSessionRequestPathSelectorCasConditionalState) Status() UpdateProbingSessionRequestPathSelectorCasConditionalStateStatus {
@@ -13169,6 +13273,27 @@ func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistrib
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions struct{}
+
+func (UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
+	return &UpdateProbingSessionRequest_FieldSubPath{
+		selector: UpdateProbingSessionRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingSessionRequestCASFieldPathBuilder().ConditionalState().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions) WithValue(value []*probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorCasConditionalStateProbingDistributions) WithItemValue(value *probing_distribution.Reference) *UpdateProbingSessionRequest_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingSessionRequest_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingSessionRequestPathSelectorCasConditionalStateStatus struct{}
 
 func (UpdateProbingSessionRequestPathSelectorCasConditionalStateStatus) FieldPath() *UpdateProbingSessionRequest_FieldSubPath {
@@ -13263,6 +13388,10 @@ func (UpdateProbingSessionRequest_CASPathSelectorConditionalState) Spec() Update
 
 func (UpdateProbingSessionRequest_CASPathSelectorConditionalState) ProbingDistribution() UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistribution {
 	return UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistribution{}
+}
+
+func (UpdateProbingSessionRequest_CASPathSelectorConditionalState) ProbingDistributions() UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions {
+	return UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions{}
 }
 
 func (UpdateProbingSessionRequest_CASPathSelectorConditionalState) Status() UpdateProbingSessionRequest_CASPathSelectorConditionalStateStatus {
@@ -15631,6 +15760,27 @@ func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistri
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues)
 }
 
+type UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions struct{}
+
+func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions) FieldPath() *UpdateProbingSessionRequestCAS_FieldSubPath {
+	return &UpdateProbingSessionRequestCAS_FieldSubPath{
+		selector: UpdateProbingSessionRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions) WithValue(value []*probing_distribution.Reference) *UpdateProbingSessionRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayOfValues)
+}
+
+func (s UpdateProbingSessionRequest_CASPathSelectorConditionalStateProbingDistributions) WithItemValue(value *probing_distribution.Reference) *UpdateProbingSessionRequestCAS_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*UpdateProbingSessionRequestCAS_FieldSubPathArrayItemValue)
+}
+
 type UpdateProbingSessionRequest_CASPathSelectorConditionalStateStatus struct{}
 
 func (UpdateProbingSessionRequest_CASPathSelectorConditionalStateStatus) FieldPath() *UpdateProbingSessionRequestCAS_FieldSubPath {
@@ -15899,6 +16049,10 @@ func (SearchProbingSessionsResponsePathSelectorProbingSessions) Spec() SearchPro
 
 func (SearchProbingSessionsResponsePathSelectorProbingSessions) ProbingDistribution() SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution {
 	return SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution{}
+}
+
+func (SearchProbingSessionsResponsePathSelectorProbingSessions) ProbingDistributions() SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions {
+	return SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions{}
 }
 
 func (SearchProbingSessionsResponsePathSelectorProbingSessions) Status() SearchProbingSessionsResponsePathSelectorProbingSessionsStatus {
@@ -18265,6 +18419,27 @@ func (s SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistribut
 
 func (s SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistribution) WithArrayOfValues(values []*probing_distribution.Reference) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions struct{}
+
+func (SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) FieldPath() *SearchProbingSessionsResponse_FieldSubPath {
+	return &SearchProbingSessionsResponse_FieldSubPath{
+		selector: SearchProbingSessionsResponse_FieldPathSelectorProbingSessions,
+		subPath:  probing_session.NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	}
+}
+
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithValue(value []*probing_distribution.Reference) *SearchProbingSessionsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingSessionsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithArrayOfValues(values [][]*probing_distribution.Reference) *SearchProbingSessionsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingSessionsResponse_FieldSubPathArrayOfValues)
+}
+
+func (s SearchProbingSessionsResponsePathSelectorProbingSessionsProbingDistributions) WithItemValue(value *probing_distribution.Reference) *SearchProbingSessionsResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*SearchProbingSessionsResponse_FieldSubPathArrayItemValue)
 }
 
 type SearchProbingSessionsResponsePathSelectorProbingSessionsStatus struct{}

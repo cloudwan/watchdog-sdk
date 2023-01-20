@@ -230,6 +230,10 @@ func (b *filterCndBuilder) ProbingDistribution() *filterCndBuilderProbingDistrib
 	return &filterCndBuilderProbingDistribution{builder: b.builder}
 }
 
+func (b *filterCndBuilder) ProbingDistributions() *filterCndBuilderProbingDistributions {
+	return &filterCndBuilderProbingDistributions{builder: b.builder}
+}
+
 func (b *filterCndBuilder) Status() *filterCndBuilderStatus {
 	return &filterCndBuilderStatus{builder: b.builder}
 }
@@ -7410,6 +7414,99 @@ func (b *filterCndBuilderProbingDistribution) compare(op gotenfilter.CompareOper
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                      op,
 		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().ProbingDistribution().WithValue(value),
+	})
+}
+
+type filterCndBuilderProbingDistributions struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProbingDistributions) Eq(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) Neq(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) Gt(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) Gte(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) Lt(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) Lte(value []*probing_distribution.Reference) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProbingDistributions) In(values [][]*probing_distribution.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().ProbingDistributions().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) NotIn(values [][]*probing_distribution.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingSession_FieldPathArrayOfValues: NewProbingSessionFieldPathBuilder().ProbingDistributions().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) Contains(value *probing_distribution.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeValue,
+		FieldPath: NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+		Value:     NewProbingSessionFieldPathBuilder().ProbingDistributions().WithItemValue(value),
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) ContainsAnyOf(values []*probing_distribution.Reference) *FilterBuilder {
+	pathSelector := NewProbingSessionFieldPathBuilder().ProbingDistributions()
+	itemValues := make([]ProbingSession_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAny,
+		FieldPath: NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) ContainsAll(values []*probing_distribution.Reference) *FilterBuilder {
+	pathSelector := NewProbingSessionFieldPathBuilder().ProbingDistributions()
+	itemValues := make([]ProbingSession_FieldPathArrayItemValue, 0, len(values))
+	for _, value := range values {
+		itemValues = append(itemValues, pathSelector.WithItemValue(value))
+	}
+	return b.builder.addCond(&FilterConditionContains{
+		Type:      gotenresource.ConditionContainsTypeAll,
+		FieldPath: NewProbingSessionFieldPathBuilder().ProbingDistributions().FieldPath(),
+		Values:    itemValues,
+	})
+}
+
+func (b *filterCndBuilderProbingDistributions) compare(op gotenfilter.CompareOperator, value []*probing_distribution.Reference) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                      op,
+		ProbingSession_FieldPathValue: NewProbingSessionFieldPathBuilder().ProbingDistributions().WithValue(value),
 	})
 }
 
