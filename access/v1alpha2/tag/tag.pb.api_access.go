@@ -59,6 +59,10 @@ func (a *apiTagAccess) BatchGetTags(ctx context.Context, refs []*tag.Reference, 
 	request := &tag_client.BatchGetTagsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(tag.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*tag.Tag_FieldMask)
+	}
 	resp, err := a.client.BatchGetTags(ctx, request)
 	if err != nil {
 		return err

@@ -59,6 +59,10 @@ func (a *apiQualityProfileAccess) BatchGetQualityProfiles(ctx context.Context, r
 	request := &quality_profile_client.BatchGetQualityProfilesRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(quality_profile.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*quality_profile.QualityProfile_FieldMask)
+	}
 	resp, err := a.client.BatchGetQualityProfiles(ctx, request)
 	if err != nil {
 		return err

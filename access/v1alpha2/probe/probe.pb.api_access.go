@@ -59,6 +59,10 @@ func (a *apiProbeAccess) BatchGetProbes(ctx context.Context, refs []*probe.Refer
 	request := &probe_client.BatchGetProbesRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probe.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probe.Probe_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbes(ctx, request)
 	if err != nil {
 		return err

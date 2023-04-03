@@ -59,6 +59,10 @@ func (a *apiProbingTargetAccess) BatchGetProbingTargets(ctx context.Context, ref
 	request := &probing_target_client.BatchGetProbingTargetsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probing_target.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probing_target.ProbingTarget_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbingTargets(ctx, request)
 	if err != nil {
 		return err

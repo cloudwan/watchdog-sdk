@@ -59,6 +59,10 @@ func (a *apiProbingConfigAccess) BatchGetProbingConfigs(ctx context.Context, ref
 	request := &probing_config_client.BatchGetProbingConfigsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probing_config.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probing_config.ProbingConfig_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbingConfigs(ctx, request)
 	if err != nil {
 		return err

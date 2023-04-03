@@ -59,6 +59,10 @@ func (a *apiAdminAreaAccess) BatchGetAdminAreas(ctx context.Context, refs []*adm
 	request := &admin_area_client.BatchGetAdminAreasRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(admin_area.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*admin_area.AdminArea_FieldMask)
+	}
 	resp, err := a.client.BatchGetAdminAreas(ctx, request)
 	if err != nil {
 		return err

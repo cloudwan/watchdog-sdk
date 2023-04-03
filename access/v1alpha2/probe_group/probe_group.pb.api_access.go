@@ -59,6 +59,10 @@ func (a *apiProbeGroupAccess) BatchGetProbeGroups(ctx context.Context, refs []*p
 	request := &probe_group_client.BatchGetProbeGroupsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probe_group.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probe_group.ProbeGroup_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbeGroups(ctx, request)
 	if err != nil {
 		return err

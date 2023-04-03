@@ -59,6 +59,10 @@ func (a *apiProbingDistributionAccess) BatchGetProbingDistributions(ctx context.
 	request := &probing_distribution_client.BatchGetProbingDistributionsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probing_distribution.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probing_distribution.ProbingDistribution_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbingDistributions(ctx, request)
 	if err != nil {
 		return err

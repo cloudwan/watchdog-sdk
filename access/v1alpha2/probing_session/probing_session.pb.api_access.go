@@ -59,6 +59,10 @@ func (a *apiProbingSessionAccess) BatchGetProbingSessions(ctx context.Context, r
 	request := &probing_session_client.BatchGetProbingSessionsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(probing_session.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*probing_session.ProbingSession_FieldMask)
+	}
 	resp, err := a.client.BatchGetProbingSessions(ctx, request)
 	if err != nil {
 		return err

@@ -59,6 +59,10 @@ func (a *apiInternetQualityRatingAccess) BatchGetInternetQualityRatings(ctx cont
 	request := &internet_quality_rating_client.BatchGetInternetQualityRatingsRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(internet_quality_rating.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*internet_quality_rating.InternetQualityRating_FieldMask)
+	}
 	resp, err := a.client.BatchGetInternetQualityRatings(ctx, request)
 	if err != nil {
 		return err

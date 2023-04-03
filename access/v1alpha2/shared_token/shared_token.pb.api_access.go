@@ -59,6 +59,10 @@ func (a *apiSharedTokenAccess) BatchGetSharedTokens(ctx context.Context, refs []
 	request := &shared_token_client.BatchGetSharedTokensRequest{
 		Names: refs,
 	}
+	fieldMask := batchGetOpts.GetFieldMask(shared_token.GetDescriptor())
+	if fieldMask != nil {
+		request.FieldMask = fieldMask.(*shared_token.SharedToken_FieldMask)
+	}
 	resp, err := a.client.BatchGetSharedTokens(ctx, request)
 	if err != nil {
 		return err
