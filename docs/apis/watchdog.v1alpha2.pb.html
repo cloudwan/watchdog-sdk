@@ -2337,6 +2337,31 @@ Equivalent REST API:
 
 
 <div class="operation">
+<h5 id="operation-RunHTTPTest">RunHTTPTest</h5>
+
+<pre class="signature">rpc RunHTTPTest(<a href="#message-RunHTTPTestRequest">RunHTTPTestRequest</a>) returns (<a href="#message-RunHTTPTestResponse">RunHTTPTestResponse</a>)</pre>
+
+<div class="description">
+<p>RunHTTPTest</p>
+
+</div>
+
+
+
+
+<div class="rest">
+Equivalent REST API:
+
+<pre>POST /v1alpha2/{name=projects/*/regions/*/probes/*}:runHTTPTest </pre>
+
+</div>
+
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-ReportPcap">ReportPcap</h5>
 
 <pre class="signature">rpc ReportPcap(<a href="#message-ReportPcapRequest">ReportPcapRequest</a>) returns (Empty)</pre>
@@ -4036,6 +4061,190 @@ The minimum length includes space for timestamp and a tracker</p>
 <tr>
 <th rowspan="2">http_stats</th>
 <td class="type"><pre>repeated <a href="#message-HTTPStat">HTTPStat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHTTPTestRequest">RunHTTPTestRequest</h5>
+
+<p>Request message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">url</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">request_headers</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>http headers to use in the probe requests as key value pairs</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">request_method</th>
+<td class="type"><pre><a href="#enum-HTTPRequestMethod">HTTPRequestMethod</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">timeout</th>
+<td class="type"><pre>.google.protobuf.Duration</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">request_body</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">authentication_method</th>
+<td class="type"><pre><a href="#enum-AuthenticationMethod">AuthenticationMethod</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">url_form_encoded_body</th>
+<td class="type"><pre><a href="#message-RunHTTPTestRequest.StringArray">RunHTTPTestRequest.StringArray</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">username</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">password</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">source_ip</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">response_fornat</th>
+<td class="type"><pre><a href="#enum-RunHTTPTestRequest.ResponseFormat">RunHTTPTestRequest.ResponseFormat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHTTPTestRequest.StringArray">RunHTTPTestRequest.StringArray</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">value</th>
+<td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHTTPTestResponse">RunHTTPTestResponse</h5>
+
+<p>Response message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">text_response</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">json_response</th>
+<td class="type"><pre><a href="#message-RunHTTPTestResponse.JsonResponse">RunHTTPTestResponse.JsonResponse</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHTTPTestResponse.JsonResponse">RunHTTPTestResponse.JsonResponse</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">response_code</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">response_headers</th>
+<td class="type"><pre>repeated <a href="#message-RunHTTPTestResponse.JsonResponse.Header">RunHTTPTestResponse.JsonResponse.Header</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">response_body</th>
+<td class="type"><pre>bytes</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHTTPTestResponse.JsonResponse.Header">RunHTTPTestResponse.JsonResponse.Header</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">key</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">values</th>
+<td class="type"><pre>repeated string</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -21420,6 +21629,30 @@ later than the end time.</p>
 
 <tr>
 <th>OVERRIDE_SYSTEM_CONFIGURATION</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-RunHTTPTestRequest.ResponseFormat">RunHTTPTestRequest.ResponseFormat</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>JSON</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>TEXT</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

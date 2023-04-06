@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/protobuf/duration.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_test;http_test_client";
+option java_multiple_files = false;
+option java_outer_classname = "HTTPTestCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]
+message RunHTTPTestRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  string url = 2; // include http/https scheme in the string
+
+  // http headers to use in the probe requests as key value pairs
+  map<string, string> request_headers = 3;
+
+  HTTPRequestMethod request_method = 4;
+
+  google.protobuf.Duration timeout = 5;
+
+  string request_body = 6;
+
+  AuthenticationMethod authentication_method = 7;
+
+  map<string, StringArray> url_form_encoded_body = 8;
+
+  string username = 9;
+
+  string password = 10;
+
+  string source_ip = 11;
+
+  ResponseFormat response_fornat = 12;
+
+  message StringArray { repeated string value = 1; }
+
+  enum ResponseFormat {
+    JSON = 0;
+
+    TEXT = 1;
+  }
+}
+
+// Response message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]
+message RunHTTPTestResponse {
+  string text_response = 1;
+
+  JsonResponse json_response = 2;
+
+  message JsonResponse {
+    int32 response_code = 1;
+
+    repeated Header response_headers = 2;
+
+    bytes response_body = 3;
+
+    message Header {
+      string key = 1;
+
+      repeated string values = 2;
+    }
+  }
+}

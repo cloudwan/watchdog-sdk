@@ -17,6 +17,7 @@ import (
 	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
 	hop_report_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_report"
 	http_metrics_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_metrics"
+	http_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_test"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
 	pcap_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/pcap"
 	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
@@ -89,6 +90,7 @@ type WatchdogClient interface {
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
+	http_test_client.HTTPTestServiceClient
 	hop_monitor_client.HopMonitorServiceClient
 	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
@@ -115,6 +117,7 @@ type watchdogClient struct {
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
+	http_test_client.HTTPTestServiceClient
 	hop_monitor_client.HopMonitorServiceClient
 	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
@@ -142,6 +145,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
 		HTTPMetricsServiceClient:           http_metrics_client.NewHTTPMetricsServiceClient(cc),
+		HTTPTestServiceClient:              http_test_client.NewHTTPTestServiceClient(cc),
 		HopMonitorServiceClient:            hop_monitor_client.NewHopMonitorServiceClient(cc),
 		HopReportServiceClient:             hop_report_client.NewHopReportServiceClient(cc),
 		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
