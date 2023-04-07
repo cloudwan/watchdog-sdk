@@ -19,6 +19,7 @@ import (
 	http_metrics_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_metrics"
 	http_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_test"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
+	network_info_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/network_info"
 	pcap_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/pcap"
 	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
 	probe_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe"
@@ -94,6 +95,7 @@ type WatchdogClient interface {
 	hop_monitor_client.HopMonitorServiceClient
 	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
+	network_info_client.NetworkInfoServiceClient
 	pcap_client.PcapServiceClient
 	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
@@ -121,6 +123,7 @@ type watchdogClient struct {
 	hop_monitor_client.HopMonitorServiceClient
 	hop_report_client.HopReportServiceClient
 	internet_quality_rating_client.InternetQualityRatingServiceClient
+	network_info_client.NetworkInfoServiceClient
 	pcap_client.PcapServiceClient
 	ping_test_client.PingTestServiceClient
 	probe_group_client.ProbeGroupServiceClient
@@ -149,6 +152,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		HopMonitorServiceClient:            hop_monitor_client.NewHopMonitorServiceClient(cc),
 		HopReportServiceClient:             hop_report_client.NewHopReportServiceClient(cc),
 		InternetQualityRatingServiceClient: internet_quality_rating_client.NewInternetQualityRatingServiceClient(cc),
+		NetworkInfoServiceClient:           network_info_client.NewNetworkInfoServiceClient(cc),
 		PcapServiceClient:                  pcap_client.NewPcapServiceClient(cc),
 		PingTestServiceClient:              ping_test_client.NewPingTestServiceClient(cc),
 		ProbeGroupServiceClient:            probe_group_client.NewProbeGroupServiceClient(cc),

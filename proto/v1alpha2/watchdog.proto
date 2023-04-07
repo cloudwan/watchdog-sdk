@@ -25,6 +25,8 @@ import "watchdog-sdk/proto/v1alpha2/http_test_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/http_test_service.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating.proto";
 import "watchdog-sdk/proto/v1alpha2/internet_quality_rating_service.proto";
+import "watchdog-sdk/proto/v1alpha2/network_info_custom.proto";
+import "watchdog-sdk/proto/v1alpha2/network_info_service.proto";
 import "watchdog-sdk/proto/v1alpha2/pcap_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/pcap_service.proto";
 import "watchdog-sdk/proto/v1alpha2/ping_test_custom.proto";

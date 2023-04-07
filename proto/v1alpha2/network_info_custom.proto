@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/network_info;network_info_client";
+option java_multiple_files = false;
+option java_outer_classname = "NetworkInfoCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method
+// [GetNetworkInfo][ntt.watchdog.v1alpha2.GetNetworkInfo]
+message GetNetworkInfoRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  ResponseFormat response_fornat = 2;
+
+  enum ResponseFormat {
+    JSON = 0;
+
+    TEXT = 1;
+  }
+}
+
+// Response message for method
+// [GetNetworkInfo][ntt.watchdog.v1alpha2.GetNetworkInfo]
+message GetNetworkInfoResponse {
+  string text_response = 1;
+
+  JsonResponse json_response = 2;
+
+  message JsonResponse {
+    string interfaces = 1;
+
+    string routes = 2;
+
+    string wifi_info = 3;
+  }
+}

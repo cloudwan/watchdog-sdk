@@ -20,6 +20,7 @@ import (
 	http_metrics_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_metrics"
 	http_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/http_test"
 	internet_quality_rating_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/internet_quality_rating"
+	network_info_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/network_info"
 	pcap_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/pcap"
 	ping_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/ping_test"
 	probe_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/probe"
@@ -139,6 +140,7 @@ func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
 		hop_monitor_client.GetHopMonitorServiceDescriptor(),
 		hop_report_client.GetHopReportServiceDescriptor(),
 		internet_quality_rating_client.GetInternetQualityRatingServiceDescriptor(),
+		network_info_client.GetNetworkInfoServiceDescriptor(),
 		pcap_client.GetPcapServiceDescriptor(),
 		ping_test_client.GetPingTestServiceDescriptor(),
 		probe_group_client.GetProbeGroupServiceDescriptor(),
