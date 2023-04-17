@@ -24,6 +24,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
@@ -50,6 +51,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -82,6 +84,7 @@ const (
 	RunPingTestRequest_FieldPathSelectorDontFragment RunPingTestRequest_FieldPathSelector = 7
 	RunPingTestRequest_FieldPathSelectorTtl          RunPingTestRequest_FieldPathSelector = 8
 	RunPingTestRequest_FieldPathSelectorTos          RunPingTestRequest_FieldPathSelector = 9
+	RunPingTestRequest_FieldPathSelectorOutputFormat RunPingTestRequest_FieldPathSelector = 10
 )
 
 func (s RunPingTestRequest_FieldPathSelector) String() string {
@@ -106,6 +109,8 @@ func (s RunPingTestRequest_FieldPathSelector) String() string {
 		return "ttl"
 	case RunPingTestRequest_FieldPathSelectorTos:
 		return "tos"
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		return "output_format"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", s))
 	}
@@ -137,6 +142,8 @@ func BuildRunPingTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunPingTest
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTtl}, nil
 		case "tos":
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTos}, nil
+		case "output_format", "outputFormat", "output-format":
+			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestRequest", fp)
@@ -208,6 +215,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) Get(source *RunPingTestRequest) 
 			values = append(values, source.Ttl)
 		case RunPingTestRequest_FieldPathSelectorTos:
 			values = append(values, source.Tos)
+		case RunPingTestRequest_FieldPathSelectorOutputFormat:
+			values = append(values, source.OutputFormat)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 		}
@@ -245,6 +254,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetSingle(source *RunPingTestReq
 		return source.GetTtl(), source != nil
 	case RunPingTestRequest_FieldPathSelectorTos:
 		return source.GetTos(), source != nil
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		return source.GetOutputFormat(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -277,6 +288,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return int32(0)
 	case RunPingTestRequest_FieldPathSelectorTos:
 		return int32(0)
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		return common.OnDemandTestResponseFormat_TEXT
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -305,6 +318,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) ClearValue(item *RunPingTestRequ
 			item.Ttl = int32(0)
 		case RunPingTestRequest_FieldPathSelectorTos:
 			item.Tos = int32(0)
+		case RunPingTestRequest_FieldPathSelectorOutputFormat:
+			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 		}
@@ -326,7 +341,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestRequest_FieldPathSelectorEchoTimeout ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorDontFragment ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorTtl ||
-		fp.selector == RunPingTestRequest_FieldPathSelectorTos
+		fp.selector == RunPingTestRequest_FieldPathSelectorTos ||
+		fp.selector == RunPingTestRequest_FieldPathSelectorOutputFormat
 }
 
 func (fp *RunPingTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -355,6 +371,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunPingTestRequest_FieldPathSelectorTos:
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -387,6 +405,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunPingTestRequest_FieldPathSelectorTos:
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -487,6 +507,10 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsTosValue() (int32, bool)
 	res, ok := fpv.value.(int32)
 	return res, ok
 }
+func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsOutputFormatValue() (common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunPingTestRequest
 func (fpv *RunPingTestRequest_FieldTerminalPathValue) SetTo(target **RunPingTestRequest) {
@@ -514,6 +538,8 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) SetTo(target **RunPingTest
 		(*target).Ttl = fpv.value.(int32)
 	case RunPingTestRequest_FieldPathSelectorTos:
 		(*target).Tos = fpv.value.(int32)
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fpv.selector))
 	}
@@ -647,6 +673,16 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) CompareWith(source *RunPin
 	case RunPingTestRequest_FieldPathSelectorTos:
 		leftValue := fpv.value.(int32)
 		rightValue := source.GetTos()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
+		rightValue := source.GetOutputFormat()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -802,6 +838,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
+	case RunPingTestRequest_FieldPathSelectorOutputFormat:
+		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -845,6 +885,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsTosArrayOfValu
 	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
+func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -865,31 +909,16 @@ type RunPingTestResponse_FieldPath interface {
 type RunPingTestResponse_FieldPathSelector int32
 
 const (
-	RunPingTestResponse_FieldPathSelectorFrom           RunPingTestResponse_FieldPathSelector = 0
-	RunPingTestResponse_FieldPathSelectorSizeBytes      RunPingTestResponse_FieldPathSelector = 1
-	RunPingTestResponse_FieldPathSelectorSequenceNumber RunPingTestResponse_FieldPathSelector = 2
-	RunPingTestResponse_FieldPathSelectorTtl            RunPingTestResponse_FieldPathSelector = 3
-	RunPingTestResponse_FieldPathSelectorRtt            RunPingTestResponse_FieldPathSelector = 4
-	RunPingTestResponse_FieldPathSelectorError          RunPingTestResponse_FieldPathSelector = 5
-	RunPingTestResponse_FieldPathSelectorSummary        RunPingTestResponse_FieldPathSelector = 6
+	RunPingTestResponse_FieldPathSelectorJsonResponse RunPingTestResponse_FieldPathSelector = 0
+	RunPingTestResponse_FieldPathSelectorTextResponse RunPingTestResponse_FieldPathSelector = 1
 )
 
 func (s RunPingTestResponse_FieldPathSelector) String() string {
 	switch s {
-	case RunPingTestResponse_FieldPathSelectorFrom:
-		return "from"
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		return "size_bytes"
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		return "sequence_number"
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		return "ttl"
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		return "rtt"
-	case RunPingTestResponse_FieldPathSelectorError:
-		return "error"
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return "summary"
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return "json_response"
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
+		return "text_response"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", s))
 	}
@@ -901,28 +930,18 @@ func BuildRunPingTestResponse_FieldPath(fp gotenobject.RawFieldPath) (RunPingTes
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "from":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorFrom}, nil
-		case "size_bytes", "sizeBytes", "size-bytes":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSizeBytes}, nil
-		case "sequence_number", "sequenceNumber", "sequence-number":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSequenceNumber}, nil
-		case "ttl":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTtl}, nil
-		case "rtt":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorRtt}, nil
-		case "error":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorError}, nil
-		case "summary":
-			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSummary}, nil
+		case "json_response", "jsonResponse", "json-response":
+			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse}, nil
+		case "text_response", "textResponse", "text-response":
+			return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTextResponse}, nil
 		}
 	} else {
 		switch fp[0] {
-		case "summary":
-			if subpath, err := BuildRunPingTestResponseSummaryStats_FieldPath(fp[1:]); err != nil {
+		case "json_response", "jsonResponse", "json-response":
+			if subpath, err := BuildRunPingTestResponseJsonResponse_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorSummary, subPath: subpath}, nil
+				return &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse, subPath: subpath}, nil
 			}
 		}
 	}
@@ -969,24 +988,12 @@ func (fp *RunPingTestResponse_FieldTerminalPath) JSONString() string {
 func (fp *RunPingTestResponse_FieldTerminalPath) Get(source *RunPingTestResponse) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case RunPingTestResponse_FieldPathSelectorFrom:
-			values = append(values, source.From)
-		case RunPingTestResponse_FieldPathSelectorSizeBytes:
-			values = append(values, source.SizeBytes)
-		case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-			values = append(values, source.SequenceNumber)
-		case RunPingTestResponse_FieldPathSelectorTtl:
-			values = append(values, source.Ttl)
-		case RunPingTestResponse_FieldPathSelectorRtt:
-			if source.Rtt != nil {
-				values = append(values, source.Rtt)
+		case RunPingTestResponse_FieldPathSelectorJsonResponse:
+			if source.JsonResponse != nil {
+				values = append(values, source.JsonResponse)
 			}
-		case RunPingTestResponse_FieldPathSelectorError:
-			values = append(values, source.Error)
-		case RunPingTestResponse_FieldPathSelectorSummary:
-			if source.Summary != nil {
-				values = append(values, source.Summary)
-			}
+		case RunPingTestResponse_FieldPathSelectorTextResponse:
+			values = append(values, source.TextResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 		}
@@ -1001,22 +1008,11 @@ func (fp *RunPingTestResponse_FieldTerminalPath) GetRaw(source proto.Message) []
 // GetSingle returns value pointed by specific field of from source RunPingTestResponse
 func (fp *RunPingTestResponse_FieldTerminalPath) GetSingle(source *RunPingTestResponse) (interface{}, bool) {
 	switch fp.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
-		return source.GetFrom(), source != nil
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		return source.GetSizeBytes(), source != nil
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		return source.GetSequenceNumber(), source != nil
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		return source.GetTtl(), source != nil
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		res := source.GetRtt()
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		res := source.GetJsonResponse()
 		return res, res != nil
-	case RunPingTestResponse_FieldPathSelectorError:
-		return source.GetError(), source != nil
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		res := source.GetSummary()
-		return res, res != nil
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
+		return source.GetTextResponse(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 	}
@@ -1029,20 +1025,10 @@ func (fp *RunPingTestResponse_FieldTerminalPath) GetSingleRaw(source proto.Messa
 // GetDefault returns a default value of the field type
 func (fp *RunPingTestResponse_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return (*RunPingTestResponse_JsonResponse)(nil)
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
 		return ""
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		return int32(0)
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		return int32(0)
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		return int32(0)
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		return (*duration.Duration)(nil)
-	case RunPingTestResponse_FieldPathSelectorError:
-		return ""
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return (*RunPingTestResponse_SummaryStats)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 	}
@@ -1051,20 +1037,10 @@ func (fp *RunPingTestResponse_FieldTerminalPath) GetDefault() interface{} {
 func (fp *RunPingTestResponse_FieldTerminalPath) ClearValue(item *RunPingTestResponse) {
 	if item != nil {
 		switch fp.selector {
-		case RunPingTestResponse_FieldPathSelectorFrom:
-			item.From = ""
-		case RunPingTestResponse_FieldPathSelectorSizeBytes:
-			item.SizeBytes = int32(0)
-		case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-			item.SequenceNumber = int32(0)
-		case RunPingTestResponse_FieldPathSelectorTtl:
-			item.Ttl = int32(0)
-		case RunPingTestResponse_FieldPathSelectorRtt:
-			item.Rtt = nil
-		case RunPingTestResponse_FieldPathSelectorError:
-			item.Error = ""
-		case RunPingTestResponse_FieldPathSelectorSummary:
-			item.Summary = nil
+		case RunPingTestResponse_FieldPathSelectorJsonResponse:
+			item.JsonResponse = nil
+		case RunPingTestResponse_FieldPathSelectorTextResponse:
+			item.TextResponse = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 		}
@@ -1077,12 +1053,7 @@ func (fp *RunPingTestResponse_FieldTerminalPath) ClearValueRaw(item proto.Messag
 
 // IsLeaf - whether field path is holds simple value
 func (fp *RunPingTestResponse_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunPingTestResponse_FieldPathSelectorFrom ||
-		fp.selector == RunPingTestResponse_FieldPathSelectorSizeBytes ||
-		fp.selector == RunPingTestResponse_FieldPathSelectorSequenceNumber ||
-		fp.selector == RunPingTestResponse_FieldPathSelectorTtl ||
-		fp.selector == RunPingTestResponse_FieldPathSelectorRtt ||
-		fp.selector == RunPingTestResponse_FieldPathSelectorError
+	return fp.selector == RunPingTestResponse_FieldPathSelectorTextResponse
 }
 
 func (fp *RunPingTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1091,20 +1062,10 @@ func (fp *RunPingTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []got
 
 func (fp *RunPingTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponse_FieldPathValue {
 	switch fp.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(*RunPingTestResponse_JsonResponse)}
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
 		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(string)}
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestResponse_FieldPathSelectorError:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(string)}
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return &RunPingTestResponse_FieldTerminalPathValue{RunPingTestResponse_FieldTerminalPath: *fp, value: value.(*RunPingTestResponse_SummaryStats)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 	}
@@ -1117,20 +1078,10 @@ func (fp *RunPingTestResponse_FieldTerminalPath) WithRawIValue(value interface{}
 func (fp *RunPingTestResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunPingTestResponse_FieldPathArrayOfValues {
 	fpaov := &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]*RunPingTestResponse_JsonResponse)}
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
 		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestResponse_FieldPathSelectorError:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return &RunPingTestResponse_FieldTerminalPathArrayOfValues{RunPingTestResponse_FieldTerminalPath: *fp, values: values.([]*RunPingTestResponse_SummaryStats)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fp.selector))
 	}
@@ -1162,8 +1113,8 @@ var _ RunPingTestResponse_FieldPath = (*RunPingTestResponse_FieldSubPath)(nil)
 func (fps *RunPingTestResponse_FieldSubPath) Selector() RunPingTestResponse_FieldPathSelector {
 	return fps.selector
 }
-func (fps *RunPingTestResponse_FieldSubPath) AsSummarySubPath() (RunPingTestResponseSummaryStats_FieldPath, bool) {
-	res, ok := fps.subPath.(RunPingTestResponseSummaryStats_FieldPath)
+func (fps *RunPingTestResponse_FieldSubPath) AsJsonResponseSubPath() (RunPingTestResponseJsonResponse_FieldPath, bool) {
+	res, ok := fps.subPath.(RunPingTestResponseJsonResponse_FieldPath)
 	return res, ok
 }
 
@@ -1180,8 +1131,8 @@ func (fps *RunPingTestResponse_FieldSubPath) JSONString() string {
 // Get returns all values pointed by selected field from source RunPingTestResponse
 func (fps *RunPingTestResponse_FieldSubPath) Get(source *RunPingTestResponse) (values []interface{}) {
 	switch fps.selector {
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		values = append(values, fps.subPath.GetRaw(source.GetSummary())...)
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		values = append(values, fps.subPath.GetRaw(source.GetJsonResponse())...)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fps.selector))
 	}
@@ -1195,11 +1146,11 @@ func (fps *RunPingTestResponse_FieldSubPath) GetRaw(source proto.Message) []inte
 // GetSingle returns value of selected field from source RunPingTestResponse
 func (fps *RunPingTestResponse_FieldSubPath) GetSingle(source *RunPingTestResponse) (interface{}, bool) {
 	switch fps.selector {
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		if source.GetSummary() == nil {
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		if source.GetJsonResponse() == nil {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetSummary())
+		return fps.subPath.GetSingleRaw(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fps.selector))
 	}
@@ -1217,8 +1168,8 @@ func (fps *RunPingTestResponse_FieldSubPath) GetDefault() interface{} {
 func (fps *RunPingTestResponse_FieldSubPath) ClearValue(item *RunPingTestResponse) {
 	if item != nil {
 		switch fps.selector {
-		case RunPingTestResponse_FieldPathSelectorSummary:
-			fps.subPath.ClearValueRaw(item.Summary)
+		case RunPingTestResponse_FieldPathSelectorJsonResponse:
+			fps.subPath.ClearValueRaw(item.JsonResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fps.selector))
 		}
@@ -1303,32 +1254,12 @@ var _ RunPingTestResponse_FieldPathValue = (*RunPingTestResponse_FieldTerminalPa
 func (fpv *RunPingTestResponse_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsFromValue() (string, bool) {
+func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsJsonResponseValue() (*RunPingTestResponse_JsonResponse, bool) {
+	res, ok := fpv.value.(*RunPingTestResponse_JsonResponse)
+	return res, ok
+}
+func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsTextResponseValue() (string, bool) {
 	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsSizeBytesValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsSequenceNumberValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsTtlValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsRttValue() (*duration.Duration, bool) {
-	res, ok := fpv.value.(*duration.Duration)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsErrorValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunPingTestResponse_FieldTerminalPathValue) AsSummaryValue() (*RunPingTestResponse_SummaryStats, bool) {
-	res, ok := fpv.value.(*RunPingTestResponse_SummaryStats)
 	return res, ok
 }
 
@@ -1338,20 +1269,10 @@ func (fpv *RunPingTestResponse_FieldTerminalPathValue) SetTo(target **RunPingTes
 		*target = new(RunPingTestResponse)
 	}
 	switch fpv.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
-		(*target).From = fpv.value.(string)
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		(*target).SizeBytes = fpv.value.(int32)
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		(*target).SequenceNumber = fpv.value.(int32)
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		(*target).Ttl = fpv.value.(int32)
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		(*target).Rtt = fpv.value.(*duration.Duration)
-	case RunPingTestResponse_FieldPathSelectorError:
-		(*target).Error = fpv.value.(string)
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		(*target).Summary = fpv.value.(*RunPingTestResponse_SummaryStats)
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		(*target).JsonResponse = fpv.value.(*RunPingTestResponse_JsonResponse)
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
+		(*target).TextResponse = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fpv.selector))
 	}
@@ -1365,77 +1286,18 @@ func (fpv *RunPingTestResponse_FieldTerminalPathValue) SetToRaw(target proto.Mes
 // CompareWith compares value in the 'RunPingTestResponse_FieldTerminalPathValue' with the value under path in 'RunPingTestResponse'.
 func (fpv *RunPingTestResponse_FieldTerminalPathValue) CompareWith(source *RunPingTestResponse) (int, bool) {
 	switch fpv.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetFrom()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetSizeBytes()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetSequenceNumber()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetTtl()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		leftValue := fpv.value.(*duration.Duration)
-		rightValue := source.GetRtt()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.AsDuration() == rightValue.AsDuration() {
-			return 0, true
-		} else if leftValue.AsDuration() < rightValue.AsDuration() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorError:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetError()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestResponse_FieldPathSelectorSummary:
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
 		return 0, false
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetTextResponse()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fpv.selector))
 	}
@@ -1452,8 +1314,8 @@ type RunPingTestResponse_FieldSubPathValue struct {
 
 var _ RunPingTestResponse_FieldPathValue = (*RunPingTestResponse_FieldSubPathValue)(nil)
 
-func (fpvs *RunPingTestResponse_FieldSubPathValue) AsSummaryPathValue() (RunPingTestResponseSummaryStats_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(RunPingTestResponseSummaryStats_FieldPathValue)
+func (fpvs *RunPingTestResponse_FieldSubPathValue) AsJsonResponsePathValue() (RunPingTestResponseJsonResponse_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(RunPingTestResponseJsonResponse_FieldPathValue)
 	return res, ok
 }
 
@@ -1462,8 +1324,8 @@ func (fpvs *RunPingTestResponse_FieldSubPathValue) SetTo(target **RunPingTestRes
 		*target = new(RunPingTestResponse)
 	}
 	switch fpvs.Selector() {
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		fpvs.subPathValue.(RunPingTestResponseSummaryStats_FieldPathValue).SetTo(&(*target).Summary)
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		fpvs.subPathValue.(RunPingTestResponseJsonResponse_FieldPathValue).SetTo(&(*target).JsonResponse)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fpvs.Selector()))
 	}
@@ -1480,8 +1342,8 @@ func (fpvs *RunPingTestResponse_FieldSubPathValue) GetRawValue() interface{} {
 
 func (fpvs *RunPingTestResponse_FieldSubPathValue) CompareWith(source *RunPingTestResponse) (int, bool) {
 	switch fpvs.Selector() {
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return fpvs.subPathValue.(RunPingTestResponseSummaryStats_FieldPathValue).CompareWith(source.GetSummary())
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return fpvs.subPathValue.(RunPingTestResponseJsonResponse_FieldPathValue).CompareWith(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fpvs.Selector()))
 	}
@@ -1564,16 +1426,16 @@ type RunPingTestResponse_FieldSubPathArrayItemValue struct {
 func (fpaivs *RunPingTestResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaivs.subPathItemValue.GetRawItemValue()
 }
-func (fpaivs *RunPingTestResponse_FieldSubPathArrayItemValue) AsSummaryPathItemValue() (RunPingTestResponseSummaryStats_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(RunPingTestResponseSummaryStats_FieldPathArrayItemValue)
+func (fpaivs *RunPingTestResponse_FieldSubPathArrayItemValue) AsJsonResponsePathItemValue() (RunPingTestResponseJsonResponse_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(RunPingTestResponseJsonResponse_FieldPathArrayItemValue)
 	return res, ok
 }
 
 // Contains returns a boolean indicating if value that is being held is present in given 'RunPingTestResponse'
 func (fpaivs *RunPingTestResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunPingTestResponse) bool {
 	switch fpaivs.Selector() {
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		return fpaivs.subPathItemValue.(RunPingTestResponseSummaryStats_FieldPathArrayItemValue).ContainsValue(source.GetSummary())
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		return fpaivs.subPathItemValue.(RunPingTestResponseJsonResponse_FieldPathArrayItemValue).ContainsValue(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse: %d", fpaivs.Selector()))
 	}
@@ -1614,63 +1476,23 @@ var _ RunPingTestResponse_FieldPathArrayOfValues = (*RunPingTestResponse_FieldTe
 
 func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case RunPingTestResponse_FieldPathSelectorFrom:
+	case RunPingTestResponse_FieldPathSelectorJsonResponse:
+		for _, v := range fpaov.values.([]*RunPingTestResponse_JsonResponse) {
+			values = append(values, v)
+		}
+	case RunPingTestResponse_FieldPathSelectorTextResponse:
 		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorSizeBytes:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorTtl:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorRtt:
-		for _, v := range fpaov.values.([]*duration.Duration) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorError:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunPingTestResponse_FieldPathSelectorSummary:
-		for _, v := range fpaov.values.([]*RunPingTestResponse_SummaryStats) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsFromArrayOfValues() ([]string, bool) {
+func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsJsonResponseArrayOfValues() ([]*RunPingTestResponse_JsonResponse, bool) {
+	res, ok := fpaov.values.([]*RunPingTestResponse_JsonResponse)
+	return res, ok
+}
+func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsTextResponseArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsSequenceNumberArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsTtlArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsRttArrayOfValues() ([]*duration.Duration, bool) {
-	res, ok := fpaov.values.([]*duration.Duration)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsErrorArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunPingTestResponse_FieldTerminalPathArrayOfValues) AsSummaryArrayOfValues() ([]*RunPingTestResponse_SummaryStats, bool) {
-	res, ok := fpaov.values.([]*RunPingTestResponse_SummaryStats)
 	return res, ok
 }
 
@@ -1684,325 +1506,1168 @@ var _ RunPingTestResponse_FieldPathArrayOfValues = (*RunPingTestResponse_FieldSu
 func (fpsaov *RunPingTestResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
 	return fpsaov.subPathArrayOfValues.GetRawValues()
 }
-func (fpsaov *RunPingTestResponse_FieldSubPathArrayOfValues) AsSummaryPathArrayOfValues() (RunPingTestResponseSummaryStats_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(RunPingTestResponseSummaryStats_FieldPathArrayOfValues)
+func (fpsaov *RunPingTestResponse_FieldSubPathArrayOfValues) AsJsonResponsePathArrayOfValues() (RunPingTestResponseJsonResponse_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(RunPingTestResponseJsonResponse_FieldPathArrayOfValues)
 	return res, ok
 }
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type RunPingTestResponseSummaryStats_FieldPath interface {
+type RunPingTestResponseJsonResponse_FieldPath interface {
 	gotenobject.FieldPath
-	Selector() RunPingTestResponseSummaryStats_FieldPathSelector
-	Get(source *RunPingTestResponse_SummaryStats) []interface{}
-	GetSingle(source *RunPingTestResponse_SummaryStats) (interface{}, bool)
-	ClearValue(item *RunPingTestResponse_SummaryStats)
+	Selector() RunPingTestResponseJsonResponse_FieldPathSelector
+	Get(source *RunPingTestResponse_JsonResponse) []interface{}
+	GetSingle(source *RunPingTestResponse_JsonResponse) (interface{}, bool)
+	ClearValue(item *RunPingTestResponse_JsonResponse)
 
-	// Those methods build corresponding RunPingTestResponseSummaryStats_FieldPathValue
+	// Those methods build corresponding RunPingTestResponseJsonResponse_FieldPathValue
 	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) RunPingTestResponseSummaryStats_FieldPathValue
-	WithIArrayOfValues(values interface{}) RunPingTestResponseSummaryStats_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) RunPingTestResponseSummaryStats_FieldPathArrayItemValue
+	WithIValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathValue
+	WithIArrayOfValues(values interface{}) RunPingTestResponseJsonResponse_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathArrayItemValue
 }
 
-type RunPingTestResponseSummaryStats_FieldPathSelector int32
+type RunPingTestResponseJsonResponse_FieldPathSelector int32
 
 const (
-	RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt             RunPingTestResponseSummaryStats_FieldPathSelector = 0
-	RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt             RunPingTestResponseSummaryStats_FieldPathSelector = 1
-	RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt             RunPingTestResponseSummaryStats_FieldPathSelector = 2
-	RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt          RunPingTestResponseSummaryStats_FieldPathSelector = 3
-	RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter RunPingTestResponseSummaryStats_FieldPathSelector = 4
-	RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter    RunPingTestResponseSummaryStats_FieldPathSelector = 5
-	RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio          RunPingTestResponseSummaryStats_FieldPathSelector = 6
+	RunPingTestResponseJsonResponse_FieldPathSelectorFrom           RunPingTestResponseJsonResponse_FieldPathSelector = 0
+	RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes      RunPingTestResponseJsonResponse_FieldPathSelector = 1
+	RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber RunPingTestResponseJsonResponse_FieldPathSelector = 2
+	RunPingTestResponseJsonResponse_FieldPathSelectorTtl            RunPingTestResponseJsonResponse_FieldPathSelector = 3
+	RunPingTestResponseJsonResponse_FieldPathSelectorRtt            RunPingTestResponseJsonResponse_FieldPathSelector = 4
+	RunPingTestResponseJsonResponse_FieldPathSelectorError          RunPingTestResponseJsonResponse_FieldPathSelector = 5
+	RunPingTestResponseJsonResponse_FieldPathSelectorSummary        RunPingTestResponseJsonResponse_FieldPathSelector = 6
 )
 
-func (s RunPingTestResponseSummaryStats_FieldPathSelector) String() string {
+func (s RunPingTestResponseJsonResponse_FieldPathSelector) String() string {
 	switch s {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-		return "min_rtt"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-		return "avg_rtt"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-		return "max_rtt"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-		return "stddev_rtt"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-		return "transmitted_counter"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-		return "received_counter"
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-		return "loss_ratio"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		return "from"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		return "size_bytes"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		return "sequence_number"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		return "ttl"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		return "rtt"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		return "error"
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return "summary"
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", s))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", s))
 	}
 }
 
-func BuildRunPingTestResponseSummaryStats_FieldPath(fp gotenobject.RawFieldPath) (RunPingTestResponseSummaryStats_FieldPath, error) {
+func BuildRunPingTestResponseJsonResponse_FieldPath(fp gotenobject.RawFieldPath) (RunPingTestResponseJsonResponse_FieldPath, error) {
 	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunPingTestResponse_SummaryStats")
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunPingTestResponse_JsonResponse")
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "min_rtt", "minRtt", "min-rtt":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt}, nil
-		case "avg_rtt", "avgRtt", "avg-rtt":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt}, nil
-		case "max_rtt", "maxRtt", "max-rtt":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt}, nil
-		case "stddev_rtt", "stddevRtt", "stddev-rtt":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt}, nil
-		case "transmitted_counter", "transmittedCounter", "transmitted-counter":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter}, nil
-		case "received_counter", "receivedCounter", "received-counter":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter}, nil
-		case "loss_ratio", "lossRatio", "loss-ratio":
-			return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio}, nil
+		case "from":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorFrom}, nil
+		case "size_bytes", "sizeBytes", "size-bytes":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes}, nil
+		case "sequence_number", "sequenceNumber", "sequence-number":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber}, nil
+		case "ttl":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorTtl}, nil
+		case "rtt":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorRtt}, nil
+		case "error":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorError}, nil
+		case "summary":
+			return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "summary":
+			if subpath, err := BuildRunPingTestResponseJsonResponseSummaryStats_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &RunPingTestResponseJsonResponse_FieldSubPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary, subPath: subpath}, nil
+			}
 		}
 	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestResponse_SummaryStats", fp)
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestResponse_JsonResponse", fp)
 }
 
-func ParseRunPingTestResponseSummaryStats_FieldPath(rawField string) (RunPingTestResponseSummaryStats_FieldPath, error) {
+func ParseRunPingTestResponseJsonResponse_FieldPath(rawField string) (RunPingTestResponseJsonResponse_FieldPath, error) {
 	fp, err := gotenobject.ParseRawFieldPath(rawField)
 	if err != nil {
 		return nil, err
 	}
-	return BuildRunPingTestResponseSummaryStats_FieldPath(fp)
+	return BuildRunPingTestResponseJsonResponse_FieldPath(fp)
 }
 
-func MustParseRunPingTestResponseSummaryStats_FieldPath(rawField string) RunPingTestResponseSummaryStats_FieldPath {
-	fp, err := ParseRunPingTestResponseSummaryStats_FieldPath(rawField)
+func MustParseRunPingTestResponseJsonResponse_FieldPath(rawField string) RunPingTestResponseJsonResponse_FieldPath {
+	fp, err := ParseRunPingTestResponseJsonResponse_FieldPath(rawField)
 	if err != nil {
 		panic(err)
 	}
 	return fp
 }
 
-type RunPingTestResponseSummaryStats_FieldTerminalPath struct {
-	selector RunPingTestResponseSummaryStats_FieldPathSelector
+type RunPingTestResponseJsonResponse_FieldTerminalPath struct {
+	selector RunPingTestResponseJsonResponse_FieldPathSelector
 }
 
-var _ RunPingTestResponseSummaryStats_FieldPath = (*RunPingTestResponseSummaryStats_FieldTerminalPath)(nil)
+var _ RunPingTestResponseJsonResponse_FieldPath = (*RunPingTestResponseJsonResponse_FieldTerminalPath)(nil)
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) Selector() RunPingTestResponseSummaryStats_FieldPathSelector {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) Selector() RunPingTestResponseJsonResponse_FieldPathSelector {
 	return fp.selector
 }
 
 // String returns path representation in proto convention
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) String() string {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) String() string {
 	return fp.selector.String()
 }
 
 // JSONString returns path representation is JSON convention
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) JSONString() string {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) JSONString() string {
 	return strcase.ToLowerCamel(fp.String())
 }
 
-// Get returns all values pointed by specific field from source RunPingTestResponse_SummaryStats
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) Get(source *RunPingTestResponse_SummaryStats) (values []interface{}) {
+// Get returns all values pointed by specific field from source RunPingTestResponse_JsonResponse
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) Get(source *RunPingTestResponse_JsonResponse) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-			if source.MinRtt != nil {
-				values = append(values, source.MinRtt)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+			values = append(values, source.From)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+			values = append(values, source.SizeBytes)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+			values = append(values, source.SequenceNumber)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+			values = append(values, source.Ttl)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+			if source.Rtt != nil {
+				values = append(values, source.Rtt)
 			}
-		case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-			if source.AvgRtt != nil {
-				values = append(values, source.AvgRtt)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+			values = append(values, source.Error)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+			if source.Summary != nil {
+				values = append(values, source.Summary)
 			}
-		case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-			if source.MaxRtt != nil {
-				values = append(values, source.MaxRtt)
-			}
-		case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-			if source.StddevRtt != nil {
-				values = append(values, source.StddevRtt)
-			}
-		case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-			values = append(values, source.TransmittedCounter)
-		case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-			values = append(values, source.ReceivedCounter)
-		case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-			values = append(values, source.LossRatio)
 		default:
-			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 		}
 	}
 	return
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*RunPingTestResponse_SummaryStats))
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*RunPingTestResponse_JsonResponse))
 }
 
-// GetSingle returns value pointed by specific field of from source RunPingTestResponse_SummaryStats
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) GetSingle(source *RunPingTestResponse_SummaryStats) (interface{}, bool) {
+// GetSingle returns value pointed by specific field of from source RunPingTestResponse_JsonResponse
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) GetSingle(source *RunPingTestResponse_JsonResponse) (interface{}, bool) {
 	switch fp.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-		res := source.GetMinRtt()
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		return source.GetFrom(), source != nil
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		return source.GetSizeBytes(), source != nil
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		return source.GetSequenceNumber(), source != nil
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		return source.GetTtl(), source != nil
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		res := source.GetRtt()
 		return res, res != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-		res := source.GetAvgRtt()
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		return source.GetError(), source != nil
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		res := source.GetSummary()
 		return res, res != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-		res := source.GetMaxRtt()
-		return res, res != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-		res := source.GetStddevRtt()
-		return res, res != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-		return source.GetTransmittedCounter(), source != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-		return source.GetReceivedCounter(), source != nil
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-		return source.GetLossRatio(), source != nil
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*RunPingTestResponse_SummaryStats))
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*RunPingTestResponse_JsonResponse))
 }
 
 // GetDefault returns a default value of the field type
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) GetDefault() interface{} {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-		return (*duration.Duration)(nil)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-		return (*duration.Duration)(nil)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-		return (*duration.Duration)(nil)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-		return (*duration.Duration)(nil)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		return ""
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
 		return int32(0)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
 		return int32(0)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-		return float64(0)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		return int32(0)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		return (*duration.Duration)(nil)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		return ""
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return (*RunPingTestResponse_JsonResponse_SummaryStats)(nil)
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) ClearValue(item *RunPingTestResponse_SummaryStats) {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) ClearValue(item *RunPingTestResponse_JsonResponse) {
 	if item != nil {
 		switch fp.selector {
-		case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-			item.MinRtt = nil
-		case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-			item.AvgRtt = nil
-		case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-			item.MaxRtt = nil
-		case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-			item.StddevRtt = nil
-		case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-			item.TransmittedCounter = int32(0)
-		case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-			item.ReceivedCounter = int32(0)
-		case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-			item.LossRatio = float64(0)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+			item.From = ""
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+			item.SizeBytes = int32(0)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+			item.SequenceNumber = int32(0)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+			item.Ttl = int32(0)
+		case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+			item.Rtt = nil
+		case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+			item.Error = ""
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+			item.Summary = nil
 		default:
-			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 		}
 	}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*RunPingTestResponse_SummaryStats))
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*RunPingTestResponse_JsonResponse))
 }
 
 // IsLeaf - whether field path is holds simple value
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter ||
-		fp.selector == RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorFrom ||
+		fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes ||
+		fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber ||
+		fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorTtl ||
+		fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorRtt ||
+		fp.selector == RunPingTestResponseJsonResponse_FieldPathSelectorError
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
 	return []gotenobject.FieldPath{fp}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponseSummaryStats_FieldPathValue {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathValue {
 	switch fp.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, value: value.(float64)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(string)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(string)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathValue{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*RunPingTestResponse_JsonResponse_SummaryStats)}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
 	return fp.WithIValue(value)
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunPingTestResponseSummaryStats_FieldPathArrayOfValues {
-	fpaov := &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp}
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunPingTestResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov := &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
-		return &RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]float64)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return &RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]*RunPingTestResponse_JsonResponse_SummaryStats)}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 	}
 	return fpaov
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
 	return fp.WithIArrayOfValues(values)
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunPingTestResponseSummaryStats_FieldPathArrayItemValue {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathArrayItemValue {
 	switch fp.selector {
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunPingTestResponseSummaryStats_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+func (fp *RunPingTestResponseJsonResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
 	return fp.WithIArrayItemValue(value)
 }
 
-// RunPingTestResponseSummaryStats_FieldPathValue allows storing values for SummaryStats fields according to their type
-type RunPingTestResponseSummaryStats_FieldPathValue interface {
-	RunPingTestResponseSummaryStats_FieldPath
-	gotenobject.FieldPathValue
-	SetTo(target **RunPingTestResponse_SummaryStats)
-	CompareWith(*RunPingTestResponse_SummaryStats) (cmp int, comparable bool)
+type RunPingTestResponseJsonResponse_FieldSubPath struct {
+	selector RunPingTestResponseJsonResponse_FieldPathSelector
+	subPath  gotenobject.FieldPath
 }
 
-func ParseRunPingTestResponseSummaryStats_FieldPathValue(pathStr, valueStr string) (RunPingTestResponseSummaryStats_FieldPathValue, error) {
-	fp, err := ParseRunPingTestResponseSummaryStats_FieldPath(pathStr)
+var _ RunPingTestResponseJsonResponse_FieldPath = (*RunPingTestResponseJsonResponse_FieldSubPath)(nil)
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) Selector() RunPingTestResponseJsonResponse_FieldPathSelector {
+	return fps.selector
+}
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) AsSummarySubPath() (RunPingTestResponseJsonResponseSummaryStats_FieldPath, bool) {
+	res, ok := fps.subPath.(RunPingTestResponseJsonResponseSummaryStats_FieldPath)
+	return res, ok
+}
+
+// String returns path representation in proto convention
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) String() string {
+	return fps.selector.String() + "." + fps.subPath.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) JSONString() string {
+	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
+}
+
+// Get returns all values pointed by selected field from source RunPingTestResponse_JsonResponse
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) Get(source *RunPingTestResponse_JsonResponse) (values []interface{}) {
+	switch fps.selector {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		values = append(values, fps.subPath.GetRaw(source.GetSummary())...)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fps.selector))
+	}
+	return
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*RunPingTestResponse_JsonResponse))
+}
+
+// GetSingle returns value of selected field from source RunPingTestResponse_JsonResponse
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) GetSingle(source *RunPingTestResponse_JsonResponse) (interface{}, bool) {
+	switch fps.selector {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		if source.GetSummary() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetSummary())
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fps.selector))
+	}
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*RunPingTestResponse_JsonResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) GetDefault() interface{} {
+	return fps.subPath.GetDefault()
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) ClearValue(item *RunPingTestResponse_JsonResponse) {
+	if item != nil {
+		switch fps.selector {
+		case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+			fps.subPath.ClearValueRaw(item.Summary)
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fps.selector))
+		}
+	}
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*RunPingTestResponse_JsonResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) IsLeaf() bool {
+	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunPingTestResponseJsonResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithIValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathValue {
+	return &RunPingTestResponseJsonResponse_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fps.WithIValue(value)
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithIArrayOfValues(values interface{}) RunPingTestResponseJsonResponse_FieldPathArrayOfValues {
+	return &RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fps.WithIArrayOfValues(values)
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithIArrayItemValue(value interface{}) RunPingTestResponseJsonResponse_FieldPathArrayItemValue {
+	return &RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+}
+
+func (fps *RunPingTestResponseJsonResponse_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fps.WithIArrayItemValue(value)
+}
+
+// RunPingTestResponseJsonResponse_FieldPathValue allows storing values for JsonResponse fields according to their type
+type RunPingTestResponseJsonResponse_FieldPathValue interface {
+	RunPingTestResponseJsonResponse_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **RunPingTestResponse_JsonResponse)
+	CompareWith(*RunPingTestResponse_JsonResponse) (cmp int, comparable bool)
+}
+
+func ParseRunPingTestResponseJsonResponse_FieldPathValue(pathStr, valueStr string) (RunPingTestResponseJsonResponse_FieldPathValue, error) {
+	fp, err := ParseRunPingTestResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(RunPingTestResponseJsonResponse_FieldPathValue), nil
+}
+
+func MustParseRunPingTestResponseJsonResponse_FieldPathValue(pathStr, valueStr string) RunPingTestResponseJsonResponse_FieldPathValue {
+	fpv, err := ParseRunPingTestResponseJsonResponse_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type RunPingTestResponseJsonResponse_FieldTerminalPathValue struct {
+	RunPingTestResponseJsonResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ RunPingTestResponseJsonResponse_FieldPathValue = (*RunPingTestResponseJsonResponse_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'JsonResponse' as interface{}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsFromValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsSizeBytesValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsSequenceNumberValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsTtlValue() (int32, bool) {
+	res, ok := fpv.value.(int32)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsRttValue() (*duration.Duration, bool) {
+	res, ok := fpv.value.(*duration.Duration)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsErrorValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) AsSummaryValue() (*RunPingTestResponse_JsonResponse_SummaryStats, bool) {
+	res, ok := fpv.value.(*RunPingTestResponse_JsonResponse_SummaryStats)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object JsonResponse
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) SetTo(target **RunPingTestResponse_JsonResponse) {
+	if *target == nil {
+		*target = new(RunPingTestResponse_JsonResponse)
+	}
+	switch fpv.selector {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		(*target).From = fpv.value.(string)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		(*target).SizeBytes = fpv.value.(int32)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		(*target).SequenceNumber = fpv.value.(int32)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		(*target).Ttl = fpv.value.(int32)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		(*target).Rtt = fpv.value.(*duration.Duration)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		(*target).Error = fpv.value.(string)
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		(*target).Summary = fpv.value.(*RunPingTestResponse_JsonResponse_SummaryStats)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunPingTestResponse_JsonResponse)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'RunPingTestResponseJsonResponse_FieldTerminalPathValue' with the value under path in 'RunPingTestResponse_JsonResponse'.
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) CompareWith(source *RunPingTestResponse_JsonResponse) (int, bool) {
+	switch fpv.selector {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetFrom()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetSizeBytes()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetSequenceNumber()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		leftValue := fpv.value.(int32)
+		rightValue := source.GetTtl()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		leftValue := fpv.value.(*duration.Duration)
+		rightValue := source.GetRtt()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsDuration() == rightValue.AsDuration() {
+			return 0, true
+		} else if leftValue.AsDuration() < rightValue.AsDuration() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetError()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *RunPingTestResponseJsonResponse_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*RunPingTestResponse_JsonResponse))
+}
+
+type RunPingTestResponseJsonResponse_FieldSubPathValue struct {
+	RunPingTestResponseJsonResponse_FieldPath
+	subPathValue gotenobject.FieldPathValue
+}
+
+var _ RunPingTestResponseJsonResponse_FieldPathValue = (*RunPingTestResponseJsonResponse_FieldSubPathValue)(nil)
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) AsSummaryPathValue() (RunPingTestResponseJsonResponseSummaryStats_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(RunPingTestResponseJsonResponseSummaryStats_FieldPathValue)
+	return res, ok
+}
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) SetTo(target **RunPingTestResponse_JsonResponse) {
+	if *target == nil {
+		*target = new(RunPingTestResponse_JsonResponse)
+	}
+	switch fpvs.Selector() {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		fpvs.subPathValue.(RunPingTestResponseJsonResponseSummaryStats_FieldPathValue).SetTo(&(*target).Summary)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunPingTestResponse_JsonResponse)
+	fpvs.SetTo(&typedObject)
+}
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) GetRawValue() interface{} {
+	return fpvs.subPathValue.GetRawValue()
+}
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) CompareWith(source *RunPingTestResponse_JsonResponse) (int, bool) {
+	switch fpvs.Selector() {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return fpvs.subPathValue.(RunPingTestResponseJsonResponseSummaryStats_FieldPathValue).CompareWith(source.GetSummary())
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *RunPingTestResponseJsonResponse_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*RunPingTestResponse_JsonResponse))
+}
+
+// RunPingTestResponseJsonResponse_FieldPathArrayItemValue allows storing single item in Path-specific values for JsonResponse according to their type
+// Present only for array (repeated) types.
+type RunPingTestResponseJsonResponse_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	RunPingTestResponseJsonResponse_FieldPath
+	ContainsValue(*RunPingTestResponse_JsonResponse) bool
+}
+
+// ParseRunPingTestResponseJsonResponse_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseRunPingTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) (RunPingTestResponseJsonResponse_FieldPathArrayItemValue, error) {
+	fp, err := ParseRunPingTestResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(RunPingTestResponseJsonResponse_FieldPathArrayItemValue), nil
+}
+
+func MustParseRunPingTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) RunPingTestResponseJsonResponse_FieldPathArrayItemValue {
+	fpaiv, err := ParseRunPingTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue struct {
+	RunPingTestResponseJsonResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ RunPingTestResponseJsonResponse_FieldPathArrayItemValue = (*RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object RunPingTestResponse_JsonResponse as interface{}
+func (fpaiv *RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingle(source *RunPingTestResponse_JsonResponse) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*RunPingTestResponse_JsonResponse))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaiv *RunPingTestResponseJsonResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestResponse_JsonResponse) bool {
+	slice := fpaiv.RunPingTestResponseJsonResponse_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+type RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue struct {
+	RunPingTestResponseJsonResponse_FieldPath
+	subPathItemValue gotenobject.FieldPathArrayItemValue
+}
+
+// GetRawValue returns stored array item value
+func (fpaivs *RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaivs.subPathItemValue.GetRawItemValue()
+}
+func (fpaivs *RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue) AsSummaryPathItemValue() (RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue)
+	return res, ok
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaivs *RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunPingTestResponse_JsonResponse) bool {
+	switch fpaivs.Selector() {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		return fpaivs.subPathItemValue.(RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue).ContainsValue(source.GetSummary())
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse: %d", fpaivs.Selector()))
+	}
+}
+
+// RunPingTestResponseJsonResponse_FieldPathArrayOfValues allows storing slice of values for JsonResponse fields according to their type
+type RunPingTestResponseJsonResponse_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	RunPingTestResponseJsonResponse_FieldPath
+}
+
+func ParseRunPingTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) (RunPingTestResponseJsonResponse_FieldPathArrayOfValues, error) {
+	fp, err := ParseRunPingTestResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(RunPingTestResponseJsonResponse_FieldPathArrayOfValues), nil
+}
+
+func MustParseRunPingTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) RunPingTestResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov, err := ParseRunPingTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues struct {
+	RunPingTestResponseJsonResponse_FieldTerminalPath
+	values interface{}
+}
+
+var _ RunPingTestResponseJsonResponse_FieldPathArrayOfValues = (*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+		for _, v := range fpaov.values.([]int32) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+		for _, v := range fpaov.values.([]*duration.Duration) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+		for _, v := range fpaov.values.([]*RunPingTestResponse_JsonResponse_SummaryStats) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsFromArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsSequenceNumberArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsTtlArrayOfValues() ([]int32, bool) {
+	res, ok := fpaov.values.([]int32)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsRttArrayOfValues() ([]*duration.Duration, bool) {
+	res, ok := fpaov.values.([]*duration.Duration)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsErrorArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsSummaryArrayOfValues() ([]*RunPingTestResponse_JsonResponse_SummaryStats, bool) {
+	res, ok := fpaov.values.([]*RunPingTestResponse_JsonResponse_SummaryStats)
+	return res, ok
+}
+
+type RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues struct {
+	RunPingTestResponseJsonResponse_FieldPath
+	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
+}
+
+var _ RunPingTestResponseJsonResponse_FieldPathArrayOfValues = (*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)(nil)
+
+func (fpsaov *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+	return fpsaov.subPathArrayOfValues.GetRawValues()
+}
+func (fpsaov *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues) AsSummaryPathArrayOfValues() (RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type RunPingTestResponseJsonResponseSummaryStats_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector
+	Get(source *RunPingTestResponse_JsonResponse_SummaryStats) []interface{}
+	GetSingle(source *RunPingTestResponse_JsonResponse_SummaryStats) (interface{}, bool)
+	ClearValue(item *RunPingTestResponse_JsonResponse_SummaryStats)
+
+	// Those methods build corresponding RunPingTestResponseJsonResponseSummaryStats_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathValue
+	WithIArrayOfValues(values interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue
+}
+
+type RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector int32
+
+const (
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt             RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 0
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt             RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 1
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt             RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 2
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt          RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 3
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 4
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter    RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 5
+	RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio          RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector = 6
+)
+
+func (s RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector) String() string {
+	switch s {
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+		return "min_rtt"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+		return "avg_rtt"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+		return "max_rtt"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+		return "stddev_rtt"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+		return "transmitted_counter"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+		return "received_counter"
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+		return "loss_ratio"
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", s))
+	}
+}
+
+func BuildRunPingTestResponseJsonResponseSummaryStats_FieldPath(fp gotenobject.RawFieldPath) (RunPingTestResponseJsonResponseSummaryStats_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunPingTestResponse_JsonResponse_SummaryStats")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "min_rtt", "minRtt", "min-rtt":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt}, nil
+		case "avg_rtt", "avgRtt", "avg-rtt":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt}, nil
+		case "max_rtt", "maxRtt", "max-rtt":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt}, nil
+		case "stddev_rtt", "stddevRtt", "stddev-rtt":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt}, nil
+		case "transmitted_counter", "transmittedCounter", "transmitted-counter":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter}, nil
+		case "received_counter", "receivedCounter", "received-counter":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter}, nil
+		case "loss_ratio", "lossRatio", "loss-ratio":
+			return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestResponse_JsonResponse_SummaryStats", fp)
+}
+
+func ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(rawField string) (RunPingTestResponseJsonResponseSummaryStats_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildRunPingTestResponseJsonResponseSummaryStats_FieldPath(fp)
+}
+
+func MustParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(rawField string) RunPingTestResponseJsonResponseSummaryStats_FieldPath {
+	fp, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath struct {
+	selector RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector
+}
+
+var _ RunPingTestResponseJsonResponseSummaryStats_FieldPath = (*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath)(nil)
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) Selector() RunPingTestResponseJsonResponseSummaryStats_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source RunPingTestResponse_JsonResponse_SummaryStats
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) Get(source *RunPingTestResponse_JsonResponse_SummaryStats) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+			if source.MinRtt != nil {
+				values = append(values, source.MinRtt)
+			}
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+			if source.AvgRtt != nil {
+				values = append(values, source.AvgRtt)
+			}
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+			if source.MaxRtt != nil {
+				values = append(values, source.MaxRtt)
+			}
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+			if source.StddevRtt != nil {
+				values = append(values, source.StddevRtt)
+			}
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+			values = append(values, source.TransmittedCounter)
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+			values = append(values, source.ReceivedCounter)
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+			values = append(values, source.LossRatio)
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
+}
+
+// GetSingle returns value pointed by specific field of from source RunPingTestResponse_JsonResponse_SummaryStats
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) GetSingle(source *RunPingTestResponse_JsonResponse_SummaryStats) (interface{}, bool) {
+	switch fp.selector {
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+		res := source.GetMinRtt()
+		return res, res != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+		res := source.GetAvgRtt()
+		return res, res != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+		res := source.GetMaxRtt()
+		return res, res != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+		res := source.GetStddevRtt()
+		return res, res != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+		return source.GetTransmittedCounter(), source != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+		return source.GetReceivedCounter(), source != nil
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+		return source.GetLossRatio(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+	}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+		return (*duration.Duration)(nil)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+		return (*duration.Duration)(nil)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+		return (*duration.Duration)(nil)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+		return (*duration.Duration)(nil)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+		return int32(0)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+		return int32(0)
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+		return float64(0)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+	}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) ClearValue(item *RunPingTestResponse_JsonResponse_SummaryStats) {
+	if item != nil {
+		switch fp.selector {
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+			item.MinRtt = nil
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+			item.AvgRtt = nil
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+			item.MaxRtt = nil
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+			item.StddevRtt = nil
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+			item.TransmittedCounter = int32(0)
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+			item.ReceivedCounter = int32(0)
+		case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+			item.LossRatio = float64(0)
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*RunPingTestResponse_JsonResponse_SummaryStats))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter ||
+		fp.selector == RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithIValue(value interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathValue {
+	switch fp.selector {
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(int32)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, value: value.(float64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+	}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues {
+	fpaov := &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]int32)}
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
+		return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues{RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath: *fp, values: values.([]float64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fp.selector))
+	}
+}
+
+func (fp *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// RunPingTestResponseJsonResponseSummaryStats_FieldPathValue allows storing values for SummaryStats fields according to their type
+type RunPingTestResponseJsonResponseSummaryStats_FieldPathValue interface {
+	RunPingTestResponseJsonResponseSummaryStats_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **RunPingTestResponse_JsonResponse_SummaryStats)
+	CompareWith(*RunPingTestResponse_JsonResponse_SummaryStats) (cmp int, comparable bool)
+}
+
+func ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathValue(pathStr, valueStr string) (RunPingTestResponseJsonResponseSummaryStats_FieldPathValue, error) {
+	fp, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
@@ -2010,91 +2675,91 @@ func ParseRunPingTestResponseSummaryStats_FieldPathValue(pathStr, valueStr strin
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "error parsing SummaryStats field path value from %s: %v", valueStr, err)
 	}
-	return fpv.(RunPingTestResponseSummaryStats_FieldPathValue), nil
+	return fpv.(RunPingTestResponseJsonResponseSummaryStats_FieldPathValue), nil
 }
 
-func MustParseRunPingTestResponseSummaryStats_FieldPathValue(pathStr, valueStr string) RunPingTestResponseSummaryStats_FieldPathValue {
-	fpv, err := ParseRunPingTestResponseSummaryStats_FieldPathValue(pathStr, valueStr)
+func MustParseRunPingTestResponseJsonResponseSummaryStats_FieldPathValue(pathStr, valueStr string) RunPingTestResponseJsonResponseSummaryStats_FieldPathValue {
+	fpv, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathValue(pathStr, valueStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpv
 }
 
-type RunPingTestResponseSummaryStats_FieldTerminalPathValue struct {
-	RunPingTestResponseSummaryStats_FieldTerminalPath
+type RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue struct {
+	RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath
 	value interface{}
 }
 
-var _ RunPingTestResponseSummaryStats_FieldPathValue = (*RunPingTestResponseSummaryStats_FieldTerminalPathValue)(nil)
+var _ RunPingTestResponseJsonResponseSummaryStats_FieldPathValue = (*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)(nil)
 
 // GetRawValue returns raw value stored under selected path for 'SummaryStats' as interface{}
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) GetRawValue() interface{} {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsMinRttValue() (*duration.Duration, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsMinRttValue() (*duration.Duration, bool) {
 	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsAvgRttValue() (*duration.Duration, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsAvgRttValue() (*duration.Duration, bool) {
 	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsMaxRttValue() (*duration.Duration, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsMaxRttValue() (*duration.Duration, bool) {
 	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsStddevRttValue() (*duration.Duration, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsStddevRttValue() (*duration.Duration, bool) {
 	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsTransmittedCounterValue() (int32, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsTransmittedCounterValue() (int32, bool) {
 	res, ok := fpv.value.(int32)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsReceivedCounterValue() (int32, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsReceivedCounterValue() (int32, bool) {
 	res, ok := fpv.value.(int32)
 	return res, ok
 }
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) AsLossRatioValue() (float64, bool) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) AsLossRatioValue() (float64, bool) {
 	res, ok := fpv.value.(float64)
 	return res, ok
 }
 
 // SetTo stores value for selected field for object SummaryStats
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) SetTo(target **RunPingTestResponse_SummaryStats) {
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) SetTo(target **RunPingTestResponse_JsonResponse_SummaryStats) {
 	if *target == nil {
-		*target = new(RunPingTestResponse_SummaryStats)
+		*target = new(RunPingTestResponse_JsonResponse_SummaryStats)
 	}
 	switch fpv.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
 		(*target).MinRtt = fpv.value.(*duration.Duration)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
 		(*target).AvgRtt = fpv.value.(*duration.Duration)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
 		(*target).MaxRtt = fpv.value.(*duration.Duration)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
 		(*target).StddevRtt = fpv.value.(*duration.Duration)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
 		(*target).TransmittedCounter = fpv.value.(int32)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
 		(*target).ReceivedCounter = fpv.value.(int32)
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
 		(*target).LossRatio = fpv.value.(float64)
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fpv.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fpv.selector))
 	}
 }
 
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunPingTestResponse_SummaryStats)
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunPingTestResponse_JsonResponse_SummaryStats)
 	fpv.SetTo(&typedObject)
 }
 
-// CompareWith compares value in the 'RunPingTestResponseSummaryStats_FieldTerminalPathValue' with the value under path in 'RunPingTestResponse_SummaryStats'.
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(source *RunPingTestResponse_SummaryStats) (int, bool) {
+// CompareWith compares value in the 'RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue' with the value under path in 'RunPingTestResponse_JsonResponse_SummaryStats'.
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) CompareWith(source *RunPingTestResponse_JsonResponse_SummaryStats) (int, bool) {
 	switch fpv.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
 		leftValue := fpv.value.(*duration.Duration)
 		rightValue := source.GetMinRtt()
 		if leftValue == nil {
@@ -2113,7 +2778,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
 		leftValue := fpv.value.(*duration.Duration)
 		rightValue := source.GetAvgRtt()
 		if leftValue == nil {
@@ -2132,7 +2797,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
 		leftValue := fpv.value.(*duration.Duration)
 		rightValue := source.GetMaxRtt()
 		if leftValue == nil {
@@ -2151,7 +2816,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
 		leftValue := fpv.value.(*duration.Duration)
 		rightValue := source.GetStddevRtt()
 		if leftValue == nil {
@@ -2170,7 +2835,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
 		leftValue := fpv.value.(int32)
 		rightValue := source.GetTransmittedCounter()
 		if (leftValue) == (rightValue) {
@@ -2180,7 +2845,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
 		leftValue := fpv.value.(int32)
 		rightValue := source.GetReceivedCounter()
 		if (leftValue) == (rightValue) {
@@ -2190,7 +2855,7 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 		} else {
 			return 1, true
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
 		leftValue := fpv.value.(float64)
 		rightValue := source.GetLossRatio()
 		if (leftValue) == (rightValue) {
@@ -2201,25 +2866,25 @@ func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWith(s
 			return 1, true
 		}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_SummaryStats: %d", fpv.selector))
+		panic(fmt.Sprintf("Invalid selector for RunPingTestResponse_JsonResponse_SummaryStats: %d", fpv.selector))
 	}
 }
 
-func (fpv *RunPingTestResponseSummaryStats_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*RunPingTestResponse_SummaryStats))
+func (fpv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }
 
-// RunPingTestResponseSummaryStats_FieldPathArrayItemValue allows storing single item in Path-specific values for SummaryStats according to their type
+// RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue allows storing single item in Path-specific values for SummaryStats according to their type
 // Present only for array (repeated) types.
-type RunPingTestResponseSummaryStats_FieldPathArrayItemValue interface {
+type RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue interface {
 	gotenobject.FieldPathArrayItemValue
-	RunPingTestResponseSummaryStats_FieldPath
-	ContainsValue(*RunPingTestResponse_SummaryStats) bool
+	RunPingTestResponseJsonResponseSummaryStats_FieldPath
+	ContainsValue(*RunPingTestResponse_JsonResponse_SummaryStats) bool
 }
 
-// ParseRunPingTestResponseSummaryStats_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseRunPingTestResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr string) (RunPingTestResponseSummaryStats_FieldPathArrayItemValue, error) {
-	fp, err := ParseRunPingTestResponseSummaryStats_FieldPath(pathStr)
+// ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr string) (RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue, error) {
+	fp, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
@@ -2227,40 +2892,40 @@ func ParseRunPingTestResponseSummaryStats_FieldPathArrayItemValue(pathStr, value
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "error parsing SummaryStats field path array item value from %s: %v", valueStr, err)
 	}
-	return fpaiv.(RunPingTestResponseSummaryStats_FieldPathArrayItemValue), nil
+	return fpaiv.(RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue), nil
 }
 
-func MustParseRunPingTestResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr string) RunPingTestResponseSummaryStats_FieldPathArrayItemValue {
-	fpaiv, err := ParseRunPingTestResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr)
+func MustParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr string) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue {
+	fpaiv, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue(pathStr, valueStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpaiv
 }
 
-type RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue struct {
-	RunPingTestResponseSummaryStats_FieldTerminalPath
+type RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue struct {
+	RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath
 	value interface{}
 }
 
-var _ RunPingTestResponseSummaryStats_FieldPathArrayItemValue = (*RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue)(nil)
+var _ RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue = (*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue)(nil)
 
-// GetRawValue returns stored element value for array in object RunPingTestResponse_SummaryStats as interface{}
-func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+// GetRawValue returns stored element value for array in object RunPingTestResponse_JsonResponse_SummaryStats as interface{}
+func (fpaiv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
 }
 
-func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) GetSingle(source *RunPingTestResponse_SummaryStats) (interface{}, bool) {
+func (fpaiv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue) GetSingle(source *RunPingTestResponse_JsonResponse_SummaryStats) (interface{}, bool) {
 	return nil, false
 }
 
-func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*RunPingTestResponse_SummaryStats))
+func (fpaiv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }
 
 // Contains returns a boolean indicating if value that is being held is present in given 'SummaryStats'
-func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestResponse_SummaryStats) bool {
-	slice := fpaiv.RunPingTestResponseSummaryStats_FieldTerminalPath.Get(source)
+func (fpaiv *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestResponse_JsonResponse_SummaryStats) bool {
+	slice := fpaiv.RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath.Get(source)
 	for _, v := range slice {
 		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
 			if proto.Equal(asProtoMsg, v.(proto.Message)) {
@@ -2273,14 +2938,14 @@ func (fpaiv *RunPingTestResponseSummaryStats_FieldTerminalPathArrayItemValue) Co
 	return false
 }
 
-// RunPingTestResponseSummaryStats_FieldPathArrayOfValues allows storing slice of values for SummaryStats fields according to their type
-type RunPingTestResponseSummaryStats_FieldPathArrayOfValues interface {
+// RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues allows storing slice of values for SummaryStats fields according to their type
+type RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues interface {
 	gotenobject.FieldPathArrayOfValues
-	RunPingTestResponseSummaryStats_FieldPath
+	RunPingTestResponseJsonResponseSummaryStats_FieldPath
 }
 
-func ParseRunPingTestResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr string) (RunPingTestResponseSummaryStats_FieldPathArrayOfValues, error) {
-	fp, err := ParseRunPingTestResponseSummaryStats_FieldPath(pathStr)
+func ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr string) (RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues, error) {
+	fp, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
@@ -2288,821 +2953,82 @@ func ParseRunPingTestResponseSummaryStats_FieldPathArrayOfValues(pathStr, values
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "error parsing SummaryStats field path array of values from %s: %v", valuesStr, err)
 	}
-	return fpaov.(RunPingTestResponseSummaryStats_FieldPathArrayOfValues), nil
+	return fpaov.(RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues), nil
 }
 
-func MustParseRunPingTestResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr string) RunPingTestResponseSummaryStats_FieldPathArrayOfValues {
-	fpaov, err := ParseRunPingTestResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr)
+func MustParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr string) RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues {
+	fpaov, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues(pathStr, valuesStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpaov
 }
 
-type RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues struct {
-	RunPingTestResponseSummaryStats_FieldTerminalPath
+type RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues struct {
+	RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath
 	values interface{}
 }
 
-var _ RunPingTestResponseSummaryStats_FieldPathArrayOfValues = (*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)(nil)
+var _ RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues = (*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)(nil)
 
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
 		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
 		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
 		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
 		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
 		}
-	case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
+	case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsMinRttArrayOfValues() ([]*duration.Duration, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsMinRttArrayOfValues() ([]*duration.Duration, bool) {
 	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsAvgRttArrayOfValues() ([]*duration.Duration, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsAvgRttArrayOfValues() ([]*duration.Duration, bool) {
 	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsMaxRttArrayOfValues() ([]*duration.Duration, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsMaxRttArrayOfValues() ([]*duration.Duration, bool) {
 	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsStddevRttArrayOfValues() ([]*duration.Duration, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsStddevRttArrayOfValues() ([]*duration.Duration, bool) {
 	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsTransmittedCounterArrayOfValues() ([]int32, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsTransmittedCounterArrayOfValues() ([]int32, bool) {
 	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsReceivedCounterArrayOfValues() ([]int32, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsReceivedCounterArrayOfValues() ([]int32, bool) {
 	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
-func (fpaov *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues) AsLossRatioArrayOfValues() ([]float64, bool) {
+func (fpaov *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues) AsLossRatioArrayOfValues() ([]float64, bool) {
 	res, ok := fpaov.values.([]float64)
-	return res, ok
-}
-
-// FieldPath provides implementation to handle
-// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type RunPingTestRequestToProbe_FieldPath interface {
-	gotenobject.FieldPath
-	Selector() RunPingTestRequestToProbe_FieldPathSelector
-	Get(source *RunPingTestRequestToProbe) []interface{}
-	GetSingle(source *RunPingTestRequestToProbe) (interface{}, bool)
-	ClearValue(item *RunPingTestRequestToProbe)
-
-	// Those methods build corresponding RunPingTestRequestToProbe_FieldPathValue
-	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) RunPingTestRequestToProbe_FieldPathValue
-	WithIArrayOfValues(values interface{}) RunPingTestRequestToProbe_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) RunPingTestRequestToProbe_FieldPathArrayItemValue
-}
-
-type RunPingTestRequestToProbe_FieldPathSelector int32
-
-const (
-	RunPingTestRequestToProbe_FieldPathSelectorSource       RunPingTestRequestToProbe_FieldPathSelector = 0
-	RunPingTestRequestToProbe_FieldPathSelectorDestination  RunPingTestRequestToProbe_FieldPathSelector = 1
-	RunPingTestRequestToProbe_FieldPathSelectorSizeBytes    RunPingTestRequestToProbe_FieldPathSelector = 2
-	RunPingTestRequestToProbe_FieldPathSelectorCount        RunPingTestRequestToProbe_FieldPathSelector = 3
-	RunPingTestRequestToProbe_FieldPathSelectorInterval     RunPingTestRequestToProbe_FieldPathSelector = 4
-	RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout  RunPingTestRequestToProbe_FieldPathSelector = 5
-	RunPingTestRequestToProbe_FieldPathSelectorDontFragment RunPingTestRequestToProbe_FieldPathSelector = 6
-	RunPingTestRequestToProbe_FieldPathSelectorTtl          RunPingTestRequestToProbe_FieldPathSelector = 7
-	RunPingTestRequestToProbe_FieldPathSelectorTos          RunPingTestRequestToProbe_FieldPathSelector = 8
-)
-
-func (s RunPingTestRequestToProbe_FieldPathSelector) String() string {
-	switch s {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		return "source"
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		return "destination"
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		return "size_bytes"
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		return "count"
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		return "interval"
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		return "echo_timeout"
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		return "dont_fragment"
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		return "ttl"
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		return "tos"
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", s))
-	}
-}
-
-func BuildRunPingTestRequestToProbe_FieldPath(fp gotenobject.RawFieldPath) (RunPingTestRequestToProbe_FieldPath, error) {
-	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunPingTestRequestToProbe")
-	}
-	if len(fp) == 1 {
-		switch fp[0] {
-		case "source":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSource}, nil
-		case "destination":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDestination}, nil
-		case "size_bytes", "sizeBytes", "size-bytes":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSizeBytes}, nil
-		case "count":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorCount}, nil
-		case "interval":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorInterval}, nil
-		case "echo_timeout", "echoTimeout", "echo-timeout":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout}, nil
-		case "dont_fragment", "dontFragment", "dont-fragment":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDontFragment}, nil
-		case "ttl":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTtl}, nil
-		case "tos":
-			return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTos}, nil
-		}
-	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestRequestToProbe", fp)
-}
-
-func ParseRunPingTestRequestToProbe_FieldPath(rawField string) (RunPingTestRequestToProbe_FieldPath, error) {
-	fp, err := gotenobject.ParseRawFieldPath(rawField)
-	if err != nil {
-		return nil, err
-	}
-	return BuildRunPingTestRequestToProbe_FieldPath(fp)
-}
-
-func MustParseRunPingTestRequestToProbe_FieldPath(rawField string) RunPingTestRequestToProbe_FieldPath {
-	fp, err := ParseRunPingTestRequestToProbe_FieldPath(rawField)
-	if err != nil {
-		panic(err)
-	}
-	return fp
-}
-
-type RunPingTestRequestToProbe_FieldTerminalPath struct {
-	selector RunPingTestRequestToProbe_FieldPathSelector
-}
-
-var _ RunPingTestRequestToProbe_FieldPath = (*RunPingTestRequestToProbe_FieldTerminalPath)(nil)
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) Selector() RunPingTestRequestToProbe_FieldPathSelector {
-	return fp.selector
-}
-
-// String returns path representation in proto convention
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) String() string {
-	return fp.selector.String()
-}
-
-// JSONString returns path representation is JSON convention
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) JSONString() string {
-	return strcase.ToLowerCamel(fp.String())
-}
-
-// Get returns all values pointed by specific field from source RunPingTestRequestToProbe
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) Get(source *RunPingTestRequestToProbe) (values []interface{}) {
-	if source != nil {
-		switch fp.selector {
-		case RunPingTestRequestToProbe_FieldPathSelectorSource:
-			values = append(values, source.Source)
-		case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-			values = append(values, source.Destination)
-		case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-			values = append(values, source.SizeBytes)
-		case RunPingTestRequestToProbe_FieldPathSelectorCount:
-			values = append(values, source.Count)
-		case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-			if source.Interval != nil {
-				values = append(values, source.Interval)
-			}
-		case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-			if source.EchoTimeout != nil {
-				values = append(values, source.EchoTimeout)
-			}
-		case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-			values = append(values, source.DontFragment)
-		case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-			values = append(values, source.Ttl)
-		case RunPingTestRequestToProbe_FieldPathSelectorTos:
-			values = append(values, source.Tos)
-		default:
-			panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-		}
-	}
-	return
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*RunPingTestRequestToProbe))
-}
-
-// GetSingle returns value pointed by specific field of from source RunPingTestRequestToProbe
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) GetSingle(source *RunPingTestRequestToProbe) (interface{}, bool) {
-	switch fp.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		return source.GetSource(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		return source.GetDestination(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		return source.GetSizeBytes(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		return source.GetCount(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		res := source.GetInterval()
-		return res, res != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		res := source.GetEchoTimeout()
-		return res, res != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		return source.GetDontFragment(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		return source.GetTtl(), source != nil
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		return source.GetTos(), source != nil
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-	}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*RunPingTestRequestToProbe))
-}
-
-// GetDefault returns a default value of the field type
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) GetDefault() interface{} {
-	switch fp.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		return ""
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		return ""
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		return int32(0)
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		return int32(0)
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		return (*duration.Duration)(nil)
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		return (*duration.Duration)(nil)
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		return false
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		return int32(0)
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		return int32(0)
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-	}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) ClearValue(item *RunPingTestRequestToProbe) {
-	if item != nil {
-		switch fp.selector {
-		case RunPingTestRequestToProbe_FieldPathSelectorSource:
-			item.Source = ""
-		case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-			item.Destination = ""
-		case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-			item.SizeBytes = int32(0)
-		case RunPingTestRequestToProbe_FieldPathSelectorCount:
-			item.Count = int32(0)
-		case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-			item.Interval = nil
-		case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-			item.EchoTimeout = nil
-		case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-			item.DontFragment = false
-		case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-			item.Ttl = int32(0)
-		case RunPingTestRequestToProbe_FieldPathSelectorTos:
-			item.Tos = int32(0)
-		default:
-			panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-		}
-	}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*RunPingTestRequestToProbe))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunPingTestRequestToProbe_FieldPathSelectorSource ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorDestination ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorSizeBytes ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorCount ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorInterval ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorDontFragment ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorTtl ||
-		fp.selector == RunPingTestRequestToProbe_FieldPathSelectorTos
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
-	return []gotenobject.FieldPath{fp}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunPingTestRequestToProbe_FieldPathValue {
-	switch fp.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(string)}
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(string)}
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(bool)}
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		return &RunPingTestRequestToProbe_FieldTerminalPathValue{RunPingTestRequestToProbe_FieldTerminalPath: *fp, value: value.(int32)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-	}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fp.WithIValue(value)
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunPingTestRequestToProbe_FieldPathArrayOfValues {
-	fpaov := &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp}
-	switch fp.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]bool)}
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]int32)}
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		return &RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues{RunPingTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]int32)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-	}
-	return fpaov
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fp.WithIArrayOfValues(values)
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunPingTestRequestToProbe_FieldPathArrayItemValue {
-	switch fp.selector {
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fp.selector))
-	}
-}
-
-func (fp *RunPingTestRequestToProbe_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fp.WithIArrayItemValue(value)
-}
-
-// RunPingTestRequestToProbe_FieldPathValue allows storing values for RunPingTestRequestToProbe fields according to their type
-type RunPingTestRequestToProbe_FieldPathValue interface {
-	RunPingTestRequestToProbe_FieldPath
-	gotenobject.FieldPathValue
-	SetTo(target **RunPingTestRequestToProbe)
-	CompareWith(*RunPingTestRequestToProbe) (cmp int, comparable bool)
-}
-
-func ParseRunPingTestRequestToProbe_FieldPathValue(pathStr, valueStr string) (RunPingTestRequestToProbe_FieldPathValue, error) {
-	fp, err := ParseRunPingTestRequestToProbe_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunPingTestRequestToProbe field path value from %s: %v", valueStr, err)
-	}
-	return fpv.(RunPingTestRequestToProbe_FieldPathValue), nil
-}
-
-func MustParseRunPingTestRequestToProbe_FieldPathValue(pathStr, valueStr string) RunPingTestRequestToProbe_FieldPathValue {
-	fpv, err := ParseRunPingTestRequestToProbe_FieldPathValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpv
-}
-
-type RunPingTestRequestToProbe_FieldTerminalPathValue struct {
-	RunPingTestRequestToProbe_FieldTerminalPath
-	value interface{}
-}
-
-var _ RunPingTestRequestToProbe_FieldPathValue = (*RunPingTestRequestToProbe_FieldTerminalPathValue)(nil)
-
-// GetRawValue returns raw value stored under selected path for 'RunPingTestRequestToProbe' as interface{}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) GetRawValue() interface{} {
-	return fpv.value
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsSourceValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsDestinationValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsSizeBytesValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsCountValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsIntervalValue() (*duration.Duration, bool) {
-	res, ok := fpv.value.(*duration.Duration)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsEchoTimeoutValue() (*duration.Duration, bool) {
-	res, ok := fpv.value.(*duration.Duration)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsDontFragmentValue() (bool, bool) {
-	res, ok := fpv.value.(bool)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsTtlValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) AsTosValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
-
-// SetTo stores value for selected field for object RunPingTestRequestToProbe
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) SetTo(target **RunPingTestRequestToProbe) {
-	if *target == nil {
-		*target = new(RunPingTestRequestToProbe)
-	}
-	switch fpv.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		(*target).Source = fpv.value.(string)
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		(*target).Destination = fpv.value.(string)
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		(*target).SizeBytes = fpv.value.(int32)
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		(*target).Count = fpv.value.(int32)
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		(*target).Interval = fpv.value.(*duration.Duration)
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		(*target).EchoTimeout = fpv.value.(*duration.Duration)
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		(*target).DontFragment = fpv.value.(bool)
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		(*target).Ttl = fpv.value.(int32)
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		(*target).Tos = fpv.value.(int32)
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fpv.selector))
-	}
-}
-
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunPingTestRequestToProbe)
-	fpv.SetTo(&typedObject)
-}
-
-// CompareWith compares value in the 'RunPingTestRequestToProbe_FieldTerminalPathValue' with the value under path in 'RunPingTestRequestToProbe'.
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) CompareWith(source *RunPingTestRequestToProbe) (int, bool) {
-	switch fpv.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetSource()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetDestination()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetSizeBytes()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetCount()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		leftValue := fpv.value.(*duration.Duration)
-		rightValue := source.GetInterval()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.AsDuration() == rightValue.AsDuration() {
-			return 0, true
-		} else if leftValue.AsDuration() < rightValue.AsDuration() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		leftValue := fpv.value.(*duration.Duration)
-		rightValue := source.GetEchoTimeout()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.AsDuration() == rightValue.AsDuration() {
-			return 0, true
-		} else if leftValue.AsDuration() < rightValue.AsDuration() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		leftValue := fpv.value.(bool)
-		rightValue := source.GetDontFragment()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if !(leftValue) && (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetTtl()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetTos()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunPingTestRequestToProbe: %d", fpv.selector))
-	}
-}
-
-func (fpv *RunPingTestRequestToProbe_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*RunPingTestRequestToProbe))
-}
-
-// RunPingTestRequestToProbe_FieldPathArrayItemValue allows storing single item in Path-specific values for RunPingTestRequestToProbe according to their type
-// Present only for array (repeated) types.
-type RunPingTestRequestToProbe_FieldPathArrayItemValue interface {
-	gotenobject.FieldPathArrayItemValue
-	RunPingTestRequestToProbe_FieldPath
-	ContainsValue(*RunPingTestRequestToProbe) bool
-}
-
-// ParseRunPingTestRequestToProbe_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseRunPingTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr string) (RunPingTestRequestToProbe_FieldPathArrayItemValue, error) {
-	fp, err := ParseRunPingTestRequestToProbe_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunPingTestRequestToProbe field path array item value from %s: %v", valueStr, err)
-	}
-	return fpaiv.(RunPingTestRequestToProbe_FieldPathArrayItemValue), nil
-}
-
-func MustParseRunPingTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr string) RunPingTestRequestToProbe_FieldPathArrayItemValue {
-	fpaiv, err := ParseRunPingTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaiv
-}
-
-type RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue struct {
-	RunPingTestRequestToProbe_FieldTerminalPath
-	value interface{}
-}
-
-var _ RunPingTestRequestToProbe_FieldPathArrayItemValue = (*RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue)(nil)
-
-// GetRawValue returns stored element value for array in object RunPingTestRequestToProbe as interface{}
-func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
-	return fpaiv.value
-}
-
-func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSingle(source *RunPingTestRequestToProbe) (interface{}, bool) {
-	return nil, false
-}
-
-func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*RunPingTestRequestToProbe))
-}
-
-// Contains returns a boolean indicating if value that is being held is present in given 'RunPingTestRequestToProbe'
-func (fpaiv *RunPingTestRequestToProbe_FieldTerminalPathArrayItemValue) ContainsValue(source *RunPingTestRequestToProbe) bool {
-	slice := fpaiv.RunPingTestRequestToProbe_FieldTerminalPath.Get(source)
-	for _, v := range slice {
-		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
-			if proto.Equal(asProtoMsg, v.(proto.Message)) {
-				return true
-			}
-		} else if reflect.DeepEqual(v, fpaiv.value) {
-			return true
-		}
-	}
-	return false
-}
-
-// RunPingTestRequestToProbe_FieldPathArrayOfValues allows storing slice of values for RunPingTestRequestToProbe fields according to their type
-type RunPingTestRequestToProbe_FieldPathArrayOfValues interface {
-	gotenobject.FieldPathArrayOfValues
-	RunPingTestRequestToProbe_FieldPath
-}
-
-func ParseRunPingTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr string) (RunPingTestRequestToProbe_FieldPathArrayOfValues, error) {
-	fp, err := ParseRunPingTestRequestToProbe_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunPingTestRequestToProbe field path array of values from %s: %v", valuesStr, err)
-	}
-	return fpaov.(RunPingTestRequestToProbe_FieldPathArrayOfValues), nil
-}
-
-func MustParseRunPingTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr string) RunPingTestRequestToProbe_FieldPathArrayOfValues {
-	fpaov, err := ParseRunPingTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaov
-}
-
-type RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues struct {
-	RunPingTestRequestToProbe_FieldTerminalPath
-	values interface{}
-}
-
-var _ RunPingTestRequestToProbe_FieldPathArrayOfValues = (*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)(nil)
-
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
-	switch fpaov.selector {
-	case RunPingTestRequestToProbe_FieldPathSelectorSource:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorCount:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-		for _, v := range fpaov.values.([]*duration.Duration) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-		for _, v := range fpaov.values.([]*duration.Duration) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-		for _, v := range fpaov.values.([]bool) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	case RunPingTestRequestToProbe_FieldPathSelectorTos:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
-	}
-	return
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsSourceArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsDestinationArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsCountArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsIntervalArrayOfValues() ([]*duration.Duration, bool) {
-	res, ok := fpaov.values.([]*duration.Duration)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsEchoTimeoutArrayOfValues() ([]*duration.Duration, bool) {
-	res, ok := fpaov.values.([]*duration.Duration)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsDontFragmentArrayOfValues() ([]bool, bool) {
-	res, ok := fpaov.values.([]bool)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsTtlArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
-	return res, ok
-}
-func (fpaov *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues) AsTosArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
 	return res, ok
 }

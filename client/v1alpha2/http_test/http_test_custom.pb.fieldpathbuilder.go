@@ -92,8 +92,8 @@ func (RunHTTPTestRequestFieldPathBuilder) Password() RunHTTPTestRequestPathSelec
 func (RunHTTPTestRequestFieldPathBuilder) SourceIp() RunHTTPTestRequestPathSelectorSourceIp {
 	return RunHTTPTestRequestPathSelectorSourceIp{}
 }
-func (RunHTTPTestRequestFieldPathBuilder) ResponseFornat() RunHTTPTestRequestPathSelectorResponseFornat {
-	return RunHTTPTestRequestPathSelectorResponseFornat{}
+func (RunHTTPTestRequestFieldPathBuilder) OutputFormat() RunHTTPTestRequestPathSelectorOutputFormat {
+	return RunHTTPTestRequestPathSelectorOutputFormat{}
 }
 
 type RunHTTPTestRequestPathSelectorName struct{}
@@ -290,17 +290,17 @@ func (s RunHTTPTestRequestPathSelectorSourceIp) WithArrayOfValues(values []strin
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
 }
 
-type RunHTTPTestRequestPathSelectorResponseFornat struct{}
+type RunHTTPTestRequestPathSelectorOutputFormat struct{}
 
-func (RunHTTPTestRequestPathSelectorResponseFornat) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
-	return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorResponseFornat}
+func (RunHTTPTestRequestPathSelectorOutputFormat) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
+	return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat}
 }
 
-func (s RunHTTPTestRequestPathSelectorResponseFornat) WithValue(value RunHTTPTestRequest_ResponseFormat) *RunHTTPTestRequest_FieldTerminalPathValue {
+func (s RunHTTPTestRequestPathSelectorOutputFormat) WithValue(value common.OnDemandTestResponseFormat) *RunHTTPTestRequest_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequest_FieldTerminalPathValue)
 }
 
-func (s RunHTTPTestRequestPathSelectorResponseFornat) WithArrayOfValues(values []RunHTTPTestRequest_ResponseFormat) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
+func (s RunHTTPTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
 }
 

@@ -62,8 +62,8 @@ func NewGetNetworkInfoRequestFieldPathBuilder() GetNetworkInfoRequestFieldPathBu
 func (GetNetworkInfoRequestFieldPathBuilder) Name() GetNetworkInfoRequestPathSelectorName {
 	return GetNetworkInfoRequestPathSelectorName{}
 }
-func (GetNetworkInfoRequestFieldPathBuilder) ResponseFornat() GetNetworkInfoRequestPathSelectorResponseFornat {
-	return GetNetworkInfoRequestPathSelectorResponseFornat{}
+func (GetNetworkInfoRequestFieldPathBuilder) OutputFormat() GetNetworkInfoRequestPathSelectorOutputFormat {
+	return GetNetworkInfoRequestPathSelectorOutputFormat{}
 }
 
 type GetNetworkInfoRequestPathSelectorName struct{}
@@ -80,17 +80,17 @@ func (s GetNetworkInfoRequestPathSelectorName) WithArrayOfValues(values []*probe
 	return s.FieldPath().WithIArrayOfValues(values).(*GetNetworkInfoRequest_FieldTerminalPathArrayOfValues)
 }
 
-type GetNetworkInfoRequestPathSelectorResponseFornat struct{}
+type GetNetworkInfoRequestPathSelectorOutputFormat struct{}
 
-func (GetNetworkInfoRequestPathSelectorResponseFornat) FieldPath() *GetNetworkInfoRequest_FieldTerminalPath {
-	return &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorResponseFornat}
+func (GetNetworkInfoRequestPathSelectorOutputFormat) FieldPath() *GetNetworkInfoRequest_FieldTerminalPath {
+	return &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorOutputFormat}
 }
 
-func (s GetNetworkInfoRequestPathSelectorResponseFornat) WithValue(value GetNetworkInfoRequest_ResponseFormat) *GetNetworkInfoRequest_FieldTerminalPathValue {
+func (s GetNetworkInfoRequestPathSelectorOutputFormat) WithValue(value common.OnDemandTestResponseFormat) *GetNetworkInfoRequest_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*GetNetworkInfoRequest_FieldTerminalPathValue)
 }
 
-func (s GetNetworkInfoRequestPathSelectorResponseFornat) WithArrayOfValues(values []GetNetworkInfoRequest_ResponseFormat) *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues {
+func (s GetNetworkInfoRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetNetworkInfoRequest_FieldTerminalPathArrayOfValues)
 }
 

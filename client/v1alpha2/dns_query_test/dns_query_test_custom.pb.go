@@ -86,7 +86,8 @@ type RunDNSQueryTestRequest struct {
 	// - overwrite the qestion's class to PTR
 	// - and make the query's name reversed (eg. 8.8.4.4
 	// to 4.4.8.8.in-addr.arpa.)
-	Reverse bool `protobuf:"varint,7,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
+	Reverse      bool                              `protobuf:"varint,7,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
+	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,8,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 
 func (m *RunDNSQueryTestRequest) Reset() {
@@ -188,6 +189,13 @@ func (m *RunDNSQueryTestRequest) GetReverse() bool {
 	return false
 }
 
+func (m *RunDNSQueryTestRequest) GetOutputFormat() common.OnDemandTestResponseFormat {
+	if m != nil {
+		return m.OutputFormat
+	}
+	return common.OnDemandTestResponseFormat_TEXT
+}
+
 func (m *RunDNSQueryTestRequest) SetName(fv *probe.Reference) {
 	if m == nil {
 		panic(fmt.Errorf("can't set %s on nil %s", "Name", "RunDNSQueryTestRequest"))
@@ -237,39 +245,21 @@ func (m *RunDNSQueryTestRequest) SetReverse(fv bool) {
 	m.Reverse = fv
 }
 
+func (m *RunDNSQueryTestRequest) SetOutputFormat(fv common.OnDemandTestResponseFormat) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "OutputFormat", "RunDNSQueryTestRequest"))
+	}
+	m.OutputFormat = fv
+}
+
 // Response message for method
 // [RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]
 type RunDNSQueryTestResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	// Message identifier
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" firestore:"id"`
-	// Message respoonse code
-	// The notifion would follow
-	// https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-	Rcode string `protobuf:"bytes,2,opt,name=rcode,proto3" json:"rcode,omitempty" firestore:"rcode"`
-	// Flags in the message
-	// A list of elements are as follows
-	// qr: Query Response
-	// aa: Authoritative Answer
-	// tc: Truncated Response
-	// rd: Recursion Desired
-	// ra: Recursion Available
-	//  z: Zero
-	// ad: Authentic Data
-	// cd: Checking Disabled
-	Flags []string `protobuf:"bytes,3,rep,name=flags,proto3" json:"flags,omitempty" firestore:"flags"`
-	// Query section
-	Queries []*common.DNSQuery `protobuf:"bytes,4,rep,name=queries,proto3" json:"queries,omitempty" firestore:"queries"`
-	// Answer section
-	Answers []*common.DNSResourceRecord `protobuf:"bytes,5,rep,name=answers,proto3" json:"answers,omitempty" firestore:"answers"`
-	// Authority section
-	Ns []*common.DNSResourceRecord `protobuf:"bytes,6,rep,name=ns,proto3" json:"ns,omitempty" firestore:"ns"`
-	// Additional section
-	Extras []*common.DNSResourceRecord `protobuf:"bytes,7,rep,name=extras,proto3" json:"extras,omitempty" firestore:"extras"`
-	// RTT to exchange the message
-	Rtt *duration.Duration `protobuf:"bytes,8,opt,name=rtt,proto3" json:"rtt,omitempty" firestore:"rtt"`
+	JsonResponse  *RunDNSQueryTestResponse_JsonResponse `protobuf:"bytes,1,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
+	TextResponse  string                                `protobuf:"bytes,2,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
 }
 
 func (m *RunDNSQueryTestResponse) Reset() {
@@ -322,132 +312,69 @@ func (m *RunDNSQueryTestResponse) UnmarshalJSON(data []byte) error {
 	return protojson.Unmarshal(data, m)
 }
 
-func (m *RunDNSQueryTestResponse) GetId() uint32 {
+func (m *RunDNSQueryTestResponse) GetJsonResponse() *RunDNSQueryTestResponse_JsonResponse {
 	if m != nil {
-		return m.Id
+		return m.JsonResponse
 	}
-	return uint32(0)
+	return nil
 }
 
-func (m *RunDNSQueryTestResponse) GetRcode() string {
+func (m *RunDNSQueryTestResponse) GetTextResponse() string {
 	if m != nil {
-		return m.Rcode
+		return m.TextResponse
 	}
 	return ""
 }
 
-func (m *RunDNSQueryTestResponse) GetFlags() []string {
-	if m != nil {
-		return m.Flags
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) GetQueries() []*common.DNSQuery {
-	if m != nil {
-		return m.Queries
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) GetAnswers() []*common.DNSResourceRecord {
-	if m != nil {
-		return m.Answers
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) GetNs() []*common.DNSResourceRecord {
-	if m != nil {
-		return m.Ns
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) GetExtras() []*common.DNSResourceRecord {
-	if m != nil {
-		return m.Extras
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) GetRtt() *duration.Duration {
-	if m != nil {
-		return m.Rtt
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestResponse) SetId(fv uint32) {
+func (m *RunDNSQueryTestResponse) SetJsonResponse(fv *RunDNSQueryTestResponse_JsonResponse) {
 	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Id", "RunDNSQueryTestResponse"))
+		panic(fmt.Errorf("can't set %s on nil %s", "JsonResponse", "RunDNSQueryTestResponse"))
 	}
-	m.Id = fv
+	m.JsonResponse = fv
 }
 
-func (m *RunDNSQueryTestResponse) SetRcode(fv string) {
+func (m *RunDNSQueryTestResponse) SetTextResponse(fv string) {
 	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Rcode", "RunDNSQueryTestResponse"))
+		panic(fmt.Errorf("can't set %s on nil %s", "TextResponse", "RunDNSQueryTestResponse"))
 	}
-	m.Rcode = fv
+	m.TextResponse = fv
 }
 
-func (m *RunDNSQueryTestResponse) SetFlags(fv []string) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Flags", "RunDNSQueryTestResponse"))
-	}
-	m.Flags = fv
+type RunDNSQueryTestResponse_JsonResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	// Message identifier
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" firestore:"id"`
+	// Message respoonse code
+	// The notifion would follow
+	// https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+	Rcode string `protobuf:"bytes,2,opt,name=rcode,proto3" json:"rcode,omitempty" firestore:"rcode"`
+	// Flags in the message
+	// A list of elements are as follows
+	// qr: Query Response
+	// aa: Authoritative Answer
+	// tc: Truncated Response
+	// rd: Recursion Desired
+	// ra: Recursion Available
+	//  z: Zero
+	// ad: Authentic Data
+	// cd: Checking Disabled
+	Flags []string `protobuf:"bytes,3,rep,name=flags,proto3" json:"flags,omitempty" firestore:"flags"`
+	// Query section
+	Queries []*common.DNSQuery `protobuf:"bytes,4,rep,name=queries,proto3" json:"queries,omitempty" firestore:"queries"`
+	// Answer section
+	Answers []*common.DNSResourceRecord `protobuf:"bytes,5,rep,name=answers,proto3" json:"answers,omitempty" firestore:"answers"`
+	// Authority section
+	Ns []*common.DNSResourceRecord `protobuf:"bytes,6,rep,name=ns,proto3" json:"ns,omitempty" firestore:"ns"`
+	// Additional section
+	Extras []*common.DNSResourceRecord `protobuf:"bytes,7,rep,name=extras,proto3" json:"extras,omitempty" firestore:"extras"`
+	// RTT to exchange the message
+	Rtt *duration.Duration `protobuf:"bytes,8,opt,name=rtt,proto3" json:"rtt,omitempty" firestore:"rtt"`
 }
 
-func (m *RunDNSQueryTestResponse) SetQueries(fv []*common.DNSQuery) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Queries", "RunDNSQueryTestResponse"))
-	}
-	m.Queries = fv
-}
-
-func (m *RunDNSQueryTestResponse) SetAnswers(fv []*common.DNSResourceRecord) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Answers", "RunDNSQueryTestResponse"))
-	}
-	m.Answers = fv
-}
-
-func (m *RunDNSQueryTestResponse) SetNs(fv []*common.DNSResourceRecord) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Ns", "RunDNSQueryTestResponse"))
-	}
-	m.Ns = fv
-}
-
-func (m *RunDNSQueryTestResponse) SetExtras(fv []*common.DNSResourceRecord) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Extras", "RunDNSQueryTestResponse"))
-	}
-	m.Extras = fv
-}
-
-func (m *RunDNSQueryTestResponse) SetRtt(fv *duration.Duration) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Rtt", "RunDNSQueryTestResponse"))
-	}
-	m.Rtt = fv
-}
-
-type RunDNSQueryTestRequestToProbe struct {
-	state              protoimpl.MessageState
-	sizeCache          protoimpl.SizeCache
-	unknownFields      protoimpl.UnknownFields
-	Query              *common.DNSQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty" firestore:"query"`
-	Server             string           `protobuf:"bytes,2,opt,name=server,proto3" json:"server,omitempty" firestore:"server"`
-	Port               uint32           `protobuf:"varint,3,opt,name=port,proto3" json:"port,omitempty" firestore:"port"`
-	Tcp                bool             `protobuf:"varint,4,opt,name=tcp,proto3" json:"tcp,omitempty" firestore:"tcp"`
-	NoRecursionDesired bool             `protobuf:"varint,5,opt,name=no_recursion_desired,json=noRecursionDesired,proto3" json:"no_recursion_desired,omitempty" firestore:"noRecursionDesired"`
-	Reverse            bool             `protobuf:"varint,6,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
-}
-
-func (m *RunDNSQueryTestRequestToProbe) Reset() {
-	*m = RunDNSQueryTestRequestToProbe{}
+func (m *RunDNSQueryTestResponse_JsonResponse) Reset() {
+	*m = RunDNSQueryTestResponse_JsonResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &watchdog_proto_v1alpha2_dns_query_test_custom_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
@@ -455,13 +382,13 @@ func (m *RunDNSQueryTestRequestToProbe) Reset() {
 	}
 }
 
-func (m *RunDNSQueryTestRequestToProbe) String() string {
+func (m *RunDNSQueryTestResponse_JsonResponse) String() string {
 	return protoimpl.X.MessageStringOf(m)
 }
 
-func (*RunDNSQueryTestRequestToProbe) ProtoMessage() {}
+func (*RunDNSQueryTestResponse_JsonResponse) ProtoMessage() {}
 
-func (m *RunDNSQueryTestRequestToProbe) ProtoReflect() preflect.Message {
+func (m *RunDNSQueryTestResponse_JsonResponse) ProtoReflect() preflect.Message {
 	mi := &watchdog_proto_v1alpha2_dns_query_test_custom_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && m != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
@@ -473,111 +400,139 @@ func (m *RunDNSQueryTestRequestToProbe) ProtoReflect() preflect.Message {
 	return mi.MessageOf(m)
 }
 
-func (*RunDNSQueryTestRequestToProbe) GotenMessage() {}
+func (*RunDNSQueryTestResponse_JsonResponse) GotenMessage() {}
 
-// Deprecated, Use RunDNSQueryTestRequestToProbe.ProtoReflect.Descriptor instead.
-func (*RunDNSQueryTestRequestToProbe) Descriptor() ([]byte, []int) {
-	return watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDescGZIP(), []int{2}
+// Deprecated, Use RunDNSQueryTestResponse_JsonResponse.ProtoReflect.Descriptor instead.
+func (*RunDNSQueryTestResponse_JsonResponse) Descriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (m *RunDNSQueryTestRequestToProbe) Unmarshal(b []byte) error {
+func (m *RunDNSQueryTestResponse_JsonResponse) Unmarshal(b []byte) error {
 	return proto.Unmarshal(b, m)
 }
 
-func (m *RunDNSQueryTestRequestToProbe) Marshal() ([]byte, error) {
+func (m *RunDNSQueryTestResponse_JsonResponse) Marshal() ([]byte, error) {
 	return proto.Marshal(m)
 }
 
-func (m *RunDNSQueryTestRequestToProbe) MarshalJSON() ([]byte, error) {
+func (m *RunDNSQueryTestResponse_JsonResponse) MarshalJSON() ([]byte, error) {
 	return protojson.MarshalOptions{}.Marshal(m)
 }
 
-func (m *RunDNSQueryTestRequestToProbe) UnmarshalJSON(data []byte) error {
+func (m *RunDNSQueryTestResponse_JsonResponse) UnmarshalJSON(data []byte) error {
 	return protojson.Unmarshal(data, m)
 }
 
-func (m *RunDNSQueryTestRequestToProbe) GetQuery() *common.DNSQuery {
+func (m *RunDNSQueryTestResponse_JsonResponse) GetId() uint32 {
 	if m != nil {
-		return m.Query
-	}
-	return nil
-}
-
-func (m *RunDNSQueryTestRequestToProbe) GetServer() string {
-	if m != nil {
-		return m.Server
-	}
-	return ""
-}
-
-func (m *RunDNSQueryTestRequestToProbe) GetPort() uint32 {
-	if m != nil {
-		return m.Port
+		return m.Id
 	}
 	return uint32(0)
 }
 
-func (m *RunDNSQueryTestRequestToProbe) GetTcp() bool {
+func (m *RunDNSQueryTestResponse_JsonResponse) GetRcode() string {
 	if m != nil {
-		return m.Tcp
+		return m.Rcode
 	}
-	return false
+	return ""
 }
 
-func (m *RunDNSQueryTestRequestToProbe) GetNoRecursionDesired() bool {
+func (m *RunDNSQueryTestResponse_JsonResponse) GetFlags() []string {
 	if m != nil {
-		return m.NoRecursionDesired
+		return m.Flags
 	}
-	return false
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) GetReverse() bool {
+func (m *RunDNSQueryTestResponse_JsonResponse) GetQueries() []*common.DNSQuery {
 	if m != nil {
-		return m.Reverse
+		return m.Queries
 	}
-	return false
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetQuery(fv *common.DNSQuery) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Query", "RunDNSQueryTestRequestToProbe"))
+func (m *RunDNSQueryTestResponse_JsonResponse) GetAnswers() []*common.DNSResourceRecord {
+	if m != nil {
+		return m.Answers
 	}
-	m.Query = fv
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetServer(fv string) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Server", "RunDNSQueryTestRequestToProbe"))
+func (m *RunDNSQueryTestResponse_JsonResponse) GetNs() []*common.DNSResourceRecord {
+	if m != nil {
+		return m.Ns
 	}
-	m.Server = fv
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetPort(fv uint32) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Port", "RunDNSQueryTestRequestToProbe"))
+func (m *RunDNSQueryTestResponse_JsonResponse) GetExtras() []*common.DNSResourceRecord {
+	if m != nil {
+		return m.Extras
 	}
-	m.Port = fv
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetTcp(fv bool) {
-	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Tcp", "RunDNSQueryTestRequestToProbe"))
+func (m *RunDNSQueryTestResponse_JsonResponse) GetRtt() *duration.Duration {
+	if m != nil {
+		return m.Rtt
 	}
-	m.Tcp = fv
+	return nil
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetNoRecursionDesired(fv bool) {
+func (m *RunDNSQueryTestResponse_JsonResponse) SetId(fv uint32) {
 	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "NoRecursionDesired", "RunDNSQueryTestRequestToProbe"))
+		panic(fmt.Errorf("can't set %s on nil %s", "Id", "RunDNSQueryTestResponse_JsonResponse"))
 	}
-	m.NoRecursionDesired = fv
+	m.Id = fv
 }
 
-func (m *RunDNSQueryTestRequestToProbe) SetReverse(fv bool) {
+func (m *RunDNSQueryTestResponse_JsonResponse) SetRcode(fv string) {
 	if m == nil {
-		panic(fmt.Errorf("can't set %s on nil %s", "Reverse", "RunDNSQueryTestRequestToProbe"))
+		panic(fmt.Errorf("can't set %s on nil %s", "Rcode", "RunDNSQueryTestResponse_JsonResponse"))
 	}
-	m.Reverse = fv
+	m.Rcode = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetFlags(fv []string) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Flags", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Flags = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetQueries(fv []*common.DNSQuery) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Queries", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Queries = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetAnswers(fv []*common.DNSResourceRecord) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Answers", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Answers = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetNs(fv []*common.DNSResourceRecord) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Ns", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Ns = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetExtras(fv []*common.DNSResourceRecord) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Extras", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Extras = fv
+}
+
+func (m *RunDNSQueryTestResponse_JsonResponse) SetRtt(fv *duration.Duration) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Rtt", "RunDNSQueryTestResponse_JsonResponse"))
+	}
+	m.Rtt = fv
 }
 
 var watchdog_proto_v1alpha2_dns_query_test_custom_proto preflect.FileDescriptor
@@ -609,7 +564,7 @@ var watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDesc = []byte{
 	0x67, 0x65, 0x6c, 0x71, 0x2f, 0x6d, 0x65, 0x74, 0x61, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x69, 0x6c,
 	0x65, 0x72, 0x73, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f,
 	0x6d, 0x75, 0x6c, 0x74, 0x69, 0x5f, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0x92, 0x02, 0x0a, 0x16, 0x52, 0x75, 0x6e, 0x44, 0x4e, 0x53, 0x51, 0x75, 0x65,
+	0x74, 0x6f, 0x22, 0xea, 0x02, 0x0a, 0x16, 0x52, 0x75, 0x6e, 0x44, 0x4e, 0x53, 0x51, 0x75, 0x65,
 	0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a,
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x11, 0xb2, 0xda, 0x21,
 	0x09, 0x12, 0x07, 0x0a, 0x05, 0x50, 0x72, 0x6f, 0x62, 0x65, 0xba, 0x9d, 0x22, 0x00, 0x52, 0x04,
@@ -625,9 +580,24 @@ var watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDesc = []byte{
 	0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x12, 0x6e, 0x6f, 0x52, 0x65, 0x63, 0x75, 0x72,
 	0x73, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x69, 0x72, 0x65, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x72,
 	0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x72, 0x65,
-	0x76, 0x65, 0x72, 0x73, 0x65, 0x3a, 0x10, 0xc2, 0x85, 0x2c, 0x0c, 0x32, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x3a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0xfd, 0x02, 0x0a, 0x17, 0x52, 0x75, 0x6e, 0x44,
-	0x4e, 0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x5f,
+	0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x31, 0x2e, 0x6e,
+	0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2e, 0x76, 0x31, 0x61, 0x6c,
+	0x70, 0x68, 0x61, 0x32, 0x2e, 0x4f, 0x6e, 0x44, 0x65, 0x6d, 0x61, 0x6e, 0x64, 0x54, 0x65, 0x73,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52,
+	0x0c, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x3a, 0x10, 0xc2,
+	0x85, 0x2c, 0x0c, 0x32, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22,
+	0x95, 0x04, 0x0a, 0x17, 0x52, 0x75, 0x6e, 0x44, 0x4e, 0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54,
+	0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0d, 0x6a,
+	0x73, 0x6f, 0x6e, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x3b, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f,
+	0x67, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x2e, 0x52, 0x75, 0x6e, 0x44, 0x4e,
+	0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x2e, 0x4a, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52,
+	0x0c, 0x6a, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a,
+	0x0d, 0x74, 0x65, 0x78, 0x74, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x74, 0x65, 0x78, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x1a, 0xf2, 0x02, 0x0a, 0x0c, 0x4a, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52,
 	0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x72, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x05, 0x72, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x61,
@@ -650,35 +620,21 @@ var watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDesc = []byte{
 	0x72, 0x64, 0x52, 0x06, 0x65, 0x78, 0x74, 0x72, 0x61, 0x73, 0x12, 0x2b, 0x0a, 0x03, 0x72, 0x74,
 	0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x03, 0x72, 0x74, 0x74, 0x22, 0xe0, 0x01, 0x0a, 0x1d, 0x52, 0x75, 0x6e, 0x44,
-	0x4e, 0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x54, 0x6f, 0x50, 0x72, 0x6f, 0x62, 0x65, 0x12, 0x35, 0x0a, 0x05, 0x71, 0x75, 0x65,
-	0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77,
-	0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32,
-	0x2e, 0x44, 0x4e, 0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79,
-	0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x6f, 0x72, 0x74,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03,
-	0x74, 0x63, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x74, 0x63, 0x70, 0x12, 0x30,
-	0x0a, 0x14, 0x6e, 0x6f, 0x5f, 0x72, 0x65, 0x63, 0x75, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x64,
-	0x65, 0x73, 0x69, 0x72, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x12, 0x6e, 0x6f,
-	0x52, 0x65, 0x63, 0x75, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x69, 0x72, 0x65, 0x64,
-	0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x07, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x42, 0xd9, 0x01, 0xe8, 0xde, 0x21,
-	0x01, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68,
-	0x64, 0x6f, 0x67, 0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x42,
-	0x17, 0x44, 0x4e, 0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x43, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x00, 0x5a, 0x51, 0x67, 0x69, 0x74, 0x68,
-	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f,
-	0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2f,
-	0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x2f, 0x64, 0x6e, 0x73, 0x5f, 0x71, 0x75, 0x65,
-	0x72, 0x79, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x3b, 0x64, 0x6e, 0x73, 0x5f, 0x71, 0x75, 0x65, 0x72,
-	0x79, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0xd2, 0x84, 0xd1,
-	0x02, 0x44, 0x0a, 0x0d, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72,
-	0x73, 0x12, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f,
-	0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x73, 0x2f, 0x76, 0x31,
-	0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x52, 0x03, 0x72, 0x74, 0x74, 0x42, 0xd9, 0x01, 0xe8, 0xde, 0x21, 0x01, 0x0a, 0x1c,
+	0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67,
+	0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x42, 0x17, 0x44, 0x4e,
+	0x53, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x73, 0x74, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x00, 0x5a, 0x51, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74,
+	0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x32, 0x2f, 0x64, 0x6e, 0x73, 0x5f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f,
+	0x74, 0x65, 0x73, 0x74, 0x3b, 0x64, 0x6e, 0x73, 0x5f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f, 0x74,
+	0x65, 0x73, 0x74, 0x5f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0xd2, 0x84, 0xd1, 0x02, 0x44, 0x0a,
+	0x0d, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x73, 0x12, 0x33,
+	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f, 0x61, 0x75, 0x64,
+	0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x73, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70,
+	0x68, 0x61, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -695,26 +651,28 @@ func watchdog_proto_v1alpha2_dns_query_test_custom_proto_rawDescGZIP() []byte {
 
 var watchdog_proto_v1alpha2_dns_query_test_custom_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var watchdog_proto_v1alpha2_dns_query_test_custom_proto_goTypes = []interface{}{
-	(*RunDNSQueryTestRequest)(nil),        // 0: ntt.watchdog.v1alpha2.RunDNSQueryTestRequest
-	(*RunDNSQueryTestResponse)(nil),       // 1: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse
-	(*RunDNSQueryTestRequestToProbe)(nil), // 2: ntt.watchdog.v1alpha2.RunDNSQueryTestRequestToProbe
-	(*common.DNSQuery)(nil),               // 3: ntt.watchdog.v1alpha2.DNSQuery
-	(*common.DNSResourceRecord)(nil),      // 4: ntt.watchdog.v1alpha2.DNSResourceRecord
-	(*duration.Duration)(nil),             // 5: google.protobuf.Duration
+	(*RunDNSQueryTestRequest)(nil),               // 0: ntt.watchdog.v1alpha2.RunDNSQueryTestRequest
+	(*RunDNSQueryTestResponse)(nil),              // 1: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse
+	(*RunDNSQueryTestResponse_JsonResponse)(nil), // 2: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse
+	(*common.DNSQuery)(nil),                      // 3: ntt.watchdog.v1alpha2.DNSQuery
+	(common.OnDemandTestResponseFormat)(0),       // 4: ntt.watchdog.v1alpha2.OnDemandTestResponseFormat
+	(*common.DNSResourceRecord)(nil),             // 5: ntt.watchdog.v1alpha2.DNSResourceRecord
+	(*duration.Duration)(nil),                    // 6: google.protobuf.Duration
 }
 var watchdog_proto_v1alpha2_dns_query_test_custom_proto_depIdxs = []int32{
 	3, // 0: ntt.watchdog.v1alpha2.RunDNSQueryTestRequest.query:type_name -> ntt.watchdog.v1alpha2.DNSQuery
-	3, // 1: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.queries:type_name -> ntt.watchdog.v1alpha2.DNSQuery
-	4, // 2: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.answers:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
-	4, // 3: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.ns:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
-	4, // 4: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.extras:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
-	5, // 5: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.rtt:type_name -> google.protobuf.Duration
-	3, // 6: ntt.watchdog.v1alpha2.RunDNSQueryTestRequestToProbe.query:type_name -> ntt.watchdog.v1alpha2.DNSQuery
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	4, // 1: ntt.watchdog.v1alpha2.RunDNSQueryTestRequest.output_format:type_name -> ntt.watchdog.v1alpha2.OnDemandTestResponseFormat
+	2, // 2: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.json_response:type_name -> ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse
+	3, // 3: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse.queries:type_name -> ntt.watchdog.v1alpha2.DNSQuery
+	5, // 4: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse.answers:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
+	5, // 5: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse.ns:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
+	5, // 6: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse.extras:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecord
+	6, // 7: ntt.watchdog.v1alpha2.RunDNSQueryTestResponse.JsonResponse.rtt:type_name -> google.protobuf.Duration
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { watchdog_proto_v1alpha2_dns_query_test_custom_proto_init() }
@@ -749,7 +707,7 @@ func watchdog_proto_v1alpha2_dns_query_test_custom_proto_init() {
 			}
 		}
 		watchdog_proto_v1alpha2_dns_query_test_custom_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RunDNSQueryTestRequestToProbe); i {
+			switch v := v.(*RunDNSQueryTestResponse_JsonResponse); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -79,6 +79,9 @@ func (o *RunHopMonitorRequest) MakeDiffFieldMask(other *RunHopMonitorRequest) *R
 	if o.GetMode() != other.GetMode() {
 		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode})
 	}
+	if o.GetOutputFormat() != other.GetOutputFormat() {
+		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat})
+	}
 	return res
 }
 
@@ -116,6 +119,7 @@ func (o *RunHopMonitorRequest) Clone() *RunHopMonitorRequest {
 	result.SizeBytes = o.SizeBytes
 	result.Attempts = o.Attempts
 	result.Mode = o.Mode
+	result.OutputFormat = o.OutputFormat
 	return result
 }
 
@@ -153,6 +157,7 @@ func (o *RunHopMonitorRequest) Merge(source *RunHopMonitorRequest) {
 	o.SizeBytes = source.GetSizeBytes()
 	o.Attempts = source.GetAttempts()
 	o.Mode = source.GetMode()
+	o.OutputFormat = source.GetOutputFormat()
 }
 
 func (o *RunHopMonitorRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -178,44 +183,18 @@ func (o *RunHopMonitorResponse) MakeDiffFieldMask(other *RunHopMonitorResponse) 
 	}
 
 	res := &RunHopMonitorResponse_FieldMask{}
-
-	if len(o.GetPaths()) == len(other.GetPaths()) {
-		for i, lValue := range o.GetPaths() {
-			rValue := other.GetPaths()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths})
-				break
+	{
+		subMask := o.GetJsonResponse().MakeDiffFieldMask(other.GetJsonResponse())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldSubPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse, subPath: subpath})
 			}
 		}
-	} else {
-		res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths})
 	}
-
-	if len(o.GetHopStats()) == len(other.GetHopStats()) {
-		for i, lValue := range o.GetHopStats() {
-			rValue := other.GetHopStats()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopStats})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopStats})
-	}
-
-	if len(o.GetHopInfo()) == len(other.GetHopInfo()) {
-		for i, lValue := range o.GetHopInfo() {
-			rValue := other.GetHopInfo()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo})
-	}
-	if o.GetIpVersion() != other.GetIpVersion() {
-		res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorIpVersion})
+	if o.GetTextResponse() != other.GetTextResponse() {
+		res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorTextResponse})
 	}
 	return res
 }
@@ -229,6 +208,99 @@ func (o *RunHopMonitorResponse) Clone() *RunHopMonitorResponse {
 		return nil
 	}
 	result := &RunHopMonitorResponse{}
+	result.JsonResponse = o.JsonResponse.Clone()
+	result.TextResponse = o.TextResponse
+	return result
+}
+
+func (o *RunHopMonitorResponse) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *RunHopMonitorResponse) Merge(source *RunHopMonitorResponse) {
+	if source.GetJsonResponse() != nil {
+		if o.JsonResponse == nil {
+			o.JsonResponse = new(RunHopMonitorResponse_JsonResponse)
+		}
+		o.JsonResponse.Merge(source.GetJsonResponse())
+	}
+	o.TextResponse = source.GetTextResponse()
+}
+
+func (o *RunHopMonitorResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunHopMonitorResponse))
+}
+
+func (o *RunHopMonitorResponse_JsonResponse) GotenObjectExt() {}
+
+func (o *RunHopMonitorResponse_JsonResponse) MakeFullFieldMask() *RunHopMonitorResponse_JsonResponse_FieldMask {
+	return FullRunHopMonitorResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunHopMonitorResponse_JsonResponse) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullRunHopMonitorResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunHopMonitorResponse_JsonResponse) MakeDiffFieldMask(other *RunHopMonitorResponse_JsonResponse) *RunHopMonitorResponse_JsonResponse_FieldMask {
+	if o == nil && other == nil {
+		return &RunHopMonitorResponse_JsonResponse_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullRunHopMonitorResponse_JsonResponse_FieldMask()
+	}
+
+	res := &RunHopMonitorResponse_JsonResponse_FieldMask{}
+
+	if len(o.GetPaths()) == len(other.GetPaths()) {
+		for i, lValue := range o.GetPaths() {
+			rValue := other.GetPaths()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths})
+	}
+
+	if len(o.GetHopStats()) == len(other.GetHopStats()) {
+		for i, lValue := range o.GetHopStats() {
+			rValue := other.GetHopStats()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats})
+	}
+
+	if len(o.GetHopInfo()) == len(other.GetHopInfo()) {
+		for i, lValue := range o.GetHopInfo() {
+			rValue := other.GetHopInfo()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo})
+	}
+	if o.GetIpVersion() != other.GetIpVersion() {
+		res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion})
+	}
+	return res
+}
+
+func (o *RunHopMonitorResponse_JsonResponse) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*RunHopMonitorResponse_JsonResponse))
+}
+
+func (o *RunHopMonitorResponse_JsonResponse) Clone() *RunHopMonitorResponse_JsonResponse {
+	if o == nil {
+		return nil
+	}
+	result := &RunHopMonitorResponse_JsonResponse{}
 	result.Paths = make([]*common.Path, len(o.Paths))
 	for i, sourceValue := range o.Paths {
 		result.Paths[i] = sourceValue.Clone()
@@ -245,11 +317,11 @@ func (o *RunHopMonitorResponse) Clone() *RunHopMonitorResponse {
 	return result
 }
 
-func (o *RunHopMonitorResponse) CloneRaw() gotenobject.GotenObjectExt {
+func (o *RunHopMonitorResponse_JsonResponse) CloneRaw() gotenobject.GotenObjectExt {
 	return o.Clone()
 }
 
-func (o *RunHopMonitorResponse) Merge(source *RunHopMonitorResponse) {
+func (o *RunHopMonitorResponse_JsonResponse) Merge(source *RunHopMonitorResponse_JsonResponse) {
 	for _, sourceValue := range source.GetPaths() {
 		exists := false
 		for _, currentValue := range o.Paths {
@@ -297,6 +369,6 @@ func (o *RunHopMonitorResponse) Merge(source *RunHopMonitorResponse) {
 	o.IpVersion = source.GetIpVersion()
 }
 
-func (o *RunHopMonitorResponse) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunHopMonitorResponse))
+func (o *RunHopMonitorResponse_JsonResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunHopMonitorResponse_JsonResponse))
 }

@@ -84,6 +84,9 @@ func (RunHopMonitorRequestFieldPathBuilder) Attempts() RunHopMonitorRequestPathS
 func (RunHopMonitorRequestFieldPathBuilder) Mode() RunHopMonitorRequestPathSelectorMode {
 	return RunHopMonitorRequestPathSelectorMode{}
 }
+func (RunHopMonitorRequestFieldPathBuilder) OutputFormat() RunHopMonitorRequestPathSelectorOutputFormat {
+	return RunHopMonitorRequestPathSelectorOutputFormat{}
+}
 
 type RunHopMonitorRequestPathSelectorName struct{}
 
@@ -183,160 +186,389 @@ func (s RunHopMonitorRequestPathSelectorMode) WithArrayOfValues(values []common.
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
 }
 
+type RunHopMonitorRequestPathSelectorOutputFormat struct{}
+
+func (RunHopMonitorRequestPathSelectorOutputFormat) FieldPath() *RunHopMonitorRequest_FieldTerminalPath {
+	return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat}
+}
+
+func (s RunHopMonitorRequestPathSelectorOutputFormat) WithValue(value common.OnDemandTestResponseFormat) *RunHopMonitorRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorRequest_FieldTerminalPathValue)
+}
+
+func (s RunHopMonitorRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
+}
+
 type RunHopMonitorResponseFieldPathBuilder struct{}
 
 func NewRunHopMonitorResponseFieldPathBuilder() RunHopMonitorResponseFieldPathBuilder {
 	return RunHopMonitorResponseFieldPathBuilder{}
 }
-func (RunHopMonitorResponseFieldPathBuilder) Paths() RunHopMonitorResponsePathSelectorPaths {
-	return RunHopMonitorResponsePathSelectorPaths{}
+func (RunHopMonitorResponseFieldPathBuilder) JsonResponse() RunHopMonitorResponsePathSelectorJsonResponse {
+	return RunHopMonitorResponsePathSelectorJsonResponse{}
 }
-func (RunHopMonitorResponseFieldPathBuilder) HopStats() RunHopMonitorResponsePathSelectorHopStats {
-	return RunHopMonitorResponsePathSelectorHopStats{}
-}
-func (RunHopMonitorResponseFieldPathBuilder) HopInfo() RunHopMonitorResponsePathSelectorHopInfo {
-	return RunHopMonitorResponsePathSelectorHopInfo{}
-}
-func (RunHopMonitorResponseFieldPathBuilder) IpVersion() RunHopMonitorResponsePathSelectorIpVersion {
-	return RunHopMonitorResponsePathSelectorIpVersion{}
+func (RunHopMonitorResponseFieldPathBuilder) TextResponse() RunHopMonitorResponsePathSelectorTextResponse {
+	return RunHopMonitorResponsePathSelectorTextResponse{}
 }
 
-type RunHopMonitorResponsePathSelectorPaths struct{}
+type RunHopMonitorResponsePathSelectorJsonResponse struct{}
 
-func (RunHopMonitorResponsePathSelectorPaths) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
-	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths}
+func (RunHopMonitorResponsePathSelectorJsonResponse) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
+	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse}
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithValue(value []*common.Path) *RunHopMonitorResponse_FieldTerminalPathValue {
+func (s RunHopMonitorResponsePathSelectorJsonResponse) WithValue(value *RunHopMonitorResponse_JsonResponse) *RunHopMonitorResponse_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldTerminalPathValue)
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithArrayOfValues(values [][]*common.Path) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
+func (s RunHopMonitorResponsePathSelectorJsonResponse) WithArrayOfValues(values []*RunHopMonitorResponse_JsonResponse) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithItemValue(value *common.Path) *RunHopMonitorResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponse_FieldTerminalPathArrayItemValue)
-}
-func (RunHopMonitorResponsePathSelectorPaths) WithSubPath(subPath common.Path_FieldPath) *RunHopMonitorResponse_FieldSubPath {
-	return &RunHopMonitorResponse_FieldSubPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths, subPath: subPath}
+func (RunHopMonitorResponsePathSelectorJsonResponse) WithSubPath(subPath RunHopMonitorResponseJsonResponse_FieldPath) *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse, subPath: subPath}
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithSubValue(subPathValue common.Path_FieldPathValue) *RunHopMonitorResponse_FieldSubPathValue {
+func (s RunHopMonitorResponsePathSelectorJsonResponse) WithSubValue(subPathValue RunHopMonitorResponseJsonResponse_FieldPathValue) *RunHopMonitorResponse_FieldSubPathValue {
 	return &RunHopMonitorResponse_FieldSubPathValue{RunHopMonitorResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithSubArrayOfValues(subPathArrayOfValues common.Path_FieldPathArrayOfValues) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+func (s RunHopMonitorResponsePathSelectorJsonResponse) WithSubArrayOfValues(subPathArrayOfValues RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
 	return &RunHopMonitorResponse_FieldSubPathArrayOfValues{RunHopMonitorResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s RunHopMonitorResponsePathSelectorPaths) WithSubArrayItemValue(subPathArrayItemValue common.Path_FieldPathArrayItemValue) *RunHopMonitorResponse_FieldSubPathArrayItemValue {
+func (s RunHopMonitorResponsePathSelectorJsonResponse) WithSubArrayItemValue(subPathArrayItemValue RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue) *RunHopMonitorResponse_FieldSubPathArrayItemValue {
 	return &RunHopMonitorResponse_FieldSubPathArrayItemValue{RunHopMonitorResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunHopMonitorResponsePathSelectorPaths) Hops() RunHopMonitorResponsePathSelectorPathsHops {
-	return RunHopMonitorResponsePathSelectorPathsHops{}
+func (RunHopMonitorResponsePathSelectorJsonResponse) Paths() RunHopMonitorResponsePathSelectorJsonResponsePaths {
+	return RunHopMonitorResponsePathSelectorJsonResponsePaths{}
 }
 
-type RunHopMonitorResponsePathSelectorPathsHops struct{}
+func (RunHopMonitorResponsePathSelectorJsonResponse) HopStats() RunHopMonitorResponsePathSelectorJsonResponseHopStats {
+	return RunHopMonitorResponsePathSelectorJsonResponseHopStats{}
+}
 
-func (RunHopMonitorResponsePathSelectorPathsHops) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+func (RunHopMonitorResponsePathSelectorJsonResponse) HopInfo() RunHopMonitorResponsePathSelectorJsonResponseHopInfo {
+	return RunHopMonitorResponsePathSelectorJsonResponseHopInfo{}
+}
+
+func (RunHopMonitorResponsePathSelectorJsonResponse) IpVersion() RunHopMonitorResponsePathSelectorJsonResponseIpVersion {
+	return RunHopMonitorResponsePathSelectorJsonResponseIpVersion{}
+}
+
+type RunHopMonitorResponsePathSelectorJsonResponsePaths struct{}
+
+func (RunHopMonitorResponsePathSelectorJsonResponsePaths) FieldPath() *RunHopMonitorResponse_FieldSubPath {
 	return &RunHopMonitorResponse_FieldSubPath{
-		selector: RunHopMonitorResponse_FieldPathSelectorPaths,
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().Paths().FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePaths) WithValue(value []*common.Path) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePaths) WithArrayOfValues(values [][]*common.Path) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePaths) WithItemValue(value *common.Path) *RunHopMonitorResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponse_FieldSubPathArrayItemValue)
+}
+
+func (RunHopMonitorResponsePathSelectorJsonResponsePaths) Hops() RunHopMonitorResponsePathSelectorJsonResponsePathsHops {
+	return RunHopMonitorResponsePathSelectorJsonResponsePathsHops{}
+}
+
+type RunHopMonitorResponsePathSelectorJsonResponsePathsHops struct{}
+
+func (RunHopMonitorResponsePathSelectorJsonResponsePathsHops) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().Paths().Hops().FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePathsHops) WithValue(value []string) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePathsHops) WithArrayOfValues(values [][]string) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponsePathsHops) WithItemValue(value string) *RunHopMonitorResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponse_FieldSubPathArrayItemValue)
+}
+
+type RunHopMonitorResponsePathSelectorJsonResponseHopStats struct{}
+
+func (RunHopMonitorResponsePathSelectorJsonResponseHopStats) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().HopStats().FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseHopStats) WithValue(value map[string]*common.HopStat) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseHopStats) WithArrayOfValues(values []map[string]*common.HopStat) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+func (RunHopMonitorResponsePathSelectorJsonResponseHopStats) WithKey(key string) RunHopMonitorResponseMapPathSelectorJsonResponseHopStats {
+	return RunHopMonitorResponseMapPathSelectorJsonResponseHopStats{key: key}
+}
+
+type RunHopMonitorResponseMapPathSelectorJsonResponseHopStats struct {
+	key string
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopStats) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().HopStats().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopStats) WithValue(value *common.HopStat) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopStats) WithArrayOfValues(values []*common.HopStat) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+type RunHopMonitorResponsePathSelectorJsonResponseHopInfo struct{}
+
+func (RunHopMonitorResponsePathSelectorJsonResponseHopInfo) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().HopInfo().FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseHopInfo) WithValue(value map[string]*common.HopInfo) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseHopInfo) WithArrayOfValues(values []map[string]*common.HopInfo) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+func (RunHopMonitorResponsePathSelectorJsonResponseHopInfo) WithKey(key string) RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo {
+	return RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo{key: key}
+}
+
+type RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo struct {
+	key string
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().HopInfo().WithKey(s.key).FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo) WithValue(value *common.HopInfo) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponseMapPathSelectorJsonResponseHopInfo) WithArrayOfValues(values []*common.HopInfo) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+type RunHopMonitorResponsePathSelectorJsonResponseIpVersion struct{}
+
+func (RunHopMonitorResponsePathSelectorJsonResponseIpVersion) FieldPath() *RunHopMonitorResponse_FieldSubPath {
+	return &RunHopMonitorResponse_FieldSubPath{
+		selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunHopMonitorResponseJsonResponseFieldPathBuilder().IpVersion().FieldPath(),
+	}
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseIpVersion) WithValue(value common.IpVersion) *RunHopMonitorResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorJsonResponseIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+}
+
+type RunHopMonitorResponsePathSelectorTextResponse struct{}
+
+func (RunHopMonitorResponsePathSelectorTextResponse) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
+	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorTextResponse}
+}
+
+func (s RunHopMonitorResponsePathSelectorTextResponse) WithValue(value string) *RunHopMonitorResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldTerminalPathValue)
+}
+
+func (s RunHopMonitorResponsePathSelectorTextResponse) WithArrayOfValues(values []string) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunHopMonitorResponseJsonResponseFieldPathBuilder struct{}
+
+func NewRunHopMonitorResponseJsonResponseFieldPathBuilder() RunHopMonitorResponseJsonResponseFieldPathBuilder {
+	return RunHopMonitorResponseJsonResponseFieldPathBuilder{}
+}
+func (RunHopMonitorResponseJsonResponseFieldPathBuilder) Paths() RunHopMonitorResponse_JsonResponsePathSelectorPaths {
+	return RunHopMonitorResponse_JsonResponsePathSelectorPaths{}
+}
+func (RunHopMonitorResponseJsonResponseFieldPathBuilder) HopStats() RunHopMonitorResponse_JsonResponsePathSelectorHopStats {
+	return RunHopMonitorResponse_JsonResponsePathSelectorHopStats{}
+}
+func (RunHopMonitorResponseJsonResponseFieldPathBuilder) HopInfo() RunHopMonitorResponse_JsonResponsePathSelectorHopInfo {
+	return RunHopMonitorResponse_JsonResponsePathSelectorHopInfo{}
+}
+func (RunHopMonitorResponseJsonResponseFieldPathBuilder) IpVersion() RunHopMonitorResponse_JsonResponsePathSelectorIpVersion {
+	return RunHopMonitorResponse_JsonResponsePathSelectorIpVersion{}
+}
+
+type RunHopMonitorResponse_JsonResponsePathSelectorPaths struct{}
+
+func (RunHopMonitorResponse_JsonResponsePathSelectorPaths) FieldPath() *RunHopMonitorResponseJsonResponse_FieldTerminalPath {
+	return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths}
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithValue(value []*common.Path) *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathValue)
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithArrayOfValues(values [][]*common.Path) *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithItemValue(value *common.Path) *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue)
+}
+func (RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithSubPath(subPath common.Path_FieldPath) *RunHopMonitorResponseJsonResponse_FieldSubPath {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths, subPath: subPath}
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithSubValue(subPathValue common.Path_FieldPathValue) *RunHopMonitorResponseJsonResponse_FieldSubPathValue {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathValue{RunHopMonitorResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithSubArrayOfValues(subPathArrayOfValues common.Path_FieldPathArrayOfValues) *RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPaths) WithSubArrayItemValue(subPathArrayItemValue common.Path_FieldPathArrayItemValue) *RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue{RunHopMonitorResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (RunHopMonitorResponse_JsonResponsePathSelectorPaths) Hops() RunHopMonitorResponse_JsonResponsePathSelectorPathsHops {
+	return RunHopMonitorResponse_JsonResponsePathSelectorPathsHops{}
+}
+
+type RunHopMonitorResponse_JsonResponsePathSelectorPathsHops struct{}
+
+func (RunHopMonitorResponse_JsonResponsePathSelectorPathsHops) FieldPath() *RunHopMonitorResponseJsonResponse_FieldSubPath {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPath{
+		selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths,
 		subPath:  common.NewPathFieldPathBuilder().Hops().FieldPath(),
 	}
 }
 
-func (s RunHopMonitorResponsePathSelectorPathsHops) WithValue(value []string) *RunHopMonitorResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldSubPathValue)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPathsHops) WithValue(value []string) *RunHopMonitorResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunHopMonitorResponsePathSelectorPathsHops) WithArrayOfValues(values [][]string) *RunHopMonitorResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldSubPathArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPathsHops) WithArrayOfValues(values [][]string) *RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunHopMonitorResponsePathSelectorPathsHops) WithItemValue(value string) *RunHopMonitorResponse_FieldSubPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponse_FieldSubPathArrayItemValue)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorPathsHops) WithItemValue(value string) *RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue)
 }
 
-type RunHopMonitorResponsePathSelectorHopStats struct{}
+type RunHopMonitorResponse_JsonResponsePathSelectorHopStats struct{}
 
-func (RunHopMonitorResponsePathSelectorHopStats) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
-	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopStats}
+func (RunHopMonitorResponse_JsonResponsePathSelectorHopStats) FieldPath() *RunHopMonitorResponseJsonResponse_FieldTerminalPath {
+	return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats}
 }
 
-func (s RunHopMonitorResponsePathSelectorHopStats) WithValue(value map[string]*common.HopStat) *RunHopMonitorResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldTerminalPathValue)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorHopStats) WithValue(value map[string]*common.HopStat) *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunHopMonitorResponsePathSelectorHopStats) WithArrayOfValues(values []map[string]*common.HopStat) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldTerminalPathArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorHopStats) WithArrayOfValues(values []map[string]*common.HopStat) *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (RunHopMonitorResponsePathSelectorHopStats) WithKey(key string) RunHopMonitorResponseMapPathSelectorHopStats {
-	return RunHopMonitorResponseMapPathSelectorHopStats{key: key}
+func (RunHopMonitorResponse_JsonResponsePathSelectorHopStats) WithKey(key string) RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats {
+	return RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats{key: key}
 }
 
-type RunHopMonitorResponseMapPathSelectorHopStats struct {
+type RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats struct {
 	key string
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopStats) FieldPath() *RunHopMonitorResponse_FieldPathMap {
-	return &RunHopMonitorResponse_FieldPathMap{selector: RunHopMonitorResponse_FieldPathSelectorHopStats, key: s.key}
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats) FieldPath() *RunHopMonitorResponseJsonResponse_FieldPathMap {
+	return &RunHopMonitorResponseJsonResponse_FieldPathMap{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats, key: s.key}
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopStats) WithValue(value *common.HopStat) *RunHopMonitorResponse_FieldPathMapValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldPathMapValue)
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats) WithValue(value *common.HopStat) *RunHopMonitorResponseJsonResponse_FieldPathMapValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldPathMapValue)
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopStats) WithArrayOfValues(values []*common.HopStat) *RunHopMonitorResponse_FieldPathMapArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldPathMapArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopStats) WithArrayOfValues(values []*common.HopStat) *RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues)
 }
 
-type RunHopMonitorResponsePathSelectorHopInfo struct{}
+type RunHopMonitorResponse_JsonResponsePathSelectorHopInfo struct{}
 
-func (RunHopMonitorResponsePathSelectorHopInfo) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
-	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo}
+func (RunHopMonitorResponse_JsonResponsePathSelectorHopInfo) FieldPath() *RunHopMonitorResponseJsonResponse_FieldTerminalPath {
+	return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo}
 }
 
-func (s RunHopMonitorResponsePathSelectorHopInfo) WithValue(value map[string]*common.HopInfo) *RunHopMonitorResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldTerminalPathValue)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorHopInfo) WithValue(value map[string]*common.HopInfo) *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunHopMonitorResponsePathSelectorHopInfo) WithArrayOfValues(values []map[string]*common.HopInfo) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldTerminalPathArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorHopInfo) WithArrayOfValues(values []map[string]*common.HopInfo) *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (RunHopMonitorResponsePathSelectorHopInfo) WithKey(key string) RunHopMonitorResponseMapPathSelectorHopInfo {
-	return RunHopMonitorResponseMapPathSelectorHopInfo{key: key}
+func (RunHopMonitorResponse_JsonResponsePathSelectorHopInfo) WithKey(key string) RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo {
+	return RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo{key: key}
 }
 
-type RunHopMonitorResponseMapPathSelectorHopInfo struct {
+type RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo struct {
 	key string
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopInfo) FieldPath() *RunHopMonitorResponse_FieldPathMap {
-	return &RunHopMonitorResponse_FieldPathMap{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo, key: s.key}
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo) FieldPath() *RunHopMonitorResponseJsonResponse_FieldPathMap {
+	return &RunHopMonitorResponseJsonResponse_FieldPathMap{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo, key: s.key}
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopInfo) WithValue(value *common.HopInfo) *RunHopMonitorResponse_FieldPathMapValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldPathMapValue)
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo) WithValue(value *common.HopInfo) *RunHopMonitorResponseJsonResponse_FieldPathMapValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldPathMapValue)
 }
 
-func (s RunHopMonitorResponseMapPathSelectorHopInfo) WithArrayOfValues(values []*common.HopInfo) *RunHopMonitorResponse_FieldPathMapArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldPathMapArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponseMapPathSelectorHopInfo) WithArrayOfValues(values []*common.HopInfo) *RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues)
 }
 
-type RunHopMonitorResponsePathSelectorIpVersion struct{}
+type RunHopMonitorResponse_JsonResponsePathSelectorIpVersion struct{}
 
-func (RunHopMonitorResponsePathSelectorIpVersion) FieldPath() *RunHopMonitorResponse_FieldTerminalPath {
-	return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorIpVersion}
+func (RunHopMonitorResponse_JsonResponsePathSelectorIpVersion) FieldPath() *RunHopMonitorResponseJsonResponse_FieldTerminalPath {
+	return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion}
 }
 
-func (s RunHopMonitorResponsePathSelectorIpVersion) WithValue(value common.IpVersion) *RunHopMonitorResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponse_FieldTerminalPathValue)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorIpVersion) WithValue(value common.IpVersion) *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunHopMonitorResponsePathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHopMonitorResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponse_FieldTerminalPathArrayOfValues)
+func (s RunHopMonitorResponse_JsonResponsePathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }

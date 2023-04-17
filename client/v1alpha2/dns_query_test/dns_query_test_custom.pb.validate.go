@@ -68,32 +68,9 @@ func (obj *RunDNSQueryTestResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	for idx, elem := range obj.Queries {
-		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
-			if err := subobj.GotenValidate(); err != nil {
-				return gotenvalidate.NewValidationError("RunDNSQueryTestResponse", "queries", obj.Queries[idx], "nested object validation failed", err)
-			}
-		}
-	}
-	for idx, elem := range obj.Answers {
-		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
-			if err := subobj.GotenValidate(); err != nil {
-				return gotenvalidate.NewValidationError("RunDNSQueryTestResponse", "answers", obj.Answers[idx], "nested object validation failed", err)
-			}
-		}
-	}
-	for idx, elem := range obj.Ns {
-		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
-			if err := subobj.GotenValidate(); err != nil {
-				return gotenvalidate.NewValidationError("RunDNSQueryTestResponse", "ns", obj.Ns[idx], "nested object validation failed", err)
-			}
-		}
-	}
-	for idx, elem := range obj.Extras {
-		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
-			if err := subobj.GotenValidate(); err != nil {
-				return gotenvalidate.NewValidationError("RunDNSQueryTestResponse", "extras", obj.Extras[idx], "nested object validation failed", err)
-			}
+	if subobj, ok := interface{}(obj.JsonResponse).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("RunDNSQueryTestResponse", "jsonResponse", obj.JsonResponse, "nested object validation failed", err)
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
@@ -101,13 +78,36 @@ func (obj *RunDNSQueryTestResponse) GotenValidate() error {
 	}
 	return nil
 }
-func (obj *RunDNSQueryTestRequestToProbe) GotenValidate() error {
+func (obj *RunDNSQueryTestResponse_JsonResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	if subobj, ok := interface{}(obj.Query).(gotenvalidate.Validator); ok {
-		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("RunDNSQueryTestRequestToProbe", "query", obj.Query, "nested object validation failed", err)
+	for idx, elem := range obj.Queries {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("JsonResponse", "queries", obj.Queries[idx], "nested object validation failed", err)
+			}
+		}
+	}
+	for idx, elem := range obj.Answers {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("JsonResponse", "answers", obj.Answers[idx], "nested object validation failed", err)
+			}
+		}
+	}
+	for idx, elem := range obj.Ns {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("JsonResponse", "ns", obj.Ns[idx], "nested object validation failed", err)
+			}
+		}
+	}
+	for idx, elem := range obj.Extras {
+		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
+			if err := subobj.GotenValidate(); err != nil {
+				return gotenvalidate.NewValidationError("JsonResponse", "extras", obj.Extras[idx], "nested object validation failed", err)
+			}
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {

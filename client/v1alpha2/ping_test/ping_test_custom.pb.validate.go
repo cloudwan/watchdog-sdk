@@ -23,6 +23,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
@@ -45,6 +46,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -97,9 +99,9 @@ func (obj *RunPingTestResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	if subobj, ok := interface{}(obj.Summary).(gotenvalidate.Validator); ok {
+	if subobj, ok := interface{}(obj.JsonResponse).(gotenvalidate.Validator); ok {
 		if err := subobj.GotenValidate(); err != nil {
-			return gotenvalidate.NewValidationError("RunPingTestResponse", "summary", obj.Summary, "nested object validation failed", err)
+			return gotenvalidate.NewValidationError("RunPingTestResponse", "jsonResponse", obj.JsonResponse, "nested object validation failed", err)
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
@@ -107,16 +109,21 @@ func (obj *RunPingTestResponse) GotenValidate() error {
 	}
 	return nil
 }
-func (obj *RunPingTestResponse_SummaryStats) GotenValidate() error {
+func (obj *RunPingTestResponse_JsonResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
+	}
+	if subobj, ok := interface{}(obj.Summary).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("JsonResponse", "summary", obj.Summary, "nested object validation failed", err)
+		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
 	return nil
 }
-func (obj *RunPingTestRequestToProbe) GotenValidate() error {
+func (obj *RunPingTestResponse_JsonResponse_SummaryStats) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}

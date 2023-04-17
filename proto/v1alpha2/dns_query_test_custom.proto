@@ -54,57 +54,51 @@ message RunDNSQueryTestRequest {
   // - and make the query's name reversed (eg. 8.8.4.4
   // to 4.4.8.8.in-addr.arpa.)
   bool reverse = 7;
+
+  OnDemandTestResponseFormat output_format = 8;
 }
 
 // Response message for method
 // [RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]
 message RunDNSQueryTestResponse {
-  // Message identifier
-  uint32 id = 1;
+  JsonResponse json_response = 1;
 
-  // Message respoonse code
-  // The notifion would follow
-  // https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-  string rcode = 2;
+  string text_response = 2;
 
-  // Flags in the message
-  // A list of elements are as follows
-  // qr: Query Response
-  // aa: Authoritative Answer
-  // tc: Truncated Response
-  // rd: Recursion Desired
-  // ra: Recursion Available
-  //  z: Zero
-  // ad: Authentic Data
-  // cd: Checking Disabled
-  repeated string flags = 3;
+  message JsonResponse {
+    // Message identifier
+    uint32 id = 1;
 
-  // Query section
-  repeated DNSQuery queries = 4;
+    // Message respoonse code
+    // The notifion would follow
+    // https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+    string rcode = 2;
 
-  // Answer section
-  repeated DNSResourceRecord answers = 5;
+    // Flags in the message
+    // A list of elements are as follows
+    // qr: Query Response
+    // aa: Authoritative Answer
+    // tc: Truncated Response
+    // rd: Recursion Desired
+    // ra: Recursion Available
+    //  z: Zero
+    // ad: Authentic Data
+    // cd: Checking Disabled
+    repeated string flags = 3;
 
-  // Authority section
-  repeated DNSResourceRecord ns = 6;
+    // Query section
+    repeated DNSQuery queries = 4;
 
-  // Additional section
-  repeated DNSResourceRecord extras = 7;
+    // Answer section
+    repeated DNSResourceRecord answers = 5;
 
-  // RTT to exchange the message
-  google.protobuf.Duration rtt = 8;
-}
+    // Authority section
+    repeated DNSResourceRecord ns = 6;
 
-message RunDNSQueryTestRequestToProbe {
-  DNSQuery query = 1;
+    // Additional section
+    repeated DNSResourceRecord extras = 7;
 
-  string server = 2;
-
-  uint32 port = 3;
-
-  bool tcp = 4;
-
-  bool no_recursion_desired = 5;
-
-  bool reverse = 6;
+    // RTT to exchange the message
+    google.protobuf.Duration rtt = 8;
+  }
 }

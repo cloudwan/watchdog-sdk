@@ -23,6 +23,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 )
 
@@ -43,6 +44,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 

@@ -3546,6 +3546,12 @@ If failed, fall back to choose 8.8.8.8</p>
 to 4.4.8.8.in-addr.arpa.)</li>
 </ul>
 </td></tr>
+
+<tr>
+<th rowspan="2">output_format</th>
+<td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -3556,6 +3562,30 @@ to 4.4.8.8.in-addr.arpa.)</li>
 
 <p>Response message for method
 [RunDNSQueryTest][ntt.watchdog.v1alpha2.RunDNSQueryTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">json_response</th>
+<td class="type"><pre><a href="#message-RunDNSQueryTestResponse.JsonResponse">RunDNSQueryTestResponse.JsonResponse</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">text_response</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunDNSQueryTestResponse.JsonResponse">RunDNSQueryTestResponse.JsonResponse</h5>
+
 
 
 <table class="fields">
@@ -3935,6 +3965,12 @@ The minimum length includes space for timestamp and a tracker</p>
 <td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">output_format</th>
+<td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -3945,6 +3981,30 @@ The minimum length includes space for timestamp and a tracker</p>
 
 <p>Response message for method
 [RunHopMonitor][ntt.watchdog.v1alpha2.RunHopMonitor]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">json_response</th>
+<td class="type"><pre><a href="#message-RunHopMonitorResponse.JsonResponse">RunHopMonitorResponse.JsonResponse</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">text_response</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunHopMonitorResponse.JsonResponse">RunHopMonitorResponse.JsonResponse</h5>
+
 
 
 <table class="fields">
@@ -4171,8 +4231,8 @@ The minimum length includes space for timestamp and a tracker</p>
 <tr><td class="description"></td></tr>
 
 <tr>
-<th rowspan="2">response_fornat</th>
-<td class="type"><pre><a href="#enum-RunHTTPTestRequest.ResponseFormat">RunHTTPTestRequest.ResponseFormat</a></pre></td>
+<th rowspan="2">output_format</th>
+<td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -4295,8 +4355,8 @@ The minimum length includes space for timestamp and a tracker</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">response_fornat</th>
-<td class="type"><pre><a href="#enum-GetNetworkInfoRequest.ResponseFormat">GetNetworkInfoRequest.ResponseFormat</a></pre></td>
+<th rowspan="2">output_format</th>
+<td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -4504,6 +4564,12 @@ In the case, the value depends on the running OS</p>
 <tr><td class="description"><p>TOS in IPv4 or traffic class in IPv6
 If unspecified, skip manipulating packet</p>
 </td></tr>
+
+<tr>
+<th rowspan="2">output_format</th>
+<td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -4513,6 +4579,30 @@ If unspecified, skip manipulating packet</p>
 <h5 id="message-RunPingTestResponse">RunPingTestResponse</h5>
 
 <p>Response message for method [RunPingTest][ntt.watchdog.v1alpha2.RunPingTest]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">json_response</th>
+<td class="type"><pre><a href="#message-RunPingTestResponse.JsonResponse">RunPingTestResponse.JsonResponse</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">text_response</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-RunPingTestResponse.JsonResponse">RunPingTestResponse.JsonResponse</h5>
+
 
 
 <table class="fields">
@@ -4560,7 +4650,7 @@ If unspecified, skip manipulating packet</p>
 
 <tr>
 <th rowspan="2">summary</th>
-<td class="type"><pre><a href="#message-RunPingTestResponse.SummaryStats">RunPingTestResponse.SummaryStats</a></pre></td>
+<td class="type"><pre><a href="#message-RunPingTestResponse.JsonResponse.SummaryStats">RunPingTestResponse.JsonResponse.SummaryStats</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
@@ -4569,7 +4659,7 @@ If unspecified, skip manipulating packet</p>
 
 
 
-<h5 id="message-RunPingTestResponse.SummaryStats">RunPingTestResponse.SummaryStats</h5>
+<h5 id="message-RunPingTestResponse.JsonResponse.SummaryStats">RunPingTestResponse.JsonResponse.SummaryStats</h5>
 
 <p>Summary statistics accompanies each response
 It summarizes the results at that time</p>
@@ -20595,120 +20685,6 @@ stateless watch type.</p>
 
 
 
-<h5 id="message-RunDNSQueryTestRequestToProbe">RunDNSQueryTestRequestToProbe</h5>
-
-
-
-<table class="fields">
-<thead><tr><th colspan="2">Fields</th></tr></thead>
-<tbody>
-<tr>
-<th rowspan="2">query</th>
-<td class="type"><pre><a href="#message-DNSQuery">DNSQuery</a></pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">server</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">port</th>
-<td class="type"><pre>uint32s</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">tcp</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">no_recursion_desired</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">reverse</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
- 
-</tbody>
-</table>
-
-
-
-<h5 id="message-RunPingTestRequestToProbe">RunPingTestRequestToProbe</h5>
-
-
-
-<table class="fields">
-<thead><tr><th colspan="2">Fields</th></tr></thead>
-<tbody>
-<tr>
-<th rowspan="2">source</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">destination</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">size_bytes</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">count</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">interval</th>
-<td class="type"><pre>.google.protobuf.Duration</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">echo_timeout</th>
-<td class="type"><pre>.google.protobuf.Duration</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">dont_fragment</th>
-<td class="type"><pre>bool</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">ttl</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
-
-<tr>
-<th rowspan="2">tos</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
- 
-</tbody>
-</table>
-
-
-
 <h5 id="message-RunSpeedTestRequestToProbe">RunSpeedTestRequestToProbe</h5>
 
 
@@ -21437,30 +21413,6 @@ later than the end time.</p>
 
 
 
-<h5 id="enum-GetNetworkInfoRequest.ResponseFormat">GetNetworkInfoRequest.ResponseFormat</h5>
-
-
-
-<table class="fields">
-<thead><tr><th colspan="2">Values</th></tr></thead>
-<tbody>
-<tr>
-<th>JSON</th>
-<td class="description"></td>
-</tr>
-<tr></tr>
-
-<tr>
-<th>TEXT</th>
-<td class="description"></td>
-</tr>
-<tr></tr>
- 
-</tbody>
-</table>
-
-
-
 <h5 id="enum-HTTPRequestMethod">HTTPRequestMethod</h5>
 
 
@@ -21668,6 +21620,30 @@ later than the end time.</p>
 
 
 
+<h5 id="enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>TEXT</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>JSON</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
 <h5 id="enum-ProbingMode">ProbingMode</h5>
 
 
@@ -21761,30 +21737,6 @@ later than the end time.</p>
 
 <tr>
 <th>OVERRIDE_SYSTEM_CONFIGURATION</th>
-<td class="description"></td>
-</tr>
-<tr></tr>
- 
-</tbody>
-</table>
-
-
-
-<h5 id="enum-RunHTTPTestRequest.ResponseFormat">RunHTTPTestRequest.ResponseFormat</h5>
-
-
-
-<table class="fields">
-<thead><tr><th colspan="2">Values</th></tr></thead>
-<tbody>
-<tr>
-<th>JSON</th>
-<td class="description"></td>
-</tr>
-<tr></tr>
-
-<tr>
-<th>TEXT</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

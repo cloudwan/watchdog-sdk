@@ -86,6 +86,9 @@ func (o *RunDNSQueryTestRequest) MakeDiffFieldMask(other *RunDNSQueryTestRequest
 	if o.GetReverse() != other.GetReverse() {
 		res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorReverse})
 	}
+	if o.GetOutputFormat() != other.GetOutputFormat() {
+		res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorOutputFormat})
+	}
 	return res
 }
 
@@ -114,6 +117,7 @@ func (o *RunDNSQueryTestRequest) Clone() *RunDNSQueryTestRequest {
 	result.Tcp = o.Tcp
 	result.NoRecursionDesired = o.NoRecursionDesired
 	result.Reverse = o.Reverse
+	result.OutputFormat = o.OutputFormat
 	return result
 }
 
@@ -145,6 +149,7 @@ func (o *RunDNSQueryTestRequest) Merge(source *RunDNSQueryTestRequest) {
 	o.Tcp = source.GetTcp()
 	o.NoRecursionDesired = source.GetNoRecursionDesired()
 	o.Reverse = source.GetReverse()
+	o.OutputFormat = source.GetOutputFormat()
 }
 
 func (o *RunDNSQueryTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -170,74 +175,18 @@ func (o *RunDNSQueryTestResponse) MakeDiffFieldMask(other *RunDNSQueryTestRespon
 	}
 
 	res := &RunDNSQueryTestResponse_FieldMask{}
-	if o.GetId() != other.GetId() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorId})
-	}
-	if o.GetRcode() != other.GetRcode() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRcode})
-	}
-
-	if len(o.GetFlags()) == len(other.GetFlags()) {
-		for i, lValue := range o.GetFlags() {
-			rValue := other.GetFlags()[i]
-			if lValue != rValue {
-				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorFlags})
-				break
+	{
+		subMask := o.GetJsonResponse().MakeDiffFieldMask(other.GetJsonResponse())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse, subPath: subpath})
 			}
 		}
-	} else {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorFlags})
 	}
-
-	if len(o.GetQueries()) == len(other.GetQueries()) {
-		for i, lValue := range o.GetQueries() {
-			rValue := other.GetQueries()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries})
-	}
-
-	if len(o.GetAnswers()) == len(other.GetAnswers()) {
-		for i, lValue := range o.GetAnswers() {
-			rValue := other.GetAnswers()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers})
-	}
-
-	if len(o.GetNs()) == len(other.GetNs()) {
-		for i, lValue := range o.GetNs() {
-			rValue := other.GetNs()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs})
-	}
-
-	if len(o.GetExtras()) == len(other.GetExtras()) {
-		for i, lValue := range o.GetExtras() {
-			rValue := other.GetExtras()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras})
-	}
-	if !proto.Equal(o.GetRtt(), other.GetRtt()) {
-		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRtt})
+	if o.GetTextResponse() != other.GetTextResponse() {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorTextResponse})
 	}
 	return res
 }
@@ -251,6 +200,129 @@ func (o *RunDNSQueryTestResponse) Clone() *RunDNSQueryTestResponse {
 		return nil
 	}
 	result := &RunDNSQueryTestResponse{}
+	result.JsonResponse = o.JsonResponse.Clone()
+	result.TextResponse = o.TextResponse
+	return result
+}
+
+func (o *RunDNSQueryTestResponse) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *RunDNSQueryTestResponse) Merge(source *RunDNSQueryTestResponse) {
+	if source.GetJsonResponse() != nil {
+		if o.JsonResponse == nil {
+			o.JsonResponse = new(RunDNSQueryTestResponse_JsonResponse)
+		}
+		o.JsonResponse.Merge(source.GetJsonResponse())
+	}
+	o.TextResponse = source.GetTextResponse()
+}
+
+func (o *RunDNSQueryTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunDNSQueryTestResponse))
+}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) GotenObjectExt() {}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) MakeFullFieldMask() *RunDNSQueryTestResponse_JsonResponse_FieldMask {
+	return FullRunDNSQueryTestResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullRunDNSQueryTestResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) MakeDiffFieldMask(other *RunDNSQueryTestResponse_JsonResponse) *RunDNSQueryTestResponse_JsonResponse_FieldMask {
+	if o == nil && other == nil {
+		return &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullRunDNSQueryTestResponse_JsonResponse_FieldMask()
+	}
+
+	res := &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	if o.GetId() != other.GetId() {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId})
+	}
+	if o.GetRcode() != other.GetRcode() {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode})
+	}
+
+	if len(o.GetFlags()) == len(other.GetFlags()) {
+		for i, lValue := range o.GetFlags() {
+			rValue := other.GetFlags()[i]
+			if lValue != rValue {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags})
+	}
+
+	if len(o.GetQueries()) == len(other.GetQueries()) {
+		for i, lValue := range o.GetQueries() {
+			rValue := other.GetQueries()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries})
+	}
+
+	if len(o.GetAnswers()) == len(other.GetAnswers()) {
+		for i, lValue := range o.GetAnswers() {
+			rValue := other.GetAnswers()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers})
+	}
+
+	if len(o.GetNs()) == len(other.GetNs()) {
+		for i, lValue := range o.GetNs() {
+			rValue := other.GetNs()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs})
+	}
+
+	if len(o.GetExtras()) == len(other.GetExtras()) {
+		for i, lValue := range o.GetExtras() {
+			rValue := other.GetExtras()[i]
+			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
+				res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras})
+				break
+			}
+		}
+	} else {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras})
+	}
+	if !proto.Equal(o.GetRtt(), other.GetRtt()) {
+		res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt})
+	}
+	return res
+}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*RunDNSQueryTestResponse_JsonResponse))
+}
+
+func (o *RunDNSQueryTestResponse_JsonResponse) Clone() *RunDNSQueryTestResponse_JsonResponse {
+	if o == nil {
+		return nil
+	}
+	result := &RunDNSQueryTestResponse_JsonResponse{}
 	result.Id = o.Id
 	result.Rcode = o.Rcode
 	result.Flags = make([]string, len(o.Flags))
@@ -277,11 +349,11 @@ func (o *RunDNSQueryTestResponse) Clone() *RunDNSQueryTestResponse {
 	return result
 }
 
-func (o *RunDNSQueryTestResponse) CloneRaw() gotenobject.GotenObjectExt {
+func (o *RunDNSQueryTestResponse_JsonResponse) CloneRaw() gotenobject.GotenObjectExt {
 	return o.Clone()
 }
 
-func (o *RunDNSQueryTestResponse) Merge(source *RunDNSQueryTestResponse) {
+func (o *RunDNSQueryTestResponse_JsonResponse) Merge(source *RunDNSQueryTestResponse_JsonResponse) {
 	o.Id = source.GetId()
 	o.Rcode = source.GetRcode()
 	for _, sourceValue := range source.GetFlags() {
@@ -379,93 +451,6 @@ func (o *RunDNSQueryTestResponse) Merge(source *RunDNSQueryTestResponse) {
 	}
 }
 
-func (o *RunDNSQueryTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunDNSQueryTestResponse))
-}
-
-func (o *RunDNSQueryTestRequestToProbe) GotenObjectExt() {}
-
-func (o *RunDNSQueryTestRequestToProbe) MakeFullFieldMask() *RunDNSQueryTestRequestToProbe_FieldMask {
-	return FullRunDNSQueryTestRequestToProbe_FieldMask()
-}
-
-func (o *RunDNSQueryTestRequestToProbe) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullRunDNSQueryTestRequestToProbe_FieldMask()
-}
-
-func (o *RunDNSQueryTestRequestToProbe) MakeDiffFieldMask(other *RunDNSQueryTestRequestToProbe) *RunDNSQueryTestRequestToProbe_FieldMask {
-	if o == nil && other == nil {
-		return &RunDNSQueryTestRequestToProbe_FieldMask{}
-	}
-	if o == nil || other == nil {
-		return FullRunDNSQueryTestRequestToProbe_FieldMask()
-	}
-
-	res := &RunDNSQueryTestRequestToProbe_FieldMask{}
-	{
-		subMask := o.GetQuery().MakeDiffFieldMask(other.GetQuery())
-		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery})
-		} else {
-			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldSubPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery, subPath: subpath})
-			}
-		}
-	}
-	if o.GetServer() != other.GetServer() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorServer})
-	}
-	if o.GetPort() != other.GetPort() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorPort})
-	}
-	if o.GetTcp() != other.GetTcp() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp})
-	}
-	if o.GetNoRecursionDesired() != other.GetNoRecursionDesired() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired})
-	}
-	if o.GetReverse() != other.GetReverse() {
-		res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse})
-	}
-	return res
-}
-
-func (o *RunDNSQueryTestRequestToProbe) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*RunDNSQueryTestRequestToProbe))
-}
-
-func (o *RunDNSQueryTestRequestToProbe) Clone() *RunDNSQueryTestRequestToProbe {
-	if o == nil {
-		return nil
-	}
-	result := &RunDNSQueryTestRequestToProbe{}
-	result.Query = o.Query.Clone()
-	result.Server = o.Server
-	result.Port = o.Port
-	result.Tcp = o.Tcp
-	result.NoRecursionDesired = o.NoRecursionDesired
-	result.Reverse = o.Reverse
-	return result
-}
-
-func (o *RunDNSQueryTestRequestToProbe) CloneRaw() gotenobject.GotenObjectExt {
-	return o.Clone()
-}
-
-func (o *RunDNSQueryTestRequestToProbe) Merge(source *RunDNSQueryTestRequestToProbe) {
-	if source.GetQuery() != nil {
-		if o.Query == nil {
-			o.Query = new(common.DNSQuery)
-		}
-		o.Query.Merge(source.GetQuery())
-	}
-	o.Server = source.GetServer()
-	o.Port = source.GetPort()
-	o.Tcp = source.GetTcp()
-	o.NoRecursionDesired = source.GetNoRecursionDesired()
-	o.Reverse = source.GetReverse()
-}
-
-func (o *RunDNSQueryTestRequestToProbe) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunDNSQueryTestRequestToProbe))
+func (o *RunDNSQueryTestResponse_JsonResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunDNSQueryTestResponse_JsonResponse))
 }

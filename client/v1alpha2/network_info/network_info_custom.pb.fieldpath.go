@@ -24,6 +24,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 )
 
@@ -48,6 +49,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -70,16 +72,16 @@ type GetNetworkInfoRequest_FieldPath interface {
 type GetNetworkInfoRequest_FieldPathSelector int32
 
 const (
-	GetNetworkInfoRequest_FieldPathSelectorName           GetNetworkInfoRequest_FieldPathSelector = 0
-	GetNetworkInfoRequest_FieldPathSelectorResponseFornat GetNetworkInfoRequest_FieldPathSelector = 1
+	GetNetworkInfoRequest_FieldPathSelectorName         GetNetworkInfoRequest_FieldPathSelector = 0
+	GetNetworkInfoRequest_FieldPathSelectorOutputFormat GetNetworkInfoRequest_FieldPathSelector = 1
 )
 
 func (s GetNetworkInfoRequest_FieldPathSelector) String() string {
 	switch s {
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		return "name"
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		return "response_fornat"
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		return "output_format"
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", s))
 	}
@@ -93,8 +95,8 @@ func BuildGetNetworkInfoRequest_FieldPath(fp gotenobject.RawFieldPath) (GetNetwo
 		switch fp[0] {
 		case "name":
 			return &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorName}, nil
-		case "response_fornat", "responseFornat", "response-fornat":
-			return &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorResponseFornat}, nil
+		case "output_format", "outputFormat", "output-format":
+			return &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorOutputFormat}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object GetNetworkInfoRequest", fp)
@@ -144,8 +146,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) Get(source *GetNetworkInfoReq
 			if source.Name != nil {
 				values = append(values, source.Name)
 			}
-		case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-			values = append(values, source.ResponseFornat)
+		case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+			values = append(values, source.OutputFormat)
 		default:
 			panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 		}
@@ -163,8 +165,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) GetSingle(source *GetNetworkI
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		res := source.GetName()
 		return res, res != nil
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		return source.GetResponseFornat(), source != nil
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		return source.GetOutputFormat(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 	}
@@ -179,8 +181,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		return (*probe.Reference)(nil)
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		return GetNetworkInfoRequest_JSON
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		return common.OnDemandTestResponseFormat_TEXT
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 	}
@@ -191,8 +193,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) ClearValue(item *GetNetworkIn
 		switch fp.selector {
 		case GetNetworkInfoRequest_FieldPathSelectorName:
 			item.Name = nil
-		case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-			item.ResponseFornat = GetNetworkInfoRequest_JSON
+		case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
 		default:
 			panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 		}
@@ -206,7 +208,7 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) ClearValueRaw(item proto.Mess
 // IsLeaf - whether field path is holds simple value
 func (fp *GetNetworkInfoRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == GetNetworkInfoRequest_FieldPathSelectorName ||
-		fp.selector == GetNetworkInfoRequest_FieldPathSelectorResponseFornat
+		fp.selector == GetNetworkInfoRequest_FieldPathSelectorOutputFormat
 }
 
 func (fp *GetNetworkInfoRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -217,8 +219,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) WithIValue(value interface{})
 	switch fp.selector {
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		return &GetNetworkInfoRequest_FieldTerminalPathValue{GetNetworkInfoRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		return &GetNetworkInfoRequest_FieldTerminalPathValue{GetNetworkInfoRequest_FieldTerminalPath: *fp, value: value.(GetNetworkInfoRequest_ResponseFormat)}
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		return &GetNetworkInfoRequest_FieldTerminalPathValue{GetNetworkInfoRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 	}
@@ -233,8 +235,8 @@ func (fp *GetNetworkInfoRequest_FieldTerminalPath) WithIArrayOfValues(values int
 	switch fp.selector {
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		return &GetNetworkInfoRequest_FieldTerminalPathArrayOfValues{GetNetworkInfoRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		return &GetNetworkInfoRequest_FieldTerminalPathArrayOfValues{GetNetworkInfoRequest_FieldTerminalPath: *fp, values: values.([]GetNetworkInfoRequest_ResponseFormat)}
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		return &GetNetworkInfoRequest_FieldTerminalPathArrayOfValues{GetNetworkInfoRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fp.selector))
 	}
@@ -299,8 +301,8 @@ func (fpv *GetNetworkInfoRequest_FieldTerminalPathValue) AsNameValue() (*probe.R
 	res, ok := fpv.value.(*probe.Reference)
 	return res, ok
 }
-func (fpv *GetNetworkInfoRequest_FieldTerminalPathValue) AsResponseFornatValue() (GetNetworkInfoRequest_ResponseFormat, bool) {
-	res, ok := fpv.value.(GetNetworkInfoRequest_ResponseFormat)
+func (fpv *GetNetworkInfoRequest_FieldTerminalPathValue) AsOutputFormatValue() (common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
 	return res, ok
 }
 
@@ -312,8 +314,8 @@ func (fpv *GetNetworkInfoRequest_FieldTerminalPathValue) SetTo(target **GetNetwo
 	switch fpv.selector {
 	case GetNetworkInfoRequest_FieldPathSelectorName:
 		(*target).Name = fpv.value.(*probe.Reference)
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		(*target).ResponseFornat = fpv.value.(GetNetworkInfoRequest_ResponseFormat)
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
 	default:
 		panic(fmt.Sprintf("Invalid selector for GetNetworkInfoRequest: %d", fpv.selector))
 	}
@@ -346,9 +348,9 @@ func (fpv *GetNetworkInfoRequest_FieldTerminalPathValue) CompareWith(source *Get
 		} else {
 			return 1, true
 		}
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		leftValue := fpv.value.(GetNetworkInfoRequest_ResponseFormat)
-		rightValue := source.GetResponseFornat()
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
+		rightValue := source.GetOutputFormat()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -468,8 +470,8 @@ func (fpaov *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues) GetRawValues(
 		for _, v := range fpaov.values.([]*probe.Reference) {
 			values = append(values, v)
 		}
-	case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-		for _, v := range fpaov.values.([]GetNetworkInfoRequest_ResponseFormat) {
+	case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
 			values = append(values, v)
 		}
 	}
@@ -479,8 +481,8 @@ func (fpaov *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues) AsNameArrayOf
 	res, ok := fpaov.values.([]*probe.Reference)
 	return res, ok
 }
-func (fpaov *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues) AsResponseFornatArrayOfValues() ([]GetNetworkInfoRequest_ResponseFormat, bool) {
-	res, ok := fpaov.values.([]GetNetworkInfoRequest_ResponseFormat)
+func (fpaov *GetNetworkInfoRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
 	return res, ok
 }
 

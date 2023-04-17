@@ -64,7 +64,7 @@ func FullRunHTTPTestRequest_FieldMask() *RunHTTPTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUsername})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorPassword})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorSourceIp})
-	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorResponseFornat})
+	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat})
 	return res
 }
 
@@ -320,8 +320,8 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 				result.Password = source.Password
 			case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 				result.SourceIp = source.SourceIp
-			case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-				result.ResponseFornat = source.ResponseFornat
+			case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+				result.OutputFormat = source.OutputFormat
 			}
 		case *RunHTTPTestRequest_FieldPathMap:
 			switch tp.selector {

@@ -81,6 +81,7 @@ const (
 	RunDNSQueryTestRequest_FieldPathSelectorTcp                RunDNSQueryTestRequest_FieldPathSelector = 4
 	RunDNSQueryTestRequest_FieldPathSelectorNoRecursionDesired RunDNSQueryTestRequest_FieldPathSelector = 5
 	RunDNSQueryTestRequest_FieldPathSelectorReverse            RunDNSQueryTestRequest_FieldPathSelector = 6
+	RunDNSQueryTestRequest_FieldPathSelectorOutputFormat       RunDNSQueryTestRequest_FieldPathSelector = 7
 )
 
 func (s RunDNSQueryTestRequest_FieldPathSelector) String() string {
@@ -99,6 +100,8 @@ func (s RunDNSQueryTestRequest_FieldPathSelector) String() string {
 		return "no_recursion_desired"
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		return "reverse"
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		return "output_format"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", s))
 	}
@@ -124,6 +127,8 @@ func BuildRunDNSQueryTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunDNSQ
 			return &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorNoRecursionDesired}, nil
 		case "reverse":
 			return &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorReverse}, nil
+		case "output_format", "outputFormat", "output-format":
+			return &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorOutputFormat}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -196,6 +201,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) Get(source *RunDNSQueryTestR
 			values = append(values, source.NoRecursionDesired)
 		case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 			values = append(values, source.Reverse)
+		case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+			values = append(values, source.OutputFormat)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 		}
@@ -226,6 +233,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) GetSingle(source *RunDNSQuer
 		return source.GetNoRecursionDesired(), source != nil
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		return source.GetReverse(), source != nil
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		return source.GetOutputFormat(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 	}
@@ -252,6 +261,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return false
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		return false
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		return common.OnDemandTestResponseFormat_TEXT
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 	}
@@ -274,6 +285,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) ClearValue(item *RunDNSQuery
 			item.NoRecursionDesired = false
 		case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 			item.Reverse = false
+		case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 		}
@@ -291,7 +304,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorPort ||
 		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorTcp ||
 		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorNoRecursionDesired ||
-		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorReverse
+		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorReverse ||
+		fp.selector == RunDNSQueryTestRequest_FieldPathSelectorOutputFormat
 }
 
 func (fp *RunDNSQueryTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -314,6 +328,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) WithIValue(value interface{}
 		return &RunDNSQueryTestRequest_FieldTerminalPathValue{RunDNSQueryTestRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		return &RunDNSQueryTestRequest_FieldTerminalPathValue{RunDNSQueryTestRequest_FieldTerminalPath: *fp, value: value.(bool)}
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		return &RunDNSQueryTestRequest_FieldTerminalPathValue{RunDNSQueryTestRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 	}
@@ -340,6 +356,8 @@ func (fp *RunDNSQueryTestRequest_FieldTerminalPath) WithIArrayOfValues(values in
 		return &RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		return &RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequest_FieldTerminalPath: *fp, values: values.([]bool)}
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		return &RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fp.selector))
 	}
@@ -540,6 +558,10 @@ func (fpv *RunDNSQueryTestRequest_FieldTerminalPathValue) AsReverseValue() (bool
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
+func (fpv *RunDNSQueryTestRequest_FieldTerminalPathValue) AsOutputFormatValue() (common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunDNSQueryTestRequest
 func (fpv *RunDNSQueryTestRequest_FieldTerminalPathValue) SetTo(target **RunDNSQueryTestRequest) {
@@ -561,6 +583,8 @@ func (fpv *RunDNSQueryTestRequest_FieldTerminalPathValue) SetTo(target **RunDNSQ
 		(*target).NoRecursionDesired = fpv.value.(bool)
 	case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 		(*target).Reverse = fpv.value.(bool)
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequest: %d", fpv.selector))
 	}
@@ -641,6 +665,16 @@ func (fpv *RunDNSQueryTestRequest_FieldTerminalPathValue) CompareWith(source *Ru
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
+		rightValue := source.GetOutputFormat()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -851,6 +885,10 @@ func (fpaov *RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues) GetRawValues
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
+	case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -880,6 +918,10 @@ func (fpaov *RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues) AsNoRecursio
 }
 func (fpaov *RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues) AsReverseArrayOfValues() ([]bool, bool) {
 	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
 	return res, ok
 }
 
@@ -917,34 +959,16 @@ type RunDNSQueryTestResponse_FieldPath interface {
 type RunDNSQueryTestResponse_FieldPathSelector int32
 
 const (
-	RunDNSQueryTestResponse_FieldPathSelectorId      RunDNSQueryTestResponse_FieldPathSelector = 0
-	RunDNSQueryTestResponse_FieldPathSelectorRcode   RunDNSQueryTestResponse_FieldPathSelector = 1
-	RunDNSQueryTestResponse_FieldPathSelectorFlags   RunDNSQueryTestResponse_FieldPathSelector = 2
-	RunDNSQueryTestResponse_FieldPathSelectorQueries RunDNSQueryTestResponse_FieldPathSelector = 3
-	RunDNSQueryTestResponse_FieldPathSelectorAnswers RunDNSQueryTestResponse_FieldPathSelector = 4
-	RunDNSQueryTestResponse_FieldPathSelectorNs      RunDNSQueryTestResponse_FieldPathSelector = 5
-	RunDNSQueryTestResponse_FieldPathSelectorExtras  RunDNSQueryTestResponse_FieldPathSelector = 6
-	RunDNSQueryTestResponse_FieldPathSelectorRtt     RunDNSQueryTestResponse_FieldPathSelector = 7
+	RunDNSQueryTestResponse_FieldPathSelectorJsonResponse RunDNSQueryTestResponse_FieldPathSelector = 0
+	RunDNSQueryTestResponse_FieldPathSelectorTextResponse RunDNSQueryTestResponse_FieldPathSelector = 1
 )
 
 func (s RunDNSQueryTestResponse_FieldPathSelector) String() string {
 	switch s {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		return "id"
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
-		return "rcode"
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return "flags"
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return "queries"
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return "answers"
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return "ns"
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return "extras"
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		return "rtt"
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return "json_response"
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+		return "text_response"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", s))
 	}
@@ -956,48 +980,18 @@ func BuildRunDNSQueryTestResponse_FieldPath(fp gotenobject.RawFieldPath) (RunDNS
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "id":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorId}, nil
-		case "rcode":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRcode}, nil
-		case "flags":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorFlags}, nil
-		case "queries":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries}, nil
-		case "answers":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers}, nil
-		case "ns":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs}, nil
-		case "extras":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras}, nil
-		case "rtt":
-			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRtt}, nil
+		case "json_response", "jsonResponse", "json-response":
+			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse}, nil
+		case "text_response", "textResponse", "text-response":
+			return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorTextResponse}, nil
 		}
 	} else {
 		switch fp[0] {
-		case "queries":
-			if subpath, err := common.BuildDNSQuery_FieldPath(fp[1:]); err != nil {
+		case "json_response", "jsonResponse", "json-response":
+			if subpath, err := BuildRunDNSQueryTestResponseJsonResponse_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries, subPath: subpath}, nil
-			}
-		case "answers":
-			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers, subPath: subpath}, nil
-			}
-		case "ns":
-			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs, subPath: subpath}, nil
-			}
-		case "extras":
-			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
-				return nil, err
-			} else {
-				return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras, subPath: subpath}, nil
+				return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse, subPath: subpath}, nil
 			}
 		}
 	}
@@ -1044,34 +1038,12 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) JSONString() string {
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) Get(source *RunDNSQueryTestResponse) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case RunDNSQueryTestResponse_FieldPathSelectorId:
-			values = append(values, source.Id)
-		case RunDNSQueryTestResponse_FieldPathSelectorRcode:
-			values = append(values, source.Rcode)
-		case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-			for _, value := range source.GetFlags() {
-				values = append(values, value)
+		case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+			if source.JsonResponse != nil {
+				values = append(values, source.JsonResponse)
 			}
-		case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-			for _, value := range source.GetQueries() {
-				values = append(values, value)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-			for _, value := range source.GetAnswers() {
-				values = append(values, value)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorNs:
-			for _, value := range source.GetNs() {
-				values = append(values, value)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-			for _, value := range source.GetExtras() {
-				values = append(values, value)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-			if source.Rtt != nil {
-				values = append(values, source.Rtt)
-			}
+		case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+			values = append(values, source.TextResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 		}
@@ -1086,28 +1058,11 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) GetRaw(source proto.Message
 // GetSingle returns value pointed by specific field of from source RunDNSQueryTestResponse
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) GetSingle(source *RunDNSQueryTestResponse) (interface{}, bool) {
 	switch fp.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		return source.GetId(), source != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
-		return source.GetRcode(), source != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		res := source.GetFlags()
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		res := source.GetJsonResponse()
 		return res, res != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		res := source.GetQueries()
-		return res, res != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		res := source.GetAnswers()
-		return res, res != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		res := source.GetNs()
-		return res, res != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		res := source.GetExtras()
-		return res, res != nil
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		res := source.GetRtt()
-		return res, res != nil
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+		return source.GetTextResponse(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 	}
@@ -1120,22 +1075,10 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) GetSingleRaw(source proto.M
 // GetDefault returns a default value of the field type
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		return uint32(0)
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return (*RunDNSQueryTestResponse_JsonResponse)(nil)
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
 		return ""
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return ([]string)(nil)
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return ([]*common.DNSQuery)(nil)
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return ([]*common.DNSResourceRecord)(nil)
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return ([]*common.DNSResourceRecord)(nil)
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return ([]*common.DNSResourceRecord)(nil)
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		return (*duration.Duration)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 	}
@@ -1144,22 +1087,10 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) GetDefault() interface{} {
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) ClearValue(item *RunDNSQueryTestResponse) {
 	if item != nil {
 		switch fp.selector {
-		case RunDNSQueryTestResponse_FieldPathSelectorId:
-			item.Id = uint32(0)
-		case RunDNSQueryTestResponse_FieldPathSelectorRcode:
-			item.Rcode = ""
-		case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-			item.Flags = nil
-		case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-			item.Queries = nil
-		case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-			item.Answers = nil
-		case RunDNSQueryTestResponse_FieldPathSelectorNs:
-			item.Ns = nil
-		case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-			item.Extras = nil
-		case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-			item.Rtt = nil
+		case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+			item.JsonResponse = nil
+		case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+			item.TextResponse = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 		}
@@ -1172,10 +1103,7 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) ClearValueRaw(item proto.Me
 
 // IsLeaf - whether field path is holds simple value
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunDNSQueryTestResponse_FieldPathSelectorId ||
-		fp.selector == RunDNSQueryTestResponse_FieldPathSelectorRcode ||
-		fp.selector == RunDNSQueryTestResponse_FieldPathSelectorFlags ||
-		fp.selector == RunDNSQueryTestResponse_FieldPathSelectorRtt
+	return fp.selector == RunDNSQueryTestResponse_FieldPathSelectorTextResponse
 }
 
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -1184,22 +1112,10 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() [
 
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestResponse_FieldPathValue {
 	switch fp.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(uint32)}
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*RunDNSQueryTestResponse_JsonResponse)}
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
 		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(string)}
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.([]string)}
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSQuery)}
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		return &RunDNSQueryTestResponse_FieldTerminalPathValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 	}
@@ -1212,22 +1128,10 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithRawIValue(value interfa
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunDNSQueryTestResponse_FieldPathArrayOfValues {
 	fpaov := &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([]uint32)}
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([]*RunDNSQueryTestResponse_JsonResponse)}
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
 		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([][]string)}
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSQuery)}
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponse_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 	}
@@ -1240,16 +1144,6 @@ func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithRawIArrayOfValues(value
 
 func (fp *RunDNSQueryTestResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunDNSQueryTestResponse_FieldPathArrayItemValue {
 	switch fp.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(string)}
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*common.DNSQuery)}
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return &RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fp.selector))
 	}
@@ -1269,20 +1163,8 @@ var _ RunDNSQueryTestResponse_FieldPath = (*RunDNSQueryTestResponse_FieldSubPath
 func (fps *RunDNSQueryTestResponse_FieldSubPath) Selector() RunDNSQueryTestResponse_FieldPathSelector {
 	return fps.selector
 }
-func (fps *RunDNSQueryTestResponse_FieldSubPath) AsQueriesSubPath() (common.DNSQuery_FieldPath, bool) {
-	res, ok := fps.subPath.(common.DNSQuery_FieldPath)
-	return res, ok
-}
-func (fps *RunDNSQueryTestResponse_FieldSubPath) AsAnswersSubPath() (common.DNSResourceRecord_FieldPath, bool) {
-	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
-	return res, ok
-}
-func (fps *RunDNSQueryTestResponse_FieldSubPath) AsNsSubPath() (common.DNSResourceRecord_FieldPath, bool) {
-	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
-	return res, ok
-}
-func (fps *RunDNSQueryTestResponse_FieldSubPath) AsExtrasSubPath() (common.DNSResourceRecord_FieldPath, bool) {
-	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
+func (fps *RunDNSQueryTestResponse_FieldSubPath) AsJsonResponseSubPath() (RunDNSQueryTestResponseJsonResponse_FieldPath, bool) {
+	res, ok := fps.subPath.(RunDNSQueryTestResponseJsonResponse_FieldPath)
 	return res, ok
 }
 
@@ -1299,22 +1181,8 @@ func (fps *RunDNSQueryTestResponse_FieldSubPath) JSONString() string {
 // Get returns all values pointed by selected field from source RunDNSQueryTestResponse
 func (fps *RunDNSQueryTestResponse_FieldSubPath) Get(source *RunDNSQueryTestResponse) (values []interface{}) {
 	switch fps.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		for _, item := range source.GetQueries() {
-			values = append(values, fps.subPath.GetRaw(item)...)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		for _, item := range source.GetAnswers() {
-			values = append(values, fps.subPath.GetRaw(item)...)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		for _, item := range source.GetNs() {
-			values = append(values, fps.subPath.GetRaw(item)...)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		for _, item := range source.GetExtras() {
-			values = append(values, fps.subPath.GetRaw(item)...)
-		}
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		values = append(values, fps.subPath.GetRaw(source.GetJsonResponse())...)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fps.selector))
 	}
@@ -1328,26 +1196,11 @@ func (fps *RunDNSQueryTestResponse_FieldSubPath) GetRaw(source proto.Message) []
 // GetSingle returns value of selected field from source RunDNSQueryTestResponse
 func (fps *RunDNSQueryTestResponse_FieldSubPath) GetSingle(source *RunDNSQueryTestResponse) (interface{}, bool) {
 	switch fps.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		if len(source.GetQueries()) == 0 {
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		if source.GetJsonResponse() == nil {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetQueries()[0])
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		if len(source.GetAnswers()) == 0 {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetAnswers()[0])
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		if len(source.GetNs()) == 0 {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetNs()[0])
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		if len(source.GetExtras()) == 0 {
-			return nil, false
-		}
-		return fps.subPath.GetSingleRaw(source.GetExtras()[0])
+		return fps.subPath.GetSingleRaw(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fps.selector))
 	}
@@ -1365,22 +1218,8 @@ func (fps *RunDNSQueryTestResponse_FieldSubPath) GetDefault() interface{} {
 func (fps *RunDNSQueryTestResponse_FieldSubPath) ClearValue(item *RunDNSQueryTestResponse) {
 	if item != nil {
 		switch fps.selector {
-		case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-			for _, subItem := range item.Queries {
-				fps.subPath.ClearValueRaw(subItem)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-			for _, subItem := range item.Answers {
-				fps.subPath.ClearValueRaw(subItem)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorNs:
-			for _, subItem := range item.Ns {
-				fps.subPath.ClearValueRaw(subItem)
-			}
-		case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-			for _, subItem := range item.Extras {
-				fps.subPath.ClearValueRaw(subItem)
-			}
+		case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+			fps.subPath.ClearValueRaw(item.JsonResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fps.selector))
 		}
@@ -1465,36 +1304,12 @@ var _ RunDNSQueryTestResponse_FieldPathValue = (*RunDNSQueryTestResponse_FieldTe
 func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsIdValue() (uint32, bool) {
-	res, ok := fpv.value.(uint32)
+func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsJsonResponseValue() (*RunDNSQueryTestResponse_JsonResponse, bool) {
+	res, ok := fpv.value.(*RunDNSQueryTestResponse_JsonResponse)
 	return res, ok
 }
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsRcodeValue() (string, bool) {
+func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsTextResponseValue() (string, bool) {
 	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsFlagsValue() ([]string, bool) {
-	res, ok := fpv.value.([]string)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsQueriesValue() ([]*common.DNSQuery, bool) {
-	res, ok := fpv.value.([]*common.DNSQuery)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsAnswersValue() ([]*common.DNSResourceRecord, bool) {
-	res, ok := fpv.value.([]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsNsValue() ([]*common.DNSResourceRecord, bool) {
-	res, ok := fpv.value.([]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsExtrasValue() ([]*common.DNSResourceRecord, bool) {
-	res, ok := fpv.value.([]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) AsRttValue() (*duration.Duration, bool) {
-	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
 
@@ -1504,22 +1319,10 @@ func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) SetTo(target **RunDNS
 		*target = new(RunDNSQueryTestResponse)
 	}
 	switch fpv.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		(*target).Id = fpv.value.(uint32)
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
-		(*target).Rcode = fpv.value.(string)
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		(*target).Flags = fpv.value.([]string)
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		(*target).Queries = fpv.value.([]*common.DNSQuery)
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		(*target).Answers = fpv.value.([]*common.DNSResourceRecord)
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		(*target).Ns = fpv.value.([]*common.DNSResourceRecord)
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		(*target).Extras = fpv.value.([]*common.DNSResourceRecord)
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		(*target).Rtt = fpv.value.(*duration.Duration)
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		(*target).JsonResponse = fpv.value.(*RunDNSQueryTestResponse_JsonResponse)
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+		(*target).TextResponse = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fpv.selector))
 	}
@@ -1533,51 +1336,14 @@ func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) SetToRaw(target proto
 // CompareWith compares value in the 'RunDNSQueryTestResponse_FieldTerminalPathValue' with the value under path in 'RunDNSQueryTestResponse'.
 func (fpv *RunDNSQueryTestResponse_FieldTerminalPathValue) CompareWith(source *RunDNSQueryTestResponse) (int, bool) {
 	switch fpv.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		leftValue := fpv.value.(uint32)
-		rightValue := source.GetId()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return 0, false
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
 		leftValue := fpv.value.(string)
-		rightValue := source.GetRcode()
+		rightValue := source.GetTextResponse()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		return 0, false
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return 0, false
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return 0, false
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return 0, false
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return 0, false
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		leftValue := fpv.value.(*duration.Duration)
-		rightValue := source.GetRtt()
-		if leftValue == nil {
-			if rightValue != nil {
-				return -1, true
-			}
-			return 0, true
-		}
-		if rightValue == nil {
-			return 1, true
-		}
-		if leftValue.AsDuration() == rightValue.AsDuration() {
-			return 0, true
-		} else if leftValue.AsDuration() < rightValue.AsDuration() {
 			return -1, true
 		} else {
 			return 1, true
@@ -1598,20 +1364,8 @@ type RunDNSQueryTestResponse_FieldSubPathValue struct {
 
 var _ RunDNSQueryTestResponse_FieldPathValue = (*RunDNSQueryTestResponse_FieldSubPathValue)(nil)
 
-func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) AsQueriesPathValue() (common.DNSQuery_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.DNSQuery_FieldPathValue)
-	return res, ok
-}
-func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) AsAnswersPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
-	return res, ok
-}
-func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) AsNsPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
-	return res, ok
-}
-func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) AsExtrasPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
+func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) AsJsonResponsePathValue() (RunDNSQueryTestResponseJsonResponse_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(RunDNSQueryTestResponseJsonResponse_FieldPathValue)
 	return res, ok
 }
 
@@ -1620,14 +1374,8 @@ func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) SetTo(target **RunDNSQuer
 		*target = new(RunDNSQueryTestResponse)
 	}
 	switch fpvs.Selector() {
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		panic("FieldPath setter is unsupported for array subpaths")
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		panic("FieldPath setter is unsupported for array subpaths")
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		panic("FieldPath setter is unsupported for array subpaths")
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		panic("FieldPath setter is unsupported for array subpaths")
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		fpvs.subPathValue.(RunDNSQueryTestResponseJsonResponse_FieldPathValue).SetTo(&(*target).JsonResponse)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fpvs.Selector()))
 	}
@@ -1644,14 +1392,8 @@ func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) GetRawValue() interface{}
 
 func (fpvs *RunDNSQueryTestResponse_FieldSubPathValue) CompareWith(source *RunDNSQueryTestResponse) (int, bool) {
 	switch fpvs.Selector() {
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return 0, false // repeated field
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return 0, false // repeated field
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return 0, false // repeated field
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return 0, false // repeated field
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return fpvs.subPathValue.(RunDNSQueryTestResponseJsonResponse_FieldPathValue).CompareWith(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fpvs.Selector()))
 	}
@@ -1701,26 +1443,6 @@ var _ RunDNSQueryTestResponse_FieldPathArrayItemValue = (*RunDNSQueryTestRespons
 func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
 }
-func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) AsFlagsItemValue() (string, bool) {
-	res, ok := fpaiv.value.(string)
-	return res, ok
-}
-func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) AsQueriesItemValue() (*common.DNSQuery, bool) {
-	res, ok := fpaiv.value.(*common.DNSQuery)
-	return res, ok
-}
-func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) AsAnswersItemValue() (*common.DNSResourceRecord, bool) {
-	res, ok := fpaiv.value.(*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) AsNsItemValue() (*common.DNSResourceRecord, bool) {
-	res, ok := fpaiv.value.(*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) AsExtrasItemValue() (*common.DNSResourceRecord, bool) {
-	res, ok := fpaiv.value.(*common.DNSResourceRecord)
-	return res, ok
-}
 
 func (fpaiv *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue) GetSingle(source *RunDNSQueryTestResponse) (interface{}, bool) {
 	return nil, false
@@ -1754,34 +1476,16 @@ type RunDNSQueryTestResponse_FieldSubPathArrayItemValue struct {
 func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaivs.subPathItemValue.GetRawItemValue()
 }
-func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) AsQueriesPathItemValue() (common.DNSQuery_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.DNSQuery_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) AsAnswersPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) AsNsPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
-	return res, ok
-}
-func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) AsExtrasPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
+func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) AsJsonResponsePathItemValue() (RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue)
 	return res, ok
 }
 
 // Contains returns a boolean indicating if value that is being held is present in given 'RunDNSQueryTestResponse'
 func (fpaivs *RunDNSQueryTestResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunDNSQueryTestResponse) bool {
 	switch fpaivs.Selector() {
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		return false // repeated/map field
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		return false // repeated/map field
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		return false // repeated/map field
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		return false // repeated/map field
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		return fpaivs.subPathItemValue.(RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue).ContainsValue(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse: %d", fpaivs.Selector()))
 	}
@@ -1822,71 +1526,23 @@ var _ RunDNSQueryTestResponse_FieldPathArrayOfValues = (*RunDNSQueryTestResponse
 
 func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case RunDNSQueryTestResponse_FieldPathSelectorId:
-		for _, v := range fpaov.values.([]uint32) {
+	case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+		for _, v := range fpaov.values.([]*RunDNSQueryTestResponse_JsonResponse) {
 			values = append(values, v)
 		}
-	case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+	case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
 		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorFlags:
-		for _, v := range fpaov.values.([][]string) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-		for _, v := range fpaov.values.([][]*common.DNSQuery) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorNs:
-		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestResponse_FieldPathSelectorRtt:
-		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsIdArrayOfValues() ([]uint32, bool) {
-	res, ok := fpaov.values.([]uint32)
+func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsJsonResponseArrayOfValues() ([]*RunDNSQueryTestResponse_JsonResponse, bool) {
+	res, ok := fpaov.values.([]*RunDNSQueryTestResponse_JsonResponse)
 	return res, ok
 }
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsRcodeArrayOfValues() ([]string, bool) {
+func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsTextResponseArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsFlagsArrayOfValues() ([][]string, bool) {
-	res, ok := fpaov.values.([][]string)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsQueriesArrayOfValues() ([][]*common.DNSQuery, bool) {
-	res, ok := fpaov.values.([][]*common.DNSQuery)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsAnswersArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
-	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsNsArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
-	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsExtrasArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
-	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues) AsRttArrayOfValues() ([]*duration.Duration, bool) {
-	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
 
@@ -1900,530 +1556,649 @@ var _ RunDNSQueryTestResponse_FieldPathArrayOfValues = (*RunDNSQueryTestResponse
 func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
 	return fpsaov.subPathArrayOfValues.GetRawValues()
 }
-func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) AsQueriesPathArrayOfValues() (common.DNSQuery_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.DNSQuery_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) AsAnswersPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) AsNsPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
-	return res, ok
-}
-func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) AsExtrasPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
-	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
+func (fpsaov *RunDNSQueryTestResponse_FieldSubPathArrayOfValues) AsJsonResponsePathArrayOfValues() (RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues)
 	return res, ok
 }
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type RunDNSQueryTestRequestToProbe_FieldPath interface {
+type RunDNSQueryTestResponseJsonResponse_FieldPath interface {
 	gotenobject.FieldPath
-	Selector() RunDNSQueryTestRequestToProbe_FieldPathSelector
-	Get(source *RunDNSQueryTestRequestToProbe) []interface{}
-	GetSingle(source *RunDNSQueryTestRequestToProbe) (interface{}, bool)
-	ClearValue(item *RunDNSQueryTestRequestToProbe)
+	Selector() RunDNSQueryTestResponseJsonResponse_FieldPathSelector
+	Get(source *RunDNSQueryTestResponse_JsonResponse) []interface{}
+	GetSingle(source *RunDNSQueryTestResponse_JsonResponse) (interface{}, bool)
+	ClearValue(item *RunDNSQueryTestResponse_JsonResponse)
 
-	// Those methods build corresponding RunDNSQueryTestRequestToProbe_FieldPathValue
+	// Those methods build corresponding RunDNSQueryTestResponseJsonResponse_FieldPathValue
 	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathValue
-	WithIArrayOfValues(values interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue
+	WithIValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathValue
+	WithIArrayOfValues(values interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue
 }
 
-type RunDNSQueryTestRequestToProbe_FieldPathSelector int32
+type RunDNSQueryTestResponseJsonResponse_FieldPathSelector int32
 
 const (
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery              RunDNSQueryTestRequestToProbe_FieldPathSelector = 0
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorServer             RunDNSQueryTestRequestToProbe_FieldPathSelector = 1
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorPort               RunDNSQueryTestRequestToProbe_FieldPathSelector = 2
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp                RunDNSQueryTestRequestToProbe_FieldPathSelector = 3
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired RunDNSQueryTestRequestToProbe_FieldPathSelector = 4
-	RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse            RunDNSQueryTestRequestToProbe_FieldPathSelector = 5
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId      RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 0
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode   RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 1
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags   RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 2
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 3
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 4
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs      RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 5
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras  RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 6
+	RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt     RunDNSQueryTestResponseJsonResponse_FieldPathSelector = 7
 )
 
-func (s RunDNSQueryTestRequestToProbe_FieldPathSelector) String() string {
+func (s RunDNSQueryTestResponseJsonResponse_FieldPathSelector) String() string {
 	switch s {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return "query"
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		return "server"
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-		return "port"
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		return "tcp"
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		return "no_recursion_desired"
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		return "reverse"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+		return "id"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		return "rcode"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return "flags"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return "queries"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return "answers"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return "ns"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return "extras"
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		return "rtt"
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", s))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", s))
 	}
 }
 
-func BuildRunDNSQueryTestRequestToProbe_FieldPath(fp gotenobject.RawFieldPath) (RunDNSQueryTestRequestToProbe_FieldPath, error) {
+func BuildRunDNSQueryTestResponseJsonResponse_FieldPath(fp gotenobject.RawFieldPath) (RunDNSQueryTestResponseJsonResponse_FieldPath, error) {
 	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunDNSQueryTestRequestToProbe")
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunDNSQueryTestResponse_JsonResponse")
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "query":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery}, nil
-		case "server":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorServer}, nil
-		case "port":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorPort}, nil
-		case "tcp":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp}, nil
-		case "no_recursion_desired", "noRecursionDesired", "no-recursion-desired":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired}, nil
-		case "reverse":
-			return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse}, nil
+		case "id":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId}, nil
+		case "rcode":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode}, nil
+		case "flags":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags}, nil
+		case "queries":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries}, nil
+		case "answers":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers}, nil
+		case "ns":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs}, nil
+		case "extras":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras}, nil
+		case "rtt":
+			return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt}, nil
 		}
 	} else {
 		switch fp[0] {
-		case "query":
+		case "queries":
 			if subpath, err := common.BuildDNSQuery_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &RunDNSQueryTestRequestToProbe_FieldSubPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery, subPath: subpath}, nil
+				return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries, subPath: subpath}, nil
+			}
+		case "answers":
+			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers, subPath: subpath}, nil
+			}
+		case "ns":
+			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs, subPath: subpath}, nil
+			}
+		case "extras":
+			if subpath, err := common.BuildDNSResourceRecord_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras, subPath: subpath}, nil
 			}
 		}
 	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunDNSQueryTestRequestToProbe", fp)
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunDNSQueryTestResponse_JsonResponse", fp)
 }
 
-func ParseRunDNSQueryTestRequestToProbe_FieldPath(rawField string) (RunDNSQueryTestRequestToProbe_FieldPath, error) {
+func ParseRunDNSQueryTestResponseJsonResponse_FieldPath(rawField string) (RunDNSQueryTestResponseJsonResponse_FieldPath, error) {
 	fp, err := gotenobject.ParseRawFieldPath(rawField)
 	if err != nil {
 		return nil, err
 	}
-	return BuildRunDNSQueryTestRequestToProbe_FieldPath(fp)
+	return BuildRunDNSQueryTestResponseJsonResponse_FieldPath(fp)
 }
 
-func MustParseRunDNSQueryTestRequestToProbe_FieldPath(rawField string) RunDNSQueryTestRequestToProbe_FieldPath {
-	fp, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(rawField)
+func MustParseRunDNSQueryTestResponseJsonResponse_FieldPath(rawField string) RunDNSQueryTestResponseJsonResponse_FieldPath {
+	fp, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(rawField)
 	if err != nil {
 		panic(err)
 	}
 	return fp
 }
 
-type RunDNSQueryTestRequestToProbe_FieldTerminalPath struct {
-	selector RunDNSQueryTestRequestToProbe_FieldPathSelector
+type RunDNSQueryTestResponseJsonResponse_FieldTerminalPath struct {
+	selector RunDNSQueryTestResponseJsonResponse_FieldPathSelector
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPath = (*RunDNSQueryTestRequestToProbe_FieldTerminalPath)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPath = (*RunDNSQueryTestResponseJsonResponse_FieldTerminalPath)(nil)
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) Selector() RunDNSQueryTestRequestToProbe_FieldPathSelector {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) Selector() RunDNSQueryTestResponseJsonResponse_FieldPathSelector {
 	return fp.selector
 }
 
 // String returns path representation in proto convention
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) String() string {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) String() string {
 	return fp.selector.String()
 }
 
 // JSONString returns path representation is JSON convention
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) JSONString() string {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) JSONString() string {
 	return strcase.ToLowerCamel(fp.String())
 }
 
-// Get returns all values pointed by specific field from source RunDNSQueryTestRequestToProbe
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) Get(source *RunDNSQueryTestRequestToProbe) (values []interface{}) {
+// Get returns all values pointed by specific field from source RunDNSQueryTestResponse_JsonResponse
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) Get(source *RunDNSQueryTestResponse_JsonResponse) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-			if source.Query != nil {
-				values = append(values, source.Query)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+			values = append(values, source.Id)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+			values = append(values, source.Rcode)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+			for _, value := range source.GetFlags() {
+				values = append(values, value)
 			}
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-			values = append(values, source.Server)
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-			values = append(values, source.Port)
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-			values = append(values, source.Tcp)
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-			values = append(values, source.NoRecursionDesired)
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-			values = append(values, source.Reverse)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+			for _, value := range source.GetQueries() {
+				values = append(values, value)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+			for _, value := range source.GetAnswers() {
+				values = append(values, value)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+			for _, value := range source.GetNs() {
+				values = append(values, value)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+			for _, value := range source.GetExtras() {
+				values = append(values, value)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+			if source.Rtt != nil {
+				values = append(values, source.Rtt)
+			}
 		default:
-			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 		}
 	}
 	return
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*RunDNSQueryTestRequestToProbe))
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-// GetSingle returns value pointed by specific field of from source RunDNSQueryTestRequestToProbe
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) GetSingle(source *RunDNSQueryTestRequestToProbe) (interface{}, bool) {
+// GetSingle returns value pointed by specific field of from source RunDNSQueryTestResponse_JsonResponse
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) GetSingle(source *RunDNSQueryTestResponse_JsonResponse) (interface{}, bool) {
 	switch fp.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		res := source.GetQuery()
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+		return source.GetId(), source != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		return source.GetRcode(), source != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		res := source.GetFlags()
 		return res, res != nil
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		return source.GetServer(), source != nil
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-		return source.GetPort(), source != nil
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		return source.GetTcp(), source != nil
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		return source.GetNoRecursionDesired(), source != nil
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		return source.GetReverse(), source != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		res := source.GetQueries()
+		return res, res != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		res := source.GetAnswers()
+		return res, res != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		res := source.GetNs()
+		return res, res != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		res := source.GetExtras()
+		return res, res != nil
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		res := source.GetRtt()
+		return res, res != nil
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*RunDNSQueryTestRequestToProbe))
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
 // GetDefault returns a default value of the field type
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) GetDefault() interface{} {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return (*common.DNSQuery)(nil)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		return ""
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
 		return uint32(0)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		return false
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		return false
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		return false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		return ""
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return ([]string)(nil)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return ([]*common.DNSQuery)(nil)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return ([]*common.DNSResourceRecord)(nil)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return ([]*common.DNSResourceRecord)(nil)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return ([]*common.DNSResourceRecord)(nil)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		return (*duration.Duration)(nil)
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) ClearValue(item *RunDNSQueryTestRequestToProbe) {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) ClearValue(item *RunDNSQueryTestResponse_JsonResponse) {
 	if item != nil {
 		switch fp.selector {
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-			item.Query = nil
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-			item.Server = ""
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-			item.Port = uint32(0)
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-			item.Tcp = false
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-			item.NoRecursionDesired = false
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-			item.Reverse = false
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+			item.Id = uint32(0)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+			item.Rcode = ""
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+			item.Flags = nil
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+			item.Queries = nil
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+			item.Answers = nil
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+			item.Ns = nil
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+			item.Extras = nil
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+			item.Rtt = nil
 		default:
-			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 		}
 	}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*RunDNSQueryTestRequestToProbe))
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
 // IsLeaf - whether field path is holds simple value
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorServer ||
-		fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorPort ||
-		fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp ||
-		fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired ||
-		fp.selector == RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId ||
+		fp.selector == RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode ||
+		fp.selector == RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags ||
+		fp.selector == RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
 	return []gotenobject.FieldPath{fp}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathValue {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithIValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathValue {
 	switch fp.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(*common.DNSQuery)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(string)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(uint32)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(bool)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(bool)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathValue{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, value: value.(bool)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(uint32)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(string)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]string)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSQuery)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*duration.Duration)}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
 	return fp.WithIValue(value)
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues {
-	fpaov := &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp}
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov := &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]*common.DNSQuery)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]uint32)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]bool)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]bool)}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		return &RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldTerminalPath: *fp, values: values.([]bool)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]uint32)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]string)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSQuery)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]*duration.Duration)}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 	}
 	return fpaov
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
 	return fp.WithIArrayOfValues(values)
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue {
 	switch fp.selector {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(string)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*common.DNSQuery)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*common.DNSResourceRecord)}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fp.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fp.selector))
 	}
 }
 
-func (fp *RunDNSQueryTestRequestToProbe_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+func (fp *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
 	return fp.WithIArrayItemValue(value)
 }
 
-type RunDNSQueryTestRequestToProbe_FieldSubPath struct {
-	selector RunDNSQueryTestRequestToProbe_FieldPathSelector
+type RunDNSQueryTestResponseJsonResponse_FieldSubPath struct {
+	selector RunDNSQueryTestResponseJsonResponse_FieldPathSelector
 	subPath  gotenobject.FieldPath
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPath = (*RunDNSQueryTestRequestToProbe_FieldSubPath)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPath = (*RunDNSQueryTestResponseJsonResponse_FieldSubPath)(nil)
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) Selector() RunDNSQueryTestRequestToProbe_FieldPathSelector {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) Selector() RunDNSQueryTestResponseJsonResponse_FieldPathSelector {
 	return fps.selector
 }
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) AsQuerySubPath() (common.DNSQuery_FieldPath, bool) {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) AsQueriesSubPath() (common.DNSQuery_FieldPath, bool) {
 	res, ok := fps.subPath.(common.DNSQuery_FieldPath)
+	return res, ok
+}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) AsAnswersSubPath() (common.DNSResourceRecord_FieldPath, bool) {
+	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
+	return res, ok
+}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) AsNsSubPath() (common.DNSResourceRecord_FieldPath, bool) {
+	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
+	return res, ok
+}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) AsExtrasSubPath() (common.DNSResourceRecord_FieldPath, bool) {
+	res, ok := fps.subPath.(common.DNSResourceRecord_FieldPath)
 	return res, ok
 }
 
 // String returns path representation in proto convention
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) String() string {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) String() string {
 	return fps.selector.String() + "." + fps.subPath.String()
 }
 
 // JSONString returns path representation is JSON convention
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) JSONString() string {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) JSONString() string {
 	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
 }
 
-// Get returns all values pointed by selected field from source RunDNSQueryTestRequestToProbe
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) Get(source *RunDNSQueryTestRequestToProbe) (values []interface{}) {
+// Get returns all values pointed by selected field from source RunDNSQueryTestResponse_JsonResponse
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) Get(source *RunDNSQueryTestResponse_JsonResponse) (values []interface{}) {
 	switch fps.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		values = append(values, fps.subPath.GetRaw(source.GetQuery())...)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		for _, item := range source.GetQueries() {
+			values = append(values, fps.subPath.GetRaw(item)...)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		for _, item := range source.GetAnswers() {
+			values = append(values, fps.subPath.GetRaw(item)...)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		for _, item := range source.GetNs() {
+			values = append(values, fps.subPath.GetRaw(item)...)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		for _, item := range source.GetExtras() {
+			values = append(values, fps.subPath.GetRaw(item)...)
+		}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fps.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fps.selector))
 	}
 	return
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) GetRaw(source proto.Message) []interface{} {
-	return fps.Get(source.(*RunDNSQueryTestRequestToProbe))
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-// GetSingle returns value of selected field from source RunDNSQueryTestRequestToProbe
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) GetSingle(source *RunDNSQueryTestRequestToProbe) (interface{}, bool) {
+// GetSingle returns value of selected field from source RunDNSQueryTestResponse_JsonResponse
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) GetSingle(source *RunDNSQueryTestResponse_JsonResponse) (interface{}, bool) {
 	switch fps.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		if source.GetQuery() == nil {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		if len(source.GetQueries()) == 0 {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetQuery())
+		return fps.subPath.GetSingleRaw(source.GetQueries()[0])
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		if len(source.GetAnswers()) == 0 {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetAnswers()[0])
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		if len(source.GetNs()) == 0 {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetNs()[0])
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		if len(source.GetExtras()) == 0 {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetExtras()[0])
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fps.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fps.selector))
 	}
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fps.GetSingle(source.(*RunDNSQueryTestRequestToProbe))
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
 // GetDefault returns a default value of the field type
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) GetDefault() interface{} {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) GetDefault() interface{} {
 	return fps.subPath.GetDefault()
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) ClearValue(item *RunDNSQueryTestRequestToProbe) {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) ClearValue(item *RunDNSQueryTestResponse_JsonResponse) {
 	if item != nil {
 		switch fps.selector {
-		case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-			fps.subPath.ClearValueRaw(item.Query)
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+			for _, subItem := range item.Queries {
+				fps.subPath.ClearValueRaw(subItem)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+			for _, subItem := range item.Answers {
+				fps.subPath.ClearValueRaw(subItem)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+			for _, subItem := range item.Ns {
+				fps.subPath.ClearValueRaw(subItem)
+			}
+		case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+			for _, subItem := range item.Extras {
+				fps.subPath.ClearValueRaw(subItem)
+			}
 		default:
-			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fps.selector))
+			panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fps.selector))
 		}
 	}
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) ClearValueRaw(item proto.Message) {
-	fps.ClearValue(item.(*RunDNSQueryTestRequestToProbe))
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
 // IsLeaf - whether field path is holds simple value
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) IsLeaf() bool {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) IsLeaf() bool {
 	return fps.subPath.IsLeaf()
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
-	iPaths := []gotenobject.FieldPath{&RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: fps.selector}}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: fps.selector}}
 	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
 	return iPaths
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithIValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathValue {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithIValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
 	return fps.WithIValue(value)
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithIArrayOfValues(values interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithIArrayOfValues(values interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
 	return fps.WithIArrayOfValues(values)
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithIArrayItemValue(value interface{}) RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithIArrayItemValue(value interface{}) RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
 }
 
-func (fps *RunDNSQueryTestRequestToProbe_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+func (fps *RunDNSQueryTestResponseJsonResponse_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
 	return fps.WithIArrayItemValue(value)
 }
 
-// RunDNSQueryTestRequestToProbe_FieldPathValue allows storing values for RunDNSQueryTestRequestToProbe fields according to their type
-type RunDNSQueryTestRequestToProbe_FieldPathValue interface {
-	RunDNSQueryTestRequestToProbe_FieldPath
+// RunDNSQueryTestResponseJsonResponse_FieldPathValue allows storing values for JsonResponse fields according to their type
+type RunDNSQueryTestResponseJsonResponse_FieldPathValue interface {
+	RunDNSQueryTestResponseJsonResponse_FieldPath
 	gotenobject.FieldPathValue
-	SetTo(target **RunDNSQueryTestRequestToProbe)
-	CompareWith(*RunDNSQueryTestRequestToProbe) (cmp int, comparable bool)
+	SetTo(target **RunDNSQueryTestResponse_JsonResponse)
+	CompareWith(*RunDNSQueryTestResponse_JsonResponse) (cmp int, comparable bool)
 }
 
-func ParseRunDNSQueryTestRequestToProbe_FieldPathValue(pathStr, valueStr string) (RunDNSQueryTestRequestToProbe_FieldPathValue, error) {
-	fp, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(pathStr)
+func ParseRunDNSQueryTestResponseJsonResponse_FieldPathValue(pathStr, valueStr string) (RunDNSQueryTestResponseJsonResponse_FieldPathValue, error) {
+	fp, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
 	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
 	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunDNSQueryTestRequestToProbe field path value from %s: %v", valueStr, err)
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path value from %s: %v", valueStr, err)
 	}
-	return fpv.(RunDNSQueryTestRequestToProbe_FieldPathValue), nil
+	return fpv.(RunDNSQueryTestResponseJsonResponse_FieldPathValue), nil
 }
 
-func MustParseRunDNSQueryTestRequestToProbe_FieldPathValue(pathStr, valueStr string) RunDNSQueryTestRequestToProbe_FieldPathValue {
-	fpv, err := ParseRunDNSQueryTestRequestToProbe_FieldPathValue(pathStr, valueStr)
+func MustParseRunDNSQueryTestResponseJsonResponse_FieldPathValue(pathStr, valueStr string) RunDNSQueryTestResponseJsonResponse_FieldPathValue {
+	fpv, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPathValue(pathStr, valueStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpv
 }
 
-type RunDNSQueryTestRequestToProbe_FieldTerminalPathValue struct {
-	RunDNSQueryTestRequestToProbe_FieldTerminalPath
+type RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue struct {
+	RunDNSQueryTestResponseJsonResponse_FieldTerminalPath
 	value interface{}
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPathValue = (*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPathValue = (*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)(nil)
 
-// GetRawValue returns raw value stored under selected path for 'RunDNSQueryTestRequestToProbe' as interface{}
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) GetRawValue() interface{} {
+// GetRawValue returns raw value stored under selected path for 'JsonResponse' as interface{}
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsQueryValue() (*common.DNSQuery, bool) {
-	res, ok := fpv.value.(*common.DNSQuery)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsServerValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsPortValue() (uint32, bool) {
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsIdValue() (uint32, bool) {
 	res, ok := fpv.value.(uint32)
 	return res, ok
 }
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsTcpValue() (bool, bool) {
-	res, ok := fpv.value.(bool)
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsRcodeValue() (string, bool) {
+	res, ok := fpv.value.(string)
 	return res, ok
 }
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsNoRecursionDesiredValue() (bool, bool) {
-	res, ok := fpv.value.(bool)
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsFlagsValue() ([]string, bool) {
+	res, ok := fpv.value.([]string)
 	return res, ok
 }
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) AsReverseValue() (bool, bool) {
-	res, ok := fpv.value.(bool)
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsQueriesValue() ([]*common.DNSQuery, bool) {
+	res, ok := fpv.value.([]*common.DNSQuery)
+	return res, ok
+}
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsAnswersValue() ([]*common.DNSResourceRecord, bool) {
+	res, ok := fpv.value.([]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsNsValue() ([]*common.DNSResourceRecord, bool) {
+	res, ok := fpv.value.([]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsExtrasValue() ([]*common.DNSResourceRecord, bool) {
+	res, ok := fpv.value.([]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) AsRttValue() (*duration.Duration, bool) {
+	res, ok := fpv.value.(*duration.Duration)
 	return res, ok
 }
 
-// SetTo stores value for selected field for object RunDNSQueryTestRequestToProbe
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) SetTo(target **RunDNSQueryTestRequestToProbe) {
+// SetTo stores value for selected field for object JsonResponse
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) SetTo(target **RunDNSQueryTestResponse_JsonResponse) {
 	if *target == nil {
-		*target = new(RunDNSQueryTestRequestToProbe)
+		*target = new(RunDNSQueryTestResponse_JsonResponse)
 	}
 	switch fpv.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		(*target).Query = fpv.value.(*common.DNSQuery)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		(*target).Server = fpv.value.(string)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-		(*target).Port = fpv.value.(uint32)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		(*target).Tcp = fpv.value.(bool)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		(*target).NoRecursionDesired = fpv.value.(bool)
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		(*target).Reverse = fpv.value.(bool)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
+		(*target).Id = fpv.value.(uint32)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		(*target).Rcode = fpv.value.(string)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		(*target).Flags = fpv.value.([]string)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		(*target).Queries = fpv.value.([]*common.DNSQuery)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		(*target).Answers = fpv.value.([]*common.DNSResourceRecord)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		(*target).Ns = fpv.value.([]*common.DNSResourceRecord)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		(*target).Extras = fpv.value.([]*common.DNSResourceRecord)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		(*target).Rtt = fpv.value.(*duration.Duration)
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fpv.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fpv.selector))
 	}
 }
 
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunDNSQueryTestRequestToProbe)
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunDNSQueryTestResponse_JsonResponse)
 	fpv.SetTo(&typedObject)
 }
 
-// CompareWith compares value in the 'RunDNSQueryTestRequestToProbe_FieldTerminalPathValue' with the value under path in 'RunDNSQueryTestRequestToProbe'.
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) CompareWith(source *RunDNSQueryTestRequestToProbe) (int, bool) {
+// CompareWith compares value in the 'RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue' with the value under path in 'RunDNSQueryTestResponse_JsonResponse'.
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) CompareWith(source *RunDNSQueryTestResponse_JsonResponse) (int, bool) {
 	switch fpv.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return 0, false
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetServer()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
 		leftValue := fpv.value.(uint32)
-		rightValue := source.GetPort()
+		rightValue := source.GetId()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -2431,143 +2206,196 @@ func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) CompareWith(sou
 		} else {
 			return 1, true
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		leftValue := fpv.value.(bool)
-		rightValue := source.GetTcp()
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetRcode()
 		if (leftValue) == (rightValue) {
 			return 0, true
-		} else if !(leftValue) && (rightValue) {
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		leftValue := fpv.value.(bool)
-		rightValue := source.GetNoRecursionDesired()
-		if (leftValue) == (rightValue) {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		return 0, false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return 0, false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return 0, false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return 0, false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return 0, false
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		leftValue := fpv.value.(*duration.Duration)
+		rightValue := source.GetRtt()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
 			return 0, true
-		} else if !(leftValue) && (rightValue) {
-			return -1, true
-		} else {
+		}
+		if rightValue == nil {
 			return 1, true
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		leftValue := fpv.value.(bool)
-		rightValue := source.GetReverse()
-		if (leftValue) == (rightValue) {
+		if leftValue.AsDuration() == rightValue.AsDuration() {
 			return 0, true
-		} else if !(leftValue) && (rightValue) {
+		} else if leftValue.AsDuration() < rightValue.AsDuration() {
 			return -1, true
 		} else {
 			return 1, true
 		}
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fpv.selector))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fpv.selector))
 	}
 }
 
-func (fpv *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*RunDNSQueryTestRequestToProbe))
+func (fpv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-type RunDNSQueryTestRequestToProbe_FieldSubPathValue struct {
-	RunDNSQueryTestRequestToProbe_FieldPath
+type RunDNSQueryTestResponseJsonResponse_FieldSubPathValue struct {
+	RunDNSQueryTestResponseJsonResponse_FieldPath
 	subPathValue gotenobject.FieldPathValue
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPathValue = (*RunDNSQueryTestRequestToProbe_FieldSubPathValue)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPathValue = (*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)(nil)
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) AsQueryPathValue() (common.DNSQuery_FieldPathValue, bool) {
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) AsQueriesPathValue() (common.DNSQuery_FieldPathValue, bool) {
 	res, ok := fpvs.subPathValue.(common.DNSQuery_FieldPathValue)
 	return res, ok
 }
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) AsAnswersPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
+	return res, ok
+}
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) AsNsPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
+	return res, ok
+}
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) AsExtrasPathValue() (common.DNSResourceRecord_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.DNSResourceRecord_FieldPathValue)
+	return res, ok
+}
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) SetTo(target **RunDNSQueryTestRequestToProbe) {
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) SetTo(target **RunDNSQueryTestResponse_JsonResponse) {
 	if *target == nil {
-		*target = new(RunDNSQueryTestRequestToProbe)
+		*target = new(RunDNSQueryTestResponse_JsonResponse)
 	}
 	switch fpvs.Selector() {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		fpvs.subPathValue.(common.DNSQuery_FieldPathValue).SetTo(&(*target).Query)
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		panic("FieldPath setter is unsupported for array subpaths")
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		panic("FieldPath setter is unsupported for array subpaths")
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		panic("FieldPath setter is unsupported for array subpaths")
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		panic("FieldPath setter is unsupported for array subpaths")
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fpvs.Selector()))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fpvs.Selector()))
 	}
 }
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunDNSQueryTestRequestToProbe)
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunDNSQueryTestResponse_JsonResponse)
 	fpvs.SetTo(&typedObject)
 }
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) GetRawValue() interface{} {
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) GetRawValue() interface{} {
 	return fpvs.subPathValue.GetRawValue()
 }
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) CompareWith(source *RunDNSQueryTestRequestToProbe) (int, bool) {
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) CompareWith(source *RunDNSQueryTestResponse_JsonResponse) (int, bool) {
 	switch fpvs.Selector() {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return fpvs.subPathValue.(common.DNSQuery_FieldPathValue).CompareWith(source.GetQuery())
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return 0, false // repeated field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return 0, false // repeated field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return 0, false // repeated field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return 0, false // repeated field
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fpvs.Selector()))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fpvs.Selector()))
 	}
 }
 
-func (fpvs *RunDNSQueryTestRequestToProbe_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpvs.CompareWith(source.(*RunDNSQueryTestRequestToProbe))
+func (fpvs *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-// RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue allows storing single item in Path-specific values for RunDNSQueryTestRequestToProbe according to their type
+// RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue allows storing single item in Path-specific values for JsonResponse according to their type
 // Present only for array (repeated) types.
-type RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue interface {
+type RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue interface {
 	gotenobject.FieldPathArrayItemValue
-	RunDNSQueryTestRequestToProbe_FieldPath
-	ContainsValue(*RunDNSQueryTestRequestToProbe) bool
+	RunDNSQueryTestResponseJsonResponse_FieldPath
+	ContainsValue(*RunDNSQueryTestResponse_JsonResponse) bool
 }
 
-// ParseRunDNSQueryTestRequestToProbe_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseRunDNSQueryTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr string) (RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue, error) {
-	fp, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(pathStr)
+// ParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) (RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue, error) {
+	fp, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
 	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
 	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunDNSQueryTestRequestToProbe field path array item value from %s: %v", valueStr, err)
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array item value from %s: %v", valueStr, err)
 	}
-	return fpaiv.(RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue), nil
+	return fpaiv.(RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue), nil
 }
 
-func MustParseRunDNSQueryTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr string) RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue {
-	fpaiv, err := ParseRunDNSQueryTestRequestToProbe_FieldPathArrayItemValue(pathStr, valueStr)
+func MustParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue {
+	fpaiv, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpaiv
 }
 
-type RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue struct {
-	RunDNSQueryTestRequestToProbe_FieldTerminalPath
+type RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue struct {
+	RunDNSQueryTestResponseJsonResponse_FieldTerminalPath
 	value interface{}
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPathArrayItemValue = (*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue = (*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)(nil)
 
-// GetRawValue returns stored element value for array in object RunDNSQueryTestRequestToProbe as interface{}
-func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+// GetRawValue returns stored element value for array in object RunDNSQueryTestResponse_JsonResponse as interface{}
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
 }
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) AsFlagsItemValue() (string, bool) {
+	res, ok := fpaiv.value.(string)
+	return res, ok
+}
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) AsQueriesItemValue() (*common.DNSQuery, bool) {
+	res, ok := fpaiv.value.(*common.DNSQuery)
+	return res, ok
+}
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) AsAnswersItemValue() (*common.DNSResourceRecord, bool) {
+	res, ok := fpaiv.value.(*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) AsNsItemValue() (*common.DNSResourceRecord, bool) {
+	res, ok := fpaiv.value.(*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) AsExtrasItemValue() (*common.DNSResourceRecord, bool) {
+	res, ok := fpaiv.value.(*common.DNSResourceRecord)
+	return res, ok
+}
 
-func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSingle(source *RunDNSQueryTestRequestToProbe) (interface{}, bool) {
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingle(source *RunDNSQueryTestResponse_JsonResponse) (interface{}, bool) {
 	return nil, false
 }
 
-func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*RunDNSQueryTestRequestToProbe))
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-// Contains returns a boolean indicating if value that is being held is present in given 'RunDNSQueryTestRequestToProbe'
-func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) ContainsValue(source *RunDNSQueryTestRequestToProbe) bool {
-	slice := fpaiv.RunDNSQueryTestRequestToProbe_FieldTerminalPath.Get(source)
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaiv *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunDNSQueryTestResponse_JsonResponse) bool {
+	slice := fpaiv.RunDNSQueryTestResponseJsonResponse_FieldTerminalPath.Get(source)
 	for _, v := range slice {
 		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
 			if proto.Equal(asProtoMsg, v.(proto.Message)) {
@@ -2580,128 +2408,174 @@ func (fpaiv *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayItemValue) Cont
 	return false
 }
 
-type RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue struct {
-	RunDNSQueryTestRequestToProbe_FieldPath
+type RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue struct {
+	RunDNSQueryTestResponseJsonResponse_FieldPath
 	subPathItemValue gotenobject.FieldPathArrayItemValue
 }
 
 // GetRawValue returns stored array item value
-func (fpaivs *RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaivs.subPathItemValue.GetRawItemValue()
 }
-func (fpaivs *RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue) AsQueryPathItemValue() (common.DNSQuery_FieldPathArrayItemValue, bool) {
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) AsQueriesPathItemValue() (common.DNSQuery_FieldPathArrayItemValue, bool) {
 	res, ok := fpaivs.subPathItemValue.(common.DNSQuery_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) AsAnswersPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) AsNsPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
+	return res, ok
+}
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) AsExtrasPathItemValue() (common.DNSResourceRecord_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.DNSResourceRecord_FieldPathArrayItemValue)
+	return res, ok
+}
 
-// Contains returns a boolean indicating if value that is being held is present in given 'RunDNSQueryTestRequestToProbe'
-func (fpaivs *RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue) ContainsValue(source *RunDNSQueryTestRequestToProbe) bool {
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaivs *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunDNSQueryTestResponse_JsonResponse) bool {
 	switch fpaivs.Selector() {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		return fpaivs.subPathItemValue.(common.DNSQuery_FieldPathArrayItemValue).ContainsValue(source.GetQuery())
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		return false // repeated/map field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		return false // repeated/map field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		return false // repeated/map field
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		return false // repeated/map field
 	default:
-		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestRequestToProbe: %d", fpaivs.Selector()))
+		panic(fmt.Sprintf("Invalid selector for RunDNSQueryTestResponse_JsonResponse: %d", fpaivs.Selector()))
 	}
 }
 
-// RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues allows storing slice of values for RunDNSQueryTestRequestToProbe fields according to their type
-type RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues interface {
+// RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues allows storing slice of values for JsonResponse fields according to their type
+type RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues interface {
 	gotenobject.FieldPathArrayOfValues
-	RunDNSQueryTestRequestToProbe_FieldPath
+	RunDNSQueryTestResponseJsonResponse_FieldPath
 }
 
-func ParseRunDNSQueryTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr string) (RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues, error) {
-	fp, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(pathStr)
+func ParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) (RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues, error) {
+	fp, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(pathStr)
 	if err != nil {
 		return nil, err
 	}
 	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
 	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing RunDNSQueryTestRequestToProbe field path array of values from %s: %v", valuesStr, err)
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array of values from %s: %v", valuesStr, err)
 	}
-	return fpaov.(RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues), nil
+	return fpaov.(RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues), nil
 }
 
-func MustParseRunDNSQueryTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr string) RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues {
-	fpaov, err := ParseRunDNSQueryTestRequestToProbe_FieldPathArrayOfValues(pathStr, valuesStr)
+func MustParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr)
 	if err != nil {
 		panic(err)
 	}
 	return fpaov
 }
 
-type RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues struct {
-	RunDNSQueryTestRequestToProbe_FieldTerminalPath
+type RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues struct {
+	RunDNSQueryTestResponseJsonResponse_FieldTerminalPath
 	values interface{}
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues = (*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues = (*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)(nil)
 
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-		for _, v := range fpaov.values.([]*common.DNSQuery) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
 		for _, v := range fpaov.values.([]uint32) {
 			values = append(values, v)
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-		for _, v := range fpaov.values.([]bool) {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
+		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-		for _, v := range fpaov.values.([]bool) {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
+		for _, v := range fpaov.values.([][]string) {
 			values = append(values, v)
 		}
-	case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-		for _, v := range fpaov.values.([]bool) {
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+		for _, v := range fpaov.values.([][]*common.DNSQuery) {
+			values = append(values, v)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
+			values = append(values, v)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
+			values = append(values, v)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+		for _, v := range fpaov.values.([][]*common.DNSResourceRecord) {
+			values = append(values, v)
+		}
+	case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
+		for _, v := range fpaov.values.([]*duration.Duration) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsQueryArrayOfValues() ([]*common.DNSQuery, bool) {
-	res, ok := fpaov.values.([]*common.DNSQuery)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsServerArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsPortArrayOfValues() ([]uint32, bool) {
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsIdArrayOfValues() ([]uint32, bool) {
 	res, ok := fpaov.values.([]uint32)
 	return res, ok
 }
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsTcpArrayOfValues() ([]bool, bool) {
-	res, ok := fpaov.values.([]bool)
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsRcodeArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsNoRecursionDesiredArrayOfValues() ([]bool, bool) {
-	res, ok := fpaov.values.([]bool)
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsFlagsArrayOfValues() ([][]string, bool) {
+	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
-func (fpaov *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues) AsReverseArrayOfValues() ([]bool, bool) {
-	res, ok := fpaov.values.([]bool)
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsQueriesArrayOfValues() ([][]*common.DNSQuery, bool) {
+	res, ok := fpaov.values.([][]*common.DNSQuery)
+	return res, ok
+}
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsAnswersArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
+	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsNsArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
+	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsExtrasArrayOfValues() ([][]*common.DNSResourceRecord, bool) {
+	res, ok := fpaov.values.([][]*common.DNSResourceRecord)
+	return res, ok
+}
+func (fpaov *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues) AsRttArrayOfValues() ([]*duration.Duration, bool) {
+	res, ok := fpaov.values.([]*duration.Duration)
 	return res, ok
 }
 
-type RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues struct {
-	RunDNSQueryTestRequestToProbe_FieldPath
+type RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues struct {
+	RunDNSQueryTestResponseJsonResponse_FieldPath
 	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
 }
 
-var _ RunDNSQueryTestRequestToProbe_FieldPathArrayOfValues = (*RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues)(nil)
+var _ RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues = (*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)(nil)
 
-func (fpsaov *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+func (fpsaov *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
 	return fpsaov.subPathArrayOfValues.GetRawValues()
 }
-func (fpsaov *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues) AsQueryPathArrayOfValues() (common.DNSQuery_FieldPathArrayOfValues, bool) {
+func (fpsaov *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues) AsQueriesPathArrayOfValues() (common.DNSQuery_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.DNSQuery_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues) AsAnswersPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues) AsNsPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues) AsExtrasPathArrayOfValues() (common.DNSResourceRecord_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.DNSResourceRecord_FieldPathArrayOfValues)
 	return res, ok
 }

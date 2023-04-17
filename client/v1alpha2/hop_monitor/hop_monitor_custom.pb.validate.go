@@ -69,10 +69,24 @@ func (obj *RunHopMonitorResponse) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
+	if subobj, ok := interface{}(obj.JsonResponse).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("RunHopMonitorResponse", "jsonResponse", obj.JsonResponse, "nested object validation failed", err)
+		}
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *RunHopMonitorResponse_JsonResponse) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
 	for idx, elem := range obj.Paths {
 		if subobj, ok := interface{}(elem).(gotenvalidate.Validator); ok {
 			if err := subobj.GotenValidate(); err != nil {
-				return gotenvalidate.NewValidationError("RunHopMonitorResponse", "paths", obj.Paths[idx], "nested object validation failed", err)
+				return gotenvalidate.NewValidationError("JsonResponse", "paths", obj.Paths[idx], "nested object validation failed", err)
 			}
 		}
 	}

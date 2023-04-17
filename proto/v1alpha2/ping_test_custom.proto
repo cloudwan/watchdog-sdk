@@ -3,6 +3,7 @@ syntax = "proto3";
 package ntt.watchdog.v1alpha2;
 
 import "google/protobuf/duration.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
 
@@ -65,64 +66,52 @@ message RunPingTestRequest {
   // TOS in IPv4 or traffic class in IPv6
   // If unspecified, skip manipulating packet
   int32 tos = 10;
+
+  OnDemandTestResponseFormat output_format = 11;
 }
 
 // Response message for method [RunPingTest][ntt.watchdog.v1alpha2.RunPingTest]
 message RunPingTestResponse {
-  // IP address
-  string from = 1;
+  JsonResponse json_response = 1;
 
-  // Byte size of the ICMP payload
-  int32 size_bytes = 2;
+  string text_response = 2;
 
-  // Sequence number field
-  int32 sequence_number = 3;
+  message JsonResponse {
+    // IP address
+    string from = 1;
 
-  int32 ttl = 4;
+    // Byte size of the ICMP payload
+    int32 size_bytes = 2;
 
-  google.protobuf.Duration rtt = 5;
+    // Sequence number field
+    int32 sequence_number = 3;
 
-  // Error message
-  string error = 6;
+    int32 ttl = 4;
 
-  SummaryStats summary = 7;
+    google.protobuf.Duration rtt = 5;
 
-  // Summary statistics accompanies each response
-  // It summarizes the results at that time
-  message SummaryStats {
-    google.protobuf.Duration min_rtt = 1;
+    // Error message
+    string error = 6;
 
-    google.protobuf.Duration avg_rtt = 2;
+    SummaryStats summary = 7;
 
-    google.protobuf.Duration max_rtt = 3;
+    // Summary statistics accompanies each response
+    // It summarizes the results at that time
+    message SummaryStats {
+      google.protobuf.Duration min_rtt = 1;
 
-    google.protobuf.Duration stddev_rtt = 4;
+      google.protobuf.Duration avg_rtt = 2;
 
-    int32 transmitted_counter = 5;
+      google.protobuf.Duration max_rtt = 3;
 
-    int32 received_counter = 6;
+      google.protobuf.Duration stddev_rtt = 4;
 
-    // Percent
-    double loss_ratio = 7;
+      int32 transmitted_counter = 5;
+
+      int32 received_counter = 6;
+
+      // Percent
+      double loss_ratio = 7;
+    }
   }
-}
-
-message RunPingTestRequestToProbe {
-  string source = 1;
-
-  string destination = 2;
-
-  int32 size_bytes = 3;
-
-  int32 count = 4;
-
-  google.protobuf.Duration interval = 5;
-
-  google.protobuf.Duration echo_timeout = 6;
-
-  bool dont_fragment = 7;
-
-  int32 ttl = 8;
-
-  int32 tos = 9;
 }

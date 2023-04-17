@@ -627,6 +627,52 @@ func (TraceType) EnumDescriptor() ([]byte, []int) {
 	return watchdog_proto_v1alpha2_common_proto_rawDescGZIP(), []int{9}
 }
 
+type OnDemandTestResponseFormat int32
+
+const (
+	OnDemandTestResponseFormat_TEXT OnDemandTestResponseFormat = 0
+	OnDemandTestResponseFormat_JSON OnDemandTestResponseFormat = 1
+)
+
+var (
+	OnDemandTestResponseFormat_name = map[int32]string{
+		0: "TEXT",
+		1: "JSON",
+	}
+
+	OnDemandTestResponseFormat_value = map[string]int32{
+		"TEXT": 0,
+		"JSON": 1,
+	}
+)
+
+func (x OnDemandTestResponseFormat) Enum() *OnDemandTestResponseFormat {
+	p := new(OnDemandTestResponseFormat)
+	*p = x
+	return p
+}
+
+func (x OnDemandTestResponseFormat) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), preflect.EnumNumber(x))
+}
+
+func (OnDemandTestResponseFormat) Descriptor() preflect.EnumDescriptor {
+	return watchdog_proto_v1alpha2_common_proto_enumTypes[10].Descriptor()
+}
+
+func (OnDemandTestResponseFormat) Type() preflect.EnumType {
+	return &watchdog_proto_v1alpha2_common_proto_enumTypes[10]
+}
+
+func (x OnDemandTestResponseFormat) Number() preflect.EnumNumber {
+	return preflect.EnumNumber(x)
+}
+
+// Deprecated, Use OnDemandTestResponseFormat.ProtoReflect.Descriptor instead.
+func (OnDemandTestResponseFormat) EnumDescriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_common_proto_rawDescGZIP(), []int{10}
+}
+
 type ContactInformation_PhoneType int32
 
 const (
@@ -663,11 +709,11 @@ func (x ContactInformation_PhoneType) String() string {
 }
 
 func (ContactInformation_PhoneType) Descriptor() preflect.EnumDescriptor {
-	return watchdog_proto_v1alpha2_common_proto_enumTypes[10].Descriptor()
+	return watchdog_proto_v1alpha2_common_proto_enumTypes[11].Descriptor()
 }
 
 func (ContactInformation_PhoneType) Type() preflect.EnumType {
-	return &watchdog_proto_v1alpha2_common_proto_enumTypes[10]
+	return &watchdog_proto_v1alpha2_common_proto_enumTypes[11]
 }
 
 func (x ContactInformation_PhoneType) Number() preflect.EnumNumber {
@@ -715,11 +761,11 @@ func (x LocationDiscoverySpec_Type) String() string {
 }
 
 func (LocationDiscoverySpec_Type) Descriptor() preflect.EnumDescriptor {
-	return watchdog_proto_v1alpha2_common_proto_enumTypes[11].Descriptor()
+	return watchdog_proto_v1alpha2_common_proto_enumTypes[12].Descriptor()
 }
 
 func (LocationDiscoverySpec_Type) Type() preflect.EnumType {
-	return &watchdog_proto_v1alpha2_common_proto_enumTypes[11]
+	return &watchdog_proto_v1alpha2_common_proto_enumTypes[12]
 }
 
 func (x LocationDiscoverySpec_Type) Number() preflect.EnumNumber {
@@ -761,11 +807,11 @@ func (x SpeedTestSettings_ServerSelection) String() string {
 }
 
 func (SpeedTestSettings_ServerSelection) Descriptor() preflect.EnumDescriptor {
-	return watchdog_proto_v1alpha2_common_proto_enumTypes[12].Descriptor()
+	return watchdog_proto_v1alpha2_common_proto_enumTypes[13].Descriptor()
 }
 
 func (SpeedTestSettings_ServerSelection) Type() preflect.EnumType {
-	return &watchdog_proto_v1alpha2_common_proto_enumTypes[12]
+	return &watchdog_proto_v1alpha2_common_proto_enumTypes[13]
 }
 
 func (x SpeedTestSettings_ServerSelection) Number() preflect.EnumNumber {
@@ -4377,14 +4423,17 @@ var watchdog_proto_v1alpha2_common_proto_rawDesc = []byte{
 	0x72, 0x61, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x12, 0x0a, 0x0e, 0x55, 0x4e, 0x44, 0x45,
 	0x46, 0x49, 0x4e, 0x45, 0x44, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06,
 	0x49, 0x4e, 0x42, 0x41, 0x4e, 0x44, 0x10, 0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x4f, 0x55, 0x54, 0x5f,
-	0x4f, 0x46, 0x5f, 0x42, 0x41, 0x4e, 0x44, 0x10, 0x02, 0x42, 0x63, 0xe8, 0xde, 0x21, 0x01, 0x0a,
-	0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f,
-	0x67, 0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x50, 0x01, 0x5a,
-	0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f, 0x72, 0x65,
-	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32,
-	0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4f, 0x46, 0x5f, 0x42, 0x41, 0x4e, 0x44, 0x10, 0x02, 0x2a, 0x30, 0x0a, 0x1a, 0x4f, 0x6e, 0x44,
+	0x65, 0x6d, 0x61, 0x6e, 0x64, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x08, 0x0a, 0x04, 0x54, 0x45, 0x58, 0x54, 0x10,
+	0x00, 0x12, 0x08, 0x0a, 0x04, 0x4a, 0x53, 0x4f, 0x4e, 0x10, 0x01, 0x42, 0x63, 0xe8, 0xde, 0x21,
+	0x01, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68,
+	0x64, 0x6f, 0x67, 0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x50,
+	0x01, 0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f,
+	0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68,
+	0x61, 0x32, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4399,7 +4448,7 @@ func watchdog_proto_v1alpha2_common_proto_rawDescGZIP() []byte {
 	return watchdog_proto_v1alpha2_common_proto_rawDescData
 }
 
-var watchdog_proto_v1alpha2_common_proto_enumTypes = make([]protoimpl.EnumInfo, 13)
+var watchdog_proto_v1alpha2_common_proto_enumTypes = make([]protoimpl.EnumInfo, 14)
 var watchdog_proto_v1alpha2_common_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var watchdog_proto_v1alpha2_common_proto_goTypes = []interface{}{
 	(IpVersion)(0),                                    // 0: ntt.watchdog.v1alpha2.IpVersion
@@ -4412,84 +4461,85 @@ var watchdog_proto_v1alpha2_common_proto_goTypes = []interface{}{
 	(DNSResourceRecordType)(0),                        // 7: ntt.watchdog.v1alpha2.DNSResourceRecordType
 	(TraceReason)(0),                                  // 8: ntt.watchdog.v1alpha2.TraceReason
 	(TraceType)(0),                                    // 9: ntt.watchdog.v1alpha2.TraceType
-	(ContactInformation_PhoneType)(0),                 // 10: ntt.watchdog.v1alpha2.ContactInformation_PhoneType
-	(LocationDiscoverySpec_Type)(0),                   // 11: ntt.watchdog.v1alpha2.LocationDiscoverySpec_Type
-	(SpeedTestSettings_ServerSelection)(0),            // 12: ntt.watchdog.v1alpha2.SpeedTestSettings_ServerSelection
-	(*SoftwareVersion)(nil),                           // 13: ntt.watchdog.v1alpha2.SoftwareVersion
-	(*ContactInformation)(nil),                        // 14: ntt.watchdog.v1alpha2.ContactInformation
-	(*Address)(nil),                                   // 15: ntt.watchdog.v1alpha2.Address
-	(*Location)(nil),                                  // 16: ntt.watchdog.v1alpha2.Location
-	(*ASInfo)(nil),                                    // 17: ntt.watchdog.v1alpha2.ASInfo
-	(*Carrier)(nil),                                   // 18: ntt.watchdog.v1alpha2.Carrier
-	(*LocationDiscoverySpec)(nil),                     // 19: ntt.watchdog.v1alpha2.LocationDiscoverySpec
-	(*ProbingConstraint)(nil),                         // 20: ntt.watchdog.v1alpha2.ProbingConstraint
-	(*PathProbe)(nil),                                 // 21: ntt.watchdog.v1alpha2.PathProbe
-	(*ProbingSettings)(nil),                           // 22: ntt.watchdog.v1alpha2.ProbingSettings
-	(*ProxyConfiguration)(nil),                        // 23: ntt.watchdog.v1alpha2.ProxyConfiguration
-	(*WLAN)(nil),                                      // 24: ntt.watchdog.v1alpha2.WLAN
-	(*SpeedTestSettings)(nil),                         // 25: ntt.watchdog.v1alpha2.SpeedTestSettings
-	(*HTTPProbingConfig)(nil),                         // 26: ntt.watchdog.v1alpha2.HTTPProbingConfig
-	(*DNSQuery)(nil),                                  // 27: ntt.watchdog.v1alpha2.DNSQuery
-	(*DNSResourceRecord)(nil),                         // 28: ntt.watchdog.v1alpha2.DNSResourceRecord
-	(*HopInfo)(nil),                                   // 29: ntt.watchdog.v1alpha2.HopInfo
-	(*HopStat)(nil),                                   // 30: ntt.watchdog.v1alpha2.HopStat
-	(*DurationStatsMilliSeconds)(nil),                 // 31: ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
-	(*LossStats)(nil),                                 // 32: ntt.watchdog.v1alpha2.LossStats
-	(*Path)(nil),                                      // 33: ntt.watchdog.v1alpha2.Path
-	(*TimeInterval)(nil),                              // 34: ntt.watchdog.v1alpha2.TimeInterval
-	(*ContactInformation_PhoneNumber)(nil),            // 35: ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber
-	(*ProbingConstraint_AdminHierachy)(nil),           // 36: ntt.watchdog.v1alpha2.ProbingConstraint.AdminHierachy
-	(*HTTPProbingConfig_HTTPRequest)(nil),             // 37: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
-	(*HTTPProbingConfig_HTTPAuth)(nil),                // 38: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth
-	nil,                                               // 39: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.RequestHeadersEntry
-	(*HTTPProbingConfig_HTTPRequest_StringArray)(nil), // 40: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.StringArray
-	nil,                               // 41: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry
-	(*admin_area.AdminHierarchy)(nil), // 42: ntt.watchdog.v1alpha2.AdminHierarchy
-	(*latlng.LatLng)(nil),             // 43: google.type.LatLng
-	(*duration.Duration)(nil),         // 44: google.protobuf.Duration
-	(*wrappers.UInt32Value)(nil),      // 45: google.protobuf.UInt32Value
-	(*timestamp.Timestamp)(nil),       // 46: google.protobuf.Timestamp
+	(OnDemandTestResponseFormat)(0),                   // 10: ntt.watchdog.v1alpha2.OnDemandTestResponseFormat
+	(ContactInformation_PhoneType)(0),                 // 11: ntt.watchdog.v1alpha2.ContactInformation_PhoneType
+	(LocationDiscoverySpec_Type)(0),                   // 12: ntt.watchdog.v1alpha2.LocationDiscoverySpec_Type
+	(SpeedTestSettings_ServerSelection)(0),            // 13: ntt.watchdog.v1alpha2.SpeedTestSettings_ServerSelection
+	(*SoftwareVersion)(nil),                           // 14: ntt.watchdog.v1alpha2.SoftwareVersion
+	(*ContactInformation)(nil),                        // 15: ntt.watchdog.v1alpha2.ContactInformation
+	(*Address)(nil),                                   // 16: ntt.watchdog.v1alpha2.Address
+	(*Location)(nil),                                  // 17: ntt.watchdog.v1alpha2.Location
+	(*ASInfo)(nil),                                    // 18: ntt.watchdog.v1alpha2.ASInfo
+	(*Carrier)(nil),                                   // 19: ntt.watchdog.v1alpha2.Carrier
+	(*LocationDiscoverySpec)(nil),                     // 20: ntt.watchdog.v1alpha2.LocationDiscoverySpec
+	(*ProbingConstraint)(nil),                         // 21: ntt.watchdog.v1alpha2.ProbingConstraint
+	(*PathProbe)(nil),                                 // 22: ntt.watchdog.v1alpha2.PathProbe
+	(*ProbingSettings)(nil),                           // 23: ntt.watchdog.v1alpha2.ProbingSettings
+	(*ProxyConfiguration)(nil),                        // 24: ntt.watchdog.v1alpha2.ProxyConfiguration
+	(*WLAN)(nil),                                      // 25: ntt.watchdog.v1alpha2.WLAN
+	(*SpeedTestSettings)(nil),                         // 26: ntt.watchdog.v1alpha2.SpeedTestSettings
+	(*HTTPProbingConfig)(nil),                         // 27: ntt.watchdog.v1alpha2.HTTPProbingConfig
+	(*DNSQuery)(nil),                                  // 28: ntt.watchdog.v1alpha2.DNSQuery
+	(*DNSResourceRecord)(nil),                         // 29: ntt.watchdog.v1alpha2.DNSResourceRecord
+	(*HopInfo)(nil),                                   // 30: ntt.watchdog.v1alpha2.HopInfo
+	(*HopStat)(nil),                                   // 31: ntt.watchdog.v1alpha2.HopStat
+	(*DurationStatsMilliSeconds)(nil),                 // 32: ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
+	(*LossStats)(nil),                                 // 33: ntt.watchdog.v1alpha2.LossStats
+	(*Path)(nil),                                      // 34: ntt.watchdog.v1alpha2.Path
+	(*TimeInterval)(nil),                              // 35: ntt.watchdog.v1alpha2.TimeInterval
+	(*ContactInformation_PhoneNumber)(nil),            // 36: ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber
+	(*ProbingConstraint_AdminHierachy)(nil),           // 37: ntt.watchdog.v1alpha2.ProbingConstraint.AdminHierachy
+	(*HTTPProbingConfig_HTTPRequest)(nil),             // 38: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
+	(*HTTPProbingConfig_HTTPAuth)(nil),                // 39: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth
+	nil,                                               // 40: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.RequestHeadersEntry
+	(*HTTPProbingConfig_HTTPRequest_StringArray)(nil), // 41: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.StringArray
+	nil,                               // 42: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry
+	(*admin_area.AdminHierarchy)(nil), // 43: ntt.watchdog.v1alpha2.AdminHierarchy
+	(*latlng.LatLng)(nil),             // 44: google.type.LatLng
+	(*duration.Duration)(nil),         // 45: google.protobuf.Duration
+	(*wrappers.UInt32Value)(nil),      // 46: google.protobuf.UInt32Value
+	(*timestamp.Timestamp)(nil),       // 47: google.protobuf.Timestamp
 }
 var watchdog_proto_v1alpha2_common_proto_depIdxs = []int32{
-	35, // 0: ntt.watchdog.v1alpha2.ContactInformation.phones:type_name -> ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber
-	15, // 1: ntt.watchdog.v1alpha2.Location.address:type_name -> ntt.watchdog.v1alpha2.Address
-	42, // 2: ntt.watchdog.v1alpha2.Location.admin_hierarchy:type_name -> ntt.watchdog.v1alpha2.AdminHierarchy
-	43, // 3: ntt.watchdog.v1alpha2.Location.coordinates:type_name -> google.type.LatLng
-	11, // 4: ntt.watchdog.v1alpha2.LocationDiscoverySpec.type:type_name -> ntt.watchdog.v1alpha2.LocationDiscoverySpec_Type
-	36, // 5: ntt.watchdog.v1alpha2.ProbingConstraint.max_sessions_per_agent_location:type_name -> ntt.watchdog.v1alpha2.ProbingConstraint.AdminHierachy
+	36, // 0: ntt.watchdog.v1alpha2.ContactInformation.phones:type_name -> ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber
+	16, // 1: ntt.watchdog.v1alpha2.Location.address:type_name -> ntt.watchdog.v1alpha2.Address
+	43, // 2: ntt.watchdog.v1alpha2.Location.admin_hierarchy:type_name -> ntt.watchdog.v1alpha2.AdminHierarchy
+	44, // 3: ntt.watchdog.v1alpha2.Location.coordinates:type_name -> google.type.LatLng
+	12, // 4: ntt.watchdog.v1alpha2.LocationDiscoverySpec.type:type_name -> ntt.watchdog.v1alpha2.LocationDiscoverySpec_Type
+	37, // 5: ntt.watchdog.v1alpha2.ProbingConstraint.max_sessions_per_agent_location:type_name -> ntt.watchdog.v1alpha2.ProbingConstraint.AdminHierachy
 	1,  // 6: ntt.watchdog.v1alpha2.PathProbe.mode:type_name -> ntt.watchdog.v1alpha2.ProbingMode
-	44, // 7: ntt.watchdog.v1alpha2.PathProbe.interval:type_name -> google.protobuf.Duration
-	45, // 8: ntt.watchdog.v1alpha2.PathProbe.attempts:type_name -> google.protobuf.UInt32Value
-	45, // 9: ntt.watchdog.v1alpha2.PathProbe.max_ttl:type_name -> google.protobuf.UInt32Value
-	44, // 10: ntt.watchdog.v1alpha2.ProbingSettings.interval:type_name -> google.protobuf.Duration
-	45, // 11: ntt.watchdog.v1alpha2.ProbingSettings.tos:type_name -> google.protobuf.UInt32Value
-	45, // 12: ntt.watchdog.v1alpha2.ProbingSettings.window_size:type_name -> google.protobuf.UInt32Value
-	21, // 13: ntt.watchdog.v1alpha2.ProbingSettings.path_probing:type_name -> ntt.watchdog.v1alpha2.PathProbe
-	25, // 14: ntt.watchdog.v1alpha2.ProbingSettings.speedtest_settings:type_name -> ntt.watchdog.v1alpha2.SpeedTestSettings
-	26, // 15: ntt.watchdog.v1alpha2.ProbingSettings.http_probing_config:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig
-	23, // 16: ntt.watchdog.v1alpha2.ProbingSettings.proxy_configuration:type_name -> ntt.watchdog.v1alpha2.ProxyConfiguration
+	45, // 7: ntt.watchdog.v1alpha2.PathProbe.interval:type_name -> google.protobuf.Duration
+	46, // 8: ntt.watchdog.v1alpha2.PathProbe.attempts:type_name -> google.protobuf.UInt32Value
+	46, // 9: ntt.watchdog.v1alpha2.PathProbe.max_ttl:type_name -> google.protobuf.UInt32Value
+	45, // 10: ntt.watchdog.v1alpha2.ProbingSettings.interval:type_name -> google.protobuf.Duration
+	46, // 11: ntt.watchdog.v1alpha2.ProbingSettings.tos:type_name -> google.protobuf.UInt32Value
+	46, // 12: ntt.watchdog.v1alpha2.ProbingSettings.window_size:type_name -> google.protobuf.UInt32Value
+	22, // 13: ntt.watchdog.v1alpha2.ProbingSettings.path_probing:type_name -> ntt.watchdog.v1alpha2.PathProbe
+	26, // 14: ntt.watchdog.v1alpha2.ProbingSettings.speedtest_settings:type_name -> ntt.watchdog.v1alpha2.SpeedTestSettings
+	27, // 15: ntt.watchdog.v1alpha2.ProbingSettings.http_probing_config:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig
+	24, // 16: ntt.watchdog.v1alpha2.ProbingSettings.proxy_configuration:type_name -> ntt.watchdog.v1alpha2.ProxyConfiguration
 	2,  // 17: ntt.watchdog.v1alpha2.ProxyConfiguration.proxy_setting:type_name -> ntt.watchdog.v1alpha2.ProxySetting
-	44, // 18: ntt.watchdog.v1alpha2.SpeedTestSettings.duration:type_name -> google.protobuf.Duration
-	12, // 19: ntt.watchdog.v1alpha2.SpeedTestSettings.server_selection:type_name -> ntt.watchdog.v1alpha2.SpeedTestSettings_ServerSelection
-	37, // 20: ntt.watchdog.v1alpha2.HTTPProbingConfig.http_request:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
-	38, // 21: ntt.watchdog.v1alpha2.HTTPProbingConfig.auth_config:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth
+	45, // 18: ntt.watchdog.v1alpha2.SpeedTestSettings.duration:type_name -> google.protobuf.Duration
+	13, // 19: ntt.watchdog.v1alpha2.SpeedTestSettings.server_selection:type_name -> ntt.watchdog.v1alpha2.SpeedTestSettings_ServerSelection
+	38, // 20: ntt.watchdog.v1alpha2.HTTPProbingConfig.http_request:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
+	39, // 21: ntt.watchdog.v1alpha2.HTTPProbingConfig.auth_config:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth
 	7,  // 22: ntt.watchdog.v1alpha2.DNSQuery.qtype:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecordType
 	6,  // 23: ntt.watchdog.v1alpha2.DNSQuery.qclass:type_name -> ntt.watchdog.v1alpha2.DNSClass
 	7,  // 24: ntt.watchdog.v1alpha2.DNSResourceRecord.rrtype:type_name -> ntt.watchdog.v1alpha2.DNSResourceRecordType
 	6,  // 25: ntt.watchdog.v1alpha2.DNSResourceRecord.class:type_name -> ntt.watchdog.v1alpha2.DNSClass
-	31, // 26: ntt.watchdog.v1alpha2.HopStat.ttl_exceeded_latency:type_name -> ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
-	31, // 27: ntt.watchdog.v1alpha2.HopStat.icmp_latency:type_name -> ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
-	32, // 28: ntt.watchdog.v1alpha2.HopStat.loss:type_name -> ntt.watchdog.v1alpha2.LossStats
-	46, // 29: ntt.watchdog.v1alpha2.TimeInterval.end_time:type_name -> google.protobuf.Timestamp
-	46, // 30: ntt.watchdog.v1alpha2.TimeInterval.start_time:type_name -> google.protobuf.Timestamp
-	10, // 31: ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber.type:type_name -> ntt.watchdog.v1alpha2.ContactInformation_PhoneType
-	39, // 32: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.request_headers:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.RequestHeadersEntry
+	32, // 26: ntt.watchdog.v1alpha2.HopStat.ttl_exceeded_latency:type_name -> ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
+	32, // 27: ntt.watchdog.v1alpha2.HopStat.icmp_latency:type_name -> ntt.watchdog.v1alpha2.DurationStatsMilliSeconds
+	33, // 28: ntt.watchdog.v1alpha2.HopStat.loss:type_name -> ntt.watchdog.v1alpha2.LossStats
+	47, // 29: ntt.watchdog.v1alpha2.TimeInterval.end_time:type_name -> google.protobuf.Timestamp
+	47, // 30: ntt.watchdog.v1alpha2.TimeInterval.start_time:type_name -> google.protobuf.Timestamp
+	11, // 31: ntt.watchdog.v1alpha2.ContactInformation.PhoneNumber.type:type_name -> ntt.watchdog.v1alpha2.ContactInformation_PhoneType
+	40, // 32: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.request_headers:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.RequestHeadersEntry
 	4,  // 33: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.request_method:type_name -> ntt.watchdog.v1alpha2.HTTPRequestMethod
-	44, // 34: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.timeout:type_name -> google.protobuf.Duration
+	45, // 34: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.timeout:type_name -> google.protobuf.Duration
 	5,  // 35: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.authentication_method:type_name -> ntt.watchdog.v1alpha2.AuthenticationMethod
-	41, // 36: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.url_form_encoded_body:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry
-	37, // 37: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth.token_request:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
-	40, // 38: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry.value:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.StringArray
+	42, // 36: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.url_form_encoded_body:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry
+	38, // 37: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPAuth.token_request:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest
+	41, // 38: ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.UrlFormEncodedBodyEntry.value:type_name -> ntt.watchdog.v1alpha2.HTTPProbingConfig.HTTPRequest.StringArray
 	39, // [39:39] is the sub-list for method output_type
 	39, // [39:39] is the sub-list for method input_type
 	39, // [39:39] is the sub-list for extension type_name
@@ -4835,7 +4885,7 @@ func watchdog_proto_v1alpha2_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: watchdog_proto_v1alpha2_common_proto_rawDesc,
-			NumEnums:      13,
+			NumEnums:      14,
 			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   0,

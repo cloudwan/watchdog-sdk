@@ -514,3 +514,9 @@ enum TraceType {
 
   OUT_OF_BAND = 2;
 }
+
+enum OnDemandTestResponseFormat {
+  TEXT = 0;
+
+  JSON = 1;
+}

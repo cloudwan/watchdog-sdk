@@ -85,7 +85,7 @@ const (
 	RunHTTPTestRequest_FieldPathSelectorUsername             RunHTTPTestRequest_FieldPathSelector = 8
 	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 9
 	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 10
-	RunHTTPTestRequest_FieldPathSelectorResponseFornat       RunHTTPTestRequest_FieldPathSelector = 11
+	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 11
 )
 
 func (s RunHTTPTestRequest_FieldPathSelector) String() string {
@@ -112,8 +112,8 @@ func (s RunHTTPTestRequest_FieldPathSelector) String() string {
 		return "password"
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		return "source_ip"
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		return "response_fornat"
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		return "output_format"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", s))
 	}
@@ -147,8 +147,8 @@ func BuildRunHTTPTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTest
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorPassword}, nil
 		case "source_ip", "sourceIp", "source-ip":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorSourceIp}, nil
-		case "response_fornat", "responseFornat", "response-fornat":
-			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorResponseFornat}, nil
+		case "output_format", "outputFormat", "output-format":
+			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -235,8 +235,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) Get(source *RunHTTPTestRequest) 
 			values = append(values, source.Password)
 		case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 			values = append(values, source.SourceIp)
-		case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-			values = append(values, source.ResponseFornat)
+		case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+			values = append(values, source.OutputFormat)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 		}
@@ -277,8 +277,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetSingle(source *RunHTTPTestReq
 		return source.GetPassword(), source != nil
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		return source.GetSourceIp(), source != nil
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		return source.GetResponseFornat(), source != nil
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		return source.GetOutputFormat(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -313,8 +313,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		return ""
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		return RunHTTPTestRequest_JSON
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		return common.OnDemandTestResponseFormat_TEXT
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -345,8 +345,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) ClearValue(item *RunHTTPTestRequ
 			item.Password = ""
 		case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 			item.SourceIp = ""
-		case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-			item.ResponseFornat = RunHTTPTestRequest_JSON
+		case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 		}
@@ -369,7 +369,7 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorUsername ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorPassword ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorSourceIp ||
-		fp.selector == RunHTTPTestRequest_FieldPathSelectorResponseFornat
+		fp.selector == RunHTTPTestRequest_FieldPathSelectorOutputFormat
 }
 
 func (fp *RunHTTPTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -400,8 +400,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(RunHTTPTestRequest_ResponseFormat)}
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -436,8 +436,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]RunHTTPTestRequest_ResponseFormat)}
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -692,8 +692,8 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsSourceIpValue() (string,
 	res, ok := fpv.value.(string)
 	return res, ok
 }
-func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsResponseFornatValue() (RunHTTPTestRequest_ResponseFormat, bool) {
-	res, ok := fpv.value.(RunHTTPTestRequest_ResponseFormat)
+func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsOutputFormatValue() (common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
 	return res, ok
 }
 
@@ -725,8 +725,8 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) SetTo(target **RunHTTPTest
 		(*target).Password = fpv.value.(string)
 	case RunHTTPTestRequest_FieldPathSelectorSourceIp:
 		(*target).SourceIp = fpv.value.(string)
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		(*target).ResponseFornat = fpv.value.(RunHTTPTestRequest_ResponseFormat)
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpv.selector))
 	}
@@ -852,9 +852,9 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) CompareWith(source *RunHTT
 		} else {
 			return 1, true
 		}
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		leftValue := fpv.value.(RunHTTPTestRequest_ResponseFormat)
-		rightValue := source.GetResponseFornat()
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
+		rightValue := source.GetOutputFormat()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -1084,8 +1084,8 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
-	case RunHTTPTestRequest_FieldPathSelectorResponseFornat:
-		for _, v := range fpaov.values.([]RunHTTPTestRequest_ResponseFormat) {
+	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
+		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
 			values = append(values, v)
 		}
 	}
@@ -1135,8 +1135,8 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsSourceIpArrayO
 	res, ok := fpaov.values.([]string)
 	return res, ok
 }
-func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsResponseFornatArrayOfValues() ([]RunHTTPTestRequest_ResponseFormat, bool) {
-	res, ok := fpaov.values.([]RunHTTPTestRequest_ResponseFormat)
+func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
 	return res, ok
 }
 

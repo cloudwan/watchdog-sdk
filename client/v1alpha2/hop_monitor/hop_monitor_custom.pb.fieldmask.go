@@ -60,6 +60,7 @@ func FullRunHopMonitorRequest_FieldMask() *RunHopMonitorRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSizeBytes})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode})
+	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat})
 	return res
 }
 
@@ -103,7 +104,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHopMonitorRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -133,7 +134,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHopMonitorRequest_FieldMask) Subtract(other *RunHopMonitorRequest_FieldMask) *RunHopMonitorRequest_FieldMask {
 	result := &RunHopMonitorRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -301,6 +302,8 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Project(source *RunHopMonitorRe
 				result.Attempts = source.Attempts
 			case RunHopMonitorRequest_FieldPathSelectorMode:
 				result.Mode = source.Mode
+			case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+				result.OutputFormat = source.OutputFormat
 			}
 		}
 	}
@@ -324,10 +327,8 @@ type RunHopMonitorResponse_FieldMask struct {
 
 func FullRunHopMonitorResponse_FieldMask() *RunHopMonitorResponse_FieldMask {
 	res := &RunHopMonitorResponse_FieldMask{}
-	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths})
-	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopStats})
-	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo})
-	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorIpVersion})
+	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse})
+	res.Paths = append(res.Paths, &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorTextResponse})
 	return res
 }
 
@@ -371,7 +372,7 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 2)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHopMonitorResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -401,12 +402,12 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) Reset() {
 
 func (fieldMask *RunHopMonitorResponse_FieldMask) Subtract(other *RunHopMonitorResponse_FieldMask) *RunHopMonitorResponse_FieldMask {
 	result := &RunHopMonitorResponse_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 2)
 	otherSubMasks := map[RunHopMonitorResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunHopMonitorResponse_FieldPathSelectorPaths: &common.Path_FieldMask{},
+		RunHopMonitorResponse_FieldPathSelectorJsonResponse: &RunHopMonitorResponse_JsonResponse_FieldMask{},
 	}
 	mySubMasks := map[RunHopMonitorResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunHopMonitorResponse_FieldPathSelectorPaths: &common.Path_FieldMask{},
+		RunHopMonitorResponse_FieldPathSelectorJsonResponse: &RunHopMonitorResponse_JsonResponse_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -422,8 +423,8 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) Subtract(other *RunHopMonitorR
 			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
 				if tp, ok := path.(*RunHopMonitorResponse_FieldTerminalPath); ok {
 					switch tp.selector {
-					case RunHopMonitorResponse_FieldPathSelectorPaths:
-						mySubMasks[RunHopMonitorResponse_FieldPathSelectorPaths] = common.FullPath_FieldMask()
+					case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+						mySubMasks[RunHopMonitorResponse_FieldPathSelectorJsonResponse] = FullRunHopMonitorResponse_JsonResponse_FieldMask()
 					}
 				} else if tp, ok := path.(*RunHopMonitorResponse_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -576,6 +577,301 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) Project(source *RunHopMonitorR
 		return source
 	}
 	result := &RunHopMonitorResponse{}
+	jsonResponseMask := &RunHopMonitorResponse_JsonResponse_FieldMask{}
+	wholeJsonResponseAccepted := false
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *RunHopMonitorResponse_FieldTerminalPath:
+			switch tp.selector {
+			case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+				result.JsonResponse = source.JsonResponse
+				wholeJsonResponseAccepted = true
+			case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+				result.TextResponse = source.TextResponse
+			}
+		case *RunHopMonitorResponse_FieldSubPath:
+			switch tp.selector {
+			case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+				jsonResponseMask.AppendPath(tp.subPath.(RunHopMonitorResponseJsonResponse_FieldPath))
+			}
+		}
+	}
+	if wholeJsonResponseAccepted == false && len(jsonResponseMask.Paths) > 0 {
+		result.JsonResponse = jsonResponseMask.Project(source.GetJsonResponse())
+	}
+	return result
+}
+
+func (fieldMask *RunHopMonitorResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunHopMonitorResponse))
+}
+
+func (fieldMask *RunHopMonitorResponse_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type RunHopMonitorResponse_JsonResponse_FieldMask struct {
+	Paths []RunHopMonitorResponseJsonResponse_FieldPath
+}
+
+func FullRunHopMonitorResponse_JsonResponse_FieldMask() *RunHopMonitorResponse_JsonResponse_FieldMask {
+	res := &RunHopMonitorResponse_JsonResponse_FieldMask{}
+	res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths})
+	res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats})
+	res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo})
+	res.Paths = append(res.Paths, &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion})
+	return res
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 4)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*RunHopMonitorResponseJsonResponse_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseRunHopMonitorResponseJsonResponse_FieldPath(raw)
+	})
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) ProtoMessage() {}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Subtract(other *RunHopMonitorResponse_JsonResponse_FieldMask) *RunHopMonitorResponse_JsonResponse_FieldMask {
+	result := &RunHopMonitorResponse_JsonResponse_FieldMask{}
+	removedSelectors := make([]bool, 4)
+	otherSubMasks := map[RunHopMonitorResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths: &common.Path_FieldMask{},
+	}
+	mySubMasks := map[RunHopMonitorResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths: &common.Path_FieldMask{},
+	}
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *RunHopMonitorResponseJsonResponse_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		case *RunHopMonitorResponseJsonResponse_FieldSubPath:
+			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
+				if tp, ok := path.(*RunHopMonitorResponseJsonResponse_FieldTerminalPath); ok {
+					switch tp.selector {
+					case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+						mySubMasks[RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths] = common.FullPath_FieldMask()
+					}
+				} else if tp, ok := path.(*RunHopMonitorResponseJsonResponse_FieldSubPath); ok {
+					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
+				}
+			} else {
+				result.Paths = append(result.Paths, path)
+			}
+		}
+	}
+	for selector, mySubMask := range mySubMasks {
+		if mySubMask.PathsCount() > 0 {
+			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
+				result.Paths = append(result.Paths, &RunHopMonitorResponseJsonResponse_FieldSubPath{selector: selector, subPath: allowedPath})
+			}
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*RunHopMonitorResponse_JsonResponse_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) FilterInputFields() *RunHopMonitorResponse_JsonResponse_FieldMask {
+	result := &RunHopMonitorResponse_JsonResponse_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]RunHopMonitorResponseJsonResponse_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask RunHopMonitorResponse_JsonResponse_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask RunHopMonitorResponse_JsonResponse_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) AppendPath(path RunHopMonitorResponseJsonResponse_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(RunHopMonitorResponseJsonResponse_FieldPath))
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) GetPaths() []RunHopMonitorResponseJsonResponse_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Set(target, source *RunHopMonitorResponse_JsonResponse) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*RunHopMonitorResponse_JsonResponse), source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) Project(source *RunHopMonitorResponse_JsonResponse) *RunHopMonitorResponse_JsonResponse {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &RunHopMonitorResponse_JsonResponse{}
 	pathsMask := &common.Path_FieldMask{}
 	wholePathsAccepted := false
 	var hopStatsMapKeys []string
@@ -585,30 +881,30 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) Project(source *RunHopMonitorR
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
-		case *RunHopMonitorResponse_FieldTerminalPath:
+		case *RunHopMonitorResponseJsonResponse_FieldTerminalPath:
 			switch tp.selector {
-			case RunHopMonitorResponse_FieldPathSelectorPaths:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
 				result.Paths = source.Paths
 				wholePathsAccepted = true
-			case RunHopMonitorResponse_FieldPathSelectorHopStats:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
 				result.HopStats = source.HopStats
 				wholeHopStatsAccepted = true
-			case RunHopMonitorResponse_FieldPathSelectorHopInfo:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
 				result.HopInfo = source.HopInfo
 				wholeHopInfoAccepted = true
-			case RunHopMonitorResponse_FieldPathSelectorIpVersion:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
 				result.IpVersion = source.IpVersion
 			}
-		case *RunHopMonitorResponse_FieldSubPath:
+		case *RunHopMonitorResponseJsonResponse_FieldSubPath:
 			switch tp.selector {
-			case RunHopMonitorResponse_FieldPathSelectorPaths:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
 				pathsMask.AppendPath(tp.subPath.(common.Path_FieldPath))
 			}
-		case *RunHopMonitorResponse_FieldPathMap:
+		case *RunHopMonitorResponseJsonResponse_FieldPathMap:
 			switch tp.selector {
-			case RunHopMonitorResponse_FieldPathSelectorHopStats:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
 				hopStatsMapKeys = append(hopStatsMapKeys, tp.key)
-			case RunHopMonitorResponse_FieldPathSelectorHopInfo:
+			case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
 				hopInfoMapKeys = append(hopInfoMapKeys, tp.key)
 			}
 		}
@@ -637,11 +933,11 @@ func (fieldMask *RunHopMonitorResponse_FieldMask) Project(source *RunHopMonitorR
 	return result
 }
 
-func (fieldMask *RunHopMonitorResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunHopMonitorResponse))
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunHopMonitorResponse_JsonResponse))
 }
 
-func (fieldMask *RunHopMonitorResponse_FieldMask) PathsCount() int {
+func (fieldMask *RunHopMonitorResponse_JsonResponse_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

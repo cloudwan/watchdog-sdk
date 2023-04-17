@@ -20,6 +20,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 )
 
@@ -40,6 +41,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -50,7 +52,7 @@ type GetNetworkInfoRequest_FieldMask struct {
 func FullGetNetworkInfoRequest_FieldMask() *GetNetworkInfoRequest_FieldMask {
 	res := &GetNetworkInfoRequest_FieldMask{}
 	res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorName})
-	res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorResponseFornat})
+	res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorOutputFormat})
 	return res
 }
 
@@ -280,8 +282,8 @@ func (fieldMask *GetNetworkInfoRequest_FieldMask) Project(source *GetNetworkInfo
 			switch tp.selector {
 			case GetNetworkInfoRequest_FieldPathSelectorName:
 				result.Name = source.Name
-			case GetNetworkInfoRequest_FieldPathSelectorResponseFornat:
-				result.ResponseFornat = source.ResponseFornat
+			case GetNetworkInfoRequest_FieldPathSelectorOutputFormat:
+				result.OutputFormat = source.OutputFormat
 			}
 		}
 	}

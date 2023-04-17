@@ -16,6 +16,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 )
 
@@ -32,6 +33,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -57,8 +59,8 @@ func (o *GetNetworkInfoRequest) MakeDiffFieldMask(other *GetNetworkInfoRequest) 
 	if o.GetName().String() != other.GetName().String() {
 		res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorName})
 	}
-	if o.GetResponseFornat() != other.GetResponseFornat() {
-		res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorResponseFornat})
+	if o.GetOutputFormat() != other.GetOutputFormat() {
+		res.Paths = append(res.Paths, &GetNetworkInfoRequest_FieldTerminalPath{selector: GetNetworkInfoRequest_FieldPathSelectorOutputFormat})
 	}
 	return res
 }
@@ -82,7 +84,7 @@ func (o *GetNetworkInfoRequest) Clone() *GetNetworkInfoRequest {
 			panic(err)
 		}
 	}
-	result.ResponseFornat = o.ResponseFornat
+	result.OutputFormat = o.OutputFormat
 	return result
 }
 
@@ -103,7 +105,7 @@ func (o *GetNetworkInfoRequest) Merge(source *GetNetworkInfoRequest) {
 	} else {
 		o.Name = nil
 	}
-	o.ResponseFornat = source.GetResponseFornat()
+	o.OutputFormat = source.GetOutputFormat()
 }
 
 func (o *GetNetworkInfoRequest) MergeRaw(source gotenobject.GotenObjectExt) {

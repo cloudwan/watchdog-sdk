@@ -16,6 +16,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
@@ -34,6 +35,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -86,6 +88,9 @@ func (o *RunPingTestRequest) MakeDiffFieldMask(other *RunPingTestRequest) *RunPi
 	if o.GetTos() != other.GetTos() {
 		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTos})
 	}
+	if o.GetOutputFormat() != other.GetOutputFormat() {
+		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat})
+	}
 	return res
 }
 
@@ -117,6 +122,7 @@ func (o *RunPingTestRequest) Clone() *RunPingTestRequest {
 	result.DontFragment = o.DontFragment
 	result.Ttl = o.Ttl
 	result.Tos = o.Tos
+	result.OutputFormat = o.OutputFormat
 	return result
 }
 
@@ -156,6 +162,7 @@ func (o *RunPingTestRequest) Merge(source *RunPingTestRequest) {
 	o.DontFragment = source.GetDontFragment()
 	o.Ttl = source.GetTtl()
 	o.Tos = source.GetTos()
+	o.OutputFormat = source.GetOutputFormat()
 }
 
 func (o *RunPingTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -181,33 +188,18 @@ func (o *RunPingTestResponse) MakeDiffFieldMask(other *RunPingTestResponse) *Run
 	}
 
 	res := &RunPingTestResponse_FieldMask{}
-	if o.GetFrom() != other.GetFrom() {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorFrom})
-	}
-	if o.GetSizeBytes() != other.GetSizeBytes() {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSizeBytes})
-	}
-	if o.GetSequenceNumber() != other.GetSequenceNumber() {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSequenceNumber})
-	}
-	if o.GetTtl() != other.GetTtl() {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTtl})
-	}
-	if !proto.Equal(o.GetRtt(), other.GetRtt()) {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorRtt})
-	}
-	if o.GetError() != other.GetError() {
-		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorError})
-	}
 	{
-		subMask := o.GetSummary().MakeDiffFieldMask(other.GetSummary())
+		subMask := o.GetJsonResponse().MakeDiffFieldMask(other.GetJsonResponse())
 		if subMask.IsFull() {
-			res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSummary})
+			res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse})
 		} else {
 			for _, subpath := range subMask.Paths {
-				res.Paths = append(res.Paths, &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorSummary, subPath: subpath})
+				res.Paths = append(res.Paths, &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse, subPath: subpath})
 			}
 		}
+	}
+	if o.GetTextResponse() != other.GetTextResponse() {
+		res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTextResponse})
 	}
 	return res
 }
@@ -221,6 +213,88 @@ func (o *RunPingTestResponse) Clone() *RunPingTestResponse {
 		return nil
 	}
 	result := &RunPingTestResponse{}
+	result.JsonResponse = o.JsonResponse.Clone()
+	result.TextResponse = o.TextResponse
+	return result
+}
+
+func (o *RunPingTestResponse) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *RunPingTestResponse) Merge(source *RunPingTestResponse) {
+	if source.GetJsonResponse() != nil {
+		if o.JsonResponse == nil {
+			o.JsonResponse = new(RunPingTestResponse_JsonResponse)
+		}
+		o.JsonResponse.Merge(source.GetJsonResponse())
+	}
+	o.TextResponse = source.GetTextResponse()
+}
+
+func (o *RunPingTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunPingTestResponse))
+}
+
+func (o *RunPingTestResponse_JsonResponse) GotenObjectExt() {}
+
+func (o *RunPingTestResponse_JsonResponse) MakeFullFieldMask() *RunPingTestResponse_JsonResponse_FieldMask {
+	return FullRunPingTestResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunPingTestResponse_JsonResponse) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullRunPingTestResponse_JsonResponse_FieldMask()
+}
+
+func (o *RunPingTestResponse_JsonResponse) MakeDiffFieldMask(other *RunPingTestResponse_JsonResponse) *RunPingTestResponse_JsonResponse_FieldMask {
+	if o == nil && other == nil {
+		return &RunPingTestResponse_JsonResponse_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullRunPingTestResponse_JsonResponse_FieldMask()
+	}
+
+	res := &RunPingTestResponse_JsonResponse_FieldMask{}
+	if o.GetFrom() != other.GetFrom() {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorFrom})
+	}
+	if o.GetSizeBytes() != other.GetSizeBytes() {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes})
+	}
+	if o.GetSequenceNumber() != other.GetSequenceNumber() {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber})
+	}
+	if o.GetTtl() != other.GetTtl() {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorTtl})
+	}
+	if !proto.Equal(o.GetRtt(), other.GetRtt()) {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorRtt})
+	}
+	if o.GetError() != other.GetError() {
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorError})
+	}
+	{
+		subMask := o.GetSummary().MakeDiffFieldMask(other.GetSummary())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldSubPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary, subPath: subpath})
+			}
+		}
+	}
+	return res
+}
+
+func (o *RunPingTestResponse_JsonResponse) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*RunPingTestResponse_JsonResponse))
+}
+
+func (o *RunPingTestResponse_JsonResponse) Clone() *RunPingTestResponse_JsonResponse {
+	if o == nil {
+		return nil
+	}
+	result := &RunPingTestResponse_JsonResponse{}
 	result.From = o.From
 	result.SizeBytes = o.SizeBytes
 	result.SequenceNumber = o.SequenceNumber
@@ -231,11 +305,11 @@ func (o *RunPingTestResponse) Clone() *RunPingTestResponse {
 	return result
 }
 
-func (o *RunPingTestResponse) CloneRaw() gotenobject.GotenObjectExt {
+func (o *RunPingTestResponse_JsonResponse) CloneRaw() gotenobject.GotenObjectExt {
 	return o.Clone()
 }
 
-func (o *RunPingTestResponse) Merge(source *RunPingTestResponse) {
+func (o *RunPingTestResponse_JsonResponse) Merge(source *RunPingTestResponse_JsonResponse) {
 	o.From = source.GetFrom()
 	o.SizeBytes = source.GetSizeBytes()
 	o.SequenceNumber = source.GetSequenceNumber()
@@ -249,68 +323,68 @@ func (o *RunPingTestResponse) Merge(source *RunPingTestResponse) {
 	o.Error = source.GetError()
 	if source.GetSummary() != nil {
 		if o.Summary == nil {
-			o.Summary = new(RunPingTestResponse_SummaryStats)
+			o.Summary = new(RunPingTestResponse_JsonResponse_SummaryStats)
 		}
 		o.Summary.Merge(source.GetSummary())
 	}
 }
 
-func (o *RunPingTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunPingTestResponse))
+func (o *RunPingTestResponse_JsonResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunPingTestResponse_JsonResponse))
 }
 
-func (o *RunPingTestResponse_SummaryStats) GotenObjectExt() {}
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) GotenObjectExt() {}
 
-func (o *RunPingTestResponse_SummaryStats) MakeFullFieldMask() *RunPingTestResponse_SummaryStats_FieldMask {
-	return FullRunPingTestResponse_SummaryStats_FieldMask()
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) MakeFullFieldMask() *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask {
+	return FullRunPingTestResponse_JsonResponse_SummaryStats_FieldMask()
 }
 
-func (o *RunPingTestResponse_SummaryStats) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullRunPingTestResponse_SummaryStats_FieldMask()
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullRunPingTestResponse_JsonResponse_SummaryStats_FieldMask()
 }
 
-func (o *RunPingTestResponse_SummaryStats) MakeDiffFieldMask(other *RunPingTestResponse_SummaryStats) *RunPingTestResponse_SummaryStats_FieldMask {
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) MakeDiffFieldMask(other *RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask {
 	if o == nil && other == nil {
-		return &RunPingTestResponse_SummaryStats_FieldMask{}
+		return &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
 	}
 	if o == nil || other == nil {
-		return FullRunPingTestResponse_SummaryStats_FieldMask()
+		return FullRunPingTestResponse_JsonResponse_SummaryStats_FieldMask()
 	}
 
-	res := &RunPingTestResponse_SummaryStats_FieldMask{}
+	res := &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
 	if !proto.Equal(o.GetMinRtt(), other.GetMinRtt()) {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt})
 	}
 	if !proto.Equal(o.GetAvgRtt(), other.GetAvgRtt()) {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt})
 	}
 	if !proto.Equal(o.GetMaxRtt(), other.GetMaxRtt()) {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt})
 	}
 	if !proto.Equal(o.GetStddevRtt(), other.GetStddevRtt()) {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt})
 	}
 	if o.GetTransmittedCounter() != other.GetTransmittedCounter() {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter})
 	}
 	if o.GetReceivedCounter() != other.GetReceivedCounter() {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter})
 	}
 	if o.GetLossRatio() != other.GetLossRatio() {
-		res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio})
+		res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio})
 	}
 	return res
 }
 
-func (o *RunPingTestResponse_SummaryStats) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*RunPingTestResponse_SummaryStats))
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }
 
-func (o *RunPingTestResponse_SummaryStats) Clone() *RunPingTestResponse_SummaryStats {
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) Clone() *RunPingTestResponse_JsonResponse_SummaryStats {
 	if o == nil {
 		return nil
 	}
-	result := &RunPingTestResponse_SummaryStats{}
+	result := &RunPingTestResponse_JsonResponse_SummaryStats{}
 	result.MinRtt = proto.Clone(o.MinRtt).(*duration.Duration)
 	result.AvgRtt = proto.Clone(o.AvgRtt).(*duration.Duration)
 	result.MaxRtt = proto.Clone(o.MaxRtt).(*duration.Duration)
@@ -321,11 +395,11 @@ func (o *RunPingTestResponse_SummaryStats) Clone() *RunPingTestResponse_SummaryS
 	return result
 }
 
-func (o *RunPingTestResponse_SummaryStats) CloneRaw() gotenobject.GotenObjectExt {
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) CloneRaw() gotenobject.GotenObjectExt {
 	return o.Clone()
 }
 
-func (o *RunPingTestResponse_SummaryStats) Merge(source *RunPingTestResponse_SummaryStats) {
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) Merge(source *RunPingTestResponse_JsonResponse_SummaryStats) {
 	if source.GetMinRtt() != nil {
 		if o.MinRtt == nil {
 			o.MinRtt = new(duration.Duration)
@@ -355,106 +429,6 @@ func (o *RunPingTestResponse_SummaryStats) Merge(source *RunPingTestResponse_Sum
 	o.LossRatio = source.GetLossRatio()
 }
 
-func (o *RunPingTestResponse_SummaryStats) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunPingTestResponse_SummaryStats))
-}
-
-func (o *RunPingTestRequestToProbe) GotenObjectExt() {}
-
-func (o *RunPingTestRequestToProbe) MakeFullFieldMask() *RunPingTestRequestToProbe_FieldMask {
-	return FullRunPingTestRequestToProbe_FieldMask()
-}
-
-func (o *RunPingTestRequestToProbe) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullRunPingTestRequestToProbe_FieldMask()
-}
-
-func (o *RunPingTestRequestToProbe) MakeDiffFieldMask(other *RunPingTestRequestToProbe) *RunPingTestRequestToProbe_FieldMask {
-	if o == nil && other == nil {
-		return &RunPingTestRequestToProbe_FieldMask{}
-	}
-	if o == nil || other == nil {
-		return FullRunPingTestRequestToProbe_FieldMask()
-	}
-
-	res := &RunPingTestRequestToProbe_FieldMask{}
-	if o.GetSource() != other.GetSource() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSource})
-	}
-	if o.GetDestination() != other.GetDestination() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDestination})
-	}
-	if o.GetSizeBytes() != other.GetSizeBytes() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSizeBytes})
-	}
-	if o.GetCount() != other.GetCount() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorCount})
-	}
-	if !proto.Equal(o.GetInterval(), other.GetInterval()) {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorInterval})
-	}
-	if !proto.Equal(o.GetEchoTimeout(), other.GetEchoTimeout()) {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout})
-	}
-	if o.GetDontFragment() != other.GetDontFragment() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDontFragment})
-	}
-	if o.GetTtl() != other.GetTtl() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTtl})
-	}
-	if o.GetTos() != other.GetTos() {
-		res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTos})
-	}
-	return res
-}
-
-func (o *RunPingTestRequestToProbe) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*RunPingTestRequestToProbe))
-}
-
-func (o *RunPingTestRequestToProbe) Clone() *RunPingTestRequestToProbe {
-	if o == nil {
-		return nil
-	}
-	result := &RunPingTestRequestToProbe{}
-	result.Source = o.Source
-	result.Destination = o.Destination
-	result.SizeBytes = o.SizeBytes
-	result.Count = o.Count
-	result.Interval = proto.Clone(o.Interval).(*duration.Duration)
-	result.EchoTimeout = proto.Clone(o.EchoTimeout).(*duration.Duration)
-	result.DontFragment = o.DontFragment
-	result.Ttl = o.Ttl
-	result.Tos = o.Tos
-	return result
-}
-
-func (o *RunPingTestRequestToProbe) CloneRaw() gotenobject.GotenObjectExt {
-	return o.Clone()
-}
-
-func (o *RunPingTestRequestToProbe) Merge(source *RunPingTestRequestToProbe) {
-	o.Source = source.GetSource()
-	o.Destination = source.GetDestination()
-	o.SizeBytes = source.GetSizeBytes()
-	o.Count = source.GetCount()
-	if source.GetInterval() != nil {
-		if o.Interval == nil {
-			o.Interval = new(duration.Duration)
-		}
-		proto.Merge(o.Interval, source.GetInterval())
-	}
-	if source.GetEchoTimeout() != nil {
-		if o.EchoTimeout == nil {
-			o.EchoTimeout = new(duration.Duration)
-		}
-		proto.Merge(o.EchoTimeout, source.GetEchoTimeout())
-	}
-	o.DontFragment = source.GetDontFragment()
-	o.Ttl = source.GetTtl()
-	o.Tos = source.GetTos()
-}
-
-func (o *RunPingTestRequestToProbe) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunPingTestRequestToProbe))
+func (o *RunPingTestResponse_JsonResponse_SummaryStats) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package ntt.watchdog.v1alpha2;
 
+import "watchdog-sdk/proto/v1alpha2/common.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
 
@@ -16,13 +17,7 @@ message GetNetworkInfoRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 
-  ResponseFormat response_fornat = 2;
-
-  enum ResponseFormat {
-    JSON = 0;
-
-    TEXT = 1;
-  }
+  OnDemandTestResponseFormat output_format = 2;
 }
 
 // Response message for method

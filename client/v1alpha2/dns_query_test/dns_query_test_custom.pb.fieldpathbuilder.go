@@ -80,6 +80,9 @@ func (RunDNSQueryTestRequestFieldPathBuilder) NoRecursionDesired() RunDNSQueryTe
 func (RunDNSQueryTestRequestFieldPathBuilder) Reverse() RunDNSQueryTestRequestPathSelectorReverse {
 	return RunDNSQueryTestRequestPathSelectorReverse{}
 }
+func (RunDNSQueryTestRequestFieldPathBuilder) OutputFormat() RunDNSQueryTestRequestPathSelectorOutputFormat {
+	return RunDNSQueryTestRequestPathSelectorOutputFormat{}
+}
 
 type RunDNSQueryTestRequestPathSelectorName struct{}
 
@@ -258,864 +261,1388 @@ func (s RunDNSQueryTestRequestPathSelectorReverse) WithArrayOfValues(values []bo
 	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues)
 }
 
+type RunDNSQueryTestRequestPathSelectorOutputFormat struct{}
+
+func (RunDNSQueryTestRequestPathSelectorOutputFormat) FieldPath() *RunDNSQueryTestRequest_FieldTerminalPath {
+	return &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorOutputFormat}
+}
+
+func (s RunDNSQueryTestRequestPathSelectorOutputFormat) WithValue(value common.OnDemandTestResponseFormat) *RunDNSQueryTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequest_FieldTerminalPathArrayOfValues)
+}
+
 type RunDNSQueryTestResponseFieldPathBuilder struct{}
 
 func NewRunDNSQueryTestResponseFieldPathBuilder() RunDNSQueryTestResponseFieldPathBuilder {
 	return RunDNSQueryTestResponseFieldPathBuilder{}
 }
-func (RunDNSQueryTestResponseFieldPathBuilder) Id() RunDNSQueryTestResponsePathSelectorId {
-	return RunDNSQueryTestResponsePathSelectorId{}
+func (RunDNSQueryTestResponseFieldPathBuilder) JsonResponse() RunDNSQueryTestResponsePathSelectorJsonResponse {
+	return RunDNSQueryTestResponsePathSelectorJsonResponse{}
 }
-func (RunDNSQueryTestResponseFieldPathBuilder) Rcode() RunDNSQueryTestResponsePathSelectorRcode {
-	return RunDNSQueryTestResponsePathSelectorRcode{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Flags() RunDNSQueryTestResponsePathSelectorFlags {
-	return RunDNSQueryTestResponsePathSelectorFlags{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Queries() RunDNSQueryTestResponsePathSelectorQueries {
-	return RunDNSQueryTestResponsePathSelectorQueries{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Answers() RunDNSQueryTestResponsePathSelectorAnswers {
-	return RunDNSQueryTestResponsePathSelectorAnswers{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Ns() RunDNSQueryTestResponsePathSelectorNs {
-	return RunDNSQueryTestResponsePathSelectorNs{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Extras() RunDNSQueryTestResponsePathSelectorExtras {
-	return RunDNSQueryTestResponsePathSelectorExtras{}
-}
-func (RunDNSQueryTestResponseFieldPathBuilder) Rtt() RunDNSQueryTestResponsePathSelectorRtt {
-	return RunDNSQueryTestResponsePathSelectorRtt{}
+func (RunDNSQueryTestResponseFieldPathBuilder) TextResponse() RunDNSQueryTestResponsePathSelectorTextResponse {
+	return RunDNSQueryTestResponsePathSelectorTextResponse{}
 }
 
-type RunDNSQueryTestResponsePathSelectorId struct{}
+type RunDNSQueryTestResponsePathSelectorJsonResponse struct{}
 
-func (RunDNSQueryTestResponsePathSelectorId) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorId}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorId) WithValue(value uint32) *RunDNSQueryTestResponse_FieldTerminalPathValue {
+func (s RunDNSQueryTestResponsePathSelectorJsonResponse) WithValue(value *RunDNSQueryTestResponse_JsonResponse) *RunDNSQueryTestResponse_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorId) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
+func (s RunDNSQueryTestResponsePathSelectorJsonResponse) WithArrayOfValues(values []*RunDNSQueryTestResponse_JsonResponse) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorRcode struct{}
-
-func (RunDNSQueryTestResponsePathSelectorRcode) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRcode}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) WithSubPath(subPath RunDNSQueryTestResponseJsonResponse_FieldPath) *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse, subPath: subPath}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorRcode) WithValue(value string) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestResponsePathSelectorRcode) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestResponsePathSelectorFlags struct{}
-
-func (RunDNSQueryTestResponsePathSelectorFlags) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorFlags}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorFlags) WithValue(value []string) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestResponsePathSelectorFlags) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-func (s RunDNSQueryTestResponsePathSelectorFlags) WithItemValue(value string) *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue)
-}
-
-type RunDNSQueryTestResponsePathSelectorQueries struct{}
-
-func (RunDNSQueryTestResponsePathSelectorQueries) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithValue(value []*common.DNSQuery) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithArrayOfValues(values [][]*common.DNSQuery) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithItemValue(value *common.DNSQuery) *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue)
-}
-func (RunDNSQueryTestResponsePathSelectorQueries) WithSubPath(subPath common.DNSQuery_FieldPath) *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries, subPath: subPath}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithSubValue(subPathValue common.DNSQuery_FieldPathValue) *RunDNSQueryTestResponse_FieldSubPathValue {
+func (s RunDNSQueryTestResponsePathSelectorJsonResponse) WithSubValue(subPathValue RunDNSQueryTestResponseJsonResponse_FieldPathValue) *RunDNSQueryTestResponse_FieldSubPathValue {
 	return &RunDNSQueryTestResponse_FieldSubPathValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithSubArrayOfValues(subPathArrayOfValues common.DNSQuery_FieldPathArrayOfValues) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+func (s RunDNSQueryTestResponsePathSelectorJsonResponse) WithSubArrayOfValues(subPathArrayOfValues RunDNSQueryTestResponseJsonResponse_FieldPathArrayOfValues) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
 	return &RunDNSQueryTestResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueries) WithSubArrayItemValue(subPathArrayItemValue common.DNSQuery_FieldPathArrayItemValue) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+func (s RunDNSQueryTestResponsePathSelectorJsonResponse) WithSubArrayItemValue(subPathArrayItemValue RunDNSQueryTestResponseJsonResponse_FieldPathArrayItemValue) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
 	return &RunDNSQueryTestResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunDNSQueryTestResponsePathSelectorQueries) Name() RunDNSQueryTestResponsePathSelectorQueriesName {
-	return RunDNSQueryTestResponsePathSelectorQueriesName{}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Id() RunDNSQueryTestResponsePathSelectorJsonResponseId {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseId{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorQueries) Qtype() RunDNSQueryTestResponsePathSelectorQueriesQtype {
-	return RunDNSQueryTestResponsePathSelectorQueriesQtype{}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Rcode() RunDNSQueryTestResponsePathSelectorJsonResponseRcode {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseRcode{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorQueries) Qclass() RunDNSQueryTestResponsePathSelectorQueriesQclass {
-	return RunDNSQueryTestResponsePathSelectorQueriesQclass{}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Flags() RunDNSQueryTestResponsePathSelectorJsonResponseFlags {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseFlags{}
 }
 
-type RunDNSQueryTestResponsePathSelectorQueriesName struct{}
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Queries() RunDNSQueryTestResponsePathSelectorJsonResponseQueries {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseQueries{}
+}
 
-func (RunDNSQueryTestResponsePathSelectorQueriesName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Answers() RunDNSQueryTestResponsePathSelectorJsonResponseAnswers {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswers{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Ns() RunDNSQueryTestResponsePathSelectorJsonResponseNs {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNs{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Extras() RunDNSQueryTestResponsePathSelectorJsonResponseExtras {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtras{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponse) Rtt() RunDNSQueryTestResponsePathSelectorJsonResponseRtt {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseRtt{}
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseId struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseId) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
 	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorQueries,
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Id().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseId) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseId) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseRcode struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseRcode) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Rcode().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseRcode) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseRcode) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseFlags struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseFlags) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Flags().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseFlags) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseFlags) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseFlags) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseQueries struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueries) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Queries().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueries) WithValue(value []*common.DNSQuery) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueries) WithArrayOfValues(values [][]*common.DNSQuery) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueries) WithItemValue(value *common.DNSQuery) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueries) Name() RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueries) Qtype() RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueries) Qclass() RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass{}
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Queries().Name().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Queries().Qtype().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Queries().Qclass().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseQueriesQclass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswers struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Name() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Rrtype() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Class() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Ttl() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Rdlength() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswers) Rdata() RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata{}
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Name().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Rrtype().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Class().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Ttl().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Rdlength().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Answers().Rdata().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseAnswersRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNs struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNs) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNs) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNs) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Name() RunDNSQueryTestResponsePathSelectorJsonResponseNsName {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsName{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Rrtype() RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Class() RunDNSQueryTestResponsePathSelectorJsonResponseNsClass {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsClass{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Ttl() RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Rdlength() RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNs) Rdata() RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata{}
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsName struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Name().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Rrtype().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsClass struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Class().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Ttl().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Rdlength().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Ns().Rdata().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseNsRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtras struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtras) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtras) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtras) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Name() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Rrtype() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Class() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Ttl() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Rdlength() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength{}
+}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtras) Rdata() RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata {
+	return RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata{}
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Name().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Rrtype().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Class().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Ttl().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Rdlength().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Extras().Rdata().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseExtrasRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+}
+
+type RunDNSQueryTestResponsePathSelectorJsonResponseRtt struct{}
+
+func (RunDNSQueryTestResponsePathSelectorJsonResponseRtt) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
+	return &RunDNSQueryTestResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder().Rtt().FieldPath(),
+	}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseRtt) WithValue(value *duration.Duration) *RunDNSQueryTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorJsonResponseRtt) WithArrayOfValues(values []*duration.Duration) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponsePathSelectorTextResponse struct{}
+
+func (RunDNSQueryTestResponsePathSelectorTextResponse) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorTextResponse}
+}
+
+func (s RunDNSQueryTestResponsePathSelectorTextResponse) WithValue(value string) *RunDNSQueryTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestResponsePathSelectorTextResponse) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponseJsonResponseFieldPathBuilder struct{}
+
+func NewRunDNSQueryTestResponseJsonResponseFieldPathBuilder() RunDNSQueryTestResponseJsonResponseFieldPathBuilder {
+	return RunDNSQueryTestResponseJsonResponseFieldPathBuilder{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Id() RunDNSQueryTestResponse_JsonResponsePathSelectorId {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorId{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Rcode() RunDNSQueryTestResponse_JsonResponsePathSelectorRcode {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorRcode{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Flags() RunDNSQueryTestResponse_JsonResponsePathSelectorFlags {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorFlags{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Queries() RunDNSQueryTestResponse_JsonResponsePathSelectorQueries {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorQueries{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Answers() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Ns() RunDNSQueryTestResponse_JsonResponsePathSelectorNs {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNs{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Extras() RunDNSQueryTestResponse_JsonResponsePathSelectorExtras {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtras{}
+}
+func (RunDNSQueryTestResponseJsonResponseFieldPathBuilder) Rtt() RunDNSQueryTestResponse_JsonResponsePathSelectorRtt {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorRtt{}
+}
+
+type RunDNSQueryTestResponse_JsonResponsePathSelectorId struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorId) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorId) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorId) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponse_JsonResponsePathSelectorRcode struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorRcode) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorRcode) WithValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorRcode) WithArrayOfValues(values []string) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunDNSQueryTestResponse_JsonResponsePathSelectorFlags struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorFlags) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorFlags) WithValue(value []string) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorFlags) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorFlags) WithItemValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)
+}
+
+type RunDNSQueryTestResponse_JsonResponsePathSelectorQueries struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithValue(value []*common.DNSQuery) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithArrayOfValues(values [][]*common.DNSQuery) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithItemValue(value *common.DNSQuery) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)
+}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithSubPath(subPath common.DNSQuery_FieldPath) *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries, subPath: subPath}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithSubValue(subPathValue common.DNSQuery_FieldPathValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithSubArrayOfValues(subPathArrayOfValues common.DNSQuery_FieldPathArrayOfValues) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) WithSubArrayItemValue(subPathArrayItemValue common.DNSQuery_FieldPathArrayItemValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) Name() RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName{}
+}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) Qtype() RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype{}
+}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueries) Qclass() RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass{}
+}
+
+type RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries,
 		subPath:  common.NewDNSQueryFieldPathBuilder().Name().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName) WithValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesName) WithArrayOfValues(values []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorQueriesQtype struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype struct{}
 
-func (RunDNSQueryTestResponsePathSelectorQueriesQtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorQueries,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries,
 		subPath:  common.NewDNSQueryFieldPathBuilder().Qtype().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesQtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesQtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorQueriesQclass struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass struct{}
 
-func (RunDNSQueryTestResponsePathSelectorQueriesQclass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorQueries,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries,
 		subPath:  common.NewDNSQueryFieldPathBuilder().Qclass().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesQclass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass) WithValue(value common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorQueriesQclass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorQueriesQclass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswers struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)
 }
-func (RunDNSQueryTestResponsePathSelectorAnswers) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers, subPath: subPath}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return &RunDNSQueryTestResponse_FieldSubPathValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers, subPath: subPath}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswers) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Name() RunDNSQueryTestResponsePathSelectorAnswersName {
-	return RunDNSQueryTestResponsePathSelectorAnswersName{}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Rrtype() RunDNSQueryTestResponsePathSelectorAnswersRrtype {
-	return RunDNSQueryTestResponsePathSelectorAnswersRrtype{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Name() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Class() RunDNSQueryTestResponsePathSelectorAnswersClass {
-	return RunDNSQueryTestResponsePathSelectorAnswersClass{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Rrtype() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Ttl() RunDNSQueryTestResponsePathSelectorAnswersTtl {
-	return RunDNSQueryTestResponsePathSelectorAnswersTtl{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Class() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Rdlength() RunDNSQueryTestResponsePathSelectorAnswersRdlength {
-	return RunDNSQueryTestResponsePathSelectorAnswersRdlength{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Ttl() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorAnswers) Rdata() RunDNSQueryTestResponsePathSelectorAnswersRdata {
-	return RunDNSQueryTestResponsePathSelectorAnswersRdata{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Rdlength() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength{}
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersName struct{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswers) Rdata() RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata{}
+}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Name().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName) WithValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersName) WithArrayOfValues(values []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersRrtype struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rrtype().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersClass struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Class().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersTtl struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Ttl().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersRdlength struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdlength().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorAnswersRdata struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata struct{}
 
-func (RunDNSQueryTestResponsePathSelectorAnswersRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdata().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata) WithValue(value []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorAnswersRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorAnswersRdata) WithItemValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue)
 }
 
-type RunDNSQueryTestResponsePathSelectorNs struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNs struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNs) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNs) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNs) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNs) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)
 }
-func (RunDNSQueryTestResponsePathSelectorNs) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs, subPath: subPath}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorNs) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return &RunDNSQueryTestResponse_FieldSubPathValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs, subPath: subPath}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNs) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNs) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Name() RunDNSQueryTestResponsePathSelectorNsName {
-	return RunDNSQueryTestResponsePathSelectorNsName{}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNs) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Rrtype() RunDNSQueryTestResponsePathSelectorNsRrtype {
-	return RunDNSQueryTestResponsePathSelectorNsRrtype{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Name() RunDNSQueryTestResponse_JsonResponsePathSelectorNsName {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsName{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Class() RunDNSQueryTestResponsePathSelectorNsClass {
-	return RunDNSQueryTestResponsePathSelectorNsClass{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Rrtype() RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Ttl() RunDNSQueryTestResponsePathSelectorNsTtl {
-	return RunDNSQueryTestResponsePathSelectorNsTtl{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Class() RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Rdlength() RunDNSQueryTestResponsePathSelectorNsRdlength {
-	return RunDNSQueryTestResponsePathSelectorNsRdlength{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Ttl() RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorNs) Rdata() RunDNSQueryTestResponsePathSelectorNsRdata {
-	return RunDNSQueryTestResponsePathSelectorNsRdata{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Rdlength() RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength{}
 }
 
-type RunDNSQueryTestResponsePathSelectorNsName struct{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNs) Rdata() RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata{}
+}
 
-func (RunDNSQueryTestResponsePathSelectorNsName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsName struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsName) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Name().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsName) WithValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsName) WithArrayOfValues(values []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorNsRrtype struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNsRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rrtype().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorNsClass struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNsClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Class().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorNsTtl struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNsTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Ttl().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorNsRdlength struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNsRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdlength().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorNsRdata struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata struct{}
 
-func (RunDNSQueryTestResponsePathSelectorNsRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorNs,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdata().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata) WithValue(value []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorNsRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorNsRdata) WithItemValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtras struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtras struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtras) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithValue(value []*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithArrayOfValues(values [][]*common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithItemValue(value *common.DNSResourceRecord) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayItemValue)
 }
-func (RunDNSQueryTestResponsePathSelectorExtras) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras, subPath: subPath}
-}
-
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return &RunDNSQueryTestResponse_FieldSubPathValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithSubPath(subPath common.DNSResourceRecord_FieldPath) *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras, subPath: subPath}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithSubValue(subPathValue common.DNSResourceRecord_FieldPathValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtras) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return &RunDNSQueryTestResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithSubArrayOfValues(subPathArrayOfValues common.DNSResourceRecord_FieldPathArrayOfValues) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Name() RunDNSQueryTestResponsePathSelectorExtrasName {
-	return RunDNSQueryTestResponsePathSelectorExtrasName{}
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) WithSubArrayItemValue(subPathArrayItemValue common.DNSResourceRecord_FieldPathArrayItemValue) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue{RunDNSQueryTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Rrtype() RunDNSQueryTestResponsePathSelectorExtrasRrtype {
-	return RunDNSQueryTestResponsePathSelectorExtrasRrtype{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Name() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Class() RunDNSQueryTestResponsePathSelectorExtrasClass {
-	return RunDNSQueryTestResponsePathSelectorExtrasClass{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Rrtype() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Ttl() RunDNSQueryTestResponsePathSelectorExtrasTtl {
-	return RunDNSQueryTestResponsePathSelectorExtrasTtl{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Class() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Rdlength() RunDNSQueryTestResponsePathSelectorExtrasRdlength {
-	return RunDNSQueryTestResponsePathSelectorExtrasRdlength{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Ttl() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl{}
 }
 
-func (RunDNSQueryTestResponsePathSelectorExtras) Rdata() RunDNSQueryTestResponsePathSelectorExtrasRdata {
-	return RunDNSQueryTestResponsePathSelectorExtrasRdata{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Rdlength() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength{}
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasName struct{}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtras) Rdata() RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata {
+	return RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata{}
+}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasName) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName struct{}
+
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Name().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasName) WithValue(value string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName) WithValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasName) WithArrayOfValues(values []string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasName) WithArrayOfValues(values []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasRrtype struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasRrtype) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rrtype().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRrtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasClass struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasClass) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Class().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass) WithValue(value common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasClass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasTtl struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasTtl) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Ttl().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasTtl) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasTtl) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasRdlength struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasRdlength) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdlength().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRdlength) WithValue(value uint32) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength) WithValue(value uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdlength) WithArrayOfValues(values []uint32) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunDNSQueryTestResponsePathSelectorExtrasRdata struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata struct{}
 
-func (RunDNSQueryTestResponsePathSelectorExtrasRdata) FieldPath() *RunDNSQueryTestResponse_FieldSubPath {
-	return &RunDNSQueryTestResponse_FieldSubPath{
-		selector: RunDNSQueryTestResponse_FieldPathSelectorExtras,
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldSubPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldSubPath{
+		selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras,
 		subPath:  common.NewDNSResourceRecordFieldPathBuilder().Rdata().FieldPath(),
 	}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRdata) WithValue(value []string) *RunDNSQueryTestResponse_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldSubPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata) WithValue(value []string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponse_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldSubPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata) WithArrayOfValues(values [][]string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorExtrasRdata) WithItemValue(value string) *RunDNSQueryTestResponse_FieldSubPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponse_FieldSubPathArrayItemValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorExtrasRdata) WithItemValue(value string) *RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return s.FieldPath().WithIArrayItemValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldSubPathArrayItemValue)
 }
 
-type RunDNSQueryTestResponsePathSelectorRtt struct{}
+type RunDNSQueryTestResponse_JsonResponsePathSelectorRtt struct{}
 
-func (RunDNSQueryTestResponsePathSelectorRtt) FieldPath() *RunDNSQueryTestResponse_FieldTerminalPath {
-	return &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRtt}
+func (RunDNSQueryTestResponse_JsonResponsePathSelectorRtt) FieldPath() *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath {
+	return &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt}
 }
 
-func (s RunDNSQueryTestResponsePathSelectorRtt) WithValue(value *duration.Duration) *RunDNSQueryTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponse_FieldTerminalPathValue)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorRtt) WithValue(value *duration.Duration) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunDNSQueryTestResponsePathSelectorRtt) WithArrayOfValues(values []*duration.Duration) *RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbeFieldPathBuilder struct{}
-
-func NewRunDNSQueryTestRequestToProbeFieldPathBuilder() RunDNSQueryTestRequestToProbeFieldPathBuilder {
-	return RunDNSQueryTestRequestToProbeFieldPathBuilder{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) Query() RunDNSQueryTestRequestToProbePathSelectorQuery {
-	return RunDNSQueryTestRequestToProbePathSelectorQuery{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) Server() RunDNSQueryTestRequestToProbePathSelectorServer {
-	return RunDNSQueryTestRequestToProbePathSelectorServer{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) Port() RunDNSQueryTestRequestToProbePathSelectorPort {
-	return RunDNSQueryTestRequestToProbePathSelectorPort{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) Tcp() RunDNSQueryTestRequestToProbePathSelectorTcp {
-	return RunDNSQueryTestRequestToProbePathSelectorTcp{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) NoRecursionDesired() RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired {
-	return RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired{}
-}
-func (RunDNSQueryTestRequestToProbeFieldPathBuilder) Reverse() RunDNSQueryTestRequestToProbePathSelectorReverse {
-	return RunDNSQueryTestRequestToProbePathSelectorReverse{}
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorQuery struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQuery) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQuery) WithValue(value *common.DNSQuery) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQuery) WithArrayOfValues(values []*common.DNSQuery) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
-}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQuery) WithSubPath(subPath common.DNSQuery_FieldPath) *RunDNSQueryTestRequestToProbe_FieldSubPath {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery, subPath: subPath}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQuery) WithSubValue(subPathValue common.DNSQuery_FieldPathValue) *RunDNSQueryTestRequestToProbe_FieldSubPathValue {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathValue{RunDNSQueryTestRequestToProbe_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQuery) WithSubArrayOfValues(subPathArrayOfValues common.DNSQuery_FieldPathArrayOfValues) *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues{RunDNSQueryTestRequestToProbe_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQuery) WithSubArrayItemValue(subPathArrayItemValue common.DNSQuery_FieldPathArrayItemValue) *RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPathArrayItemValue{RunDNSQueryTestRequestToProbe_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
-}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQuery) Name() RunDNSQueryTestRequestToProbePathSelectorQueryName {
-	return RunDNSQueryTestRequestToProbePathSelectorQueryName{}
-}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQuery) Qtype() RunDNSQueryTestRequestToProbePathSelectorQueryQtype {
-	return RunDNSQueryTestRequestToProbePathSelectorQueryQtype{}
-}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQuery) Qclass() RunDNSQueryTestRequestToProbePathSelectorQueryQclass {
-	return RunDNSQueryTestRequestToProbePathSelectorQueryQclass{}
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorQueryName struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQueryName) FieldPath() *RunDNSQueryTestRequestToProbe_FieldSubPath {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPath{
-		selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery,
-		subPath:  common.NewDNSQueryFieldPathBuilder().Name().FieldPath(),
-	}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryName) WithValue(value string) *RunDNSQueryTestRequestToProbe_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldSubPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryName) WithArrayOfValues(values []string) *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorQueryQtype struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQueryQtype) FieldPath() *RunDNSQueryTestRequestToProbe_FieldSubPath {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPath{
-		selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery,
-		subPath:  common.NewDNSQueryFieldPathBuilder().Qtype().FieldPath(),
-	}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryQtype) WithValue(value common.DNSResourceRecordType) *RunDNSQueryTestRequestToProbe_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldSubPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryQtype) WithArrayOfValues(values []common.DNSResourceRecordType) *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorQueryQclass struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorQueryQclass) FieldPath() *RunDNSQueryTestRequestToProbe_FieldSubPath {
-	return &RunDNSQueryTestRequestToProbe_FieldSubPath{
-		selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery,
-		subPath:  common.NewDNSQueryFieldPathBuilder().Qclass().FieldPath(),
-	}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryQclass) WithValue(value common.DNSClass) *RunDNSQueryTestRequestToProbe_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldSubPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorQueryQclass) WithArrayOfValues(values []common.DNSClass) *RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldSubPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorServer struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorServer) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorServer}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorServer) WithValue(value string) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorServer) WithArrayOfValues(values []string) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorPort struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorPort) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorPort}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorPort) WithValue(value uint32) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorPort) WithArrayOfValues(values []uint32) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorTcp struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorTcp) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorTcp) WithValue(value bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorTcp) WithArrayOfValues(values []bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired) WithValue(value bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorNoRecursionDesired) WithArrayOfValues(values []bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
-}
-
-type RunDNSQueryTestRequestToProbePathSelectorReverse struct{}
-
-func (RunDNSQueryTestRequestToProbePathSelectorReverse) FieldPath() *RunDNSQueryTestRequestToProbe_FieldTerminalPath {
-	return &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse}
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorReverse) WithValue(value bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathValue)
-}
-
-func (s RunDNSQueryTestRequestToProbePathSelectorReverse) WithArrayOfValues(values []bool) *RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunDNSQueryTestResponse_JsonResponsePathSelectorRtt) WithArrayOfValues(values []*duration.Duration) *RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }

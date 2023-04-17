@@ -20,6 +20,7 @@ import (
 
 // proto imports
 import (
+	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
@@ -42,6 +43,7 @@ var (
 // make sure we're using proto imports
 var (
 	_ = &duration.Duration{}
+	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
 
@@ -61,6 +63,7 @@ func FullRunPingTestRequest_FieldMask() *RunPingTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorDontFragment})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTtl})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTos})
+	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat})
 	return res
 }
 
@@ -104,7 +107,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 10)
+	presentSelectors := make([]bool, 11)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunPingTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -134,7 +137,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunPingTestRequest_FieldMask) Subtract(other *RunPingTestRequest_FieldMask) *RunPingTestRequest_FieldMask {
 	result := &RunPingTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 10)
+	removedSelectors := make([]bool, 11)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -308,6 +311,8 @@ func (fieldMask *RunPingTestRequest_FieldMask) Project(source *RunPingTestReques
 				result.Ttl = source.Ttl
 			case RunPingTestRequest_FieldPathSelectorTos:
 				result.Tos = source.Tos
+			case RunPingTestRequest_FieldPathSelectorOutputFormat:
+				result.OutputFormat = source.OutputFormat
 			}
 		}
 	}
@@ -331,13 +336,8 @@ type RunPingTestResponse_FieldMask struct {
 
 func FullRunPingTestResponse_FieldMask() *RunPingTestResponse_FieldMask {
 	res := &RunPingTestResponse_FieldMask{}
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorFrom})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSizeBytes})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSequenceNumber})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTtl})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorRtt})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorError})
-	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSummary})
+	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse})
+	res.Paths = append(res.Paths, &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTextResponse})
 	return res
 }
 
@@ -381,7 +381,7 @@ func (fieldMask *RunPingTestResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 2)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunPingTestResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -411,12 +411,12 @@ func (fieldMask *RunPingTestResponse_FieldMask) Reset() {
 
 func (fieldMask *RunPingTestResponse_FieldMask) Subtract(other *RunPingTestResponse_FieldMask) *RunPingTestResponse_FieldMask {
 	result := &RunPingTestResponse_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 2)
 	otherSubMasks := map[RunPingTestResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunPingTestResponse_FieldPathSelectorSummary: &RunPingTestResponse_SummaryStats_FieldMask{},
+		RunPingTestResponse_FieldPathSelectorJsonResponse: &RunPingTestResponse_JsonResponse_FieldMask{},
 	}
 	mySubMasks := map[RunPingTestResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunPingTestResponse_FieldPathSelectorSummary: &RunPingTestResponse_SummaryStats_FieldMask{},
+		RunPingTestResponse_FieldPathSelectorJsonResponse: &RunPingTestResponse_JsonResponse_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -432,8 +432,8 @@ func (fieldMask *RunPingTestResponse_FieldMask) Subtract(other *RunPingTestRespo
 			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
 				if tp, ok := path.(*RunPingTestResponse_FieldTerminalPath); ok {
 					switch tp.selector {
-					case RunPingTestResponse_FieldPathSelectorSummary:
-						mySubMasks[RunPingTestResponse_FieldPathSelectorSummary] = FullRunPingTestResponse_SummaryStats_FieldMask()
+					case RunPingTestResponse_FieldPathSelectorJsonResponse:
+						mySubMasks[RunPingTestResponse_FieldPathSelectorJsonResponse] = FullRunPingTestResponse_JsonResponse_FieldMask()
 					}
 				} else if tp, ok := path.(*RunPingTestResponse_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -586,38 +586,28 @@ func (fieldMask *RunPingTestResponse_FieldMask) Project(source *RunPingTestRespo
 		return source
 	}
 	result := &RunPingTestResponse{}
-	summaryMask := &RunPingTestResponse_SummaryStats_FieldMask{}
-	wholeSummaryAccepted := false
+	jsonResponseMask := &RunPingTestResponse_JsonResponse_FieldMask{}
+	wholeJsonResponseAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
 		case *RunPingTestResponse_FieldTerminalPath:
 			switch tp.selector {
-			case RunPingTestResponse_FieldPathSelectorFrom:
-				result.From = source.From
-			case RunPingTestResponse_FieldPathSelectorSizeBytes:
-				result.SizeBytes = source.SizeBytes
-			case RunPingTestResponse_FieldPathSelectorSequenceNumber:
-				result.SequenceNumber = source.SequenceNumber
-			case RunPingTestResponse_FieldPathSelectorTtl:
-				result.Ttl = source.Ttl
-			case RunPingTestResponse_FieldPathSelectorRtt:
-				result.Rtt = source.Rtt
-			case RunPingTestResponse_FieldPathSelectorError:
-				result.Error = source.Error
-			case RunPingTestResponse_FieldPathSelectorSummary:
-				result.Summary = source.Summary
-				wholeSummaryAccepted = true
+			case RunPingTestResponse_FieldPathSelectorJsonResponse:
+				result.JsonResponse = source.JsonResponse
+				wholeJsonResponseAccepted = true
+			case RunPingTestResponse_FieldPathSelectorTextResponse:
+				result.TextResponse = source.TextResponse
 			}
 		case *RunPingTestResponse_FieldSubPath:
 			switch tp.selector {
-			case RunPingTestResponse_FieldPathSelectorSummary:
-				summaryMask.AppendPath(tp.subPath.(RunPingTestResponseSummaryStats_FieldPath))
+			case RunPingTestResponse_FieldPathSelectorJsonResponse:
+				jsonResponseMask.AppendPath(tp.subPath.(RunPingTestResponseJsonResponse_FieldPath))
 			}
 		}
 	}
-	if wholeSummaryAccepted == false && len(summaryMask.Paths) > 0 {
-		result.Summary = summaryMask.Project(source.GetSummary())
+	if wholeJsonResponseAccepted == false && len(jsonResponseMask.Paths) > 0 {
+		result.JsonResponse = jsonResponseMask.Project(source.GetJsonResponse())
 	}
 	return result
 }
@@ -633,23 +623,23 @@ func (fieldMask *RunPingTestResponse_FieldMask) PathsCount() int {
 	return len(fieldMask.Paths)
 }
 
-type RunPingTestResponse_SummaryStats_FieldMask struct {
-	Paths []RunPingTestResponseSummaryStats_FieldPath
+type RunPingTestResponse_JsonResponse_FieldMask struct {
+	Paths []RunPingTestResponseJsonResponse_FieldPath
 }
 
-func FullRunPingTestResponse_SummaryStats_FieldMask() *RunPingTestResponse_SummaryStats_FieldMask {
-	res := &RunPingTestResponse_SummaryStats_FieldMask{}
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter})
-	res.Paths = append(res.Paths, &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio})
+func FullRunPingTestResponse_JsonResponse_FieldMask() *RunPingTestResponse_JsonResponse_FieldMask {
+	res := &RunPingTestResponse_JsonResponse_FieldMask{}
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorFrom})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorTtl})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorRtt})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorError})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary})
 	return res
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) String() string {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) String() string {
 	if fieldMask == nil {
 		return "<nil>"
 	}
@@ -661,7 +651,7 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) String() string {
 }
 
 // firestore encoding/decoding integration
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
 	if fieldMask == nil {
 		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
 	}
@@ -674,9 +664,9 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) EncodeFirestore() (
 	}, nil
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
 	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseRunPingTestResponseSummaryStats_FieldPath(value.GetStringValue())
+		parsedPath, err := ParseRunPingTestResponseJsonResponse_FieldPath(value.GetStringValue())
 		if err != nil {
 			return err
 		}
@@ -685,13 +675,13 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) DecodeFirestore(fpb
 	return nil
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) IsFull() bool {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
 	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*RunPingTestResponseSummaryStats_FieldTerminalPath); ok {
+		if asFinal, ok := path.(*RunPingTestResponseJsonResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
 		}
 	}
@@ -703,27 +693,335 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) IsFull() bool {
 	return true
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) ProtoReflect() preflect.Message {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) ProtoReflect() preflect.Message {
 	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseRunPingTestResponseSummaryStats_FieldPath(raw)
+		return ParseRunPingTestResponseJsonResponse_FieldPath(raw)
 	})
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) ProtoMessage() {}
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) ProtoMessage() {}
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Reset() {
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Reset() {
 	if fieldMask != nil {
 		fieldMask.Paths = nil
 	}
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Subtract(other *RunPingTestResponse_SummaryStats_FieldMask) *RunPingTestResponse_SummaryStats_FieldMask {
-	result := &RunPingTestResponse_SummaryStats_FieldMask{}
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Subtract(other *RunPingTestResponse_JsonResponse_FieldMask) *RunPingTestResponse_JsonResponse_FieldMask {
+	result := &RunPingTestResponse_JsonResponse_FieldMask{}
+	removedSelectors := make([]bool, 7)
+	otherSubMasks := map[RunPingTestResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunPingTestResponseJsonResponse_FieldPathSelectorSummary: &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{},
+	}
+	mySubMasks := map[RunPingTestResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunPingTestResponseJsonResponse_FieldPathSelectorSummary: &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{},
+	}
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *RunPingTestResponseJsonResponse_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		case *RunPingTestResponseJsonResponse_FieldSubPath:
+			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
+				if tp, ok := path.(*RunPingTestResponseJsonResponse_FieldTerminalPath); ok {
+					switch tp.selector {
+					case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+						mySubMasks[RunPingTestResponseJsonResponse_FieldPathSelectorSummary] = FullRunPingTestResponse_JsonResponse_SummaryStats_FieldMask()
+					}
+				} else if tp, ok := path.(*RunPingTestResponseJsonResponse_FieldSubPath); ok {
+					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
+				}
+			} else {
+				result.Paths = append(result.Paths, path)
+			}
+		}
+	}
+	for selector, mySubMask := range mySubMasks {
+		if mySubMask.PathsCount() > 0 {
+			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
+				result.Paths = append(result.Paths, &RunPingTestResponseJsonResponse_FieldSubPath{selector: selector, subPath: allowedPath})
+			}
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*RunPingTestResponse_JsonResponse_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) FilterInputFields() *RunPingTestResponse_JsonResponse_FieldMask {
+	result := &RunPingTestResponse_JsonResponse_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]RunPingTestResponseJsonResponse_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseRunPingTestResponseJsonResponse_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask RunPingTestResponse_JsonResponse_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask RunPingTestResponse_JsonResponse_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) AppendPath(path RunPingTestResponseJsonResponse_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(RunPingTestResponseJsonResponse_FieldPath))
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) GetPaths() []RunPingTestResponseJsonResponse_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseRunPingTestResponseJsonResponse_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Set(target, source *RunPingTestResponse_JsonResponse) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*RunPingTestResponse_JsonResponse), source.(*RunPingTestResponse_JsonResponse))
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) Project(source *RunPingTestResponse_JsonResponse) *RunPingTestResponse_JsonResponse {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &RunPingTestResponse_JsonResponse{}
+	summaryMask := &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
+	wholeSummaryAccepted := false
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *RunPingTestResponseJsonResponse_FieldTerminalPath:
+			switch tp.selector {
+			case RunPingTestResponseJsonResponse_FieldPathSelectorFrom:
+				result.From = source.From
+			case RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes:
+				result.SizeBytes = source.SizeBytes
+			case RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber:
+				result.SequenceNumber = source.SequenceNumber
+			case RunPingTestResponseJsonResponse_FieldPathSelectorTtl:
+				result.Ttl = source.Ttl
+			case RunPingTestResponseJsonResponse_FieldPathSelectorRtt:
+				result.Rtt = source.Rtt
+			case RunPingTestResponseJsonResponse_FieldPathSelectorError:
+				result.Error = source.Error
+			case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+				result.Summary = source.Summary
+				wholeSummaryAccepted = true
+			}
+		case *RunPingTestResponseJsonResponse_FieldSubPath:
+			switch tp.selector {
+			case RunPingTestResponseJsonResponse_FieldPathSelectorSummary:
+				summaryMask.AppendPath(tp.subPath.(RunPingTestResponseJsonResponseSummaryStats_FieldPath))
+			}
+		}
+	}
+	if wholeSummaryAccepted == false && len(summaryMask.Paths) > 0 {
+		result.Summary = summaryMask.Project(source.GetSummary())
+	}
+	return result
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunPingTestResponse_JsonResponse))
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type RunPingTestResponse_JsonResponse_SummaryStats_FieldMask struct {
+	Paths []RunPingTestResponseJsonResponseSummaryStats_FieldPath
+}
+
+func FullRunPingTestResponse_JsonResponse_SummaryStats_FieldMask() *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask {
+	res := &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter})
+	res.Paths = append(res.Paths, &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio})
+	return res
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 7)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(raw)
+	})
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) ProtoMessage() {}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Subtract(other *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask {
+	result := &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
 	removedSelectors := make([]bool, 7)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
-		case *RunPingTestResponseSummaryStats_FieldTerminalPath:
+		case *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath:
 			removedSelectors[int(tp.selector)] = true
 		}
 	}
@@ -739,19 +1037,19 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Subtract(other *Run
 	return result
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*RunPingTestResponse_SummaryStats_FieldMask))
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*RunPingTestResponse_JsonResponse_SummaryStats_FieldMask))
 }
 
 // FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) FilterInputFields() *RunPingTestResponse_SummaryStats_FieldMask {
-	result := &RunPingTestResponse_SummaryStats_FieldMask{}
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) FilterInputFields() *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask {
+	result := &RunPingTestResponse_JsonResponse_SummaryStats_FieldMask{}
 	result.Paths = append(result.Paths, fieldMask.Paths...)
 	return result
 }
 
 // ToFieldMask is used for proto conversions
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
 	protoFieldMask := &fieldmaskpb.FieldMask{}
 	for _, path := range fieldMask.Paths {
 		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
@@ -759,13 +1057,13 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) ToProtoFieldMask() 
 	return protoFieldMask
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
 	if fieldMask == nil {
 		return status.Error(codes.Internal, "target field mask is nil")
 	}
-	fieldMask.Paths = make([]RunPingTestResponseSummaryStats_FieldPath, 0, len(protoFieldMask.Paths))
+	fieldMask.Paths = make([]RunPingTestResponseJsonResponseSummaryStats_FieldPath, 0, len(protoFieldMask.Paths))
 	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseRunPingTestResponseSummaryStats_FieldPath(strPath)
+		path, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(strPath)
 		if err != nil {
 			return err
 		}
@@ -775,12 +1073,12 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) FromProtoFieldMask(
 }
 
 // implement methods required by customType
-func (fieldMask RunPingTestResponse_SummaryStats_FieldMask) Marshal() ([]byte, error) {
+func (fieldMask RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Marshal() ([]byte, error) {
 	protoFieldMask := fieldMask.ToProtoFieldMask()
 	return proto.Marshal(protoFieldMask)
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Unmarshal(data []byte) error {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Unmarshal(data []byte) error {
 	protoFieldMask := &fieldmaskpb.FieldMask{}
 	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
 		return err
@@ -791,15 +1089,15 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Unmarshal(data []by
 	return nil
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Size() int {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Size() int {
 	return proto.Size(fieldMask.ToProtoFieldMask())
 }
 
-func (fieldMask RunPingTestResponse_SummaryStats_FieldMask) MarshalJSON() ([]byte, error) {
+func (fieldMask RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) MarshalJSON() ([]byte, error) {
 	return json.Marshal(fieldMask.ToProtoFieldMask())
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) UnmarshalJSON(data []byte) error {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) UnmarshalJSON(data []byte) error {
 	protoFieldMask := &fieldmaskpb.FieldMask{}
 	if err := json.Unmarshal(data, protoFieldMask); err != nil {
 		return err
@@ -810,22 +1108,22 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) UnmarshalJSON(data 
 	return nil
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) AppendPath(path RunPingTestResponseSummaryStats_FieldPath) {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) AppendPath(path RunPingTestResponseJsonResponseSummaryStats_FieldPath) {
 	fieldMask.Paths = append(fieldMask.Paths, path)
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(RunPingTestResponseSummaryStats_FieldPath))
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(RunPingTestResponseJsonResponseSummaryStats_FieldPath))
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) GetPaths() []RunPingTestResponseSummaryStats_FieldPath {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) GetPaths() []RunPingTestResponseJsonResponseSummaryStats_FieldPath {
 	if fieldMask == nil {
 		return nil
 	}
 	return fieldMask.Paths
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) GetRawPaths() []gotenobject.FieldPath {
 	if fieldMask == nil {
 		return nil
 	}
@@ -836,8 +1134,8 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) GetRawPaths() []got
 	return rawPaths
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseRunPingTestResponseSummaryStats_FieldPath(raw)
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseRunPingTestResponseJsonResponseSummaryStats_FieldPath(raw)
 	if err != nil {
 		return err
 	}
@@ -845,7 +1143,7 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) SetFromCliFlag(raw 
 	return nil
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Set(target, source *RunPingTestResponse_SummaryStats) {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Set(target, source *RunPingTestResponse_JsonResponse_SummaryStats) {
 	for _, path := range fieldMask.Paths {
 		val, _ := path.GetSingle(source)
 		// if val is nil, then field does not exist in source, skip
@@ -856,36 +1154,36 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Set(target, source 
 	}
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*RunPingTestResponse_SummaryStats), source.(*RunPingTestResponse_SummaryStats))
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*RunPingTestResponse_JsonResponse_SummaryStats), source.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Project(source *RunPingTestResponse_SummaryStats) *RunPingTestResponse_SummaryStats {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) Project(source *RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponse_JsonResponse_SummaryStats {
 	if source == nil {
 		return nil
 	}
 	if fieldMask == nil {
 		return source
 	}
-	result := &RunPingTestResponse_SummaryStats{}
+	result := &RunPingTestResponse_JsonResponse_SummaryStats{}
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
-		case *RunPingTestResponseSummaryStats_FieldTerminalPath:
+		case *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath:
 			switch tp.selector {
-			case RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt:
 				result.MinRtt = source.MinRtt
-			case RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt:
 				result.AvgRtt = source.AvgRtt
-			case RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt:
 				result.MaxRtt = source.MaxRtt
-			case RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt:
 				result.StddevRtt = source.StddevRtt
-			case RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter:
 				result.TransmittedCounter = source.TransmittedCounter
-			case RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter:
 				result.ReceivedCounter = source.ReceivedCounter
-			case RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio:
+			case RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio:
 				result.LossRatio = source.LossRatio
 			}
 		}
@@ -893,288 +1191,11 @@ func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) Project(source *Run
 	return result
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunPingTestResponse_SummaryStats))
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunPingTestResponse_JsonResponse_SummaryStats))
 }
 
-func (fieldMask *RunPingTestResponse_SummaryStats_FieldMask) PathsCount() int {
-	if fieldMask == nil {
-		return 0
-	}
-	return len(fieldMask.Paths)
-}
-
-type RunPingTestRequestToProbe_FieldMask struct {
-	Paths []RunPingTestRequestToProbe_FieldPath
-}
-
-func FullRunPingTestRequestToProbe_FieldMask() *RunPingTestRequestToProbe_FieldMask {
-	res := &RunPingTestRequestToProbe_FieldMask{}
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSource})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDestination})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSizeBytes})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorCount})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorInterval})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDontFragment})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTtl})
-	res.Paths = append(res.Paths, &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTos})
-	return res
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) String() string {
-	if fieldMask == nil {
-		return "<nil>"
-	}
-	pathsStr := make([]string, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		pathsStr = append(pathsStr, path.String())
-	}
-	return strings.Join(pathsStr, ", ")
-}
-
-// firestore encoding/decoding integration
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
-	if fieldMask == nil {
-		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
-	}
-	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.GetPaths() {
-		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
-	}
-	return &firestorepb.Value{
-		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
-	}, nil
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
-	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseRunPingTestRequestToProbe_FieldPath(value.GetStringValue())
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
-	}
-	return nil
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) IsFull() bool {
-	if fieldMask == nil {
-		return false
-	}
-	presentSelectors := make([]bool, 9)
-	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*RunPingTestRequestToProbe_FieldTerminalPath); ok {
-			presentSelectors[int(asFinal.selector)] = true
-		}
-	}
-	for _, flag := range presentSelectors {
-		if !flag {
-			return false
-		}
-	}
-	return true
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) ProtoReflect() preflect.Message {
-	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseRunPingTestRequestToProbe_FieldPath(raw)
-	})
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) ProtoMessage() {}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Reset() {
-	if fieldMask != nil {
-		fieldMask.Paths = nil
-	}
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Subtract(other *RunPingTestRequestToProbe_FieldMask) *RunPingTestRequestToProbe_FieldMask {
-	result := &RunPingTestRequestToProbe_FieldMask{}
-	removedSelectors := make([]bool, 9)
-
-	for _, path := range other.GetPaths() {
-		switch tp := path.(type) {
-		case *RunPingTestRequestToProbe_FieldTerminalPath:
-			removedSelectors[int(tp.selector)] = true
-		}
-	}
-	for _, path := range fieldMask.GetPaths() {
-		if !removedSelectors[int(path.Selector())] {
-			result.Paths = append(result.Paths, path)
-		}
-	}
-
-	if len(result.Paths) == 0 {
-		return nil
-	}
-	return result
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*RunPingTestRequestToProbe_FieldMask))
-}
-
-// FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) FilterInputFields() *RunPingTestRequestToProbe_FieldMask {
-	result := &RunPingTestRequestToProbe_FieldMask{}
-	result.Paths = append(result.Paths, fieldMask.Paths...)
-	return result
-}
-
-// ToFieldMask is used for proto conversions
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	for _, path := range fieldMask.Paths {
-		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
-	}
-	return protoFieldMask
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
-	if fieldMask == nil {
-		return status.Error(codes.Internal, "target field mask is nil")
-	}
-	fieldMask.Paths = make([]RunPingTestRequestToProbe_FieldPath, 0, len(protoFieldMask.Paths))
-	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseRunPingTestRequestToProbe_FieldPath(strPath)
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, path)
-	}
-	return nil
-}
-
-// implement methods required by customType
-func (fieldMask RunPingTestRequestToProbe_FieldMask) Marshal() ([]byte, error) {
-	protoFieldMask := fieldMask.ToProtoFieldMask()
-	return proto.Marshal(protoFieldMask)
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Unmarshal(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Size() int {
-	return proto.Size(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask RunPingTestRequestToProbe_FieldMask) MarshalJSON() ([]byte, error) {
-	return json.Marshal(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) UnmarshalJSON(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := json.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) AppendPath(path RunPingTestRequestToProbe_FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path)
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(RunPingTestRequestToProbe_FieldPath))
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) GetPaths() []RunPingTestRequestToProbe_FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	return fieldMask.Paths
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) GetRawPaths() []gotenobject.FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		rawPaths = append(rawPaths, path)
-	}
-	return rawPaths
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseRunPingTestRequestToProbe_FieldPath(raw)
-	if err != nil {
-		return err
-	}
-	fieldMask.Paths = append(fieldMask.Paths, path)
-	return nil
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Set(target, source *RunPingTestRequestToProbe) {
-	for _, path := range fieldMask.Paths {
-		val, _ := path.GetSingle(source)
-		// if val is nil, then field does not exist in source, skip
-		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
-		if val != nil {
-			path.WithIValue(val).SetTo(&target)
-		}
-	}
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*RunPingTestRequestToProbe), source.(*RunPingTestRequestToProbe))
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) Project(source *RunPingTestRequestToProbe) *RunPingTestRequestToProbe {
-	if source == nil {
-		return nil
-	}
-	if fieldMask == nil {
-		return source
-	}
-	result := &RunPingTestRequestToProbe{}
-
-	for _, p := range fieldMask.Paths {
-		switch tp := p.(type) {
-		case *RunPingTestRequestToProbe_FieldTerminalPath:
-			switch tp.selector {
-			case RunPingTestRequestToProbe_FieldPathSelectorSource:
-				result.Source = source.Source
-			case RunPingTestRequestToProbe_FieldPathSelectorDestination:
-				result.Destination = source.Destination
-			case RunPingTestRequestToProbe_FieldPathSelectorSizeBytes:
-				result.SizeBytes = source.SizeBytes
-			case RunPingTestRequestToProbe_FieldPathSelectorCount:
-				result.Count = source.Count
-			case RunPingTestRequestToProbe_FieldPathSelectorInterval:
-				result.Interval = source.Interval
-			case RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout:
-				result.EchoTimeout = source.EchoTimeout
-			case RunPingTestRequestToProbe_FieldPathSelectorDontFragment:
-				result.DontFragment = source.DontFragment
-			case RunPingTestRequestToProbe_FieldPathSelectorTtl:
-				result.Ttl = source.Ttl
-			case RunPingTestRequestToProbe_FieldPathSelectorTos:
-				result.Tos = source.Tos
-			}
-		}
-	}
-	return result
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunPingTestRequestToProbe))
-}
-
-func (fieldMask *RunPingTestRequestToProbe_FieldMask) PathsCount() int {
+func (fieldMask *RunPingTestResponse_JsonResponse_SummaryStats_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

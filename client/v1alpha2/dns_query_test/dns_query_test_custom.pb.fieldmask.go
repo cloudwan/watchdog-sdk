@@ -60,6 +60,7 @@ func FullRunDNSQueryTestRequest_FieldMask() *RunDNSQueryTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorTcp})
 	res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorNoRecursionDesired})
 	res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorReverse})
+	res.Paths = append(res.Paths, &RunDNSQueryTestRequest_FieldTerminalPath{selector: RunDNSQueryTestRequest_FieldPathSelectorOutputFormat})
 	return res
 }
 
@@ -103,7 +104,7 @@ func (fieldMask *RunDNSQueryTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunDNSQueryTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -133,7 +134,7 @@ func (fieldMask *RunDNSQueryTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunDNSQueryTestRequest_FieldMask) Subtract(other *RunDNSQueryTestRequest_FieldMask) *RunDNSQueryTestRequest_FieldMask {
 	result := &RunDNSQueryTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 	otherSubMasks := map[RunDNSQueryTestRequest_FieldPathSelector]gotenobject.FieldMask{
 		RunDNSQueryTestRequest_FieldPathSelectorQuery: &common.DNSQuery_FieldMask{},
 	}
@@ -330,6 +331,8 @@ func (fieldMask *RunDNSQueryTestRequest_FieldMask) Project(source *RunDNSQueryTe
 				result.NoRecursionDesired = source.NoRecursionDesired
 			case RunDNSQueryTestRequest_FieldPathSelectorReverse:
 				result.Reverse = source.Reverse
+			case RunDNSQueryTestRequest_FieldPathSelectorOutputFormat:
+				result.OutputFormat = source.OutputFormat
 			}
 		case *RunDNSQueryTestRequest_FieldSubPath:
 			switch tp.selector {
@@ -361,14 +364,8 @@ type RunDNSQueryTestResponse_FieldMask struct {
 
 func FullRunDNSQueryTestResponse_FieldMask() *RunDNSQueryTestResponse_FieldMask {
 	res := &RunDNSQueryTestResponse_FieldMask{}
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorId})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRcode})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorFlags})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorQueries})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorAnswers})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorNs})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorExtras})
-	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorRtt})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorJsonResponse})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponse_FieldTerminalPath{selector: RunDNSQueryTestResponse_FieldPathSelectorTextResponse})
 	return res
 }
 
@@ -412,7 +409,7 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 8)
+	presentSelectors := make([]bool, 2)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunDNSQueryTestResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -442,18 +439,12 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) Reset() {
 
 func (fieldMask *RunDNSQueryTestResponse_FieldMask) Subtract(other *RunDNSQueryTestResponse_FieldMask) *RunDNSQueryTestResponse_FieldMask {
 	result := &RunDNSQueryTestResponse_FieldMask{}
-	removedSelectors := make([]bool, 8)
+	removedSelectors := make([]bool, 2)
 	otherSubMasks := map[RunDNSQueryTestResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunDNSQueryTestResponse_FieldPathSelectorQueries: &common.DNSQuery_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorAnswers: &common.DNSResourceRecord_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorNs:      &common.DNSResourceRecord_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorExtras:  &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponse_FieldPathSelectorJsonResponse: &RunDNSQueryTestResponse_JsonResponse_FieldMask{},
 	}
 	mySubMasks := map[RunDNSQueryTestResponse_FieldPathSelector]gotenobject.FieldMask{
-		RunDNSQueryTestResponse_FieldPathSelectorQueries: &common.DNSQuery_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorAnswers: &common.DNSResourceRecord_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorNs:      &common.DNSResourceRecord_FieldMask{},
-		RunDNSQueryTestResponse_FieldPathSelectorExtras:  &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponse_FieldPathSelectorJsonResponse: &RunDNSQueryTestResponse_JsonResponse_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -469,14 +460,8 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) Subtract(other *RunDNSQueryT
 			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
 				if tp, ok := path.(*RunDNSQueryTestResponse_FieldTerminalPath); ok {
 					switch tp.selector {
-					case RunDNSQueryTestResponse_FieldPathSelectorQueries:
-						mySubMasks[RunDNSQueryTestResponse_FieldPathSelectorQueries] = common.FullDNSQuery_FieldMask()
-					case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
-						mySubMasks[RunDNSQueryTestResponse_FieldPathSelectorAnswers] = common.FullDNSResourceRecord_FieldMask()
-					case RunDNSQueryTestResponse_FieldPathSelectorNs:
-						mySubMasks[RunDNSQueryTestResponse_FieldPathSelectorNs] = common.FullDNSResourceRecord_FieldMask()
-					case RunDNSQueryTestResponse_FieldPathSelectorExtras:
-						mySubMasks[RunDNSQueryTestResponse_FieldPathSelectorExtras] = common.FullDNSResourceRecord_FieldMask()
+					case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+						mySubMasks[RunDNSQueryTestResponse_FieldPathSelectorJsonResponse] = FullRunDNSQueryTestResponse_JsonResponse_FieldMask()
 					}
 				} else if tp, ok := path.(*RunDNSQueryTestResponse_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -629,6 +614,317 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) Project(source *RunDNSQueryT
 		return source
 	}
 	result := &RunDNSQueryTestResponse{}
+	jsonResponseMask := &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	wholeJsonResponseAccepted := false
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *RunDNSQueryTestResponse_FieldTerminalPath:
+			switch tp.selector {
+			case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+				result.JsonResponse = source.JsonResponse
+				wholeJsonResponseAccepted = true
+			case RunDNSQueryTestResponse_FieldPathSelectorTextResponse:
+				result.TextResponse = source.TextResponse
+			}
+		case *RunDNSQueryTestResponse_FieldSubPath:
+			switch tp.selector {
+			case RunDNSQueryTestResponse_FieldPathSelectorJsonResponse:
+				jsonResponseMask.AppendPath(tp.subPath.(RunDNSQueryTestResponseJsonResponse_FieldPath))
+			}
+		}
+	}
+	if wholeJsonResponseAccepted == false && len(jsonResponseMask.Paths) > 0 {
+		result.JsonResponse = jsonResponseMask.Project(source.GetJsonResponse())
+	}
+	return result
+}
+
+func (fieldMask *RunDNSQueryTestResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunDNSQueryTestResponse))
+}
+
+func (fieldMask *RunDNSQueryTestResponse_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type RunDNSQueryTestResponse_JsonResponse_FieldMask struct {
+	Paths []RunDNSQueryTestResponseJsonResponse_FieldPath
+}
+
+func FullRunDNSQueryTestResponse_JsonResponse_FieldMask() *RunDNSQueryTestResponse_JsonResponse_FieldMask {
+	res := &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras})
+	res.Paths = append(res.Paths, &RunDNSQueryTestResponseJsonResponse_FieldTerminalPath{selector: RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt})
+	return res
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 8)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseRunDNSQueryTestResponseJsonResponse_FieldPath(raw)
+	})
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) ProtoMessage() {}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Subtract(other *RunDNSQueryTestResponse_JsonResponse_FieldMask) *RunDNSQueryTestResponse_JsonResponse_FieldMask {
+	result := &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	removedSelectors := make([]bool, 8)
+	otherSubMasks := map[RunDNSQueryTestResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries: &common.DNSQuery_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers: &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:      &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:  &common.DNSResourceRecord_FieldMask{},
+	}
+	mySubMasks := map[RunDNSQueryTestResponseJsonResponse_FieldPathSelector]gotenobject.FieldMask{
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries: &common.DNSQuery_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers: &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:      &common.DNSResourceRecord_FieldMask{},
+		RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:  &common.DNSResourceRecord_FieldMask{},
+	}
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		case *RunDNSQueryTestResponseJsonResponse_FieldSubPath:
+			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
+				if tp, ok := path.(*RunDNSQueryTestResponseJsonResponse_FieldTerminalPath); ok {
+					switch tp.selector {
+					case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
+						mySubMasks[RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries] = common.FullDNSQuery_FieldMask()
+					case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
+						mySubMasks[RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers] = common.FullDNSResourceRecord_FieldMask()
+					case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
+						mySubMasks[RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs] = common.FullDNSResourceRecord_FieldMask()
+					case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
+						mySubMasks[RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras] = common.FullDNSResourceRecord_FieldMask()
+					}
+				} else if tp, ok := path.(*RunDNSQueryTestResponseJsonResponse_FieldSubPath); ok {
+					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
+				}
+			} else {
+				result.Paths = append(result.Paths, path)
+			}
+		}
+	}
+	for selector, mySubMask := range mySubMasks {
+		if mySubMask.PathsCount() > 0 {
+			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
+				result.Paths = append(result.Paths, &RunDNSQueryTestResponseJsonResponse_FieldSubPath{selector: selector, subPath: allowedPath})
+			}
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*RunDNSQueryTestResponse_JsonResponse_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) FilterInputFields() *RunDNSQueryTestResponse_JsonResponse_FieldMask {
+	result := &RunDNSQueryTestResponse_JsonResponse_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]RunDNSQueryTestResponseJsonResponse_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask RunDNSQueryTestResponse_JsonResponse_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask RunDNSQueryTestResponse_JsonResponse_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) AppendPath(path RunDNSQueryTestResponseJsonResponse_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(RunDNSQueryTestResponseJsonResponse_FieldPath))
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) GetPaths() []RunDNSQueryTestResponseJsonResponse_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseRunDNSQueryTestResponseJsonResponse_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Set(target, source *RunDNSQueryTestResponse_JsonResponse) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*RunDNSQueryTestResponse_JsonResponse), source.(*RunDNSQueryTestResponse_JsonResponse))
+}
+
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) Project(source *RunDNSQueryTestResponse_JsonResponse) *RunDNSQueryTestResponse_JsonResponse {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &RunDNSQueryTestResponse_JsonResponse{}
 	queriesMask := &common.DNSQuery_FieldMask{}
 	wholeQueriesAccepted := false
 	answersMask := &common.DNSResourceRecord_FieldMask{}
@@ -640,38 +936,38 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) Project(source *RunDNSQueryT
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
-		case *RunDNSQueryTestResponse_FieldTerminalPath:
+		case *RunDNSQueryTestResponseJsonResponse_FieldTerminalPath:
 			switch tp.selector {
-			case RunDNSQueryTestResponse_FieldPathSelectorId:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorId:
 				result.Id = source.Id
-			case RunDNSQueryTestResponse_FieldPathSelectorRcode:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRcode:
 				result.Rcode = source.Rcode
-			case RunDNSQueryTestResponse_FieldPathSelectorFlags:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorFlags:
 				result.Flags = source.Flags
-			case RunDNSQueryTestResponse_FieldPathSelectorQueries:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
 				result.Queries = source.Queries
 				wholeQueriesAccepted = true
-			case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
 				result.Answers = source.Answers
 				wholeAnswersAccepted = true
-			case RunDNSQueryTestResponse_FieldPathSelectorNs:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
 				result.Ns = source.Ns
 				wholeNsAccepted = true
-			case RunDNSQueryTestResponse_FieldPathSelectorExtras:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
 				result.Extras = source.Extras
 				wholeExtrasAccepted = true
-			case RunDNSQueryTestResponse_FieldPathSelectorRtt:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorRtt:
 				result.Rtt = source.Rtt
 			}
-		case *RunDNSQueryTestResponse_FieldSubPath:
+		case *RunDNSQueryTestResponseJsonResponse_FieldSubPath:
 			switch tp.selector {
-			case RunDNSQueryTestResponse_FieldPathSelectorQueries:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorQueries:
 				queriesMask.AppendPath(tp.subPath.(common.DNSQuery_FieldPath))
-			case RunDNSQueryTestResponse_FieldPathSelectorAnswers:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorAnswers:
 				answersMask.AppendPath(tp.subPath.(common.DNSResourceRecord_FieldPath))
-			case RunDNSQueryTestResponse_FieldPathSelectorNs:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorNs:
 				nsMask.AppendPath(tp.subPath.(common.DNSResourceRecord_FieldPath))
-			case RunDNSQueryTestResponse_FieldPathSelectorExtras:
+			case RunDNSQueryTestResponseJsonResponse_FieldPathSelectorExtras:
 				extrasMask.AppendPath(tp.subPath.(common.DNSResourceRecord_FieldPath))
 			}
 		}
@@ -699,316 +995,11 @@ func (fieldMask *RunDNSQueryTestResponse_FieldMask) Project(source *RunDNSQueryT
 	return result
 }
 
-func (fieldMask *RunDNSQueryTestResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunDNSQueryTestResponse))
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*RunDNSQueryTestResponse_JsonResponse))
 }
 
-func (fieldMask *RunDNSQueryTestResponse_FieldMask) PathsCount() int {
-	if fieldMask == nil {
-		return 0
-	}
-	return len(fieldMask.Paths)
-}
-
-type RunDNSQueryTestRequestToProbe_FieldMask struct {
-	Paths []RunDNSQueryTestRequestToProbe_FieldPath
-}
-
-func FullRunDNSQueryTestRequestToProbe_FieldMask() *RunDNSQueryTestRequestToProbe_FieldMask {
-	res := &RunDNSQueryTestRequestToProbe_FieldMask{}
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery})
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorServer})
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorPort})
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp})
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired})
-	res.Paths = append(res.Paths, &RunDNSQueryTestRequestToProbe_FieldTerminalPath{selector: RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse})
-	return res
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) String() string {
-	if fieldMask == nil {
-		return "<nil>"
-	}
-	pathsStr := make([]string, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		pathsStr = append(pathsStr, path.String())
-	}
-	return strings.Join(pathsStr, ", ")
-}
-
-// firestore encoding/decoding integration
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
-	if fieldMask == nil {
-		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
-	}
-	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.GetPaths() {
-		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
-	}
-	return &firestorepb.Value{
-		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
-	}, nil
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
-	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(value.GetStringValue())
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
-	}
-	return nil
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) IsFull() bool {
-	if fieldMask == nil {
-		return false
-	}
-	presentSelectors := make([]bool, 6)
-	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*RunDNSQueryTestRequestToProbe_FieldTerminalPath); ok {
-			presentSelectors[int(asFinal.selector)] = true
-		}
-	}
-	for _, flag := range presentSelectors {
-		if !flag {
-			return false
-		}
-	}
-	return true
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) ProtoReflect() preflect.Message {
-	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseRunDNSQueryTestRequestToProbe_FieldPath(raw)
-	})
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) ProtoMessage() {}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Reset() {
-	if fieldMask != nil {
-		fieldMask.Paths = nil
-	}
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Subtract(other *RunDNSQueryTestRequestToProbe_FieldMask) *RunDNSQueryTestRequestToProbe_FieldMask {
-	result := &RunDNSQueryTestRequestToProbe_FieldMask{}
-	removedSelectors := make([]bool, 6)
-	otherSubMasks := map[RunDNSQueryTestRequestToProbe_FieldPathSelector]gotenobject.FieldMask{
-		RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery: &common.DNSQuery_FieldMask{},
-	}
-	mySubMasks := map[RunDNSQueryTestRequestToProbe_FieldPathSelector]gotenobject.FieldMask{
-		RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery: &common.DNSQuery_FieldMask{},
-	}
-
-	for _, path := range other.GetPaths() {
-		switch tp := path.(type) {
-		case *RunDNSQueryTestRequestToProbe_FieldTerminalPath:
-			removedSelectors[int(tp.selector)] = true
-		case *RunDNSQueryTestRequestToProbe_FieldSubPath:
-			otherSubMasks[tp.selector].AppendRawPath(tp.subPath)
-		}
-	}
-	for _, path := range fieldMask.GetPaths() {
-		if !removedSelectors[int(path.Selector())] {
-			if otherSubMask := otherSubMasks[path.Selector()]; otherSubMask != nil && otherSubMask.PathsCount() > 0 {
-				if tp, ok := path.(*RunDNSQueryTestRequestToProbe_FieldTerminalPath); ok {
-					switch tp.selector {
-					case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-						mySubMasks[RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery] = common.FullDNSQuery_FieldMask()
-					}
-				} else if tp, ok := path.(*RunDNSQueryTestRequestToProbe_FieldSubPath); ok {
-					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
-				}
-			} else {
-				result.Paths = append(result.Paths, path)
-			}
-		}
-	}
-	for selector, mySubMask := range mySubMasks {
-		if mySubMask.PathsCount() > 0 {
-			for _, allowedPath := range mySubMask.SubtractRaw(otherSubMasks[selector]).GetRawPaths() {
-				result.Paths = append(result.Paths, &RunDNSQueryTestRequestToProbe_FieldSubPath{selector: selector, subPath: allowedPath})
-			}
-		}
-	}
-
-	if len(result.Paths) == 0 {
-		return nil
-	}
-	return result
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*RunDNSQueryTestRequestToProbe_FieldMask))
-}
-
-// FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) FilterInputFields() *RunDNSQueryTestRequestToProbe_FieldMask {
-	result := &RunDNSQueryTestRequestToProbe_FieldMask{}
-	result.Paths = append(result.Paths, fieldMask.Paths...)
-	return result
-}
-
-// ToFieldMask is used for proto conversions
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	for _, path := range fieldMask.Paths {
-		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
-	}
-	return protoFieldMask
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
-	if fieldMask == nil {
-		return status.Error(codes.Internal, "target field mask is nil")
-	}
-	fieldMask.Paths = make([]RunDNSQueryTestRequestToProbe_FieldPath, 0, len(protoFieldMask.Paths))
-	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(strPath)
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, path)
-	}
-	return nil
-}
-
-// implement methods required by customType
-func (fieldMask RunDNSQueryTestRequestToProbe_FieldMask) Marshal() ([]byte, error) {
-	protoFieldMask := fieldMask.ToProtoFieldMask()
-	return proto.Marshal(protoFieldMask)
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Unmarshal(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Size() int {
-	return proto.Size(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask RunDNSQueryTestRequestToProbe_FieldMask) MarshalJSON() ([]byte, error) {
-	return json.Marshal(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) UnmarshalJSON(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := json.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) AppendPath(path RunDNSQueryTestRequestToProbe_FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path)
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(RunDNSQueryTestRequestToProbe_FieldPath))
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) GetPaths() []RunDNSQueryTestRequestToProbe_FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	return fieldMask.Paths
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) GetRawPaths() []gotenobject.FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		rawPaths = append(rawPaths, path)
-	}
-	return rawPaths
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseRunDNSQueryTestRequestToProbe_FieldPath(raw)
-	if err != nil {
-		return err
-	}
-	fieldMask.Paths = append(fieldMask.Paths, path)
-	return nil
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Set(target, source *RunDNSQueryTestRequestToProbe) {
-	for _, path := range fieldMask.Paths {
-		val, _ := path.GetSingle(source)
-		// if val is nil, then field does not exist in source, skip
-		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
-		if val != nil {
-			path.WithIValue(val).SetTo(&target)
-		}
-	}
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*RunDNSQueryTestRequestToProbe), source.(*RunDNSQueryTestRequestToProbe))
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) Project(source *RunDNSQueryTestRequestToProbe) *RunDNSQueryTestRequestToProbe {
-	if source == nil {
-		return nil
-	}
-	if fieldMask == nil {
-		return source
-	}
-	result := &RunDNSQueryTestRequestToProbe{}
-	queryMask := &common.DNSQuery_FieldMask{}
-	wholeQueryAccepted := false
-
-	for _, p := range fieldMask.Paths {
-		switch tp := p.(type) {
-		case *RunDNSQueryTestRequestToProbe_FieldTerminalPath:
-			switch tp.selector {
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-				result.Query = source.Query
-				wholeQueryAccepted = true
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorServer:
-				result.Server = source.Server
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorPort:
-				result.Port = source.Port
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorTcp:
-				result.Tcp = source.Tcp
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorNoRecursionDesired:
-				result.NoRecursionDesired = source.NoRecursionDesired
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorReverse:
-				result.Reverse = source.Reverse
-			}
-		case *RunDNSQueryTestRequestToProbe_FieldSubPath:
-			switch tp.selector {
-			case RunDNSQueryTestRequestToProbe_FieldPathSelectorQuery:
-				queryMask.AppendPath(tp.subPath.(common.DNSQuery_FieldPath))
-			}
-		}
-	}
-	if wholeQueryAccepted == false && len(queryMask.Paths) > 0 {
-		result.Query = queryMask.Project(source.GetQuery())
-	}
-	return result
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunDNSQueryTestRequestToProbe))
-}
-
-func (fieldMask *RunDNSQueryTestRequestToProbe_FieldMask) PathsCount() int {
+func (fieldMask *RunDNSQueryTestResponse_JsonResponse_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

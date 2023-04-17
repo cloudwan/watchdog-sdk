@@ -89,6 +89,9 @@ func (RunPingTestRequestFieldPathBuilder) Ttl() RunPingTestRequestPathSelectorTt
 func (RunPingTestRequestFieldPathBuilder) Tos() RunPingTestRequestPathSelectorTos {
 	return RunPingTestRequestPathSelectorTos{}
 }
+func (RunPingTestRequestFieldPathBuilder) OutputFormat() RunPingTestRequestPathSelectorOutputFormat {
+	return RunPingTestRequestPathSelectorOutputFormat{}
+}
 
 type RunPingTestRequestPathSelectorName struct{}
 
@@ -230,574 +233,779 @@ func (s RunPingTestRequestPathSelectorTos) WithArrayOfValues(values []int32) *Ru
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
 }
 
+type RunPingTestRequestPathSelectorOutputFormat struct{}
+
+func (RunPingTestRequestPathSelectorOutputFormat) FieldPath() *RunPingTestRequest_FieldTerminalPath {
+	return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat}
+}
+
+func (s RunPingTestRequestPathSelectorOutputFormat) WithValue(value common.OnDemandTestResponseFormat) *RunPingTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunPingTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunPingTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
+}
+
 type RunPingTestResponseFieldPathBuilder struct{}
 
 func NewRunPingTestResponseFieldPathBuilder() RunPingTestResponseFieldPathBuilder {
 	return RunPingTestResponseFieldPathBuilder{}
 }
-func (RunPingTestResponseFieldPathBuilder) From() RunPingTestResponsePathSelectorFrom {
-	return RunPingTestResponsePathSelectorFrom{}
+func (RunPingTestResponseFieldPathBuilder) JsonResponse() RunPingTestResponsePathSelectorJsonResponse {
+	return RunPingTestResponsePathSelectorJsonResponse{}
 }
-func (RunPingTestResponseFieldPathBuilder) SizeBytes() RunPingTestResponsePathSelectorSizeBytes {
-	return RunPingTestResponsePathSelectorSizeBytes{}
-}
-func (RunPingTestResponseFieldPathBuilder) SequenceNumber() RunPingTestResponsePathSelectorSequenceNumber {
-	return RunPingTestResponsePathSelectorSequenceNumber{}
-}
-func (RunPingTestResponseFieldPathBuilder) Ttl() RunPingTestResponsePathSelectorTtl {
-	return RunPingTestResponsePathSelectorTtl{}
-}
-func (RunPingTestResponseFieldPathBuilder) Rtt() RunPingTestResponsePathSelectorRtt {
-	return RunPingTestResponsePathSelectorRtt{}
-}
-func (RunPingTestResponseFieldPathBuilder) Error() RunPingTestResponsePathSelectorError {
-	return RunPingTestResponsePathSelectorError{}
-}
-func (RunPingTestResponseFieldPathBuilder) Summary() RunPingTestResponsePathSelectorSummary {
-	return RunPingTestResponsePathSelectorSummary{}
+func (RunPingTestResponseFieldPathBuilder) TextResponse() RunPingTestResponsePathSelectorTextResponse {
+	return RunPingTestResponsePathSelectorTextResponse{}
 }
 
-type RunPingTestResponsePathSelectorFrom struct{}
+type RunPingTestResponsePathSelectorJsonResponse struct{}
 
-func (RunPingTestResponsePathSelectorFrom) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorFrom}
+func (RunPingTestResponsePathSelectorJsonResponse) FieldPath() *RunPingTestResponse_FieldTerminalPath {
+	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse}
 }
 
-func (s RunPingTestResponsePathSelectorFrom) WithValue(value string) *RunPingTestResponse_FieldTerminalPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponse) WithValue(value *RunPingTestResponse_JsonResponse) *RunPingTestResponse_FieldTerminalPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorFrom) WithArrayOfValues(values []string) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponse) WithArrayOfValues(values []*RunPingTestResponse_JsonResponse) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSizeBytes struct{}
-
-func (RunPingTestResponsePathSelectorSizeBytes) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSizeBytes}
+func (RunPingTestResponsePathSelectorJsonResponse) WithSubPath(subPath RunPingTestResponseJsonResponse_FieldPath) *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorJsonResponse, subPath: subPath}
 }
 
-func (s RunPingTestResponsePathSelectorSizeBytes) WithValue(value int32) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorSizeBytes) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunPingTestResponsePathSelectorSequenceNumber struct{}
-
-func (RunPingTestResponsePathSelectorSequenceNumber) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSequenceNumber}
-}
-
-func (s RunPingTestResponsePathSelectorSequenceNumber) WithValue(value int32) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorSequenceNumber) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunPingTestResponsePathSelectorTtl struct{}
-
-func (RunPingTestResponsePathSelectorTtl) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTtl}
-}
-
-func (s RunPingTestResponsePathSelectorTtl) WithValue(value int32) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorTtl) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunPingTestResponsePathSelectorRtt struct{}
-
-func (RunPingTestResponsePathSelectorRtt) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorRtt}
-}
-
-func (s RunPingTestResponsePathSelectorRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunPingTestResponsePathSelectorError struct{}
-
-func (RunPingTestResponsePathSelectorError) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorError}
-}
-
-func (s RunPingTestResponsePathSelectorError) WithValue(value string) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorError) WithArrayOfValues(values []string) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-type RunPingTestResponsePathSelectorSummary struct{}
-
-func (RunPingTestResponsePathSelectorSummary) FieldPath() *RunPingTestResponse_FieldTerminalPath {
-	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorSummary}
-}
-
-func (s RunPingTestResponsePathSelectorSummary) WithValue(value *RunPingTestResponse_SummaryStats) *RunPingTestResponse_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
-}
-
-func (s RunPingTestResponsePathSelectorSummary) WithArrayOfValues(values []*RunPingTestResponse_SummaryStats) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
-}
-
-func (RunPingTestResponsePathSelectorSummary) WithSubPath(subPath RunPingTestResponseSummaryStats_FieldPath) *RunPingTestResponse_FieldSubPath {
-	return &RunPingTestResponse_FieldSubPath{selector: RunPingTestResponse_FieldPathSelectorSummary, subPath: subPath}
-}
-
-func (s RunPingTestResponsePathSelectorSummary) WithSubValue(subPathValue RunPingTestResponseSummaryStats_FieldPathValue) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponse) WithSubValue(subPathValue RunPingTestResponseJsonResponse_FieldPathValue) *RunPingTestResponse_FieldSubPathValue {
 	return &RunPingTestResponse_FieldSubPathValue{RunPingTestResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunPingTestResponsePathSelectorSummary) WithSubArrayOfValues(subPathArrayOfValues RunPingTestResponseSummaryStats_FieldPathArrayOfValues) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponse) WithSubArrayOfValues(subPathArrayOfValues RunPingTestResponseJsonResponse_FieldPathArrayOfValues) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return &RunPingTestResponse_FieldSubPathArrayOfValues{RunPingTestResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-func (s RunPingTestResponsePathSelectorSummary) WithSubArrayItemValue(subPathArrayItemValue RunPingTestResponseSummaryStats_FieldPathArrayItemValue) *RunPingTestResponse_FieldSubPathArrayItemValue {
+func (s RunPingTestResponsePathSelectorJsonResponse) WithSubArrayItemValue(subPathArrayItemValue RunPingTestResponseJsonResponse_FieldPathArrayItemValue) *RunPingTestResponse_FieldSubPathArrayItemValue {
 	return &RunPingTestResponse_FieldSubPathArrayItemValue{RunPingTestResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
 }
 
-func (RunPingTestResponsePathSelectorSummary) MinRtt() RunPingTestResponsePathSelectorSummaryMinRtt {
-	return RunPingTestResponsePathSelectorSummaryMinRtt{}
+func (RunPingTestResponsePathSelectorJsonResponse) From() RunPingTestResponsePathSelectorJsonResponseFrom {
+	return RunPingTestResponsePathSelectorJsonResponseFrom{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) AvgRtt() RunPingTestResponsePathSelectorSummaryAvgRtt {
-	return RunPingTestResponsePathSelectorSummaryAvgRtt{}
+func (RunPingTestResponsePathSelectorJsonResponse) SizeBytes() RunPingTestResponsePathSelectorJsonResponseSizeBytes {
+	return RunPingTestResponsePathSelectorJsonResponseSizeBytes{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) MaxRtt() RunPingTestResponsePathSelectorSummaryMaxRtt {
-	return RunPingTestResponsePathSelectorSummaryMaxRtt{}
+func (RunPingTestResponsePathSelectorJsonResponse) SequenceNumber() RunPingTestResponsePathSelectorJsonResponseSequenceNumber {
+	return RunPingTestResponsePathSelectorJsonResponseSequenceNumber{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) StddevRtt() RunPingTestResponsePathSelectorSummaryStddevRtt {
-	return RunPingTestResponsePathSelectorSummaryStddevRtt{}
+func (RunPingTestResponsePathSelectorJsonResponse) Ttl() RunPingTestResponsePathSelectorJsonResponseTtl {
+	return RunPingTestResponsePathSelectorJsonResponseTtl{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) TransmittedCounter() RunPingTestResponsePathSelectorSummaryTransmittedCounter {
-	return RunPingTestResponsePathSelectorSummaryTransmittedCounter{}
+func (RunPingTestResponsePathSelectorJsonResponse) Rtt() RunPingTestResponsePathSelectorJsonResponseRtt {
+	return RunPingTestResponsePathSelectorJsonResponseRtt{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) ReceivedCounter() RunPingTestResponsePathSelectorSummaryReceivedCounter {
-	return RunPingTestResponsePathSelectorSummaryReceivedCounter{}
+func (RunPingTestResponsePathSelectorJsonResponse) Error() RunPingTestResponsePathSelectorJsonResponseError {
+	return RunPingTestResponsePathSelectorJsonResponseError{}
 }
 
-func (RunPingTestResponsePathSelectorSummary) LossRatio() RunPingTestResponsePathSelectorSummaryLossRatio {
-	return RunPingTestResponsePathSelectorSummaryLossRatio{}
+func (RunPingTestResponsePathSelectorJsonResponse) Summary() RunPingTestResponsePathSelectorJsonResponseSummary {
+	return RunPingTestResponsePathSelectorJsonResponseSummary{}
 }
 
-type RunPingTestResponsePathSelectorSummaryMinRtt struct{}
+type RunPingTestResponsePathSelectorJsonResponseFrom struct{}
 
-func (RunPingTestResponsePathSelectorSummaryMinRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseFrom) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().MinRtt().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().From().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryMinRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseFrom) WithValue(value string) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryMinRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseFrom) WithArrayOfValues(values []string) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryAvgRtt struct{}
+type RunPingTestResponsePathSelectorJsonResponseSizeBytes struct{}
 
-func (RunPingTestResponsePathSelectorSummaryAvgRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseSizeBytes) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().AvgRtt().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().SizeBytes().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryAvgRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseSizeBytes) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryAvgRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseSizeBytes) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryMaxRtt struct{}
+type RunPingTestResponsePathSelectorJsonResponseSequenceNumber struct{}
 
-func (RunPingTestResponsePathSelectorSummaryMaxRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseSequenceNumber) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().MaxRtt().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().SequenceNumber().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryMaxRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseSequenceNumber) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryMaxRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseSequenceNumber) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryStddevRtt struct{}
+type RunPingTestResponsePathSelectorJsonResponseTtl struct{}
 
-func (RunPingTestResponsePathSelectorSummaryStddevRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseTtl) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().StddevRtt().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Ttl().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryStddevRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseTtl) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryStddevRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseTtl) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryTransmittedCounter struct{}
+type RunPingTestResponsePathSelectorJsonResponseRtt struct{}
 
-func (RunPingTestResponsePathSelectorSummaryTransmittedCounter) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().TransmittedCounter().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Rtt().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryTransmittedCounter) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryTransmittedCounter) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryReceivedCounter struct{}
+type RunPingTestResponsePathSelectorJsonResponseError struct{}
 
-func (RunPingTestResponsePathSelectorSummaryReceivedCounter) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseError) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().ReceivedCounter().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Error().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryReceivedCounter) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseError) WithValue(value string) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryReceivedCounter) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseError) WithArrayOfValues(values []string) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponsePathSelectorSummaryLossRatio struct{}
+type RunPingTestResponsePathSelectorJsonResponseSummary struct{}
 
-func (RunPingTestResponsePathSelectorSummaryLossRatio) FieldPath() *RunPingTestResponse_FieldSubPath {
+func (RunPingTestResponsePathSelectorJsonResponseSummary) FieldPath() *RunPingTestResponse_FieldSubPath {
 	return &RunPingTestResponse_FieldSubPath{
-		selector: RunPingTestResponse_FieldPathSelectorSummary,
-		subPath:  NewRunPingTestResponseSummaryStatsFieldPathBuilder().LossRatio().FieldPath(),
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().FieldPath(),
 	}
 }
 
-func (s RunPingTestResponsePathSelectorSummaryLossRatio) WithValue(value float64) *RunPingTestResponse_FieldSubPathValue {
+func (s RunPingTestResponsePathSelectorJsonResponseSummary) WithValue(value *RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponsePathSelectorSummaryLossRatio) WithArrayOfValues(values []float64) *RunPingTestResponse_FieldSubPathArrayOfValues {
+func (s RunPingTestResponsePathSelectorJsonResponseSummary) WithArrayOfValues(values []*RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestResponseSummaryStatsFieldPathBuilder struct{}
+func (RunPingTestResponsePathSelectorJsonResponseSummary) MinRtt() RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) AvgRtt() RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) MaxRtt() RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) StddevRtt() RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) TransmittedCounter() RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) ReceivedCounter() RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter{}
+}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummary) LossRatio() RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio {
+	return RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio{}
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().MinRtt().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryMinRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().AvgRtt().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryAvgRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().MaxRtt().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryMaxRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().StddevRtt().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt) WithValue(value *duration.Duration) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryStddevRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().TransmittedCounter().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryTransmittedCounter) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().ReceivedCounter().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter) WithValue(value int32) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryReceivedCounter) WithArrayOfValues(values []int32) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
+
+type RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio struct{}
+
+func (RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio) FieldPath() *RunPingTestResponse_FieldSubPath {
+	return &RunPingTestResponse_FieldSubPath{
+		selector: RunPingTestResponse_FieldPathSelectorJsonResponse,
+		subPath:  NewRunPingTestResponseJsonResponseFieldPathBuilder().Summary().LossRatio().FieldPath(),
+	}
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio) WithValue(value float64) *RunPingTestResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldSubPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorJsonResponseSummaryLossRatio) WithArrayOfValues(values []float64) *RunPingTestResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldSubPathArrayOfValues)
+}
 
-func NewRunPingTestResponseSummaryStatsFieldPathBuilder() RunPingTestResponseSummaryStatsFieldPathBuilder {
-	return RunPingTestResponseSummaryStatsFieldPathBuilder{}
+type RunPingTestResponsePathSelectorTextResponse struct{}
+
+func (RunPingTestResponsePathSelectorTextResponse) FieldPath() *RunPingTestResponse_FieldTerminalPath {
+	return &RunPingTestResponse_FieldTerminalPath{selector: RunPingTestResponse_FieldPathSelectorTextResponse}
+}
+
+func (s RunPingTestResponsePathSelectorTextResponse) WithValue(value string) *RunPingTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunPingTestResponsePathSelectorTextResponse) WithArrayOfValues(values []string) *RunPingTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunPingTestResponseJsonResponseFieldPathBuilder struct{}
+
+func NewRunPingTestResponseJsonResponseFieldPathBuilder() RunPingTestResponseJsonResponseFieldPathBuilder {
+	return RunPingTestResponseJsonResponseFieldPathBuilder{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) From() RunPingTestResponse_JsonResponsePathSelectorFrom {
+	return RunPingTestResponse_JsonResponsePathSelectorFrom{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) SizeBytes() RunPingTestResponse_JsonResponsePathSelectorSizeBytes {
+	return RunPingTestResponse_JsonResponsePathSelectorSizeBytes{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) SequenceNumber() RunPingTestResponse_JsonResponsePathSelectorSequenceNumber {
+	return RunPingTestResponse_JsonResponsePathSelectorSequenceNumber{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) Ttl() RunPingTestResponse_JsonResponsePathSelectorTtl {
+	return RunPingTestResponse_JsonResponsePathSelectorTtl{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) Rtt() RunPingTestResponse_JsonResponsePathSelectorRtt {
+	return RunPingTestResponse_JsonResponsePathSelectorRtt{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) Error() RunPingTestResponse_JsonResponsePathSelectorError {
+	return RunPingTestResponse_JsonResponsePathSelectorError{}
+}
+func (RunPingTestResponseJsonResponseFieldPathBuilder) Summary() RunPingTestResponse_JsonResponsePathSelectorSummary {
+	return RunPingTestResponse_JsonResponsePathSelectorSummary{}
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) MinRtt() RunPingTestResponse_SummaryStatsPathSelectorMinRtt {
-	return RunPingTestResponse_SummaryStatsPathSelectorMinRtt{}
+
+type RunPingTestResponse_JsonResponsePathSelectorFrom struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorFrom) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorFrom}
+}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorFrom) WithValue(value string) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) AvgRtt() RunPingTestResponse_SummaryStatsPathSelectorAvgRtt {
-	return RunPingTestResponse_SummaryStatsPathSelectorAvgRtt{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorFrom) WithArrayOfValues(values []string) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunPingTestResponse_JsonResponsePathSelectorSizeBytes struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSizeBytes) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSizeBytes}
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) MaxRtt() RunPingTestResponse_SummaryStatsPathSelectorMaxRtt {
-	return RunPingTestResponse_SummaryStatsPathSelectorMaxRtt{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSizeBytes) WithValue(value int32) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) StddevRtt() RunPingTestResponse_SummaryStatsPathSelectorStddevRtt {
-	return RunPingTestResponse_SummaryStatsPathSelectorStddevRtt{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSizeBytes) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) TransmittedCounter() RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter {
-	return RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter{}
+
+type RunPingTestResponse_JsonResponsePathSelectorSequenceNumber struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSequenceNumber) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSequenceNumber}
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) ReceivedCounter() RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter {
-	return RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSequenceNumber) WithValue(value int32) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
-func (RunPingTestResponseSummaryStatsFieldPathBuilder) LossRatio() RunPingTestResponse_SummaryStatsPathSelectorLossRatio {
-	return RunPingTestResponse_SummaryStatsPathSelectorLossRatio{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSequenceNumber) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorMinRtt struct{}
+type RunPingTestResponse_JsonResponsePathSelectorTtl struct{}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorMinRtt) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMinRtt}
+func (RunPingTestResponse_JsonResponsePathSelectorTtl) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorTtl}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorMinRtt) WithValue(value *duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorTtl) WithValue(value int32) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorMinRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponsePathSelectorTtl) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorAvgRtt struct{}
+type RunPingTestResponse_JsonResponsePathSelectorRtt struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorRtt) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorRtt}
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorAvgRtt) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorAvgRtt}
+func (s RunPingTestResponse_JsonResponsePathSelectorRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorAvgRtt) WithValue(value *duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorAvgRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+type RunPingTestResponse_JsonResponsePathSelectorError struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorError) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorError}
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorMaxRtt struct{}
+func (s RunPingTestResponse_JsonResponsePathSelectorError) WithValue(value string) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorMaxRtt) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorMaxRtt}
+func (s RunPingTestResponse_JsonResponsePathSelectorError) WithArrayOfValues(values []string) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorMaxRtt) WithValue(value *duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+type RunPingTestResponse_JsonResponsePathSelectorSummary struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) FieldPath() *RunPingTestResponseJsonResponse_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponse_FieldTerminalPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorMaxRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummary) WithValue(value *RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponseJsonResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldTerminalPathValue)
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorStddevRtt struct{}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummary) WithArrayOfValues(values []*RunPingTestResponse_JsonResponse_SummaryStats) *RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldTerminalPathArrayOfValues)
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorStddevRtt) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorStddevRtt}
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) WithSubPath(subPath RunPingTestResponseJsonResponseSummaryStats_FieldPath) *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary, subPath: subPath}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorStddevRtt) WithValue(value *duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummary) WithSubValue(subPathValue RunPingTestResponseJsonResponseSummaryStats_FieldPathValue) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return &RunPingTestResponseJsonResponse_FieldSubPathValue{RunPingTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorStddevRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummary) WithSubArrayOfValues(subPathArrayOfValues RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayOfValues) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return &RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues{RunPingTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter struct{}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummary) WithSubArrayItemValue(subPathArrayItemValue RunPingTestResponseJsonResponseSummaryStats_FieldPathArrayItemValue) *RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue {
+	return &RunPingTestResponseJsonResponse_FieldSubPathArrayItemValue{RunPingTestResponseJsonResponse_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorTransmittedCounter}
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) MinRtt() RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt{}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter) WithValue(value int32) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) AvgRtt() RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt{}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorTransmittedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) MaxRtt() RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt{}
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter struct{}
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) StddevRtt() RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt{}
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorReceivedCounter}
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) TransmittedCounter() RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter{}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter) WithValue(value int32) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) ReceivedCounter() RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter{}
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorReceivedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+func (RunPingTestResponse_JsonResponsePathSelectorSummary) LossRatio() RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio {
+	return RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio{}
 }
 
-type RunPingTestResponse_SummaryStatsPathSelectorLossRatio struct{}
+type RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().MinRtt().FieldPath(),
+	}
+}
 
-func (RunPingTestResponse_SummaryStatsPathSelectorLossRatio) FieldPath() *RunPingTestResponseSummaryStats_FieldTerminalPath {
-	return &RunPingTestResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseSummaryStats_FieldPathSelectorLossRatio}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorLossRatio) WithValue(value float64) *RunPingTestResponseSummaryStats_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestResponseSummaryStats_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryMinRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunPingTestResponse_SummaryStatsPathSelectorLossRatio) WithArrayOfValues(values []float64) *RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseSummaryStats_FieldTerminalPathArrayOfValues)
+type RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().AvgRtt().FieldPath(),
+	}
 }
 
-type RunPingTestRequestToProbeFieldPathBuilder struct{}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
+}
 
-func NewRunPingTestRequestToProbeFieldPathBuilder() RunPingTestRequestToProbeFieldPathBuilder {
-	return RunPingTestRequestToProbeFieldPathBuilder{}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryAvgRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Source() RunPingTestRequestToProbePathSelectorSource {
-	return RunPingTestRequestToProbePathSelectorSource{}
+
+type RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().MaxRtt().FieldPath(),
+	}
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Destination() RunPingTestRequestToProbePathSelectorDestination {
-	return RunPingTestRequestToProbePathSelectorDestination{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) SizeBytes() RunPingTestRequestToProbePathSelectorSizeBytes {
-	return RunPingTestRequestToProbePathSelectorSizeBytes{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryMaxRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Count() RunPingTestRequestToProbePathSelectorCount {
-	return RunPingTestRequestToProbePathSelectorCount{}
+
+type RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().StddevRtt().FieldPath(),
+	}
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Interval() RunPingTestRequestToProbePathSelectorInterval {
-	return RunPingTestRequestToProbePathSelectorInterval{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) EchoTimeout() RunPingTestRequestToProbePathSelectorEchoTimeout {
-	return RunPingTestRequestToProbePathSelectorEchoTimeout{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryStddevRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) DontFragment() RunPingTestRequestToProbePathSelectorDontFragment {
-	return RunPingTestRequestToProbePathSelectorDontFragment{}
+
+type RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().TransmittedCounter().FieldPath(),
+	}
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Ttl() RunPingTestRequestToProbePathSelectorTtl {
-	return RunPingTestRequestToProbePathSelectorTtl{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter) WithValue(value int32) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
-func (RunPingTestRequestToProbeFieldPathBuilder) Tos() RunPingTestRequestToProbePathSelectorTos {
-	return RunPingTestRequestToProbePathSelectorTos{}
+
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryTransmittedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorSource struct{}
+type RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter struct{}
 
-func (RunPingTestRequestToProbePathSelectorSource) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSource}
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().ReceivedCounter().FieldPath(),
+	}
 }
 
-func (s RunPingTestRequestToProbePathSelectorSource) WithValue(value string) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter) WithValue(value int32) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorSource) WithArrayOfValues(values []string) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryReceivedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorDestination struct{}
+type RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio struct{}
+
+func (RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio) FieldPath() *RunPingTestResponseJsonResponse_FieldSubPath {
+	return &RunPingTestResponseJsonResponse_FieldSubPath{
+		selector: RunPingTestResponseJsonResponse_FieldPathSelectorSummary,
+		subPath:  NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder().LossRatio().FieldPath(),
+	}
+}
 
-func (RunPingTestRequestToProbePathSelectorDestination) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDestination}
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio) WithValue(value float64) *RunPingTestResponseJsonResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponse_FieldSubPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorDestination) WithValue(value string) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponsePathSelectorSummaryLossRatio) WithArrayOfValues(values []float64) *RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponse_FieldSubPathArrayOfValues)
 }
 
-func (s RunPingTestRequestToProbePathSelectorDestination) WithArrayOfValues(values []string) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+type RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder struct{}
+
+func NewRunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder() RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder {
+	return RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) MinRtt() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) AvgRtt() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) MaxRtt() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) StddevRtt() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) TransmittedCounter() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) ReceivedCounter() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter{}
+}
+func (RunPingTestResponseJsonResponseSummaryStatsFieldPathBuilder) LossRatio() RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio {
+	return RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio{}
 }
 
-type RunPingTestRequestToProbePathSelectorSizeBytes struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt struct{}
 
-func (RunPingTestRequestToProbePathSelectorSizeBytes) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorSizeBytes}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMinRtt}
 }
 
-func (s RunPingTestRequestToProbePathSelectorSizeBytes) WithValue(value int32) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorSizeBytes) WithArrayOfValues(values []int32) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMinRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorCount struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt struct{}
 
-func (RunPingTestRequestToProbePathSelectorCount) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorCount}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorAvgRtt}
 }
 
-func (s RunPingTestRequestToProbePathSelectorCount) WithValue(value int32) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorCount) WithArrayOfValues(values []int32) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorAvgRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorInterval struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt struct{}
 
-func (RunPingTestRequestToProbePathSelectorInterval) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorInterval}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorMaxRtt}
 }
 
-func (s RunPingTestRequestToProbePathSelectorInterval) WithValue(value *duration.Duration) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorInterval) WithArrayOfValues(values []*duration.Duration) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorMaxRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorEchoTimeout struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt struct{}
 
-func (RunPingTestRequestToProbePathSelectorEchoTimeout) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorEchoTimeout}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorStddevRtt}
 }
 
-func (s RunPingTestRequestToProbePathSelectorEchoTimeout) WithValue(value *duration.Duration) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt) WithValue(value *duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorEchoTimeout) WithArrayOfValues(values []*duration.Duration) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorStddevRtt) WithArrayOfValues(values []*duration.Duration) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorDontFragment struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter struct{}
 
-func (RunPingTestRequestToProbePathSelectorDontFragment) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorDontFragment}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorTransmittedCounter}
 }
 
-func (s RunPingTestRequestToProbePathSelectorDontFragment) WithValue(value bool) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter) WithValue(value int32) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorDontFragment) WithArrayOfValues(values []bool) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorTransmittedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorTtl struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter struct{}
 
-func (RunPingTestRequestToProbePathSelectorTtl) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTtl}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorReceivedCounter}
 }
 
-func (s RunPingTestRequestToProbePathSelectorTtl) WithValue(value int32) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter) WithValue(value int32) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorTtl) WithArrayOfValues(values []int32) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorReceivedCounter) WithArrayOfValues(values []int32) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }
 
-type RunPingTestRequestToProbePathSelectorTos struct{}
+type RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio struct{}
 
-func (RunPingTestRequestToProbePathSelectorTos) FieldPath() *RunPingTestRequestToProbe_FieldTerminalPath {
-	return &RunPingTestRequestToProbe_FieldTerminalPath{selector: RunPingTestRequestToProbe_FieldPathSelectorTos}
+func (RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio) FieldPath() *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath {
+	return &RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPath{selector: RunPingTestResponseJsonResponseSummaryStats_FieldPathSelectorLossRatio}
 }
 
-func (s RunPingTestRequestToProbePathSelectorTos) WithValue(value int32) *RunPingTestRequestToProbe_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunPingTestRequestToProbe_FieldTerminalPathValue)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio) WithValue(value float64) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathValue)
 }
 
-func (s RunPingTestRequestToProbePathSelectorTos) WithArrayOfValues(values []int32) *RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequestToProbe_FieldTerminalPathArrayOfValues)
+func (s RunPingTestResponse_JsonResponse_SummaryStatsPathSelectorLossRatio) WithArrayOfValues(values []float64) *RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestResponseJsonResponseSummaryStats_FieldTerminalPathArrayOfValues)
 }

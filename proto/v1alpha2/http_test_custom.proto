@@ -38,15 +38,9 @@ message RunHTTPTestRequest {
 
   string source_ip = 11;
 
-  ResponseFormat response_fornat = 12;
+  OnDemandTestResponseFormat output_format = 12;
 
   message StringArray { repeated string value = 1; }
-
-  enum ResponseFormat {
-    JSON = 0;
-
-    TEXT = 1;
-  }
 }
 
 // Response message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]

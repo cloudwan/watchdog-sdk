@@ -47,16 +47,24 @@ message RunHopMonitorRequest {
   int32 attempts = 6;
 
   ProbingMode mode = 7;
+
+  OnDemandTestResponseFormat output_format = 8;
 }
 
 // Response message for method
 // [RunHopMonitor][ntt.watchdog.v1alpha2.RunHopMonitor]
 message RunHopMonitorResponse {
-  repeated Path paths = 1;
+  JsonResponse json_response = 1;
 
-  map<string, HopStat> hop_stats = 2;
+  string text_response = 2;
 
-  map<string, HopInfo> hop_info = 3;
+  message JsonResponse {
+    repeated Path paths = 1;
 
-  IpVersion ip_version = 4;
+    map<string, HopStat> hop_stats = 2;
+
+    map<string, HopInfo> hop_info = 3;
+
+    IpVersion ip_version = 4;
+  }
 }

@@ -74,13 +74,14 @@ type RunHopMonitorRequest_FieldPath interface {
 type RunHopMonitorRequest_FieldPathSelector int32
 
 const (
-	RunHopMonitorRequest_FieldPathSelectorName        RunHopMonitorRequest_FieldPathSelector = 0
-	RunHopMonitorRequest_FieldPathSelectorSource      RunHopMonitorRequest_FieldPathSelector = 1
-	RunHopMonitorRequest_FieldPathSelectorTarget      RunHopMonitorRequest_FieldPathSelector = 2
-	RunHopMonitorRequest_FieldPathSelectorDestination RunHopMonitorRequest_FieldPathSelector = 3
-	RunHopMonitorRequest_FieldPathSelectorSizeBytes   RunHopMonitorRequest_FieldPathSelector = 4
-	RunHopMonitorRequest_FieldPathSelectorAttempts    RunHopMonitorRequest_FieldPathSelector = 5
-	RunHopMonitorRequest_FieldPathSelectorMode        RunHopMonitorRequest_FieldPathSelector = 6
+	RunHopMonitorRequest_FieldPathSelectorName         RunHopMonitorRequest_FieldPathSelector = 0
+	RunHopMonitorRequest_FieldPathSelectorSource       RunHopMonitorRequest_FieldPathSelector = 1
+	RunHopMonitorRequest_FieldPathSelectorTarget       RunHopMonitorRequest_FieldPathSelector = 2
+	RunHopMonitorRequest_FieldPathSelectorDestination  RunHopMonitorRequest_FieldPathSelector = 3
+	RunHopMonitorRequest_FieldPathSelectorSizeBytes    RunHopMonitorRequest_FieldPathSelector = 4
+	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 5
+	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 6
+	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 7
 )
 
 func (s RunHopMonitorRequest_FieldPathSelector) String() string {
@@ -99,6 +100,8 @@ func (s RunHopMonitorRequest_FieldPathSelector) String() string {
 		return "attempts"
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		return "mode"
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		return "output_format"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", s))
 	}
@@ -124,6 +127,8 @@ func BuildRunHopMonitorRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHopMon
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts}, nil
 		case "mode":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode}, nil
+		case "output_format", "outputFormat", "output-format":
+			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHopMonitorRequest", fp)
@@ -187,6 +192,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) Get(source *RunHopMonitorReque
 			values = append(values, source.Attempts)
 		case RunHopMonitorRequest_FieldPathSelectorMode:
 			values = append(values, source.Mode)
+		case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+			values = append(values, source.OutputFormat)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 		}
@@ -217,6 +224,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetSingle(source *RunHopMonito
 		return source.GetAttempts(), source != nil
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		return source.GetMode(), source != nil
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		return source.GetOutputFormat(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -243,6 +252,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetDefault() interface{} {
 		return int32(0)
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		return common.OnDemandTestResponseFormat_TEXT
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -265,6 +276,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) ClearValue(item *RunHopMonitor
 			item.Attempts = int32(0)
 		case RunHopMonitorRequest_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
+		case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 		}
@@ -283,7 +296,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorDestination ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorSizeBytes ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorAttempts ||
-		fp.selector == RunHopMonitorRequest_FieldPathSelectorMode
+		fp.selector == RunHopMonitorRequest_FieldPathSelectorMode ||
+		fp.selector == RunHopMonitorRequest_FieldPathSelectorOutputFormat
 }
 
 func (fp *RunHopMonitorRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -306,6 +320,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIValue(value interface{}) 
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -332,6 +348,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIArrayOfValues(values inte
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -420,6 +438,10 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsModeValue() (common.Pr
 	res, ok := fpv.value.(common.ProbingMode)
 	return res, ok
 }
+func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsOutputFormatValue() (common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunHopMonitorRequest
 func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMonitorRequest) {
@@ -441,6 +463,8 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMon
 		(*target).Attempts = fpv.value.(int32)
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		(*target).Mode = fpv.value.(common.ProbingMode)
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fpv.selector))
 	}
@@ -535,6 +559,16 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) CompareWith(source *RunH
 	case RunHopMonitorRequest_FieldPathSelectorMode:
 		leftValue := fpv.value.(common.ProbingMode)
 		rightValue := source.GetMode()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
+		rightValue := source.GetOutputFormat()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -678,6 +712,10 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]common.ProbingMode) {
 			values = append(values, v)
 		}
+	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
+		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -709,6 +747,10 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsModeArrayOfV
 	res, ok := fpaov.values.([]common.ProbingMode)
 	return res, ok
 }
+func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
+	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
+	return res, ok
+}
 
 // FieldPath provides implementation to handle
 // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
@@ -729,22 +771,16 @@ type RunHopMonitorResponse_FieldPath interface {
 type RunHopMonitorResponse_FieldPathSelector int32
 
 const (
-	RunHopMonitorResponse_FieldPathSelectorPaths     RunHopMonitorResponse_FieldPathSelector = 0
-	RunHopMonitorResponse_FieldPathSelectorHopStats  RunHopMonitorResponse_FieldPathSelector = 1
-	RunHopMonitorResponse_FieldPathSelectorHopInfo   RunHopMonitorResponse_FieldPathSelector = 2
-	RunHopMonitorResponse_FieldPathSelectorIpVersion RunHopMonitorResponse_FieldPathSelector = 3
+	RunHopMonitorResponse_FieldPathSelectorJsonResponse RunHopMonitorResponse_FieldPathSelector = 0
+	RunHopMonitorResponse_FieldPathSelectorTextResponse RunHopMonitorResponse_FieldPathSelector = 1
 )
 
 func (s RunHopMonitorResponse_FieldPathSelector) String() string {
 	switch s {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return "paths"
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return "hop_stats"
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return "hop_info"
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		return "ip_version"
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return "json_response"
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		return "text_response"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", s))
 	}
@@ -756,33 +792,19 @@ func BuildRunHopMonitorResponse_FieldPath(fp gotenobject.RawFieldPath) (RunHopMo
 	}
 	if len(fp) == 1 {
 		switch fp[0] {
-		case "paths":
-			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths}, nil
-		case "hop_stats", "hopStats", "hop-stats":
-			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopStats}, nil
-		case "hop_info", "hopInfo", "hop-info":
-			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo}, nil
-		case "ip_version", "ipVersion", "ip-version":
-			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorIpVersion}, nil
+		case "json_response", "jsonResponse", "json-response":
+			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse}, nil
+		case "text_response", "textResponse", "text-response":
+			return &RunHopMonitorResponse_FieldTerminalPath{selector: RunHopMonitorResponse_FieldPathSelectorTextResponse}, nil
 		}
 	} else {
 		switch fp[0] {
-		case "paths":
-			if subpath, err := common.BuildPath_FieldPath(fp[1:]); err != nil {
+		case "json_response", "jsonResponse", "json-response":
+			if subpath, err := BuildRunHopMonitorResponseJsonResponse_FieldPath(fp[1:]); err != nil {
 				return nil, err
 			} else {
-				return &RunHopMonitorResponse_FieldSubPath{selector: RunHopMonitorResponse_FieldPathSelectorPaths, subPath: subpath}, nil
+				return &RunHopMonitorResponse_FieldSubPath{selector: RunHopMonitorResponse_FieldPathSelectorJsonResponse, subPath: subpath}, nil
 			}
-		case "hop_stats", "hopStats", "hop-stats":
-			if len(fp) > 2 {
-				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHopMonitorResponse)", fp)
-			}
-			return &RunHopMonitorResponse_FieldPathMap{selector: RunHopMonitorResponse_FieldPathSelectorHopStats, key: fp[1]}, nil
-		case "hop_info", "hopInfo", "hop-info":
-			if len(fp) > 2 {
-				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHopMonitorResponse)", fp)
-			}
-			return &RunHopMonitorResponse_FieldPathMap{selector: RunHopMonitorResponse_FieldPathSelectorHopInfo, key: fp[1]}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHopMonitorResponse", fp)
@@ -828,20 +850,12 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) JSONString() string {
 func (fp *RunHopMonitorResponse_FieldTerminalPath) Get(source *RunHopMonitorResponse) (values []interface{}) {
 	if source != nil {
 		switch fp.selector {
-		case RunHopMonitorResponse_FieldPathSelectorPaths:
-			for _, value := range source.GetPaths() {
-				values = append(values, value)
+		case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+			if source.JsonResponse != nil {
+				values = append(values, source.JsonResponse)
 			}
-		case RunHopMonitorResponse_FieldPathSelectorHopStats:
-			if source.HopStats != nil {
-				values = append(values, source.HopStats)
-			}
-		case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-			if source.HopInfo != nil {
-				values = append(values, source.HopInfo)
-			}
-		case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-			values = append(values, source.IpVersion)
+		case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+			values = append(values, source.TextResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 		}
@@ -856,17 +870,11 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) GetRaw(source proto.Message) 
 // GetSingle returns value pointed by specific field of from source RunHopMonitorResponse
 func (fp *RunHopMonitorResponse_FieldTerminalPath) GetSingle(source *RunHopMonitorResponse) (interface{}, bool) {
 	switch fp.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		res := source.GetPaths()
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		res := source.GetJsonResponse()
 		return res, res != nil
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		res := source.GetHopStats()
-		return res, res != nil
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		res := source.GetHopInfo()
-		return res, res != nil
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		return source.GetIpVersion(), source != nil
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		return source.GetTextResponse(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 	}
@@ -879,14 +887,10 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) GetSingleRaw(source proto.Mes
 // GetDefault returns a default value of the field type
 func (fp *RunHopMonitorResponse_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return ([]*common.Path)(nil)
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return (map[string]*common.HopStat)(nil)
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return (map[string]*common.HopInfo)(nil)
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return (*RunHopMonitorResponse_JsonResponse)(nil)
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 	}
@@ -895,14 +899,10 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) GetDefault() interface{} {
 func (fp *RunHopMonitorResponse_FieldTerminalPath) ClearValue(item *RunHopMonitorResponse) {
 	if item != nil {
 		switch fp.selector {
-		case RunHopMonitorResponse_FieldPathSelectorPaths:
-			item.Paths = nil
-		case RunHopMonitorResponse_FieldPathSelectorHopStats:
-			item.HopStats = nil
-		case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-			item.HopInfo = nil
-		case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+		case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+			item.JsonResponse = nil
+		case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+			item.TextResponse = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 		}
@@ -915,7 +915,7 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) ClearValueRaw(item proto.Mess
 
 // IsLeaf - whether field path is holds simple value
 func (fp *RunHopMonitorResponse_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunHopMonitorResponse_FieldPathSelectorIpVersion
+	return fp.selector == RunHopMonitorResponse_FieldPathSelectorTextResponse
 }
 
 func (fp *RunHopMonitorResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -924,14 +924,10 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []g
 
 func (fp *RunHopMonitorResponse_FieldTerminalPath) WithIValue(value interface{}) RunHopMonitorResponse_FieldPathValue {
 	switch fp.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.([]*common.Path)}
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(map[string]*common.HopStat)}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(map[string]*common.HopInfo)}
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(*RunHopMonitorResponse_JsonResponse)}
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		return &RunHopMonitorResponse_FieldTerminalPathValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 	}
@@ -944,14 +940,10 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) WithRawIValue(value interface
 func (fp *RunHopMonitorResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunHopMonitorResponse_FieldPathArrayOfValues {
 	fpaov := &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp}
 	switch fp.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([][]*common.Path)}
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([]map[string]*common.HopStat)}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([]map[string]*common.HopInfo)}
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([]*RunHopMonitorResponse_JsonResponse)}
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		return &RunHopMonitorResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponse_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 	}
@@ -964,8 +956,6 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) WithRawIArrayOfValues(values 
 
 func (fp *RunHopMonitorResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunHopMonitorResponse_FieldPathArrayItemValue {
 	switch fp.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return &RunHopMonitorResponse_FieldTerminalPathArrayItemValue{RunHopMonitorResponse_FieldTerminalPath: *fp, value: value.(*common.Path)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fp.selector))
 	}
@@ -973,156 +963,6 @@ func (fp *RunHopMonitorResponse_FieldTerminalPath) WithIArrayItemValue(value int
 
 func (fp *RunHopMonitorResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
 	return fp.WithIArrayItemValue(value)
-}
-
-// FieldPath for map type with additional Key information
-type RunHopMonitorResponse_FieldPathMap struct {
-	key      string
-	selector RunHopMonitorResponse_FieldPathSelector
-}
-
-var _ RunHopMonitorResponse_FieldPath = (*RunHopMonitorResponse_FieldPathMap)(nil)
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) Selector() RunHopMonitorResponse_FieldPathSelector {
-	return fpm.selector
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) Key() string {
-	return fpm.key
-}
-
-// String returns path representation in proto convention
-func (fpm *RunHopMonitorResponse_FieldPathMap) String() string {
-	return fpm.selector.String() + "." + fpm.key
-}
-
-// JSONString returns path representation is JSON convention. Note that map keys are not transformed
-func (fpm *RunHopMonitorResponse_FieldPathMap) JSONString() string {
-	return strcase.ToLowerCamel(fpm.selector.String()) + "." + fpm.key
-}
-
-// Get returns all values pointed by selected field map key from source RunHopMonitorResponse
-func (fpm *RunHopMonitorResponse_FieldPathMap) Get(source *RunHopMonitorResponse) (values []interface{}) {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		if value, ok := source.GetHopStats()[fpm.key]; ok {
-			values = append(values, value)
-		}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		if value, ok := source.GetHopInfo()[fpm.key]; ok {
-			values = append(values, value)
-		}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-	return
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) GetRaw(source proto.Message) []interface{} {
-	return fpm.Get(source.(*RunHopMonitorResponse))
-}
-
-// GetSingle returns value by selected field map key from source RunHopMonitorResponse
-func (fpm *RunHopMonitorResponse_FieldPathMap) GetSingle(source *RunHopMonitorResponse) (interface{}, bool) {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		res, ok := source.GetHopStats()[fpm.key]
-		return res, ok
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		res, ok := source.GetHopInfo()[fpm.key]
-		return res, ok
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpm.GetSingle(source.(*RunHopMonitorResponse))
-}
-
-// GetDefault returns a default value of the field type
-func (fpm *RunHopMonitorResponse_FieldPathMap) GetDefault() interface{} {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		var v *common.HopStat
-		return v
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		var v *common.HopInfo
-		return v
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) ClearValue(item *RunHopMonitorResponse) {
-	if item != nil {
-		switch fpm.selector {
-		case RunHopMonitorResponse_FieldPathSelectorHopStats:
-			delete(item.HopStats, fpm.key)
-		case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-			delete(item.HopInfo, fpm.key)
-		default:
-			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-		}
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) ClearValueRaw(item proto.Message) {
-	fpm.ClearValue(item.(*RunHopMonitorResponse))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fpm *RunHopMonitorResponse_FieldPathMap) IsLeaf() bool {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return false
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return false
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
-	return []gotenobject.FieldPath{fpm}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithIValue(value interface{}) RunHopMonitorResponse_FieldPathValue {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return &RunHopMonitorResponse_FieldPathMapValue{RunHopMonitorResponse_FieldPathMap: *fpm, value: value.(*common.HopStat)}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return &RunHopMonitorResponse_FieldPathMapValue{RunHopMonitorResponse_FieldPathMap: *fpm, value: value.(*common.HopInfo)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fpm.WithIValue(value)
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithIArrayOfValues(values interface{}) RunHopMonitorResponse_FieldPathArrayOfValues {
-	switch fpm.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return &RunHopMonitorResponse_FieldPathMapArrayOfValues{RunHopMonitorResponse_FieldPathMap: *fpm, values: values.([]*common.HopStat)}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return &RunHopMonitorResponse_FieldPathMapArrayOfValues{RunHopMonitorResponse_FieldPathMap: *fpm, values: values.([]*common.HopInfo)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpm.selector))
-	}
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fpm.WithIArrayOfValues(values)
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithIArrayItemValue(value interface{}) RunHopMonitorResponse_FieldPathArrayItemValue {
-	panic("Cannot create array item value from map fieldpath")
-}
-
-func (fpm *RunHopMonitorResponse_FieldPathMap) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fpm.WithIArrayItemValue(value)
 }
 
 type RunHopMonitorResponse_FieldSubPath struct {
@@ -1135,8 +975,8 @@ var _ RunHopMonitorResponse_FieldPath = (*RunHopMonitorResponse_FieldSubPath)(ni
 func (fps *RunHopMonitorResponse_FieldSubPath) Selector() RunHopMonitorResponse_FieldPathSelector {
 	return fps.selector
 }
-func (fps *RunHopMonitorResponse_FieldSubPath) AsPathsSubPath() (common.Path_FieldPath, bool) {
-	res, ok := fps.subPath.(common.Path_FieldPath)
+func (fps *RunHopMonitorResponse_FieldSubPath) AsJsonResponseSubPath() (RunHopMonitorResponseJsonResponse_FieldPath, bool) {
+	res, ok := fps.subPath.(RunHopMonitorResponseJsonResponse_FieldPath)
 	return res, ok
 }
 
@@ -1153,10 +993,8 @@ func (fps *RunHopMonitorResponse_FieldSubPath) JSONString() string {
 // Get returns all values pointed by selected field from source RunHopMonitorResponse
 func (fps *RunHopMonitorResponse_FieldSubPath) Get(source *RunHopMonitorResponse) (values []interface{}) {
 	switch fps.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		for _, item := range source.GetPaths() {
-			values = append(values, fps.subPath.GetRaw(item)...)
-		}
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		values = append(values, fps.subPath.GetRaw(source.GetJsonResponse())...)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fps.selector))
 	}
@@ -1170,11 +1008,11 @@ func (fps *RunHopMonitorResponse_FieldSubPath) GetRaw(source proto.Message) []in
 // GetSingle returns value of selected field from source RunHopMonitorResponse
 func (fps *RunHopMonitorResponse_FieldSubPath) GetSingle(source *RunHopMonitorResponse) (interface{}, bool) {
 	switch fps.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		if len(source.GetPaths()) == 0 {
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		if source.GetJsonResponse() == nil {
 			return nil, false
 		}
-		return fps.subPath.GetSingleRaw(source.GetPaths()[0])
+		return fps.subPath.GetSingleRaw(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fps.selector))
 	}
@@ -1192,10 +1030,8 @@ func (fps *RunHopMonitorResponse_FieldSubPath) GetDefault() interface{} {
 func (fps *RunHopMonitorResponse_FieldSubPath) ClearValue(item *RunHopMonitorResponse) {
 	if item != nil {
 		switch fps.selector {
-		case RunHopMonitorResponse_FieldPathSelectorPaths:
-			for _, subItem := range item.Paths {
-				fps.subPath.ClearValueRaw(subItem)
-			}
+		case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+			fps.subPath.ClearValueRaw(item.JsonResponse)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fps.selector))
 		}
@@ -1280,20 +1116,12 @@ var _ RunHopMonitorResponse_FieldPathValue = (*RunHopMonitorResponse_FieldTermin
 func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) GetRawValue() interface{} {
 	return fpv.value
 }
-func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsPathsValue() ([]*common.Path, bool) {
-	res, ok := fpv.value.([]*common.Path)
+func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsJsonResponseValue() (*RunHopMonitorResponse_JsonResponse, bool) {
+	res, ok := fpv.value.(*RunHopMonitorResponse_JsonResponse)
 	return res, ok
 }
-func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsHopStatsValue() (map[string]*common.HopStat, bool) {
-	res, ok := fpv.value.(map[string]*common.HopStat)
-	return res, ok
-}
-func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsHopInfoValue() (map[string]*common.HopInfo, bool) {
-	res, ok := fpv.value.(map[string]*common.HopInfo)
-	return res, ok
-}
-func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
-	res, ok := fpv.value.(common.IpVersion)
+func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) AsTextResponseValue() (string, bool) {
+	res, ok := fpv.value.(string)
 	return res, ok
 }
 
@@ -1303,14 +1131,10 @@ func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) SetTo(target **RunHopMo
 		*target = new(RunHopMonitorResponse)
 	}
 	switch fpv.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		(*target).Paths = fpv.value.([]*common.Path)
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		(*target).HopStats = fpv.value.(map[string]*common.HopStat)
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		(*target).HopInfo = fpv.value.(map[string]*common.HopInfo)
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		(*target).IpVersion = fpv.value.(common.IpVersion)
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		(*target).JsonResponse = fpv.value.(*RunHopMonitorResponse_JsonResponse)
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		(*target).TextResponse = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpv.selector))
 	}
@@ -1324,15 +1148,11 @@ func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) SetToRaw(target proto.M
 // CompareWith compares value in the 'RunHopMonitorResponse_FieldTerminalPathValue' with the value under path in 'RunHopMonitorResponse'.
 func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) CompareWith(source *RunHopMonitorResponse) (int, bool) {
 	switch fpv.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
 		return 0, false
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return 0, false
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return 0, false
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		leftValue := fpv.value.(common.IpVersion)
-		rightValue := source.GetIpVersion()
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetTextResponse()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -1349,68 +1169,6 @@ func (fpv *RunHopMonitorResponse_FieldTerminalPathValue) CompareWithRaw(source p
 	return fpv.CompareWith(source.(*RunHopMonitorResponse))
 }
 
-type RunHopMonitorResponse_FieldPathMapValue struct {
-	RunHopMonitorResponse_FieldPathMap
-	value interface{}
-}
-
-var _ RunHopMonitorResponse_FieldPathValue = (*RunHopMonitorResponse_FieldPathMapValue)(nil)
-
-// GetValue returns value stored under selected field in RunHopMonitorResponse as interface{}
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) GetRawValue() interface{} {
-	return fpmv.value
-}
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) AsHopStatsElementValue() (*common.HopStat, bool) {
-	res, ok := fpmv.value.(*common.HopStat)
-	return res, ok
-}
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) AsHopInfoElementValue() (*common.HopInfo, bool) {
-	res, ok := fpmv.value.(*common.HopInfo)
-	return res, ok
-}
-
-// SetTo stores value for selected field in RunHopMonitorResponse
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) SetTo(target **RunHopMonitorResponse) {
-	if *target == nil {
-		*target = new(RunHopMonitorResponse)
-	}
-	switch fpmv.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		if (*target).HopStats == nil {
-			(*target).HopStats = make(map[string]*common.HopStat)
-		}
-		(*target).HopStats[fpmv.key] = fpmv.value.(*common.HopStat)
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		if (*target).HopInfo == nil {
-			(*target).HopInfo = make(map[string]*common.HopInfo)
-		}
-		(*target).HopInfo[fpmv.key] = fpmv.value.(*common.HopInfo)
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpmv.selector))
-	}
-}
-
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunHopMonitorResponse)
-	fpmv.SetTo(&typedObject)
-}
-
-// CompareWith compares value in the 'RunHopMonitorResponse_FieldPathMapValue' with the value under path in 'RunHopMonitorResponse'.
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) CompareWith(source *RunHopMonitorResponse) (int, bool) {
-	switch fpmv.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		return 0, false
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		return 0, false
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpmv.selector))
-	}
-}
-
-func (fpmv *RunHopMonitorResponse_FieldPathMapValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpmv.CompareWith(source.(*RunHopMonitorResponse))
-}
-
 type RunHopMonitorResponse_FieldSubPathValue struct {
 	RunHopMonitorResponse_FieldPath
 	subPathValue gotenobject.FieldPathValue
@@ -1418,8 +1176,8 @@ type RunHopMonitorResponse_FieldSubPathValue struct {
 
 var _ RunHopMonitorResponse_FieldPathValue = (*RunHopMonitorResponse_FieldSubPathValue)(nil)
 
-func (fpvs *RunHopMonitorResponse_FieldSubPathValue) AsPathsPathValue() (common.Path_FieldPathValue, bool) {
-	res, ok := fpvs.subPathValue.(common.Path_FieldPathValue)
+func (fpvs *RunHopMonitorResponse_FieldSubPathValue) AsJsonResponsePathValue() (RunHopMonitorResponseJsonResponse_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(RunHopMonitorResponseJsonResponse_FieldPathValue)
 	return res, ok
 }
 
@@ -1428,8 +1186,8 @@ func (fpvs *RunHopMonitorResponse_FieldSubPathValue) SetTo(target **RunHopMonito
 		*target = new(RunHopMonitorResponse)
 	}
 	switch fpvs.Selector() {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		panic("FieldPath setter is unsupported for array subpaths")
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		fpvs.subPathValue.(RunHopMonitorResponseJsonResponse_FieldPathValue).SetTo(&(*target).JsonResponse)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpvs.Selector()))
 	}
@@ -1446,8 +1204,8 @@ func (fpvs *RunHopMonitorResponse_FieldSubPathValue) GetRawValue() interface{} {
 
 func (fpvs *RunHopMonitorResponse_FieldSubPathValue) CompareWith(source *RunHopMonitorResponse) (int, bool) {
 	switch fpvs.Selector() {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return 0, false // repeated field
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return fpvs.subPathValue.(RunHopMonitorResponseJsonResponse_FieldPathValue).CompareWith(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpvs.Selector()))
 	}
@@ -1497,10 +1255,6 @@ var _ RunHopMonitorResponse_FieldPathArrayItemValue = (*RunHopMonitorResponse_Fi
 func (fpaiv *RunHopMonitorResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaiv.value
 }
-func (fpaiv *RunHopMonitorResponse_FieldTerminalPathArrayItemValue) AsPathsItemValue() (*common.Path, bool) {
-	res, ok := fpaiv.value.(*common.Path)
-	return res, ok
-}
 
 func (fpaiv *RunHopMonitorResponse_FieldTerminalPathArrayItemValue) GetSingle(source *RunHopMonitorResponse) (interface{}, bool) {
 	return nil, false
@@ -1534,16 +1288,16 @@ type RunHopMonitorResponse_FieldSubPathArrayItemValue struct {
 func (fpaivs *RunHopMonitorResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
 	return fpaivs.subPathItemValue.GetRawItemValue()
 }
-func (fpaivs *RunHopMonitorResponse_FieldSubPathArrayItemValue) AsPathsPathItemValue() (common.Path_FieldPathArrayItemValue, bool) {
-	res, ok := fpaivs.subPathItemValue.(common.Path_FieldPathArrayItemValue)
+func (fpaivs *RunHopMonitorResponse_FieldSubPathArrayItemValue) AsJsonResponsePathItemValue() (RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue)
 	return res, ok
 }
 
 // Contains returns a boolean indicating if value that is being held is present in given 'RunHopMonitorResponse'
 func (fpaivs *RunHopMonitorResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunHopMonitorResponse) bool {
 	switch fpaivs.Selector() {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		return false // repeated/map field
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		return fpaivs.subPathItemValue.(RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue).ContainsValue(source.GetJsonResponse())
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse: %d", fpaivs.Selector()))
 	}
@@ -1584,68 +1338,23 @@ var _ RunHopMonitorResponse_FieldPathArrayOfValues = (*RunHopMonitorResponse_Fie
 
 func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
 	switch fpaov.selector {
-	case RunHopMonitorResponse_FieldPathSelectorPaths:
-		for _, v := range fpaov.values.([][]*common.Path) {
+	case RunHopMonitorResponse_FieldPathSelectorJsonResponse:
+		for _, v := range fpaov.values.([]*RunHopMonitorResponse_JsonResponse) {
 			values = append(values, v)
 		}
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		for _, v := range fpaov.values.([]map[string]*common.HopStat) {
-			values = append(values, v)
-		}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		for _, v := range fpaov.values.([]map[string]*common.HopInfo) {
-			values = append(values, v)
-		}
-	case RunHopMonitorResponse_FieldPathSelectorIpVersion:
-		for _, v := range fpaov.values.([]common.IpVersion) {
+	case RunHopMonitorResponse_FieldPathSelectorTextResponse:
+		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
 	}
 	return
 }
-func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsPathsArrayOfValues() ([][]*common.Path, bool) {
-	res, ok := fpaov.values.([][]*common.Path)
+func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsJsonResponseArrayOfValues() ([]*RunHopMonitorResponse_JsonResponse, bool) {
+	res, ok := fpaov.values.([]*RunHopMonitorResponse_JsonResponse)
 	return res, ok
 }
-func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsHopStatsArrayOfValues() ([]map[string]*common.HopStat, bool) {
-	res, ok := fpaov.values.([]map[string]*common.HopStat)
-	return res, ok
-}
-func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsHopInfoArrayOfValues() ([]map[string]*common.HopInfo, bool) {
-	res, ok := fpaov.values.([]map[string]*common.HopInfo)
-	return res, ok
-}
-func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
-	res, ok := fpaov.values.([]common.IpVersion)
-	return res, ok
-}
-
-type RunHopMonitorResponse_FieldPathMapArrayOfValues struct {
-	RunHopMonitorResponse_FieldPathMap
-	values interface{}
-}
-
-var _ RunHopMonitorResponse_FieldPathArrayOfValues = (*RunHopMonitorResponse_FieldPathMapArrayOfValues)(nil)
-
-func (fpmaov *RunHopMonitorResponse_FieldPathMapArrayOfValues) GetRawValues() (values []interface{}) {
-	switch fpmaov.selector {
-	case RunHopMonitorResponse_FieldPathSelectorHopStats:
-		for _, v := range fpmaov.values.([]*common.HopStat) {
-			values = append(values, v)
-		}
-	case RunHopMonitorResponse_FieldPathSelectorHopInfo:
-		for _, v := range fpmaov.values.([]*common.HopInfo) {
-			values = append(values, v)
-		}
-	}
-	return
-}
-func (fpmaov *RunHopMonitorResponse_FieldPathMapArrayOfValues) AsHopStatsArrayOfElementValues() ([]*common.HopStat, bool) {
-	res, ok := fpmaov.values.([]*common.HopStat)
-	return res, ok
-}
-func (fpmaov *RunHopMonitorResponse_FieldPathMapArrayOfValues) AsHopInfoArrayOfElementValues() ([]*common.HopInfo, bool) {
-	res, ok := fpmaov.values.([]*common.HopInfo)
+func (fpaov *RunHopMonitorResponse_FieldTerminalPathArrayOfValues) AsTextResponseArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 
@@ -1659,7 +1368,961 @@ var _ RunHopMonitorResponse_FieldPathArrayOfValues = (*RunHopMonitorResponse_Fie
 func (fpsaov *RunHopMonitorResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
 	return fpsaov.subPathArrayOfValues.GetRawValues()
 }
-func (fpsaov *RunHopMonitorResponse_FieldSubPathArrayOfValues) AsPathsPathArrayOfValues() (common.Path_FieldPathArrayOfValues, bool) {
+func (fpsaov *RunHopMonitorResponse_FieldSubPathArrayOfValues) AsJsonResponsePathArrayOfValues() (RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type RunHopMonitorResponseJsonResponse_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() RunHopMonitorResponseJsonResponse_FieldPathSelector
+	Get(source *RunHopMonitorResponse_JsonResponse) []interface{}
+	GetSingle(source *RunHopMonitorResponse_JsonResponse) (interface{}, bool)
+	ClearValue(item *RunHopMonitorResponse_JsonResponse)
+
+	// Those methods build corresponding RunHopMonitorResponseJsonResponse_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathValue
+	WithIArrayOfValues(values interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue
+}
+
+type RunHopMonitorResponseJsonResponse_FieldPathSelector int32
+
+const (
+	RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths     RunHopMonitorResponseJsonResponse_FieldPathSelector = 0
+	RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats  RunHopMonitorResponseJsonResponse_FieldPathSelector = 1
+	RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo   RunHopMonitorResponseJsonResponse_FieldPathSelector = 2
+	RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion RunHopMonitorResponseJsonResponse_FieldPathSelector = 3
+)
+
+func (s RunHopMonitorResponseJsonResponse_FieldPathSelector) String() string {
+	switch s {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return "paths"
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return "hop_stats"
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return "hop_info"
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		return "ip_version"
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", s))
+	}
+}
+
+func BuildRunHopMonitorResponseJsonResponse_FieldPath(fp gotenobject.RawFieldPath) (RunHopMonitorResponseJsonResponse_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunHopMonitorResponse_JsonResponse")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "paths":
+			return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths}, nil
+		case "hop_stats", "hopStats", "hop-stats":
+			return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats}, nil
+		case "hop_info", "hopInfo", "hop-info":
+			return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo}, nil
+		case "ip_version", "ipVersion", "ip-version":
+			return &RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion}, nil
+		}
+	} else {
+		switch fp[0] {
+		case "paths":
+			if subpath, err := common.BuildPath_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &RunHopMonitorResponseJsonResponse_FieldSubPath{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths, subPath: subpath}, nil
+			}
+		case "hop_stats", "hopStats", "hop-stats":
+			if len(fp) > 2 {
+				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHopMonitorResponse_JsonResponse)", fp)
+			}
+			return &RunHopMonitorResponseJsonResponse_FieldPathMap{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats, key: fp[1]}, nil
+		case "hop_info", "hopInfo", "hop-info":
+			if len(fp) > 2 {
+				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHopMonitorResponse_JsonResponse)", fp)
+			}
+			return &RunHopMonitorResponseJsonResponse_FieldPathMap{selector: RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo, key: fp[1]}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHopMonitorResponse_JsonResponse", fp)
+}
+
+func ParseRunHopMonitorResponseJsonResponse_FieldPath(rawField string) (RunHopMonitorResponseJsonResponse_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildRunHopMonitorResponseJsonResponse_FieldPath(fp)
+}
+
+func MustParseRunHopMonitorResponseJsonResponse_FieldPath(rawField string) RunHopMonitorResponseJsonResponse_FieldPath {
+	fp, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type RunHopMonitorResponseJsonResponse_FieldTerminalPath struct {
+	selector RunHopMonitorResponseJsonResponse_FieldPathSelector
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPath = (*RunHopMonitorResponseJsonResponse_FieldTerminalPath)(nil)
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) Selector() RunHopMonitorResponseJsonResponse_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source RunHopMonitorResponse_JsonResponse
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) Get(source *RunHopMonitorResponse_JsonResponse) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+			for _, value := range source.GetPaths() {
+				values = append(values, value)
+			}
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+			if source.HopStats != nil {
+				values = append(values, source.HopStats)
+			}
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+			if source.HopInfo != nil {
+				values = append(values, source.HopInfo)
+			}
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+			values = append(values, source.IpVersion)
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetSingle returns value pointed by specific field of from source RunHopMonitorResponse_JsonResponse
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) GetSingle(source *RunHopMonitorResponse_JsonResponse) (interface{}, bool) {
+	switch fp.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		res := source.GetPaths()
+		return res, res != nil
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		res := source.GetHopStats()
+		return res, res != nil
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		res := source.GetHopInfo()
+		return res, res != nil
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		return source.GetIpVersion(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+	}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return ([]*common.Path)(nil)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return (map[string]*common.HopStat)(nil)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return (map[string]*common.HopInfo)(nil)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		return common.IpVersion_IP_VERSION_UNSPECIFIED
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+	}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) ClearValue(item *RunHopMonitorResponse_JsonResponse) {
+	if item != nil {
+		switch fp.selector {
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+			item.Paths = nil
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+			item.HopStats = nil
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+			item.HopInfo = nil
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithIValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathValue {
+	switch fp.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathValue{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, value: value.([]*common.Path)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathValue{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, value: value.(map[string]*common.HopStat)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathValue{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, value: value.(map[string]*common.HopInfo)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathValue{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+	}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov := &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, values: values.([][]*common.Path)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]map[string]*common.HopStat)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]map[string]*common.HopInfo)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue {
+	switch fp.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return &RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue{RunHopMonitorResponseJsonResponse_FieldTerminalPath: *fp, value: value.(*common.Path)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
+	}
+}
+
+func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// FieldPath for map type with additional Key information
+type RunHopMonitorResponseJsonResponse_FieldPathMap struct {
+	key      string
+	selector RunHopMonitorResponseJsonResponse_FieldPathSelector
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPath = (*RunHopMonitorResponseJsonResponse_FieldPathMap)(nil)
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) Selector() RunHopMonitorResponseJsonResponse_FieldPathSelector {
+	return fpm.selector
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) Key() string {
+	return fpm.key
+}
+
+// String returns path representation in proto convention
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) String() string {
+	return fpm.selector.String() + "." + fpm.key
+}
+
+// JSONString returns path representation is JSON convention. Note that map keys are not transformed
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) JSONString() string {
+	return strcase.ToLowerCamel(fpm.selector.String()) + "." + fpm.key
+}
+
+// Get returns all values pointed by selected field map key from source RunHopMonitorResponse_JsonResponse
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) Get(source *RunHopMonitorResponse_JsonResponse) (values []interface{}) {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		if value, ok := source.GetHopStats()[fpm.key]; ok {
+			values = append(values, value)
+		}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		if value, ok := source.GetHopInfo()[fpm.key]; ok {
+			values = append(values, value)
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+	return
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) GetRaw(source proto.Message) []interface{} {
+	return fpm.Get(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetSingle returns value by selected field map key from source RunHopMonitorResponse_JsonResponse
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) GetSingle(source *RunHopMonitorResponse_JsonResponse) (interface{}, bool) {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		res, ok := source.GetHopStats()[fpm.key]
+		return res, ok
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		res, ok := source.GetHopInfo()[fpm.key]
+		return res, ok
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpm.GetSingle(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) GetDefault() interface{} {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		var v *common.HopStat
+		return v
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		var v *common.HopInfo
+		return v
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) ClearValue(item *RunHopMonitorResponse_JsonResponse) {
+	if item != nil {
+		switch fpm.selector {
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+			delete(item.HopStats, fpm.key)
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+			delete(item.HopInfo, fpm.key)
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+		}
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) ClearValueRaw(item proto.Message) {
+	fpm.ClearValue(item.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) IsLeaf() bool {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return false
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return false
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fpm}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithIValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathValue {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return &RunHopMonitorResponseJsonResponse_FieldPathMapValue{RunHopMonitorResponseJsonResponse_FieldPathMap: *fpm, value: value.(*common.HopStat)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return &RunHopMonitorResponseJsonResponse_FieldPathMapValue{RunHopMonitorResponseJsonResponse_FieldPathMap: *fpm, value: value.(*common.HopInfo)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fpm.WithIValue(value)
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithIArrayOfValues(values interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues {
+	switch fpm.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return &RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues{RunHopMonitorResponseJsonResponse_FieldPathMap: *fpm, values: values.([]*common.HopStat)}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return &RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues{RunHopMonitorResponseJsonResponse_FieldPathMap: *fpm, values: values.([]*common.HopInfo)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpm.selector))
+	}
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fpm.WithIArrayOfValues(values)
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithIArrayItemValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue {
+	panic("Cannot create array item value from map fieldpath")
+}
+
+func (fpm *RunHopMonitorResponseJsonResponse_FieldPathMap) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fpm.WithIArrayItemValue(value)
+}
+
+type RunHopMonitorResponseJsonResponse_FieldSubPath struct {
+	selector RunHopMonitorResponseJsonResponse_FieldPathSelector
+	subPath  gotenobject.FieldPath
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPath = (*RunHopMonitorResponseJsonResponse_FieldSubPath)(nil)
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) Selector() RunHopMonitorResponseJsonResponse_FieldPathSelector {
+	return fps.selector
+}
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) AsPathsSubPath() (common.Path_FieldPath, bool) {
+	res, ok := fps.subPath.(common.Path_FieldPath)
+	return res, ok
+}
+
+// String returns path representation in proto convention
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) String() string {
+	return fps.selector.String() + "." + fps.subPath.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) JSONString() string {
+	return strcase.ToLowerCamel(fps.selector.String()) + "." + fps.subPath.JSONString()
+}
+
+// Get returns all values pointed by selected field from source RunHopMonitorResponse_JsonResponse
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) Get(source *RunHopMonitorResponse_JsonResponse) (values []interface{}) {
+	switch fps.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		for _, item := range source.GetPaths() {
+			values = append(values, fps.subPath.GetRaw(item)...)
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fps.selector))
+	}
+	return
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) GetRaw(source proto.Message) []interface{} {
+	return fps.Get(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetSingle returns value of selected field from source RunHopMonitorResponse_JsonResponse
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) GetSingle(source *RunHopMonitorResponse_JsonResponse) (interface{}, bool) {
+	switch fps.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		if len(source.GetPaths()) == 0 {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetPaths()[0])
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fps.selector))
+	}
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fps.GetSingle(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) GetDefault() interface{} {
+	return fps.subPath.GetDefault()
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) ClearValue(item *RunHopMonitorResponse_JsonResponse) {
+	if item != nil {
+		switch fps.selector {
+		case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+			for _, subItem := range item.Paths {
+				fps.subPath.ClearValueRaw(subItem)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fps.selector))
+		}
+	}
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) ClearValueRaw(item proto.Message) {
+	fps.ClearValue(item.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) IsLeaf() bool {
+	return fps.subPath.IsLeaf()
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	iPaths := []gotenobject.FieldPath{&RunHopMonitorResponseJsonResponse_FieldTerminalPath{selector: fps.selector}}
+	iPaths = append(iPaths, fps.subPath.SplitIntoTerminalIPaths()...)
+	return iPaths
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithIValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathValue {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathValue{fps, fps.subPath.WithRawIValue(value)}
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fps.WithIValue(value)
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithIArrayOfValues(values interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues{fps, fps.subPath.WithRawIArrayOfValues(values)}
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fps.WithIArrayOfValues(values)
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithIArrayItemValue(value interface{}) RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue {
+	return &RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue{fps, fps.subPath.WithRawIArrayItemValue(value)}
+}
+
+func (fps *RunHopMonitorResponseJsonResponse_FieldSubPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fps.WithIArrayItemValue(value)
+}
+
+// RunHopMonitorResponseJsonResponse_FieldPathValue allows storing values for JsonResponse fields according to their type
+type RunHopMonitorResponseJsonResponse_FieldPathValue interface {
+	RunHopMonitorResponseJsonResponse_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **RunHopMonitorResponse_JsonResponse)
+	CompareWith(*RunHopMonitorResponse_JsonResponse) (cmp int, comparable bool)
+}
+
+func ParseRunHopMonitorResponseJsonResponse_FieldPathValue(pathStr, valueStr string) (RunHopMonitorResponseJsonResponse_FieldPathValue, error) {
+	fp, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(RunHopMonitorResponseJsonResponse_FieldPathValue), nil
+}
+
+func MustParseRunHopMonitorResponseJsonResponse_FieldPathValue(pathStr, valueStr string) RunHopMonitorResponseJsonResponse_FieldPathValue {
+	fpv, err := ParseRunHopMonitorResponseJsonResponse_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type RunHopMonitorResponseJsonResponse_FieldTerminalPathValue struct {
+	RunHopMonitorResponseJsonResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathValue = (*RunHopMonitorResponseJsonResponse_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'JsonResponse' as interface{}
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) AsPathsValue() ([]*common.Path, bool) {
+	res, ok := fpv.value.([]*common.Path)
+	return res, ok
+}
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) AsHopStatsValue() (map[string]*common.HopStat, bool) {
+	res, ok := fpv.value.(map[string]*common.HopStat)
+	return res, ok
+}
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) AsHopInfoValue() (map[string]*common.HopInfo, bool) {
+	res, ok := fpv.value.(map[string]*common.HopInfo)
+	return res, ok
+}
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object JsonResponse
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) SetTo(target **RunHopMonitorResponse_JsonResponse) {
+	if *target == nil {
+		*target = new(RunHopMonitorResponse_JsonResponse)
+	}
+	switch fpv.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		(*target).Paths = fpv.value.([]*common.Path)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		(*target).HopStats = fpv.value.(map[string]*common.HopStat)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		(*target).HopInfo = fpv.value.(map[string]*common.HopInfo)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		(*target).IpVersion = fpv.value.(common.IpVersion)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunHopMonitorResponse_JsonResponse)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'RunHopMonitorResponseJsonResponse_FieldTerminalPathValue' with the value under path in 'RunHopMonitorResponse_JsonResponse'.
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) CompareWith(source *RunHopMonitorResponse_JsonResponse) (int, bool) {
+	switch fpv.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return 0, false
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return 0, false
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return 0, false
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetIpVersion()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *RunHopMonitorResponseJsonResponse_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+type RunHopMonitorResponseJsonResponse_FieldPathMapValue struct {
+	RunHopMonitorResponseJsonResponse_FieldPathMap
+	value interface{}
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathValue = (*RunHopMonitorResponseJsonResponse_FieldPathMapValue)(nil)
+
+// GetValue returns value stored under selected field in JsonResponse as interface{}
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) GetRawValue() interface{} {
+	return fpmv.value
+}
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) AsHopStatsElementValue() (*common.HopStat, bool) {
+	res, ok := fpmv.value.(*common.HopStat)
+	return res, ok
+}
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) AsHopInfoElementValue() (*common.HopInfo, bool) {
+	res, ok := fpmv.value.(*common.HopInfo)
+	return res, ok
+}
+
+// SetTo stores value for selected field in JsonResponse
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) SetTo(target **RunHopMonitorResponse_JsonResponse) {
+	if *target == nil {
+		*target = new(RunHopMonitorResponse_JsonResponse)
+	}
+	switch fpmv.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		if (*target).HopStats == nil {
+			(*target).HopStats = make(map[string]*common.HopStat)
+		}
+		(*target).HopStats[fpmv.key] = fpmv.value.(*common.HopStat)
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		if (*target).HopInfo == nil {
+			(*target).HopInfo = make(map[string]*common.HopInfo)
+		}
+		(*target).HopInfo[fpmv.key] = fpmv.value.(*common.HopInfo)
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpmv.selector))
+	}
+}
+
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunHopMonitorResponse_JsonResponse)
+	fpmv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'RunHopMonitorResponseJsonResponse_FieldPathMapValue' with the value under path in 'RunHopMonitorResponse_JsonResponse'.
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) CompareWith(source *RunHopMonitorResponse_JsonResponse) (int, bool) {
+	switch fpmv.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		return 0, false
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		return 0, false
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpmv.selector))
+	}
+}
+
+func (fpmv *RunHopMonitorResponseJsonResponse_FieldPathMapValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpmv.CompareWith(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+type RunHopMonitorResponseJsonResponse_FieldSubPathValue struct {
+	RunHopMonitorResponseJsonResponse_FieldPath
+	subPathValue gotenobject.FieldPathValue
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathValue = (*RunHopMonitorResponseJsonResponse_FieldSubPathValue)(nil)
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) AsPathsPathValue() (common.Path_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.Path_FieldPathValue)
+	return res, ok
+}
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) SetTo(target **RunHopMonitorResponse_JsonResponse) {
+	if *target == nil {
+		*target = new(RunHopMonitorResponse_JsonResponse)
+	}
+	switch fpvs.Selector() {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		panic("FieldPath setter is unsupported for array subpaths")
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*RunHopMonitorResponse_JsonResponse)
+	fpvs.SetTo(&typedObject)
+}
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) GetRawValue() interface{} {
+	return fpvs.subPathValue.GetRawValue()
+}
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) CompareWith(source *RunHopMonitorResponse_JsonResponse) (int, bool) {
+	switch fpvs.Selector() {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return 0, false // repeated field
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpvs.Selector()))
+	}
+}
+
+func (fpvs *RunHopMonitorResponseJsonResponse_FieldSubPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpvs.CompareWith(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue allows storing single item in Path-specific values for JsonResponse according to their type
+// Present only for array (repeated) types.
+type RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	RunHopMonitorResponseJsonResponse_FieldPath
+	ContainsValue(*RunHopMonitorResponse_JsonResponse) bool
+}
+
+// ParseRunHopMonitorResponseJsonResponse_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseRunHopMonitorResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) (RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue, error) {
+	fp, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue), nil
+}
+
+func MustParseRunHopMonitorResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr string) RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue {
+	fpaiv, err := ParseRunHopMonitorResponseJsonResponse_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue struct {
+	RunHopMonitorResponseJsonResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathArrayItemValue = (*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object RunHopMonitorResponse_JsonResponse as interface{}
+func (fpaiv *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+func (fpaiv *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue) AsPathsItemValue() (*common.Path, bool) {
+	res, ok := fpaiv.value.(*common.Path)
+	return res, ok
+}
+
+func (fpaiv *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingle(source *RunHopMonitorResponse_JsonResponse) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*RunHopMonitorResponse_JsonResponse))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaiv *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *RunHopMonitorResponse_JsonResponse) bool {
+	slice := fpaiv.RunHopMonitorResponseJsonResponse_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+type RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue struct {
+	RunHopMonitorResponseJsonResponse_FieldPath
+	subPathItemValue gotenobject.FieldPathArrayItemValue
+}
+
+// GetRawValue returns stored array item value
+func (fpaivs *RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaivs.subPathItemValue.GetRawItemValue()
+}
+func (fpaivs *RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue) AsPathsPathItemValue() (common.Path_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.Path_FieldPathArrayItemValue)
+	return res, ok
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'JsonResponse'
+func (fpaivs *RunHopMonitorResponseJsonResponse_FieldSubPathArrayItemValue) ContainsValue(source *RunHopMonitorResponse_JsonResponse) bool {
+	switch fpaivs.Selector() {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		return false // repeated/map field
+	default:
+		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fpaivs.Selector()))
+	}
+}
+
+// RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues allows storing slice of values for JsonResponse fields according to their type
+type RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	RunHopMonitorResponseJsonResponse_FieldPath
+}
+
+func ParseRunHopMonitorResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) (RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues, error) {
+	fp, err := ParseRunHopMonitorResponseJsonResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing JsonResponse field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues), nil
+}
+
+func MustParseRunHopMonitorResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr string) RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues {
+	fpaov, err := ParseRunHopMonitorResponseJsonResponse_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues struct {
+	RunHopMonitorResponseJsonResponse_FieldTerminalPath
+	values interface{}
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues = (*RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorPaths:
+		for _, v := range fpaov.values.([][]*common.Path) {
+			values = append(values, v)
+		}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		for _, v := range fpaov.values.([]map[string]*common.HopStat) {
+			values = append(values, v)
+		}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		for _, v := range fpaov.values.([]map[string]*common.HopInfo) {
+			values = append(values, v)
+		}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues) AsPathsArrayOfValues() ([][]*common.Path, bool) {
+	res, ok := fpaov.values.([][]*common.Path)
+	return res, ok
+}
+func (fpaov *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues) AsHopStatsArrayOfValues() ([]map[string]*common.HopStat, bool) {
+	res, ok := fpaov.values.([]map[string]*common.HopStat)
+	return res, ok
+}
+func (fpaov *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues) AsHopInfoArrayOfValues() ([]map[string]*common.HopInfo, bool) {
+	res, ok := fpaov.values.([]map[string]*common.HopInfo)
+	return res, ok
+}
+func (fpaov *RunHopMonitorResponseJsonResponse_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
+	return res, ok
+}
+
+type RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues struct {
+	RunHopMonitorResponseJsonResponse_FieldPathMap
+	values interface{}
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues = (*RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues)(nil)
+
+func (fpmaov *RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpmaov.selector {
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopStats:
+		for _, v := range fpmaov.values.([]*common.HopStat) {
+			values = append(values, v)
+		}
+	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
+		for _, v := range fpmaov.values.([]*common.HopInfo) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpmaov *RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues) AsHopStatsArrayOfElementValues() ([]*common.HopStat, bool) {
+	res, ok := fpmaov.values.([]*common.HopStat)
+	return res, ok
+}
+func (fpmaov *RunHopMonitorResponseJsonResponse_FieldPathMapArrayOfValues) AsHopInfoArrayOfElementValues() ([]*common.HopInfo, bool) {
+	res, ok := fpmaov.values.([]*common.HopInfo)
+	return res, ok
+}
+
+type RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues struct {
+	RunHopMonitorResponseJsonResponse_FieldPath
+	subPathArrayOfValues gotenobject.FieldPathArrayOfValues
+}
+
+var _ RunHopMonitorResponseJsonResponse_FieldPathArrayOfValues = (*RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues)(nil)
+
+func (fpsaov *RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues) GetRawValues() []interface{} {
+	return fpsaov.subPathArrayOfValues.GetRawValues()
+}
+func (fpsaov *RunHopMonitorResponseJsonResponse_FieldSubPathArrayOfValues) AsPathsPathArrayOfValues() (common.Path_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.Path_FieldPathArrayOfValues)
 	return res, ok
 }
