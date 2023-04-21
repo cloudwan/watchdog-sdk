@@ -519,4 +519,6 @@ enum OnDemandTestResponseFormat {
   TEXT = 0;
 
   JSON = 1;
+
+  BOTH_TEXT_AND_JSON = 2;
 }
