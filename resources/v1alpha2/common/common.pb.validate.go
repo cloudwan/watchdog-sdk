@@ -343,15 +343,6 @@ func (obj *HTTPProbingConfig_HTTPAuth) GotenValidate() error {
 	}
 	return nil
 }
-func (obj *HTTPProbingConfig_HTTPRequest_StringArray) GotenValidate() error {
-	if obj == nil {
-		return nil
-	}
-	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
-		return cvobj.GotenCustomValidate()
-	}
-	return nil
-}
 func (obj *DNSQuery) GotenValidate() error {
 	if obj == nil {
 		return nil

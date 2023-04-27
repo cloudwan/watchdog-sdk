@@ -4500,7 +4500,6 @@ func FullHTTPProbingConfig_HTTPRequest_FieldMask() *HTTPProbingConfig_HTTPReques
 	res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorTimeout})
 	res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestBody})
 	res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod})
-	res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody})
 	return res
 }
 
@@ -4544,7 +4543,7 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 8)
+	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*HTTPProbingConfigHTTPRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -4574,7 +4573,7 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) Reset() {
 
 func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) Subtract(other *HTTPProbingConfig_HTTPRequest_FieldMask) *HTTPProbingConfig_HTTPRequest_FieldMask {
 	result := &HTTPProbingConfig_HTTPRequest_FieldMask{}
-	removedSelectors := make([]bool, 8)
+	removedSelectors := make([]bool, 7)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -4725,8 +4724,6 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) Project(source *HTTPPr
 	result := &HTTPProbingConfig_HTTPRequest{}
 	var requestHeadersMapKeys []string
 	wholeRequestHeadersAccepted := false
-	var urlFormEncodedBodyMapKeys []string
-	wholeUrlFormEncodedBodyAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -4747,16 +4744,11 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) Project(source *HTTPPr
 				result.RequestBody = source.RequestBody
 			case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 				result.AuthenticationMethod = source.AuthenticationMethod
-			case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-				result.UrlFormEncodedBody = source.UrlFormEncodedBody
-				wholeUrlFormEncodedBodyAccepted = true
 			}
 		case *HTTPProbingConfigHTTPRequest_FieldPathMap:
 			switch tp.selector {
 			case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 				requestHeadersMapKeys = append(requestHeadersMapKeys, tp.key)
-			case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-				urlFormEncodedBodyMapKeys = append(urlFormEncodedBodyMapKeys, tp.key)
 			}
 		}
 	}
@@ -4767,14 +4759,6 @@ func (fieldMask *HTTPProbingConfig_HTTPRequest_FieldMask) Project(source *HTTPPr
 			copiedMap[key] = sourceMap[key]
 		}
 		result.RequestHeaders = copiedMap
-	}
-	if wholeUrlFormEncodedBodyAccepted == false && len(urlFormEncodedBodyMapKeys) > 0 && source.GetUrlFormEncodedBody() != nil {
-		copiedMap := map[string]*HTTPProbingConfig_HTTPRequest_StringArray{}
-		sourceMap := source.GetUrlFormEncodedBody()
-		for _, key := range urlFormEncodedBodyMapKeys {
-			copiedMap[key] = sourceMap[key]
-		}
-		result.UrlFormEncodedBody = copiedMap
 	}
 	return result
 }
@@ -5092,259 +5076,6 @@ func (fieldMask *HTTPProbingConfig_HTTPAuth_FieldMask) ProjectRaw(source gotenob
 }
 
 func (fieldMask *HTTPProbingConfig_HTTPAuth_FieldMask) PathsCount() int {
-	if fieldMask == nil {
-		return 0
-	}
-	return len(fieldMask.Paths)
-}
-
-type HTTPProbingConfig_HTTPRequest_StringArray_FieldMask struct {
-	Paths []HTTPProbingConfigHTTPRequestStringArray_FieldPath
-}
-
-func FullHTTPProbingConfig_HTTPRequest_StringArray_FieldMask() *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask {
-	res := &HTTPProbingConfig_HTTPRequest_StringArray_FieldMask{}
-	res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue})
-	return res
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) String() string {
-	if fieldMask == nil {
-		return "<nil>"
-	}
-	pathsStr := make([]string, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		pathsStr = append(pathsStr, path.String())
-	}
-	return strings.Join(pathsStr, ", ")
-}
-
-// firestore encoding/decoding integration
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
-	if fieldMask == nil {
-		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
-	}
-	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.GetPaths() {
-		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
-	}
-	return &firestorepb.Value{
-		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
-	}, nil
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
-	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(value.GetStringValue())
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
-	}
-	return nil
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) IsFull() bool {
-	if fieldMask == nil {
-		return false
-	}
-	presentSelectors := make([]bool, 1)
-	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath); ok {
-			presentSelectors[int(asFinal.selector)] = true
-		}
-	}
-	for _, flag := range presentSelectors {
-		if !flag {
-			return false
-		}
-	}
-	return true
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) ProtoReflect() preflect.Message {
-	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(raw)
-	})
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) ProtoMessage() {}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Reset() {
-	if fieldMask != nil {
-		fieldMask.Paths = nil
-	}
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Subtract(other *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask {
-	result := &HTTPProbingConfig_HTTPRequest_StringArray_FieldMask{}
-	removedSelectors := make([]bool, 1)
-
-	for _, path := range other.GetPaths() {
-		switch tp := path.(type) {
-		case *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath:
-			removedSelectors[int(tp.selector)] = true
-		}
-	}
-	for _, path := range fieldMask.GetPaths() {
-		if !removedSelectors[int(path.Selector())] {
-			result.Paths = append(result.Paths, path)
-		}
-	}
-
-	if len(result.Paths) == 0 {
-		return nil
-	}
-	return result
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*HTTPProbingConfig_HTTPRequest_StringArray_FieldMask))
-}
-
-// FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) FilterInputFields() *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask {
-	result := &HTTPProbingConfig_HTTPRequest_StringArray_FieldMask{}
-	result.Paths = append(result.Paths, fieldMask.Paths...)
-	return result
-}
-
-// ToFieldMask is used for proto conversions
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	for _, path := range fieldMask.Paths {
-		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
-	}
-	return protoFieldMask
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
-	if fieldMask == nil {
-		return status.Error(codes.Internal, "target field mask is nil")
-	}
-	fieldMask.Paths = make([]HTTPProbingConfigHTTPRequestStringArray_FieldPath, 0, len(protoFieldMask.Paths))
-	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(strPath)
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, path)
-	}
-	return nil
-}
-
-// implement methods required by customType
-func (fieldMask HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Marshal() ([]byte, error) {
-	protoFieldMask := fieldMask.ToProtoFieldMask()
-	return proto.Marshal(protoFieldMask)
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Unmarshal(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Size() int {
-	return proto.Size(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) MarshalJSON() ([]byte, error) {
-	return json.Marshal(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) UnmarshalJSON(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := json.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) AppendPath(path HTTPProbingConfigHTTPRequestStringArray_FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path)
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(HTTPProbingConfigHTTPRequestStringArray_FieldPath))
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) GetPaths() []HTTPProbingConfigHTTPRequestStringArray_FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	return fieldMask.Paths
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) GetRawPaths() []gotenobject.FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		rawPaths = append(rawPaths, path)
-	}
-	return rawPaths
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(raw)
-	if err != nil {
-		return err
-	}
-	fieldMask.Paths = append(fieldMask.Paths, path)
-	return nil
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Set(target, source *HTTPProbingConfig_HTTPRequest_StringArray) {
-	for _, path := range fieldMask.Paths {
-		val, _ := path.GetSingle(source)
-		// if val is nil, then field does not exist in source, skip
-		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
-		if val != nil {
-			path.WithIValue(val).SetTo(&target)
-		}
-	}
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*HTTPProbingConfig_HTTPRequest_StringArray), source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) Project(source *HTTPProbingConfig_HTTPRequest_StringArray) *HTTPProbingConfig_HTTPRequest_StringArray {
-	if source == nil {
-		return nil
-	}
-	if fieldMask == nil {
-		return source
-	}
-	result := &HTTPProbingConfig_HTTPRequest_StringArray{}
-
-	for _, p := range fieldMask.Paths {
-		switch tp := p.(type) {
-		case *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath:
-			switch tp.selector {
-			case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-				result.Value = source.Value
-			}
-		}
-	}
-	return result
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-func (fieldMask *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

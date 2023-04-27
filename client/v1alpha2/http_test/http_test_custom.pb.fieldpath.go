@@ -81,11 +81,10 @@ const (
 	RunHTTPTestRequest_FieldPathSelectorTimeout              RunHTTPTestRequest_FieldPathSelector = 4
 	RunHTTPTestRequest_FieldPathSelectorRequestBody          RunHTTPTestRequest_FieldPathSelector = 5
 	RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod RunHTTPTestRequest_FieldPathSelector = 6
-	RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody   RunHTTPTestRequest_FieldPathSelector = 7
-	RunHTTPTestRequest_FieldPathSelectorUsername             RunHTTPTestRequest_FieldPathSelector = 8
-	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 9
-	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 10
-	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 11
+	RunHTTPTestRequest_FieldPathSelectorUsername             RunHTTPTestRequest_FieldPathSelector = 7
+	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 8
+	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 9
+	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 10
 )
 
 func (s RunHTTPTestRequest_FieldPathSelector) String() string {
@@ -104,8 +103,6 @@ func (s RunHTTPTestRequest_FieldPathSelector) String() string {
 		return "request_body"
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		return "authentication_method"
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return "url_form_encoded_body"
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		return "username"
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -139,8 +136,6 @@ func BuildRunHTTPTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTest
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorRequestBody}, nil
 		case "authentication_method", "authenticationMethod", "authentication-method":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod}, nil
-		case "url_form_encoded_body", "urlFormEncodedBody", "url-form-encoded-body":
-			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody}, nil
 		case "username":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUsername}, nil
 		case "password":
@@ -157,11 +152,6 @@ func BuildRunHTTPTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTest
 				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHTTPTestRequest)", fp)
 			}
 			return &RunHTTPTestRequest_FieldPathMap{selector: RunHTTPTestRequest_FieldPathSelectorRequestHeaders, key: fp[1]}, nil
-		case "url_form_encoded_body", "urlFormEncodedBody", "url-form-encoded-body":
-			if len(fp) > 2 {
-				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object RunHTTPTestRequest)", fp)
-			}
-			return &RunHTTPTestRequest_FieldPathMap{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody, key: fp[1]}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHTTPTestRequest", fp)
@@ -225,10 +215,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) Get(source *RunHTTPTestRequest) 
 			values = append(values, source.RequestBody)
 		case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 			values = append(values, source.AuthenticationMethod)
-		case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-			if source.UrlFormEncodedBody != nil {
-				values = append(values, source.UrlFormEncodedBody)
-			}
 		case RunHTTPTestRequest_FieldPathSelectorUsername:
 			values = append(values, source.Username)
 		case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -268,9 +254,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetSingle(source *RunHTTPTestReq
 		return source.GetRequestBody(), source != nil
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		return source.GetAuthenticationMethod(), source != nil
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		res := source.GetUrlFormEncodedBody()
-		return res, res != nil
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		return source.GetUsername(), source != nil
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -305,8 +288,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		return common.AuthenticationMethod_NO_AUTH
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return (map[string]*RunHTTPTestRequest_StringArray)(nil)
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		return ""
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -337,8 +318,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) ClearValue(item *RunHTTPTestRequ
 			item.RequestBody = ""
 		case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 			item.AuthenticationMethod = common.AuthenticationMethod_NO_AUTH
-		case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-			item.UrlFormEncodedBody = nil
 		case RunHTTPTestRequest_FieldPathSelectorUsername:
 			item.Username = ""
 		case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -392,8 +371,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(common.AuthenticationMethod)}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(map[string]*RunHTTPTestRequest_StringArray)}
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -428,8 +405,6 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]common.AuthenticationMethod)}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]map[string]*RunHTTPTestRequest_StringArray)}
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -492,10 +467,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) Get(source *RunHTTPTestRequest) (val
 		if value, ok := source.GetRequestHeaders()[fpm.key]; ok {
 			values = append(values, value)
 		}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		if value, ok := source.GetUrlFormEncodedBody()[fpm.key]; ok {
-			values = append(values, value)
-		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -512,9 +483,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) GetSingle(source *RunHTTPTestRequest
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		res, ok := source.GetRequestHeaders()[fpm.key]
 		return res, ok
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		res, ok := source.GetUrlFormEncodedBody()[fpm.key]
-		return res, ok
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -530,9 +498,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) GetDefault() interface{} {
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		var v string
 		return v
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		var v *RunHTTPTestRequest_StringArray
-		return v
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -543,8 +508,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) ClearValue(item *RunHTTPTestRequest)
 		switch fpm.selector {
 		case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 			delete(item.RequestHeaders, fpm.key)
-		case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-			delete(item.UrlFormEncodedBody, fpm.key)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 		}
@@ -560,8 +523,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) IsLeaf() bool {
 	switch fpm.selector {
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return true
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -575,8 +536,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) WithIValue(value interface{}) RunHTT
 	switch fpm.selector {
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return &RunHTTPTestRequest_FieldPathMapValue{RunHTTPTestRequest_FieldPathMap: *fpm, value: value.(string)}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &RunHTTPTestRequest_FieldPathMapValue{RunHTTPTestRequest_FieldPathMap: *fpm, value: value.(*RunHTTPTestRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -590,8 +549,6 @@ func (fpm *RunHTTPTestRequest_FieldPathMap) WithIArrayOfValues(values interface{
 	switch fpm.selector {
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return &RunHTTPTestRequest_FieldPathMapArrayOfValues{RunHTTPTestRequest_FieldPathMap: *fpm, values: values.([]string)}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &RunHTTPTestRequest_FieldPathMapArrayOfValues{RunHTTPTestRequest_FieldPathMap: *fpm, values: values.([]*RunHTTPTestRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpm.selector))
 	}
@@ -676,10 +633,6 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsAuthenticationMethodValu
 	res, ok := fpv.value.(common.AuthenticationMethod)
 	return res, ok
 }
-func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsUrlFormEncodedBodyValue() (map[string]*RunHTTPTestRequest_StringArray, bool) {
-	res, ok := fpv.value.(map[string]*RunHTTPTestRequest_StringArray)
-	return res, ok
-}
 func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsUsernameValue() (string, bool) {
 	res, ok := fpv.value.(string)
 	return res, ok
@@ -717,8 +670,6 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) SetTo(target **RunHTTPTest
 		(*target).RequestBody = fpv.value.(string)
 	case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 		(*target).AuthenticationMethod = fpv.value.(common.AuthenticationMethod)
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		(*target).UrlFormEncodedBody = fpv.value.(map[string]*RunHTTPTestRequest_StringArray)
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		(*target).Username = fpv.value.(string)
 	case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -820,8 +771,6 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) CompareWith(source *RunHTT
 		} else {
 			return 1, true
 		}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return 0, false
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		leftValue := fpv.value.(string)
 		rightValue := source.GetUsername()
@@ -886,10 +835,6 @@ func (fpmv *RunHTTPTestRequest_FieldPathMapValue) AsRequestHeadersElementValue()
 	res, ok := fpmv.value.(string)
 	return res, ok
 }
-func (fpmv *RunHTTPTestRequest_FieldPathMapValue) AsUrlFormEncodedBodyElementValue() (*RunHTTPTestRequest_StringArray, bool) {
-	res, ok := fpmv.value.(*RunHTTPTestRequest_StringArray)
-	return res, ok
-}
 
 // SetTo stores value for selected field in RunHTTPTestRequest
 func (fpmv *RunHTTPTestRequest_FieldPathMapValue) SetTo(target **RunHTTPTestRequest) {
@@ -902,11 +847,6 @@ func (fpmv *RunHTTPTestRequest_FieldPathMapValue) SetTo(target **RunHTTPTestRequ
 			(*target).RequestHeaders = make(map[string]string)
 		}
 		(*target).RequestHeaders[fpmv.key] = fpmv.value.(string)
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		if (*target).UrlFormEncodedBody == nil {
-			(*target).UrlFormEncodedBody = make(map[string]*RunHTTPTestRequest_StringArray)
-		}
-		(*target).UrlFormEncodedBody[fpmv.key] = fpmv.value.(*RunHTTPTestRequest_StringArray)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpmv.selector))
 	}
@@ -930,8 +870,6 @@ func (fpmv *RunHTTPTestRequest_FieldPathMapValue) CompareWith(source *RunHTTPTes
 		} else {
 			return 1, true
 		}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpmv.selector))
 	}
@@ -1068,10 +1006,6 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]common.AuthenticationMethod) {
 			values = append(values, v)
 		}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		for _, v := range fpaov.values.([]map[string]*RunHTTPTestRequest_StringArray) {
-			values = append(values, v)
-		}
 	case RunHTTPTestRequest_FieldPathSelectorUsername:
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
@@ -1119,10 +1053,6 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsAuthentication
 	res, ok := fpaov.values.([]common.AuthenticationMethod)
 	return res, ok
 }
-func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsUrlFormEncodedBodyArrayOfValues() ([]map[string]*RunHTTPTestRequest_StringArray, bool) {
-	res, ok := fpaov.values.([]map[string]*RunHTTPTestRequest_StringArray)
-	return res, ok
-}
 func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsUsernameArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
 	return res, ok
@@ -1153,399 +1083,11 @@ func (fpmaov *RunHTTPTestRequest_FieldPathMapArrayOfValues) GetRawValues() (valu
 		for _, v := range fpmaov.values.([]string) {
 			values = append(values, v)
 		}
-	case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-		for _, v := range fpmaov.values.([]*RunHTTPTestRequest_StringArray) {
-			values = append(values, v)
-		}
 	}
 	return
 }
 func (fpmaov *RunHTTPTestRequest_FieldPathMapArrayOfValues) AsRequestHeadersArrayOfElementValues() ([]string, bool) {
 	res, ok := fpmaov.values.([]string)
-	return res, ok
-}
-func (fpmaov *RunHTTPTestRequest_FieldPathMapArrayOfValues) AsUrlFormEncodedBodyArrayOfElementValues() ([]*RunHTTPTestRequest_StringArray, bool) {
-	res, ok := fpmaov.values.([]*RunHTTPTestRequest_StringArray)
-	return res, ok
-}
-
-// FieldPath provides implementation to handle
-// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type RunHTTPTestRequestStringArray_FieldPath interface {
-	gotenobject.FieldPath
-	Selector() RunHTTPTestRequestStringArray_FieldPathSelector
-	Get(source *RunHTTPTestRequest_StringArray) []interface{}
-	GetSingle(source *RunHTTPTestRequest_StringArray) (interface{}, bool)
-	ClearValue(item *RunHTTPTestRequest_StringArray)
-
-	// Those methods build corresponding RunHTTPTestRequestStringArray_FieldPathValue
-	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) RunHTTPTestRequestStringArray_FieldPathValue
-	WithIArrayOfValues(values interface{}) RunHTTPTestRequestStringArray_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) RunHTTPTestRequestStringArray_FieldPathArrayItemValue
-}
-
-type RunHTTPTestRequestStringArray_FieldPathSelector int32
-
-const (
-	RunHTTPTestRequestStringArray_FieldPathSelectorValue RunHTTPTestRequestStringArray_FieldPathSelector = 0
-)
-
-func (s RunHTTPTestRequestStringArray_FieldPathSelector) String() string {
-	switch s {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return "value"
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", s))
-	}
-}
-
-func BuildRunHTTPTestRequestStringArray_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTestRequestStringArray_FieldPath, error) {
-	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object RunHTTPTestRequest_StringArray")
-	}
-	if len(fp) == 1 {
-		switch fp[0] {
-		case "value":
-			return &RunHTTPTestRequestStringArray_FieldTerminalPath{selector: RunHTTPTestRequestStringArray_FieldPathSelectorValue}, nil
-		}
-	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHTTPTestRequest_StringArray", fp)
-}
-
-func ParseRunHTTPTestRequestStringArray_FieldPath(rawField string) (RunHTTPTestRequestStringArray_FieldPath, error) {
-	fp, err := gotenobject.ParseRawFieldPath(rawField)
-	if err != nil {
-		return nil, err
-	}
-	return BuildRunHTTPTestRequestStringArray_FieldPath(fp)
-}
-
-func MustParseRunHTTPTestRequestStringArray_FieldPath(rawField string) RunHTTPTestRequestStringArray_FieldPath {
-	fp, err := ParseRunHTTPTestRequestStringArray_FieldPath(rawField)
-	if err != nil {
-		panic(err)
-	}
-	return fp
-}
-
-type RunHTTPTestRequestStringArray_FieldTerminalPath struct {
-	selector RunHTTPTestRequestStringArray_FieldPathSelector
-}
-
-var _ RunHTTPTestRequestStringArray_FieldPath = (*RunHTTPTestRequestStringArray_FieldTerminalPath)(nil)
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) Selector() RunHTTPTestRequestStringArray_FieldPathSelector {
-	return fp.selector
-}
-
-// String returns path representation in proto convention
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) String() string {
-	return fp.selector.String()
-}
-
-// JSONString returns path representation is JSON convention
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) JSONString() string {
-	return strcase.ToLowerCamel(fp.String())
-}
-
-// Get returns all values pointed by specific field from source RunHTTPTestRequest_StringArray
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) Get(source *RunHTTPTestRequest_StringArray) (values []interface{}) {
-	if source != nil {
-		switch fp.selector {
-		case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-			for _, value := range source.GetValue() {
-				values = append(values, value)
-			}
-		default:
-			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-		}
-	}
-	return
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*RunHTTPTestRequest_StringArray))
-}
-
-// GetSingle returns value pointed by specific field of from source RunHTTPTestRequest_StringArray
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) GetSingle(source *RunHTTPTestRequest_StringArray) (interface{}, bool) {
-	switch fp.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		res := source.GetValue()
-		return res, res != nil
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*RunHTTPTestRequest_StringArray))
-}
-
-// GetDefault returns a default value of the field type
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) GetDefault() interface{} {
-	switch fp.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return ([]string)(nil)
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) ClearValue(item *RunHTTPTestRequest_StringArray) {
-	if item != nil {
-		switch fp.selector {
-		case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-			item.Value = nil
-		default:
-			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-		}
-	}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*RunHTTPTestRequest_StringArray))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == RunHTTPTestRequestStringArray_FieldPathSelectorValue
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
-	return []gotenobject.FieldPath{fp}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithIValue(value interface{}) RunHTTPTestRequestStringArray_FieldPathValue {
-	switch fp.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return &RunHTTPTestRequestStringArray_FieldTerminalPathValue{RunHTTPTestRequestStringArray_FieldTerminalPath: *fp, value: value.([]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fp.WithIValue(value)
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithIArrayOfValues(values interface{}) RunHTTPTestRequestStringArray_FieldPathArrayOfValues {
-	fpaov := &RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues{RunHTTPTestRequestStringArray_FieldTerminalPath: *fp}
-	switch fp.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return &RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues{RunHTTPTestRequestStringArray_FieldTerminalPath: *fp, values: values.([][]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-	}
-	return fpaov
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fp.WithIArrayOfValues(values)
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithIArrayItemValue(value interface{}) RunHTTPTestRequestStringArray_FieldPathArrayItemValue {
-	switch fp.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return &RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue{RunHTTPTestRequestStringArray_FieldTerminalPath: *fp, value: value.(string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *RunHTTPTestRequestStringArray_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fp.WithIArrayItemValue(value)
-}
-
-// RunHTTPTestRequestStringArray_FieldPathValue allows storing values for StringArray fields according to their type
-type RunHTTPTestRequestStringArray_FieldPathValue interface {
-	RunHTTPTestRequestStringArray_FieldPath
-	gotenobject.FieldPathValue
-	SetTo(target **RunHTTPTestRequest_StringArray)
-	CompareWith(*RunHTTPTestRequest_StringArray) (cmp int, comparable bool)
-}
-
-func ParseRunHTTPTestRequestStringArray_FieldPathValue(pathStr, valueStr string) (RunHTTPTestRequestStringArray_FieldPathValue, error) {
-	fp, err := ParseRunHTTPTestRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path value from %s: %v", valueStr, err)
-	}
-	return fpv.(RunHTTPTestRequestStringArray_FieldPathValue), nil
-}
-
-func MustParseRunHTTPTestRequestStringArray_FieldPathValue(pathStr, valueStr string) RunHTTPTestRequestStringArray_FieldPathValue {
-	fpv, err := ParseRunHTTPTestRequestStringArray_FieldPathValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpv
-}
-
-type RunHTTPTestRequestStringArray_FieldTerminalPathValue struct {
-	RunHTTPTestRequestStringArray_FieldTerminalPath
-	value interface{}
-}
-
-var _ RunHTTPTestRequestStringArray_FieldPathValue = (*RunHTTPTestRequestStringArray_FieldTerminalPathValue)(nil)
-
-// GetRawValue returns raw value stored under selected path for 'StringArray' as interface{}
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) GetRawValue() interface{} {
-	return fpv.value
-}
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) AsValueValue() ([]string, bool) {
-	res, ok := fpv.value.([]string)
-	return res, ok
-}
-
-// SetTo stores value for selected field for object StringArray
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) SetTo(target **RunHTTPTestRequest_StringArray) {
-	if *target == nil {
-		*target = new(RunHTTPTestRequest_StringArray)
-	}
-	switch fpv.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		(*target).Value = fpv.value.([]string)
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fpv.selector))
-	}
-}
-
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*RunHTTPTestRequest_StringArray)
-	fpv.SetTo(&typedObject)
-}
-
-// CompareWith compares value in the 'RunHTTPTestRequestStringArray_FieldTerminalPathValue' with the value under path in 'RunHTTPTestRequest_StringArray'.
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) CompareWith(source *RunHTTPTestRequest_StringArray) (int, bool) {
-	switch fpv.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		return 0, false
-	default:
-		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest_StringArray: %d", fpv.selector))
-	}
-}
-
-func (fpv *RunHTTPTestRequestStringArray_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*RunHTTPTestRequest_StringArray))
-}
-
-// RunHTTPTestRequestStringArray_FieldPathArrayItemValue allows storing single item in Path-specific values for StringArray according to their type
-// Present only for array (repeated) types.
-type RunHTTPTestRequestStringArray_FieldPathArrayItemValue interface {
-	gotenobject.FieldPathArrayItemValue
-	RunHTTPTestRequestStringArray_FieldPath
-	ContainsValue(*RunHTTPTestRequest_StringArray) bool
-}
-
-// ParseRunHTTPTestRequestStringArray_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseRunHTTPTestRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr string) (RunHTTPTestRequestStringArray_FieldPathArrayItemValue, error) {
-	fp, err := ParseRunHTTPTestRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path array item value from %s: %v", valueStr, err)
-	}
-	return fpaiv.(RunHTTPTestRequestStringArray_FieldPathArrayItemValue), nil
-}
-
-func MustParseRunHTTPTestRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr string) RunHTTPTestRequestStringArray_FieldPathArrayItemValue {
-	fpaiv, err := ParseRunHTTPTestRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaiv
-}
-
-type RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue struct {
-	RunHTTPTestRequestStringArray_FieldTerminalPath
-	value interface{}
-}
-
-var _ RunHTTPTestRequestStringArray_FieldPathArrayItemValue = (*RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue)(nil)
-
-// GetRawValue returns stored element value for array in object RunHTTPTestRequest_StringArray as interface{}
-func (fpaiv *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
-	return fpaiv.value
-}
-func (fpaiv *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue) AsValueItemValue() (string, bool) {
-	res, ok := fpaiv.value.(string)
-	return res, ok
-}
-
-func (fpaiv *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue) GetSingle(source *RunHTTPTestRequest_StringArray) (interface{}, bool) {
-	return nil, false
-}
-
-func (fpaiv *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*RunHTTPTestRequest_StringArray))
-}
-
-// Contains returns a boolean indicating if value that is being held is present in given 'StringArray'
-func (fpaiv *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue) ContainsValue(source *RunHTTPTestRequest_StringArray) bool {
-	slice := fpaiv.RunHTTPTestRequestStringArray_FieldTerminalPath.Get(source)
-	for _, v := range slice {
-		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
-			if proto.Equal(asProtoMsg, v.(proto.Message)) {
-				return true
-			}
-		} else if reflect.DeepEqual(v, fpaiv.value) {
-			return true
-		}
-	}
-	return false
-}
-
-// RunHTTPTestRequestStringArray_FieldPathArrayOfValues allows storing slice of values for StringArray fields according to their type
-type RunHTTPTestRequestStringArray_FieldPathArrayOfValues interface {
-	gotenobject.FieldPathArrayOfValues
-	RunHTTPTestRequestStringArray_FieldPath
-}
-
-func ParseRunHTTPTestRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr string) (RunHTTPTestRequestStringArray_FieldPathArrayOfValues, error) {
-	fp, err := ParseRunHTTPTestRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path array of values from %s: %v", valuesStr, err)
-	}
-	return fpaov.(RunHTTPTestRequestStringArray_FieldPathArrayOfValues), nil
-}
-
-func MustParseRunHTTPTestRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr string) RunHTTPTestRequestStringArray_FieldPathArrayOfValues {
-	fpaov, err := ParseRunHTTPTestRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaov
-}
-
-type RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues struct {
-	RunHTTPTestRequestStringArray_FieldTerminalPath
-	values interface{}
-}
-
-var _ RunHTTPTestRequestStringArray_FieldPathArrayOfValues = (*RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues)(nil)
-
-func (fpaov *RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
-	switch fpaov.selector {
-	case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-		for _, v := range fpaov.values.([][]string) {
-			values = append(values, v)
-		}
-	}
-	return
-}
-func (fpaov *RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues) AsValueArrayOfValues() ([][]string, bool) {
-	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 

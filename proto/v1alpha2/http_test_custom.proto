@@ -30,8 +30,6 @@ message RunHTTPTestRequest {
 
   AuthenticationMethod authentication_method = 7;
 
-  map<string, StringArray> url_form_encoded_body = 8;
-
   string username = 9;
 
   string password = 10;
@@ -40,7 +38,7 @@ message RunHTTPTestRequest {
 
   OnDemandTestResponseFormat output_format = 12;
 
-  message StringArray { repeated string value = 1; }
+  reserved 8;
 }
 
 // Response message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]

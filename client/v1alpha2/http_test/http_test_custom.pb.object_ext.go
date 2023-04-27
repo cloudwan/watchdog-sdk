@@ -88,18 +88,6 @@ func (o *RunHTTPTestRequest) MakeDiffFieldMask(other *RunHTTPTestRequest) *RunHT
 	if o.GetAuthenticationMethod() != other.GetAuthenticationMethod() {
 		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod})
 	}
-
-	if len(o.GetUrlFormEncodedBody()) == len(other.GetUrlFormEncodedBody()) {
-		for i, lValue := range o.GetUrlFormEncodedBody() {
-			rValue := other.GetUrlFormEncodedBody()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody})
-	}
 	if o.GetUsername() != other.GetUsername() {
 		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUsername})
 	}
@@ -143,10 +131,6 @@ func (o *RunHTTPTestRequest) Clone() *RunHTTPTestRequest {
 	result.Timeout = proto.Clone(o.Timeout).(*duration.Duration)
 	result.RequestBody = o.RequestBody
 	result.AuthenticationMethod = o.AuthenticationMethod
-	result.UrlFormEncodedBody = map[string]*RunHTTPTestRequest_StringArray{}
-	for key, sourceValue := range o.UrlFormEncodedBody {
-		result.UrlFormEncodedBody[key] = sourceValue.Clone()
-	}
 	result.Username = o.Username
 	result.Password = o.Password
 	result.SourceIp = o.SourceIp
@@ -189,19 +173,6 @@ func (o *RunHTTPTestRequest) Merge(source *RunHTTPTestRequest) {
 	}
 	o.RequestBody = source.GetRequestBody()
 	o.AuthenticationMethod = source.GetAuthenticationMethod()
-	if source.GetUrlFormEncodedBody() != nil {
-		if o.UrlFormEncodedBody == nil {
-			o.UrlFormEncodedBody = make(map[string]*RunHTTPTestRequest_StringArray, len(source.GetUrlFormEncodedBody()))
-		}
-		for key, sourceValue := range source.GetUrlFormEncodedBody() {
-			if sourceValue != nil {
-				if o.UrlFormEncodedBody[key] == nil {
-					o.UrlFormEncodedBody[key] = new(RunHTTPTestRequest_StringArray)
-				}
-				o.UrlFormEncodedBody[key].Merge(sourceValue)
-			}
-		}
-	}
 	o.Username = source.GetUsername()
 	o.Password = source.GetPassword()
 	o.SourceIp = source.GetSourceIp()
@@ -210,82 +181,6 @@ func (o *RunHTTPTestRequest) Merge(source *RunHTTPTestRequest) {
 
 func (o *RunHTTPTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*RunHTTPTestRequest))
-}
-
-func (o *RunHTTPTestRequest_StringArray) GotenObjectExt() {}
-
-func (o *RunHTTPTestRequest_StringArray) MakeFullFieldMask() *RunHTTPTestRequest_StringArray_FieldMask {
-	return FullRunHTTPTestRequest_StringArray_FieldMask()
-}
-
-func (o *RunHTTPTestRequest_StringArray) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullRunHTTPTestRequest_StringArray_FieldMask()
-}
-
-func (o *RunHTTPTestRequest_StringArray) MakeDiffFieldMask(other *RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_StringArray_FieldMask {
-	if o == nil && other == nil {
-		return &RunHTTPTestRequest_StringArray_FieldMask{}
-	}
-	if o == nil || other == nil {
-		return FullRunHTTPTestRequest_StringArray_FieldMask()
-	}
-
-	res := &RunHTTPTestRequest_StringArray_FieldMask{}
-
-	if len(o.GetValue()) == len(other.GetValue()) {
-		for i, lValue := range o.GetValue() {
-			rValue := other.GetValue()[i]
-			if lValue != rValue {
-				res.Paths = append(res.Paths, &RunHTTPTestRequestStringArray_FieldTerminalPath{selector: RunHTTPTestRequestStringArray_FieldPathSelectorValue})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &RunHTTPTestRequestStringArray_FieldTerminalPath{selector: RunHTTPTestRequestStringArray_FieldPathSelectorValue})
-	}
-	return res
-}
-
-func (o *RunHTTPTestRequest_StringArray) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*RunHTTPTestRequest_StringArray))
-}
-
-func (o *RunHTTPTestRequest_StringArray) Clone() *RunHTTPTestRequest_StringArray {
-	if o == nil {
-		return nil
-	}
-	result := &RunHTTPTestRequest_StringArray{}
-	result.Value = make([]string, len(o.Value))
-	for i, sourceValue := range o.Value {
-		result.Value[i] = sourceValue
-	}
-	return result
-}
-
-func (o *RunHTTPTestRequest_StringArray) CloneRaw() gotenobject.GotenObjectExt {
-	return o.Clone()
-}
-
-func (o *RunHTTPTestRequest_StringArray) Merge(source *RunHTTPTestRequest_StringArray) {
-	for _, sourceValue := range source.GetValue() {
-		exists := false
-		for _, currentValue := range o.Value {
-			if currentValue == sourceValue {
-				exists = true
-				break
-			}
-		}
-		if !exists {
-			var newDstElement string
-			newDstElement = sourceValue
-			o.Value = append(o.Value, newDstElement)
-		}
-	}
-
-}
-
-func (o *RunHTTPTestRequest_StringArray) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*RunHTTPTestRequest_StringArray))
 }
 
 func (o *RunHTTPTestResponse) GotenObjectExt() {}

@@ -80,9 +80,6 @@ func (RunHTTPTestRequestFieldPathBuilder) RequestBody() RunHTTPTestRequestPathSe
 func (RunHTTPTestRequestFieldPathBuilder) AuthenticationMethod() RunHTTPTestRequestPathSelectorAuthenticationMethod {
 	return RunHTTPTestRequestPathSelectorAuthenticationMethod{}
 }
-func (RunHTTPTestRequestFieldPathBuilder) UrlFormEncodedBody() RunHTTPTestRequestPathSelectorUrlFormEncodedBody {
-	return RunHTTPTestRequestPathSelectorUrlFormEncodedBody{}
-}
 func (RunHTTPTestRequestFieldPathBuilder) Username() RunHTTPTestRequestPathSelectorUsername {
 	return RunHTTPTestRequestPathSelectorUsername{}
 }
@@ -214,40 +211,6 @@ func (s RunHTTPTestRequestPathSelectorAuthenticationMethod) WithArrayOfValues(va
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
 }
 
-type RunHTTPTestRequestPathSelectorUrlFormEncodedBody struct{}
-
-func (RunHTTPTestRequestPathSelectorUrlFormEncodedBody) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
-	return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody}
-}
-
-func (s RunHTTPTestRequestPathSelectorUrlFormEncodedBody) WithValue(value map[string]*RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequest_FieldTerminalPathValue)
-}
-
-func (s RunHTTPTestRequestPathSelectorUrlFormEncodedBody) WithArrayOfValues(values []map[string]*RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
-}
-
-func (RunHTTPTestRequestPathSelectorUrlFormEncodedBody) WithKey(key string) RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody {
-	return RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody{key: key}
-}
-
-type RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody struct {
-	key string
-}
-
-func (s RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody) FieldPath() *RunHTTPTestRequest_FieldPathMap {
-	return &RunHTTPTestRequest_FieldPathMap{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody, key: s.key}
-}
-
-func (s RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody) WithValue(value *RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_FieldPathMapValue {
-	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequest_FieldPathMapValue)
-}
-
-func (s RunHTTPTestRequestMapPathSelectorUrlFormEncodedBody) WithArrayOfValues(values []*RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_FieldPathMapArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldPathMapArrayOfValues)
-}
-
 type RunHTTPTestRequestPathSelectorUsername struct{}
 
 func (RunHTTPTestRequestPathSelectorUsername) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
@@ -302,33 +265,6 @@ func (s RunHTTPTestRequestPathSelectorOutputFormat) WithValue(value common.OnDem
 
 func (s RunHTTPTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
-}
-
-type RunHTTPTestRequestStringArrayFieldPathBuilder struct{}
-
-func NewRunHTTPTestRequestStringArrayFieldPathBuilder() RunHTTPTestRequestStringArrayFieldPathBuilder {
-	return RunHTTPTestRequestStringArrayFieldPathBuilder{}
-}
-func (RunHTTPTestRequestStringArrayFieldPathBuilder) Value() RunHTTPTestRequest_StringArrayPathSelectorValue {
-	return RunHTTPTestRequest_StringArrayPathSelectorValue{}
-}
-
-type RunHTTPTestRequest_StringArrayPathSelectorValue struct{}
-
-func (RunHTTPTestRequest_StringArrayPathSelectorValue) FieldPath() *RunHTTPTestRequestStringArray_FieldTerminalPath {
-	return &RunHTTPTestRequestStringArray_FieldTerminalPath{selector: RunHTTPTestRequestStringArray_FieldPathSelectorValue}
-}
-
-func (s RunHTTPTestRequest_StringArrayPathSelectorValue) WithValue(value []string) *RunHTTPTestRequestStringArray_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequestStringArray_FieldTerminalPathValue)
-}
-
-func (s RunHTTPTestRequest_StringArrayPathSelectorValue) WithArrayOfValues(values [][]string) *RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequestStringArray_FieldTerminalPathArrayOfValues)
-}
-
-func (s RunHTTPTestRequest_StringArrayPathSelectorValue) WithItemValue(value string) *RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue {
-	return s.FieldPath().WithIArrayItemValue(value).(*RunHTTPTestRequestStringArray_FieldTerminalPathArrayItemValue)
 }
 
 type RunHTTPTestResponseFieldPathBuilder struct{}

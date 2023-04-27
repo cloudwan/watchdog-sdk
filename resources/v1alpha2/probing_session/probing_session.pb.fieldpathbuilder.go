@@ -1316,10 +1316,6 @@ func (ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequest) Authentication
 	return ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestAuthenticationMethod{}
 }
 
-func (ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody{}
-}
-
 type ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrl struct{}
 
 func (ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingSession_FieldSubPath {
@@ -1462,46 +1458,6 @@ func (s ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestAuthentication
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
-type ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
-
-func (ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
 type ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfig struct{}
 
 func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfig) FieldPath() *ProbingSession_FieldSubPath {
@@ -1624,10 +1580,6 @@ func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequest) Req
 
 func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
 	return ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
-}
-
-func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
 }
 
 type ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrl struct{}
@@ -1769,46 +1721,6 @@ func (s ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestAut
 }
 
 func (s ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-type ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
-
-func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSessionPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSession_FieldSubPath {
-	return &ProbingSession_FieldSubPath{
-		selector: ProbingSession_FieldPathSelectorSpec,
-		subPath:  NewProbingSessionSpecFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSession_FieldSubPathValue)
-}
-
-func (s ProbingSessionMapPathSelectorSpecHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSession_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSession_FieldSubPathArrayOfValues)
 }
 
@@ -3064,10 +2976,6 @@ func (ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequest) Authenticatio
 	return ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestAuthenticationMethod{}
 }
 
-func (ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{}
-}
-
 type ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrl struct{}
 
 func (ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingSessionSpec_FieldSubPath {
@@ -3210,46 +3118,6 @@ func (s ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestAuthenticatio
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
-
-func (ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSession_SpecPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
 type ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfig struct{}
 
 func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfig) FieldPath() *ProbingSessionSpec_FieldSubPath {
@@ -3372,10 +3240,6 @@ func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequest) Re
 
 func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
 	return ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
-}
-
-func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
 }
 
 type ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrl struct{}
@@ -3517,46 +3381,6 @@ func (s ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestAu
 }
 
 func (s ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
-
-func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
-}
-
-func (ProbingSession_SpecPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingSessionSpec_FieldSubPath {
-	return &ProbingSessionSpec_FieldSubPath{
-		selector: ProbingSessionSpec_FieldPathSelectorHttpProbingConfig,
-		subPath:  common.NewHTTPProbingConfigFieldPathBuilder().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingSessionSpec_FieldSubPathValue)
-}
-
-func (s ProbingSession_SpecMapPathSelectorHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingSessionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingSessionSpec_FieldSubPathArrayOfValues)
 }
 

@@ -9301,7 +9301,6 @@ const (
 	HTTPProbingConfigHTTPRequest_FieldPathSelectorTimeout              HTTPProbingConfigHTTPRequest_FieldPathSelector = 4
 	HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestBody          HTTPProbingConfigHTTPRequest_FieldPathSelector = 5
 	HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod HTTPProbingConfigHTTPRequest_FieldPathSelector = 6
-	HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody   HTTPProbingConfigHTTPRequest_FieldPathSelector = 7
 )
 
 func (s HTTPProbingConfigHTTPRequest_FieldPathSelector) String() string {
@@ -9320,8 +9319,6 @@ func (s HTTPProbingConfigHTTPRequest_FieldPathSelector) String() string {
 		return "request_body"
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		return "authentication_method"
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return "url_form_encoded_body"
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", s))
 	}
@@ -9347,8 +9344,6 @@ func BuildHTTPProbingConfigHTTPRequest_FieldPath(fp gotenobject.RawFieldPath) (H
 			return &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestBody}, nil
 		case "authentication_method", "authenticationMethod", "authentication-method":
 			return &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod}, nil
-		case "url_form_encoded_body", "urlFormEncodedBody", "url-form-encoded-body":
-			return &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -9357,11 +9352,6 @@ func BuildHTTPProbingConfigHTTPRequest_FieldPath(fp gotenobject.RawFieldPath) (H
 				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object HTTPProbingConfig_HTTPRequest)", fp)
 			}
 			return &HTTPProbingConfigHTTPRequest_FieldPathMap{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders, key: fp[1]}, nil
-		case "url_form_encoded_body", "urlFormEncodedBody", "url-form-encoded-body":
-			if len(fp) > 2 {
-				return nil, status.Errorf(codes.InvalidArgument, "sub path for maps ('%s') are not supported (object HTTPProbingConfig_HTTPRequest)", fp)
-			}
-			return &HTTPProbingConfigHTTPRequest_FieldPathMap{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody, key: fp[1]}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object HTTPProbingConfig_HTTPRequest", fp)
@@ -9423,10 +9413,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) Get(source *HTTPProbin
 			values = append(values, source.RequestBody)
 		case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 			values = append(values, source.AuthenticationMethod)
-		case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-			if source.UrlFormEncodedBody != nil {
-				values = append(values, source.UrlFormEncodedBody)
-			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 		}
@@ -9457,9 +9443,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) GetSingle(source *HTTP
 		return source.GetRequestBody(), source != nil
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		return source.GetAuthenticationMethod(), source != nil
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		res := source.GetUrlFormEncodedBody()
-		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 	}
@@ -9486,8 +9469,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) GetDefault() interface
 		return ""
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		return AuthenticationMethod_NO_AUTH
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return (map[string]*HTTPProbingConfig_HTTPRequest_StringArray)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 	}
@@ -9510,8 +9491,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) ClearValue(item *HTTPP
 			item.RequestBody = ""
 		case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 			item.AuthenticationMethod = AuthenticationMethod_NO_AUTH
-		case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-			item.UrlFormEncodedBody = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 		}
@@ -9553,8 +9532,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) WithIValue(value inter
 		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathValue{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathValue{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, value: value.(AuthenticationMethod)}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathValue{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, value: value.(map[string]*HTTPProbingConfig_HTTPRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 	}
@@ -9581,8 +9558,6 @@ func (fp *HTTPProbingConfigHTTPRequest_FieldTerminalPath) WithIArrayOfValues(val
 		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, values: values.([]AuthenticationMethod)}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues{HTTPProbingConfigHTTPRequest_FieldTerminalPath: *fp, values: values.([]map[string]*HTTPProbingConfig_HTTPRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fp.selector))
 	}
@@ -9637,10 +9612,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) Get(source *HTTPProbingCon
 		if value, ok := source.GetRequestHeaders()[fpm.key]; ok {
 			values = append(values, value)
 		}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		if value, ok := source.GetUrlFormEncodedBody()[fpm.key]; ok {
-			values = append(values, value)
-		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9657,9 +9628,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) GetSingle(source *HTTPProb
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 		res, ok := source.GetRequestHeaders()[fpm.key]
 		return res, ok
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		res, ok := source.GetUrlFormEncodedBody()[fpm.key]
-		return res, ok
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9675,9 +9643,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) GetDefault() interface{} {
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 		var v string
 		return v
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		var v *HTTPProbingConfig_HTTPRequest_StringArray
-		return v
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9688,8 +9653,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) ClearValue(item *HTTPProbi
 		switch fpm.selector {
 		case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 			delete(item.RequestHeaders, fpm.key)
-		case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-			delete(item.UrlFormEncodedBody, fpm.key)
 		default:
 			panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 		}
@@ -9705,8 +9668,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) IsLeaf() bool {
 	switch fpm.selector {
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 		return true
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9720,8 +9681,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) WithIValue(value interface
 	switch fpm.selector {
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 		return &HTTPProbingConfigHTTPRequest_FieldPathMapValue{HTTPProbingConfigHTTPRequest_FieldPathMap: *fpm, value: value.(string)}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &HTTPProbingConfigHTTPRequest_FieldPathMapValue{HTTPProbingConfigHTTPRequest_FieldPathMap: *fpm, value: value.(*HTTPProbingConfig_HTTPRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9735,8 +9694,6 @@ func (fpm *HTTPProbingConfigHTTPRequest_FieldPathMap) WithIArrayOfValues(values 
 	switch fpm.selector {
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorRequestHeaders:
 		return &HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues{HTTPProbingConfigHTTPRequest_FieldPathMap: *fpm, values: values.([]string)}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return &HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues{HTTPProbingConfigHTTPRequest_FieldPathMap: *fpm, values: values.([]*HTTPProbingConfig_HTTPRequest_StringArray)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpm.selector))
 	}
@@ -9821,10 +9778,6 @@ func (fpv *HTTPProbingConfigHTTPRequest_FieldTerminalPathValue) AsAuthentication
 	res, ok := fpv.value.(AuthenticationMethod)
 	return res, ok
 }
-func (fpv *HTTPProbingConfigHTTPRequest_FieldTerminalPathValue) AsUrlFormEncodedBodyValue() (map[string]*HTTPProbingConfig_HTTPRequest_StringArray, bool) {
-	res, ok := fpv.value.(map[string]*HTTPProbingConfig_HTTPRequest_StringArray)
-	return res, ok
-}
 
 // SetTo stores value for selected field for object HTTPRequest
 func (fpv *HTTPProbingConfigHTTPRequest_FieldTerminalPathValue) SetTo(target **HTTPProbingConfig_HTTPRequest) {
@@ -9846,8 +9799,6 @@ func (fpv *HTTPProbingConfigHTTPRequest_FieldTerminalPathValue) SetTo(target **H
 		(*target).RequestBody = fpv.value.(string)
 	case HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod:
 		(*target).AuthenticationMethod = fpv.value.(AuthenticationMethod)
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		(*target).UrlFormEncodedBody = fpv.value.(map[string]*HTTPProbingConfig_HTTPRequest_StringArray)
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpv.selector))
 	}
@@ -9932,8 +9883,6 @@ func (fpv *HTTPProbingConfigHTTPRequest_FieldTerminalPathValue) CompareWith(sour
 		} else {
 			return 1, true
 		}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpv.selector))
 	}
@@ -9958,10 +9907,6 @@ func (fpmv *HTTPProbingConfigHTTPRequest_FieldPathMapValue) AsRequestHeadersElem
 	res, ok := fpmv.value.(string)
 	return res, ok
 }
-func (fpmv *HTTPProbingConfigHTTPRequest_FieldPathMapValue) AsUrlFormEncodedBodyElementValue() (*HTTPProbingConfig_HTTPRequest_StringArray, bool) {
-	res, ok := fpmv.value.(*HTTPProbingConfig_HTTPRequest_StringArray)
-	return res, ok
-}
 
 // SetTo stores value for selected field in HTTPRequest
 func (fpmv *HTTPProbingConfigHTTPRequest_FieldPathMapValue) SetTo(target **HTTPProbingConfig_HTTPRequest) {
@@ -9974,11 +9919,6 @@ func (fpmv *HTTPProbingConfigHTTPRequest_FieldPathMapValue) SetTo(target **HTTPP
 			(*target).RequestHeaders = make(map[string]string)
 		}
 		(*target).RequestHeaders[fpmv.key] = fpmv.value.(string)
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		if (*target).UrlFormEncodedBody == nil {
-			(*target).UrlFormEncodedBody = make(map[string]*HTTPProbingConfig_HTTPRequest_StringArray)
-		}
-		(*target).UrlFormEncodedBody[fpmv.key] = fpmv.value.(*HTTPProbingConfig_HTTPRequest_StringArray)
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpmv.selector))
 	}
@@ -10002,8 +9942,6 @@ func (fpmv *HTTPProbingConfigHTTPRequest_FieldPathMapValue) CompareWith(source *
 		} else {
 			return 1, true
 		}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest: %d", fpmv.selector))
 	}
@@ -10140,10 +10078,6 @@ func (fpaov *HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues) GetRaw
 		for _, v := range fpaov.values.([]AuthenticationMethod) {
 			values = append(values, v)
 		}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		for _, v := range fpaov.values.([]map[string]*HTTPProbingConfig_HTTPRequest_StringArray) {
-			values = append(values, v)
-		}
 	}
 	return
 }
@@ -10175,10 +10109,6 @@ func (fpaov *HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues) AsAuth
 	res, ok := fpaov.values.([]AuthenticationMethod)
 	return res, ok
 }
-func (fpaov *HTTPProbingConfigHTTPRequest_FieldTerminalPathArrayOfValues) AsUrlFormEncodedBodyArrayOfValues() ([]map[string]*HTTPProbingConfig_HTTPRequest_StringArray, bool) {
-	res, ok := fpaov.values.([]map[string]*HTTPProbingConfig_HTTPRequest_StringArray)
-	return res, ok
-}
 
 type HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues struct {
 	HTTPProbingConfigHTTPRequest_FieldPathMap
@@ -10193,19 +10123,11 @@ func (fpmaov *HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues) GetRawValu
 		for _, v := range fpmaov.values.([]string) {
 			values = append(values, v)
 		}
-	case HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody:
-		for _, v := range fpmaov.values.([]*HTTPProbingConfig_HTTPRequest_StringArray) {
-			values = append(values, v)
-		}
 	}
 	return
 }
 func (fpmaov *HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues) AsRequestHeadersArrayOfElementValues() ([]string, bool) {
 	res, ok := fpmaov.values.([]string)
-	return res, ok
-}
-func (fpmaov *HTTPProbingConfigHTTPRequest_FieldPathMapArrayOfValues) AsUrlFormEncodedBodyArrayOfElementValues() ([]*HTTPProbingConfig_HTTPRequest_StringArray, bool) {
-	res, ok := fpmaov.values.([]*HTTPProbingConfig_HTTPRequest_StringArray)
 	return res, ok
 }
 
@@ -11037,386 +10959,6 @@ func (fpsaov *HTTPProbingConfigHTTPAuth_FieldSubPathArrayOfValues) GetRawValues(
 }
 func (fpsaov *HTTPProbingConfigHTTPAuth_FieldSubPathArrayOfValues) AsTokenRequestPathArrayOfValues() (HTTPProbingConfigHTTPRequest_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(HTTPProbingConfigHTTPRequest_FieldPathArrayOfValues)
-	return res, ok
-}
-
-// FieldPath provides implementation to handle
-// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
-type HTTPProbingConfigHTTPRequestStringArray_FieldPath interface {
-	gotenobject.FieldPath
-	Selector() HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector
-	Get(source *HTTPProbingConfig_HTTPRequest_StringArray) []interface{}
-	GetSingle(source *HTTPProbingConfig_HTTPRequest_StringArray) (interface{}, bool)
-	ClearValue(item *HTTPProbingConfig_HTTPRequest_StringArray)
-
-	// Those methods build corresponding HTTPProbingConfigHTTPRequestStringArray_FieldPathValue
-	// (or array of values) and holds passed value. Panics if injected type is incorrect.
-	WithIValue(value interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathValue
-	WithIArrayOfValues(values interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues
-	WithIArrayItemValue(value interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue
-}
-
-type HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector int32
-
-const (
-	HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector = 0
-)
-
-func (s HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector) String() string {
-	switch s {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return "value"
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", s))
-	}
-}
-
-func BuildHTTPProbingConfigHTTPRequestStringArray_FieldPath(fp gotenobject.RawFieldPath) (HTTPProbingConfigHTTPRequestStringArray_FieldPath, error) {
-	if len(fp) == 0 {
-		return nil, status.Error(codes.InvalidArgument, "empty field path for object HTTPProbingConfig_HTTPRequest_StringArray")
-	}
-	if len(fp) == 1 {
-		switch fp[0] {
-		case "value":
-			return &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue}, nil
-		}
-	}
-	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object HTTPProbingConfig_HTTPRequest_StringArray", fp)
-}
-
-func ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(rawField string) (HTTPProbingConfigHTTPRequestStringArray_FieldPath, error) {
-	fp, err := gotenobject.ParseRawFieldPath(rawField)
-	if err != nil {
-		return nil, err
-	}
-	return BuildHTTPProbingConfigHTTPRequestStringArray_FieldPath(fp)
-}
-
-func MustParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(rawField string) HTTPProbingConfigHTTPRequestStringArray_FieldPath {
-	fp, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(rawField)
-	if err != nil {
-		panic(err)
-	}
-	return fp
-}
-
-type HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath struct {
-	selector HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector
-}
-
-var _ HTTPProbingConfigHTTPRequestStringArray_FieldPath = (*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath)(nil)
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) Selector() HTTPProbingConfigHTTPRequestStringArray_FieldPathSelector {
-	return fp.selector
-}
-
-// String returns path representation in proto convention
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) String() string {
-	return fp.selector.String()
-}
-
-// JSONString returns path representation is JSON convention
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) JSONString() string {
-	return strcase.ToLowerCamel(fp.String())
-}
-
-// Get returns all values pointed by specific field from source HTTPProbingConfig_HTTPRequest_StringArray
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) Get(source *HTTPProbingConfig_HTTPRequest_StringArray) (values []interface{}) {
-	if source != nil {
-		switch fp.selector {
-		case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-			for _, value := range source.GetValue() {
-				values = append(values, value)
-			}
-		default:
-			panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-		}
-	}
-	return
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
-	return fp.Get(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-// GetSingle returns value pointed by specific field of from source HTTPProbingConfig_HTTPRequest_StringArray
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) GetSingle(source *HTTPProbingConfig_HTTPRequest_StringArray) (interface{}, bool) {
-	switch fp.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		res := source.GetValue()
-		return res, res != nil
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fp.GetSingle(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-// GetDefault returns a default value of the field type
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) GetDefault() interface{} {
-	switch fp.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return ([]string)(nil)
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) ClearValue(item *HTTPProbingConfig_HTTPRequest_StringArray) {
-	if item != nil {
-		switch fp.selector {
-		case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-			item.Value = nil
-		default:
-			panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-		}
-	}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) ClearValueRaw(item proto.Message) {
-	fp.ClearValue(item.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-// IsLeaf - whether field path is holds simple value
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
-	return []gotenobject.FieldPath{fp}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithIValue(value interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathValue {
-	switch fp.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue{HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath: *fp, value: value.([]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
-	return fp.WithIValue(value)
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithIArrayOfValues(values interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues {
-	fpaov := &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues{HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath: *fp}
-	switch fp.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues{HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath: *fp, values: values.([][]string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-	}
-	return fpaov
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
-	return fp.WithIArrayOfValues(values)
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithIArrayItemValue(value interface{}) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue {
-	switch fp.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue{HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath: *fp, value: value.(string)}
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fp.selector))
-	}
-}
-
-func (fp *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
-	return fp.WithIArrayItemValue(value)
-}
-
-// HTTPProbingConfigHTTPRequestStringArray_FieldPathValue allows storing values for StringArray fields according to their type
-type HTTPProbingConfigHTTPRequestStringArray_FieldPathValue interface {
-	HTTPProbingConfigHTTPRequestStringArray_FieldPath
-	gotenobject.FieldPathValue
-	SetTo(target **HTTPProbingConfig_HTTPRequest_StringArray)
-	CompareWith(*HTTPProbingConfig_HTTPRequest_StringArray) (cmp int, comparable bool)
-}
-
-func ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathValue(pathStr, valueStr string) (HTTPProbingConfigHTTPRequestStringArray_FieldPathValue, error) {
-	fp, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path value from %s: %v", valueStr, err)
-	}
-	return fpv.(HTTPProbingConfigHTTPRequestStringArray_FieldPathValue), nil
-}
-
-func MustParseHTTPProbingConfigHTTPRequestStringArray_FieldPathValue(pathStr, valueStr string) HTTPProbingConfigHTTPRequestStringArray_FieldPathValue {
-	fpv, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpv
-}
-
-type HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue struct {
-	HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath
-	value interface{}
-}
-
-var _ HTTPProbingConfigHTTPRequestStringArray_FieldPathValue = (*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue)(nil)
-
-// GetRawValue returns raw value stored under selected path for 'StringArray' as interface{}
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) GetRawValue() interface{} {
-	return fpv.value
-}
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) AsValueValue() ([]string, bool) {
-	res, ok := fpv.value.([]string)
-	return res, ok
-}
-
-// SetTo stores value for selected field for object StringArray
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) SetTo(target **HTTPProbingConfig_HTTPRequest_StringArray) {
-	if *target == nil {
-		*target = new(HTTPProbingConfig_HTTPRequest_StringArray)
-	}
-	switch fpv.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		(*target).Value = fpv.value.([]string)
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fpv.selector))
-	}
-}
-
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) SetToRaw(target proto.Message) {
-	typedObject := target.(*HTTPProbingConfig_HTTPRequest_StringArray)
-	fpv.SetTo(&typedObject)
-}
-
-// CompareWith compares value in the 'HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue' with the value under path in 'HTTPProbingConfig_HTTPRequest_StringArray'.
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) CompareWith(source *HTTPProbingConfig_HTTPRequest_StringArray) (int, bool) {
-	switch fpv.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		return 0, false
-	default:
-		panic(fmt.Sprintf("Invalid selector for HTTPProbingConfig_HTTPRequest_StringArray: %d", fpv.selector))
-	}
-}
-
-func (fpv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
-	return fpv.CompareWith(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-// HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue allows storing single item in Path-specific values for StringArray according to their type
-// Present only for array (repeated) types.
-type HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue interface {
-	gotenobject.FieldPathArrayItemValue
-	HTTPProbingConfigHTTPRequestStringArray_FieldPath
-	ContainsValue(*HTTPProbingConfig_HTTPRequest_StringArray) bool
-}
-
-// ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
-func ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr string) (HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue, error) {
-	fp, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path array item value from %s: %v", valueStr, err)
-	}
-	return fpaiv.(HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue), nil
-}
-
-func MustParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr string) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue {
-	fpaiv, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue(pathStr, valueStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaiv
-}
-
-type HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue struct {
-	HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath
-	value interface{}
-}
-
-var _ HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayItemValue = (*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue)(nil)
-
-// GetRawValue returns stored element value for array in object HTTPProbingConfig_HTTPRequest_StringArray as interface{}
-func (fpaiv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
-	return fpaiv.value
-}
-func (fpaiv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue) AsValueItemValue() (string, bool) {
-	res, ok := fpaiv.value.(string)
-	return res, ok
-}
-
-func (fpaiv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue) GetSingle(source *HTTPProbingConfig_HTTPRequest_StringArray) (interface{}, bool) {
-	return nil, false
-}
-
-func (fpaiv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
-	return fpaiv.GetSingle(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-// Contains returns a boolean indicating if value that is being held is present in given 'StringArray'
-func (fpaiv *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayItemValue) ContainsValue(source *HTTPProbingConfig_HTTPRequest_StringArray) bool {
-	slice := fpaiv.HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath.Get(source)
-	for _, v := range slice {
-		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
-			if proto.Equal(asProtoMsg, v.(proto.Message)) {
-				return true
-			}
-		} else if reflect.DeepEqual(v, fpaiv.value) {
-			return true
-		}
-	}
-	return false
-}
-
-// HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues allows storing slice of values for StringArray fields according to their type
-type HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues interface {
-	gotenobject.FieldPathArrayOfValues
-	HTTPProbingConfigHTTPRequestStringArray_FieldPath
-}
-
-func ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr string) (HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues, error) {
-	fp, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPath(pathStr)
-	if err != nil {
-		return nil, err
-	}
-	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "error parsing StringArray field path array of values from %s: %v", valuesStr, err)
-	}
-	return fpaov.(HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues), nil
-}
-
-func MustParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr string) HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues {
-	fpaov, err := ParseHTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues(pathStr, valuesStr)
-	if err != nil {
-		panic(err)
-	}
-	return fpaov
-}
-
-type HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues struct {
-	HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath
-	values interface{}
-}
-
-var _ HTTPProbingConfigHTTPRequestStringArray_FieldPathArrayOfValues = (*HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues)(nil)
-
-func (fpaov *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
-	switch fpaov.selector {
-	case HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue:
-		for _, v := range fpaov.values.([][]string) {
-			values = append(values, v)
-		}
-	}
-	return
-}
-func (fpaov *HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPathArrayOfValues) AsValueArrayOfValues() ([][]string, bool) {
-	res, ok := fpaov.values.([][]string)
 	return res, ok
 }
 

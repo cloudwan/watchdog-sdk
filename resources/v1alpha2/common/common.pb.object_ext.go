@@ -1330,18 +1330,6 @@ func (o *HTTPProbingConfig_HTTPRequest) MakeDiffFieldMask(other *HTTPProbingConf
 	if o.GetAuthenticationMethod() != other.GetAuthenticationMethod() {
 		res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorAuthenticationMethod})
 	}
-
-	if len(o.GetUrlFormEncodedBody()) == len(other.GetUrlFormEncodedBody()) {
-		for i, lValue := range o.GetUrlFormEncodedBody() {
-			rValue := other.GetUrlFormEncodedBody()[i]
-			if len(lValue.MakeDiffFieldMask(rValue).Paths) > 0 {
-				res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequest_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequest_FieldPathSelectorUrlFormEncodedBody})
-	}
 	return res
 }
 
@@ -1364,10 +1352,6 @@ func (o *HTTPProbingConfig_HTTPRequest) Clone() *HTTPProbingConfig_HTTPRequest {
 	result.Timeout = proto.Clone(o.Timeout).(*duration.Duration)
 	result.RequestBody = o.RequestBody
 	result.AuthenticationMethod = o.AuthenticationMethod
-	result.UrlFormEncodedBody = map[string]*HTTPProbingConfig_HTTPRequest_StringArray{}
-	for key, sourceValue := range o.UrlFormEncodedBody {
-		result.UrlFormEncodedBody[key] = sourceValue.Clone()
-	}
 	return result
 }
 
@@ -1395,19 +1379,6 @@ func (o *HTTPProbingConfig_HTTPRequest) Merge(source *HTTPProbingConfig_HTTPRequ
 	}
 	o.RequestBody = source.GetRequestBody()
 	o.AuthenticationMethod = source.GetAuthenticationMethod()
-	if source.GetUrlFormEncodedBody() != nil {
-		if o.UrlFormEncodedBody == nil {
-			o.UrlFormEncodedBody = make(map[string]*HTTPProbingConfig_HTTPRequest_StringArray, len(source.GetUrlFormEncodedBody()))
-		}
-		for key, sourceValue := range source.GetUrlFormEncodedBody() {
-			if sourceValue != nil {
-				if o.UrlFormEncodedBody[key] == nil {
-					o.UrlFormEncodedBody[key] = new(HTTPProbingConfig_HTTPRequest_StringArray)
-				}
-				o.UrlFormEncodedBody[key].Merge(sourceValue)
-			}
-		}
-	}
 }
 
 func (o *HTTPProbingConfig_HTTPRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -1504,82 +1475,6 @@ func (o *HTTPProbingConfig_HTTPAuth) Merge(source *HTTPProbingConfig_HTTPAuth) {
 
 func (o *HTTPProbingConfig_HTTPAuth) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*HTTPProbingConfig_HTTPAuth))
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) GotenObjectExt() {}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) MakeFullFieldMask() *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask {
-	return FullHTTPProbingConfig_HTTPRequest_StringArray_FieldMask()
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) MakeRawFullFieldMask() gotenobject.FieldMask {
-	return FullHTTPProbingConfig_HTTPRequest_StringArray_FieldMask()
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) MakeDiffFieldMask(other *HTTPProbingConfig_HTTPRequest_StringArray) *HTTPProbingConfig_HTTPRequest_StringArray_FieldMask {
-	if o == nil && other == nil {
-		return &HTTPProbingConfig_HTTPRequest_StringArray_FieldMask{}
-	}
-	if o == nil || other == nil {
-		return FullHTTPProbingConfig_HTTPRequest_StringArray_FieldMask()
-	}
-
-	res := &HTTPProbingConfig_HTTPRequest_StringArray_FieldMask{}
-
-	if len(o.GetValue()) == len(other.GetValue()) {
-		for i, lValue := range o.GetValue() {
-			rValue := other.GetValue()[i]
-			if lValue != rValue {
-				res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue})
-				break
-			}
-		}
-	} else {
-		res.Paths = append(res.Paths, &HTTPProbingConfigHTTPRequestStringArray_FieldTerminalPath{selector: HTTPProbingConfigHTTPRequestStringArray_FieldPathSelectorValue})
-	}
-	return res
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
-	return o.MakeDiffFieldMask(other.(*HTTPProbingConfig_HTTPRequest_StringArray))
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) Clone() *HTTPProbingConfig_HTTPRequest_StringArray {
-	if o == nil {
-		return nil
-	}
-	result := &HTTPProbingConfig_HTTPRequest_StringArray{}
-	result.Value = make([]string, len(o.Value))
-	for i, sourceValue := range o.Value {
-		result.Value[i] = sourceValue
-	}
-	return result
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) CloneRaw() gotenobject.GotenObjectExt {
-	return o.Clone()
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) Merge(source *HTTPProbingConfig_HTTPRequest_StringArray) {
-	for _, sourceValue := range source.GetValue() {
-		exists := false
-		for _, currentValue := range o.Value {
-			if currentValue == sourceValue {
-				exists = true
-				break
-			}
-		}
-		if !exists {
-			var newDstElement string
-			newDstElement = sourceValue
-			o.Value = append(o.Value, newDstElement)
-		}
-	}
-
-}
-
-func (o *HTTPProbingConfig_HTTPRequest_StringArray) MergeRaw(source gotenobject.GotenObjectExt) {
-	o.Merge(source.(*HTTPProbingConfig_HTTPRequest_StringArray))
 }
 
 func (o *DNSQuery) GotenObjectExt() {}

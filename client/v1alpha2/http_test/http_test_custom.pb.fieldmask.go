@@ -60,7 +60,6 @@ func FullRunHTTPTestRequest_FieldMask() *RunHTTPTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTimeout})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorRequestBody})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod})
-	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUsername})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorPassword})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorSourceIp})
@@ -108,7 +107,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 12)
+	presentSelectors := make([]bool, 11)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHTTPTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -138,7 +137,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHTTPTestRequest_FieldMask) Subtract(other *RunHTTPTestRequest_FieldMask) *RunHTTPTestRequest_FieldMask {
 	result := &RunHTTPTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 12)
+	removedSelectors := make([]bool, 11)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -289,8 +288,6 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 	result := &RunHTTPTestRequest{}
 	var requestHeadersMapKeys []string
 	wholeRequestHeadersAccepted := false
-	var urlFormEncodedBodyMapKeys []string
-	wholeUrlFormEncodedBodyAccepted := false
 
 	for _, p := range fieldMask.Paths {
 		switch tp := p.(type) {
@@ -311,9 +308,6 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 				result.RequestBody = source.RequestBody
 			case RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod:
 				result.AuthenticationMethod = source.AuthenticationMethod
-			case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-				result.UrlFormEncodedBody = source.UrlFormEncodedBody
-				wholeUrlFormEncodedBodyAccepted = true
 			case RunHTTPTestRequest_FieldPathSelectorUsername:
 				result.Username = source.Username
 			case RunHTTPTestRequest_FieldPathSelectorPassword:
@@ -327,8 +321,6 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 			switch tp.selector {
 			case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 				requestHeadersMapKeys = append(requestHeadersMapKeys, tp.key)
-			case RunHTTPTestRequest_FieldPathSelectorUrlFormEncodedBody:
-				urlFormEncodedBodyMapKeys = append(urlFormEncodedBodyMapKeys, tp.key)
 			}
 		}
 	}
@@ -340,14 +332,6 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 		}
 		result.RequestHeaders = copiedMap
 	}
-	if wholeUrlFormEncodedBodyAccepted == false && len(urlFormEncodedBodyMapKeys) > 0 && source.GetUrlFormEncodedBody() != nil {
-		copiedMap := map[string]*RunHTTPTestRequest_StringArray{}
-		sourceMap := source.GetUrlFormEncodedBody()
-		for _, key := range urlFormEncodedBodyMapKeys {
-			copiedMap[key] = sourceMap[key]
-		}
-		result.UrlFormEncodedBody = copiedMap
-	}
 	return result
 }
 
@@ -356,259 +340,6 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) ProjectRaw(source gotenobject.Got
 }
 
 func (fieldMask *RunHTTPTestRequest_FieldMask) PathsCount() int {
-	if fieldMask == nil {
-		return 0
-	}
-	return len(fieldMask.Paths)
-}
-
-type RunHTTPTestRequest_StringArray_FieldMask struct {
-	Paths []RunHTTPTestRequestStringArray_FieldPath
-}
-
-func FullRunHTTPTestRequest_StringArray_FieldMask() *RunHTTPTestRequest_StringArray_FieldMask {
-	res := &RunHTTPTestRequest_StringArray_FieldMask{}
-	res.Paths = append(res.Paths, &RunHTTPTestRequestStringArray_FieldTerminalPath{selector: RunHTTPTestRequestStringArray_FieldPathSelectorValue})
-	return res
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) String() string {
-	if fieldMask == nil {
-		return "<nil>"
-	}
-	pathsStr := make([]string, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		pathsStr = append(pathsStr, path.String())
-	}
-	return strings.Join(pathsStr, ", ")
-}
-
-// firestore encoding/decoding integration
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
-	if fieldMask == nil {
-		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
-	}
-	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.GetPaths() {
-		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
-	}
-	return &firestorepb.Value{
-		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
-	}, nil
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
-	for _, value := range fpbv.GetArrayValue().GetValues() {
-		parsedPath, err := ParseRunHTTPTestRequestStringArray_FieldPath(value.GetStringValue())
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
-	}
-	return nil
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) IsFull() bool {
-	if fieldMask == nil {
-		return false
-	}
-	presentSelectors := make([]bool, 1)
-	for _, path := range fieldMask.Paths {
-		if asFinal, ok := path.(*RunHTTPTestRequestStringArray_FieldTerminalPath); ok {
-			presentSelectors[int(asFinal.selector)] = true
-		}
-	}
-	for _, flag := range presentSelectors {
-		if !flag {
-			return false
-		}
-	}
-	return true
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) ProtoReflect() preflect.Message {
-	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
-		return ParseRunHTTPTestRequestStringArray_FieldPath(raw)
-	})
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) ProtoMessage() {}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Reset() {
-	if fieldMask != nil {
-		fieldMask.Paths = nil
-	}
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Subtract(other *RunHTTPTestRequest_StringArray_FieldMask) *RunHTTPTestRequest_StringArray_FieldMask {
-	result := &RunHTTPTestRequest_StringArray_FieldMask{}
-	removedSelectors := make([]bool, 1)
-
-	for _, path := range other.GetPaths() {
-		switch tp := path.(type) {
-		case *RunHTTPTestRequestStringArray_FieldTerminalPath:
-			removedSelectors[int(tp.selector)] = true
-		}
-	}
-	for _, path := range fieldMask.GetPaths() {
-		if !removedSelectors[int(path.Selector())] {
-			result.Paths = append(result.Paths, path)
-		}
-	}
-
-	if len(result.Paths) == 0 {
-		return nil
-	}
-	return result
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
-	return fieldMask.Subtract(other.(*RunHTTPTestRequest_StringArray_FieldMask))
-}
-
-// FilterInputFields generates copy of field paths with output_only field paths removed
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) FilterInputFields() *RunHTTPTestRequest_StringArray_FieldMask {
-	result := &RunHTTPTestRequest_StringArray_FieldMask{}
-	result.Paths = append(result.Paths, fieldMask.Paths...)
-	return result
-}
-
-// ToFieldMask is used for proto conversions
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	for _, path := range fieldMask.Paths {
-		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
-	}
-	return protoFieldMask
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
-	if fieldMask == nil {
-		return status.Error(codes.Internal, "target field mask is nil")
-	}
-	fieldMask.Paths = make([]RunHTTPTestRequestStringArray_FieldPath, 0, len(protoFieldMask.Paths))
-	for _, strPath := range protoFieldMask.Paths {
-		path, err := ParseRunHTTPTestRequestStringArray_FieldPath(strPath)
-		if err != nil {
-			return err
-		}
-		fieldMask.Paths = append(fieldMask.Paths, path)
-	}
-	return nil
-}
-
-// implement methods required by customType
-func (fieldMask RunHTTPTestRequest_StringArray_FieldMask) Marshal() ([]byte, error) {
-	protoFieldMask := fieldMask.ToProtoFieldMask()
-	return proto.Marshal(protoFieldMask)
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Unmarshal(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Size() int {
-	return proto.Size(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask RunHTTPTestRequest_StringArray_FieldMask) MarshalJSON() ([]byte, error) {
-	return json.Marshal(fieldMask.ToProtoFieldMask())
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) UnmarshalJSON(data []byte) error {
-	protoFieldMask := &fieldmaskpb.FieldMask{}
-	if err := json.Unmarshal(data, protoFieldMask); err != nil {
-		return err
-	}
-	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) AppendPath(path RunHTTPTestRequestStringArray_FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path)
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
-	fieldMask.Paths = append(fieldMask.Paths, path.(RunHTTPTestRequestStringArray_FieldPath))
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) GetPaths() []RunHTTPTestRequestStringArray_FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	return fieldMask.Paths
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) GetRawPaths() []gotenobject.FieldPath {
-	if fieldMask == nil {
-		return nil
-	}
-	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
-	for _, path := range fieldMask.Paths {
-		rawPaths = append(rawPaths, path)
-	}
-	return rawPaths
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) SetFromCliFlag(raw string) error {
-	path, err := ParseRunHTTPTestRequestStringArray_FieldPath(raw)
-	if err != nil {
-		return err
-	}
-	fieldMask.Paths = append(fieldMask.Paths, path)
-	return nil
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Set(target, source *RunHTTPTestRequest_StringArray) {
-	for _, path := range fieldMask.Paths {
-		val, _ := path.GetSingle(source)
-		// if val is nil, then field does not exist in source, skip
-		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
-		if val != nil {
-			path.WithIValue(val).SetTo(&target)
-		}
-	}
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
-	fieldMask.Set(target.(*RunHTTPTestRequest_StringArray), source.(*RunHTTPTestRequest_StringArray))
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) Project(source *RunHTTPTestRequest_StringArray) *RunHTTPTestRequest_StringArray {
-	if source == nil {
-		return nil
-	}
-	if fieldMask == nil {
-		return source
-	}
-	result := &RunHTTPTestRequest_StringArray{}
-
-	for _, p := range fieldMask.Paths {
-		switch tp := p.(type) {
-		case *RunHTTPTestRequestStringArray_FieldTerminalPath:
-			switch tp.selector {
-			case RunHTTPTestRequestStringArray_FieldPathSelectorValue:
-				result.Value = source.Value
-			}
-		}
-	}
-	return result
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
-	return fieldMask.Project(source.(*RunHTTPTestRequest_StringArray))
-}
-
-func (fieldMask *RunHTTPTestRequest_StringArray_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

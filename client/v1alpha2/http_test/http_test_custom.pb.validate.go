@@ -59,15 +59,6 @@ func (obj *RunHTTPTestRequest) GotenValidate() error {
 	}
 	return nil
 }
-func (obj *RunHTTPTestRequest_StringArray) GotenValidate() error {
-	if obj == nil {
-		return nil
-	}
-	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
-		return cvobj.GotenCustomValidate()
-	}
-	return nil
-}
 func (obj *RunHTTPTestResponse) GotenValidate() error {
 	if obj == nil {
 		return nil

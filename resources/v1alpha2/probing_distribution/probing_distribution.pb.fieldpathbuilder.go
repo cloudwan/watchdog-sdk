@@ -1380,10 +1380,6 @@ func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpReq
 	return ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestAuthenticationMethod{}
 }
 
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody{}
-}
-
 type ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrl struct{}
 
 func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingDistribution_FieldSubPath {
@@ -1526,46 +1522,6 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpR
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
 type ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfig struct{}
 
 func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfig) FieldPath() *ProbingDistribution_FieldSubPath {
@@ -1688,10 +1644,6 @@ func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthCon
 
 func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
 	return ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
-}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
 }
 
 type ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrl struct{}
@@ -1833,46 +1785,6 @@ func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthC
 }
 
 func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
-}
-
-func (ProbingDistributionPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingDistribution_FieldSubPath {
-	return &ProbingDistribution_FieldSubPath{
-		selector: ProbingDistribution_FieldPathSelectorSpec,
-		subPath:  NewProbingDistributionSpecFieldPathBuilder().ProbingSettings().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistribution_FieldSubPathValue)
-}
-
-func (s ProbingDistributionMapPathSelectorSpecProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistribution_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistribution_FieldSubPathArrayOfValues)
 }
 
@@ -2844,10 +2756,6 @@ func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRe
 	return ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestAuthenticationMethod{}
 }
 
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequest) UrlFormEncodedBody() ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody{}
-}
-
 type ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrl struct{}
 
 func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrl) FieldPath() *ProbingDistributionSpec_FieldSubPath {
@@ -2990,46 +2898,6 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttp
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
-type ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody struct{}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithKey(key string) ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody {
-	return ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().HttpProbingConfig().HttpRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigHttpRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
 type ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfig struct{}
 
 func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfig) FieldPath() *ProbingDistributionSpec_FieldSubPath {
@@ -3152,10 +3020,6 @@ func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthCo
 
 func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequest) AuthenticationMethod() ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod {
 	return ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod{}
-}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequest) UrlFormEncodedBody() ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{}
 }
 
 type ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrl struct{}
@@ -3297,46 +3161,6 @@ func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuth
 }
 
 func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestAuthenticationMethod) WithArrayOfValues(values []common.AuthenticationMethod) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
-type ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct{}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []map[string]*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
-}
-
-func (ProbingDistribution_SpecPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithKey(key string) ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody {
-	return ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody{key: key}
-}
-
-type ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody struct {
-	key string
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) FieldPath() *ProbingDistributionSpec_FieldSubPath {
-	return &ProbingDistributionSpec_FieldSubPath{
-		selector: ProbingDistributionSpec_FieldPathSelectorProbingSettings,
-		subPath:  common.NewProbingSettingsFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenRequest().UrlFormEncodedBody().WithKey(s.key).FieldPath(),
-	}
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithValue(value *common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathValue {
-	return s.FieldPath().WithIValue(value).(*ProbingDistributionSpec_FieldSubPathValue)
-}
-
-func (s ProbingDistribution_SpecMapPathSelectorProbingSettingsHttpProbingConfigAuthConfigTokenRequestUrlFormEncodedBody) WithArrayOfValues(values []*common.HTTPProbingConfig_HTTPRequest_StringArray) *ProbingDistributionSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingDistributionSpec_FieldSubPathArrayOfValues)
 }
 
