@@ -51,6 +51,7 @@ const _ = grpc.SupportPackageIsVersion6
 type PcapServiceClient interface {
 	ReportPcap(ctx context.Context, in *ReportPcapRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetPcap(ctx context.Context, in *GetPcapRequest, opts ...grpc.CallOption) (*GetPcapResponse, error)
+	GetPcapFileFromAgent(ctx context.Context, in *GetPcapFileFromAgentRequest, opts ...grpc.CallOption) (GetPcapFileFromAgentClientStream, error)
 }
 
 type client struct {
@@ -77,4 +78,41 @@ func (c *client) GetPcap(ctx context.Context, in *GetPcapRequest, opts ...grpc.C
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *client) GetPcapFileFromAgent(ctx context.Context, in *GetPcapFileFromAgentRequest, opts ...grpc.CallOption) (GetPcapFileFromAgentClientStream, error) {
+	stream, err := c.cc.NewStream(ctx,
+		&grpc.StreamDesc{
+			StreamName:    "GetPcapFileFromAgent",
+			ServerStreams: true,
+		},
+		"/ntt.watchdog.v1alpha2.PcapService/GetPcapFileFromAgent", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &getPcapFileFromAgentGetPcapFileFromAgentClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type GetPcapFileFromAgentClientStream interface {
+	Recv() (*GetPcapResponse, error)
+	grpc.ClientStream
+}
+
+type getPcapFileFromAgentGetPcapFileFromAgentClient struct {
+	grpc.ClientStream
+}
+
+func (x *getPcapFileFromAgentGetPcapFileFromAgentClient) Recv() (*GetPcapResponse, error) {
+	m := new(GetPcapResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }

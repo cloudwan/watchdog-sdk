@@ -31,10 +31,11 @@ var (
 )
 
 var (
-	descriptorsInitialized bool
-	pcapServiceDescriptor  *PcapServiceDescriptor
-	reportPcapDescriptor   *ReportPcapDescriptor
-	getPcapDescriptor      *GetPcapDescriptor
+	descriptorsInitialized         bool
+	pcapServiceDescriptor          *PcapServiceDescriptor
+	reportPcapDescriptor           *ReportPcapDescriptor
+	getPcapDescriptor              *GetPcapDescriptor
+	getPcapFileFromAgentDescriptor *GetPcapFileFromAgentDescriptor
 )
 
 type ReportPcapDescriptor struct{}
@@ -318,12 +319,180 @@ func GetGetPcapDescriptor() *GetPcapDescriptor {
 	return getPcapDescriptor
 }
 
+type GetPcapFileFromAgentDescriptor struct{}
+
+type GetPcapFileFromAgentDescriptorClientMsgHandle struct{}
+
+type GetPcapFileFromAgentDescriptorServerMsgHandle struct{}
+
+func (d *GetPcapFileFromAgentDescriptor) NewEmptyClientMsg() proto.Message {
+	return &GetPcapFileFromAgentRequest{}
+}
+
+func (d *GetPcapFileFromAgentDescriptor) NewEmptyServerMsg() proto.Message {
+	return &GetPcapResponse{}
+}
+
+func (d *GetPcapFileFromAgentDescriptor) IsUnary() bool {
+	return false
+}
+
+func (d *GetPcapFileFromAgentDescriptor) IsClientStream() bool {
+	return false
+}
+
+func (d *GetPcapFileFromAgentDescriptor) IsServerStream() bool {
+	return true
+}
+
+func (d *GetPcapFileFromAgentDescriptor) IsCollection() bool {
+	return false
+}
+
+func (d *GetPcapFileFromAgentDescriptor) IsPlural() bool {
+	return false
+}
+
+func (d *GetPcapFileFromAgentDescriptor) HasResource() bool {
+	return true
+}
+
+func (d *GetPcapFileFromAgentDescriptor) RequestHasResourceBody() bool {
+	return false
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetVerb() string {
+	return "getPcapFileFromAgent"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetMethodName() string {
+	return "GetPcapFileFromAgent"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetFullMethodName() string {
+	return "/ntt.watchdog.v1alpha2.PcapService/GetPcapFileFromAgent"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetProtoPkgName() string {
+	return "ntt.watchdog.v1alpha2"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetApiName() string {
+	return "PcapService"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetServiceDomain() string {
+	return "watchdog.edgelq.com"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetServiceVersion() string {
+	return "v1alpha2"
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetApiDescriptor() gotenclient.ApiDescriptor {
+	return pcapServiceDescriptor
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetResourceDescriptor() gotenresource.Descriptor {
+	return probe.GetDescriptor()
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetClientMsgReflectHandle() gotenclient.MethodMsgHandle {
+	return &GetPcapFileFromAgentDescriptorClientMsgHandle{}
+}
+
+func (d *GetPcapFileFromAgentDescriptor) GetServerMsgReflectHandle() gotenclient.MethodMsgHandle {
+	return &GetPcapFileFromAgentDescriptorServerMsgHandle{}
+}
+
+func (h *GetPcapFileFromAgentDescriptorClientMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*GetPcapFileFromAgentRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceName(*GetPcapFileFromAgentRequest) *probe.Name
+	})
+	if ok {
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	{
+		if ref := typedMsg.GetName(); ref != nil {
+			return &ref.Name
+		}
+	}
+	return (*probe.Name)(nil)
+}
+
+func (h *GetPcapFileFromAgentDescriptorClientMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*GetPcapFileFromAgentRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*GetPcapFileFromAgentRequest) []*probe.Name
+	})
+	if ok {
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *GetPcapFileFromAgentDescriptorClientMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*GetPcapFileFromAgentRequest)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*GetPcapFileFromAgentRequest) *probe.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func (h *GetPcapFileFromAgentDescriptorServerMsgHandle) ExtractResourceName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*GetPcapResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceName(*GetPcapResponse) *probe.Name
+	})
+	if ok {
+		return override.OverrideExtractResourceName(typedMsg)
+	}
+	return nil
+}
+
+func (h *GetPcapFileFromAgentDescriptorServerMsgHandle) ExtractResourceNames(msg proto.Message) gotenresource.NameList {
+	typedMsg := msg.(*GetPcapResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractResourceNames(*GetPcapResponse) []*probe.Name
+	})
+	if ok {
+		return probe.ProbeNameList(override.OverrideExtractResourceNames(typedMsg))
+	}
+	return nil
+}
+
+func (h *GetPcapFileFromAgentDescriptorServerMsgHandle) ExtractCollectionName(msg proto.Message) gotenresource.Name {
+	typedMsg := msg.(*GetPcapResponse)
+	var asInterface interface{} = h
+	override, ok := asInterface.(interface {
+		OverrideExtractCollectionName(*GetPcapResponse) *probe.ParentName
+	})
+	if ok {
+		return override.OverrideExtractCollectionName(typedMsg)
+	}
+	return nil
+}
+
+func GetGetPcapFileFromAgentDescriptor() *GetPcapFileFromAgentDescriptor {
+	return getPcapFileFromAgentDescriptor
+}
+
 type PcapServiceDescriptor struct{}
 
 func (d *PcapServiceDescriptor) AllMethodDescriptors() []gotenclient.MethodDescriptor {
 	return []gotenclient.MethodDescriptor{
 		reportPcapDescriptor,
 		getPcapDescriptor,
+		getPcapFileFromAgentDescriptor,
 	}
 }
 
@@ -355,9 +524,11 @@ func initDescriptors() {
 	pcapServiceDescriptor = &PcapServiceDescriptor{}
 	reportPcapDescriptor = &ReportPcapDescriptor{}
 	getPcapDescriptor = &GetPcapDescriptor{}
+	getPcapFileFromAgentDescriptor = &GetPcapFileFromAgentDescriptor{}
 	gotenclient.GetRegistry().RegisterApiDescriptor(pcapServiceDescriptor)
 	gotenclient.GetRegistry().RegisterMethodDescriptor(reportPcapDescriptor)
 	gotenclient.GetRegistry().RegisterMethodDescriptor(getPcapDescriptor)
+	gotenclient.GetRegistry().RegisterMethodDescriptor(getPcapFileFromAgentDescriptor)
 }
 
 func init() {

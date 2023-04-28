@@ -299,3 +299,26 @@ func (s GetPcapResponsePathSelectorPcapBytes) WithValue(value []byte) *GetPcapRe
 func (s GetPcapResponsePathSelectorPcapBytes) WithArrayOfValues(values [][]byte) *GetPcapResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapResponse_FieldTerminalPathArrayOfValues)
 }
+
+type GetPcapFileFromAgentRequestFieldPathBuilder struct{}
+
+func NewGetPcapFileFromAgentRequestFieldPathBuilder() GetPcapFileFromAgentRequestFieldPathBuilder {
+	return GetPcapFileFromAgentRequestFieldPathBuilder{}
+}
+func (GetPcapFileFromAgentRequestFieldPathBuilder) Name() GetPcapFileFromAgentRequestPathSelectorName {
+	return GetPcapFileFromAgentRequestPathSelectorName{}
+}
+
+type GetPcapFileFromAgentRequestPathSelectorName struct{}
+
+func (GetPcapFileFromAgentRequestPathSelectorName) FieldPath() *GetPcapFileFromAgentRequest_FieldTerminalPath {
+	return &GetPcapFileFromAgentRequest_FieldTerminalPath{selector: GetPcapFileFromAgentRequest_FieldPathSelectorName}
+}
+
+func (s GetPcapFileFromAgentRequestPathSelectorName) WithValue(value *probe.Reference) *GetPcapFileFromAgentRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*GetPcapFileFromAgentRequest_FieldTerminalPathValue)
+}
+
+func (s GetPcapFileFromAgentRequestPathSelectorName) WithArrayOfValues(values []*probe.Reference) *GetPcapFileFromAgentRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileFromAgentRequest_FieldTerminalPathArrayOfValues)
+}

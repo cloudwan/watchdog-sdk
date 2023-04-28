@@ -88,3 +88,12 @@ func (obj *GetPcapResponse) GotenValidate() error {
 	}
 	return nil
 }
+func (obj *GetPcapFileFromAgentRequest) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}

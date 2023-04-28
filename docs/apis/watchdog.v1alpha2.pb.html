@@ -2412,6 +2412,31 @@ Equivalent REST API:
 
 
 <div class="operation">
+<h5 id="operation-GetPcapFileFromAgent">GetPcapFileFromAgent</h5>
+
+<pre class="signature">rpc GetPcapFileFromAgent(<a href="#message-GetPcapFileFromAgentRequest">GetPcapFileFromAgentRequest</a>) returns (<a href="#message-GetPcapResponse">GetPcapResponse</a>)</pre>
+
+<div class="description">
+<p>GetPcapFileFromAgent</p>
+
+</div>
+
+
+
+
+<div class="rest">
+Equivalent REST API:
+
+<pre>POST /v1alpha2/{name=projects/*/regions/*/probes/*}:getPcapFileFromAgent </pre>
+
+</div>
+
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-RunPingTest">RunPingTest</h5>
 
 <pre class="signature">rpc RunPingTest(<a href="#message-RunPingTestRequest">RunPingTestRequest</a>) returns (<a href="#message-RunPingTestResponse">RunPingTestResponse</a>)</pre>
@@ -4431,6 +4456,44 @@ The minimum length includes space for timestamp and a tracker</p>
 </tr>
 <tr><td class="description"></td></tr>
 
+<tr>
+<th rowspan="2">pcap_bytes</th>
+<td class="type"><pre>bytes</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetPcapFileFromAgentRequest">GetPcapFileFromAgentRequest</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetPcapResponse">GetPcapResponse</h5>
+
+<p>Response message for method [GetPcap][ntt.watchdog.v1alpha2.GetPcap]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
 <tr>
 <th rowspan="2">pcap_bytes</th>
 <td class="type"><pre>bytes</pre></td>
@@ -17865,25 +17928,6 @@ use that value as <code>pageToken</code> in the next call to this method.</p>
 returned by a previous call to this method.  Using this field causes the
 method to return additional results from the previous method call.</p>
 </td></tr>
- 
-</tbody>
-</table>
-
-
-
-<h5 id="message-GetPcapResponse">GetPcapResponse</h5>
-
-<p>Response message for method [GetPcap][ntt.watchdog.v1alpha2.GetPcap]</p>
-
-
-<table class="fields">
-<thead><tr><th colspan="2">Fields</th></tr></thead>
-<tbody>
-<tr>
-<th rowspan="2">pcap_bytes</th>
-<td class="type"><pre>bytes</pre></td>
-</tr>
-<tr><td class="description"></td></tr>
  
 </tbody>
 </table>

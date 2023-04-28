@@ -36,4 +36,13 @@ service PcapService {
       get : "/v1alpha2:getPcap"
     };
   }
+
+  // GetPcapFileFromAgent
+  rpc GetPcapFileFromAgent(GetPcapFileFromAgentRequest)
+      returns (stream GetPcapResponse) {
+    option (google.api.http) = {
+      post : "/v1alpha2/{name=projects/*/regions/*/probes/"
+             "*}:getPcapFileFromAgent"
+    };
+  }
 }

@@ -48,3 +48,8 @@ message GetPcapRequest {
 
 // Response message for method [GetPcap][ntt.watchdog.v1alpha2.GetPcap]
 message GetPcapResponse { bytes pcap_bytes = 1; }
+
+message GetPcapFileFromAgentRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+}

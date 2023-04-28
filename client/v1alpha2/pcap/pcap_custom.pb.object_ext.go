@@ -297,3 +297,73 @@ func (o *GetPcapResponse) Merge(source *GetPcapResponse) {
 func (o *GetPcapResponse) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*GetPcapResponse))
 }
+
+func (o *GetPcapFileFromAgentRequest) GotenObjectExt() {}
+
+func (o *GetPcapFileFromAgentRequest) MakeFullFieldMask() *GetPcapFileFromAgentRequest_FieldMask {
+	return FullGetPcapFileFromAgentRequest_FieldMask()
+}
+
+func (o *GetPcapFileFromAgentRequest) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullGetPcapFileFromAgentRequest_FieldMask()
+}
+
+func (o *GetPcapFileFromAgentRequest) MakeDiffFieldMask(other *GetPcapFileFromAgentRequest) *GetPcapFileFromAgentRequest_FieldMask {
+	if o == nil && other == nil {
+		return &GetPcapFileFromAgentRequest_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullGetPcapFileFromAgentRequest_FieldMask()
+	}
+
+	res := &GetPcapFileFromAgentRequest_FieldMask{}
+	if o.GetName().String() != other.GetName().String() {
+		res.Paths = append(res.Paths, &GetPcapFileFromAgentRequest_FieldTerminalPath{selector: GetPcapFileFromAgentRequest_FieldPathSelectorName})
+	}
+	return res
+}
+
+func (o *GetPcapFileFromAgentRequest) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*GetPcapFileFromAgentRequest))
+}
+
+func (o *GetPcapFileFromAgentRequest) Clone() *GetPcapFileFromAgentRequest {
+	if o == nil {
+		return nil
+	}
+	result := &GetPcapFileFromAgentRequest{}
+	if o.Name == nil {
+		result.Name = nil
+	} else if data, err := o.Name.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Name = &probe.Reference{}
+		if err := result.Name.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	return result
+}
+
+func (o *GetPcapFileFromAgentRequest) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *GetPcapFileFromAgentRequest) Merge(source *GetPcapFileFromAgentRequest) {
+	if source.GetName() != nil {
+		if data, err := source.GetName().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Name = &probe.Reference{}
+			if err := o.Name.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Name = nil
+	}
+}
+
+func (o *GetPcapFileFromAgentRequest) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*GetPcapFileFromAgentRequest))
+}
