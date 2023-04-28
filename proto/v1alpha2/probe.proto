@@ -163,6 +163,9 @@ message Probe {
       // capture_all_packets is helpful when running on demand tests to other
       // destinations
       bool capture_all_packets = 3;
+
+      // By Default capture_all_packets will run for atmost 1 hour
+      google.protobuf.Timestamp stop_capture_all_packets_by = 4;
     }
   }
 
@@ -215,6 +218,8 @@ message Probe {
     map<string, NetworkInterface> network_interfaces = 16;
 
     AgentType agent_type = 17;
+
+    ProxyConfig proxy_config = 18;
 
     message System {
       string manufacturer = 1;
@@ -315,6 +320,14 @@ message Probe {
       repeated string ip_address_v6 = 4;
 
       repeated string external_ip_address_v6 = 5;
+    }
+
+    message ProxyConfig {
+      string http_proxy = 1;
+
+      string https_proxy = 2;
+
+      string no_proxy = 3;
     }
 
     enum ConnectionStatus {

@@ -897,6 +897,7 @@ func FullProbe_Status_FieldMask() *Probe_Status_FieldMask {
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorBandwidth})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorNetworkInterfaces})
 	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType})
+	res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorProxyConfig})
 	return res
 }
 
@@ -940,7 +941,7 @@ func (fieldMask *Probe_Status_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 15)
+	presentSelectors := make([]bool, 16)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatus_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -970,7 +971,7 @@ func (fieldMask *Probe_Status_FieldMask) Reset() {
 
 func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask) *Probe_Status_FieldMask {
 	result := &Probe_Status_FieldMask{}
-	removedSelectors := make([]bool, 15)
+	removedSelectors := make([]bool, 16)
 	otherSubMasks := map[ProbeStatus_FieldPathSelector]gotenobject.FieldMask{
 		ProbeStatus_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
 		ProbeStatus_FieldPathSelectorCarrier:            &common.Carrier_FieldMask{},
@@ -980,6 +981,7 @@ func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask)
 		ProbeStatus_FieldPathSelectorSystemInfo:         &Probe_Status_System_FieldMask{},
 		ProbeStatus_FieldPathSelectorActivation:         &Probe_Status_ActivationState_FieldMask{},
 		ProbeStatus_FieldPathSelectorBandwidth:          &Probe_Status_Bandwidth_FieldMask{},
+		ProbeStatus_FieldPathSelectorProxyConfig:        &Probe_Status_ProxyConfig_FieldMask{},
 	}
 	mySubMasks := map[ProbeStatus_FieldPathSelector]gotenobject.FieldMask{
 		ProbeStatus_FieldPathSelectorAsInfo:             &common.ASInfo_FieldMask{},
@@ -990,6 +992,7 @@ func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask)
 		ProbeStatus_FieldPathSelectorSystemInfo:         &Probe_Status_System_FieldMask{},
 		ProbeStatus_FieldPathSelectorActivation:         &Probe_Status_ActivationState_FieldMask{},
 		ProbeStatus_FieldPathSelectorBandwidth:          &Probe_Status_Bandwidth_FieldMask{},
+		ProbeStatus_FieldPathSelectorProxyConfig:        &Probe_Status_ProxyConfig_FieldMask{},
 	}
 
 	for _, path := range other.GetPaths() {
@@ -1021,6 +1024,8 @@ func (fieldMask *Probe_Status_FieldMask) Subtract(other *Probe_Status_FieldMask)
 						mySubMasks[ProbeStatus_FieldPathSelectorActivation] = FullProbe_Status_ActivationState_FieldMask()
 					case ProbeStatus_FieldPathSelectorBandwidth:
 						mySubMasks[ProbeStatus_FieldPathSelectorBandwidth] = FullProbe_Status_Bandwidth_FieldMask()
+					case ProbeStatus_FieldPathSelectorProxyConfig:
+						mySubMasks[ProbeStatus_FieldPathSelectorProxyConfig] = FullProbe_Status_ProxyConfig_FieldMask()
 					}
 				} else if tp, ok := path.(*ProbeStatus_FieldSubPath); ok {
 					mySubMasks[tp.selector].AppendRawPath(tp.subPath)
@@ -1189,6 +1194,8 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 	wholeActivationAccepted := false
 	bandwidthMask := &Probe_Status_Bandwidth_FieldMask{}
 	wholeBandwidthAccepted := false
+	proxyConfigMask := &Probe_Status_ProxyConfig_FieldMask{}
+	wholeProxyConfigAccepted := false
 	var networkInterfacesMapKeys []string
 	wholeNetworkInterfacesAccepted := false
 
@@ -1235,6 +1242,9 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 				wholeNetworkInterfacesAccepted = true
 			case ProbeStatus_FieldPathSelectorAgentType:
 				result.AgentType = source.AgentType
+			case ProbeStatus_FieldPathSelectorProxyConfig:
+				result.ProxyConfig = source.ProxyConfig
+				wholeProxyConfigAccepted = true
 			}
 		case *ProbeStatus_FieldSubPath:
 			switch tp.selector {
@@ -1254,6 +1264,8 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 				activationMask.AppendPath(tp.subPath.(ProbeStatusActivationState_FieldPath))
 			case ProbeStatus_FieldPathSelectorBandwidth:
 				bandwidthMask.AppendPath(tp.subPath.(ProbeStatusBandwidth_FieldPath))
+			case ProbeStatus_FieldPathSelectorProxyConfig:
+				proxyConfigMask.AppendPath(tp.subPath.(ProbeStatusProxyConfig_FieldPath))
 			}
 		case *ProbeStatus_FieldPathMap:
 			switch tp.selector {
@@ -1293,6 +1305,9 @@ func (fieldMask *Probe_Status_FieldMask) Project(source *Probe_Status) *Probe_St
 			copiedMap[key] = sourceMap[key]
 		}
 		result.NetworkInterfaces = copiedMap
+	}
+	if wholeProxyConfigAccepted == false && len(proxyConfigMask.Paths) > 0 {
+		result.ProxyConfig = proxyConfigMask.Project(source.GetProxyConfig())
 	}
 	return result
 }
@@ -2192,6 +2207,7 @@ func FullProbe_Spec_PcapSettings_FieldMask() *Probe_Spec_PcapSettings_FieldMask 
 	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorEnable})
 	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket})
 	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets})
+	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy})
 	return res
 }
 
@@ -2235,7 +2251,7 @@ func (fieldMask *Probe_Spec_PcapSettings_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpecPcapSettings_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -2265,7 +2281,7 @@ func (fieldMask *Probe_Spec_PcapSettings_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_PcapSettings_FieldMask) Subtract(other *Probe_Spec_PcapSettings_FieldMask) *Probe_Spec_PcapSettings_FieldMask {
 	result := &Probe_Spec_PcapSettings_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -2425,6 +2441,8 @@ func (fieldMask *Probe_Spec_PcapSettings_FieldMask) Project(source *Probe_Spec_P
 				result.CaptureFullPacket = source.CaptureFullPacket
 			case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 				result.CaptureAllPackets = source.CaptureAllPackets
+			case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+				result.StopCaptureAllPacketsBy = source.StopCaptureAllPacketsBy
 			}
 		}
 	}
@@ -4356,6 +4374,265 @@ func (fieldMask *Probe_Status_NetworkInterface_FieldMask) ProjectRaw(source gote
 }
 
 func (fieldMask *Probe_Status_NetworkInterface_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type Probe_Status_ProxyConfig_FieldMask struct {
+	Paths []ProbeStatusProxyConfig_FieldPath
+}
+
+func FullProbe_Status_ProxyConfig_FieldMask() *Probe_Status_ProxyConfig_FieldMask {
+	res := &Probe_Status_ProxyConfig_FieldMask{}
+	res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpProxy})
+	res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy})
+	res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorNoProxy})
+	return res
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseProbeStatusProxyConfig_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 3)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*ProbeStatusProxyConfig_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseProbeStatusProxyConfig_FieldPath(raw)
+	})
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) ProtoMessage() {}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Subtract(other *Probe_Status_ProxyConfig_FieldMask) *Probe_Status_ProxyConfig_FieldMask {
+	result := &Probe_Status_ProxyConfig_FieldMask{}
+	removedSelectors := make([]bool, 3)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *ProbeStatusProxyConfig_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*Probe_Status_ProxyConfig_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) FilterInputFields() *Probe_Status_ProxyConfig_FieldMask {
+	result := &Probe_Status_ProxyConfig_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]ProbeStatusProxyConfig_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseProbeStatusProxyConfig_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask Probe_Status_ProxyConfig_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask Probe_Status_ProxyConfig_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) AppendPath(path ProbeStatusProxyConfig_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(ProbeStatusProxyConfig_FieldPath))
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) GetPaths() []ProbeStatusProxyConfig_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseProbeStatusProxyConfig_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Set(target, source *Probe_Status_ProxyConfig) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*Probe_Status_ProxyConfig), source.(*Probe_Status_ProxyConfig))
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) Project(source *Probe_Status_ProxyConfig) *Probe_Status_ProxyConfig {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &Probe_Status_ProxyConfig{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *ProbeStatusProxyConfig_FieldTerminalPath:
+			switch tp.selector {
+			case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+				result.HttpProxy = source.HttpProxy
+			case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+				result.HttpsProxy = source.HttpsProxy
+			case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+				result.NoProxy = source.NoProxy
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*Probe_Status_ProxyConfig))
+}
+
+func (fieldMask *Probe_Status_ProxyConfig_FieldMask) PathsCount() int {
 	if fieldMask == nil {
 		return 0
 	}

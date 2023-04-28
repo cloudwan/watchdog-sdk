@@ -603,6 +603,16 @@ func (o *Probe_Status) MakeDiffFieldMask(other *Probe_Status) *Probe_Status_Fiel
 	if o.GetAgentType() != other.GetAgentType() {
 		res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType})
 	}
+	{
+		subMask := o.GetProxyConfig().MakeDiffFieldMask(other.GetProxyConfig())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorProxyConfig})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorProxyConfig, subPath: subpath})
+			}
+		}
+	}
 	return res
 }
 
@@ -633,6 +643,7 @@ func (o *Probe_Status) Clone() *Probe_Status {
 		result.NetworkInterfaces[key] = sourceValue.Clone()
 	}
 	result.AgentType = o.AgentType
+	result.ProxyConfig = o.ProxyConfig.Clone()
 	return result
 }
 
@@ -713,6 +724,12 @@ func (o *Probe_Status) Merge(source *Probe_Status) {
 		}
 	}
 	o.AgentType = source.GetAgentType()
+	if source.GetProxyConfig() != nil {
+		if o.ProxyConfig == nil {
+			o.ProxyConfig = new(Probe_Status_ProxyConfig)
+		}
+		o.ProxyConfig.Merge(source.GetProxyConfig())
+	}
 }
 
 func (o *Probe_Status) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -997,6 +1014,9 @@ func (o *Probe_Spec_PcapSettings) MakeDiffFieldMask(other *Probe_Spec_PcapSettin
 	if o.GetCaptureAllPackets() != other.GetCaptureAllPackets() {
 		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets})
 	}
+	if !proto.Equal(o.GetStopCaptureAllPacketsBy(), other.GetStopCaptureAllPacketsBy()) {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy})
+	}
 	return res
 }
 
@@ -1012,6 +1032,7 @@ func (o *Probe_Spec_PcapSettings) Clone() *Probe_Spec_PcapSettings {
 	result.Enable = o.Enable
 	result.CaptureFullPacket = o.CaptureFullPacket
 	result.CaptureAllPackets = o.CaptureAllPackets
+	result.StopCaptureAllPacketsBy = proto.Clone(o.StopCaptureAllPacketsBy).(*timestamp.Timestamp)
 	return result
 }
 
@@ -1023,6 +1044,12 @@ func (o *Probe_Spec_PcapSettings) Merge(source *Probe_Spec_PcapSettings) {
 	o.Enable = source.GetEnable()
 	o.CaptureFullPacket = source.GetCaptureFullPacket()
 	o.CaptureAllPackets = source.GetCaptureAllPackets()
+	if source.GetStopCaptureAllPacketsBy() != nil {
+		if o.StopCaptureAllPacketsBy == nil {
+			o.StopCaptureAllPacketsBy = new(timestamp.Timestamp)
+		}
+		proto.Merge(o.StopCaptureAllPacketsBy, source.GetStopCaptureAllPacketsBy())
+	}
 }
 
 func (o *Probe_Spec_PcapSettings) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -1647,6 +1674,66 @@ func (o *Probe_Status_NetworkInterface) Merge(source *Probe_Status_NetworkInterf
 
 func (o *Probe_Status_NetworkInterface) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*Probe_Status_NetworkInterface))
+}
+
+func (o *Probe_Status_ProxyConfig) GotenObjectExt() {}
+
+func (o *Probe_Status_ProxyConfig) MakeFullFieldMask() *Probe_Status_ProxyConfig_FieldMask {
+	return FullProbe_Status_ProxyConfig_FieldMask()
+}
+
+func (o *Probe_Status_ProxyConfig) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullProbe_Status_ProxyConfig_FieldMask()
+}
+
+func (o *Probe_Status_ProxyConfig) MakeDiffFieldMask(other *Probe_Status_ProxyConfig) *Probe_Status_ProxyConfig_FieldMask {
+	if o == nil && other == nil {
+		return &Probe_Status_ProxyConfig_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullProbe_Status_ProxyConfig_FieldMask()
+	}
+
+	res := &Probe_Status_ProxyConfig_FieldMask{}
+	if o.GetHttpProxy() != other.GetHttpProxy() {
+		res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpProxy})
+	}
+	if o.GetHttpsProxy() != other.GetHttpsProxy() {
+		res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy})
+	}
+	if o.GetNoProxy() != other.GetNoProxy() {
+		res.Paths = append(res.Paths, &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorNoProxy})
+	}
+	return res
+}
+
+func (o *Probe_Status_ProxyConfig) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*Probe_Status_ProxyConfig))
+}
+
+func (o *Probe_Status_ProxyConfig) Clone() *Probe_Status_ProxyConfig {
+	if o == nil {
+		return nil
+	}
+	result := &Probe_Status_ProxyConfig{}
+	result.HttpProxy = o.HttpProxy
+	result.HttpsProxy = o.HttpsProxy
+	result.NoProxy = o.NoProxy
+	return result
+}
+
+func (o *Probe_Status_ProxyConfig) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *Probe_Status_ProxyConfig) Merge(source *Probe_Status_ProxyConfig) {
+	o.HttpProxy = source.GetHttpProxy()
+	o.HttpsProxy = source.GetHttpsProxy()
+	o.NoProxy = source.GetNoProxy()
+}
+
+func (o *Probe_Status_ProxyConfig) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*Probe_Status_ProxyConfig))
 }
 
 func (o *Probe_Status_System_OS) GotenObjectExt() {}

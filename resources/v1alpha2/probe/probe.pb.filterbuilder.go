@@ -6066,6 +6066,10 @@ func (b *filterCndBuilderSpecPcapSettings) CaptureAllPackets() *filterCndBuilder
 	return &filterCndBuilderSpecPcapSettingsCaptureAllPackets{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpecPcapSettings) StopCaptureAllPacketsBy() *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy {
+	return &filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy{builder: b.builder}
+}
+
 type filterCndBuilderSpecPcapSettingsEnable struct {
 	builder *FilterBuilder
 }
@@ -6243,6 +6247,65 @@ func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) compare(op gotenfilt
 	})
 }
 
+type filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Eq(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Neq(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Gt(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Gte(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Lt(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Lte(value *timestamp.Timestamp) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) In(values []*timestamp.Timestamp) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) NotIn(values []*timestamp.Timestamp) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) compare(op gotenfilter.CompareOperator, value *timestamp.Timestamp) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithValue(value),
+	})
+}
+
 type filterCndBuilderStatus struct {
 	builder *FilterBuilder
 }
@@ -6360,6 +6423,10 @@ func (b *filterCndBuilderStatus) NetworkInterfaces() *filterCndBuilderStatusNetw
 
 func (b *filterCndBuilderStatus) AgentType() *filterCndBuilderStatusAgentType {
 	return &filterCndBuilderStatusAgentType{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatus) ProxyConfig() *filterCndBuilderStatusProxyConfig {
+	return &filterCndBuilderStatusProxyConfig{builder: b.builder}
 }
 
 type filterCndBuilderStatusExternalIpAddressV4 struct {
@@ -12256,6 +12323,254 @@ func (b *filterCndBuilderStatusAgentType) compare(op gotenfilter.CompareOperator
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().AgentType().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusProxyConfig struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Eq(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Neq(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Gt(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Gte(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Lt(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) Lte(value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfig) In(values []*Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfig) NotIn(values []*Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfig) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfig) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfig) compare(op gotenfilter.CompareOperator, value *Probe_Status_ProxyConfig) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().ProxyConfig().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfig) HttpProxy() *filterCndBuilderStatusProxyConfigHttpProxy {
+	return &filterCndBuilderStatusProxyConfigHttpProxy{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusProxyConfig) HttpsProxy() *filterCndBuilderStatusProxyConfigHttpsProxy {
+	return &filterCndBuilderStatusProxyConfigHttpsProxy{builder: b.builder}
+}
+
+func (b *filterCndBuilderStatusProxyConfig) NoProxy() *filterCndBuilderStatusProxyConfigNoProxy {
+	return &filterCndBuilderStatusProxyConfigNoProxy{builder: b.builder}
+}
+
+type filterCndBuilderStatusProxyConfigHttpProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusProxyConfigHttpsProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigHttpsProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusProxyConfigNoProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusProxyConfigNoProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().WithValue(value),
 	})
 }
 

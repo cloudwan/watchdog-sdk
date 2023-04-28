@@ -2006,6 +2006,10 @@ func (ProbePathSelectorSpecPcapSettings) CaptureAllPackets() ProbePathSelectorSp
 	return ProbePathSelectorSpecPcapSettingsCaptureAllPackets{}
 }
 
+func (ProbePathSelectorSpecPcapSettings) StopCaptureAllPacketsBy() ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy {
+	return ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type ProbePathSelectorSpecPcapSettingsEnable struct{}
 
 func (ProbePathSelectorSpecPcapSettingsEnable) FieldPath() *Probe_FieldSubPath {
@@ -2054,6 +2058,23 @@ func (s ProbePathSelectorSpecPcapSettingsCaptureAllPackets) WithValue(value bool
 }
 
 func (s ProbePathSelectorSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorSpec,
+		subPath:  NewProbeSpecFieldPathBuilder().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
@@ -2145,6 +2166,10 @@ func (ProbePathSelectorStatus) NetworkInterfaces() ProbePathSelectorStatusNetwor
 
 func (ProbePathSelectorStatus) AgentType() ProbePathSelectorStatusAgentType {
 	return ProbePathSelectorStatusAgentType{}
+}
+
+func (ProbePathSelectorStatus) ProxyConfig() ProbePathSelectorStatusProxyConfig {
+	return ProbePathSelectorStatusProxyConfig{}
 }
 
 type ProbePathSelectorStatusExternalIpAddressV4 struct{}
@@ -4067,6 +4092,86 @@ func (s ProbePathSelectorStatusAgentType) WithArrayOfValues(values []Probe_Agent
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
+type ProbePathSelectorStatusProxyConfig struct{}
+
+func (ProbePathSelectorStatusProxyConfig) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusProxyConfig) WithValue(value *Probe_Status_ProxyConfig) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusProxyConfig) WithArrayOfValues(values []*Probe_Status_ProxyConfig) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+func (ProbePathSelectorStatusProxyConfig) HttpProxy() ProbePathSelectorStatusProxyConfigHttpProxy {
+	return ProbePathSelectorStatusProxyConfigHttpProxy{}
+}
+
+func (ProbePathSelectorStatusProxyConfig) HttpsProxy() ProbePathSelectorStatusProxyConfigHttpsProxy {
+	return ProbePathSelectorStatusProxyConfigHttpsProxy{}
+}
+
+func (ProbePathSelectorStatusProxyConfig) NoProxy() ProbePathSelectorStatusProxyConfigNoProxy {
+	return ProbePathSelectorStatusProxyConfigNoProxy{}
+}
+
+type ProbePathSelectorStatusProxyConfigHttpProxy struct{}
+
+func (ProbePathSelectorStatusProxyConfigHttpProxy) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusProxyConfigHttpProxy) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorStatusProxyConfigHttpsProxy struct{}
+
+func (ProbePathSelectorStatusProxyConfigHttpsProxy) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusProxyConfigHttpsProxy) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorStatusProxyConfigNoProxy struct{}
+
+func (ProbePathSelectorStatusProxyConfigNoProxy) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusProxyConfigNoProxy) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
 type ProbePathSelectorMemo struct{}
 
 func (ProbePathSelectorMemo) FieldPath() *Probe_FieldTerminalPath {
@@ -5490,6 +5595,10 @@ func (Probe_SpecPathSelectorPcapSettings) CaptureAllPackets() Probe_SpecPathSele
 	return Probe_SpecPathSelectorPcapSettingsCaptureAllPackets{}
 }
 
+func (Probe_SpecPathSelectorPcapSettings) StopCaptureAllPacketsBy() Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy {
+	return Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type Probe_SpecPathSelectorPcapSettingsEnable struct{}
 
 func (Probe_SpecPathSelectorPcapSettingsEnable) FieldPath() *ProbeSpec_FieldSubPath {
@@ -5538,6 +5647,23 @@ func (s Probe_SpecPathSelectorPcapSettingsCaptureAllPackets) WithValue(value boo
 }
 
 func (s Probe_SpecPathSelectorPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ProbeSpec_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldSubPathArrayOfValues)
+}
+
+type Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ProbeSpec_FieldSubPath {
+	return &ProbeSpec_FieldSubPath{
+		selector: ProbeSpec_FieldPathSelectorPcapSettings,
+		subPath:  NewProbeSpecPcapSettingsFieldPathBuilder().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ProbeSpec_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldSubPathValue)
+}
+
+func (s Probe_SpecPathSelectorPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ProbeSpec_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldSubPathArrayOfValues)
 }
 
@@ -5590,6 +5716,9 @@ func (ProbeStatusFieldPathBuilder) NetworkInterfaces() Probe_StatusPathSelectorN
 }
 func (ProbeStatusFieldPathBuilder) AgentType() Probe_StatusPathSelectorAgentType {
 	return Probe_StatusPathSelectorAgentType{}
+}
+func (ProbeStatusFieldPathBuilder) ProxyConfig() Probe_StatusPathSelectorProxyConfig {
+	return Probe_StatusPathSelectorProxyConfig{}
 }
 
 type Probe_StatusPathSelectorExternalIpAddressV4 struct{}
@@ -7592,6 +7721,99 @@ func (s Probe_StatusPathSelectorAgentType) WithArrayOfValues(values []Probe_Agen
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldTerminalPathArrayOfValues)
 }
 
+type Probe_StatusPathSelectorProxyConfig struct{}
+
+func (Probe_StatusPathSelectorProxyConfig) FieldPath() *ProbeStatus_FieldTerminalPath {
+	return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorProxyConfig}
+}
+
+func (s Probe_StatusPathSelectorProxyConfig) WithValue(value *Probe_Status_ProxyConfig) *ProbeStatus_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldTerminalPathValue)
+}
+
+func (s Probe_StatusPathSelectorProxyConfig) WithArrayOfValues(values []*Probe_Status_ProxyConfig) *ProbeStatus_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldTerminalPathArrayOfValues)
+}
+
+func (Probe_StatusPathSelectorProxyConfig) WithSubPath(subPath ProbeStatusProxyConfig_FieldPath) *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorProxyConfig, subPath: subPath}
+}
+
+func (s Probe_StatusPathSelectorProxyConfig) WithSubValue(subPathValue ProbeStatusProxyConfig_FieldPathValue) *ProbeStatus_FieldSubPathValue {
+	return &ProbeStatus_FieldSubPathValue{ProbeStatus_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s Probe_StatusPathSelectorProxyConfig) WithSubArrayOfValues(subPathArrayOfValues ProbeStatusProxyConfig_FieldPathArrayOfValues) *ProbeStatus_FieldSubPathArrayOfValues {
+	return &ProbeStatus_FieldSubPathArrayOfValues{ProbeStatus_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s Probe_StatusPathSelectorProxyConfig) WithSubArrayItemValue(subPathArrayItemValue ProbeStatusProxyConfig_FieldPathArrayItemValue) *ProbeStatus_FieldSubPathArrayItemValue {
+	return &ProbeStatus_FieldSubPathArrayItemValue{ProbeStatus_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (Probe_StatusPathSelectorProxyConfig) HttpProxy() Probe_StatusPathSelectorProxyConfigHttpProxy {
+	return Probe_StatusPathSelectorProxyConfigHttpProxy{}
+}
+
+func (Probe_StatusPathSelectorProxyConfig) HttpsProxy() Probe_StatusPathSelectorProxyConfigHttpsProxy {
+	return Probe_StatusPathSelectorProxyConfigHttpsProxy{}
+}
+
+func (Probe_StatusPathSelectorProxyConfig) NoProxy() Probe_StatusPathSelectorProxyConfigNoProxy {
+	return Probe_StatusPathSelectorProxyConfigNoProxy{}
+}
+
+type Probe_StatusPathSelectorProxyConfigHttpProxy struct{}
+
+func (Probe_StatusPathSelectorProxyConfigHttpProxy) FieldPath() *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{
+		selector: ProbeStatus_FieldPathSelectorProxyConfig,
+		subPath:  NewProbeStatusProxyConfigFieldPathBuilder().HttpProxy().FieldPath(),
+	}
+}
+
+func (s Probe_StatusPathSelectorProxyConfigHttpProxy) WithValue(value string) *ProbeStatus_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldSubPathValue)
+}
+
+func (s Probe_StatusPathSelectorProxyConfigHttpProxy) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
+}
+
+type Probe_StatusPathSelectorProxyConfigHttpsProxy struct{}
+
+func (Probe_StatusPathSelectorProxyConfigHttpsProxy) FieldPath() *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{
+		selector: ProbeStatus_FieldPathSelectorProxyConfig,
+		subPath:  NewProbeStatusProxyConfigFieldPathBuilder().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s Probe_StatusPathSelectorProxyConfigHttpsProxy) WithValue(value string) *ProbeStatus_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldSubPathValue)
+}
+
+func (s Probe_StatusPathSelectorProxyConfigHttpsProxy) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
+}
+
+type Probe_StatusPathSelectorProxyConfigNoProxy struct{}
+
+func (Probe_StatusPathSelectorProxyConfigNoProxy) FieldPath() *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{
+		selector: ProbeStatus_FieldPathSelectorProxyConfig,
+		subPath:  NewProbeStatusProxyConfigFieldPathBuilder().NoProxy().FieldPath(),
+	}
+}
+
+func (s Probe_StatusPathSelectorProxyConfigNoProxy) WithValue(value string) *ProbeStatus_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldSubPathValue)
+}
+
+func (s Probe_StatusPathSelectorProxyConfigNoProxy) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
+}
+
 type ProbeSpecActivationSpecFieldPathBuilder struct{}
 
 func NewProbeSpecActivationSpecFieldPathBuilder() ProbeSpecActivationSpecFieldPathBuilder {
@@ -8001,6 +8223,9 @@ func (ProbeSpecPcapSettingsFieldPathBuilder) CaptureFullPacket() Probe_Spec_Pcap
 func (ProbeSpecPcapSettingsFieldPathBuilder) CaptureAllPackets() Probe_Spec_PcapSettingsPathSelectorCaptureAllPackets {
 	return Probe_Spec_PcapSettingsPathSelectorCaptureAllPackets{}
 }
+func (ProbeSpecPcapSettingsFieldPathBuilder) StopCaptureAllPacketsBy() Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy {
+	return Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy{}
+}
 
 type Probe_Spec_PcapSettingsPathSelectorEnable struct{}
 
@@ -8041,6 +8266,20 @@ func (s Probe_Spec_PcapSettingsPathSelectorCaptureAllPackets) WithValue(value bo
 }
 
 func (s Probe_Spec_PcapSettingsPathSelectorCaptureAllPackets) WithArrayOfValues(values []bool) *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy struct{}
+
+func (Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy) FieldPath() *ProbeSpecPcapSettings_FieldTerminalPath {
+	return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy}
+}
+
+func (s Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ProbeSpecPcapSettings_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpecPcapSettings_FieldTerminalPathValue)
+}
+
+func (s Probe_Spec_PcapSettingsPathSelectorStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues)
 }
 
@@ -8792,6 +9031,63 @@ func (s Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6) WithArrayO
 
 func (s Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6) WithItemValue(value string) *ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue)
+}
+
+type ProbeStatusProxyConfigFieldPathBuilder struct{}
+
+func NewProbeStatusProxyConfigFieldPathBuilder() ProbeStatusProxyConfigFieldPathBuilder {
+	return ProbeStatusProxyConfigFieldPathBuilder{}
+}
+func (ProbeStatusProxyConfigFieldPathBuilder) HttpProxy() Probe_Status_ProxyConfigPathSelectorHttpProxy {
+	return Probe_Status_ProxyConfigPathSelectorHttpProxy{}
+}
+func (ProbeStatusProxyConfigFieldPathBuilder) HttpsProxy() Probe_Status_ProxyConfigPathSelectorHttpsProxy {
+	return Probe_Status_ProxyConfigPathSelectorHttpsProxy{}
+}
+func (ProbeStatusProxyConfigFieldPathBuilder) NoProxy() Probe_Status_ProxyConfigPathSelectorNoProxy {
+	return Probe_Status_ProxyConfigPathSelectorNoProxy{}
+}
+
+type Probe_Status_ProxyConfigPathSelectorHttpProxy struct{}
+
+func (Probe_Status_ProxyConfigPathSelectorHttpProxy) FieldPath() *ProbeStatusProxyConfig_FieldTerminalPath {
+	return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpProxy}
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorHttpProxy) WithValue(value string) *ProbeStatusProxyConfig_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusProxyConfig_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorHttpProxy) WithArrayOfValues(values []string) *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_ProxyConfigPathSelectorHttpsProxy struct{}
+
+func (Probe_Status_ProxyConfigPathSelectorHttpsProxy) FieldPath() *ProbeStatusProxyConfig_FieldTerminalPath {
+	return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy}
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorHttpsProxy) WithValue(value string) *ProbeStatusProxyConfig_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusProxyConfig_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorHttpsProxy) WithArrayOfValues(values []string) *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_ProxyConfigPathSelectorNoProxy struct{}
+
+func (Probe_Status_ProxyConfigPathSelectorNoProxy) FieldPath() *ProbeStatusProxyConfig_FieldTerminalPath {
+	return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorNoProxy}
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorNoProxy) WithValue(value string) *ProbeStatusProxyConfig_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusProxyConfig_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_ProxyConfigPathSelectorNoProxy) WithArrayOfValues(values []string) *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues)
 }
 
 type ProbeStatusSystemOSFieldPathBuilder struct{}

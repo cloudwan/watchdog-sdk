@@ -2339,6 +2339,7 @@ const (
 	ProbeStatus_FieldPathSelectorBandwidth                  ProbeStatus_FieldPathSelector = 12
 	ProbeStatus_FieldPathSelectorNetworkInterfaces          ProbeStatus_FieldPathSelector = 13
 	ProbeStatus_FieldPathSelectorAgentType                  ProbeStatus_FieldPathSelector = 14
+	ProbeStatus_FieldPathSelectorProxyConfig                ProbeStatus_FieldPathSelector = 15
 )
 
 func (s ProbeStatus_FieldPathSelector) String() string {
@@ -2373,6 +2374,8 @@ func (s ProbeStatus_FieldPathSelector) String() string {
 		return "network_interfaces"
 	case ProbeStatus_FieldPathSelectorAgentType:
 		return "agent_type"
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return "proxy_config"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", s))
 	}
@@ -2414,6 +2417,8 @@ func BuildProbeStatus_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatus_FieldP
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorNetworkInterfaces}, nil
 		case "agent_type", "agentType", "agent-type":
 			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorAgentType}, nil
+		case "proxy_config", "proxyConfig", "proxy-config":
+			return &ProbeStatus_FieldTerminalPath{selector: ProbeStatus_FieldPathSelectorProxyConfig}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -2464,6 +2469,12 @@ func BuildProbeStatus_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatus_FieldP
 				return nil, err
 			} else {
 				return &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorBandwidth, subPath: subpath}, nil
+			}
+		case "proxy_config", "proxyConfig", "proxy-config":
+			if subpath, err := BuildProbeStatusProxyConfig_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbeStatus_FieldSubPath{selector: ProbeStatus_FieldPathSelectorProxyConfig, subPath: subpath}, nil
 			}
 		case "network_interfaces", "networkInterfaces", "network-interfaces":
 			if len(fp) > 2 {
@@ -2565,6 +2576,10 @@ func (fp *ProbeStatus_FieldTerminalPath) Get(source *Probe_Status) (values []int
 			}
 		case ProbeStatus_FieldPathSelectorAgentType:
 			values = append(values, source.AgentType)
+		case ProbeStatus_FieldPathSelectorProxyConfig:
+			if source.ProxyConfig != nil {
+				values = append(values, source.ProxyConfig)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 		}
@@ -2619,6 +2634,9 @@ func (fp *ProbeStatus_FieldTerminalPath) GetSingle(source *Probe_Status) (interf
 		return res, res != nil
 	case ProbeStatus_FieldPathSelectorAgentType:
 		return source.GetAgentType(), source != nil
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		res := source.GetProxyConfig()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2661,6 +2679,8 @@ func (fp *ProbeStatus_FieldTerminalPath) GetDefault() interface{} {
 		return (map[string]*Probe_Status_NetworkInterface)(nil)
 	case ProbeStatus_FieldPathSelectorAgentType:
 		return Probe_UNKNOWN
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return (*Probe_Status_ProxyConfig)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2699,6 +2719,8 @@ func (fp *ProbeStatus_FieldTerminalPath) ClearValue(item *Probe_Status) {
 			item.NetworkInterfaces = nil
 		case ProbeStatus_FieldPathSelectorAgentType:
 			item.AgentType = Probe_UNKNOWN
+		case ProbeStatus_FieldPathSelectorProxyConfig:
+			item.ProxyConfig = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 		}
@@ -2755,6 +2777,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIValue(value interface{}) ProbeStat
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(map[string]*Probe_Status_NetworkInterface)}
 	case ProbeStatus_FieldPathSelectorAgentType:
 		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(Probe_AgentType)}
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return &ProbeStatus_FieldTerminalPathValue{ProbeStatus_FieldTerminalPath: *fp, value: value.(*Probe_Status_ProxyConfig)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2797,6 +2821,8 @@ func (fp *ProbeStatus_FieldTerminalPath) WithIArrayOfValues(values interface{}) 
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]map[string]*Probe_Status_NetworkInterface)}
 	case ProbeStatus_FieldPathSelectorAgentType:
 		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]Probe_AgentType)}
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return &ProbeStatus_FieldTerminalPathArrayOfValues{ProbeStatus_FieldTerminalPath: *fp, values: values.([]*Probe_Status_ProxyConfig)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fp.selector))
 	}
@@ -2992,6 +3018,10 @@ func (fps *ProbeStatus_FieldSubPath) AsBandwidthSubPath() (ProbeStatusBandwidth_
 	res, ok := fps.subPath.(ProbeStatusBandwidth_FieldPath)
 	return res, ok
 }
+func (fps *ProbeStatus_FieldSubPath) AsProxyConfigSubPath() (ProbeStatusProxyConfig_FieldPath, bool) {
+	res, ok := fps.subPath.(ProbeStatusProxyConfig_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ProbeStatus_FieldSubPath) String() string {
@@ -3022,6 +3052,8 @@ func (fps *ProbeStatus_FieldSubPath) Get(source *Probe_Status) (values []interfa
 		values = append(values, fps.subPath.GetRaw(source.GetActivation())...)
 	case ProbeStatus_FieldPathSelectorBandwidth:
 		values = append(values, fps.subPath.GetRaw(source.GetBandwidth())...)
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		values = append(values, fps.subPath.GetRaw(source.GetProxyConfig())...)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fps.selector))
 	}
@@ -3075,6 +3107,11 @@ func (fps *ProbeStatus_FieldSubPath) GetSingle(source *Probe_Status) (interface{
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetBandwidth())
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		if source.GetProxyConfig() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetProxyConfig())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fps.selector))
 	}
@@ -3108,6 +3145,8 @@ func (fps *ProbeStatus_FieldSubPath) ClearValue(item *Probe_Status) {
 			fps.subPath.ClearValueRaw(item.Activation)
 		case ProbeStatus_FieldPathSelectorBandwidth:
 			fps.subPath.ClearValueRaw(item.Bandwidth)
+		case ProbeStatus_FieldPathSelectorProxyConfig:
+			fps.subPath.ClearValueRaw(item.ProxyConfig)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fps.selector))
 		}
@@ -3252,6 +3291,10 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) AsAgentTypeValue() (Probe_AgentTy
 	res, ok := fpv.value.(Probe_AgentType)
 	return res, ok
 }
+func (fpv *ProbeStatus_FieldTerminalPathValue) AsProxyConfigValue() (*Probe_Status_ProxyConfig, bool) {
+	res, ok := fpv.value.(*Probe_Status_ProxyConfig)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Status
 func (fpv *ProbeStatus_FieldTerminalPathValue) SetTo(target **Probe_Status) {
@@ -3289,6 +3332,8 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) SetTo(target **Probe_Status) {
 		(*target).NetworkInterfaces = fpv.value.(map[string]*Probe_Status_NetworkInterface)
 	case ProbeStatus_FieldPathSelectorAgentType:
 		(*target).AgentType = fpv.value.(Probe_AgentType)
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		(*target).ProxyConfig = fpv.value.(*Probe_Status_ProxyConfig)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpv.selector))
 	}
@@ -3389,6 +3434,8 @@ func (fpv *ProbeStatus_FieldTerminalPathValue) CompareWith(source *Probe_Status)
 		} else {
 			return 1, true
 		}
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return 0, false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpv.selector))
 	}
@@ -3488,6 +3535,10 @@ func (fpvs *ProbeStatus_FieldSubPathValue) AsBandwidthPathValue() (ProbeStatusBa
 	res, ok := fpvs.subPathValue.(ProbeStatusBandwidth_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbeStatus_FieldSubPathValue) AsProxyConfigPathValue() (ProbeStatusProxyConfig_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(ProbeStatusProxyConfig_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ProbeStatus_FieldSubPathValue) SetTo(target **Probe_Status) {
 	if *target == nil {
@@ -3510,6 +3561,8 @@ func (fpvs *ProbeStatus_FieldSubPathValue) SetTo(target **Probe_Status) {
 		fpvs.subPathValue.(ProbeStatusActivationState_FieldPathValue).SetTo(&(*target).Activation)
 	case ProbeStatus_FieldPathSelectorBandwidth:
 		fpvs.subPathValue.(ProbeStatusBandwidth_FieldPathValue).SetTo(&(*target).Bandwidth)
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		fpvs.subPathValue.(ProbeStatusProxyConfig_FieldPathValue).SetTo(&(*target).ProxyConfig)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpvs.Selector()))
 	}
@@ -3542,6 +3595,8 @@ func (fpvs *ProbeStatus_FieldSubPathValue) CompareWith(source *Probe_Status) (in
 		return fpvs.subPathValue.(ProbeStatusActivationState_FieldPathValue).CompareWith(source.GetActivation())
 	case ProbeStatus_FieldPathSelectorBandwidth:
 		return fpvs.subPathValue.(ProbeStatusBandwidth_FieldPathValue).CompareWith(source.GetBandwidth())
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return fpvs.subPathValue.(ProbeStatusProxyConfig_FieldPathValue).CompareWith(source.GetProxyConfig())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpvs.Selector()))
 	}
@@ -3656,6 +3711,10 @@ func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) AsBandwidthPathItemValue()
 	res, ok := fpaivs.subPathItemValue.(ProbeStatusBandwidth_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) AsProxyConfigPathItemValue() (ProbeStatusProxyConfig_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(ProbeStatusProxyConfig_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'Status'
 func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) ContainsValue(source *Probe_Status) bool {
@@ -3676,6 +3735,8 @@ func (fpaivs *ProbeStatus_FieldSubPathArrayItemValue) ContainsValue(source *Prob
 		return fpaivs.subPathItemValue.(ProbeStatusActivationState_FieldPathArrayItemValue).ContainsValue(source.GetActivation())
 	case ProbeStatus_FieldPathSelectorBandwidth:
 		return fpaivs.subPathItemValue.(ProbeStatusBandwidth_FieldPathArrayItemValue).ContainsValue(source.GetBandwidth())
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		return fpaivs.subPathItemValue.(ProbeStatusProxyConfig_FieldPathArrayItemValue).ContainsValue(source.GetProxyConfig())
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status: %d", fpaivs.Selector()))
 	}
@@ -3776,6 +3837,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) GetRawValues() (values 
 		for _, v := range fpaov.values.([]Probe_AgentType) {
 			values = append(values, v)
 		}
+	case ProbeStatus_FieldPathSelectorProxyConfig:
+		for _, v := range fpaov.values.([]*Probe_Status_ProxyConfig) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -3837,6 +3902,10 @@ func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsNetworkInterfacesArra
 }
 func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsAgentTypeArrayOfValues() ([]Probe_AgentType, bool) {
 	res, ok := fpaov.values.([]Probe_AgentType)
+	return res, ok
+}
+func (fpaov *ProbeStatus_FieldTerminalPathArrayOfValues) AsProxyConfigArrayOfValues() ([]*Probe_Status_ProxyConfig, bool) {
+	res, ok := fpaov.values.([]*Probe_Status_ProxyConfig)
 	return res, ok
 }
 
@@ -3901,6 +3970,10 @@ func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsActivationPathArrayOfValu
 }
 func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsBandwidthPathArrayOfValues() (ProbeStatusBandwidth_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(ProbeStatusBandwidth_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbeStatus_FieldSubPathArrayOfValues) AsProxyConfigPathArrayOfValues() (ProbeStatusProxyConfig_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(ProbeStatusProxyConfig_FieldPathArrayOfValues)
 	return res, ok
 }
 
@@ -5913,9 +5986,10 @@ type ProbeSpecPcapSettings_FieldPath interface {
 type ProbeSpecPcapSettings_FieldPathSelector int32
 
 const (
-	ProbeSpecPcapSettings_FieldPathSelectorEnable            ProbeSpecPcapSettings_FieldPathSelector = 0
-	ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket ProbeSpecPcapSettings_FieldPathSelector = 1
-	ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets ProbeSpecPcapSettings_FieldPathSelector = 2
+	ProbeSpecPcapSettings_FieldPathSelectorEnable                  ProbeSpecPcapSettings_FieldPathSelector = 0
+	ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket       ProbeSpecPcapSettings_FieldPathSelector = 1
+	ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets       ProbeSpecPcapSettings_FieldPathSelector = 2
+	ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy ProbeSpecPcapSettings_FieldPathSelector = 3
 )
 
 func (s ProbeSpecPcapSettings_FieldPathSelector) String() string {
@@ -5926,6 +6000,8 @@ func (s ProbeSpecPcapSettings_FieldPathSelector) String() string {
 		return "capture_full_packet"
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		return "capture_all_packets"
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		return "stop_capture_all_packets_by"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", s))
 	}
@@ -5943,6 +6019,8 @@ func BuildProbeSpecPcapSettings_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpe
 			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket}, nil
 		case "capture_all_packets", "captureAllPackets", "capture-all-packets":
 			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets}, nil
+		case "stop_capture_all_packets_by", "stopCaptureAllPacketsBy", "stop-capture-all-packets-by":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_PcapSettings", fp)
@@ -5994,6 +6072,10 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) Get(source *Probe_Spec_PcapSe
 			values = append(values, source.CaptureFullPacket)
 		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 			values = append(values, source.CaptureAllPackets)
+		case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+			if source.StopCaptureAllPacketsBy != nil {
+				values = append(values, source.StopCaptureAllPacketsBy)
+			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 		}
@@ -6014,6 +6096,9 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetSingle(source *Probe_Spec_
 		return source.GetCaptureFullPacket(), source != nil
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		return source.GetCaptureAllPackets(), source != nil
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		res := source.GetStopCaptureAllPacketsBy()
+		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 	}
@@ -6032,6 +6117,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetDefault() interface{} {
 		return false
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		return false
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		return (*timestamp.Timestamp)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 	}
@@ -6046,6 +6133,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValue(item *Probe_Spec_P
 			item.CaptureFullPacket = false
 		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 			item.CaptureAllPackets = false
+		case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+			item.StopCaptureAllPacketsBy = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 		}
@@ -6060,7 +6149,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValueRaw(item proto.Mess
 func (fp *ProbeSpecPcapSettings_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecPcapSettings_FieldPathSelectorEnable ||
 		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket ||
-		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets ||
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy
 }
 
 func (fp *ProbeSpecPcapSettings_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6075,6 +6165,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIValue(value interface{})
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 	}
@@ -6093,6 +6185,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIArrayOfValues(values int
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 	}
@@ -6165,6 +6259,10 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsCaptureAllPacketsValu
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsStopCaptureAllPacketsByValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object PcapSettings
 func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) SetTo(target **Probe_Spec_PcapSettings) {
@@ -6178,6 +6276,8 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) SetTo(target **Probe_Sp
 		(*target).CaptureFullPacket = fpv.value.(bool)
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
 		(*target).CaptureAllPackets = fpv.value.(bool)
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		(*target).StopCaptureAllPacketsBy = fpv.value.(*timestamp.Timestamp)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fpv.selector))
 	}
@@ -6217,6 +6317,25 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) CompareWith(source *Pro
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetStopCaptureAllPacketsBy()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
 			return -1, true
 		} else {
 			return 1, true
@@ -6341,6 +6460,10 @@ func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) GetRawValues(
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
+	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -6354,6 +6477,10 @@ func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureFull
 }
 func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureAllPacketsArrayOfValues() ([]bool, bool) {
 	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsStopCaptureAllPacketsByArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
 	return res, ok
 }
 
@@ -10348,6 +10475,469 @@ func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsIpAdd
 }
 func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsExternalIpAddressV6ArrayOfValues() ([][]string, bool) {
 	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type ProbeStatusProxyConfig_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() ProbeStatusProxyConfig_FieldPathSelector
+	Get(source *Probe_Status_ProxyConfig) []interface{}
+	GetSingle(source *Probe_Status_ProxyConfig) (interface{}, bool)
+	ClearValue(item *Probe_Status_ProxyConfig)
+
+	// Those methods build corresponding ProbeStatusProxyConfig_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) ProbeStatusProxyConfig_FieldPathValue
+	WithIArrayOfValues(values interface{}) ProbeStatusProxyConfig_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) ProbeStatusProxyConfig_FieldPathArrayItemValue
+}
+
+type ProbeStatusProxyConfig_FieldPathSelector int32
+
+const (
+	ProbeStatusProxyConfig_FieldPathSelectorHttpProxy  ProbeStatusProxyConfig_FieldPathSelector = 0
+	ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy ProbeStatusProxyConfig_FieldPathSelector = 1
+	ProbeStatusProxyConfig_FieldPathSelectorNoProxy    ProbeStatusProxyConfig_FieldPathSelector = 2
+)
+
+func (s ProbeStatusProxyConfig_FieldPathSelector) String() string {
+	switch s {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		return "http_proxy"
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		return "https_proxy"
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		return "no_proxy"
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", s))
+	}
+}
+
+func BuildProbeStatusProxyConfig_FieldPath(fp gotenobject.RawFieldPath) (ProbeStatusProxyConfig_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object Probe_Status_ProxyConfig")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "http_proxy", "httpProxy", "http-proxy":
+			return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpProxy}, nil
+		case "https_proxy", "httpsProxy", "https-proxy":
+			return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy}, nil
+		case "no_proxy", "noProxy", "no-proxy":
+			return &ProbeStatusProxyConfig_FieldTerminalPath{selector: ProbeStatusProxyConfig_FieldPathSelectorNoProxy}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Status_ProxyConfig", fp)
+}
+
+func ParseProbeStatusProxyConfig_FieldPath(rawField string) (ProbeStatusProxyConfig_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildProbeStatusProxyConfig_FieldPath(fp)
+}
+
+func MustParseProbeStatusProxyConfig_FieldPath(rawField string) ProbeStatusProxyConfig_FieldPath {
+	fp, err := ParseProbeStatusProxyConfig_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type ProbeStatusProxyConfig_FieldTerminalPath struct {
+	selector ProbeStatusProxyConfig_FieldPathSelector
+}
+
+var _ ProbeStatusProxyConfig_FieldPath = (*ProbeStatusProxyConfig_FieldTerminalPath)(nil)
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) Selector() ProbeStatusProxyConfig_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source Probe_Status_ProxyConfig
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) Get(source *Probe_Status_ProxyConfig) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+			values = append(values, source.HttpProxy)
+		case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+			values = append(values, source.HttpsProxy)
+		case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+			values = append(values, source.NoProxy)
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*Probe_Status_ProxyConfig))
+}
+
+// GetSingle returns value pointed by specific field of from source Probe_Status_ProxyConfig
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) GetSingle(source *Probe_Status_ProxyConfig) (interface{}, bool) {
+	switch fp.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		return source.GetHttpProxy(), source != nil
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		return source.GetHttpsProxy(), source != nil
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		return source.GetNoProxy(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*Probe_Status_ProxyConfig))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		return ""
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		return ""
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		return ""
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) ClearValue(item *Probe_Status_ProxyConfig) {
+	if item != nil {
+		switch fp.selector {
+		case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+			item.HttpProxy = ""
+		case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+			item.HttpsProxy = ""
+		case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+			item.NoProxy = ""
+		default:
+			panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*Probe_Status_ProxyConfig))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == ProbeStatusProxyConfig_FieldPathSelectorHttpProxy ||
+		fp.selector == ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy ||
+		fp.selector == ProbeStatusProxyConfig_FieldPathSelectorNoProxy
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithIValue(value interface{}) ProbeStatusProxyConfig_FieldPathValue {
+	switch fp.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathValue{ProbeStatusProxyConfig_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathValue{ProbeStatusProxyConfig_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathValue{ProbeStatusProxyConfig_FieldTerminalPath: *fp, value: value.(string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithIArrayOfValues(values interface{}) ProbeStatusProxyConfig_FieldPathArrayOfValues {
+	fpaov := &ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues{ProbeStatusProxyConfig_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues{ProbeStatusProxyConfig_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues{ProbeStatusProxyConfig_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		return &ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues{ProbeStatusProxyConfig_FieldTerminalPath: *fp, values: values.([]string)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithIArrayItemValue(value interface{}) ProbeStatusProxyConfig_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fp.selector))
+	}
+}
+
+func (fp *ProbeStatusProxyConfig_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// ProbeStatusProxyConfig_FieldPathValue allows storing values for ProxyConfig fields according to their type
+type ProbeStatusProxyConfig_FieldPathValue interface {
+	ProbeStatusProxyConfig_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **Probe_Status_ProxyConfig)
+	CompareWith(*Probe_Status_ProxyConfig) (cmp int, comparable bool)
+}
+
+func ParseProbeStatusProxyConfig_FieldPathValue(pathStr, valueStr string) (ProbeStatusProxyConfig_FieldPathValue, error) {
+	fp, err := ParseProbeStatusProxyConfig_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProxyConfig field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(ProbeStatusProxyConfig_FieldPathValue), nil
+}
+
+func MustParseProbeStatusProxyConfig_FieldPathValue(pathStr, valueStr string) ProbeStatusProxyConfig_FieldPathValue {
+	fpv, err := ParseProbeStatusProxyConfig_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type ProbeStatusProxyConfig_FieldTerminalPathValue struct {
+	ProbeStatusProxyConfig_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeStatusProxyConfig_FieldPathValue = (*ProbeStatusProxyConfig_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'ProxyConfig' as interface{}
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) AsHttpProxyValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) AsHttpsProxyValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) AsNoProxyValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object ProxyConfig
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) SetTo(target **Probe_Status_ProxyConfig) {
+	if *target == nil {
+		*target = new(Probe_Status_ProxyConfig)
+	}
+	switch fpv.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		(*target).HttpProxy = fpv.value.(string)
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		(*target).HttpsProxy = fpv.value.(string)
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		(*target).NoProxy = fpv.value.(string)
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*Probe_Status_ProxyConfig)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'ProbeStatusProxyConfig_FieldTerminalPathValue' with the value under path in 'Probe_Status_ProxyConfig'.
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) CompareWith(source *Probe_Status_ProxyConfig) (int, bool) {
+	switch fpv.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetHttpProxy()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetHttpsProxy()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetNoProxy()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for Probe_Status_ProxyConfig: %d", fpv.selector))
+	}
+}
+
+func (fpv *ProbeStatusProxyConfig_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*Probe_Status_ProxyConfig))
+}
+
+// ProbeStatusProxyConfig_FieldPathArrayItemValue allows storing single item in Path-specific values for ProxyConfig according to their type
+// Present only for array (repeated) types.
+type ProbeStatusProxyConfig_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	ProbeStatusProxyConfig_FieldPath
+	ContainsValue(*Probe_Status_ProxyConfig) bool
+}
+
+// ParseProbeStatusProxyConfig_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseProbeStatusProxyConfig_FieldPathArrayItemValue(pathStr, valueStr string) (ProbeStatusProxyConfig_FieldPathArrayItemValue, error) {
+	fp, err := ParseProbeStatusProxyConfig_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProxyConfig field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(ProbeStatusProxyConfig_FieldPathArrayItemValue), nil
+}
+
+func MustParseProbeStatusProxyConfig_FieldPathArrayItemValue(pathStr, valueStr string) ProbeStatusProxyConfig_FieldPathArrayItemValue {
+	fpaiv, err := ParseProbeStatusProxyConfig_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue struct {
+	ProbeStatusProxyConfig_FieldTerminalPath
+	value interface{}
+}
+
+var _ ProbeStatusProxyConfig_FieldPathArrayItemValue = (*ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object Probe_Status_ProxyConfig as interface{}
+func (fpaiv *ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue) GetSingle(source *Probe_Status_ProxyConfig) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*Probe_Status_ProxyConfig))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'ProxyConfig'
+func (fpaiv *ProbeStatusProxyConfig_FieldTerminalPathArrayItemValue) ContainsValue(source *Probe_Status_ProxyConfig) bool {
+	slice := fpaiv.ProbeStatusProxyConfig_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// ProbeStatusProxyConfig_FieldPathArrayOfValues allows storing slice of values for ProxyConfig fields according to their type
+type ProbeStatusProxyConfig_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	ProbeStatusProxyConfig_FieldPath
+}
+
+func ParseProbeStatusProxyConfig_FieldPathArrayOfValues(pathStr, valuesStr string) (ProbeStatusProxyConfig_FieldPathArrayOfValues, error) {
+	fp, err := ParseProbeStatusProxyConfig_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing ProxyConfig field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(ProbeStatusProxyConfig_FieldPathArrayOfValues), nil
+}
+
+func MustParseProbeStatusProxyConfig_FieldPathArrayOfValues(pathStr, valuesStr string) ProbeStatusProxyConfig_FieldPathArrayOfValues {
+	fpaov, err := ParseProbeStatusProxyConfig_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues struct {
+	ProbeStatusProxyConfig_FieldTerminalPath
+	values interface{}
+}
+
+var _ ProbeStatusProxyConfig_FieldPathArrayOfValues = (*ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpProxy:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbeStatusProxyConfig_FieldPathSelectorHttpsProxy:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ProbeStatusProxyConfig_FieldPathSelectorNoProxy:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues) AsHttpProxyArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues) AsHttpsProxyArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbeStatusProxyConfig_FieldTerminalPathArrayOfValues) AsNoProxyArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 

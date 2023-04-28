@@ -211,6 +211,10 @@ func (RegisterProbeRequestPathSelectorStatus) AgentType() RegisterProbeRequestPa
 	return RegisterProbeRequestPathSelectorStatusAgentType{}
 }
 
+func (RegisterProbeRequestPathSelectorStatus) ProxyConfig() RegisterProbeRequestPathSelectorStatusProxyConfig {
+	return RegisterProbeRequestPathSelectorStatusProxyConfig{}
+}
+
 type RegisterProbeRequestPathSelectorStatusExternalIpAddressV4 struct{}
 
 func (RegisterProbeRequestPathSelectorStatusExternalIpAddressV4) FieldPath() *RegisterProbeRequest_FieldSubPath {
@@ -2128,6 +2132,86 @@ func (s RegisterProbeRequestPathSelectorStatusAgentType) WithValue(value probe.P
 }
 
 func (s RegisterProbeRequestPathSelectorStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusProxyConfig struct{}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfig) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfig) WithValue(value *probe.Probe_Status_ProxyConfig) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfig) WithArrayOfValues(values []*probe.Probe_Status_ProxyConfig) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfig) HttpProxy() RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy {
+	return RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy{}
+}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfig) HttpsProxy() RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy {
+	return RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy{}
+}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfig) NoProxy() RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy {
+	return RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy{}
+}
+
+type RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy struct{}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy) WithValue(value string) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy struct{}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy) WithValue(value string) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy struct{}
+
+func (RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy) WithValue(value string) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
 }
 

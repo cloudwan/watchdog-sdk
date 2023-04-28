@@ -191,6 +191,11 @@ func (obj *Probe_Status) GotenValidate() error {
 			return gotenvalidate.NewValidationError("Status", "bandwidth", obj.Bandwidth, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.ProxyConfig).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("Status", "proxyConfig", obj.ProxyConfig, "nested object validation failed", err)
+		}
+	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()
 	}
@@ -329,6 +334,15 @@ func (obj *Probe_Status_Bandwidth) GotenValidate() error {
 	return nil
 }
 func (obj *Probe_Status_NetworkInterface) GotenValidate() error {
+	if obj == nil {
+		return nil
+	}
+	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
+		return cvobj.GotenCustomValidate()
+	}
+	return nil
+}
+func (obj *Probe_Status_ProxyConfig) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}

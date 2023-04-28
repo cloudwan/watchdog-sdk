@@ -2103,6 +2103,10 @@ func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) CaptureAllPack
 	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable struct{}
 
 func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable) FieldPath() *ActivationRequest_FieldSubPath {
@@ -2151,6 +2155,23 @@ func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPack
 }
 
 func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -2229,6 +2250,10 @@ func (ActivationRequestPathSelectorActivateProbeStatus) NetworkInterfaces() Acti
 
 func (ActivationRequestPathSelectorActivateProbeStatus) AgentType() ActivationRequestPathSelectorActivateProbeStatusAgentType {
 	return ActivationRequestPathSelectorActivateProbeStatusAgentType{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatus) ProxyConfig() ActivationRequestPathSelectorActivateProbeStatusProxyConfig {
+	return ActivationRequestPathSelectorActivateProbeStatusProxyConfig{}
 }
 
 type ActivationRequestPathSelectorActivateProbeStatusExternalIpAddressV4 struct{}
@@ -4148,6 +4173,86 @@ func (s ActivationRequestPathSelectorActivateProbeStatusAgentType) WithValue(val
 }
 
 func (s ActivationRequestPathSelectorActivateProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusProxyConfig struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfig) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfig) WithValue(value *probe.Probe_Status_ProxyConfig) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfig) WithArrayOfValues(values []*probe.Probe_Status_ProxyConfig) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfig) HttpProxy() ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy {
+	return ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfig) HttpsProxy() ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy {
+	return ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy{}
+}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfig) NoProxy() ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy {
+	return ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy{}
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy struct{}
+
+func (ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Status().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6361,6 +6466,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) CaptureAllPac
 	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable struct{}
 
 func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable) FieldPath() *ActivationRequestActivate_FieldSubPath {
@@ -6409,6 +6518,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPac
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -6487,6 +6613,10 @@ func (ActivationRequest_ActivatePathSelectorProbeStatus) NetworkInterfaces() Act
 
 func (ActivationRequest_ActivatePathSelectorProbeStatus) AgentType() ActivationRequest_ActivatePathSelectorProbeStatusAgentType {
 	return ActivationRequest_ActivatePathSelectorProbeStatusAgentType{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatus) ProxyConfig() ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig {
+	return ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig{}
 }
 
 type ActivationRequest_ActivatePathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -8406,6 +8536,86 @@ func (s ActivationRequest_ActivatePathSelectorProbeStatusAgentType) WithValue(va
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) WithValue(value *probe.Probe_Status_ProxyConfig) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) WithArrayOfValues(values []*probe.Probe_Status_ProxyConfig) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) HttpProxy() ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy {
+	return ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) HttpsProxy() ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy {
+	return ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy{}
+}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfig) NoProxy() ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy {
+	return ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy{}
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -10576,6 +10786,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) CaptureAllPa
 	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable struct{}
 
 func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable) FieldPath() *ActivationResponse_FieldSubPath {
@@ -10624,6 +10838,23 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPa
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -10702,6 +10933,10 @@ func (ActivationResponsePathSelectorActivatedProbeStatus) NetworkInterfaces() Ac
 
 func (ActivationResponsePathSelectorActivatedProbeStatus) AgentType() ActivationResponsePathSelectorActivatedProbeStatusAgentType {
 	return ActivationResponsePathSelectorActivatedProbeStatusAgentType{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatus) ProxyConfig() ActivationResponsePathSelectorActivatedProbeStatusProxyConfig {
+	return ActivationResponsePathSelectorActivatedProbeStatusProxyConfig{}
 }
 
 type ActivationResponsePathSelectorActivatedProbeStatusExternalIpAddressV4 struct{}
@@ -12621,6 +12856,86 @@ func (s ActivationResponsePathSelectorActivatedProbeStatusAgentType) WithValue(v
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusProxyConfig struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) WithValue(value *probe.Probe_Status_ProxyConfig) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) WithArrayOfValues(values []*probe.Probe_Status_ProxyConfig) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) HttpProxy() ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy {
+	return ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) HttpsProxy() ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy {
+	return ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy{}
+}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfig) NoProxy() ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy {
+	return ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy{}
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Status().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -15530,6 +15845,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) CaptureAllP
 	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+}
+
 type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable struct{}
 
 func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable) FieldPath() *ActivationResponseActivated_FieldSubPath {
@@ -15578,6 +15897,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllP
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
@@ -15656,6 +15992,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeStatus) NetworkInterfaces() A
 
 func (ActivationResponse_ActivatedPathSelectorProbeStatus) AgentType() ActivationResponse_ActivatedPathSelectorProbeStatusAgentType {
 	return ActivationResponse_ActivatedPathSelectorProbeStatusAgentType{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatus) ProxyConfig() ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig{}
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeStatusExternalIpAddressV4 struct{}
@@ -17575,6 +17915,86 @@ func (s ActivationResponse_ActivatedPathSelectorProbeStatusAgentType) WithValue(
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeStatusAgentType) WithArrayOfValues(values []probe.Probe_AgentType) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) WithValue(value *probe.Probe_Status_ProxyConfig) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) WithArrayOfValues(values []*probe.Probe_Status_ProxyConfig) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) HttpProxy() ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) HttpsProxy() ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy{}
+}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfig) NoProxy() ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy {
+	return ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy{}
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpProxy) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigHttpsProxy) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Status().ProxyConfig().NoProxy().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeStatusProxyConfigNoProxy) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

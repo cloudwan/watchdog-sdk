@@ -2957,6 +2957,12 @@ Note that the address is not always accurate.</p>
 <td class="type"><pre><a href="#enum-Probe.AgentType">Probe.AgentType</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">proxy_config</th>
+<td class="type"><pre><a href="#message-Probe.Status.ProxyConfig">Probe.Status.ProxyConfig</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -3105,6 +3111,13 @@ manager intervention. Convenient, but less secure configuration option.</p>
 <tr><td class="description"><p>By default only probe packets, arp and dns are captured.
 capture_all_packets is helpful when running on demand tests to other
 destinations</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">stop_capture_all_packets_by</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"><p>By Default capture_all_packets will run for atmost 1 hour</p>
 </td></tr>
  
 </tbody>
@@ -3360,6 +3373,36 @@ session</p>
 <tr>
 <th rowspan="2">external_ip_address_v6</th>
 <td class="type"><pre>repeated string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-Probe.Status.ProxyConfig">Probe.Status.ProxyConfig</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">http_proxy</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">https_proxy</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">no_proxy</th>
+<td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  
