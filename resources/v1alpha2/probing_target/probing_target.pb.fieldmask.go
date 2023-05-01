@@ -61,6 +61,7 @@ func FullProbingTarget_FieldMask() *ProbingTarget_FieldMask {
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorDisplayName})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorMetadata})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroup})
+	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroupName})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorMode})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorIpVersion})
 	res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAddress})
@@ -116,7 +117,7 @@ func (fieldMask *ProbingTarget_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 16)
+	presentSelectors := make([]bool, 17)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbingTarget_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -146,7 +147,7 @@ func (fieldMask *ProbingTarget_FieldMask) Reset() {
 
 func (fieldMask *ProbingTarget_FieldMask) Subtract(other *ProbingTarget_FieldMask) *ProbingTarget_FieldMask {
 	result := &ProbingTarget_FieldMask{}
-	removedSelectors := make([]bool, 16)
+	removedSelectors := make([]bool, 17)
 	otherSubMasks := map[ProbingTarget_FieldPathSelector]gotenobject.FieldMask{
 		ProbingTarget_FieldPathSelectorMetadata:          &ntt_meta.Meta_FieldMask{},
 		ProbingTarget_FieldPathSelectorLocation:          &common.Location_FieldMask{},
@@ -209,6 +210,7 @@ func (fieldMask *ProbingTarget_FieldMask) FilterInputFields() *ProbingTarget_Fie
 	result := &ProbingTarget_FieldMask{}
 	for _, path := range fieldMask.Paths {
 		switch path.Selector() {
+		case ProbingTarget_FieldPathSelectorGroupName:
 		case ProbingTarget_FieldPathSelectorMetadata:
 			if _, ok := path.(*ProbingTarget_FieldTerminalPath); ok {
 				for _, subpath := range ntt_meta.FullMeta_FieldMask().FilterInputFields().Paths {
@@ -367,6 +369,8 @@ func (fieldMask *ProbingTarget_FieldMask) Project(source *ProbingTarget) *Probin
 				wholeMetadataAccepted = true
 			case ProbingTarget_FieldPathSelectorGroup:
 				result.Group = source.Group
+			case ProbingTarget_FieldPathSelectorGroupName:
+				result.GroupName = source.GroupName
 			case ProbingTarget_FieldPathSelectorMode:
 				result.Mode = source.Mode
 			case ProbingTarget_FieldPathSelectorIpVersion:

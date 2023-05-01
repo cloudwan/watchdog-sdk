@@ -30,6 +30,9 @@ message ProbingTarget {
   // group reference
   string group = 17;
 
+  // Target group display name
+  string group_name = 25;
+
   // mode defines the mode for this probe target - icmp/udp/http/tcp
   ProbingMode mode = 2;
 

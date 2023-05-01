@@ -770,6 +770,10 @@ func (ProbePathSelectorSpec) ProbeGroup() ProbePathSelectorSpecProbeGroup {
 	return ProbePathSelectorSpecProbeGroup{}
 }
 
+func (ProbePathSelectorSpec) ProbeGroupName() ProbePathSelectorSpecProbeGroupName {
+	return ProbePathSelectorSpecProbeGroupName{}
+}
+
 func (ProbePathSelectorSpec) Device() ProbePathSelectorSpecDevice {
 	return ProbePathSelectorSpecDevice{}
 }
@@ -832,6 +836,23 @@ func (s ProbePathSelectorSpecProbeGroup) WithValue(value *probe_group.Reference)
 }
 
 func (s ProbePathSelectorSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorSpecProbeGroupName struct{}
+
+func (ProbePathSelectorSpecProbeGroupName) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorSpec,
+		subPath:  NewProbeSpecFieldPathBuilder().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorSpecProbeGroupName) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorSpecProbeGroupName) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
@@ -4297,6 +4318,9 @@ func NewProbeSpecFieldPathBuilder() ProbeSpecFieldPathBuilder {
 func (ProbeSpecFieldPathBuilder) ProbeGroup() Probe_SpecPathSelectorProbeGroup {
 	return Probe_SpecPathSelectorProbeGroup{}
 }
+func (ProbeSpecFieldPathBuilder) ProbeGroupName() Probe_SpecPathSelectorProbeGroupName {
+	return Probe_SpecPathSelectorProbeGroupName{}
+}
 func (ProbeSpecFieldPathBuilder) Device() Probe_SpecPathSelectorDevice {
 	return Probe_SpecPathSelectorDevice{}
 }
@@ -4345,6 +4369,20 @@ func (s Probe_SpecPathSelectorProbeGroup) WithValue(value *probe_group.Reference
 }
 
 func (s Probe_SpecPathSelectorProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ProbeSpec_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_SpecPathSelectorProbeGroupName struct{}
+
+func (Probe_SpecPathSelectorProbeGroupName) FieldPath() *ProbeSpec_FieldTerminalPath {
+	return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroupName}
+}
+
+func (s Probe_SpecPathSelectorProbeGroupName) WithValue(value string) *ProbeSpec_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeSpec_FieldTerminalPathValue)
+}
+
+func (s Probe_SpecPathSelectorProbeGroupName) WithArrayOfValues(values []string) *ProbeSpec_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeSpec_FieldTerminalPathArrayOfValues)
 }
 

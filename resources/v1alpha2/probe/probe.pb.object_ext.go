@@ -236,6 +236,9 @@ func (o *Probe_Spec) MakeDiffFieldMask(other *Probe_Spec) *Probe_Spec_FieldMask 
 	if o.GetProbeGroup().String() != other.GetProbeGroup().String() {
 		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroup})
 	}
+	if o.GetProbeGroupName() != other.GetProbeGroupName() {
+		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroupName})
+	}
 	if o.GetDevice().String() != other.GetDevice().String() {
 		res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDevice})
 	}
@@ -352,6 +355,7 @@ func (o *Probe_Spec) Clone() *Probe_Spec {
 			panic(err)
 		}
 	}
+	result.ProbeGroupName = o.ProbeGroupName
 	if o.Device == nil {
 		result.Device = nil
 	} else if data, err := o.Device.ProtoString(); err != nil {
@@ -396,6 +400,7 @@ func (o *Probe_Spec) Merge(source *Probe_Spec) {
 	} else {
 		o.ProbeGroup = nil
 	}
+	o.ProbeGroupName = source.GetProbeGroupName()
 	if source.GetDevice() != nil {
 		if data, err := source.GetDevice().ProtoString(); err != nil {
 			panic(err)

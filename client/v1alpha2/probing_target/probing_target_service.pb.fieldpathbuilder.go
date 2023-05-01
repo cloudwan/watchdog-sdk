@@ -243,6 +243,10 @@ func (BatchGetProbingTargetsResponsePathSelectorProbingTargets) Group() BatchGet
 	return BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroup{}
 }
 
+func (BatchGetProbingTargetsResponsePathSelectorProbingTargets) GroupName() BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName {
+	return BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName{}
+}
+
 func (BatchGetProbingTargetsResponsePathSelectorProbingTargets) Mode() BatchGetProbingTargetsResponsePathSelectorProbingTargetsMode {
 	return BatchGetProbingTargetsResponsePathSelectorProbingTargetsMode{}
 }
@@ -941,6 +945,23 @@ func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroup) WithValue
 }
 
 func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroup) WithArrayOfValues(values []*probing_target_group.Reference) *BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName struct{}
+
+func (BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName) FieldPath() *BatchGetProbingTargetsResponse_FieldSubPath {
+	return &BatchGetProbingTargetsResponse_FieldSubPath{
+		selector: BatchGetProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithValue(value string) *BatchGetProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithArrayOfValues(values []string) *BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbingTargetsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -2331,6 +2352,10 @@ func (ListProbingTargetsResponsePathSelectorProbingTargets) Group() ListProbingT
 	return ListProbingTargetsResponsePathSelectorProbingTargetsGroup{}
 }
 
+func (ListProbingTargetsResponsePathSelectorProbingTargets) GroupName() ListProbingTargetsResponsePathSelectorProbingTargetsGroupName {
+	return ListProbingTargetsResponsePathSelectorProbingTargetsGroupName{}
+}
+
 func (ListProbingTargetsResponsePathSelectorProbingTargets) Mode() ListProbingTargetsResponsePathSelectorProbingTargetsMode {
 	return ListProbingTargetsResponsePathSelectorProbingTargetsMode{}
 }
@@ -3029,6 +3054,23 @@ func (s ListProbingTargetsResponsePathSelectorProbingTargetsGroup) WithValue(val
 }
 
 func (s ListProbingTargetsResponsePathSelectorProbingTargetsGroup) WithArrayOfValues(values []*probing_target_group.Reference) *ListProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbingTargetsResponsePathSelectorProbingTargetsGroupName struct{}
+
+func (ListProbingTargetsResponsePathSelectorProbingTargetsGroupName) FieldPath() *ListProbingTargetsResponse_FieldSubPath {
+	return &ListProbingTargetsResponse_FieldSubPath{
+		selector: ListProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s ListProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithValue(value string) *ListProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s ListProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithArrayOfValues(values []string) *ListProbingTargetsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbingTargetsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -4817,6 +4859,10 @@ func (CreateProbingTargetRequestPathSelectorProbingTarget) Group() CreateProbing
 	return CreateProbingTargetRequestPathSelectorProbingTargetGroup{}
 }
 
+func (CreateProbingTargetRequestPathSelectorProbingTarget) GroupName() CreateProbingTargetRequestPathSelectorProbingTargetGroupName {
+	return CreateProbingTargetRequestPathSelectorProbingTargetGroupName{}
+}
+
 func (CreateProbingTargetRequestPathSelectorProbingTarget) Mode() CreateProbingTargetRequestPathSelectorProbingTargetMode {
 	return CreateProbingTargetRequestPathSelectorProbingTargetMode{}
 }
@@ -5515,6 +5561,23 @@ func (s CreateProbingTargetRequestPathSelectorProbingTargetGroup) WithValue(valu
 }
 
 func (s CreateProbingTargetRequestPathSelectorProbingTargetGroup) WithArrayOfValues(values []*probing_target_group.Reference) *CreateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbingTargetRequestPathSelectorProbingTargetGroupName struct{}
+
+func (CreateProbingTargetRequestPathSelectorProbingTargetGroupName) FieldPath() *CreateProbingTargetRequest_FieldSubPath {
+	return &CreateProbingTargetRequest_FieldSubPath{
+		selector: CreateProbingTargetRequest_FieldPathSelectorProbingTarget,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s CreateProbingTargetRequestPathSelectorProbingTargetGroupName) WithValue(value string) *CreateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s CreateProbingTargetRequestPathSelectorProbingTargetGroupName) WithArrayOfValues(values []string) *CreateProbingTargetRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6736,6 +6799,10 @@ func (UpdateProbingTargetRequestPathSelectorProbingTarget) Group() UpdateProbing
 	return UpdateProbingTargetRequestPathSelectorProbingTargetGroup{}
 }
 
+func (UpdateProbingTargetRequestPathSelectorProbingTarget) GroupName() UpdateProbingTargetRequestPathSelectorProbingTargetGroupName {
+	return UpdateProbingTargetRequestPathSelectorProbingTargetGroupName{}
+}
+
 func (UpdateProbingTargetRequestPathSelectorProbingTarget) Mode() UpdateProbingTargetRequestPathSelectorProbingTargetMode {
 	return UpdateProbingTargetRequestPathSelectorProbingTargetMode{}
 }
@@ -7434,6 +7501,23 @@ func (s UpdateProbingTargetRequestPathSelectorProbingTargetGroup) WithValue(valu
 }
 
 func (s UpdateProbingTargetRequestPathSelectorProbingTargetGroup) WithArrayOfValues(values []*probing_target_group.Reference) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetRequestPathSelectorProbingTargetGroupName struct{}
+
+func (UpdateProbingTargetRequestPathSelectorProbingTargetGroupName) FieldPath() *UpdateProbingTargetRequest_FieldSubPath {
+	return &UpdateProbingTargetRequest_FieldSubPath{
+		selector: UpdateProbingTargetRequest_FieldPathSelectorProbingTarget,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequestPathSelectorProbingTargetGroupName) WithValue(value string) *UpdateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorProbingTargetGroupName) WithArrayOfValues(values []string) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
@@ -8679,6 +8763,10 @@ func (UpdateProbingTargetRequestPathSelectorCasConditionalState) Group() UpdateP
 	return UpdateProbingTargetRequestPathSelectorCasConditionalStateGroup{}
 }
 
+func (UpdateProbingTargetRequestPathSelectorCasConditionalState) GroupName() UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName {
+	return UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName{}
+}
+
 func (UpdateProbingTargetRequestPathSelectorCasConditionalState) Mode() UpdateProbingTargetRequestPathSelectorCasConditionalStateMode {
 	return UpdateProbingTargetRequestPathSelectorCasConditionalStateMode{}
 }
@@ -9377,6 +9465,23 @@ func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateGroup) WithValu
 }
 
 func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateGroup) WithArrayOfValues(values []*probing_target_group.Reference) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName struct{}
+
+func (UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName) FieldPath() *UpdateProbingTargetRequest_FieldSubPath {
+	return &UpdateProbingTargetRequest_FieldSubPath{
+		selector: UpdateProbingTargetRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbingTargetRequestCASFieldPathBuilder().ConditionalState().GroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName) WithValue(value string) *UpdateProbingTargetRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequestPathSelectorCasConditionalStateGroupName) WithArrayOfValues(values []string) *UpdateProbingTargetRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequest_FieldSubPathArrayOfValues)
 }
 
@@ -10612,6 +10717,10 @@ func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) Group() Update
 	return UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroup{}
 }
 
+func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) GroupName() UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName {
+	return UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName{}
+}
+
 func (UpdateProbingTargetRequest_CASPathSelectorConditionalState) Mode() UpdateProbingTargetRequest_CASPathSelectorConditionalStateMode {
 	return UpdateProbingTargetRequest_CASPathSelectorConditionalStateMode{}
 }
@@ -11310,6 +11419,23 @@ func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroup) WithVal
 }
 
 func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroup) WithArrayOfValues(values []*probing_target_group.Reference) *UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName struct{}
+
+func (UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName) FieldPath() *UpdateProbingTargetRequestCAS_FieldSubPath {
+	return &UpdateProbingTargetRequestCAS_FieldSubPath{
+		selector: UpdateProbingTargetRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName) WithValue(value string) *UpdateProbingTargetRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingTargetRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbingTargetRequest_CASPathSelectorConditionalStateGroupName) WithArrayOfValues(values []string) *UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingTargetRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -12719,6 +12845,10 @@ func (SearchProbingTargetsResponsePathSelectorProbingTargets) Group() SearchProb
 	return SearchProbingTargetsResponsePathSelectorProbingTargetsGroup{}
 }
 
+func (SearchProbingTargetsResponsePathSelectorProbingTargets) GroupName() SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName {
+	return SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName{}
+}
+
 func (SearchProbingTargetsResponsePathSelectorProbingTargets) Mode() SearchProbingTargetsResponsePathSelectorProbingTargetsMode {
 	return SearchProbingTargetsResponsePathSelectorProbingTargetsMode{}
 }
@@ -13417,6 +13547,23 @@ func (s SearchProbingTargetsResponsePathSelectorProbingTargetsGroup) WithValue(v
 }
 
 func (s SearchProbingTargetsResponsePathSelectorProbingTargetsGroup) WithArrayOfValues(values []*probing_target_group.Reference) *SearchProbingTargetsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetsResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName struct{}
+
+func (SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName) FieldPath() *SearchProbingTargetsResponse_FieldSubPath {
+	return &SearchProbingTargetsResponse_FieldSubPath{
+		selector: SearchProbingTargetsResponse_FieldPathSelectorProbingTargets,
+		subPath:  probing_target.NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	}
+}
+
+func (s SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithValue(value string) *SearchProbingTargetsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbingTargetsResponse_FieldSubPathValue)
+}
+
+func (s SearchProbingTargetsResponsePathSelectorProbingTargetsGroupName) WithArrayOfValues(values []string) *SearchProbingTargetsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbingTargetsResponse_FieldSubPathArrayOfValues)
 }
 

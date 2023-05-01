@@ -454,6 +454,7 @@ type Probe_Spec_FieldMask struct {
 func FullProbe_Spec_FieldMask() *Probe_Spec_FieldMask {
 	res := &Probe_Spec_FieldMask{}
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroup})
+	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroupName})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDevice})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorEnabled})
 	res.Paths = append(res.Paths, &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorPrimaryLocation})
@@ -509,7 +510,7 @@ func (fieldMask *Probe_Spec_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 13)
+	presentSelectors := make([]bool, 14)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeSpec_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -539,7 +540,7 @@ func (fieldMask *Probe_Spec_FieldMask) Reset() {
 
 func (fieldMask *Probe_Spec_FieldMask) Subtract(other *Probe_Spec_FieldMask) *Probe_Spec_FieldMask {
 	result := &Probe_Spec_FieldMask{}
-	removedSelectors := make([]bool, 13)
+	removedSelectors := make([]bool, 14)
 	otherSubMasks := map[ProbeSpec_FieldPathSelector]gotenobject.FieldMask{
 		ProbeSpec_FieldPathSelectorPrimaryLocation:   &common.Location_FieldMask{},
 		ProbeSpec_FieldPathSelectorLocationDiscovery: &common.LocationDiscoverySpec_FieldMask{},
@@ -618,6 +619,7 @@ func (fieldMask *Probe_Spec_FieldMask) FilterInputFields() *Probe_Spec_FieldMask
 	result := &Probe_Spec_FieldMask{}
 	for _, path := range fieldMask.Paths {
 		switch path.Selector() {
+		case ProbeSpec_FieldPathSelectorProbeGroupName:
 		case ProbeSpec_FieldPathSelectorActivation:
 			if _, ok := path.(*ProbeSpec_FieldTerminalPath); ok {
 				for _, subpath := range FullProbe_Spec_ActivationSpec_FieldMask().FilterInputFields().Paths {
@@ -790,6 +792,8 @@ func (fieldMask *Probe_Spec_FieldMask) Project(source *Probe_Spec) *Probe_Spec {
 			switch tp.selector {
 			case ProbeSpec_FieldPathSelectorProbeGroup:
 				result.ProbeGroup = source.ProbeGroup
+			case ProbeSpec_FieldPathSelectorProbeGroupName:
+				result.ProbeGroupName = source.ProbeGroupName
 			case ProbeSpec_FieldPathSelectorDevice:
 				result.Device = source.Device
 			case ProbeSpec_FieldPathSelectorEnabled:

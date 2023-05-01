@@ -925,6 +925,10 @@ func (BatchGetProbesResponsePathSelectorProbesSpec) ProbeGroup() BatchGetProbesR
 	return BatchGetProbesResponsePathSelectorProbesSpecProbeGroup{}
 }
 
+func (BatchGetProbesResponsePathSelectorProbesSpec) ProbeGroupName() BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName {
+	return BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName{}
+}
+
 func (BatchGetProbesResponsePathSelectorProbesSpec) Device() BatchGetProbesResponsePathSelectorProbesSpecDevice {
 	return BatchGetProbesResponsePathSelectorProbesSpecDevice{}
 }
@@ -987,6 +991,23 @@ func (s BatchGetProbesResponsePathSelectorProbesSpecProbeGroup) WithValue(value 
 }
 
 func (s BatchGetProbesResponsePathSelectorProbesSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName struct{}
+
+func (BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName) FieldPath() *BatchGetProbesResponse_FieldSubPath {
+	return &BatchGetProbesResponse_FieldSubPath{
+		selector: BatchGetProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName) WithValue(value string) *BatchGetProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*BatchGetProbesResponse_FieldSubPathValue)
+}
+
+func (s BatchGetProbesResponsePathSelectorProbesSpecProbeGroupName) WithArrayOfValues(values []string) *BatchGetProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*BatchGetProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -5335,6 +5356,10 @@ func (ListProbesResponsePathSelectorProbesSpec) ProbeGroup() ListProbesResponseP
 	return ListProbesResponsePathSelectorProbesSpecProbeGroup{}
 }
 
+func (ListProbesResponsePathSelectorProbesSpec) ProbeGroupName() ListProbesResponsePathSelectorProbesSpecProbeGroupName {
+	return ListProbesResponsePathSelectorProbesSpecProbeGroupName{}
+}
+
 func (ListProbesResponsePathSelectorProbesSpec) Device() ListProbesResponsePathSelectorProbesSpecDevice {
 	return ListProbesResponsePathSelectorProbesSpecDevice{}
 }
@@ -5397,6 +5422,23 @@ func (s ListProbesResponsePathSelectorProbesSpecProbeGroup) WithValue(value *pro
 }
 
 func (s ListProbesResponsePathSelectorProbesSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ListProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type ListProbesResponsePathSelectorProbesSpecProbeGroupName struct{}
+
+func (ListProbesResponsePathSelectorProbesSpecProbeGroupName) FieldPath() *ListProbesResponse_FieldSubPath {
+	return &ListProbesResponse_FieldSubPath{
+		selector: ListProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecProbeGroupName) WithValue(value string) *ListProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ListProbesResponse_FieldSubPathValue)
+}
+
+func (s ListProbesResponsePathSelectorProbesSpecProbeGroupName) WithArrayOfValues(values []string) *ListProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ListProbesResponse_FieldSubPathArrayOfValues)
 }
 
@@ -10143,6 +10185,10 @@ func (CreateProbeRequestPathSelectorProbeSpec) ProbeGroup() CreateProbeRequestPa
 	return CreateProbeRequestPathSelectorProbeSpecProbeGroup{}
 }
 
+func (CreateProbeRequestPathSelectorProbeSpec) ProbeGroupName() CreateProbeRequestPathSelectorProbeSpecProbeGroupName {
+	return CreateProbeRequestPathSelectorProbeSpecProbeGroupName{}
+}
+
 func (CreateProbeRequestPathSelectorProbeSpec) Device() CreateProbeRequestPathSelectorProbeSpecDevice {
 	return CreateProbeRequestPathSelectorProbeSpecDevice{}
 }
@@ -10205,6 +10251,23 @@ func (s CreateProbeRequestPathSelectorProbeSpecProbeGroup) WithValue(value *prob
 }
 
 func (s CreateProbeRequestPathSelectorProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *CreateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type CreateProbeRequestPathSelectorProbeSpecProbeGroupName struct{}
+
+func (CreateProbeRequestPathSelectorProbeSpecProbeGroupName) FieldPath() *CreateProbeRequest_FieldSubPath {
+	return &CreateProbeRequest_FieldSubPath{
+		selector: CreateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecProbeGroupName) WithValue(value string) *CreateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*CreateProbeRequest_FieldSubPathValue)
+}
+
+func (s CreateProbeRequestPathSelectorProbeSpecProbeGroupName) WithArrayOfValues(values []string) *CreateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*CreateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -14384,6 +14447,10 @@ func (UpdateProbeRequestPathSelectorProbeSpec) ProbeGroup() UpdateProbeRequestPa
 	return UpdateProbeRequestPathSelectorProbeSpecProbeGroup{}
 }
 
+func (UpdateProbeRequestPathSelectorProbeSpec) ProbeGroupName() UpdateProbeRequestPathSelectorProbeSpecProbeGroupName {
+	return UpdateProbeRequestPathSelectorProbeSpecProbeGroupName{}
+}
+
 func (UpdateProbeRequestPathSelectorProbeSpec) Device() UpdateProbeRequestPathSelectorProbeSpecDevice {
 	return UpdateProbeRequestPathSelectorProbeSpecDevice{}
 }
@@ -14446,6 +14513,23 @@ func (s UpdateProbeRequestPathSelectorProbeSpecProbeGroup) WithValue(value *prob
 }
 
 func (s UpdateProbeRequestPathSelectorProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorProbeSpecProbeGroupName struct{}
+
+func (UpdateProbeRequestPathSelectorProbeSpecProbeGroupName) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecProbeGroupName) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorProbeSpecProbeGroupName) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -18649,6 +18733,10 @@ func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) ProbeGroup() Update
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup{}
 }
 
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) ProbeGroupName() UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName {
+	return UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName{}
+}
+
 func (UpdateProbeRequestPathSelectorCasConditionalStateSpec) Device() UpdateProbeRequestPathSelectorCasConditionalStateSpecDevice {
 	return UpdateProbeRequestPathSelectorCasConditionalStateSpecDevice{}
 }
@@ -18711,6 +18799,23 @@ func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup) WithVal
 }
 
 func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *UpdateProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName struct{}
+
+func (UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName) FieldPath() *UpdateProbeRequest_FieldSubPath {
+	return &UpdateProbeRequest_FieldSubPath{
+		selector: UpdateProbeRequest_FieldPathSelectorCas,
+		subPath:  NewUpdateProbeRequestCASFieldPathBuilder().ConditionalState().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName) WithValue(value string) *UpdateProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequest_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequestPathSelectorCasConditionalStateSpecProbeGroupName) WithArrayOfValues(values []string) *UpdateProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequest_FieldSubPathArrayOfValues)
 }
 
@@ -22904,6 +23009,10 @@ func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) ProbeGroup() Updat
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup{}
 }
 
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) ProbeGroupName() UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName {
+	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName{}
+}
+
 func (UpdateProbeRequest_CASPathSelectorConditionalStateSpec) Device() UpdateProbeRequest_CASPathSelectorConditionalStateSpecDevice {
 	return UpdateProbeRequest_CASPathSelectorConditionalStateSpecDevice{}
 }
@@ -22966,6 +23075,23 @@ func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup) WithVa
 }
 
 func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName struct{}
+
+func (UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName) FieldPath() *UpdateProbeRequestCAS_FieldSubPath {
+	return &UpdateProbeRequestCAS_FieldSubPath{
+		selector: UpdateProbeRequestCAS_FieldPathSelectorConditionalState,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName) WithValue(value string) *UpdateProbeRequestCAS_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeRequestCAS_FieldSubPathValue)
+}
+
+func (s UpdateProbeRequest_CASPathSelectorConditionalStateSpecProbeGroupName) WithArrayOfValues(values []string) *UpdateProbeRequestCAS_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeRequestCAS_FieldSubPathArrayOfValues)
 }
 
@@ -27333,6 +27459,10 @@ func (SearchProbesResponsePathSelectorProbesSpec) ProbeGroup() SearchProbesRespo
 	return SearchProbesResponsePathSelectorProbesSpecProbeGroup{}
 }
 
+func (SearchProbesResponsePathSelectorProbesSpec) ProbeGroupName() SearchProbesResponsePathSelectorProbesSpecProbeGroupName {
+	return SearchProbesResponsePathSelectorProbesSpecProbeGroupName{}
+}
+
 func (SearchProbesResponsePathSelectorProbesSpec) Device() SearchProbesResponsePathSelectorProbesSpecDevice {
 	return SearchProbesResponsePathSelectorProbesSpecDevice{}
 }
@@ -27395,6 +27525,23 @@ func (s SearchProbesResponsePathSelectorProbesSpecProbeGroup) WithValue(value *p
 }
 
 func (s SearchProbesResponsePathSelectorProbesSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *SearchProbesResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
+}
+
+type SearchProbesResponsePathSelectorProbesSpecProbeGroupName struct{}
+
+func (SearchProbesResponsePathSelectorProbesSpecProbeGroupName) FieldPath() *SearchProbesResponse_FieldSubPath {
+	return &SearchProbesResponse_FieldSubPath{
+		selector: SearchProbesResponse_FieldPathSelectorProbes,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecProbeGroupName) WithValue(value string) *SearchProbesResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*SearchProbesResponse_FieldSubPathValue)
+}
+
+func (s SearchProbesResponsePathSelectorProbesSpecProbeGroupName) WithArrayOfValues(values []string) *SearchProbesResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*SearchProbesResponse_FieldSubPathArrayOfValues)
 }
 

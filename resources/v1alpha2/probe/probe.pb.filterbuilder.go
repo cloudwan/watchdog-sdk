@@ -2335,6 +2335,10 @@ func (b *filterCndBuilderSpec) ProbeGroup() *filterCndBuilderSpecProbeGroup {
 	return &filterCndBuilderSpecProbeGroup{builder: b.builder}
 }
 
+func (b *filterCndBuilderSpec) ProbeGroupName() *filterCndBuilderSpecProbeGroupName {
+	return &filterCndBuilderSpecProbeGroupName{builder: b.builder}
+}
+
 func (b *filterCndBuilderSpec) Device() *filterCndBuilderSpecDevice {
 	return &filterCndBuilderSpecDevice{builder: b.builder}
 }
@@ -2439,6 +2443,65 @@ func (b *filterCndBuilderSpecProbeGroup) compare(op gotenfilter.CompareOperator,
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().ProbeGroup().WithValue(value),
+	})
+}
+
+type filterCndBuilderSpecProbeGroupName struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().ProbeGroupName().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().ProbeGroupName().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderSpecProbeGroupName) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().ProbeGroupName().WithValue(value),
 	})
 }
 

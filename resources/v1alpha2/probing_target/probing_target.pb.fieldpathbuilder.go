@@ -73,6 +73,9 @@ func (ProbingTargetFieldPathBuilder) Metadata() ProbingTargetPathSelectorMetadat
 func (ProbingTargetFieldPathBuilder) Group() ProbingTargetPathSelectorGroup {
 	return ProbingTargetPathSelectorGroup{}
 }
+func (ProbingTargetFieldPathBuilder) GroupName() ProbingTargetPathSelectorGroupName {
+	return ProbingTargetPathSelectorGroupName{}
+}
 func (ProbingTargetFieldPathBuilder) Mode() ProbingTargetPathSelectorMode {
 	return ProbingTargetPathSelectorMode{}
 }
@@ -764,6 +767,20 @@ func (s ProbingTargetPathSelectorGroup) WithValue(value *probing_target_group.Re
 }
 
 func (s ProbingTargetPathSelectorGroup) WithArrayOfValues(values []*probing_target_group.Reference) *ProbingTarget_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldTerminalPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorGroupName struct{}
+
+func (ProbingTargetPathSelectorGroupName) FieldPath() *ProbingTarget_FieldTerminalPath {
+	return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroupName}
+}
+
+func (s ProbingTargetPathSelectorGroupName) WithValue(value string) *ProbingTarget_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldTerminalPathValue)
+}
+
+func (s ProbingTargetPathSelectorGroupName) WithArrayOfValues(values []string) *ProbingTarget_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldTerminalPathArrayOfValues)
 }
 

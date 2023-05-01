@@ -1031,24 +1031,27 @@ type ProbeSpec_FieldPathSelector int32
 
 const (
 	ProbeSpec_FieldPathSelectorProbeGroup         ProbeSpec_FieldPathSelector = 0
-	ProbeSpec_FieldPathSelectorDevice             ProbeSpec_FieldPathSelector = 1
-	ProbeSpec_FieldPathSelectorEnabled            ProbeSpec_FieldPathSelector = 2
-	ProbeSpec_FieldPathSelectorPrimaryLocation    ProbeSpec_FieldPathSelector = 3
-	ProbeSpec_FieldPathSelectorLocationDiscovery  ProbeSpec_FieldPathSelector = 4
-	ProbeSpec_FieldPathSelectorContactInfo        ProbeSpec_FieldPathSelector = 5
-	ProbeSpec_FieldPathSelectorActivation         ProbeSpec_FieldPathSelector = 6
-	ProbeSpec_FieldPathSelectorDisableSpeedtest   ProbeSpec_FieldPathSelector = 7
-	ProbeSpec_FieldPathSelectorAccessToken        ProbeSpec_FieldPathSelector = 8
-	ProbeSpec_FieldPathSelectorAgentType          ProbeSpec_FieldPathSelector = 9
-	ProbeSpec_FieldPathSelectorExternalIpCheckUrl ProbeSpec_FieldPathSelector = 10
-	ProbeSpec_FieldPathSelectorTargetServers      ProbeSpec_FieldPathSelector = 11
-	ProbeSpec_FieldPathSelectorPcapSettings       ProbeSpec_FieldPathSelector = 12
+	ProbeSpec_FieldPathSelectorProbeGroupName     ProbeSpec_FieldPathSelector = 1
+	ProbeSpec_FieldPathSelectorDevice             ProbeSpec_FieldPathSelector = 2
+	ProbeSpec_FieldPathSelectorEnabled            ProbeSpec_FieldPathSelector = 3
+	ProbeSpec_FieldPathSelectorPrimaryLocation    ProbeSpec_FieldPathSelector = 4
+	ProbeSpec_FieldPathSelectorLocationDiscovery  ProbeSpec_FieldPathSelector = 5
+	ProbeSpec_FieldPathSelectorContactInfo        ProbeSpec_FieldPathSelector = 6
+	ProbeSpec_FieldPathSelectorActivation         ProbeSpec_FieldPathSelector = 7
+	ProbeSpec_FieldPathSelectorDisableSpeedtest   ProbeSpec_FieldPathSelector = 8
+	ProbeSpec_FieldPathSelectorAccessToken        ProbeSpec_FieldPathSelector = 9
+	ProbeSpec_FieldPathSelectorAgentType          ProbeSpec_FieldPathSelector = 10
+	ProbeSpec_FieldPathSelectorExternalIpCheckUrl ProbeSpec_FieldPathSelector = 11
+	ProbeSpec_FieldPathSelectorTargetServers      ProbeSpec_FieldPathSelector = 12
+	ProbeSpec_FieldPathSelectorPcapSettings       ProbeSpec_FieldPathSelector = 13
 )
 
 func (s ProbeSpec_FieldPathSelector) String() string {
 	switch s {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		return "probe_group"
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		return "probe_group_name"
 	case ProbeSpec_FieldPathSelectorDevice:
 		return "device"
 	case ProbeSpec_FieldPathSelectorEnabled:
@@ -1086,6 +1089,8 @@ func BuildProbeSpec_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpec_FieldPath,
 		switch fp[0] {
 		case "probe_group", "probeGroup", "probe-group":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroup}, nil
+		case "probe_group_name", "probeGroupName", "probe-group-name":
+			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorProbeGroupName}, nil
 		case "device":
 			return &ProbeSpec_FieldTerminalPath{selector: ProbeSpec_FieldPathSelectorDevice}, nil
 		case "enabled":
@@ -1204,6 +1209,8 @@ func (fp *ProbeSpec_FieldTerminalPath) Get(source *Probe_Spec) (values []interfa
 			if source.ProbeGroup != nil {
 				values = append(values, source.ProbeGroup)
 			}
+		case ProbeSpec_FieldPathSelectorProbeGroupName:
+			values = append(values, source.ProbeGroupName)
 		case ProbeSpec_FieldPathSelectorDevice:
 			if source.Device != nil {
 				values = append(values, source.Device)
@@ -1263,6 +1270,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetSingle(source *Probe_Spec) (interface{
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		res := source.GetProbeGroup()
 		return res, res != nil
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		return source.GetProbeGroupName(), source != nil
 	case ProbeSpec_FieldPathSelectorDevice:
 		res := source.GetDevice()
 		return res, res != nil
@@ -1310,6 +1319,8 @@ func (fp *ProbeSpec_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		return (*probe_group.Reference)(nil)
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		return ""
 	case ProbeSpec_FieldPathSelectorDevice:
 		return (*devices_device.Reference)(nil)
 	case ProbeSpec_FieldPathSelectorEnabled:
@@ -1344,6 +1355,8 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValue(item *Probe_Spec) {
 		switch fp.selector {
 		case ProbeSpec_FieldPathSelectorProbeGroup:
 			item.ProbeGroup = nil
+		case ProbeSpec_FieldPathSelectorProbeGroupName:
+			item.ProbeGroupName = ""
 		case ProbeSpec_FieldPathSelectorDevice:
 			item.Device = nil
 		case ProbeSpec_FieldPathSelectorEnabled:
@@ -1381,6 +1394,7 @@ func (fp *ProbeSpec_FieldTerminalPath) ClearValueRaw(item proto.Message) {
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbeSpec_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpec_FieldPathSelectorProbeGroup ||
+		fp.selector == ProbeSpec_FieldPathSelectorProbeGroupName ||
 		fp.selector == ProbeSpec_FieldPathSelectorDevice ||
 		fp.selector == ProbeSpec_FieldPathSelectorEnabled ||
 		fp.selector == ProbeSpec_FieldPathSelectorDisableSpeedtest ||
@@ -1396,6 +1410,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIValue(value interface{}) ProbeSpec_F
 	switch fp.selector {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*probe_group.Reference)}
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(string)}
 	case ProbeSpec_FieldPathSelectorDevice:
 		return &ProbeSpec_FieldTerminalPathValue{ProbeSpec_FieldTerminalPath: *fp, value: value.(*devices_device.Reference)}
 	case ProbeSpec_FieldPathSelectorEnabled:
@@ -1434,6 +1450,8 @@ func (fp *ProbeSpec_FieldTerminalPath) WithIArrayOfValues(values interface{}) Pr
 	switch fp.selector {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*probe_group.Reference)}
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]string)}
 	case ProbeSpec_FieldPathSelectorDevice:
 		return &ProbeSpec_FieldTerminalPathArrayOfValues{ProbeSpec_FieldTerminalPath: *fp, values: values.([]*devices_device.Reference)}
 	case ProbeSpec_FieldPathSelectorEnabled:
@@ -1714,6 +1732,10 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) AsProbeGroupValue() (*probe_group.R
 	res, ok := fpv.value.(*probe_group.Reference)
 	return res, ok
 }
+func (fpv *ProbeSpec_FieldTerminalPathValue) AsProbeGroupNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 func (fpv *ProbeSpec_FieldTerminalPathValue) AsDeviceValue() (*devices_device.Reference, bool) {
 	res, ok := fpv.value.(*devices_device.Reference)
 	return res, ok
@@ -1771,6 +1793,8 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) SetTo(target **Probe_Spec) {
 	switch fpv.selector {
 	case ProbeSpec_FieldPathSelectorProbeGroup:
 		(*target).ProbeGroup = fpv.value.(*probe_group.Reference)
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		(*target).ProbeGroupName = fpv.value.(string)
 	case ProbeSpec_FieldPathSelectorDevice:
 		(*target).Device = fpv.value.(*devices_device.Reference)
 	case ProbeSpec_FieldPathSelectorEnabled:
@@ -1823,6 +1847,16 @@ func (fpv *ProbeSpec_FieldTerminalPathValue) CompareWith(source *Probe_Spec) (in
 		if leftValue.String() == rightValue.String() {
 			return 0, true
 		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetProbeGroupName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -2162,6 +2196,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 		for _, v := range fpaov.values.([]*probe_group.Reference) {
 			values = append(values, v)
 		}
+	case ProbeSpec_FieldPathSelectorProbeGroupName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	case ProbeSpec_FieldPathSelectorDevice:
 		for _, v := range fpaov.values.([]*devices_device.Reference) {
 			values = append(values, v)
@@ -2215,6 +2253,10 @@ func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) GetRawValues() (values []
 }
 func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsProbeGroupArrayOfValues() ([]*probe_group.Reference, bool) {
 	res, ok := fpaov.values.([]*probe_group.Reference)
+	return res, ok
+}
+func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsProbeGroupNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 func (fpaov *ProbeSpec_FieldTerminalPathArrayOfValues) AsDeviceArrayOfValues() ([]*devices_device.Reference, bool) {

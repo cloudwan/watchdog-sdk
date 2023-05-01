@@ -82,18 +82,19 @@ const (
 	ProbingTarget_FieldPathSelectorDisplayName       ProbingTarget_FieldPathSelector = 1
 	ProbingTarget_FieldPathSelectorMetadata          ProbingTarget_FieldPathSelector = 2
 	ProbingTarget_FieldPathSelectorGroup             ProbingTarget_FieldPathSelector = 3
-	ProbingTarget_FieldPathSelectorMode              ProbingTarget_FieldPathSelector = 4
-	ProbingTarget_FieldPathSelectorIpVersion         ProbingTarget_FieldPathSelector = 5
-	ProbingTarget_FieldPathSelectorAddress           ProbingTarget_FieldPathSelector = 6
-	ProbingTarget_FieldPathSelectorCategory          ProbingTarget_FieldPathSelector = 7
-	ProbingTarget_FieldPathSelectorLocationType      ProbingTarget_FieldPathSelector = 8
-	ProbingTarget_FieldPathSelectorLocation          ProbingTarget_FieldPathSelector = 9
-	ProbingTarget_FieldPathSelectorHttpProbingConfig ProbingTarget_FieldPathSelector = 10
-	ProbingTarget_FieldPathSelectorAgent             ProbingTarget_FieldPathSelector = 11
-	ProbingTarget_FieldPathSelectorAddresses         ProbingTarget_FieldPathSelector = 12
-	ProbingTarget_FieldPathSelectorTargetType        ProbingTarget_FieldPathSelector = 13
-	ProbingTarget_FieldPathSelectorUdpPort           ProbingTarget_FieldPathSelector = 14
-	ProbingTarget_FieldPathSelectorSpeedtestTcpPort  ProbingTarget_FieldPathSelector = 15
+	ProbingTarget_FieldPathSelectorGroupName         ProbingTarget_FieldPathSelector = 4
+	ProbingTarget_FieldPathSelectorMode              ProbingTarget_FieldPathSelector = 5
+	ProbingTarget_FieldPathSelectorIpVersion         ProbingTarget_FieldPathSelector = 6
+	ProbingTarget_FieldPathSelectorAddress           ProbingTarget_FieldPathSelector = 7
+	ProbingTarget_FieldPathSelectorCategory          ProbingTarget_FieldPathSelector = 8
+	ProbingTarget_FieldPathSelectorLocationType      ProbingTarget_FieldPathSelector = 9
+	ProbingTarget_FieldPathSelectorLocation          ProbingTarget_FieldPathSelector = 10
+	ProbingTarget_FieldPathSelectorHttpProbingConfig ProbingTarget_FieldPathSelector = 11
+	ProbingTarget_FieldPathSelectorAgent             ProbingTarget_FieldPathSelector = 12
+	ProbingTarget_FieldPathSelectorAddresses         ProbingTarget_FieldPathSelector = 13
+	ProbingTarget_FieldPathSelectorTargetType        ProbingTarget_FieldPathSelector = 14
+	ProbingTarget_FieldPathSelectorUdpPort           ProbingTarget_FieldPathSelector = 15
+	ProbingTarget_FieldPathSelectorSpeedtestTcpPort  ProbingTarget_FieldPathSelector = 16
 )
 
 func (s ProbingTarget_FieldPathSelector) String() string {
@@ -106,6 +107,8 @@ func (s ProbingTarget_FieldPathSelector) String() string {
 		return "metadata"
 	case ProbingTarget_FieldPathSelectorGroup:
 		return "group"
+	case ProbingTarget_FieldPathSelectorGroupName:
+		return "group_name"
 	case ProbingTarget_FieldPathSelectorMode:
 		return "mode"
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -149,6 +152,8 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorMetadata}, nil
 		case "group":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroup}, nil
+		case "group_name", "groupName", "group-name":
+			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroupName}, nil
 		case "mode":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorMode}, nil
 		case "ip_version", "ipVersion", "ip-version":
@@ -253,6 +258,8 @@ func (fp *ProbingTarget_FieldTerminalPath) Get(source *ProbingTarget) (values []
 			if source.Group != nil {
 				values = append(values, source.Group)
 			}
+		case ProbingTarget_FieldPathSelectorGroupName:
+			values = append(values, source.GroupName)
 		case ProbingTarget_FieldPathSelectorMode:
 			values = append(values, source.Mode)
 		case ProbingTarget_FieldPathSelectorIpVersion:
@@ -310,6 +317,8 @@ func (fp *ProbingTarget_FieldTerminalPath) GetSingle(source *ProbingTarget) (int
 	case ProbingTarget_FieldPathSelectorGroup:
 		res := source.GetGroup()
 		return res, res != nil
+	case ProbingTarget_FieldPathSelectorGroupName:
+		return source.GetGroupName(), source != nil
 	case ProbingTarget_FieldPathSelectorMode:
 		return source.GetMode(), source != nil
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -358,6 +367,8 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 		return (*ntt_meta.Meta)(nil)
 	case ProbingTarget_FieldPathSelectorGroup:
 		return (*probing_target_group.Reference)(nil)
+	case ProbingTarget_FieldPathSelectorGroupName:
+		return ""
 	case ProbingTarget_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -398,6 +409,8 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 			item.Metadata = nil
 		case ProbingTarget_FieldPathSelectorGroup:
 			item.Group = nil
+		case ProbingTarget_FieldPathSelectorGroupName:
+			item.GroupName = ""
 		case ProbingTarget_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case ProbingTarget_FieldPathSelectorIpVersion:
@@ -437,6 +450,7 @@ func (fp *ProbingTarget_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbingTarget_FieldPathSelectorName ||
 		fp.selector == ProbingTarget_FieldPathSelectorDisplayName ||
 		fp.selector == ProbingTarget_FieldPathSelectorGroup ||
+		fp.selector == ProbingTarget_FieldPathSelectorGroupName ||
 		fp.selector == ProbingTarget_FieldPathSelectorMode ||
 		fp.selector == ProbingTarget_FieldPathSelectorIpVersion ||
 		fp.selector == ProbingTarget_FieldPathSelectorAddress ||
@@ -463,6 +477,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) Probing
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*ntt_meta.Meta)}
 	case ProbingTarget_FieldPathSelectorGroup:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*probing_target_group.Reference)}
+	case ProbingTarget_FieldPathSelectorGroupName:
+		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(string)}
 	case ProbingTarget_FieldPathSelectorMode:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -507,6 +523,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*ntt_meta.Meta)}
 	case ProbingTarget_FieldPathSelectorGroup:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*probing_target_group.Reference)}
+	case ProbingTarget_FieldPathSelectorGroupName:
+		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]string)}
 	case ProbingTarget_FieldPathSelectorMode:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -747,6 +765,10 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) AsGroupValue() (*probing_target
 	res, ok := fpv.value.(*probing_target_group.Reference)
 	return res, ok
 }
+func (fpv *ProbingTarget_FieldTerminalPathValue) AsGroupNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 func (fpv *ProbingTarget_FieldTerminalPathValue) AsModeValue() (common.ProbingMode, bool) {
 	res, ok := fpv.value.(common.ProbingMode)
 	return res, ok
@@ -810,6 +832,8 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
 		(*target).Metadata = fpv.value.(*ntt_meta.Meta)
 	case ProbingTarget_FieldPathSelectorGroup:
 		(*target).Group = fpv.value.(*probing_target_group.Reference)
+	case ProbingTarget_FieldPathSelectorGroupName:
+		(*target).GroupName = fpv.value.(string)
 	case ProbingTarget_FieldPathSelectorMode:
 		(*target).Mode = fpv.value.(common.ProbingMode)
 	case ProbingTarget_FieldPathSelectorIpVersion:
@@ -893,6 +917,16 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) CompareWith(source *ProbingTarg
 		if leftValue.String() == rightValue.String() {
 			return 0, true
 		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbingTarget_FieldPathSelectorGroupName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetGroupName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -1228,6 +1262,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) GetRawValues() (value
 		for _, v := range fpaov.values.([]*probing_target_group.Reference) {
 			values = append(values, v)
 		}
+	case ProbingTarget_FieldPathSelectorGroupName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	case ProbingTarget_FieldPathSelectorMode:
 		for _, v := range fpaov.values.([]common.ProbingMode) {
 			values = append(values, v)
@@ -1293,6 +1331,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsMetadataArrayOfValu
 }
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsGroupArrayOfValues() ([]*probing_target_group.Reference, bool) {
 	res, ok := fpaov.values.([]*probing_target_group.Reference)
+	return res, ok
+}
+func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsGroupNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsModeArrayOfValues() ([]common.ProbingMode, bool) {

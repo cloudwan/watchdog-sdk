@@ -222,6 +222,10 @@ func (b *filterCndBuilder) Group() *filterCndBuilderGroup {
 	return &filterCndBuilderGroup{builder: b.builder}
 }
 
+func (b *filterCndBuilder) GroupName() *filterCndBuilderGroupName {
+	return &filterCndBuilderGroupName{builder: b.builder}
+}
+
 func (b *filterCndBuilder) Mode() *filterCndBuilderMode {
 	return &filterCndBuilderMode{builder: b.builder}
 }
@@ -2309,6 +2313,65 @@ func (b *filterCndBuilderGroup) compare(op gotenfilter.CompareOperator, value *p
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().Group().WithValue(value),
+	})
+}
+
+type filterCndBuilderGroupName struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderGroupName) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderGroupName) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderGroupName) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderGroupName) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderGroupName) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderGroupName) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderGroupName) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().GroupName().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderGroupName) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().GroupName().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderGroupName) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderGroupName) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().GroupName().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderGroupName) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().GroupName().WithValue(value),
 	})
 }
 

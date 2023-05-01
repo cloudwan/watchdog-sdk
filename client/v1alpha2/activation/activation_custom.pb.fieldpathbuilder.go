@@ -867,6 +867,10 @@ func (ActivationRequestPathSelectorActivateProbeSpec) ProbeGroup() ActivationReq
 	return ActivationRequestPathSelectorActivateProbeSpecProbeGroup{}
 }
 
+func (ActivationRequestPathSelectorActivateProbeSpec) ProbeGroupName() ActivationRequestPathSelectorActivateProbeSpecProbeGroupName {
+	return ActivationRequestPathSelectorActivateProbeSpecProbeGroupName{}
+}
+
 func (ActivationRequestPathSelectorActivateProbeSpec) Device() ActivationRequestPathSelectorActivateProbeSpecDevice {
 	return ActivationRequestPathSelectorActivateProbeSpecDevice{}
 }
@@ -929,6 +933,23 @@ func (s ActivationRequestPathSelectorActivateProbeSpecProbeGroup) WithValue(valu
 }
 
 func (s ActivationRequestPathSelectorActivateProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequestPathSelectorActivateProbeSpecProbeGroupName struct{}
+
+func (ActivationRequestPathSelectorActivateProbeSpecProbeGroupName) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecProbeGroupName) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivateProbeSpecProbeGroupName) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -5230,6 +5251,10 @@ func (ActivationRequest_ActivatePathSelectorProbeSpec) ProbeGroup() ActivationRe
 	return ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup{}
 }
 
+func (ActivationRequest_ActivatePathSelectorProbeSpec) ProbeGroupName() ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName {
+	return ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName{}
+}
+
 func (ActivationRequest_ActivatePathSelectorProbeSpec) Device() ActivationRequest_ActivatePathSelectorProbeSpecDevice {
 	return ActivationRequest_ActivatePathSelectorProbeSpecDevice{}
 }
@@ -5292,6 +5317,23 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup) WithValue(val
 }
 
 func (s ActivationRequest_ActivatePathSelectorProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName struct{}
+
+func (ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName) FieldPath() *ActivationRequestActivate_FieldSubPath {
+	return &ActivationRequestActivate_FieldSubPath{
+		selector: ActivationRequestActivate_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName) WithValue(value string) *ActivationRequestActivate_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorProbeSpecProbeGroupName) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -9550,6 +9592,10 @@ func (ActivationResponsePathSelectorActivatedProbeSpec) ProbeGroup() ActivationR
 	return ActivationResponsePathSelectorActivatedProbeSpecProbeGroup{}
 }
 
+func (ActivationResponsePathSelectorActivatedProbeSpec) ProbeGroupName() ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName {
+	return ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName{}
+}
+
 func (ActivationResponsePathSelectorActivatedProbeSpec) Device() ActivationResponsePathSelectorActivatedProbeSpecDevice {
 	return ActivationResponsePathSelectorActivatedProbeSpecDevice{}
 }
@@ -9612,6 +9658,23 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecProbeGroup) WithValue(va
 }
 
 func (s ActivationResponsePathSelectorActivatedProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ActivationResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName struct{}
+
+func (ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName) FieldPath() *ActivationResponse_FieldSubPath {
+	return &ActivationResponse_FieldSubPath{
+		selector: ActivationResponse_FieldPathSelectorActivated,
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName) WithValue(value string) *ActivationResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
+}
+
+func (s ActivationResponsePathSelectorActivatedProbeSpecProbeGroupName) WithArrayOfValues(values []string) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -14609,6 +14672,10 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpec) ProbeGroup() Activation
 	return ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup{}
 }
 
+func (ActivationResponse_ActivatedPathSelectorProbeSpec) ProbeGroupName() ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName{}
+}
+
 func (ActivationResponse_ActivatedPathSelectorProbeSpec) Device() ActivationResponse_ActivatedPathSelectorProbeSpecDevice {
 	return ActivationResponse_ActivatedPathSelectorProbeSpecDevice{}
 }
@@ -14671,6 +14738,23 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup) WithValue(v
 }
 
 func (s ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroup) WithArrayOfValues(values []*probe_group.Reference) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
+}
+
+type ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName struct{}
+
+func (ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName) FieldPath() *ActivationResponseActivated_FieldSubPath {
+	return &ActivationResponseActivated_FieldSubPath{
+		selector: ActivationResponseActivated_FieldPathSelectorProbe,
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().ProbeGroupName().FieldPath(),
+	}
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName) WithValue(value string) *ActivationResponseActivated_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
+}
+
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecProbeGroupName) WithArrayOfValues(values []string) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 

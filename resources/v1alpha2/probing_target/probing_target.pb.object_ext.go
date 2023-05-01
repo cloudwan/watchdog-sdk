@@ -81,6 +81,9 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 	if o.GetGroup().String() != other.GetGroup().String() {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroup})
 	}
+	if o.GetGroupName() != other.GetGroupName() {
+		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorGroupName})
+	}
 	if o.GetMode() != other.GetMode() {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorMode})
 	}
@@ -174,6 +177,7 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 			panic(err)
 		}
 	}
+	result.GroupName = o.GroupName
 	result.Mode = o.Mode
 	result.IpVersion = o.IpVersion
 	result.Address = o.Address
@@ -237,6 +241,7 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 	} else {
 		o.Group = nil
 	}
+	o.GroupName = source.GetGroupName()
 	o.Mode = source.GetMode()
 	o.IpVersion = source.GetIpVersion()
 	o.Address = source.GetAddress()

@@ -50,7 +50,7 @@ func ResourceViewFieldMask(viewName view.View, extraMask *Probe_FieldMask) *Prob
 	case view.View_FULL:
 		return nil
 	case view.View_BASIC:
-		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name", "spec.enabled", "spec.probe_group", "spec.activation", "spec.primary_location.address.street_address", "status.active_location.address.street_address", "status.external_ip_address_v4", "status.external_ip_address_v6", "status.as_info.name", "status.software_version.version", "status.system_info.os.name", "status.system_info.serial_number", "status.activation", "status.connection", "status.connection_status_change_time", "memo")
+		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name", "spec.enabled", "spec.probe_group", "spec.probe_group_name", "spec.activation", "spec.primary_location.address.street_address", "status.active_location.address.street_address", "status.external_ip_address_v4", "status.external_ip_address_v6", "status.as_info.name", "status.software_version.version", "status.system_info.os.name", "status.system_info.serial_number", "status.activation", "status.connection", "status.connection_status_change_time", "memo")
 		break
 	case view.View_NAME:
 		protoFieldMask.Paths = append(protoFieldMask.Paths, "name", "display_name")

@@ -50,6 +50,9 @@ message Probe {
     // Probe Group allows optional grouping of probes.
     string probe_group = 11;
 
+    // Probe group display name
+    string probe_group_name = 19;
+
     // device referes the device that assigned to the probe.
     // When this field is empty, that means there is no
     // asigned device yet.
