@@ -45,4 +45,21 @@ service PcapService {
              "*}:getPcapFileFromAgent"
     };
   }
+
+  // GetPcapFileInfoFromAgent
+  rpc GetPcapFileInfoFromAgent(GetPcapFileInfoFromAgentRequest)
+      returns (GetPcapFileInfoFromAgentResponse) {
+    option (google.api.http) = {
+      post : "/v1alpha2/{name=projects/*/regions/*/probes/"
+             "*}:getPcapFileInfoFromAgent"
+    };
+  }
+
+  // CheckPcapIsRunning
+  rpc CheckPcapIsRunning(CheckPcapIsRunningRequest)
+      returns (CheckPcapIsRunningResponse) {
+    option (google.api.http) = {
+      post : "/v1alpha2/{name=projects/*/regions/*/probes/*}:checkPcapIsRunning"
+    };
+  }
 }

@@ -367,3 +367,263 @@ func (o *GetPcapFileFromAgentRequest) Merge(source *GetPcapFileFromAgentRequest)
 func (o *GetPcapFileFromAgentRequest) MergeRaw(source gotenobject.GotenObjectExt) {
 	o.Merge(source.(*GetPcapFileFromAgentRequest))
 }
+
+func (o *GetPcapFileInfoFromAgentRequest) GotenObjectExt() {}
+
+func (o *GetPcapFileInfoFromAgentRequest) MakeFullFieldMask() *GetPcapFileInfoFromAgentRequest_FieldMask {
+	return FullGetPcapFileInfoFromAgentRequest_FieldMask()
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullGetPcapFileInfoFromAgentRequest_FieldMask()
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) MakeDiffFieldMask(other *GetPcapFileInfoFromAgentRequest) *GetPcapFileInfoFromAgentRequest_FieldMask {
+	if o == nil && other == nil {
+		return &GetPcapFileInfoFromAgentRequest_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullGetPcapFileInfoFromAgentRequest_FieldMask()
+	}
+
+	res := &GetPcapFileInfoFromAgentRequest_FieldMask{}
+	if o.GetName().String() != other.GetName().String() {
+		res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentRequest_FieldTerminalPath{selector: GetPcapFileInfoFromAgentRequest_FieldPathSelectorName})
+	}
+	return res
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*GetPcapFileInfoFromAgentRequest))
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) Clone() *GetPcapFileInfoFromAgentRequest {
+	if o == nil {
+		return nil
+	}
+	result := &GetPcapFileInfoFromAgentRequest{}
+	if o.Name == nil {
+		result.Name = nil
+	} else if data, err := o.Name.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Name = &probe.Reference{}
+		if err := result.Name.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	return result
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) Merge(source *GetPcapFileInfoFromAgentRequest) {
+	if source.GetName() != nil {
+		if data, err := source.GetName().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Name = &probe.Reference{}
+			if err := o.Name.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Name = nil
+	}
+}
+
+func (o *GetPcapFileInfoFromAgentRequest) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) GotenObjectExt() {}
+
+func (o *GetPcapFileInfoFromAgentResponse) MakeFullFieldMask() *GetPcapFileInfoFromAgentResponse_FieldMask {
+	return FullGetPcapFileInfoFromAgentResponse_FieldMask()
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullGetPcapFileInfoFromAgentResponse_FieldMask()
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) MakeDiffFieldMask(other *GetPcapFileInfoFromAgentResponse) *GetPcapFileInfoFromAgentResponse_FieldMask {
+	if o == nil && other == nil {
+		return &GetPcapFileInfoFromAgentResponse_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullGetPcapFileInfoFromAgentResponse_FieldMask()
+	}
+
+	res := &GetPcapFileInfoFromAgentResponse_FieldMask{}
+	if !proto.Equal(o.GetStartTime(), other.GetStartTime()) {
+		res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime})
+	}
+	if !proto.Equal(o.GetEndTime(), other.GetEndTime()) {
+		res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime})
+	}
+	if o.GetSizeBytes() != other.GetSizeBytes() {
+		res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes})
+	}
+	return res
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*GetPcapFileInfoFromAgentResponse))
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) Clone() *GetPcapFileInfoFromAgentResponse {
+	if o == nil {
+		return nil
+	}
+	result := &GetPcapFileInfoFromAgentResponse{}
+	result.StartTime = proto.Clone(o.StartTime).(*timestamp.Timestamp)
+	result.EndTime = proto.Clone(o.EndTime).(*timestamp.Timestamp)
+	result.SizeBytes = o.SizeBytes
+	return result
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) Merge(source *GetPcapFileInfoFromAgentResponse) {
+	if source.GetStartTime() != nil {
+		if o.StartTime == nil {
+			o.StartTime = new(timestamp.Timestamp)
+		}
+		proto.Merge(o.StartTime, source.GetStartTime())
+	}
+	if source.GetEndTime() != nil {
+		if o.EndTime == nil {
+			o.EndTime = new(timestamp.Timestamp)
+		}
+		proto.Merge(o.EndTime, source.GetEndTime())
+	}
+	o.SizeBytes = source.GetSizeBytes()
+}
+
+func (o *GetPcapFileInfoFromAgentResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+func (o *CheckPcapIsRunningRequest) GotenObjectExt() {}
+
+func (o *CheckPcapIsRunningRequest) MakeFullFieldMask() *CheckPcapIsRunningRequest_FieldMask {
+	return FullCheckPcapIsRunningRequest_FieldMask()
+}
+
+func (o *CheckPcapIsRunningRequest) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullCheckPcapIsRunningRequest_FieldMask()
+}
+
+func (o *CheckPcapIsRunningRequest) MakeDiffFieldMask(other *CheckPcapIsRunningRequest) *CheckPcapIsRunningRequest_FieldMask {
+	if o == nil && other == nil {
+		return &CheckPcapIsRunningRequest_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullCheckPcapIsRunningRequest_FieldMask()
+	}
+
+	res := &CheckPcapIsRunningRequest_FieldMask{}
+	if o.GetName().String() != other.GetName().String() {
+		res.Paths = append(res.Paths, &CheckPcapIsRunningRequest_FieldTerminalPath{selector: CheckPcapIsRunningRequest_FieldPathSelectorName})
+	}
+	return res
+}
+
+func (o *CheckPcapIsRunningRequest) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*CheckPcapIsRunningRequest))
+}
+
+func (o *CheckPcapIsRunningRequest) Clone() *CheckPcapIsRunningRequest {
+	if o == nil {
+		return nil
+	}
+	result := &CheckPcapIsRunningRequest{}
+	if o.Name == nil {
+		result.Name = nil
+	} else if data, err := o.Name.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Name = &probe.Reference{}
+		if err := result.Name.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
+	return result
+}
+
+func (o *CheckPcapIsRunningRequest) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *CheckPcapIsRunningRequest) Merge(source *CheckPcapIsRunningRequest) {
+	if source.GetName() != nil {
+		if data, err := source.GetName().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Name = &probe.Reference{}
+			if err := o.Name.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Name = nil
+	}
+}
+
+func (o *CheckPcapIsRunningRequest) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*CheckPcapIsRunningRequest))
+}
+
+func (o *CheckPcapIsRunningResponse) GotenObjectExt() {}
+
+func (o *CheckPcapIsRunningResponse) MakeFullFieldMask() *CheckPcapIsRunningResponse_FieldMask {
+	return FullCheckPcapIsRunningResponse_FieldMask()
+}
+
+func (o *CheckPcapIsRunningResponse) MakeRawFullFieldMask() gotenobject.FieldMask {
+	return FullCheckPcapIsRunningResponse_FieldMask()
+}
+
+func (o *CheckPcapIsRunningResponse) MakeDiffFieldMask(other *CheckPcapIsRunningResponse) *CheckPcapIsRunningResponse_FieldMask {
+	if o == nil && other == nil {
+		return &CheckPcapIsRunningResponse_FieldMask{}
+	}
+	if o == nil || other == nil {
+		return FullCheckPcapIsRunningResponse_FieldMask()
+	}
+
+	res := &CheckPcapIsRunningResponse_FieldMask{}
+	if o.GetIsRunning() != other.GetIsRunning() {
+		res.Paths = append(res.Paths, &CheckPcapIsRunningResponse_FieldTerminalPath{selector: CheckPcapIsRunningResponse_FieldPathSelectorIsRunning})
+	}
+	return res
+}
+
+func (o *CheckPcapIsRunningResponse) MakeRawDiffFieldMask(other gotenobject.GotenObjectExt) gotenobject.FieldMask {
+	return o.MakeDiffFieldMask(other.(*CheckPcapIsRunningResponse))
+}
+
+func (o *CheckPcapIsRunningResponse) Clone() *CheckPcapIsRunningResponse {
+	if o == nil {
+		return nil
+	}
+	result := &CheckPcapIsRunningResponse{}
+	result.IsRunning = o.IsRunning
+	return result
+}
+
+func (o *CheckPcapIsRunningResponse) CloneRaw() gotenobject.GotenObjectExt {
+	return o.Clone()
+}
+
+func (o *CheckPcapIsRunningResponse) Merge(source *CheckPcapIsRunningResponse) {
+	o.IsRunning = source.GetIsRunning()
+}
+
+func (o *CheckPcapIsRunningResponse) MergeRaw(source gotenobject.GotenObjectExt) {
+	o.Merge(source.(*CheckPcapIsRunningResponse))
+}

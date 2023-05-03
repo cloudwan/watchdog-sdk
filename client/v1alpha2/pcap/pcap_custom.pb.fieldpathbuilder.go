@@ -322,3 +322,129 @@ func (s GetPcapFileFromAgentRequestPathSelectorName) WithValue(value *probe.Refe
 func (s GetPcapFileFromAgentRequestPathSelectorName) WithArrayOfValues(values []*probe.Reference) *GetPcapFileFromAgentRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileFromAgentRequest_FieldTerminalPathArrayOfValues)
 }
+
+type GetPcapFileInfoFromAgentRequestFieldPathBuilder struct{}
+
+func NewGetPcapFileInfoFromAgentRequestFieldPathBuilder() GetPcapFileInfoFromAgentRequestFieldPathBuilder {
+	return GetPcapFileInfoFromAgentRequestFieldPathBuilder{}
+}
+func (GetPcapFileInfoFromAgentRequestFieldPathBuilder) Name() GetPcapFileInfoFromAgentRequestPathSelectorName {
+	return GetPcapFileInfoFromAgentRequestPathSelectorName{}
+}
+
+type GetPcapFileInfoFromAgentRequestPathSelectorName struct{}
+
+func (GetPcapFileInfoFromAgentRequestPathSelectorName) FieldPath() *GetPcapFileInfoFromAgentRequest_FieldTerminalPath {
+	return &GetPcapFileInfoFromAgentRequest_FieldTerminalPath{selector: GetPcapFileInfoFromAgentRequest_FieldPathSelectorName}
+}
+
+func (s GetPcapFileInfoFromAgentRequestPathSelectorName) WithValue(value *probe.Reference) *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue)
+}
+
+func (s GetPcapFileInfoFromAgentRequestPathSelectorName) WithArrayOfValues(values []*probe.Reference) *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues)
+}
+
+type GetPcapFileInfoFromAgentResponseFieldPathBuilder struct{}
+
+func NewGetPcapFileInfoFromAgentResponseFieldPathBuilder() GetPcapFileInfoFromAgentResponseFieldPathBuilder {
+	return GetPcapFileInfoFromAgentResponseFieldPathBuilder{}
+}
+func (GetPcapFileInfoFromAgentResponseFieldPathBuilder) StartTime() GetPcapFileInfoFromAgentResponsePathSelectorStartTime {
+	return GetPcapFileInfoFromAgentResponsePathSelectorStartTime{}
+}
+func (GetPcapFileInfoFromAgentResponseFieldPathBuilder) EndTime() GetPcapFileInfoFromAgentResponsePathSelectorEndTime {
+	return GetPcapFileInfoFromAgentResponsePathSelectorEndTime{}
+}
+func (GetPcapFileInfoFromAgentResponseFieldPathBuilder) SizeBytes() GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes {
+	return GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes{}
+}
+
+type GetPcapFileInfoFromAgentResponsePathSelectorStartTime struct{}
+
+func (GetPcapFileInfoFromAgentResponsePathSelectorStartTime) FieldPath() *GetPcapFileInfoFromAgentResponse_FieldTerminalPath {
+	return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime}
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorStartTime) WithValue(value *timestamp.Timestamp) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue)
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorStartTime) WithArrayOfValues(values []*timestamp.Timestamp) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues)
+}
+
+type GetPcapFileInfoFromAgentResponsePathSelectorEndTime struct{}
+
+func (GetPcapFileInfoFromAgentResponsePathSelectorEndTime) FieldPath() *GetPcapFileInfoFromAgentResponse_FieldTerminalPath {
+	return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime}
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorEndTime) WithValue(value *timestamp.Timestamp) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue)
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorEndTime) WithArrayOfValues(values []*timestamp.Timestamp) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues)
+}
+
+type GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes struct{}
+
+func (GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes) FieldPath() *GetPcapFileInfoFromAgentResponse_FieldTerminalPath {
+	return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes}
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes) WithValue(value int64) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue)
+}
+
+func (s GetPcapFileInfoFromAgentResponsePathSelectorSizeBytes) WithArrayOfValues(values []int64) *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues)
+}
+
+type CheckPcapIsRunningRequestFieldPathBuilder struct{}
+
+func NewCheckPcapIsRunningRequestFieldPathBuilder() CheckPcapIsRunningRequestFieldPathBuilder {
+	return CheckPcapIsRunningRequestFieldPathBuilder{}
+}
+func (CheckPcapIsRunningRequestFieldPathBuilder) Name() CheckPcapIsRunningRequestPathSelectorName {
+	return CheckPcapIsRunningRequestPathSelectorName{}
+}
+
+type CheckPcapIsRunningRequestPathSelectorName struct{}
+
+func (CheckPcapIsRunningRequestPathSelectorName) FieldPath() *CheckPcapIsRunningRequest_FieldTerminalPath {
+	return &CheckPcapIsRunningRequest_FieldTerminalPath{selector: CheckPcapIsRunningRequest_FieldPathSelectorName}
+}
+
+func (s CheckPcapIsRunningRequestPathSelectorName) WithValue(value *probe.Reference) *CheckPcapIsRunningRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*CheckPcapIsRunningRequest_FieldTerminalPathValue)
+}
+
+func (s CheckPcapIsRunningRequestPathSelectorName) WithArrayOfValues(values []*probe.Reference) *CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues)
+}
+
+type CheckPcapIsRunningResponseFieldPathBuilder struct{}
+
+func NewCheckPcapIsRunningResponseFieldPathBuilder() CheckPcapIsRunningResponseFieldPathBuilder {
+	return CheckPcapIsRunningResponseFieldPathBuilder{}
+}
+func (CheckPcapIsRunningResponseFieldPathBuilder) IsRunning() CheckPcapIsRunningResponsePathSelectorIsRunning {
+	return CheckPcapIsRunningResponsePathSelectorIsRunning{}
+}
+
+type CheckPcapIsRunningResponsePathSelectorIsRunning struct{}
+
+func (CheckPcapIsRunningResponsePathSelectorIsRunning) FieldPath() *CheckPcapIsRunningResponse_FieldTerminalPath {
+	return &CheckPcapIsRunningResponse_FieldTerminalPath{selector: CheckPcapIsRunningResponse_FieldPathSelectorIsRunning}
+}
+
+func (s CheckPcapIsRunningResponsePathSelectorIsRunning) WithValue(value bool) *CheckPcapIsRunningResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*CheckPcapIsRunningResponse_FieldTerminalPathValue)
+}
+
+func (s CheckPcapIsRunningResponsePathSelectorIsRunning) WithArrayOfValues(values []bool) *CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues)
+}

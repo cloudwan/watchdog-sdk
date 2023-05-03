@@ -52,6 +52,8 @@ type PcapServiceClient interface {
 	ReportPcap(ctx context.Context, in *ReportPcapRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetPcap(ctx context.Context, in *GetPcapRequest, opts ...grpc.CallOption) (*GetPcapResponse, error)
 	GetPcapFileFromAgent(ctx context.Context, in *GetPcapFileFromAgentRequest, opts ...grpc.CallOption) (GetPcapFileFromAgentClientStream, error)
+	GetPcapFileInfoFromAgent(ctx context.Context, in *GetPcapFileInfoFromAgentRequest, opts ...grpc.CallOption) (*GetPcapFileInfoFromAgentResponse, error)
+	CheckPcapIsRunning(ctx context.Context, in *CheckPcapIsRunningRequest, opts ...grpc.CallOption) (*CheckPcapIsRunningResponse, error)
 }
 
 type client struct {
@@ -115,4 +117,22 @@ func (x *getPcapFileFromAgentGetPcapFileFromAgentClient) Recv() (*GetPcapRespons
 		return nil, err
 	}
 	return m, nil
+}
+
+func (c *client) GetPcapFileInfoFromAgent(ctx context.Context, in *GetPcapFileInfoFromAgentRequest, opts ...grpc.CallOption) (*GetPcapFileInfoFromAgentResponse, error) {
+	out := new(GetPcapFileInfoFromAgentResponse)
+	err := c.cc.Invoke(ctx, "/ntt.watchdog.v1alpha2.PcapService/GetPcapFileInfoFromAgent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *client) CheckPcapIsRunning(ctx context.Context, in *CheckPcapIsRunningRequest, opts ...grpc.CallOption) (*CheckPcapIsRunningResponse, error) {
+	out := new(CheckPcapIsRunningResponse)
+	err := c.cc.Invoke(ctx, "/ntt.watchdog.v1alpha2.PcapService/CheckPcapIsRunning", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }

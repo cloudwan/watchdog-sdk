@@ -2437,6 +2437,56 @@ Equivalent REST API:
 
 
 <div class="operation">
+<h5 id="operation-GetPcapFileInfoFromAgent">GetPcapFileInfoFromAgent</h5>
+
+<pre class="signature">rpc GetPcapFileInfoFromAgent(<a href="#message-GetPcapFileInfoFromAgentRequest">GetPcapFileInfoFromAgentRequest</a>) returns (<a href="#message-GetPcapFileInfoFromAgentResponse">GetPcapFileInfoFromAgentResponse</a>)</pre>
+
+<div class="description">
+<p>GetPcapFileInfoFromAgent</p>
+
+</div>
+
+
+
+
+<div class="rest">
+Equivalent REST API:
+
+<pre>POST /v1alpha2/{name=projects/*/regions/*/probes/*}:getPcapFileInfoFromAgent </pre>
+
+</div>
+
+
+</div>
+
+
+
+<div class="operation">
+<h5 id="operation-CheckPcapIsRunning">CheckPcapIsRunning</h5>
+
+<pre class="signature">rpc CheckPcapIsRunning(<a href="#message-CheckPcapIsRunningRequest">CheckPcapIsRunningRequest</a>) returns (<a href="#message-CheckPcapIsRunningResponse">CheckPcapIsRunningResponse</a>)</pre>
+
+<div class="description">
+<p>CheckPcapIsRunning</p>
+
+</div>
+
+
+
+
+<div class="rest">
+Equivalent REST API:
+
+<pre>POST /v1alpha2/{name=projects/*/regions/*/probes/*}:checkPcapIsRunning </pre>
+
+</div>
+
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-RunPingTest">RunPingTest</h5>
 
 <pre class="signature">rpc RunPingTest(<a href="#message-RunPingTestRequest">RunPingTestRequest</a>) returns (<a href="#message-RunPingTestResponse">RunPingTestResponse</a>)</pre>
@@ -4547,6 +4597,92 @@ The minimum length includes space for timestamp and a tracker</p>
 <tr>
 <th rowspan="2">pcap_bytes</th>
 <td class="type"><pre>bytes</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetPcapFileInfoFromAgentRequest">GetPcapFileInfoFromAgentRequest</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetPcapFileInfoFromAgentResponse">GetPcapFileInfoFromAgentResponse</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">start_time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">end_time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+
+<tr>
+<th rowspan="2">size_bytes</th>
+<td class="type"><pre>int64</pre></td>
+</tr>
+<tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-CheckPcapIsRunningRequest">CheckPcapIsRunningRequest</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-CheckPcapIsRunningResponse">CheckPcapIsRunningResponse</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">is_running</th>
+<td class="type"><pre>bool</pre></td>
 </tr>
 <tr><td class="description"></td></tr>
  

@@ -451,6 +451,322 @@ func (m *GetPcapFileFromAgentRequest) SetName(fv *probe.Reference) {
 	m.Name = fv
 }
 
+type GetPcapFileInfoFromAgentRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	//  reference of ntt.watchdog.v1alpha2.Probe
+	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) Reset() {
+	*m = GetPcapFileInfoFromAgentRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) String() string {
+	return protoimpl.X.MessageStringOf(m)
+}
+
+func (*GetPcapFileInfoFromAgentRequest) ProtoMessage() {}
+
+func (m *GetPcapFileInfoFromAgentRequest) ProtoReflect() preflect.Message {
+	mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && m != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(m)
+}
+
+func (*GetPcapFileInfoFromAgentRequest) GotenMessage() {}
+
+// Deprecated, Use GetPcapFileInfoFromAgentRequest.ProtoReflect.Descriptor instead.
+func (*GetPcapFileInfoFromAgentRequest) Descriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_pcap_custom_proto_rawDescGZIP(), []int{4}
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) Unmarshal(b []byte) error {
+	return proto.Unmarshal(b, m)
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) Marshal() ([]byte, error) {
+	return proto.Marshal(m)
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) MarshalJSON() ([]byte, error) {
+	return protojson.MarshalOptions{}.Marshal(m)
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) UnmarshalJSON(data []byte) error {
+	return protojson.Unmarshal(data, m)
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) GetName() *probe.Reference {
+	if m != nil {
+		return m.Name
+	}
+	return nil
+}
+
+func (m *GetPcapFileInfoFromAgentRequest) SetName(fv *probe.Reference) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Name", "GetPcapFileInfoFromAgentRequest"))
+	}
+	m.Name = fv
+}
+
+type GetPcapFileInfoFromAgentResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	StartTime     *timestamp.Timestamp `protobuf:"bytes,1,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty" firestore:"startTime"`
+	EndTime       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty" firestore:"endTime"`
+	SizeBytes     int64                `protobuf:"varint,3,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty" firestore:"sizeBytes"`
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) Reset() {
+	*m = GetPcapFileInfoFromAgentResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) String() string {
+	return protoimpl.X.MessageStringOf(m)
+}
+
+func (*GetPcapFileInfoFromAgentResponse) ProtoMessage() {}
+
+func (m *GetPcapFileInfoFromAgentResponse) ProtoReflect() preflect.Message {
+	mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && m != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(m)
+}
+
+func (*GetPcapFileInfoFromAgentResponse) GotenMessage() {}
+
+// Deprecated, Use GetPcapFileInfoFromAgentResponse.ProtoReflect.Descriptor instead.
+func (*GetPcapFileInfoFromAgentResponse) Descriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_pcap_custom_proto_rawDescGZIP(), []int{5}
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) Unmarshal(b []byte) error {
+	return proto.Unmarshal(b, m)
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) Marshal() ([]byte, error) {
+	return proto.Marshal(m)
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) MarshalJSON() ([]byte, error) {
+	return protojson.MarshalOptions{}.Marshal(m)
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) UnmarshalJSON(data []byte) error {
+	return protojson.Unmarshal(data, m)
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) GetStartTime() *timestamp.Timestamp {
+	if m != nil {
+		return m.StartTime
+	}
+	return nil
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) GetEndTime() *timestamp.Timestamp {
+	if m != nil {
+		return m.EndTime
+	}
+	return nil
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) GetSizeBytes() int64 {
+	if m != nil {
+		return m.SizeBytes
+	}
+	return int64(0)
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) SetStartTime(fv *timestamp.Timestamp) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "StartTime", "GetPcapFileInfoFromAgentResponse"))
+	}
+	m.StartTime = fv
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) SetEndTime(fv *timestamp.Timestamp) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "EndTime", "GetPcapFileInfoFromAgentResponse"))
+	}
+	m.EndTime = fv
+}
+
+func (m *GetPcapFileInfoFromAgentResponse) SetSizeBytes(fv int64) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "SizeBytes", "GetPcapFileInfoFromAgentResponse"))
+	}
+	m.SizeBytes = fv
+}
+
+type CheckPcapIsRunningRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	//  reference of ntt.watchdog.v1alpha2.Probe
+	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
+}
+
+func (m *CheckPcapIsRunningRequest) Reset() {
+	*m = CheckPcapIsRunningRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (m *CheckPcapIsRunningRequest) String() string {
+	return protoimpl.X.MessageStringOf(m)
+}
+
+func (*CheckPcapIsRunningRequest) ProtoMessage() {}
+
+func (m *CheckPcapIsRunningRequest) ProtoReflect() preflect.Message {
+	mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && m != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(m)
+}
+
+func (*CheckPcapIsRunningRequest) GotenMessage() {}
+
+// Deprecated, Use CheckPcapIsRunningRequest.ProtoReflect.Descriptor instead.
+func (*CheckPcapIsRunningRequest) Descriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_pcap_custom_proto_rawDescGZIP(), []int{6}
+}
+
+func (m *CheckPcapIsRunningRequest) Unmarshal(b []byte) error {
+	return proto.Unmarshal(b, m)
+}
+
+func (m *CheckPcapIsRunningRequest) Marshal() ([]byte, error) {
+	return proto.Marshal(m)
+}
+
+func (m *CheckPcapIsRunningRequest) MarshalJSON() ([]byte, error) {
+	return protojson.MarshalOptions{}.Marshal(m)
+}
+
+func (m *CheckPcapIsRunningRequest) UnmarshalJSON(data []byte) error {
+	return protojson.Unmarshal(data, m)
+}
+
+func (m *CheckPcapIsRunningRequest) GetName() *probe.Reference {
+	if m != nil {
+		return m.Name
+	}
+	return nil
+}
+
+func (m *CheckPcapIsRunningRequest) SetName(fv *probe.Reference) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "Name", "CheckPcapIsRunningRequest"))
+	}
+	m.Name = fv
+}
+
+type CheckPcapIsRunningResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	IsRunning     bool `protobuf:"varint,1,opt,name=is_running,json=isRunning,proto3" json:"is_running,omitempty" firestore:"isRunning"`
+}
+
+func (m *CheckPcapIsRunningResponse) Reset() {
+	*m = CheckPcapIsRunningResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (m *CheckPcapIsRunningResponse) String() string {
+	return protoimpl.X.MessageStringOf(m)
+}
+
+func (*CheckPcapIsRunningResponse) ProtoMessage() {}
+
+func (m *CheckPcapIsRunningResponse) ProtoReflect() preflect.Message {
+	mi := &watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && m != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(m))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(m)
+}
+
+func (*CheckPcapIsRunningResponse) GotenMessage() {}
+
+// Deprecated, Use CheckPcapIsRunningResponse.ProtoReflect.Descriptor instead.
+func (*CheckPcapIsRunningResponse) Descriptor() ([]byte, []int) {
+	return watchdog_proto_v1alpha2_pcap_custom_proto_rawDescGZIP(), []int{7}
+}
+
+func (m *CheckPcapIsRunningResponse) Unmarshal(b []byte) error {
+	return proto.Unmarshal(b, m)
+}
+
+func (m *CheckPcapIsRunningResponse) Marshal() ([]byte, error) {
+	return proto.Marshal(m)
+}
+
+func (m *CheckPcapIsRunningResponse) MarshalJSON() ([]byte, error) {
+	return protojson.MarshalOptions{}.Marshal(m)
+}
+
+func (m *CheckPcapIsRunningResponse) UnmarshalJSON(data []byte) error {
+	return protojson.Unmarshal(data, m)
+}
+
+func (m *CheckPcapIsRunningResponse) GetIsRunning() bool {
+	if m != nil {
+		return m.IsRunning
+	}
+	return false
+}
+
+func (m *CheckPcapIsRunningResponse) SetIsRunning(fv bool) {
+	if m == nil {
+		panic(fmt.Errorf("can't set %s on nil %s", "IsRunning", "CheckPcapIsRunningResponse"))
+	}
+	m.IsRunning = fv
+}
+
 var watchdog_proto_v1alpha2_pcap_custom_proto preflect.FileDescriptor
 
 var watchdog_proto_v1alpha2_pcap_custom_proto_rawDesc = []byte{
@@ -517,20 +833,45 @@ var watchdog_proto_v1alpha2_pcap_custom_proto_rawDesc = []byte{
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x42, 0x0d, 0xb2, 0xda, 0x21, 0x09, 0x12, 0x07, 0x0a, 0x05, 0x50, 0x72, 0x6f,
 	0x62, 0x65, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x10, 0xc2, 0x85, 0x2c, 0x0c, 0x32, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0xbd, 0x01, 0xe8, 0xde, 0x21,
-	0x01, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68,
-	0x64, 0x6f, 0x67, 0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x42,
-	0x0f, 0x50, 0x63, 0x61, 0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x00, 0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63,
+	0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x56, 0x0a, 0x1f, 0x47, 0x65,
+	0x74, 0x50, 0x63, 0x61, 0x70, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x46, 0x72, 0x6f,
+	0x6d, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0d, 0xb2, 0xda, 0x21,
+	0x09, 0x12, 0x07, 0x0a, 0x05, 0x50, 0x72, 0x6f, 0x62, 0x65, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x3a, 0x10, 0xc2, 0x85, 0x2c, 0x0c, 0x32, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x22, 0xb3, 0x01, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x50, 0x63, 0x61, 0x70, 0x46, 0x69,
+	0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x46, 0x72, 0x6f, 0x6d, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74,
+	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69,
+	0x6d, 0x65, 0x12, 0x35, 0x0a, 0x08, 0x65, 0x6e, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x52, 0x07, 0x65, 0x6e, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x69, 0x7a,
+	0x65, 0x5f, 0x62, 0x79, 0x74, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x73,
+	0x69, 0x7a, 0x65, 0x42, 0x79, 0x74, 0x65, 0x73, 0x22, 0x50, 0x0a, 0x19, 0x43, 0x68, 0x65, 0x63,
+	0x6b, 0x50, 0x63, 0x61, 0x70, 0x49, 0x73, 0x52, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x0d, 0xb2, 0xda, 0x21, 0x09, 0x12, 0x07, 0x0a, 0x05, 0x50, 0x72, 0x6f,
+	0x62, 0x65, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x10, 0xc2, 0x85, 0x2c, 0x0c, 0x32, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x3b, 0x0a, 0x1a, 0x43, 0x68,
+	0x65, 0x63, 0x6b, 0x50, 0x63, 0x61, 0x70, 0x49, 0x73, 0x52, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x73, 0x5f, 0x72,
+	0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73,
+	0x52, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x42, 0xbd, 0x01, 0xe8, 0xde, 0x21, 0x01, 0x0a, 0x1c,
+	0x63, 0x6f, 0x6d, 0x2e, 0x6e, 0x74, 0x74, 0x2e, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67,
+	0x2e, 0x70, 0x62, 0x2e, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x42, 0x0f, 0x50, 0x63,
+	0x61, 0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x00, 0x5a,
+	0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x2f, 0x63, 0x6c,
+	0x69, 0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x2f, 0x70, 0x63,
+	0x61, 0x70, 0x3b, 0x70, 0x63, 0x61, 0x70, 0x5f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0xd2, 0x84,
+	0xd1, 0x02, 0x44, 0x0a, 0x0d, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65,
+	0x72, 0x73, 0x12, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67,
-	0x2f, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32,
-	0x2f, 0x70, 0x63, 0x61, 0x70, 0x3b, 0x70, 0x63, 0x61, 0x70, 0x5f, 0x63, 0x6c, 0x69, 0x65, 0x6e,
-	0x74, 0xd2, 0x84, 0xd1, 0x02, 0x44, 0x0a, 0x0d, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e,
-	0x64, 0x6c, 0x65, 0x72, 0x73, 0x12, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x77, 0x61, 0x6e, 0x2f, 0x77, 0x61, 0x74, 0x63, 0x68,
-	0x64, 0x6f, 0x67, 0x2f, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72,
-	0x73, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x2f, 0x61, 0x75, 0x64, 0x69, 0x74, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x73, 0x2f, 0x76,
+	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -545,24 +886,30 @@ func watchdog_proto_v1alpha2_pcap_custom_proto_rawDescGZIP() []byte {
 	return watchdog_proto_v1alpha2_pcap_custom_proto_rawDescData
 }
 
-var watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var watchdog_proto_v1alpha2_pcap_custom_proto_goTypes = []interface{}{
-	(*ReportPcapRequest)(nil),           // 0: ntt.watchdog.v1alpha2.ReportPcapRequest
-	(*GetPcapRequest)(nil),              // 1: ntt.watchdog.v1alpha2.GetPcapRequest
-	(*GetPcapResponse)(nil),             // 2: ntt.watchdog.v1alpha2.GetPcapResponse
-	(*GetPcapFileFromAgentRequest)(nil), // 3: ntt.watchdog.v1alpha2.GetPcapFileFromAgentRequest
-	(*timestamp.Timestamp)(nil),         // 4: google.protobuf.Timestamp
-	(*common.TimeInterval)(nil),         // 5: ntt.watchdog.v1alpha2.TimeInterval
+	(*ReportPcapRequest)(nil),                // 0: ntt.watchdog.v1alpha2.ReportPcapRequest
+	(*GetPcapRequest)(nil),                   // 1: ntt.watchdog.v1alpha2.GetPcapRequest
+	(*GetPcapResponse)(nil),                  // 2: ntt.watchdog.v1alpha2.GetPcapResponse
+	(*GetPcapFileFromAgentRequest)(nil),      // 3: ntt.watchdog.v1alpha2.GetPcapFileFromAgentRequest
+	(*GetPcapFileInfoFromAgentRequest)(nil),  // 4: ntt.watchdog.v1alpha2.GetPcapFileInfoFromAgentRequest
+	(*GetPcapFileInfoFromAgentResponse)(nil), // 5: ntt.watchdog.v1alpha2.GetPcapFileInfoFromAgentResponse
+	(*CheckPcapIsRunningRequest)(nil),        // 6: ntt.watchdog.v1alpha2.CheckPcapIsRunningRequest
+	(*CheckPcapIsRunningResponse)(nil),       // 7: ntt.watchdog.v1alpha2.CheckPcapIsRunningResponse
+	(*timestamp.Timestamp)(nil),              // 8: google.protobuf.Timestamp
+	(*common.TimeInterval)(nil),              // 9: ntt.watchdog.v1alpha2.TimeInterval
 }
 var watchdog_proto_v1alpha2_pcap_custom_proto_depIdxs = []int32{
-	4, // 0: ntt.watchdog.v1alpha2.ReportPcapRequest.start_time:type_name -> google.protobuf.Timestamp
-	4, // 1: ntt.watchdog.v1alpha2.ReportPcapRequest.end_time:type_name -> google.protobuf.Timestamp
-	5, // 2: ntt.watchdog.v1alpha2.GetPcapRequest.interval:type_name -> ntt.watchdog.v1alpha2.TimeInterval
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	8, // 0: ntt.watchdog.v1alpha2.ReportPcapRequest.start_time:type_name -> google.protobuf.Timestamp
+	8, // 1: ntt.watchdog.v1alpha2.ReportPcapRequest.end_time:type_name -> google.protobuf.Timestamp
+	9, // 2: ntt.watchdog.v1alpha2.GetPcapRequest.interval:type_name -> ntt.watchdog.v1alpha2.TimeInterval
+	8, // 3: ntt.watchdog.v1alpha2.GetPcapFileInfoFromAgentResponse.start_time:type_name -> google.protobuf.Timestamp
+	8, // 4: ntt.watchdog.v1alpha2.GetPcapFileInfoFromAgentResponse.end_time:type_name -> google.protobuf.Timestamp
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { watchdog_proto_v1alpha2_pcap_custom_proto_init() }
@@ -620,6 +967,54 @@ func watchdog_proto_v1alpha2_pcap_custom_proto_init() {
 				return nil
 			}
 		}
+		watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPcapFileInfoFromAgentRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPcapFileInfoFromAgentResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckPcapIsRunningRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		watchdog_proto_v1alpha2_pcap_custom_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckPcapIsRunningResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 
 	type x struct{}
@@ -628,7 +1023,7 @@ func watchdog_proto_v1alpha2_pcap_custom_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: watchdog_proto_v1alpha2_pcap_custom_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

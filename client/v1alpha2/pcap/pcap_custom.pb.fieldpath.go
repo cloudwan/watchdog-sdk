@@ -2110,3 +2110,1651 @@ func (fpaov *GetPcapFileFromAgentRequest_FieldTerminalPathArrayOfValues) AsNameA
 	res, ok := fpaov.values.([]*probe.Reference)
 	return res, ok
 }
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type GetPcapFileInfoFromAgentRequest_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() GetPcapFileInfoFromAgentRequest_FieldPathSelector
+	Get(source *GetPcapFileInfoFromAgentRequest) []interface{}
+	GetSingle(source *GetPcapFileInfoFromAgentRequest) (interface{}, bool)
+	ClearValue(item *GetPcapFileInfoFromAgentRequest)
+
+	// Those methods build corresponding GetPcapFileInfoFromAgentRequest_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) GetPcapFileInfoFromAgentRequest_FieldPathValue
+	WithIArrayOfValues(values interface{}) GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue
+}
+
+type GetPcapFileInfoFromAgentRequest_FieldPathSelector int32
+
+const (
+	GetPcapFileInfoFromAgentRequest_FieldPathSelectorName GetPcapFileInfoFromAgentRequest_FieldPathSelector = 0
+)
+
+func (s GetPcapFileInfoFromAgentRequest_FieldPathSelector) String() string {
+	switch s {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		return "name"
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", s))
+	}
+}
+
+func BuildGetPcapFileInfoFromAgentRequest_FieldPath(fp gotenobject.RawFieldPath) (GetPcapFileInfoFromAgentRequest_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object GetPcapFileInfoFromAgentRequest")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "name":
+			return &GetPcapFileInfoFromAgentRequest_FieldTerminalPath{selector: GetPcapFileInfoFromAgentRequest_FieldPathSelectorName}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object GetPcapFileInfoFromAgentRequest", fp)
+}
+
+func ParseGetPcapFileInfoFromAgentRequest_FieldPath(rawField string) (GetPcapFileInfoFromAgentRequest_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildGetPcapFileInfoFromAgentRequest_FieldPath(fp)
+}
+
+func MustParseGetPcapFileInfoFromAgentRequest_FieldPath(rawField string) GetPcapFileInfoFromAgentRequest_FieldPath {
+	fp, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type GetPcapFileInfoFromAgentRequest_FieldTerminalPath struct {
+	selector GetPcapFileInfoFromAgentRequest_FieldPathSelector
+}
+
+var _ GetPcapFileInfoFromAgentRequest_FieldPath = (*GetPcapFileInfoFromAgentRequest_FieldTerminalPath)(nil)
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) Selector() GetPcapFileInfoFromAgentRequest_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source GetPcapFileInfoFromAgentRequest
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) Get(source *GetPcapFileInfoFromAgentRequest) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+			if source.Name != nil {
+				values = append(values, source.Name)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+// GetSingle returns value pointed by specific field of from source GetPcapFileInfoFromAgentRequest
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) GetSingle(source *GetPcapFileInfoFromAgentRequest) (interface{}, bool) {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		res := source.GetName()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		return (*probe.Reference)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) ClearValue(item *GetPcapFileInfoFromAgentRequest) {
+	if item != nil {
+		switch fp.selector {
+		case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+			item.Name = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*GetPcapFileInfoFromAgentRequest))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == GetPcapFileInfoFromAgentRequest_FieldPathSelectorName
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithIValue(value interface{}) GetPcapFileInfoFromAgentRequest_FieldPathValue {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		return &GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue{GetPcapFileInfoFromAgentRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues {
+	fpaov := &GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentRequest_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		return &GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithIArrayItemValue(value interface{}) GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentRequest_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// GetPcapFileInfoFromAgentRequest_FieldPathValue allows storing values for GetPcapFileInfoFromAgentRequest fields according to their type
+type GetPcapFileInfoFromAgentRequest_FieldPathValue interface {
+	GetPcapFileInfoFromAgentRequest_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **GetPcapFileInfoFromAgentRequest)
+	CompareWith(*GetPcapFileInfoFromAgentRequest) (cmp int, comparable bool)
+}
+
+func ParseGetPcapFileInfoFromAgentRequest_FieldPathValue(pathStr, valueStr string) (GetPcapFileInfoFromAgentRequest_FieldPathValue, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentRequest field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(GetPcapFileInfoFromAgentRequest_FieldPathValue), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentRequest_FieldPathValue(pathStr, valueStr string) GetPcapFileInfoFromAgentRequest_FieldPathValue {
+	fpv, err := ParseGetPcapFileInfoFromAgentRequest_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue struct {
+	GetPcapFileInfoFromAgentRequest_FieldTerminalPath
+	value interface{}
+}
+
+var _ GetPcapFileInfoFromAgentRequest_FieldPathValue = (*GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'GetPcapFileInfoFromAgentRequest' as interface{}
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) AsNameValue() (*probe.Reference, bool) {
+	res, ok := fpv.value.(*probe.Reference)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object GetPcapFileInfoFromAgentRequest
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) SetTo(target **GetPcapFileInfoFromAgentRequest) {
+	if *target == nil {
+		*target = new(GetPcapFileInfoFromAgentRequest)
+	}
+	switch fpv.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		(*target).Name = fpv.value.(*probe.Reference)
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fpv.selector))
+	}
+}
+
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*GetPcapFileInfoFromAgentRequest)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue' with the value under path in 'GetPcapFileInfoFromAgentRequest'.
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) CompareWith(source *GetPcapFileInfoFromAgentRequest) (int, bool) {
+	switch fpv.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		leftValue := fpv.value.(*probe.Reference)
+		rightValue := source.GetName()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentRequest: %d", fpv.selector))
+	}
+}
+
+func (fpv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+// GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue allows storing single item in Path-specific values for GetPcapFileInfoFromAgentRequest according to their type
+// Present only for array (repeated) types.
+type GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	GetPcapFileInfoFromAgentRequest_FieldPath
+	ContainsValue(*GetPcapFileInfoFromAgentRequest) bool
+}
+
+// ParseGetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseGetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue(pathStr, valueStr string) (GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentRequest field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue(pathStr, valueStr string) GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue {
+	fpaiv, err := ParseGetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue struct {
+	GetPcapFileInfoFromAgentRequest_FieldTerminalPath
+	value interface{}
+}
+
+var _ GetPcapFileInfoFromAgentRequest_FieldPathArrayItemValue = (*GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object GetPcapFileInfoFromAgentRequest as interface{}
+func (fpaiv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue) GetSingle(source *GetPcapFileInfoFromAgentRequest) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'GetPcapFileInfoFromAgentRequest'
+func (fpaiv *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *GetPcapFileInfoFromAgentRequest) bool {
+	slice := fpaiv.GetPcapFileInfoFromAgentRequest_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues allows storing slice of values for GetPcapFileInfoFromAgentRequest fields according to their type
+type GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	GetPcapFileInfoFromAgentRequest_FieldPath
+}
+
+func ParseGetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues(pathStr, valuesStr string) (GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentRequest field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues(pathStr, valuesStr string) GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues {
+	fpaov, err := ParseGetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues struct {
+	GetPcapFileInfoFromAgentRequest_FieldTerminalPath
+	values interface{}
+}
+
+var _ GetPcapFileInfoFromAgentRequest_FieldPathArrayOfValues = (*GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+		for _, v := range fpaov.values.([]*probe.Reference) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *GetPcapFileInfoFromAgentRequest_FieldTerminalPathArrayOfValues) AsNameArrayOfValues() ([]*probe.Reference, bool) {
+	res, ok := fpaov.values.([]*probe.Reference)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type GetPcapFileInfoFromAgentResponse_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() GetPcapFileInfoFromAgentResponse_FieldPathSelector
+	Get(source *GetPcapFileInfoFromAgentResponse) []interface{}
+	GetSingle(source *GetPcapFileInfoFromAgentResponse) (interface{}, bool)
+	ClearValue(item *GetPcapFileInfoFromAgentResponse)
+
+	// Those methods build corresponding GetPcapFileInfoFromAgentResponse_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) GetPcapFileInfoFromAgentResponse_FieldPathValue
+	WithIArrayOfValues(values interface{}) GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldPathSelector int32
+
+const (
+	GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime GetPcapFileInfoFromAgentResponse_FieldPathSelector = 0
+	GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime   GetPcapFileInfoFromAgentResponse_FieldPathSelector = 1
+	GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes GetPcapFileInfoFromAgentResponse_FieldPathSelector = 2
+)
+
+func (s GetPcapFileInfoFromAgentResponse_FieldPathSelector) String() string {
+	switch s {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		return "start_time"
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		return "end_time"
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		return "size_bytes"
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", s))
+	}
+}
+
+func BuildGetPcapFileInfoFromAgentResponse_FieldPath(fp gotenobject.RawFieldPath) (GetPcapFileInfoFromAgentResponse_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object GetPcapFileInfoFromAgentResponse")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "start_time", "startTime", "start-time":
+			return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime}, nil
+		case "end_time", "endTime", "end-time":
+			return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime}, nil
+		case "size_bytes", "sizeBytes", "size-bytes":
+			return &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object GetPcapFileInfoFromAgentResponse", fp)
+}
+
+func ParseGetPcapFileInfoFromAgentResponse_FieldPath(rawField string) (GetPcapFileInfoFromAgentResponse_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildGetPcapFileInfoFromAgentResponse_FieldPath(fp)
+}
+
+func MustParseGetPcapFileInfoFromAgentResponse_FieldPath(rawField string) GetPcapFileInfoFromAgentResponse_FieldPath {
+	fp, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldTerminalPath struct {
+	selector GetPcapFileInfoFromAgentResponse_FieldPathSelector
+}
+
+var _ GetPcapFileInfoFromAgentResponse_FieldPath = (*GetPcapFileInfoFromAgentResponse_FieldTerminalPath)(nil)
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) Selector() GetPcapFileInfoFromAgentResponse_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source GetPcapFileInfoFromAgentResponse
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) Get(source *GetPcapFileInfoFromAgentResponse) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+			if source.StartTime != nil {
+				values = append(values, source.StartTime)
+			}
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+			if source.EndTime != nil {
+				values = append(values, source.EndTime)
+			}
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+			values = append(values, source.SizeBytes)
+		default:
+			panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+// GetSingle returns value pointed by specific field of from source GetPcapFileInfoFromAgentResponse
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) GetSingle(source *GetPcapFileInfoFromAgentResponse) (interface{}, bool) {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		res := source.GetStartTime()
+		return res, res != nil
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		res := source.GetEndTime()
+		return res, res != nil
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		return source.GetSizeBytes(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		return (*timestamp.Timestamp)(nil)
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		return (*timestamp.Timestamp)(nil)
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		return int64(0)
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) ClearValue(item *GetPcapFileInfoFromAgentResponse) {
+	if item != nil {
+		switch fp.selector {
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+			item.StartTime = nil
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+			item.EndTime = nil
+		case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+			item.SizeBytes = int64(0)
+		default:
+			panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*GetPcapFileInfoFromAgentResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime ||
+		fp.selector == GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime ||
+		fp.selector == GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithIValue(value interface{}) GetPcapFileInfoFromAgentResponse_FieldPathValue {
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, value: value.(int64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues {
+	fpaov := &GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		return &GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues{GetPcapFileInfoFromAgentResponse_FieldTerminalPath: *fp, values: values.([]int64)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fp.selector))
+	}
+}
+
+func (fp *GetPcapFileInfoFromAgentResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// GetPcapFileInfoFromAgentResponse_FieldPathValue allows storing values for GetPcapFileInfoFromAgentResponse fields according to their type
+type GetPcapFileInfoFromAgentResponse_FieldPathValue interface {
+	GetPcapFileInfoFromAgentResponse_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **GetPcapFileInfoFromAgentResponse)
+	CompareWith(*GetPcapFileInfoFromAgentResponse) (cmp int, comparable bool)
+}
+
+func ParseGetPcapFileInfoFromAgentResponse_FieldPathValue(pathStr, valueStr string) (GetPcapFileInfoFromAgentResponse_FieldPathValue, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentResponse field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(GetPcapFileInfoFromAgentResponse_FieldPathValue), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentResponse_FieldPathValue(pathStr, valueStr string) GetPcapFileInfoFromAgentResponse_FieldPathValue {
+	fpv, err := ParseGetPcapFileInfoFromAgentResponse_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue struct {
+	GetPcapFileInfoFromAgentResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ GetPcapFileInfoFromAgentResponse_FieldPathValue = (*GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'GetPcapFileInfoFromAgentResponse' as interface{}
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) AsStartTimeValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) AsEndTimeValue() (*timestamp.Timestamp, bool) {
+	res, ok := fpv.value.(*timestamp.Timestamp)
+	return res, ok
+}
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) AsSizeBytesValue() (int64, bool) {
+	res, ok := fpv.value.(int64)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object GetPcapFileInfoFromAgentResponse
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) SetTo(target **GetPcapFileInfoFromAgentResponse) {
+	if *target == nil {
+		*target = new(GetPcapFileInfoFromAgentResponse)
+	}
+	switch fpv.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		(*target).StartTime = fpv.value.(*timestamp.Timestamp)
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		(*target).EndTime = fpv.value.(*timestamp.Timestamp)
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		(*target).SizeBytes = fpv.value.(int64)
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*GetPcapFileInfoFromAgentResponse)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue' with the value under path in 'GetPcapFileInfoFromAgentResponse'.
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) CompareWith(source *GetPcapFileInfoFromAgentResponse) (int, bool) {
+	switch fpv.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetStartTime()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		leftValue := fpv.value.(*timestamp.Timestamp)
+		rightValue := source.GetEndTime()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.AsTime().Equal(rightValue.AsTime()) {
+			return 0, true
+		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		leftValue := fpv.value.(int64)
+		rightValue := source.GetSizeBytes()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for GetPcapFileInfoFromAgentResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+// GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue allows storing single item in Path-specific values for GetPcapFileInfoFromAgentResponse according to their type
+// Present only for array (repeated) types.
+type GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	GetPcapFileInfoFromAgentResponse_FieldPath
+	ContainsValue(*GetPcapFileInfoFromAgentResponse) bool
+}
+
+// ParseGetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseGetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue(pathStr, valueStr string) (GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentResponse field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue(pathStr, valueStr string) GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue {
+	fpaiv, err := ParseGetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue struct {
+	GetPcapFileInfoFromAgentResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ GetPcapFileInfoFromAgentResponse_FieldPathArrayItemValue = (*GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object GetPcapFileInfoFromAgentResponse as interface{}
+func (fpaiv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue) GetSingle(source *GetPcapFileInfoFromAgentResponse) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'GetPcapFileInfoFromAgentResponse'
+func (fpaiv *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *GetPcapFileInfoFromAgentResponse) bool {
+	slice := fpaiv.GetPcapFileInfoFromAgentResponse_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues allows storing slice of values for GetPcapFileInfoFromAgentResponse fields according to their type
+type GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	GetPcapFileInfoFromAgentResponse_FieldPath
+}
+
+func ParseGetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues(pathStr, valuesStr string) (GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues, error) {
+	fp, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing GetPcapFileInfoFromAgentResponse field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues), nil
+}
+
+func MustParseGetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues(pathStr, valuesStr string) GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues {
+	fpaov, err := ParseGetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues struct {
+	GetPcapFileInfoFromAgentResponse_FieldTerminalPath
+	values interface{}
+}
+
+var _ GetPcapFileInfoFromAgentResponse_FieldPathArrayOfValues = (*GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
+			values = append(values, v)
+		}
+	case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+		for _, v := range fpaov.values.([]int64) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues) AsStartTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
+	return res, ok
+}
+func (fpaov *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues) AsEndTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
+	res, ok := fpaov.values.([]*timestamp.Timestamp)
+	return res, ok
+}
+func (fpaov *GetPcapFileInfoFromAgentResponse_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int64, bool) {
+	res, ok := fpaov.values.([]int64)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type CheckPcapIsRunningRequest_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() CheckPcapIsRunningRequest_FieldPathSelector
+	Get(source *CheckPcapIsRunningRequest) []interface{}
+	GetSingle(source *CheckPcapIsRunningRequest) (interface{}, bool)
+	ClearValue(item *CheckPcapIsRunningRequest)
+
+	// Those methods build corresponding CheckPcapIsRunningRequest_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) CheckPcapIsRunningRequest_FieldPathValue
+	WithIArrayOfValues(values interface{}) CheckPcapIsRunningRequest_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) CheckPcapIsRunningRequest_FieldPathArrayItemValue
+}
+
+type CheckPcapIsRunningRequest_FieldPathSelector int32
+
+const (
+	CheckPcapIsRunningRequest_FieldPathSelectorName CheckPcapIsRunningRequest_FieldPathSelector = 0
+)
+
+func (s CheckPcapIsRunningRequest_FieldPathSelector) String() string {
+	switch s {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		return "name"
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", s))
+	}
+}
+
+func BuildCheckPcapIsRunningRequest_FieldPath(fp gotenobject.RawFieldPath) (CheckPcapIsRunningRequest_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object CheckPcapIsRunningRequest")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "name":
+			return &CheckPcapIsRunningRequest_FieldTerminalPath{selector: CheckPcapIsRunningRequest_FieldPathSelectorName}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object CheckPcapIsRunningRequest", fp)
+}
+
+func ParseCheckPcapIsRunningRequest_FieldPath(rawField string) (CheckPcapIsRunningRequest_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildCheckPcapIsRunningRequest_FieldPath(fp)
+}
+
+func MustParseCheckPcapIsRunningRequest_FieldPath(rawField string) CheckPcapIsRunningRequest_FieldPath {
+	fp, err := ParseCheckPcapIsRunningRequest_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type CheckPcapIsRunningRequest_FieldTerminalPath struct {
+	selector CheckPcapIsRunningRequest_FieldPathSelector
+}
+
+var _ CheckPcapIsRunningRequest_FieldPath = (*CheckPcapIsRunningRequest_FieldTerminalPath)(nil)
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) Selector() CheckPcapIsRunningRequest_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source CheckPcapIsRunningRequest
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) Get(source *CheckPcapIsRunningRequest) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case CheckPcapIsRunningRequest_FieldPathSelectorName:
+			if source.Name != nil {
+				values = append(values, source.Name)
+			}
+		default:
+			panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*CheckPcapIsRunningRequest))
+}
+
+// GetSingle returns value pointed by specific field of from source CheckPcapIsRunningRequest
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) GetSingle(source *CheckPcapIsRunningRequest) (interface{}, bool) {
+	switch fp.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		res := source.GetName()
+		return res, res != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*CheckPcapIsRunningRequest))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		return (*probe.Reference)(nil)
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) ClearValue(item *CheckPcapIsRunningRequest) {
+	if item != nil {
+		switch fp.selector {
+		case CheckPcapIsRunningRequest_FieldPathSelectorName:
+			item.Name = nil
+		default:
+			panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*CheckPcapIsRunningRequest))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == CheckPcapIsRunningRequest_FieldPathSelectorName
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithIValue(value interface{}) CheckPcapIsRunningRequest_FieldPathValue {
+	switch fp.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		return &CheckPcapIsRunningRequest_FieldTerminalPathValue{CheckPcapIsRunningRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithIArrayOfValues(values interface{}) CheckPcapIsRunningRequest_FieldPathArrayOfValues {
+	fpaov := &CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues{CheckPcapIsRunningRequest_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		return &CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues{CheckPcapIsRunningRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithIArrayItemValue(value interface{}) CheckPcapIsRunningRequest_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningRequest_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// CheckPcapIsRunningRequest_FieldPathValue allows storing values for CheckPcapIsRunningRequest fields according to their type
+type CheckPcapIsRunningRequest_FieldPathValue interface {
+	CheckPcapIsRunningRequest_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **CheckPcapIsRunningRequest)
+	CompareWith(*CheckPcapIsRunningRequest) (cmp int, comparable bool)
+}
+
+func ParseCheckPcapIsRunningRequest_FieldPathValue(pathStr, valueStr string) (CheckPcapIsRunningRequest_FieldPathValue, error) {
+	fp, err := ParseCheckPcapIsRunningRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningRequest field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(CheckPcapIsRunningRequest_FieldPathValue), nil
+}
+
+func MustParseCheckPcapIsRunningRequest_FieldPathValue(pathStr, valueStr string) CheckPcapIsRunningRequest_FieldPathValue {
+	fpv, err := ParseCheckPcapIsRunningRequest_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type CheckPcapIsRunningRequest_FieldTerminalPathValue struct {
+	CheckPcapIsRunningRequest_FieldTerminalPath
+	value interface{}
+}
+
+var _ CheckPcapIsRunningRequest_FieldPathValue = (*CheckPcapIsRunningRequest_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'CheckPcapIsRunningRequest' as interface{}
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) AsNameValue() (*probe.Reference, bool) {
+	res, ok := fpv.value.(*probe.Reference)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object CheckPcapIsRunningRequest
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) SetTo(target **CheckPcapIsRunningRequest) {
+	if *target == nil {
+		*target = new(CheckPcapIsRunningRequest)
+	}
+	switch fpv.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		(*target).Name = fpv.value.(*probe.Reference)
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fpv.selector))
+	}
+}
+
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*CheckPcapIsRunningRequest)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'CheckPcapIsRunningRequest_FieldTerminalPathValue' with the value under path in 'CheckPcapIsRunningRequest'.
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) CompareWith(source *CheckPcapIsRunningRequest) (int, bool) {
+	switch fpv.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		leftValue := fpv.value.(*probe.Reference)
+		rightValue := source.GetName()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningRequest: %d", fpv.selector))
+	}
+}
+
+func (fpv *CheckPcapIsRunningRequest_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*CheckPcapIsRunningRequest))
+}
+
+// CheckPcapIsRunningRequest_FieldPathArrayItemValue allows storing single item in Path-specific values for CheckPcapIsRunningRequest according to their type
+// Present only for array (repeated) types.
+type CheckPcapIsRunningRequest_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	CheckPcapIsRunningRequest_FieldPath
+	ContainsValue(*CheckPcapIsRunningRequest) bool
+}
+
+// ParseCheckPcapIsRunningRequest_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseCheckPcapIsRunningRequest_FieldPathArrayItemValue(pathStr, valueStr string) (CheckPcapIsRunningRequest_FieldPathArrayItemValue, error) {
+	fp, err := ParseCheckPcapIsRunningRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningRequest field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(CheckPcapIsRunningRequest_FieldPathArrayItemValue), nil
+}
+
+func MustParseCheckPcapIsRunningRequest_FieldPathArrayItemValue(pathStr, valueStr string) CheckPcapIsRunningRequest_FieldPathArrayItemValue {
+	fpaiv, err := ParseCheckPcapIsRunningRequest_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue struct {
+	CheckPcapIsRunningRequest_FieldTerminalPath
+	value interface{}
+}
+
+var _ CheckPcapIsRunningRequest_FieldPathArrayItemValue = (*CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object CheckPcapIsRunningRequest as interface{}
+func (fpaiv *CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue) GetSingle(source *CheckPcapIsRunningRequest) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*CheckPcapIsRunningRequest))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'CheckPcapIsRunningRequest'
+func (fpaiv *CheckPcapIsRunningRequest_FieldTerminalPathArrayItemValue) ContainsValue(source *CheckPcapIsRunningRequest) bool {
+	slice := fpaiv.CheckPcapIsRunningRequest_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// CheckPcapIsRunningRequest_FieldPathArrayOfValues allows storing slice of values for CheckPcapIsRunningRequest fields according to their type
+type CheckPcapIsRunningRequest_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	CheckPcapIsRunningRequest_FieldPath
+}
+
+func ParseCheckPcapIsRunningRequest_FieldPathArrayOfValues(pathStr, valuesStr string) (CheckPcapIsRunningRequest_FieldPathArrayOfValues, error) {
+	fp, err := ParseCheckPcapIsRunningRequest_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningRequest field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(CheckPcapIsRunningRequest_FieldPathArrayOfValues), nil
+}
+
+func MustParseCheckPcapIsRunningRequest_FieldPathArrayOfValues(pathStr, valuesStr string) CheckPcapIsRunningRequest_FieldPathArrayOfValues {
+	fpaov, err := ParseCheckPcapIsRunningRequest_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues struct {
+	CheckPcapIsRunningRequest_FieldTerminalPath
+	values interface{}
+}
+
+var _ CheckPcapIsRunningRequest_FieldPathArrayOfValues = (*CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case CheckPcapIsRunningRequest_FieldPathSelectorName:
+		for _, v := range fpaov.values.([]*probe.Reference) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *CheckPcapIsRunningRequest_FieldTerminalPathArrayOfValues) AsNameArrayOfValues() ([]*probe.Reference, bool) {
+	res, ok := fpaov.values.([]*probe.Reference)
+	return res, ok
+}
+
+// FieldPath provides implementation to handle
+// https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto
+type CheckPcapIsRunningResponse_FieldPath interface {
+	gotenobject.FieldPath
+	Selector() CheckPcapIsRunningResponse_FieldPathSelector
+	Get(source *CheckPcapIsRunningResponse) []interface{}
+	GetSingle(source *CheckPcapIsRunningResponse) (interface{}, bool)
+	ClearValue(item *CheckPcapIsRunningResponse)
+
+	// Those methods build corresponding CheckPcapIsRunningResponse_FieldPathValue
+	// (or array of values) and holds passed value. Panics if injected type is incorrect.
+	WithIValue(value interface{}) CheckPcapIsRunningResponse_FieldPathValue
+	WithIArrayOfValues(values interface{}) CheckPcapIsRunningResponse_FieldPathArrayOfValues
+	WithIArrayItemValue(value interface{}) CheckPcapIsRunningResponse_FieldPathArrayItemValue
+}
+
+type CheckPcapIsRunningResponse_FieldPathSelector int32
+
+const (
+	CheckPcapIsRunningResponse_FieldPathSelectorIsRunning CheckPcapIsRunningResponse_FieldPathSelector = 0
+)
+
+func (s CheckPcapIsRunningResponse_FieldPathSelector) String() string {
+	switch s {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		return "is_running"
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", s))
+	}
+}
+
+func BuildCheckPcapIsRunningResponse_FieldPath(fp gotenobject.RawFieldPath) (CheckPcapIsRunningResponse_FieldPath, error) {
+	if len(fp) == 0 {
+		return nil, status.Error(codes.InvalidArgument, "empty field path for object CheckPcapIsRunningResponse")
+	}
+	if len(fp) == 1 {
+		switch fp[0] {
+		case "is_running", "isRunning", "is-running":
+			return &CheckPcapIsRunningResponse_FieldTerminalPath{selector: CheckPcapIsRunningResponse_FieldPathSelectorIsRunning}, nil
+		}
+	}
+	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object CheckPcapIsRunningResponse", fp)
+}
+
+func ParseCheckPcapIsRunningResponse_FieldPath(rawField string) (CheckPcapIsRunningResponse_FieldPath, error) {
+	fp, err := gotenobject.ParseRawFieldPath(rawField)
+	if err != nil {
+		return nil, err
+	}
+	return BuildCheckPcapIsRunningResponse_FieldPath(fp)
+}
+
+func MustParseCheckPcapIsRunningResponse_FieldPath(rawField string) CheckPcapIsRunningResponse_FieldPath {
+	fp, err := ParseCheckPcapIsRunningResponse_FieldPath(rawField)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+type CheckPcapIsRunningResponse_FieldTerminalPath struct {
+	selector CheckPcapIsRunningResponse_FieldPathSelector
+}
+
+var _ CheckPcapIsRunningResponse_FieldPath = (*CheckPcapIsRunningResponse_FieldTerminalPath)(nil)
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) Selector() CheckPcapIsRunningResponse_FieldPathSelector {
+	return fp.selector
+}
+
+// String returns path representation in proto convention
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) String() string {
+	return fp.selector.String()
+}
+
+// JSONString returns path representation is JSON convention
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) JSONString() string {
+	return strcase.ToLowerCamel(fp.String())
+}
+
+// Get returns all values pointed by specific field from source CheckPcapIsRunningResponse
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) Get(source *CheckPcapIsRunningResponse) (values []interface{}) {
+	if source != nil {
+		switch fp.selector {
+		case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+			values = append(values, source.IsRunning)
+		default:
+			panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+		}
+	}
+	return
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) GetRaw(source proto.Message) []interface{} {
+	return fp.Get(source.(*CheckPcapIsRunningResponse))
+}
+
+// GetSingle returns value pointed by specific field of from source CheckPcapIsRunningResponse
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) GetSingle(source *CheckPcapIsRunningResponse) (interface{}, bool) {
+	switch fp.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		return source.GetIsRunning(), source != nil
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fp.GetSingle(source.(*CheckPcapIsRunningResponse))
+}
+
+// GetDefault returns a default value of the field type
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) GetDefault() interface{} {
+	switch fp.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		return false
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) ClearValue(item *CheckPcapIsRunningResponse) {
+	if item != nil {
+		switch fp.selector {
+		case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+			item.IsRunning = false
+		default:
+			panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+		}
+	}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) ClearValueRaw(item proto.Message) {
+	fp.ClearValue(item.(*CheckPcapIsRunningResponse))
+}
+
+// IsLeaf - whether field path is holds simple value
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) IsLeaf() bool {
+	return fp.selector == CheckPcapIsRunningResponse_FieldPathSelectorIsRunning
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
+	return []gotenobject.FieldPath{fp}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithIValue(value interface{}) CheckPcapIsRunningResponse_FieldPathValue {
+	switch fp.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		return &CheckPcapIsRunningResponse_FieldTerminalPathValue{CheckPcapIsRunningResponse_FieldTerminalPath: *fp, value: value.(bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithRawIValue(value interface{}) gotenobject.FieldPathValue {
+	return fp.WithIValue(value)
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithIArrayOfValues(values interface{}) CheckPcapIsRunningResponse_FieldPathArrayOfValues {
+	fpaov := &CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues{CheckPcapIsRunningResponse_FieldTerminalPath: *fp}
+	switch fp.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		return &CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues{CheckPcapIsRunningResponse_FieldTerminalPath: *fp, values: values.([]bool)}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+	}
+	return fpaov
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithRawIArrayOfValues(values interface{}) gotenobject.FieldPathArrayOfValues {
+	return fp.WithIArrayOfValues(values)
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithIArrayItemValue(value interface{}) CheckPcapIsRunningResponse_FieldPathArrayItemValue {
+	switch fp.selector {
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fp.selector))
+	}
+}
+
+func (fp *CheckPcapIsRunningResponse_FieldTerminalPath) WithRawIArrayItemValue(value interface{}) gotenobject.FieldPathArrayItemValue {
+	return fp.WithIArrayItemValue(value)
+}
+
+// CheckPcapIsRunningResponse_FieldPathValue allows storing values for CheckPcapIsRunningResponse fields according to their type
+type CheckPcapIsRunningResponse_FieldPathValue interface {
+	CheckPcapIsRunningResponse_FieldPath
+	gotenobject.FieldPathValue
+	SetTo(target **CheckPcapIsRunningResponse)
+	CompareWith(*CheckPcapIsRunningResponse) (cmp int, comparable bool)
+}
+
+func ParseCheckPcapIsRunningResponse_FieldPathValue(pathStr, valueStr string) (CheckPcapIsRunningResponse_FieldPathValue, error) {
+	fp, err := ParseCheckPcapIsRunningResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpv, err := gotenobject.ParseFieldPathValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningResponse field path value from %s: %v", valueStr, err)
+	}
+	return fpv.(CheckPcapIsRunningResponse_FieldPathValue), nil
+}
+
+func MustParseCheckPcapIsRunningResponse_FieldPathValue(pathStr, valueStr string) CheckPcapIsRunningResponse_FieldPathValue {
+	fpv, err := ParseCheckPcapIsRunningResponse_FieldPathValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpv
+}
+
+type CheckPcapIsRunningResponse_FieldTerminalPathValue struct {
+	CheckPcapIsRunningResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ CheckPcapIsRunningResponse_FieldPathValue = (*CheckPcapIsRunningResponse_FieldTerminalPathValue)(nil)
+
+// GetRawValue returns raw value stored under selected path for 'CheckPcapIsRunningResponse' as interface{}
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) GetRawValue() interface{} {
+	return fpv.value
+}
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) AsIsRunningValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+
+// SetTo stores value for selected field for object CheckPcapIsRunningResponse
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) SetTo(target **CheckPcapIsRunningResponse) {
+	if *target == nil {
+		*target = new(CheckPcapIsRunningResponse)
+	}
+	switch fpv.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		(*target).IsRunning = fpv.value.(bool)
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) SetToRaw(target proto.Message) {
+	typedObject := target.(*CheckPcapIsRunningResponse)
+	fpv.SetTo(&typedObject)
+}
+
+// CompareWith compares value in the 'CheckPcapIsRunningResponse_FieldTerminalPathValue' with the value under path in 'CheckPcapIsRunningResponse'.
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) CompareWith(source *CheckPcapIsRunningResponse) (int, bool) {
+	switch fpv.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetIsRunning()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	default:
+		panic(fmt.Sprintf("Invalid selector for CheckPcapIsRunningResponse: %d", fpv.selector))
+	}
+}
+
+func (fpv *CheckPcapIsRunningResponse_FieldTerminalPathValue) CompareWithRaw(source proto.Message) (int, bool) {
+	return fpv.CompareWith(source.(*CheckPcapIsRunningResponse))
+}
+
+// CheckPcapIsRunningResponse_FieldPathArrayItemValue allows storing single item in Path-specific values for CheckPcapIsRunningResponse according to their type
+// Present only for array (repeated) types.
+type CheckPcapIsRunningResponse_FieldPathArrayItemValue interface {
+	gotenobject.FieldPathArrayItemValue
+	CheckPcapIsRunningResponse_FieldPath
+	ContainsValue(*CheckPcapIsRunningResponse) bool
+}
+
+// ParseCheckPcapIsRunningResponse_FieldPathArrayItemValue parses string and JSON-encoded value to its Value
+func ParseCheckPcapIsRunningResponse_FieldPathArrayItemValue(pathStr, valueStr string) (CheckPcapIsRunningResponse_FieldPathArrayItemValue, error) {
+	fp, err := ParseCheckPcapIsRunningResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaiv, err := gotenobject.ParseFieldPathArrayItemValue(fp, valueStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningResponse field path array item value from %s: %v", valueStr, err)
+	}
+	return fpaiv.(CheckPcapIsRunningResponse_FieldPathArrayItemValue), nil
+}
+
+func MustParseCheckPcapIsRunningResponse_FieldPathArrayItemValue(pathStr, valueStr string) CheckPcapIsRunningResponse_FieldPathArrayItemValue {
+	fpaiv, err := ParseCheckPcapIsRunningResponse_FieldPathArrayItemValue(pathStr, valueStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaiv
+}
+
+type CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue struct {
+	CheckPcapIsRunningResponse_FieldTerminalPath
+	value interface{}
+}
+
+var _ CheckPcapIsRunningResponse_FieldPathArrayItemValue = (*CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue)(nil)
+
+// GetRawValue returns stored element value for array in object CheckPcapIsRunningResponse as interface{}
+func (fpaiv *CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue) GetRawItemValue() interface{} {
+	return fpaiv.value
+}
+
+func (fpaiv *CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue) GetSingle(source *CheckPcapIsRunningResponse) (interface{}, bool) {
+	return nil, false
+}
+
+func (fpaiv *CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue) GetSingleRaw(source proto.Message) (interface{}, bool) {
+	return fpaiv.GetSingle(source.(*CheckPcapIsRunningResponse))
+}
+
+// Contains returns a boolean indicating if value that is being held is present in given 'CheckPcapIsRunningResponse'
+func (fpaiv *CheckPcapIsRunningResponse_FieldTerminalPathArrayItemValue) ContainsValue(source *CheckPcapIsRunningResponse) bool {
+	slice := fpaiv.CheckPcapIsRunningResponse_FieldTerminalPath.Get(source)
+	for _, v := range slice {
+		if asProtoMsg, ok := fpaiv.value.(proto.Message); ok {
+			if proto.Equal(asProtoMsg, v.(proto.Message)) {
+				return true
+			}
+		} else if reflect.DeepEqual(v, fpaiv.value) {
+			return true
+		}
+	}
+	return false
+}
+
+// CheckPcapIsRunningResponse_FieldPathArrayOfValues allows storing slice of values for CheckPcapIsRunningResponse fields according to their type
+type CheckPcapIsRunningResponse_FieldPathArrayOfValues interface {
+	gotenobject.FieldPathArrayOfValues
+	CheckPcapIsRunningResponse_FieldPath
+}
+
+func ParseCheckPcapIsRunningResponse_FieldPathArrayOfValues(pathStr, valuesStr string) (CheckPcapIsRunningResponse_FieldPathArrayOfValues, error) {
+	fp, err := ParseCheckPcapIsRunningResponse_FieldPath(pathStr)
+	if err != nil {
+		return nil, err
+	}
+	fpaov, err := gotenobject.ParseFieldPathArrayOfValues(fp, valuesStr)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "error parsing CheckPcapIsRunningResponse field path array of values from %s: %v", valuesStr, err)
+	}
+	return fpaov.(CheckPcapIsRunningResponse_FieldPathArrayOfValues), nil
+}
+
+func MustParseCheckPcapIsRunningResponse_FieldPathArrayOfValues(pathStr, valuesStr string) CheckPcapIsRunningResponse_FieldPathArrayOfValues {
+	fpaov, err := ParseCheckPcapIsRunningResponse_FieldPathArrayOfValues(pathStr, valuesStr)
+	if err != nil {
+		panic(err)
+	}
+	return fpaov
+}
+
+type CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues struct {
+	CheckPcapIsRunningResponse_FieldTerminalPath
+	values interface{}
+}
+
+var _ CheckPcapIsRunningResponse_FieldPathArrayOfValues = (*CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues)(nil)
+
+func (fpaov *CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues) GetRawValues() (values []interface{}) {
+	switch fpaov.selector {
+	case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	}
+	return
+}
+func (fpaov *CheckPcapIsRunningResponse_FieldTerminalPathArrayOfValues) AsIsRunningArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}

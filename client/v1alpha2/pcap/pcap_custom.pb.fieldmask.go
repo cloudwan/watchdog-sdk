@@ -1116,3 +1116,1021 @@ func (fieldMask *GetPcapFileFromAgentRequest_FieldMask) PathsCount() int {
 	}
 	return len(fieldMask.Paths)
 }
+
+type GetPcapFileInfoFromAgentRequest_FieldMask struct {
+	Paths []GetPcapFileInfoFromAgentRequest_FieldPath
+}
+
+func FullGetPcapFileInfoFromAgentRequest_FieldMask() *GetPcapFileInfoFromAgentRequest_FieldMask {
+	res := &GetPcapFileInfoFromAgentRequest_FieldMask{}
+	res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentRequest_FieldTerminalPath{selector: GetPcapFileInfoFromAgentRequest_FieldPathSelectorName})
+	return res
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 1)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*GetPcapFileInfoFromAgentRequest_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseGetPcapFileInfoFromAgentRequest_FieldPath(raw)
+	})
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) ProtoMessage() {}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Subtract(other *GetPcapFileInfoFromAgentRequest_FieldMask) *GetPcapFileInfoFromAgentRequest_FieldMask {
+	result := &GetPcapFileInfoFromAgentRequest_FieldMask{}
+	removedSelectors := make([]bool, 1)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *GetPcapFileInfoFromAgentRequest_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*GetPcapFileInfoFromAgentRequest_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) FilterInputFields() *GetPcapFileInfoFromAgentRequest_FieldMask {
+	result := &GetPcapFileInfoFromAgentRequest_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]GetPcapFileInfoFromAgentRequest_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask GetPcapFileInfoFromAgentRequest_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask GetPcapFileInfoFromAgentRequest_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) AppendPath(path GetPcapFileInfoFromAgentRequest_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(GetPcapFileInfoFromAgentRequest_FieldPath))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) GetPaths() []GetPcapFileInfoFromAgentRequest_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseGetPcapFileInfoFromAgentRequest_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Set(target, source *GetPcapFileInfoFromAgentRequest) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*GetPcapFileInfoFromAgentRequest), source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) Project(source *GetPcapFileInfoFromAgentRequest) *GetPcapFileInfoFromAgentRequest {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &GetPcapFileInfoFromAgentRequest{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *GetPcapFileInfoFromAgentRequest_FieldTerminalPath:
+			switch tp.selector {
+			case GetPcapFileInfoFromAgentRequest_FieldPathSelectorName:
+				result.Name = source.Name
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*GetPcapFileInfoFromAgentRequest))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentRequest_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type GetPcapFileInfoFromAgentResponse_FieldMask struct {
+	Paths []GetPcapFileInfoFromAgentResponse_FieldPath
+}
+
+func FullGetPcapFileInfoFromAgentResponse_FieldMask() *GetPcapFileInfoFromAgentResponse_FieldMask {
+	res := &GetPcapFileInfoFromAgentResponse_FieldMask{}
+	res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime})
+	res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime})
+	res.Paths = append(res.Paths, &GetPcapFileInfoFromAgentResponse_FieldTerminalPath{selector: GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes})
+	return res
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 3)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*GetPcapFileInfoFromAgentResponse_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseGetPcapFileInfoFromAgentResponse_FieldPath(raw)
+	})
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) ProtoMessage() {}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Subtract(other *GetPcapFileInfoFromAgentResponse_FieldMask) *GetPcapFileInfoFromAgentResponse_FieldMask {
+	result := &GetPcapFileInfoFromAgentResponse_FieldMask{}
+	removedSelectors := make([]bool, 3)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *GetPcapFileInfoFromAgentResponse_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*GetPcapFileInfoFromAgentResponse_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) FilterInputFields() *GetPcapFileInfoFromAgentResponse_FieldMask {
+	result := &GetPcapFileInfoFromAgentResponse_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]GetPcapFileInfoFromAgentResponse_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask GetPcapFileInfoFromAgentResponse_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask GetPcapFileInfoFromAgentResponse_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) AppendPath(path GetPcapFileInfoFromAgentResponse_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(GetPcapFileInfoFromAgentResponse_FieldPath))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) GetPaths() []GetPcapFileInfoFromAgentResponse_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseGetPcapFileInfoFromAgentResponse_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Set(target, source *GetPcapFileInfoFromAgentResponse) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*GetPcapFileInfoFromAgentResponse), source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) Project(source *GetPcapFileInfoFromAgentResponse) *GetPcapFileInfoFromAgentResponse {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &GetPcapFileInfoFromAgentResponse{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *GetPcapFileInfoFromAgentResponse_FieldTerminalPath:
+			switch tp.selector {
+			case GetPcapFileInfoFromAgentResponse_FieldPathSelectorStartTime:
+				result.StartTime = source.StartTime
+			case GetPcapFileInfoFromAgentResponse_FieldPathSelectorEndTime:
+				result.EndTime = source.EndTime
+			case GetPcapFileInfoFromAgentResponse_FieldPathSelectorSizeBytes:
+				result.SizeBytes = source.SizeBytes
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*GetPcapFileInfoFromAgentResponse))
+}
+
+func (fieldMask *GetPcapFileInfoFromAgentResponse_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type CheckPcapIsRunningRequest_FieldMask struct {
+	Paths []CheckPcapIsRunningRequest_FieldPath
+}
+
+func FullCheckPcapIsRunningRequest_FieldMask() *CheckPcapIsRunningRequest_FieldMask {
+	res := &CheckPcapIsRunningRequest_FieldMask{}
+	res.Paths = append(res.Paths, &CheckPcapIsRunningRequest_FieldTerminalPath{selector: CheckPcapIsRunningRequest_FieldPathSelectorName})
+	return res
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseCheckPcapIsRunningRequest_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 1)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*CheckPcapIsRunningRequest_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseCheckPcapIsRunningRequest_FieldPath(raw)
+	})
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) ProtoMessage() {}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Subtract(other *CheckPcapIsRunningRequest_FieldMask) *CheckPcapIsRunningRequest_FieldMask {
+	result := &CheckPcapIsRunningRequest_FieldMask{}
+	removedSelectors := make([]bool, 1)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *CheckPcapIsRunningRequest_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*CheckPcapIsRunningRequest_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) FilterInputFields() *CheckPcapIsRunningRequest_FieldMask {
+	result := &CheckPcapIsRunningRequest_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]CheckPcapIsRunningRequest_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseCheckPcapIsRunningRequest_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask CheckPcapIsRunningRequest_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask CheckPcapIsRunningRequest_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) AppendPath(path CheckPcapIsRunningRequest_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(CheckPcapIsRunningRequest_FieldPath))
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) GetPaths() []CheckPcapIsRunningRequest_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseCheckPcapIsRunningRequest_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Set(target, source *CheckPcapIsRunningRequest) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*CheckPcapIsRunningRequest), source.(*CheckPcapIsRunningRequest))
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) Project(source *CheckPcapIsRunningRequest) *CheckPcapIsRunningRequest {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &CheckPcapIsRunningRequest{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *CheckPcapIsRunningRequest_FieldTerminalPath:
+			switch tp.selector {
+			case CheckPcapIsRunningRequest_FieldPathSelectorName:
+				result.Name = source.Name
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*CheckPcapIsRunningRequest))
+}
+
+func (fieldMask *CheckPcapIsRunningRequest_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}
+
+type CheckPcapIsRunningResponse_FieldMask struct {
+	Paths []CheckPcapIsRunningResponse_FieldPath
+}
+
+func FullCheckPcapIsRunningResponse_FieldMask() *CheckPcapIsRunningResponse_FieldMask {
+	res := &CheckPcapIsRunningResponse_FieldMask{}
+	res.Paths = append(res.Paths, &CheckPcapIsRunningResponse_FieldTerminalPath{selector: CheckPcapIsRunningResponse_FieldPathSelectorIsRunning})
+	return res
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) String() string {
+	if fieldMask == nil {
+		return "<nil>"
+	}
+	pathsStr := make([]string, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		pathsStr = append(pathsStr, path.String())
+	}
+	return strings.Join(pathsStr, ", ")
+}
+
+// firestore encoding/decoding integration
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) EncodeFirestore() (*firestorepb.Value, error) {
+	if fieldMask == nil {
+		return &firestorepb.Value{ValueType: &firestorepb.Value_NullValue{}}, nil
+	}
+	arrayValues := make([]*firestorepb.Value, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.GetPaths() {
+		arrayValues = append(arrayValues, &firestorepb.Value{ValueType: &firestorepb.Value_StringValue{StringValue: path.String()}})
+	}
+	return &firestorepb.Value{
+		ValueType: &firestorepb.Value_ArrayValue{ArrayValue: &firestorepb.ArrayValue{Values: arrayValues}},
+	}, nil
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) DecodeFirestore(fpbv *firestorepb.Value) error {
+	for _, value := range fpbv.GetArrayValue().GetValues() {
+		parsedPath, err := ParseCheckPcapIsRunningResponse_FieldPath(value.GetStringValue())
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, parsedPath)
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) IsFull() bool {
+	if fieldMask == nil {
+		return false
+	}
+	presentSelectors := make([]bool, 1)
+	for _, path := range fieldMask.Paths {
+		if asFinal, ok := path.(*CheckPcapIsRunningResponse_FieldTerminalPath); ok {
+			presentSelectors[int(asFinal.selector)] = true
+		}
+	}
+	for _, flag := range presentSelectors {
+		if !flag {
+			return false
+		}
+	}
+	return true
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) ProtoReflect() preflect.Message {
+	return gotenobject.MakeFieldMaskReflection(fieldMask, func(raw string) (gotenobject.FieldPath, error) {
+		return ParseCheckPcapIsRunningResponse_FieldPath(raw)
+	})
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) ProtoMessage() {}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Reset() {
+	if fieldMask != nil {
+		fieldMask.Paths = nil
+	}
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Subtract(other *CheckPcapIsRunningResponse_FieldMask) *CheckPcapIsRunningResponse_FieldMask {
+	result := &CheckPcapIsRunningResponse_FieldMask{}
+	removedSelectors := make([]bool, 1)
+
+	for _, path := range other.GetPaths() {
+		switch tp := path.(type) {
+		case *CheckPcapIsRunningResponse_FieldTerminalPath:
+			removedSelectors[int(tp.selector)] = true
+		}
+	}
+	for _, path := range fieldMask.GetPaths() {
+		if !removedSelectors[int(path.Selector())] {
+			result.Paths = append(result.Paths, path)
+		}
+	}
+
+	if len(result.Paths) == 0 {
+		return nil
+	}
+	return result
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) SubtractRaw(other gotenobject.FieldMask) gotenobject.FieldMask {
+	return fieldMask.Subtract(other.(*CheckPcapIsRunningResponse_FieldMask))
+}
+
+// FilterInputFields generates copy of field paths with output_only field paths removed
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) FilterInputFields() *CheckPcapIsRunningResponse_FieldMask {
+	result := &CheckPcapIsRunningResponse_FieldMask{}
+	result.Paths = append(result.Paths, fieldMask.Paths...)
+	return result
+}
+
+// ToFieldMask is used for proto conversions
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) ToProtoFieldMask() *fieldmaskpb.FieldMask {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	for _, path := range fieldMask.Paths {
+		protoFieldMask.Paths = append(protoFieldMask.Paths, path.String())
+	}
+	return protoFieldMask
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) FromProtoFieldMask(protoFieldMask *fieldmaskpb.FieldMask) error {
+	if fieldMask == nil {
+		return status.Error(codes.Internal, "target field mask is nil")
+	}
+	fieldMask.Paths = make([]CheckPcapIsRunningResponse_FieldPath, 0, len(protoFieldMask.Paths))
+	for _, strPath := range protoFieldMask.Paths {
+		path, err := ParseCheckPcapIsRunningResponse_FieldPath(strPath)
+		if err != nil {
+			return err
+		}
+		fieldMask.Paths = append(fieldMask.Paths, path)
+	}
+	return nil
+}
+
+// implement methods required by customType
+func (fieldMask CheckPcapIsRunningResponse_FieldMask) Marshal() ([]byte, error) {
+	protoFieldMask := fieldMask.ToProtoFieldMask()
+	return proto.Marshal(protoFieldMask)
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Unmarshal(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := proto.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Size() int {
+	return proto.Size(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask CheckPcapIsRunningResponse_FieldMask) MarshalJSON() ([]byte, error) {
+	return json.Marshal(fieldMask.ToProtoFieldMask())
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) UnmarshalJSON(data []byte) error {
+	protoFieldMask := &fieldmaskpb.FieldMask{}
+	if err := json.Unmarshal(data, protoFieldMask); err != nil {
+		return err
+	}
+	if err := fieldMask.FromProtoFieldMask(protoFieldMask); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) AppendPath(path CheckPcapIsRunningResponse_FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path)
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) AppendRawPath(path gotenobject.FieldPath) {
+	fieldMask.Paths = append(fieldMask.Paths, path.(CheckPcapIsRunningResponse_FieldPath))
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) GetPaths() []CheckPcapIsRunningResponse_FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	return fieldMask.Paths
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) GetRawPaths() []gotenobject.FieldPath {
+	if fieldMask == nil {
+		return nil
+	}
+	rawPaths := make([]gotenobject.FieldPath, 0, len(fieldMask.Paths))
+	for _, path := range fieldMask.Paths {
+		rawPaths = append(rawPaths, path)
+	}
+	return rawPaths
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) SetFromCliFlag(raw string) error {
+	path, err := ParseCheckPcapIsRunningResponse_FieldPath(raw)
+	if err != nil {
+		return err
+	}
+	fieldMask.Paths = append(fieldMask.Paths, path)
+	return nil
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Set(target, source *CheckPcapIsRunningResponse) {
+	for _, path := range fieldMask.Paths {
+		val, _ := path.GetSingle(source)
+		// if val is nil, then field does not exist in source, skip
+		// otherwise, process (can still reflect.ValueOf(val).IsNil!)
+		if val != nil {
+			path.WithIValue(val).SetTo(&target)
+		}
+	}
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) SetRaw(target, source gotenobject.GotenObjectExt) {
+	fieldMask.Set(target.(*CheckPcapIsRunningResponse), source.(*CheckPcapIsRunningResponse))
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) Project(source *CheckPcapIsRunningResponse) *CheckPcapIsRunningResponse {
+	if source == nil {
+		return nil
+	}
+	if fieldMask == nil {
+		return source
+	}
+	result := &CheckPcapIsRunningResponse{}
+
+	for _, p := range fieldMask.Paths {
+		switch tp := p.(type) {
+		case *CheckPcapIsRunningResponse_FieldTerminalPath:
+			switch tp.selector {
+			case CheckPcapIsRunningResponse_FieldPathSelectorIsRunning:
+				result.IsRunning = source.IsRunning
+			}
+		}
+	}
+	return result
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) ProjectRaw(source gotenobject.GotenObjectExt) gotenobject.GotenObjectExt {
+	return fieldMask.Project(source.(*CheckPcapIsRunningResponse))
+}
+
+func (fieldMask *CheckPcapIsRunningResponse_FieldMask) PathsCount() int {
+	if fieldMask == nil {
+		return 0
+	}
+	return len(fieldMask.Paths)
+}

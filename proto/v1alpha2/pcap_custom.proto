@@ -53,3 +53,23 @@ message GetPcapFileFromAgentRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 }
+
+message GetPcapFileInfoFromAgentRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+}
+
+message GetPcapFileInfoFromAgentResponse {
+  google.protobuf.Timestamp start_time = 1;
+
+  google.protobuf.Timestamp end_time = 2;
+
+  int64 size_bytes = 3;
+}
+
+message CheckPcapIsRunningRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+}
+
+message CheckPcapIsRunningResponse { bool is_running = 1; }
