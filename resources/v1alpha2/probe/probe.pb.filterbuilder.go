@@ -6125,12 +6125,12 @@ func (b *filterCndBuilderSpecPcapSettings) CaptureFullPacket() *filterCndBuilder
 	return &filterCndBuilderSpecPcapSettingsCaptureFullPacket{builder: b.builder}
 }
 
-func (b *filterCndBuilderSpecPcapSettings) CaptureAllPackets() *filterCndBuilderSpecPcapSettingsCaptureAllPackets {
-	return &filterCndBuilderSpecPcapSettingsCaptureAllPackets{builder: b.builder}
+func (b *filterCndBuilderSpecPcapSettings) OnDemandMode() *filterCndBuilderSpecPcapSettingsOnDemandMode {
+	return &filterCndBuilderSpecPcapSettingsOnDemandMode{builder: b.builder}
 }
 
-func (b *filterCndBuilderSpecPcapSettings) StopCaptureAllPacketsBy() *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy {
-	return &filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy{builder: b.builder}
+func (b *filterCndBuilderSpecPcapSettings) StopOnDemandModeBy() *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy {
+	return &filterCndBuilderSpecPcapSettingsStopOnDemandModeBy{builder: b.builder}
 }
 
 type filterCndBuilderSpecPcapSettingsEnable struct {
@@ -6251,121 +6251,121 @@ func (b *filterCndBuilderSpecPcapSettingsCaptureFullPacket) compare(op gotenfilt
 	})
 }
 
-type filterCndBuilderSpecPcapSettingsCaptureAllPackets struct {
+type filterCndBuilderSpecPcapSettingsOnDemandMode struct {
 	builder *FilterBuilder
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Eq(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Eq(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Eq, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Neq(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Neq(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Neq, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Gt(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Gt(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Gt, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Gte(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Gte(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Gte, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Lt(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Lt(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Lt, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) Lte(value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) Lte(value bool) *FilterBuilder {
 	return b.compare(gotenfilter.Lte, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) In(values []bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) In(values []bool) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithArrayOfValues(values),
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) NotIn(values []bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) NotIn(values []bool) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionNotIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithArrayOfValues(values),
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) IsNull() *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) IsNull() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) IsNan() *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) IsNan() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsCaptureAllPackets) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsOnDemandMode) compare(op gotenfilter.CompareOperator, value bool) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
-		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().WithValue(value),
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().WithValue(value),
 	})
 }
 
-type filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy struct {
+type filterCndBuilderSpecPcapSettingsStopOnDemandModeBy struct {
 	builder *FilterBuilder
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Eq(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Eq(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Eq, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Neq(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Neq(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Neq, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Gt(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Gt(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Gt, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Gte(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Gte(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Gte, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Lt(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Lt(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Lt, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) Lte(value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) Lte(value *timestamp.Timestamp) *FilterBuilder {
 	return b.compare(gotenfilter.Lte, value)
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) In(values []*timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) In(values []*timestamp.Timestamp) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithArrayOfValues(values),
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) NotIn(values []*timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) NotIn(values []*timestamp.Timestamp) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionNotIn{
-		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithArrayOfValues(values),
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().WithArrayOfValues(values),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) IsNull() *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) IsNull() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNull{
-		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) IsNan() *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) IsNan() *FilterBuilder {
 	return b.builder.addCond(&FilterConditionIsNaN{
-		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		FieldPath: NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	})
 }
 
-func (b *filterCndBuilderSpecPcapSettingsStopCaptureAllPacketsBy) compare(op gotenfilter.CompareOperator, value *timestamp.Timestamp) *FilterBuilder {
+func (b *filterCndBuilderSpecPcapSettingsStopOnDemandModeBy) compare(op gotenfilter.CompareOperator, value *timestamp.Timestamp) *FilterBuilder {
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
-		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().WithValue(value),
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().WithValue(value),
 	})
 }
 

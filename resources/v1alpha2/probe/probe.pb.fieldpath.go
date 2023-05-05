@@ -6028,10 +6028,10 @@ type ProbeSpecPcapSettings_FieldPath interface {
 type ProbeSpecPcapSettings_FieldPathSelector int32
 
 const (
-	ProbeSpecPcapSettings_FieldPathSelectorEnable                  ProbeSpecPcapSettings_FieldPathSelector = 0
-	ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket       ProbeSpecPcapSettings_FieldPathSelector = 1
-	ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets       ProbeSpecPcapSettings_FieldPathSelector = 2
-	ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy ProbeSpecPcapSettings_FieldPathSelector = 3
+	ProbeSpecPcapSettings_FieldPathSelectorEnable             ProbeSpecPcapSettings_FieldPathSelector = 0
+	ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket  ProbeSpecPcapSettings_FieldPathSelector = 1
+	ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode       ProbeSpecPcapSettings_FieldPathSelector = 2
+	ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy ProbeSpecPcapSettings_FieldPathSelector = 3
 )
 
 func (s ProbeSpecPcapSettings_FieldPathSelector) String() string {
@@ -6040,10 +6040,10 @@ func (s ProbeSpecPcapSettings_FieldPathSelector) String() string {
 		return "enable"
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		return "capture_full_packet"
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-		return "capture_all_packets"
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-		return "stop_capture_all_packets_by"
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+		return "on_demand_mode"
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+		return "stop_on_demand_mode_by"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", s))
 	}
@@ -6059,10 +6059,10 @@ func BuildProbeSpecPcapSettings_FieldPath(fp gotenobject.RawFieldPath) (ProbeSpe
 			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorEnable}, nil
 		case "capture_full_packet", "captureFullPacket", "capture-full-packet":
 			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket}, nil
-		case "capture_all_packets", "captureAllPackets", "capture-all-packets":
-			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets}, nil
-		case "stop_capture_all_packets_by", "stopCaptureAllPacketsBy", "stop-capture-all-packets-by":
-			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy}, nil
+		case "on_demand_mode", "onDemandMode", "on-demand-mode":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode}, nil
+		case "stop_on_demand_mode_by", "stopOnDemandModeBy", "stop-on-demand-mode-by":
+			return &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Spec_PcapSettings", fp)
@@ -6112,11 +6112,11 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) Get(source *Probe_Spec_PcapSe
 			values = append(values, source.Enable)
 		case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 			values = append(values, source.CaptureFullPacket)
-		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-			values = append(values, source.CaptureAllPackets)
-		case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-			if source.StopCaptureAllPacketsBy != nil {
-				values = append(values, source.StopCaptureAllPacketsBy)
+		case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+			values = append(values, source.OnDemandMode)
+		case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+			if source.StopOnDemandModeBy != nil {
+				values = append(values, source.StopOnDemandModeBy)
 			}
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
@@ -6136,10 +6136,10 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetSingle(source *Probe_Spec_
 		return source.GetEnable(), source != nil
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		return source.GetCaptureFullPacket(), source != nil
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-		return source.GetCaptureAllPackets(), source != nil
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-		res := source.GetStopCaptureAllPacketsBy()
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+		return source.GetOnDemandMode(), source != nil
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+		res := source.GetStopOnDemandModeBy()
 		return res, res != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
@@ -6157,9 +6157,9 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) GetDefault() interface{} {
 		return false
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		return false
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
 		return false
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
 		return (*timestamp.Timestamp)(nil)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
@@ -6173,10 +6173,10 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValue(item *Probe_Spec_P
 			item.Enable = false
 		case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 			item.CaptureFullPacket = false
-		case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-			item.CaptureAllPackets = false
-		case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-			item.StopCaptureAllPacketsBy = nil
+		case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+			item.OnDemandMode = false
+		case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+			item.StopOnDemandModeBy = nil
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
 		}
@@ -6191,8 +6191,8 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) ClearValueRaw(item proto.Mess
 func (fp *ProbeSpecPcapSettings_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeSpecPcapSettings_FieldPathSelectorEnable ||
 		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket ||
-		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets ||
-		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode ||
+		fp.selector == ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy
 }
 
 func (fp *ProbeSpecPcapSettings_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6205,9 +6205,9 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIValue(value interface{})
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(bool)}
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
 		return &ProbeSpecPcapSettings_FieldTerminalPathValue{ProbeSpecPcapSettings_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
@@ -6225,9 +6225,9 @@ func (fp *ProbeSpecPcapSettings_FieldTerminalPath) WithIArrayOfValues(values int
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]bool)}
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
 		return &ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues{ProbeSpecPcapSettings_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fp.selector))
@@ -6297,11 +6297,11 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsCaptureFullPacketValu
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
-func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsCaptureAllPacketsValue() (bool, bool) {
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsOnDemandModeValue() (bool, bool) {
 	res, ok := fpv.value.(bool)
 	return res, ok
 }
-func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsStopCaptureAllPacketsByValue() (*timestamp.Timestamp, bool) {
+func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) AsStopOnDemandModeByValue() (*timestamp.Timestamp, bool) {
 	res, ok := fpv.value.(*timestamp.Timestamp)
 	return res, ok
 }
@@ -6316,10 +6316,10 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) SetTo(target **Probe_Sp
 		(*target).Enable = fpv.value.(bool)
 	case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 		(*target).CaptureFullPacket = fpv.value.(bool)
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-		(*target).CaptureAllPackets = fpv.value.(bool)
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-		(*target).StopCaptureAllPacketsBy = fpv.value.(*timestamp.Timestamp)
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+		(*target).OnDemandMode = fpv.value.(bool)
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+		(*target).StopOnDemandModeBy = fpv.value.(*timestamp.Timestamp)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_PcapSettings: %d", fpv.selector))
 	}
@@ -6353,9 +6353,9 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) CompareWith(source *Pro
 		} else {
 			return 1, true
 		}
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
 		leftValue := fpv.value.(bool)
-		rightValue := source.GetCaptureAllPackets()
+		rightValue := source.GetOnDemandMode()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if !(leftValue) && (rightValue) {
@@ -6363,9 +6363,9 @@ func (fpv *ProbeSpecPcapSettings_FieldTerminalPathValue) CompareWith(source *Pro
 		} else {
 			return 1, true
 		}
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
 		leftValue := fpv.value.(*timestamp.Timestamp)
-		rightValue := source.GetStopCaptureAllPacketsBy()
+		rightValue := source.GetStopOnDemandModeBy()
 		if leftValue == nil {
 			if rightValue != nil {
 				return -1, true
@@ -6498,11 +6498,11 @@ func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) GetRawValues(
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
-	case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
+	case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
 		for _, v := range fpaov.values.([]bool) {
 			values = append(values, v)
 		}
-	case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
+	case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
 		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
 			values = append(values, v)
 		}
@@ -6517,11 +6517,11 @@ func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureFull
 	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
-func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsCaptureAllPacketsArrayOfValues() ([]bool, bool) {
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsOnDemandModeArrayOfValues() ([]bool, bool) {
 	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
-func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsStopCaptureAllPacketsByArrayOfValues() ([]*timestamp.Timestamp, bool) {
+func (fpaov *ProbeSpecPcapSettings_FieldTerminalPathArrayOfValues) AsStopOnDemandModeByArrayOfValues() ([]*timestamp.Timestamp, bool) {
 	res, ok := fpaov.values.([]*timestamp.Timestamp)
 	return res, ok
 }

@@ -2210,8 +2210,8 @@ func FullProbe_Spec_PcapSettings_FieldMask() *Probe_Spec_PcapSettings_FieldMask 
 	res := &Probe_Spec_PcapSettings_FieldMask{}
 	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorEnable})
 	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket})
-	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets})
-	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy})
+	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode})
+	res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy})
 	return res
 }
 
@@ -2443,10 +2443,10 @@ func (fieldMask *Probe_Spec_PcapSettings_FieldMask) Project(source *Probe_Spec_P
 				result.Enable = source.Enable
 			case ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket:
 				result.CaptureFullPacket = source.CaptureFullPacket
-			case ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets:
-				result.CaptureAllPackets = source.CaptureAllPackets
-			case ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy:
-				result.StopCaptureAllPacketsBy = source.StopCaptureAllPacketsBy
+			case ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode:
+				result.OnDemandMode = source.OnDemandMode
+			case ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy:
+				result.StopOnDemandModeBy = source.StopOnDemandModeBy
 			}
 		}
 	}

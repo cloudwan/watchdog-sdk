@@ -156,19 +156,29 @@ message Probe {
     }
 
     message PcapSettings {
-      // Enables pcap for all probing sessions for this agent
+      // Enables pcap for this agent. Only Supported in Linux.
+      // There are two modes:
+      // 1. on_demand_mode = false pcap runs for regular probing sessions, arp
+      // and dns. The capture is saved to backend only when packet loss is
+      // detected
+      // 2. on_demand_mode = true pcap runs for probing sessions and on demand
+      // ping, dns, http tests. The captured file is saved locally in agent and
+      // on_demand_mode will be active for at most 1 hour
       bool enable = 1;
 
-      // By default only 138 bytes are captured
+      // By default only 138 bytes are captured to target packet header capture
+      // This flag enables capturing the entire packet rather than just the
+      // headers. only allowed when on_demand_mode = true
       bool capture_full_packet = 2;
 
-      // By default only probe packets, arp and dns are captured.
-      // capture_all_packets is helpful when running on demand tests to other
-      // destinations
-      bool capture_all_packets = 3;
+      // on_demand flag is helpful when running on demand tests to other
+      // destinations (on demand tests - ping, dns, http etc).
+      // Also another important point to note is that when on_demand_mode is
+      // true the packet capture will be saved locally in the agent
+      bool on_demand_mode = 3;
 
-      // By Default capture_all_packets will run for atmost 1 hour
-      google.protobuf.Timestamp stop_capture_all_packets_by = 4;
+      // on_demand_mode can be enabled for at most 1 hour
+      google.protobuf.Timestamp stop_on_demand_mode_by = 4;
     }
   }
 

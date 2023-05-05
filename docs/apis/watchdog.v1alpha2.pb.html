@@ -3151,30 +3151,42 @@ manager intervention. Convenient, but less secure configuration option.</p>
 <th rowspan="2">enable</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>Enables pcap for all probing sessions for this agent</p>
+<tr><td class="description"><p>Enables pcap for this agent. Only Supported in Linux.
+There are two modes:</p>
+<ol>
+<li>on_demand_mode = false pcap runs for regular probing sessions, arp
+and dns. The capture is saved to backend only when packet loss is
+detected</li>
+<li>on_demand_mode = true pcap runs for probing sessions and on demand
+ping, dns, http tests. The captured file is saved locally in agent and
+on_demand_mode will be active for at most 1 hour</li>
+</ol>
 </td></tr>
 
 <tr>
 <th rowspan="2">capture_full_packet</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>By default only 138 bytes are captured</p>
+<tr><td class="description"><p>By default only 138 bytes are captured to target packet header capture
+This flag enables capturing the entire packet rather than just the
+headers. only allowed when on_demand_mode = true</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">capture_all_packets</th>
+<th rowspan="2">on_demand_mode</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>By default only probe packets, arp and dns are captured.
-capture_all_packets is helpful when running on demand tests to other
-destinations</p>
+<tr><td class="description"><p>on_demand flag is helpful when running on demand tests to other
+destinations (on demand tests - ping, dns, http etc).
+Also another important point to note is that when on_demand_mode is
+true the packet capture will be saved locally in the agent</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">stop_capture_all_packets_by</th>
+<th rowspan="2">stop_on_demand_mode_by</th>
 <td class="type"><pre>.google.protobuf.Timestamp</pre></td>
 </tr>
-<tr><td class="description"><p>By Default capture_all_packets will run for atmost 1 hour</p>
+<tr><td class="description"><p>on_demand_mode can be enabled for at most 1 hour</p>
 </td></tr>
  
 </tbody>

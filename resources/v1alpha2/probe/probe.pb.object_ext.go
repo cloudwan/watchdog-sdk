@@ -1016,11 +1016,11 @@ func (o *Probe_Spec_PcapSettings) MakeDiffFieldMask(other *Probe_Spec_PcapSettin
 	if o.GetCaptureFullPacket() != other.GetCaptureFullPacket() {
 		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureFullPacket})
 	}
-	if o.GetCaptureAllPackets() != other.GetCaptureAllPackets() {
-		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorCaptureAllPackets})
+	if o.GetOnDemandMode() != other.GetOnDemandMode() {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorOnDemandMode})
 	}
-	if !proto.Equal(o.GetStopCaptureAllPacketsBy(), other.GetStopCaptureAllPacketsBy()) {
-		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopCaptureAllPacketsBy})
+	if !proto.Equal(o.GetStopOnDemandModeBy(), other.GetStopOnDemandModeBy()) {
+		res.Paths = append(res.Paths, &ProbeSpecPcapSettings_FieldTerminalPath{selector: ProbeSpecPcapSettings_FieldPathSelectorStopOnDemandModeBy})
 	}
 	return res
 }
@@ -1036,8 +1036,8 @@ func (o *Probe_Spec_PcapSettings) Clone() *Probe_Spec_PcapSettings {
 	result := &Probe_Spec_PcapSettings{}
 	result.Enable = o.Enable
 	result.CaptureFullPacket = o.CaptureFullPacket
-	result.CaptureAllPackets = o.CaptureAllPackets
-	result.StopCaptureAllPacketsBy = proto.Clone(o.StopCaptureAllPacketsBy).(*timestamp.Timestamp)
+	result.OnDemandMode = o.OnDemandMode
+	result.StopOnDemandModeBy = proto.Clone(o.StopOnDemandModeBy).(*timestamp.Timestamp)
 	return result
 }
 
@@ -1048,12 +1048,12 @@ func (o *Probe_Spec_PcapSettings) CloneRaw() gotenobject.GotenObjectExt {
 func (o *Probe_Spec_PcapSettings) Merge(source *Probe_Spec_PcapSettings) {
 	o.Enable = source.GetEnable()
 	o.CaptureFullPacket = source.GetCaptureFullPacket()
-	o.CaptureAllPackets = source.GetCaptureAllPackets()
-	if source.GetStopCaptureAllPacketsBy() != nil {
-		if o.StopCaptureAllPacketsBy == nil {
-			o.StopCaptureAllPacketsBy = new(timestamp.Timestamp)
+	o.OnDemandMode = source.GetOnDemandMode()
+	if source.GetStopOnDemandModeBy() != nil {
+		if o.StopOnDemandModeBy == nil {
+			o.StopOnDemandModeBy = new(timestamp.Timestamp)
 		}
-		proto.Merge(o.StopCaptureAllPacketsBy, source.GetStopCaptureAllPacketsBy())
+		proto.Merge(o.StopOnDemandModeBy, source.GetStopOnDemandModeBy())
 	}
 }
 

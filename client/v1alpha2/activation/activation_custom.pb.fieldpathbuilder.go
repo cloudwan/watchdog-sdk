@@ -2120,12 +2120,12 @@ func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) CaptureFullPac
 	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPacket{}
 }
 
-func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) CaptureAllPackets() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets {
-	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets{}
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) OnDemandMode() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode{}
 }
 
-func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy {
-	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettings) StopOnDemandModeBy() ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy {
+	return ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy{}
 }
 
 type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsEnable struct{}
@@ -2162,37 +2162,37 @@ func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureFullPac
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets struct{}
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode struct{}
 
-func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationRequest_FieldSubPath {
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode) FieldPath() *ActivationRequest_FieldSubPath {
 	return &ActivationRequest_FieldSubPath{
 		selector: ActivationRequest_FieldPathSelectorActivate,
-		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	}
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode) WithValue(value bool) *ActivationRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsOnDemandMode) WithArrayOfValues(values []bool) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+type ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy struct{}
 
-func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationRequest_FieldSubPath {
+func (ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy) FieldPath() *ActivationRequest_FieldSubPath {
 	return &ActivationRequest_FieldSubPath{
 		selector: ActivationRequest_FieldPathSelectorActivate,
-		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		subPath:  NewActivationRequestActivateFieldPathBuilder().Probe().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	}
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationRequest_FieldSubPathValue {
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy) WithValue(value *timestamp.Timestamp) *ActivationRequest_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
 }
 
-func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequest_FieldSubPathArrayOfValues {
+func (s ActivationRequestPathSelectorActivateProbeSpecPcapSettingsStopOnDemandModeBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
@@ -6504,12 +6504,12 @@ func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) CaptureFullPa
 	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPacket{}
 }
 
-func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) CaptureAllPackets() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets {
-	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) OnDemandMode() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode{}
 }
 
-func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy {
-	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettings) StopOnDemandModeBy() ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy {
+	return ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy{}
 }
 
 type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsEnable struct{}
@@ -6546,37 +6546,37 @@ func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureFullPa
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets struct{}
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode struct{}
 
-func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationRequestActivate_FieldSubPath {
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode) FieldPath() *ActivationRequestActivate_FieldSubPath {
 	return &ActivationRequestActivate_FieldSubPath{
 		selector: ActivationRequestActivate_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	}
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode) WithValue(value bool) *ActivationRequestActivate_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsOnDemandMode) WithArrayOfValues(values []bool) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
-type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+type ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy struct{}
 
-func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationRequestActivate_FieldSubPath {
+func (ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) FieldPath() *ActivationRequestActivate_FieldSubPath {
 	return &ActivationRequestActivate_FieldSubPath{
 		selector: ActivationRequestActivate_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	}
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathValue {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) WithValue(value *timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldSubPathValue)
 }
 
-func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathArrayOfValues {
+func (s ActivationRequest_ActivatePathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationRequestActivate_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldSubPathArrayOfValues)
 }
 
@@ -10845,12 +10845,12 @@ func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) CaptureFullP
 	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullPacket{}
 }
 
-func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) CaptureAllPackets() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets {
-	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets{}
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) OnDemandMode() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode{}
 }
 
-func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy {
-	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettings) StopOnDemandModeBy() ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy {
+	return ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy{}
 }
 
 type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsEnable struct{}
@@ -10887,37 +10887,37 @@ func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureFullP
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets struct{}
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode struct{}
 
-func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationResponse_FieldSubPath {
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode) FieldPath() *ActivationResponse_FieldSubPath {
 	return &ActivationResponse_FieldSubPath{
 		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	}
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode) WithValue(value bool) *ActivationResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsOnDemandMode) WithArrayOfValues(values []bool) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+type ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy struct{}
 
-func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationResponse_FieldSubPath {
+func (ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy) FieldPath() *ActivationResponse_FieldSubPath {
 	return &ActivationResponse_FieldSubPath{
 		selector: ActivationResponse_FieldPathSelectorActivated,
-		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		subPath:  NewActivationResponseActivatedFieldPathBuilder().Probe().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	}
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationResponse_FieldSubPathValue {
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy) WithValue(value *timestamp.Timestamp) *ActivationResponse_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponse_FieldSubPathValue)
 }
 
-func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
+func (s ActivationResponsePathSelectorActivatedProbeSpecPcapSettingsStopOnDemandModeBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponse_FieldSubPathArrayOfValues)
 }
 
@@ -15925,12 +15925,12 @@ func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) CaptureFull
 	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFullPacket{}
 }
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) CaptureAllPackets() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets {
-	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets{}
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) OnDemandMode() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode{}
 }
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) StopCaptureAllPacketsBy() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy {
-	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy{}
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettings) StopOnDemandModeBy() ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy {
+	return ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy{}
 }
 
 type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsEnable struct{}
@@ -15967,37 +15967,37 @@ func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureFull
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets struct{}
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode struct{}
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) FieldPath() *ActivationResponseActivated_FieldSubPath {
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode) FieldPath() *ActivationResponseActivated_FieldSubPath {
 	return &ActivationResponseActivated_FieldSubPath{
 		selector: ActivationResponseActivated_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().CaptureAllPackets().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().OnDemandMode().FieldPath(),
 	}
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode) WithValue(value bool) *ActivationResponseActivated_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsCaptureAllPackets) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsOnDemandMode) WithArrayOfValues(values []bool) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
-type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy struct{}
+type ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy struct{}
 
-func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) FieldPath() *ActivationResponseActivated_FieldSubPath {
+func (ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) FieldPath() *ActivationResponseActivated_FieldSubPath {
 	return &ActivationResponseActivated_FieldSubPath{
 		selector: ActivationResponseActivated_FieldPathSelectorProbe,
-		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopCaptureAllPacketsBy().FieldPath(),
+		subPath:  probe.NewProbeFieldPathBuilder().Spec().PcapSettings().StopOnDemandModeBy().FieldPath(),
 	}
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithValue(value *timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathValue {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) WithValue(value *timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathValue {
 	return s.FieldPath().WithIValue(value).(*ActivationResponseActivated_FieldSubPathValue)
 }
 
-func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopCaptureAllPacketsBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
+func (s ActivationResponse_ActivatedPathSelectorProbeSpecPcapSettingsStopOnDemandModeBy) WithArrayOfValues(values []*timestamp.Timestamp) *ActivationResponseActivated_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationResponseActivated_FieldSubPathArrayOfValues)
 }
 
