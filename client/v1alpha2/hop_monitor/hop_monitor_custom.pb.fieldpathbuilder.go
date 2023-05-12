@@ -75,9 +75,6 @@ func (RunHopMonitorRequestFieldPathBuilder) Target() RunHopMonitorRequestPathSel
 func (RunHopMonitorRequestFieldPathBuilder) Destination() RunHopMonitorRequestPathSelectorDestination {
 	return RunHopMonitorRequestPathSelectorDestination{}
 }
-func (RunHopMonitorRequestFieldPathBuilder) SizeBytes() RunHopMonitorRequestPathSelectorSizeBytes {
-	return RunHopMonitorRequestPathSelectorSizeBytes{}
-}
 func (RunHopMonitorRequestFieldPathBuilder) Attempts() RunHopMonitorRequestPathSelectorAttempts {
 	return RunHopMonitorRequestPathSelectorAttempts{}
 }
@@ -141,20 +138,6 @@ func (s RunHopMonitorRequestPathSelectorDestination) WithValue(value string) *Ru
 }
 
 func (s RunHopMonitorRequestPathSelectorDestination) WithArrayOfValues(values []string) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
-}
-
-type RunHopMonitorRequestPathSelectorSizeBytes struct{}
-
-func (RunHopMonitorRequestPathSelectorSizeBytes) FieldPath() *RunHopMonitorRequest_FieldTerminalPath {
-	return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSizeBytes}
-}
-
-func (s RunHopMonitorRequestPathSelectorSizeBytes) WithValue(value int32) *RunHopMonitorRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorRequest_FieldTerminalPathValue)
-}
-
-func (s RunHopMonitorRequestPathSelectorSizeBytes) WithArrayOfValues(values []int32) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
 }
 

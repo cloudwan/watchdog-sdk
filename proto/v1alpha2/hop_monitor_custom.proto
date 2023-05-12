@@ -20,51 +20,56 @@ message RunHopMonitorRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 
-  // Source address to listen packet
-  // Skip validating goten's ip format
-  // in order to accept a zone index for IPv6 link local address
-  // ex. fe80::3%eth0
-  //
-  // If unspecified, agent will pick :: or 0.0.0.0 by default
+  // Source address to use for the outbound packet.
+  // If unspecified, agent will bind to :: or 0.0.0.0 by default and
+  // the operating system stack chooses the proper address.
   // The IP version is chosen according to the version of destination address
+  // This is intended for advanced debug, it is recommended to leave this empty.
   string source = 2;
 
-  // Target or Destination is required as user input
+  // Run path trace to the specified probing target.
+  // Target or Destination is required as user input.
   string target = 3;
 
-  // Destination to send packet
-  // IP address and hostname are acceptable
+  // Destination to send packet to.
+  // IP address and domain name are accepted
   // As the IPv6 address, a zone index is also acceptable
-  // Destination or Target is required from user
+  // One of Destination or Target is required as input
   string destination = 4;
-
-  // Byte size of the payload
-  // If unspecified, 100 is picked by default
-  // The minimum length includes space for timestamp and a tracker
-  int32 size_bytes = 5;
 
   // Number of attempts to discover unique paths
   int32 attempts = 6;
 
+  // Use UDP (default) or TCP or ICMP for the path discovery
   ProbingMode mode = 7;
 
+  // Default is Text format. Json is for internal use only
   OnDemandTestResponseFormat output_format = 8;
+
+  reserved 5;
 }
 
 // Response message for method
 // [RunHopMonitor][ntt.watchdog.v1alpha2.RunHopMonitor]
 message RunHopMonitorResponse {
+  // Json format is not preferred for the ondemand tests
   JsonResponse json_response = 1;
 
+  // Console type text response
   string text_response = 2;
 
+  // Json format is not preferred for the ondemand tests
   message JsonResponse {
+    // List of various paths that are discovered
     repeated Path paths = 1;
 
+    // Stats for each hop
     map<string, HopStat> hop_stats = 2;
 
+    // Metadata information for each hop
     map<string, HopInfo> hop_info = 3;
 
+    // IP Version for the destination
     IpVersion ip_version = 4;
   }
 }

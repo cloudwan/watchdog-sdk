@@ -63,12 +63,14 @@ type RunDNSQueryTestRequest struct {
 	Query *common.DNSQuery `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty" firestore:"query"`
 	// Name server's address
 	//
-	// If unspecified, agent will pick the first entry from /etc/resolv.conf
-	// If failed, fall back to choose 8.8.8.8
+	// If unspecified, agent will pick the dns server configured on the device
+	// On Linux and Mac typically this is a local resolver.
+	// On windows, a DNS server is picked from the list of configured dns servers.
+	// If reading configured server fails, fall back to choose 8.8.8.8
 	Server string `protobuf:"bytes,3,opt,name=server,proto3" json:"server,omitempty" firestore:"server"`
 	// Name server's port number
 	//
-	// If unspecified, agent will pick 53
+	// If unspecified, agent will pick default DNS server port 53
 	Port uint32 `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty" firestore:"port"`
 	// Whether use TCP or UDP to send DNS query
 	//
@@ -86,7 +88,8 @@ type RunDNSQueryTestRequest struct {
 	// - overwrite the qestion's class to PTR
 	// - and make the query's name reversed (eg. 8.8.4.4
 	// to 4.4.8.8.in-addr.arpa.)
-	Reverse      bool                              `protobuf:"varint,7,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
+	Reverse bool `protobuf:"varint,7,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
+	// Default is Text format. Json is for internal use only
 	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,8,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 
@@ -258,8 +261,10 @@ type RunDNSQueryTestResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	JsonResponse  *RunDNSQueryTestResponse_JsonResponse `protobuf:"bytes,1,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
-	TextResponse  string                                `protobuf:"bytes,2,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
+	// Json format is not preferred for the ondemand tests
+	JsonResponse *RunDNSQueryTestResponse_JsonResponse `protobuf:"bytes,1,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
+	// Console type text response
+	TextResponse string `protobuf:"bytes,2,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
 }
 
 func (m *RunDNSQueryTestResponse) Reset() {
@@ -369,7 +374,7 @@ type RunDNSQueryTestResponse_JsonResponse struct {
 	Ns []*common.DNSResourceRecord `protobuf:"bytes,6,rep,name=ns,proto3" json:"ns,omitempty" firestore:"ns"`
 	// Additional section
 	Extras []*common.DNSResourceRecord `protobuf:"bytes,7,rep,name=extras,proto3" json:"extras,omitempty" firestore:"extras"`
-	// RTT to exchange the message
+	// Total time taken to send the Query and receive response
 	Rtt *duration.Duration `protobuf:"bytes,8,opt,name=rtt,proto3" json:"rtt,omitempty" firestore:"rtt"`
 }
 

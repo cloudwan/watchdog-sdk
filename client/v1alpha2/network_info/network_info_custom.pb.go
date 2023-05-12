@@ -53,7 +53,8 @@ type GetNetworkInfoRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 	//  reference of ntt.watchdog.v1alpha2.Probe
-	Name         *probe.Reference                  `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
+	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
+	// Default is Text format. Json is for internal use only
 	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,2,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 
@@ -141,8 +142,10 @@ type GetNetworkInfoResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	TextResponse  string                               `protobuf:"bytes,1,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
-	JsonResponse  *GetNetworkInfoResponse_JsonResponse `protobuf:"bytes,2,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
+	// Console type text response
+	TextResponse string `protobuf:"bytes,1,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
+	// Json format is not preferred for the ondemand tests
+	JsonResponse *GetNetworkInfoResponse_JsonResponse `protobuf:"bytes,2,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
 }
 
 func (m *GetNetworkInfoResponse) Reset() {
@@ -223,13 +226,17 @@ func (m *GetNetworkInfoResponse) SetJsonResponse(fv *GetNetworkInfoResponse_Json
 	m.JsonResponse = fv
 }
 
+// Json format is not preferred for the ondemand tests
 type GetNetworkInfoResponse_JsonResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	Interfaces    string `protobuf:"bytes,1,opt,name=interfaces,proto3" json:"interfaces,omitempty" firestore:"interfaces"`
-	Routes        string `protobuf:"bytes,2,opt,name=routes,proto3" json:"routes,omitempty" firestore:"routes"`
-	WifiInfo      string `protobuf:"bytes,3,opt,name=wifi_info,json=wifiInfo,proto3" json:"wifi_info,omitempty" firestore:"wifiInfo"`
+	// Details of the Network Interfaces
+	Interfaces string `protobuf:"bytes,1,opt,name=interfaces,proto3" json:"interfaces,omitempty" firestore:"interfaces"`
+	// List of all routes
+	Routes string `protobuf:"bytes,2,opt,name=routes,proto3" json:"routes,omitempty" firestore:"routes"`
+	// Wifi Information
+	WifiInfo string `protobuf:"bytes,3,opt,name=wifi_info,json=wifiInfo,proto3" json:"wifi_info,omitempty" firestore:"wifiInfo"`
 }
 
 func (m *GetNetworkInfoResponse_JsonResponse) Reset() {

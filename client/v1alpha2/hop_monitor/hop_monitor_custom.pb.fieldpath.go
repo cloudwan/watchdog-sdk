@@ -78,10 +78,9 @@ const (
 	RunHopMonitorRequest_FieldPathSelectorSource       RunHopMonitorRequest_FieldPathSelector = 1
 	RunHopMonitorRequest_FieldPathSelectorTarget       RunHopMonitorRequest_FieldPathSelector = 2
 	RunHopMonitorRequest_FieldPathSelectorDestination  RunHopMonitorRequest_FieldPathSelector = 3
-	RunHopMonitorRequest_FieldPathSelectorSizeBytes    RunHopMonitorRequest_FieldPathSelector = 4
-	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 5
-	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 6
-	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 7
+	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 4
+	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 5
+	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 6
 )
 
 func (s RunHopMonitorRequest_FieldPathSelector) String() string {
@@ -94,8 +93,6 @@ func (s RunHopMonitorRequest_FieldPathSelector) String() string {
 		return "target"
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		return "destination"
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		return "size_bytes"
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		return "attempts"
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -121,8 +118,6 @@ func BuildRunHopMonitorRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHopMon
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorTarget}, nil
 		case "destination":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorDestination}, nil
-		case "size_bytes", "sizeBytes", "size-bytes":
-			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSizeBytes}, nil
 		case "attempts":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts}, nil
 		case "mode":
@@ -186,8 +181,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) Get(source *RunHopMonitorReque
 			}
 		case RunHopMonitorRequest_FieldPathSelectorDestination:
 			values = append(values, source.Destination)
-		case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-			values = append(values, source.SizeBytes)
 		case RunHopMonitorRequest_FieldPathSelectorAttempts:
 			values = append(values, source.Attempts)
 		case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -218,8 +211,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetSingle(source *RunHopMonito
 		return res, res != nil
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		return source.GetDestination(), source != nil
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		return source.GetSizeBytes(), source != nil
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		return source.GetAttempts(), source != nil
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -246,8 +237,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*probing_target.Reference)(nil)
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		return ""
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		return int32(0)
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		return int32(0)
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -270,8 +259,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) ClearValue(item *RunHopMonitor
 			item.Target = nil
 		case RunHopMonitorRequest_FieldPathSelectorDestination:
 			item.Destination = ""
-		case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-			item.SizeBytes = int32(0)
 		case RunHopMonitorRequest_FieldPathSelectorAttempts:
 			item.Attempts = int32(0)
 		case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -294,7 +281,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorSource ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorTarget ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorDestination ||
-		fp.selector == RunHopMonitorRequest_FieldPathSelectorSizeBytes ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorAttempts ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorMode ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorOutputFormat
@@ -314,8 +300,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIValue(value interface{}) 
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(string)}
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -342,8 +326,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIArrayOfValues(values inte
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]string)}
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -426,10 +408,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsDestinationValue() (st
 	res, ok := fpv.value.(string)
 	return res, ok
 }
-func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsSizeBytesValue() (int32, bool) {
-	res, ok := fpv.value.(int32)
-	return res, ok
-}
 func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsAttemptsValue() (int32, bool) {
 	res, ok := fpv.value.(int32)
 	return res, ok
@@ -457,8 +435,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMon
 		(*target).Target = fpv.value.(*probing_target.Reference)
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		(*target).Destination = fpv.value.(string)
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		(*target).SizeBytes = fpv.value.(int32)
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		(*target).Attempts = fpv.value.(int32)
 	case RunHopMonitorRequest_FieldPathSelectorMode:
@@ -529,16 +505,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) CompareWith(source *RunH
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
 		leftValue := fpv.value.(string)
 		rightValue := source.GetDestination()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		leftValue := fpv.value.(int32)
-		rightValue := source.GetSizeBytes()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -700,10 +666,6 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
-	case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-		for _, v := range fpaov.values.([]int32) {
-			values = append(values, v)
-		}
 	case RunHopMonitorRequest_FieldPathSelectorAttempts:
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
@@ -733,10 +695,6 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsTargetArrayO
 }
 func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsDestinationArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
-	return res, ok
-}
-func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int32, bool) {
-	res, ok := fpaov.values.([]int32)
 	return res, ok
 }
 func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsAttemptsArrayOfValues() ([]int32, bool) {

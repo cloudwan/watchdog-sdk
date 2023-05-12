@@ -17,25 +17,39 @@ message RunHTTPTestRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 
-  string url = 2; // include http/https scheme in the string
+  // Target URL to run the http test.
+  // http/https scheme is mandatory
+  string url = 2;
 
-  // http headers to use in the probe requests as key value pairs
+  // http headers to use in the http request.
   map<string, string> request_headers = 3;
 
+  // HTTP request method. Default is GET
   HTTPRequestMethod request_method = 4;
 
+  // Request timeout duration. Default is 30 seconds.
   google.protobuf.Duration timeout = 5;
 
+  // Request body for POST/PUT
   string request_body = 6;
 
+  // Authentication method BASIC is allowed for http test
   AuthenticationMethod authentication_method = 7;
 
+  // Username for basic auth
   string username = 9;
 
+  // Password for basic auth
   string password = 10;
 
+  // Source address to use for the outbound packet.
+  // If unspecified, agent will bind to :: or 0.0.0.0 by default and
+  // the operating system stack chooses the proper address.
+  // The IP version is chosen according to the version of destination address
+  // This is intended for advanced debug, it is recommended to leave this empty.
   string source_ip = 11;
 
+  // Default is Text format. Json is for internal use only
   OnDemandTestResponseFormat output_format = 12;
 
   reserved 8;
@@ -43,17 +57,24 @@ message RunHTTPTestRequest {
 
 // Response message for method [RunHTTPTest][ntt.watchdog.v1alpha2.RunHTTPTest]
 message RunHTTPTestResponse {
+  // Console type text response
   string text_response = 1;
 
+  // Json format is not preferred for the ondemand tests
   JsonResponse json_response = 2;
 
+  // Json format is not preferred for the ondemand tests
   message JsonResponse {
+    // HTTP Response code
     int32 response_code = 1;
 
+    // HTTP Response Headers
     repeated Header response_headers = 2;
 
+    // HTTP Response body
     bytes response_body = 3;
 
+    // HTTP Response Header
     message Header {
       string key = 1;
 

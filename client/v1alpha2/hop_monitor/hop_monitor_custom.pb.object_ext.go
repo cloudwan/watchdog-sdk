@@ -70,9 +70,6 @@ func (o *RunHopMonitorRequest) MakeDiffFieldMask(other *RunHopMonitorRequest) *R
 	if o.GetDestination() != other.GetDestination() {
 		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorDestination})
 	}
-	if o.GetSizeBytes() != other.GetSizeBytes() {
-		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSizeBytes})
-	}
 	if o.GetAttempts() != other.GetAttempts() {
 		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts})
 	}
@@ -116,7 +113,6 @@ func (o *RunHopMonitorRequest) Clone() *RunHopMonitorRequest {
 		}
 	}
 	result.Destination = o.Destination
-	result.SizeBytes = o.SizeBytes
 	result.Attempts = o.Attempts
 	result.Mode = o.Mode
 	result.OutputFormat = o.OutputFormat
@@ -154,7 +150,6 @@ func (o *RunHopMonitorRequest) Merge(source *RunHopMonitorRequest) {
 		o.Target = nil
 	}
 	o.Destination = source.GetDestination()
-	o.SizeBytes = source.GetSizeBytes()
 	o.Attempts = source.GetAttempts()
 	o.Mode = source.GetMode()
 	o.OutputFormat = source.GetOutputFormat()

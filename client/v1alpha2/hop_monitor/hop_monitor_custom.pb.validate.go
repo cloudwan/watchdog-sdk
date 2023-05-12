@@ -54,9 +54,6 @@ func (obj *RunHopMonitorRequest) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	if !(obj.SizeBytes >= 20) {
-		return gotenvalidate.NewValidationError("RunHopMonitorRequest", "sizeBytes", obj.SizeBytes, "field must be greater or equal to 20", nil)
-	}
 	if !(obj.Attempts >= 0 && obj.Attempts <= 100) {
 		return gotenvalidate.NewValidationError("RunHopMonitorRequest", "attempts", obj.Attempts, "field must be in range [0, 100]", nil)
 	}

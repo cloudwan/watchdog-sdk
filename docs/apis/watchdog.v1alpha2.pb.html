@@ -3642,8 +3642,10 @@ after lock timestamp is exceeded, new clients may override cookie.</p>
 <td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"><p>Name server's address</p>
-<p>If unspecified, agent will pick the first entry from /etc/resolv.conf
-If failed, fall back to choose 8.8.8.8</p>
+<p>If unspecified, agent will pick the dns server configured on the device
+On Linux and Mac typically this is a local resolver.
+On windows, a DNS server is picked from the list of configured dns servers.
+If reading configured server fails, fall back to choose 8.8.8.8</p>
 </td></tr>
 
 <tr>
@@ -3651,7 +3653,7 @@ If failed, fall back to choose 8.8.8.8</p>
 <td class="type"><pre>uint32s</pre></td>
 </tr>
 <tr><td class="description"><p>Name server's port number</p>
-<p>If unspecified, agent will pick 53</p>
+<p>If unspecified, agent will pick default DNS server port 53</p>
 </td></tr>
 
 <tr>
@@ -3688,7 +3690,8 @@ to 4.4.8.8.in-addr.arpa.)</li>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -3708,13 +3711,15 @@ to 4.4.8.8.in-addr.arpa.)</li>
 <th rowspan="2">json_response</th>
 <td class="type"><pre><a href="#message-RunDNSQueryTestResponse.JsonResponse">RunDNSQueryTestResponse.JsonResponse</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Json format is not preferred for the ondemand tests</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">text_response</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Console type text response</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -3792,7 +3797,7 @@ cd: Checking Disabled</p>
 <th rowspan="2">rtt</th>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
-<tr><td class="description"><p>RTT to exchange the message</p>
+<tr><td class="description"><p>Total time taken to send the Query and receive response</p>
 </td></tr>
  
 </tbody>
@@ -4056,38 +4061,29 @@ cd: Checking Disabled</p>
 <th rowspan="2">source</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Source address to listen packet
-Skip validating goten's ip format
-in order to accept a zone index for IPv6 link local address
-ex. fe80::3%eth0</p>
-<p>If unspecified, agent will pick :: or 0.0.0.0 by default
-The IP version is chosen according to the version of destination address</p>
+<tr><td class="description"><p>Source address to use for the outbound packet.
+If unspecified, agent will bind to :: or 0.0.0.0 by default and
+the operating system stack chooses the proper address.
+The IP version is chosen according to the version of destination address
+This is intended for advanced debug, it is recommended to leave this empty.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">target</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Target or Destination is required as user input</p>
+<tr><td class="description"><p>Run path trace to the specified probing target.
+Target or Destination is required as user input.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">destination</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Destination to send packet
-IP address and hostname are acceptable
+<tr><td class="description"><p>Destination to send packet to.
+IP address and domain name are accepted
 As the IPv6 address, a zone index is also acceptable
-Destination or Target is required from user</p>
-</td></tr>
-
-<tr>
-<th rowspan="2">size_bytes</th>
-<td class="type"><pre>int32</pre></td>
-</tr>
-<tr><td class="description"><p>Byte size of the payload
-If unspecified, 100 is picked by default
-The minimum length includes space for timestamp and a tracker</p>
+One of Destination or Target is required as input</p>
 </td></tr>
 
 <tr>
@@ -4101,13 +4097,15 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">mode</th>
 <td class="type"><pre><a href="#enum-ProbingMode">ProbingMode</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Use UDP (default) or TCP or ICMP for the path discovery</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4127,13 +4125,15 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">json_response</th>
 <td class="type"><pre><a href="#message-RunHopMonitorResponse.JsonResponse">RunHopMonitorResponse.JsonResponse</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Json format is not preferred for the ondemand tests</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">text_response</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Console type text response</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4142,6 +4142,7 @@ The minimum length includes space for timestamp and a tracker</p>
 
 <h5 id="message-RunHopMonitorResponse.JsonResponse">RunHopMonitorResponse.JsonResponse</h5>
 
+<p>Json format is not preferred for the ondemand tests</p>
 
 
 <table class="fields">
@@ -4151,25 +4152,29 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">paths</th>
 <td class="type"><pre>repeated <a href="#message-Path">Path</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>List of various paths that are discovered</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">hop_stats</th>
 <td class="type"><pre><a href="#message-HopStat">HopStat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Stats for each hop</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">hop_info</th>
 <td class="type"><pre><a href="#message-HopInfo">HopInfo</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Metadata information for each hop</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">ip_version</th>
 <td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>IP Version for the destination</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4310,62 +4315,76 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">url</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Target URL to run the http test.
+http/https scheme is mandatory</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">request_headers</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>http headers to use in the probe requests as key value pairs</p>
+<tr><td class="description"><p>http headers to use in the http request.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">request_method</th>
 <td class="type"><pre><a href="#enum-HTTPRequestMethod">HTTPRequestMethod</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>HTTP request method. Default is GET</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">timeout</th>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Request timeout duration. Default is 30 seconds.</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">request_body</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Request body for POST/PUT</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">authentication_method</th>
 <td class="type"><pre><a href="#enum-AuthenticationMethod">AuthenticationMethod</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Authentication method BASIC is allowed for http test</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">username</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Username for basic auth</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">password</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Password for basic auth</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">source_ip</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Source address to use for the outbound packet.
+If unspecified, agent will bind to :: or 0.0.0.0 by default and
+the operating system stack chooses the proper address.
+The IP version is chosen according to the version of destination address
+This is intended for advanced debug, it is recommended to leave this empty.</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4384,13 +4403,15 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">text_response</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Console type text response</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">json_response</th>
 <td class="type"><pre><a href="#message-RunHTTPTestResponse.JsonResponse">RunHTTPTestResponse.JsonResponse</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Json format is not preferred for the ondemand tests</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4399,6 +4420,7 @@ The minimum length includes space for timestamp and a tracker</p>
 
 <h5 id="message-RunHTTPTestResponse.JsonResponse">RunHTTPTestResponse.JsonResponse</h5>
 
+<p>Json format is not preferred for the ondemand tests</p>
 
 
 <table class="fields">
@@ -4408,19 +4430,22 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">response_code</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>HTTP Response code</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">response_headers</th>
 <td class="type"><pre>repeated <a href="#message-RunHTTPTestResponse.JsonResponse.Header">RunHTTPTestResponse.JsonResponse.Header</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>HTTP Response Headers</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">response_body</th>
 <td class="type"><pre>bytes</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>HTTP Response body</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4429,6 +4454,7 @@ The minimum length includes space for timestamp and a tracker</p>
 
 <h5 id="message-RunHTTPTestResponse.JsonResponse.Header">RunHTTPTestResponse.JsonResponse.Header</h5>
 
+<p>HTTP Response Header</p>
 
 
 <table class="fields">
@@ -4471,7 +4497,8 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4491,13 +4518,15 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">text_response</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Console type text response</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">json_response</th>
 <td class="type"><pre><a href="#message-GetNetworkInfoResponse.JsonResponse">GetNetworkInfoResponse.JsonResponse</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Json format is not preferred for the ondemand tests</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4506,6 +4535,7 @@ The minimum length includes space for timestamp and a tracker</p>
 
 <h5 id="message-GetNetworkInfoResponse.JsonResponse">GetNetworkInfoResponse.JsonResponse</h5>
 
+<p>Json format is not preferred for the ondemand tests</p>
 
 
 <table class="fields">
@@ -4515,19 +4545,22 @@ The minimum length includes space for timestamp and a tracker</p>
 <th rowspan="2">interfaces</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Details of the Network Interfaces</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">routes</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>List of all routes</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">wifi_info</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Wifi Information</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4724,20 +4757,19 @@ increment field numbers Source address to listen packet Skip validating</p>
 <th rowspan="2">source</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Source address to listen packet
-Skip validating goten's ip format
-in order to accept a zone index for IPv6 link local address
-ex. fe80::3%eth0</p>
-<p>If unspecified, agent will pick :: or 0.0.0.0 by default
-The IP version is chosen according to the version of destination address</p>
+<tr><td class="description"><p>Source address used to send the outbound icmp ping
+If unspecified, agent will bind to :: or 0.0.0.0 by default
+and the operating system will choose the appropriate local address.
+The IP version is chosen according to the version of destination address
+It is recommended to leave this empty.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">destination</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Destination to send packet
-IP address and hostname are acceptable
+<tr><td class="description"><p>Destination for the icmp ping (Mandatory)
+IP address and domain name are acceptable
 As the IPv6 address, a zone index is also acceptable</p>
 </td></tr>
 
@@ -4745,12 +4777,11 @@ As the IPv6 address, a zone index is also acceptable</p>
 <th rowspan="2">size_bytes</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>Byte size of the ICMP payload
-If unspecified, 100 is picked by default</p>
-<p>The minimum length is 2 bytes
-The head 2 bytes body is used to embed a request ID
-Because ICMP Echo identifier field is not editable
-in Linux unprivileged ICMP endpoint</p>
+<tr><td class="description"><p>ICMP payload size. If unspecified, 48 byte payload is used
+The agent uses a minimum length of 8 bytes
+It is important to note that this is just the L4 payload length
+Actual packet length would be ethernet header length + IP Header legth +
+ICMP Header Length + specified payload size</p>
 </td></tr>
 
 <tr>
@@ -4758,7 +4789,7 @@ in Linux unprivileged ICMP endpoint</p>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"><p>Number of ICMP Echo requests in the test
-If unspecified, 3 is picked by default</p>
+Default value used is 3.</p>
 </td></tr>
 
 <tr>
@@ -4766,7 +4797,7 @@ If unspecified, 3 is picked by default</p>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
 <tr><td class="description"><p>Interval duration to wait sending each packet
-If unspecified, 1.0s is picked</p>
+Default is 1 second</p>
 </td></tr>
 
 <tr>
@@ -4774,15 +4805,15 @@ If unspecified, 1.0s is picked</p>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
 <tr><td class="description"><p>Timeout duration to wait receiving each packet's reply
-If unspecified, 1.0s is picked</p>
+Default value is 1 second</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">dont_fragment</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>DF flag in IPv4 header
-If unspecified or false spcified, skip manipulating packet</p>
+<tr><td class="description"><p>Dont Fragment flag in IPv4 header
+If unspecified or false spcified, DF bit is not set</p>
 </td></tr>
 
 <tr>
@@ -4790,23 +4821,23 @@ If unspecified or false spcified, skip manipulating packet</p>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"><p>TTL in IPv4 or hop limit in IPv6
-If unspecified, skip manipulating packet
-In the case, the value depends on the running OS</p>
+If unspecified, a default value is set by the Operating system stack.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">tos</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>TOS in IPv4 or traffic class in IPv6
-If unspecified, skip manipulating packet</p>
+<tr><td class="description"><p>TOS in IPv4 or traffic class in IPv6 in decimal format
+<a href="https://linuxreviews.org/Type_of_Service_(ToS)_and_DSCP_Values">https://linuxreviews.org/Type_of_Service_(ToS)_and_DSCP_Values</a></p>
 </td></tr>
 
 <tr>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4825,13 +4856,15 @@ If unspecified, skip manipulating packet</p>
 <th rowspan="2">json_response</th>
 <td class="type"><pre><a href="#message-RunPingTestResponse.JsonResponse">RunPingTestResponse.JsonResponse</a></pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Json format is not preferred for the ondemand tests</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">text_response</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Console type text response</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4849,34 +4882,36 @@ If unspecified, skip manipulating packet</p>
 <th rowspan="2">from</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>IP address</p>
+<tr><td class="description"><p>IP address of the ping target</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">size_bytes</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>Byte size of the ICMP payload</p>
+<tr><td class="description"><p>ICMP payload size received in response</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">sequence_number</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>Sequence number field</p>
+<tr><td class="description"><p>Sequence number received in response</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">ttl</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>TTL received in response</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">rtt</th>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Round trip time calculated</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">error</th>

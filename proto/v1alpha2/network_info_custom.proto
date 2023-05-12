@@ -17,21 +17,28 @@ message GetNetworkInfoRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 
+  // Default is Text format. Json is for internal use only
   OnDemandTestResponseFormat output_format = 2;
 }
 
 // Response message for method
 // [GetNetworkInfo][ntt.watchdog.v1alpha2.GetNetworkInfo]
 message GetNetworkInfoResponse {
+  // Console type text response
   string text_response = 1;
 
+  // Json format is not preferred for the ondemand tests
   JsonResponse json_response = 2;
 
+  // Json format is not preferred for the ondemand tests
   message JsonResponse {
+    // Details of the Network Interfaces
     string interfaces = 1;
 
+    // List of all routes
     string routes = 2;
 
+    // Wifi Information
     string wifi_info = 3;
   }
 }

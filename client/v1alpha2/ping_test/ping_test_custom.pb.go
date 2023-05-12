@@ -57,45 +57,41 @@ type RunPingTestRequest struct {
 	unknownFields protoimpl.UnknownFields
 	//  reference of ntt.watchdog.v1alpha2.Probe
 	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
-	// Source address to listen packet
-	// Skip validating goten's ip format
-	// in order to accept a zone index for IPv6 link local address
-	// ex. fe80::3%eth0
-	//
-	// If unspecified, agent will pick :: or 0.0.0.0 by default
+	// Source address used to send the outbound icmp ping
+	// If unspecified, agent will bind to :: or 0.0.0.0 by default
+	// and the operating system will choose the appropriate local address.
 	// The IP version is chosen according to the version of destination address
+	// It is recommended to leave this empty.
 	Source string `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty" firestore:"source"`
-	// Destination to send packet
-	// IP address and hostname are acceptable
+	// Destination for the icmp ping (Mandatory)
+	// IP address and domain name are acceptable
 	// As the IPv6 address, a zone index is also acceptable
 	Destination string `protobuf:"bytes,3,opt,name=destination,proto3" json:"destination,omitempty" firestore:"destination"`
-	// Byte size of the ICMP payload
-	// If unspecified, 100 is picked by default
-	//
-	// The minimum length is 2 bytes
-	// The head 2 bytes body is used to embed a request ID
-	// Because ICMP Echo identifier field is not editable
-	// in Linux unprivileged ICMP endpoint
+	// ICMP payload size. If unspecified, 48 byte payload is used
+	// The agent uses a minimum length of 8 bytes
+	// It is important to note that this is just the L4 payload length
+	// Actual packet length would be ethernet header length + IP Header legth +
+	// ICMP Header Length + specified payload size
 	SizeBytes int32 `protobuf:"varint,4,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty" firestore:"sizeBytes"`
 	// Number of ICMP Echo requests in the test
-	// If unspecified, 3 is picked by default
+	// Default value used is 3.
 	Count int32 `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty" firestore:"count"`
 	// Interval duration to wait sending each packet
-	// If unspecified, 1.0s is picked
+	// Default is 1 second
 	Interval *duration.Duration `protobuf:"bytes,6,opt,name=interval,proto3" json:"interval,omitempty" firestore:"interval"`
 	// Timeout duration to wait receiving each packet's reply
-	// If unspecified, 1.0s is picked
+	// Default value is 1 second
 	EchoTimeout *duration.Duration `protobuf:"bytes,7,opt,name=echo_timeout,json=echoTimeout,proto3" json:"echo_timeout,omitempty" firestore:"echoTimeout"`
-	// DF flag in IPv4 header
-	// If unspecified or false spcified, skip manipulating packet
+	// Dont Fragment flag in IPv4 header
+	// If unspecified or false spcified, DF bit is not set
 	DontFragment bool `protobuf:"varint,8,opt,name=dont_fragment,json=dontFragment,proto3" json:"dont_fragment,omitempty" firestore:"dontFragment"`
 	// TTL in IPv4 or hop limit in IPv6
-	// If unspecified, skip manipulating packet
-	// In the case, the value depends on the running OS
+	// If unspecified, a default value is set by the Operating system stack.
 	Ttl int32 `protobuf:"varint,9,opt,name=ttl,proto3" json:"ttl,omitempty" firestore:"ttl"`
-	// TOS in IPv4 or traffic class in IPv6
-	// If unspecified, skip manipulating packet
-	Tos          int32                             `protobuf:"varint,10,opt,name=tos,proto3" json:"tos,omitempty" firestore:"tos"`
+	// TOS in IPv4 or traffic class in IPv6 in decimal format
+	// https://linuxreviews.org/Type_of_Service_(ToS)_and_DSCP_Values
+	Tos int32 `protobuf:"varint,10,opt,name=tos,proto3" json:"tos,omitempty" firestore:"tos"`
+	// Default is Text format. Json is for internal use only
 	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,11,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 
@@ -308,8 +304,10 @@ type RunPingTestResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	JsonResponse  *RunPingTestResponse_JsonResponse `protobuf:"bytes,1,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
-	TextResponse  string                            `protobuf:"bytes,2,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
+	// Json format is not preferred for the ondemand tests
+	JsonResponse *RunPingTestResponse_JsonResponse `protobuf:"bytes,1,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
+	// Console type text response
+	TextResponse string `protobuf:"bytes,2,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
 }
 
 func (m *RunPingTestResponse) Reset() {
@@ -394,14 +392,16 @@ type RunPingTestResponse_JsonResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	// IP address
+	// IP address of the ping target
 	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" firestore:"from"`
-	// Byte size of the ICMP payload
+	// ICMP payload size received in response
 	SizeBytes int32 `protobuf:"varint,2,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty" firestore:"sizeBytes"`
-	// Sequence number field
-	SequenceNumber int32              `protobuf:"varint,3,opt,name=sequence_number,json=sequenceNumber,proto3" json:"sequence_number,omitempty" firestore:"sequenceNumber"`
-	Ttl            int32              `protobuf:"varint,4,opt,name=ttl,proto3" json:"ttl,omitempty" firestore:"ttl"`
-	Rtt            *duration.Duration `protobuf:"bytes,5,opt,name=rtt,proto3" json:"rtt,omitempty" firestore:"rtt"`
+	// Sequence number received in response
+	SequenceNumber int32 `protobuf:"varint,3,opt,name=sequence_number,json=sequenceNumber,proto3" json:"sequence_number,omitempty" firestore:"sequenceNumber"`
+	// TTL received in response
+	Ttl int32 `protobuf:"varint,4,opt,name=ttl,proto3" json:"ttl,omitempty" firestore:"ttl"`
+	// Round trip time calculated
+	Rtt *duration.Duration `protobuf:"bytes,5,opt,name=rtt,proto3" json:"rtt,omitempty" firestore:"rtt"`
 	// Error message
 	Error   string                                         `protobuf:"bytes,6,opt,name=error,proto3" json:"error,omitempty" firestore:"error"`
 	Summary *RunPingTestResponse_JsonResponse_SummaryStats `protobuf:"bytes,7,opt,name=summary,proto3" json:"summary,omitempty" firestore:"summary"`

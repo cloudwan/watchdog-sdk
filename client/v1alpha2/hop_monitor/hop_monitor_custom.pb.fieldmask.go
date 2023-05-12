@@ -57,7 +57,6 @@ func FullRunHopMonitorRequest_FieldMask() *RunHopMonitorRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSource})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorTarget})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorDestination})
-	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSizeBytes})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat})
@@ -104,7 +103,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 8)
+	presentSelectors := make([]bool, 7)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHopMonitorRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -134,7 +133,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHopMonitorRequest_FieldMask) Subtract(other *RunHopMonitorRequest_FieldMask) *RunHopMonitorRequest_FieldMask {
 	result := &RunHopMonitorRequest_FieldMask{}
-	removedSelectors := make([]bool, 8)
+	removedSelectors := make([]bool, 7)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -296,8 +295,6 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Project(source *RunHopMonitorRe
 				result.Target = source.Target
 			case RunHopMonitorRequest_FieldPathSelectorDestination:
 				result.Destination = source.Destination
-			case RunHopMonitorRequest_FieldPathSelectorSizeBytes:
-				result.SizeBytes = source.SizeBytes
 			case RunHopMonitorRequest_FieldPathSelectorAttempts:
 				result.Attempts = source.Attempts
 			case RunHopMonitorRequest_FieldPathSelectorMode:

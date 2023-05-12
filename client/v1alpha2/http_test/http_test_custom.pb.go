@@ -55,17 +55,31 @@ type RunHTTPTestRequest struct {
 	unknownFields protoimpl.UnknownFields
 	//  reference of ntt.watchdog.v1alpha2.Probe
 	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
-	Url  string           `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty" firestore:"url"`
-	// http headers to use in the probe requests as key value pairs
-	RequestHeaders       map[string]string                 `protobuf:"bytes,3,rep,name=request_headers,json=requestHeaders,proto3" json:"request_headers,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" firestore:"requestHeaders"`
-	RequestMethod        common.HTTPRequestMethod          `protobuf:"varint,4,opt,name=request_method,json=requestMethod,proto3,enum=ntt.watchdog.v1alpha2.HTTPRequestMethod" json:"request_method,omitempty" firestore:"requestMethod"`
-	Timeout              *duration.Duration                `protobuf:"bytes,5,opt,name=timeout,proto3" json:"timeout,omitempty" firestore:"timeout"`
-	RequestBody          string                            `protobuf:"bytes,6,opt,name=request_body,json=requestBody,proto3" json:"request_body,omitempty" firestore:"requestBody"`
-	AuthenticationMethod common.AuthenticationMethod       `protobuf:"varint,7,opt,name=authentication_method,json=authenticationMethod,proto3,enum=ntt.watchdog.v1alpha2.AuthenticationMethod" json:"authentication_method,omitempty" firestore:"authenticationMethod"`
-	Username             string                            `protobuf:"bytes,9,opt,name=username,proto3" json:"username,omitempty" firestore:"username"`
-	Password             string                            `protobuf:"bytes,10,opt,name=password,proto3" json:"password,omitempty" firestore:"password"`
-	SourceIp             string                            `protobuf:"bytes,11,opt,name=source_ip,json=sourceIp,proto3" json:"source_ip,omitempty" firestore:"sourceIp"`
-	OutputFormat         common.OnDemandTestResponseFormat `protobuf:"varint,12,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
+	// Target URL to run the http test.
+	// http/https scheme is mandatory
+	Url string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty" firestore:"url"`
+	// http headers to use in the http request.
+	RequestHeaders map[string]string `protobuf:"bytes,3,rep,name=request_headers,json=requestHeaders,proto3" json:"request_headers,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" firestore:"requestHeaders"`
+	// HTTP request method. Default is GET
+	RequestMethod common.HTTPRequestMethod `protobuf:"varint,4,opt,name=request_method,json=requestMethod,proto3,enum=ntt.watchdog.v1alpha2.HTTPRequestMethod" json:"request_method,omitempty" firestore:"requestMethod"`
+	// Request timeout duration. Default is 30 seconds.
+	Timeout *duration.Duration `protobuf:"bytes,5,opt,name=timeout,proto3" json:"timeout,omitempty" firestore:"timeout"`
+	// Request body for POST/PUT
+	RequestBody string `protobuf:"bytes,6,opt,name=request_body,json=requestBody,proto3" json:"request_body,omitempty" firestore:"requestBody"`
+	// Authentication method BASIC is allowed for http test
+	AuthenticationMethod common.AuthenticationMethod `protobuf:"varint,7,opt,name=authentication_method,json=authenticationMethod,proto3,enum=ntt.watchdog.v1alpha2.AuthenticationMethod" json:"authentication_method,omitempty" firestore:"authenticationMethod"`
+	// Username for basic auth
+	Username string `protobuf:"bytes,9,opt,name=username,proto3" json:"username,omitempty" firestore:"username"`
+	// Password for basic auth
+	Password string `protobuf:"bytes,10,opt,name=password,proto3" json:"password,omitempty" firestore:"password"`
+	// Source address to use for the outbound packet.
+	// If unspecified, agent will bind to :: or 0.0.0.0 by default and
+	// the operating system stack chooses the proper address.
+	// The IP version is chosen according to the version of destination address
+	// This is intended for advanced debug, it is recommended to leave this empty.
+	SourceIp string `protobuf:"bytes,11,opt,name=source_ip,json=sourceIp,proto3" json:"source_ip,omitempty" firestore:"sourceIp"`
+	// Default is Text format. Json is for internal use only
+	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,12,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 
 func (m *RunHTTPTestRequest) Reset() {
@@ -277,8 +291,10 @@ type RunHTTPTestResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	TextResponse  string                            `protobuf:"bytes,1,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
-	JsonResponse  *RunHTTPTestResponse_JsonResponse `protobuf:"bytes,2,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
+	// Console type text response
+	TextResponse string `protobuf:"bytes,1,opt,name=text_response,json=textResponse,proto3" json:"text_response,omitempty" firestore:"textResponse"`
+	// Json format is not preferred for the ondemand tests
+	JsonResponse *RunHTTPTestResponse_JsonResponse `protobuf:"bytes,2,opt,name=json_response,json=jsonResponse,proto3" json:"json_response,omitempty" firestore:"jsonResponse"`
 }
 
 func (m *RunHTTPTestResponse) Reset() {
@@ -359,13 +375,17 @@ func (m *RunHTTPTestResponse) SetJsonResponse(fv *RunHTTPTestResponse_JsonRespon
 	m.JsonResponse = fv
 }
 
+// Json format is not preferred for the ondemand tests
 type RunHTTPTestResponse_JsonResponse struct {
-	state           protoimpl.MessageState
-	sizeCache       protoimpl.SizeCache
-	unknownFields   protoimpl.UnknownFields
-	ResponseCode    int32                                      `protobuf:"varint,1,opt,name=response_code,json=responseCode,proto3" json:"response_code,omitempty" firestore:"responseCode"`
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	// HTTP Response code
+	ResponseCode int32 `protobuf:"varint,1,opt,name=response_code,json=responseCode,proto3" json:"response_code,omitempty" firestore:"responseCode"`
+	// HTTP Response Headers
 	ResponseHeaders []*RunHTTPTestResponse_JsonResponse_Header `protobuf:"bytes,2,rep,name=response_headers,json=responseHeaders,proto3" json:"response_headers,omitempty" firestore:"responseHeaders"`
-	ResponseBody    []byte                                     `protobuf:"bytes,3,opt,name=response_body,json=responseBody,proto3" json:"response_body,omitempty" firestore:"responseBody"`
+	// HTTP Response body
+	ResponseBody []byte `protobuf:"bytes,3,opt,name=response_body,json=responseBody,proto3" json:"response_body,omitempty" firestore:"responseBody"`
 }
 
 func (m *RunHTTPTestResponse_JsonResponse) Reset() {
@@ -460,6 +480,7 @@ func (m *RunHTTPTestResponse_JsonResponse) SetResponseBody(fv []byte) {
 	m.ResponseBody = fv
 }
 
+// HTTP Response Header
 type RunHTTPTestResponse_JsonResponse_Header struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
