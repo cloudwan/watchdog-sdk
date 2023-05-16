@@ -3634,7 +3634,7 @@ after lock timestamp is exceeded, new clients may override cookie.</p>
 </tr>
 <tr><td class="description"><p>Query</p>
 <p>If unspecified,
-(name, qtype, qclass) = (&quot;.&quot;, A, IN) will be picked respectively</p>
+(name, qtype, qclass) = (&quot;.&quot;, A, IN) will be used by default</p>
 </td></tr>
 
 <tr>
@@ -3642,10 +3642,10 @@ after lock timestamp is exceeded, new clients may override cookie.</p>
 <td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"><p>Name server's address</p>
-<p>If unspecified, agent will pick the dns server configured on the device
-On Linux and Mac typically this is a local resolver.
-On windows, a DNS server is picked from the list of configured dns servers.
-If reading configured server fails, fall back to choose 8.8.8.8</p>
+<p>If unspecified, the agent will pick the dns server configured on the
+device. On Linux and Mac, typically this is a local resolver. On windows, a
+DNS server is picked from the list of configured dns servers. If fetching
+the configured server fails, fall back to choose 8.8.8.8</p>
 </td></tr>
 
 <tr>
@@ -3653,7 +3653,7 @@ If reading configured server fails, fall back to choose 8.8.8.8</p>
 <td class="type"><pre>uint32s</pre></td>
 </tr>
 <tr><td class="description"><p>Name server's port number</p>
-<p>If unspecified, agent will pick default DNS server port 53</p>
+<p>If unspecified, default DNS server port 53 is used</p>
 </td></tr>
 
 <tr>
@@ -3668,7 +3668,7 @@ If reading configured server fails, fall back to choose 8.8.8.8</p>
 <th rowspan="2">no_recursion_desired</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>Whether skip recusion desired option to send DNS query</p>
+<tr><td class="description"><p>Whether skip recursion desired option to send DNS query</p>
 <p>If unspecified, agent will set the option</p>
 </td></tr>
 
@@ -3690,7 +3690,8 @@ to 4.4.8.8.in-addr.arpa.)</li>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+<tr><td class="description"><p>Default is Text format similar to dig command. Json is for internal use
+only</p>
 </td></tr>
  
 </tbody>
@@ -4058,17 +4059,6 @@ cd: Checking Disabled</p>
 </td></tr>
 
 <tr>
-<th rowspan="2">source</th>
-<td class="type"><pre>string</pre></td>
-</tr>
-<tr><td class="description"><p>Source address to use for the outbound packet.
-If unspecified, agent will bind to :: or 0.0.0.0 by default and
-the operating system stack chooses the proper address.
-The IP version is chosen according to the version of destination address
-This is intended for advanced debug, it is recommended to leave this empty.</p>
-</td></tr>
-
-<tr>
 <th rowspan="2">target</th>
 <td class="type"><pre>string</pre></td>
 </tr>
@@ -4081,8 +4071,7 @@ Target or Destination is required as user input.</p>
 <td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"><p>Destination to send packet to.
-IP address and domain name are accepted
-As the IPv6 address, a zone index is also acceptable
+IP address and domain name are accepted.
 One of Destination or Target is required as input</p>
 </td></tr>
 
@@ -4090,7 +4079,7 @@ One of Destination or Target is required as input</p>
 <th rowspan="2">attempts</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>Number of attempts to discover unique paths</p>
+<tr><td class="description"><p>Number of attempts to discover unique paths. Default is 3</p>
 </td></tr>
 
 <tr>
@@ -4104,7 +4093,8 @@ One of Destination or Target is required as input</p>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+<tr><td class="description"><p>Default is Text format similar to traceroute command. Json is for internal
+use only</p>
 </td></tr>
  
 </tbody>
@@ -4372,18 +4362,21 @@ http/https scheme is mandatory</p>
 <th rowspan="2">source_ip</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Source address to use for the outbound packet.
-If unspecified, agent will bind to :: or 0.0.0.0 by default and
+<tr><td class="description"><p>Source address to use for the outbound request.
+If unspecified, the agent will bind to :: or 0.0.0.0 and
 the operating system stack chooses the proper address.
 The IP version is chosen according to the version of destination address
-This is intended for advanced debug, it is recommended to leave this empty.</p>
+This parameter is intended for special scenarios where there are multiple
+internet uplinks available on the agent. It is recommended to leave this
+empty.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+<tr><td class="description"><p>Default is Text format similar to curl command, but with added metrics.
+Json is for internal use only</p>
 </td></tr>
  
 </tbody>
@@ -4680,19 +4673,22 @@ This is intended for advanced debug, it is recommended to leave this empty.</p>
 <th rowspan="2">start_time</th>
 <td class="type"><pre>.google.protobuf.Timestamp</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Start time for the last packet capture</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">end_time</th>
 <td class="type"><pre>.google.protobuf.Timestamp</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>End time for the last packet capture</p>
+</td></tr>
 
 <tr>
 <th rowspan="2">size_bytes</th>
 <td class="type"><pre>int64</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Size of the last packet capture file in bytes</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4729,7 +4725,8 @@ This is intended for advanced debug, it is recommended to leave this empty.</p>
 <th rowspan="2">is_running</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"></td></tr>
+<tr><td class="description"><p>Flag that indicates if on demand pcap is active on the agent</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4760,17 +4757,16 @@ increment field numbers Source address to listen packet Skip validating</p>
 <tr><td class="description"><p>Source address used to send the outbound icmp ping
 If unspecified, agent will bind to :: or 0.0.0.0 by default
 and the operating system will choose the appropriate local address.
-The IP version is chosen according to the version of destination address
-It is recommended to leave this empty.</p>
+The IP version is chosen according to the version of the destination
+address. It is recommended to leave this empty.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">destination</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Destination for the icmp ping (Mandatory)
-IP address and domain name are acceptable
-As the IPv6 address, a zone index is also acceptable</p>
+<tr><td class="description"><p>Destination address or domain name for the icmp ping (Mandatory).
+IP address and domain name are acceptable.</p>
 </td></tr>
 
 <tr>
@@ -4778,9 +4774,9 @@ As the IPv6 address, a zone index is also acceptable</p>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"><p>ICMP payload size. If unspecified, 48 byte payload is used
-The agent uses a minimum length of 8 bytes
-It is important to note that this is just the L4 payload length
-Actual packet length would be ethernet header length + IP Header legth +
+The agent uses a minimum length of 8 bytes.
+It is important to note that this is just the L4 payload length.
+Actual packet length would be ethernet header length + IP Header length +
 ICMP Header Length + specified payload size</p>
 </td></tr>
 
@@ -4788,32 +4784,32 @@ ICMP Header Length + specified payload size</p>
 <th rowspan="2">count</th>
 <td class="type"><pre>int32</pre></td>
 </tr>
-<tr><td class="description"><p>Number of ICMP Echo requests in the test
-Default value used is 3.</p>
+<tr><td class="description"><p>Number of ICMP Echo requests to send for this test.
+Allowed values are from 1 to 1000 and the default value is 3.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">interval</th>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
-<tr><td class="description"><p>Interval duration to wait sending each packet
-Default is 1 second</p>
+<tr><td class="description"><p>Interval between each packet sent.
+Minimum value allowed is 1 second and the default value  is 1 second.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">echo_timeout</th>
 <td class="type"><pre>.google.protobuf.Duration</pre></td>
 </tr>
-<tr><td class="description"><p>Timeout duration to wait receiving each packet's reply
-Default value is 1 second</p>
+<tr><td class="description"><p>Timeout for receiving each packet's reply.
+Minimum value allowed is 1 second and the default value  is 1 second.</p>
 </td></tr>
 
 <tr>
 <th rowspan="2">dont_fragment</th>
 <td class="type"><pre>bool</pre></td>
 </tr>
-<tr><td class="description"><p>Dont Fragment flag in IPv4 header
-If unspecified or false spcified, DF bit is not set</p>
+<tr><td class="description"><p>Don't Fragment flag in IP header.
+If unspecified or set to false, the DF bit is not set in the IP header.</p>
 </td></tr>
 
 <tr>
@@ -4821,7 +4817,8 @@ If unspecified or false spcified, DF bit is not set</p>
 <td class="type"><pre>int32</pre></td>
 </tr>
 <tr><td class="description"><p>TTL in IPv4 or hop limit in IPv6
-If unspecified, a default value is set by the Operating system stack.</p>
+If unspecified, a default value is set by the Operating system networking
+stack.</p>
 </td></tr>
 
 <tr>
@@ -4836,7 +4833,8 @@ If unspecified, a default value is set by the Operating system stack.</p>
 <th rowspan="2">output_format</th>
 <td class="type"><pre><a href="#enum-OnDemandTestResponseFormat">OnDemandTestResponseFormat</a></pre></td>
 </tr>
-<tr><td class="description"><p>Default is Text format. Json is for internal use only</p>
+<tr><td class="description"><p>Default is Text format similar to cli ping command. Json is for internal
+use only</p>
 </td></tr>
  
 </tbody>

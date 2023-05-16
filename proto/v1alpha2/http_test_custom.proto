@@ -42,14 +42,17 @@ message RunHTTPTestRequest {
   // Password for basic auth
   string password = 10;
 
-  // Source address to use for the outbound packet.
-  // If unspecified, agent will bind to :: or 0.0.0.0 by default and
+  // Source address to use for the outbound request.
+  // If unspecified, the agent will bind to :: or 0.0.0.0 and
   // the operating system stack chooses the proper address.
   // The IP version is chosen according to the version of destination address
-  // This is intended for advanced debug, it is recommended to leave this empty.
+  // This parameter is intended for special scenarios where there are multiple
+  // internet uplinks available on the agent. It is recommended to leave this
+  // empty.
   string source_ip = 11;
 
-  // Default is Text format. Json is for internal use only
+  // Default is Text format similar to curl command, but with added metrics.
+  // Json is for internal use only
   OnDemandTestResponseFormat output_format = 12;
 
   reserved 8;

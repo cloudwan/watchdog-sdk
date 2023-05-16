@@ -22,47 +22,48 @@ message RunPingTestRequest {
   // Source address used to send the outbound icmp ping
   // If unspecified, agent will bind to :: or 0.0.0.0 by default
   // and the operating system will choose the appropriate local address.
-  // The IP version is chosen according to the version of destination address
-  // It is recommended to leave this empty.
+  // The IP version is chosen according to the version of the destination
+  // address. It is recommended to leave this empty.
   string source = 2;
 
-  // Destination for the icmp ping (Mandatory)
-  // IP address and domain name are acceptable
-  // As the IPv6 address, a zone index is also acceptable
+  // Destination address or domain name for the icmp ping (Mandatory).
+  // IP address and domain name are acceptable.
   string destination = 3;
 
   // ICMP payload size. If unspecified, 48 byte payload is used
-  // The agent uses a minimum length of 8 bytes
-  // It is important to note that this is just the L4 payload length
-  // Actual packet length would be ethernet header length + IP Header legth +
+  // The agent uses a minimum length of 8 bytes.
+  // It is important to note that this is just the L4 payload length.
+  // Actual packet length would be ethernet header length + IP Header length +
   // ICMP Header Length + specified payload size
   int32 size_bytes = 4;
 
-  // Number of ICMP Echo requests in the test
-  // Default value used is 3.
+  // Number of ICMP Echo requests to send for this test.
+  // Allowed values are from 1 to 1000 and the default value is 3.
   int32 count = 5;
 
-  // Interval duration to wait sending each packet
-  // Default is 1 second
+  // Interval between each packet sent.
+  // Minimum value allowed is 1 second and the default value  is 1 second.
   google.protobuf.Duration interval = 6;
 
-  // Timeout duration to wait receiving each packet's reply
-  // Default value is 1 second
+  // Timeout for receiving each packet's reply.
+  // Minimum value allowed is 1 second and the default value  is 1 second.
   google.protobuf.Duration echo_timeout = 7;
 
-  // Dont Fragment flag in IPv4 header
-  // If unspecified or false spcified, DF bit is not set
+  // Don't Fragment flag in IP header.
+  // If unspecified or set to false, the DF bit is not set in the IP header.
   bool dont_fragment = 8;
 
   // TTL in IPv4 or hop limit in IPv6
-  // If unspecified, a default value is set by the Operating system stack.
+  // If unspecified, a default value is set by the Operating system networking
+  // stack.
   int32 ttl = 9;
 
   // TOS in IPv4 or traffic class in IPv6 in decimal format
   // https://linuxreviews.org/Type_of_Service_(ToS)_and_DSCP_Values
   int32 tos = 10;
 
-  // Default is Text format. Json is for internal use only
+  // Default is Text format similar to cli ping command. Json is for internal
+  // use only
   OnDemandTestResponseFormat output_format = 11;
 }
 

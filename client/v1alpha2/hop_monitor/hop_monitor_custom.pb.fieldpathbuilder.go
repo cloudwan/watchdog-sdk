@@ -66,9 +66,6 @@ func NewRunHopMonitorRequestFieldPathBuilder() RunHopMonitorRequestFieldPathBuil
 func (RunHopMonitorRequestFieldPathBuilder) Name() RunHopMonitorRequestPathSelectorName {
 	return RunHopMonitorRequestPathSelectorName{}
 }
-func (RunHopMonitorRequestFieldPathBuilder) Source() RunHopMonitorRequestPathSelectorSource {
-	return RunHopMonitorRequestPathSelectorSource{}
-}
 func (RunHopMonitorRequestFieldPathBuilder) Target() RunHopMonitorRequestPathSelectorTarget {
 	return RunHopMonitorRequestPathSelectorTarget{}
 }
@@ -96,20 +93,6 @@ func (s RunHopMonitorRequestPathSelectorName) WithValue(value *probe.Reference) 
 }
 
 func (s RunHopMonitorRequestPathSelectorName) WithArrayOfValues(values []*probe.Reference) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
-	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
-}
-
-type RunHopMonitorRequestPathSelectorSource struct{}
-
-func (RunHopMonitorRequestPathSelectorSource) FieldPath() *RunHopMonitorRequest_FieldTerminalPath {
-	return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSource}
-}
-
-func (s RunHopMonitorRequestPathSelectorSource) WithValue(value string) *RunHopMonitorRequest_FieldTerminalPathValue {
-	return s.FieldPath().WithIValue(value).(*RunHopMonitorRequest_FieldTerminalPathValue)
-}
-
-func (s RunHopMonitorRequestPathSelectorSource) WithArrayOfValues(values []string) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
 }
 

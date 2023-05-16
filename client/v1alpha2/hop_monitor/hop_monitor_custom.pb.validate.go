@@ -54,8 +54,8 @@ func (obj *RunHopMonitorRequest) GotenValidate() error {
 	if obj == nil {
 		return nil
 	}
-	if !(obj.Attempts >= 0 && obj.Attempts <= 100) {
-		return gotenvalidate.NewValidationError("RunHopMonitorRequest", "attempts", obj.Attempts, "field must be in range [0, 100]", nil)
+	if !(obj.Attempts >= 1 && obj.Attempts <= 100) {
+		return gotenvalidate.NewValidationError("RunHopMonitorRequest", "attempts", obj.Attempts, "field must be in range [1, 100]", nil)
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
 		return cvobj.GotenCustomValidate()

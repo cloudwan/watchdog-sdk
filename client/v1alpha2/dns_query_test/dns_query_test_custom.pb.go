@@ -59,24 +59,24 @@ type RunDNSQueryTestRequest struct {
 	// Query
 	//
 	// If unspecified,
-	// (name, qtype, qclass) = (".", A, IN) will be picked respectively
+	// (name, qtype, qclass) = (".", A, IN) will be used by default
 	Query *common.DNSQuery `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty" firestore:"query"`
 	// Name server's address
 	//
-	// If unspecified, agent will pick the dns server configured on the device
-	// On Linux and Mac typically this is a local resolver.
-	// On windows, a DNS server is picked from the list of configured dns servers.
-	// If reading configured server fails, fall back to choose 8.8.8.8
+	// If unspecified, the agent will pick the dns server configured on the
+	// device. On Linux and Mac, typically this is a local resolver. On windows, a
+	// DNS server is picked from the list of configured dns servers. If fetching
+	// the configured server fails, fall back to choose 8.8.8.8
 	Server string `protobuf:"bytes,3,opt,name=server,proto3" json:"server,omitempty" firestore:"server"`
 	// Name server's port number
 	//
-	// If unspecified, agent will pick default DNS server port 53
+	// If unspecified, default DNS server port 53 is used
 	Port uint32 `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty" firestore:"port"`
 	// Whether use TCP or UDP to send DNS query
 	//
 	// If unspecified, agent will use UDP
 	Tcp bool `protobuf:"varint,5,opt,name=tcp,proto3" json:"tcp,omitempty" firestore:"tcp"`
-	// Whether skip recusion desired option to send DNS query
+	// Whether skip recursion desired option to send DNS query
 	//
 	// If unspecified, agent will set the option
 	NoRecursionDesired bool `protobuf:"varint,6,opt,name=no_recursion_desired,json=noRecursionDesired,proto3" json:"no_recursion_desired,omitempty" firestore:"noRecursionDesired"`
@@ -89,7 +89,8 @@ type RunDNSQueryTestRequest struct {
 	// - and make the query's name reversed (eg. 8.8.4.4
 	// to 4.4.8.8.in-addr.arpa.)
 	Reverse bool `protobuf:"varint,7,opt,name=reverse,proto3" json:"reverse,omitempty" firestore:"reverse"`
-	// Default is Text format. Json is for internal use only
+	// Default is Text format similar to dig command. Json is for internal use
+	// only
 	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,8,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 

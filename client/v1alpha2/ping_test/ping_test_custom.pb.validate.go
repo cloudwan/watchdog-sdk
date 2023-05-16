@@ -57,8 +57,8 @@ func (obj *RunPingTestRequest) GotenValidate() error {
 	if !(obj.SizeBytes >= 2) {
 		return gotenvalidate.NewValidationError("RunPingTestRequest", "sizeBytes", obj.SizeBytes, "field must be greater or equal to 2", nil)
 	}
-	if !(obj.Count >= 1 && obj.Count <= 100) {
-		return gotenvalidate.NewValidationError("RunPingTestRequest", "count", obj.Count, "field must be in range [1, 100]", nil)
+	if !(obj.Count >= 1 && obj.Count <= 1000) {
+		return gotenvalidate.NewValidationError("RunPingTestRequest", "count", obj.Count, "field must be in range [1, 1000]", nil)
 	}
 	if obj.Interval != nil && obj.Interval.CheckValid() != nil {
 		err := obj.Interval.CheckValid()

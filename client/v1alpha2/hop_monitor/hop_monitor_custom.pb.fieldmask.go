@@ -54,7 +54,6 @@ type RunHopMonitorRequest_FieldMask struct {
 func FullRunHopMonitorRequest_FieldMask() *RunHopMonitorRequest_FieldMask {
 	res := &RunHopMonitorRequest_FieldMask{}
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorName})
-	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSource})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorTarget})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorDestination})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorAttempts})
@@ -103,7 +102,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 6)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHopMonitorRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -133,7 +132,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHopMonitorRequest_FieldMask) Subtract(other *RunHopMonitorRequest_FieldMask) *RunHopMonitorRequest_FieldMask {
 	result := &RunHopMonitorRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 6)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -289,8 +288,6 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Project(source *RunHopMonitorRe
 			switch tp.selector {
 			case RunHopMonitorRequest_FieldPathSelectorName:
 				result.Name = source.Name
-			case RunHopMonitorRequest_FieldPathSelectorSource:
-				result.Source = source.Source
 			case RunHopMonitorRequest_FieldPathSelectorTarget:
 				result.Target = source.Target
 			case RunHopMonitorRequest_FieldPathSelectorDestination:

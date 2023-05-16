@@ -20,33 +20,26 @@ message RunHopMonitorRequest {
   //  reference of ntt.watchdog.v1alpha2.Probe
   string name = 1;
 
-  // Source address to use for the outbound packet.
-  // If unspecified, agent will bind to :: or 0.0.0.0 by default and
-  // the operating system stack chooses the proper address.
-  // The IP version is chosen according to the version of destination address
-  // This is intended for advanced debug, it is recommended to leave this empty.
-  string source = 2;
-
   // Run path trace to the specified probing target.
   // Target or Destination is required as user input.
   string target = 3;
 
   // Destination to send packet to.
-  // IP address and domain name are accepted
-  // As the IPv6 address, a zone index is also acceptable
+  // IP address and domain name are accepted.
   // One of Destination or Target is required as input
   string destination = 4;
 
-  // Number of attempts to discover unique paths
+  // Number of attempts to discover unique paths. Default is 3
   int32 attempts = 6;
 
   // Use UDP (default) or TCP or ICMP for the path discovery
   ProbingMode mode = 7;
 
-  // Default is Text format. Json is for internal use only
+  // Default is Text format similar to traceroute command. Json is for internal
+  // use only
   OnDemandTestResponseFormat output_format = 8;
 
-  reserved 5;
+  reserved 2, 5;
 }
 
 // Response message for method

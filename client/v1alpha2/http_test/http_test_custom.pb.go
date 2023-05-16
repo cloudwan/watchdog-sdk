@@ -72,13 +72,16 @@ type RunHTTPTestRequest struct {
 	Username string `protobuf:"bytes,9,opt,name=username,proto3" json:"username,omitempty" firestore:"username"`
 	// Password for basic auth
 	Password string `protobuf:"bytes,10,opt,name=password,proto3" json:"password,omitempty" firestore:"password"`
-	// Source address to use for the outbound packet.
-	// If unspecified, agent will bind to :: or 0.0.0.0 by default and
+	// Source address to use for the outbound request.
+	// If unspecified, the agent will bind to :: or 0.0.0.0 and
 	// the operating system stack chooses the proper address.
 	// The IP version is chosen according to the version of destination address
-	// This is intended for advanced debug, it is recommended to leave this empty.
+	// This parameter is intended for special scenarios where there are multiple
+	// internet uplinks available on the agent. It is recommended to leave this
+	// empty.
 	SourceIp string `protobuf:"bytes,11,opt,name=source_ip,json=sourceIp,proto3" json:"source_ip,omitempty" firestore:"sourceIp"`
-	// Default is Text format. Json is for internal use only
+	// Default is Text format similar to curl command, but with added metrics.
+	// Json is for internal use only
 	OutputFormat common.OnDemandTestResponseFormat `protobuf:"varint,12,opt,name=output_format,json=outputFormat,proto3,enum=ntt.watchdog.v1alpha2.OnDemandTestResponseFormat" json:"output_format,omitempty" firestore:"outputFormat"`
 }
 

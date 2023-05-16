@@ -21,20 +21,20 @@ message RunDNSQueryTestRequest {
   // Query
   //
   // If unspecified,
-  // (name, qtype, qclass) = (".", A, IN) will be picked respectively
+  // (name, qtype, qclass) = (".", A, IN) will be used by default
   DNSQuery query = 2;
 
   // Name server's address
   //
-  // If unspecified, agent will pick the dns server configured on the device
-  // On Linux and Mac typically this is a local resolver.
-  // On windows, a DNS server is picked from the list of configured dns servers.
-  // If reading configured server fails, fall back to choose 8.8.8.8
+  // If unspecified, the agent will pick the dns server configured on the
+  // device. On Linux and Mac, typically this is a local resolver. On windows, a
+  // DNS server is picked from the list of configured dns servers. If fetching
+  // the configured server fails, fall back to choose 8.8.8.8
   string server = 3;
 
   // Name server's port number
   //
-  // If unspecified, agent will pick default DNS server port 53
+  // If unspecified, default DNS server port 53 is used
   uint32 port = 4;
 
   // Whether use TCP or UDP to send DNS query
@@ -42,7 +42,7 @@ message RunDNSQueryTestRequest {
   // If unspecified, agent will use UDP
   bool tcp = 5;
 
-  // Whether skip recusion desired option to send DNS query
+  // Whether skip recursion desired option to send DNS query
   //
   // If unspecified, agent will set the option
   bool no_recursion_desired = 6;
@@ -57,7 +57,8 @@ message RunDNSQueryTestRequest {
   // to 4.4.8.8.in-addr.arpa.)
   bool reverse = 7;
 
-  // Default is Text format. Json is for internal use only
+  // Default is Text format similar to dig command. Json is for internal use
+  // only
   OnDemandTestResponseFormat output_format = 8;
 }
 

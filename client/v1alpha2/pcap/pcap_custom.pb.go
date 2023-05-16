@@ -527,9 +527,12 @@ type GetPcapFileInfoFromAgentResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	StartTime     *timestamp.Timestamp `protobuf:"bytes,1,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty" firestore:"startTime"`
-	EndTime       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty" firestore:"endTime"`
-	SizeBytes     int64                `protobuf:"varint,3,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty" firestore:"sizeBytes"`
+	// Start time for the last packet capture
+	StartTime *timestamp.Timestamp `protobuf:"bytes,1,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty" firestore:"startTime"`
+	// End time for the last packet capture
+	EndTime *timestamp.Timestamp `protobuf:"bytes,2,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty" firestore:"endTime"`
+	// Size of the last packet capture file in bytes
+	SizeBytes int64 `protobuf:"varint,3,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty" firestore:"sizeBytes"`
 }
 
 func (m *GetPcapFileInfoFromAgentResponse) Reset() {
@@ -700,7 +703,8 @@ type CheckPcapIsRunningResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-	IsRunning     bool `protobuf:"varint,1,opt,name=is_running,json=isRunning,proto3" json:"is_running,omitempty" firestore:"isRunning"`
+	// Flag that indicates if on demand pcap is active on the agent
+	IsRunning bool `protobuf:"varint,1,opt,name=is_running,json=isRunning,proto3" json:"is_running,omitempty" firestore:"isRunning"`
 }
 
 func (m *CheckPcapIsRunningResponse) Reset() {

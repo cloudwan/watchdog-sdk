@@ -75,20 +75,17 @@ type RunHopMonitorRequest_FieldPathSelector int32
 
 const (
 	RunHopMonitorRequest_FieldPathSelectorName         RunHopMonitorRequest_FieldPathSelector = 0
-	RunHopMonitorRequest_FieldPathSelectorSource       RunHopMonitorRequest_FieldPathSelector = 1
-	RunHopMonitorRequest_FieldPathSelectorTarget       RunHopMonitorRequest_FieldPathSelector = 2
-	RunHopMonitorRequest_FieldPathSelectorDestination  RunHopMonitorRequest_FieldPathSelector = 3
-	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 4
-	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 5
-	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 6
+	RunHopMonitorRequest_FieldPathSelectorTarget       RunHopMonitorRequest_FieldPathSelector = 1
+	RunHopMonitorRequest_FieldPathSelectorDestination  RunHopMonitorRequest_FieldPathSelector = 2
+	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 3
+	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 4
+	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 5
 )
 
 func (s RunHopMonitorRequest_FieldPathSelector) String() string {
 	switch s {
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		return "name"
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		return "source"
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		return "target"
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -112,8 +109,6 @@ func BuildRunHopMonitorRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHopMon
 		switch fp[0] {
 		case "name":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorName}, nil
-		case "source":
-			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorSource}, nil
 		case "target":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorTarget}, nil
 		case "destination":
@@ -173,8 +168,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) Get(source *RunHopMonitorReque
 			if source.Name != nil {
 				values = append(values, source.Name)
 			}
-		case RunHopMonitorRequest_FieldPathSelectorSource:
-			values = append(values, source.Source)
 		case RunHopMonitorRequest_FieldPathSelectorTarget:
 			if source.Target != nil {
 				values = append(values, source.Target)
@@ -204,8 +197,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetSingle(source *RunHopMonito
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		res := source.GetName()
 		return res, res != nil
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		return source.GetSource(), source != nil
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		res := source.GetTarget()
 		return res, res != nil
@@ -231,8 +222,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetDefault() interface{} {
 	switch fp.selector {
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		return (*probe.Reference)(nil)
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		return ""
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		return (*probing_target.Reference)(nil)
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -253,8 +242,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) ClearValue(item *RunHopMonitor
 		switch fp.selector {
 		case RunHopMonitorRequest_FieldPathSelectorName:
 			item.Name = nil
-		case RunHopMonitorRequest_FieldPathSelectorSource:
-			item.Source = ""
 		case RunHopMonitorRequest_FieldPathSelectorTarget:
 			item.Target = nil
 		case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -278,7 +265,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) ClearValueRaw(item proto.Messa
 // IsLeaf - whether field path is holds simple value
 func (fp *RunHopMonitorRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == RunHopMonitorRequest_FieldPathSelectorName ||
-		fp.selector == RunHopMonitorRequest_FieldPathSelectorSource ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorTarget ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorDestination ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorAttempts ||
@@ -294,8 +280,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIValue(value interface{}) 
 	switch fp.selector {
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -320,8 +304,6 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIArrayOfValues(values inte
 	switch fp.selector {
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -396,10 +378,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsNameValue() (*probe.Re
 	res, ok := fpv.value.(*probe.Reference)
 	return res, ok
 }
-func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsSourceValue() (string, bool) {
-	res, ok := fpv.value.(string)
-	return res, ok
-}
 func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsTargetValue() (*probing_target.Reference, bool) {
 	res, ok := fpv.value.(*probing_target.Reference)
 	return res, ok
@@ -429,8 +407,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMon
 	switch fpv.selector {
 	case RunHopMonitorRequest_FieldPathSelectorName:
 		(*target).Name = fpv.value.(*probe.Reference)
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		(*target).Source = fpv.value.(string)
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		(*target).Target = fpv.value.(*probing_target.Reference)
 	case RunHopMonitorRequest_FieldPathSelectorDestination:
@@ -469,16 +445,6 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) CompareWith(source *RunH
 		if leftValue.String() == rightValue.String() {
 			return 0, true
 		} else if leftValue.String() < rightValue.String() {
-			return -1, true
-		} else {
-			return 1, true
-		}
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		leftValue := fpv.value.(string)
-		rightValue := source.GetSource()
-		if (leftValue) == (rightValue) {
-			return 0, true
-		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -654,10 +620,6 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]*probe.Reference) {
 			values = append(values, v)
 		}
-	case RunHopMonitorRequest_FieldPathSelectorSource:
-		for _, v := range fpaov.values.([]string) {
-			values = append(values, v)
-		}
 	case RunHopMonitorRequest_FieldPathSelectorTarget:
 		for _, v := range fpaov.values.([]*probing_target.Reference) {
 			values = append(values, v)
@@ -683,10 +645,6 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) GetRawValues()
 }
 func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsNameArrayOfValues() ([]*probe.Reference, bool) {
 	res, ok := fpaov.values.([]*probe.Reference)
-	return res, ok
-}
-func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsSourceArrayOfValues() ([]string, bool) {
-	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {

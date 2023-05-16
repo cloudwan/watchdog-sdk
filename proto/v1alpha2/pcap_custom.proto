@@ -60,10 +60,13 @@ message GetPcapFileInfoFromAgentRequest {
 }
 
 message GetPcapFileInfoFromAgentResponse {
+  // Start time for the last packet capture
   google.protobuf.Timestamp start_time = 1;
 
+  // End time for the last packet capture
   google.protobuf.Timestamp end_time = 2;
 
+  // Size of the last packet capture file in bytes
   int64 size_bytes = 3;
 }
 
@@ -72,4 +75,7 @@ message CheckPcapIsRunningRequest {
   string name = 1;
 }
 
-message CheckPcapIsRunningResponse { bool is_running = 1; }
+message CheckPcapIsRunningResponse {
+  // Flag that indicates if on demand pcap is active on the agent
+  bool is_running = 1;
+}
