@@ -4063,7 +4063,7 @@ cd: Checking Disabled</p>
 <td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"><p>Run path trace to the specified probing target.
-Target or Destination is required as user input.</p>
+One of Destination or Target is required as input.</p>
 </td></tr>
 
 <tr>
@@ -4072,7 +4072,7 @@ Target or Destination is required as user input.</p>
 </tr>
 <tr><td class="description"><p>Destination to send packet to.
 IP address and domain name are accepted.
-One of Destination or Target is required as input</p>
+One of Destination or Target is required as input.</p>
 </td></tr>
 
 <tr>
@@ -4314,7 +4314,16 @@ Helpful when using domain name for tests.</p>
 <td class="type"><pre>string</pre></td>
 </tr>
 <tr><td class="description"><p>Target URL to run the http test.
-http/https scheme is mandatory</p>
+http/https scheme is mandatory
+One of url or Target is required as input.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Run http test to the specified probing target.
+One of url or Target is required as input.</p>
 </td></tr>
 
 <tr>
@@ -4781,8 +4790,17 @@ address. It is recommended to leave this empty.</p>
 <th rowspan="2">destination</th>
 <td class="type"><pre>string</pre></td>
 </tr>
-<tr><td class="description"><p>Destination address or domain name for the icmp ping (Mandatory).
-IP address and domain name are acceptable.</p>
+<tr><td class="description"><p>Destination address or domain name for the icmp ping.
+IP address and domain name are acceptable.
+One of Destination or Target is required as input.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">target</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Run ping test to the specified probing target.
+One of Destination or Target is required as input.</p>
 </td></tr>
 
 <tr>

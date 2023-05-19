@@ -18,6 +18,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -37,6 +38,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 func (o *RunHTTPTestRequest) GotenObjectExt() {}
@@ -63,6 +65,9 @@ func (o *RunHTTPTestRequest) MakeDiffFieldMask(other *RunHTTPTestRequest) *RunHT
 	}
 	if o.GetUrl() != other.GetUrl() {
 		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrl})
+	}
+	if o.GetTarget().String() != other.GetTarget().String() {
+		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTarget})
 	}
 
 	if len(o.GetRequestHeaders()) == len(other.GetRequestHeaders()) {
@@ -126,6 +131,16 @@ func (o *RunHTTPTestRequest) Clone() *RunHTTPTestRequest {
 		}
 	}
 	result.Url = o.Url
+	if o.Target == nil {
+		result.Target = nil
+	} else if data, err := o.Target.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Target = &probing_target.Reference{}
+		if err := result.Target.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
 	result.RequestHeaders = map[string]string{}
 	for key, sourceValue := range o.RequestHeaders {
 		result.RequestHeaders[key] = sourceValue
@@ -160,6 +175,18 @@ func (o *RunHTTPTestRequest) Merge(source *RunHTTPTestRequest) {
 		o.Name = nil
 	}
 	o.Url = source.GetUrl()
+	if source.GetTarget() != nil {
+		if data, err := source.GetTarget().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Target = &probing_target.Reference{}
+			if err := o.Target.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Target = nil
+	}
 	if source.GetRequestHeaders() != nil {
 		if o.RequestHeaders == nil {
 			o.RequestHeaders = make(map[string]string, len(source.GetRequestHeaders()))

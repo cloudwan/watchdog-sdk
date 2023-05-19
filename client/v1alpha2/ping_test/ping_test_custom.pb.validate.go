@@ -25,6 +25,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -48,6 +49,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 func (obj *RunPingTestRequest) GotenValidate() error {

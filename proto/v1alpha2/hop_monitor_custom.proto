@@ -21,12 +21,12 @@ message RunHopMonitorRequest {
   string name = 1;
 
   // Run path trace to the specified probing target.
-  // Target or Destination is required as user input.
+  // One of Destination or Target is required as input.
   string target = 3;
 
   // Destination to send packet to.
   // IP address and domain name are accepted.
-  // One of Destination or Target is required as input
+  // One of Destination or Target is required as input.
   string destination = 4;
 
   // Number of attempts to discover unique paths. Default is 3

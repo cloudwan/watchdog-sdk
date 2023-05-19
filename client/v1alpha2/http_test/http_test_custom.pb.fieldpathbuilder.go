@@ -21,6 +21,8 @@ import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
+	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -51,6 +53,8 @@ var (
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
+	_ = &probing_target.ProbingTarget{}
+	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &project.Project{}
 )
 
@@ -64,6 +68,9 @@ func (RunHTTPTestRequestFieldPathBuilder) Name() RunHTTPTestRequestPathSelectorN
 }
 func (RunHTTPTestRequestFieldPathBuilder) Url() RunHTTPTestRequestPathSelectorUrl {
 	return RunHTTPTestRequestPathSelectorUrl{}
+}
+func (RunHTTPTestRequestFieldPathBuilder) Target() RunHTTPTestRequestPathSelectorTarget {
+	return RunHTTPTestRequestPathSelectorTarget{}
 }
 func (RunHTTPTestRequestFieldPathBuilder) RequestHeaders() RunHTTPTestRequestPathSelectorRequestHeaders {
 	return RunHTTPTestRequestPathSelectorRequestHeaders{}
@@ -121,6 +128,20 @@ func (s RunHTTPTestRequestPathSelectorUrl) WithValue(value string) *RunHTTPTestR
 }
 
 func (s RunHTTPTestRequestPathSelectorUrl) WithArrayOfValues(values []string) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunHTTPTestRequestPathSelectorTarget struct{}
+
+func (RunHTTPTestRequestPathSelectorTarget) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
+	return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTarget}
+}
+
+func (s RunHTTPTestRequestPathSelectorTarget) WithValue(value *probing_target.Reference) *RunHTTPTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunHTTPTestRequestPathSelectorTarget) WithArrayOfValues(values []*probing_target.Reference) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
 }
 

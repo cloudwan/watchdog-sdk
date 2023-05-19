@@ -18,6 +18,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -37,6 +38,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 func (o *RunPingTestRequest) GotenObjectExt() {}
@@ -66,6 +68,9 @@ func (o *RunPingTestRequest) MakeDiffFieldMask(other *RunPingTestRequest) *RunPi
 	}
 	if o.GetDestination() != other.GetDestination() {
 		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorDestination})
+	}
+	if o.GetTarget().String() != other.GetTarget().String() {
+		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTarget})
 	}
 	if o.GetSizeBytes() != other.GetSizeBytes() {
 		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorSizeBytes})
@@ -118,6 +123,16 @@ func (o *RunPingTestRequest) Clone() *RunPingTestRequest {
 	}
 	result.Source = o.Source
 	result.Destination = o.Destination
+	if o.Target == nil {
+		result.Target = nil
+	} else if data, err := o.Target.ProtoString(); err != nil {
+		panic(err)
+	} else {
+		result.Target = &probing_target.Reference{}
+		if err := result.Target.ParseProtoString(data); err != nil {
+			panic(err)
+		}
+	}
 	result.SizeBytes = o.SizeBytes
 	result.Count = o.Count
 	result.Interval = proto.Clone(o.Interval).(*duration.Duration)
@@ -149,6 +164,18 @@ func (o *RunPingTestRequest) Merge(source *RunPingTestRequest) {
 	}
 	o.Source = source.GetSource()
 	o.Destination = source.GetDestination()
+	if source.GetTarget() != nil {
+		if data, err := source.GetTarget().ProtoString(); err != nil {
+			panic(err)
+		} else {
+			o.Target = &probing_target.Reference{}
+			if err := o.Target.ParseProtoString(data); err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		o.Target = nil
+	}
 	o.SizeBytes = source.GetSizeBytes()
 	o.Count = source.GetCount()
 	if source.GetInterval() != nil {

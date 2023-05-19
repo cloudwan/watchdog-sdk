@@ -19,7 +19,12 @@ message RunHTTPTestRequest {
 
   // Target URL to run the http test.
   // http/https scheme is mandatory
+  // One of url or Target is required as input.
   string url = 2;
+
+  // Run http test to the specified probing target.
+  // One of url or Target is required as input.
+  string target = 14;
 
   // http headers to use in the http request.
   map<string, string> request_headers = 3;

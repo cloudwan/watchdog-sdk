@@ -26,9 +26,14 @@ message RunPingTestRequest {
   // address. It is recommended to leave this empty.
   string source = 2;
 
-  // Destination address or domain name for the icmp ping (Mandatory).
+  // Destination address or domain name for the icmp ping.
   // IP address and domain name are acceptable.
+  // One of Destination or Target is required as input.
   string destination = 3;
+
+  // Run ping test to the specified probing target.
+  // One of Destination or Target is required as input.
+  string target = 13;
 
   // ICMP payload size. If unspecified, 48 byte payload is used
   // The agent uses a minimum length of 8 bytes.

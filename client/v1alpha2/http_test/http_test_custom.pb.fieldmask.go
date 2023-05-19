@@ -22,6 +22,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -45,6 +46,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 type RunHTTPTestRequest_FieldMask struct {
@@ -55,6 +57,7 @@ func FullRunHTTPTestRequest_FieldMask() *RunHTTPTestRequest_FieldMask {
 	res := &RunHTTPTestRequest_FieldMask{}
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorName})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrl})
+	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTarget})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorRequestHeaders})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorRequestMethod})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTimeout})
@@ -108,7 +111,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 12)
+	presentSelectors := make([]bool, 13)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHTTPTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -138,7 +141,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHTTPTestRequest_FieldMask) Subtract(other *RunHTTPTestRequest_FieldMask) *RunHTTPTestRequest_FieldMask {
 	result := &RunHTTPTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 12)
+	removedSelectors := make([]bool, 13)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -298,6 +301,8 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 				result.Name = source.Name
 			case RunHTTPTestRequest_FieldPathSelectorUrl:
 				result.Url = source.Url
+			case RunHTTPTestRequest_FieldPathSelectorTarget:
+				result.Target = source.Target
 			case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 				result.RequestHeaders = source.RequestHeaders
 				wholeRequestHeadersAccepted = true

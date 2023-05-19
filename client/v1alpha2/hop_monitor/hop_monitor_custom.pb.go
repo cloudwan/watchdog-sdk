@@ -57,11 +57,11 @@ type RunHopMonitorRequest struct {
 	//  reference of ntt.watchdog.v1alpha2.Probe
 	Name *probe.Reference `protobuf:"bytes,1,opt,customtype=Reference,name=name,proto3" json:"name,omitempty" firestore:"name"`
 	// Run path trace to the specified probing target.
-	// Target or Destination is required as user input.
+	// One of Destination or Target is required as input.
 	Target *probing_target.Reference `protobuf:"bytes,3,opt,customtype=Reference,name=target,proto3" json:"target,omitempty" firestore:"target"`
 	// Destination to send packet to.
 	// IP address and domain name are accepted.
-	// One of Destination or Target is required as input
+	// One of Destination or Target is required as input.
 	Destination string `protobuf:"bytes,4,opt,name=destination,proto3" json:"destination,omitempty" firestore:"destination"`
 	// Number of attempts to discover unique paths. Default is 3
 	Attempts int32 `protobuf:"varint,6,opt,name=attempts,proto3" json:"attempts,omitempty" firestore:"attempts"`

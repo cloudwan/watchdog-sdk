@@ -26,6 +26,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -53,6 +54,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 // FieldPath provides implementation to handle
@@ -77,15 +79,16 @@ const (
 	RunPingTestRequest_FieldPathSelectorName         RunPingTestRequest_FieldPathSelector = 0
 	RunPingTestRequest_FieldPathSelectorSource       RunPingTestRequest_FieldPathSelector = 1
 	RunPingTestRequest_FieldPathSelectorDestination  RunPingTestRequest_FieldPathSelector = 2
-	RunPingTestRequest_FieldPathSelectorSizeBytes    RunPingTestRequest_FieldPathSelector = 3
-	RunPingTestRequest_FieldPathSelectorCount        RunPingTestRequest_FieldPathSelector = 4
-	RunPingTestRequest_FieldPathSelectorInterval     RunPingTestRequest_FieldPathSelector = 5
-	RunPingTestRequest_FieldPathSelectorEchoTimeout  RunPingTestRequest_FieldPathSelector = 6
-	RunPingTestRequest_FieldPathSelectorDontFragment RunPingTestRequest_FieldPathSelector = 7
-	RunPingTestRequest_FieldPathSelectorTtl          RunPingTestRequest_FieldPathSelector = 8
-	RunPingTestRequest_FieldPathSelectorTos          RunPingTestRequest_FieldPathSelector = 9
-	RunPingTestRequest_FieldPathSelectorOutputFormat RunPingTestRequest_FieldPathSelector = 10
-	RunPingTestRequest_FieldPathSelectorIpVersion    RunPingTestRequest_FieldPathSelector = 11
+	RunPingTestRequest_FieldPathSelectorTarget       RunPingTestRequest_FieldPathSelector = 3
+	RunPingTestRequest_FieldPathSelectorSizeBytes    RunPingTestRequest_FieldPathSelector = 4
+	RunPingTestRequest_FieldPathSelectorCount        RunPingTestRequest_FieldPathSelector = 5
+	RunPingTestRequest_FieldPathSelectorInterval     RunPingTestRequest_FieldPathSelector = 6
+	RunPingTestRequest_FieldPathSelectorEchoTimeout  RunPingTestRequest_FieldPathSelector = 7
+	RunPingTestRequest_FieldPathSelectorDontFragment RunPingTestRequest_FieldPathSelector = 8
+	RunPingTestRequest_FieldPathSelectorTtl          RunPingTestRequest_FieldPathSelector = 9
+	RunPingTestRequest_FieldPathSelectorTos          RunPingTestRequest_FieldPathSelector = 10
+	RunPingTestRequest_FieldPathSelectorOutputFormat RunPingTestRequest_FieldPathSelector = 11
+	RunPingTestRequest_FieldPathSelectorIpVersion    RunPingTestRequest_FieldPathSelector = 12
 )
 
 func (s RunPingTestRequest_FieldPathSelector) String() string {
@@ -96,6 +99,8 @@ func (s RunPingTestRequest_FieldPathSelector) String() string {
 		return "source"
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		return "destination"
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		return "target"
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		return "size_bytes"
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -131,6 +136,8 @@ func BuildRunPingTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunPingTest
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorSource}, nil
 		case "destination":
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorDestination}, nil
+		case "target":
+			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTarget}, nil
 		case "size_bytes", "sizeBytes", "size-bytes":
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorSizeBytes}, nil
 		case "count":
@@ -202,6 +209,10 @@ func (fp *RunPingTestRequest_FieldTerminalPath) Get(source *RunPingTestRequest) 
 			values = append(values, source.Source)
 		case RunPingTestRequest_FieldPathSelectorDestination:
 			values = append(values, source.Destination)
+		case RunPingTestRequest_FieldPathSelectorTarget:
+			if source.Target != nil {
+				values = append(values, source.Target)
+			}
 		case RunPingTestRequest_FieldPathSelectorSizeBytes:
 			values = append(values, source.SizeBytes)
 		case RunPingTestRequest_FieldPathSelectorCount:
@@ -245,6 +256,9 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetSingle(source *RunPingTestReq
 		return source.GetSource(), source != nil
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		return source.GetDestination(), source != nil
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		res := source.GetTarget()
+		return res, res != nil
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		return source.GetSizeBytes(), source != nil
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -283,6 +297,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		return ""
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		return (*probing_target.Reference)(nil)
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		return int32(0)
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -315,6 +331,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) ClearValue(item *RunPingTestRequ
 			item.Source = ""
 		case RunPingTestRequest_FieldPathSelectorDestination:
 			item.Destination = ""
+		case RunPingTestRequest_FieldPathSelectorTarget:
+			item.Target = nil
 		case RunPingTestRequest_FieldPathSelectorSizeBytes:
 			item.SizeBytes = int32(0)
 		case RunPingTestRequest_FieldPathSelectorCount:
@@ -348,6 +366,7 @@ func (fp *RunPingTestRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == RunPingTestRequest_FieldPathSelectorName ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorSource ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorDestination ||
+		fp.selector == RunPingTestRequest_FieldPathSelectorTarget ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorSizeBytes ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorCount ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorInterval ||
@@ -371,6 +390,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(string)}
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -407,6 +428,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -497,6 +520,10 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsDestinationValue() (stri
 	res, ok := fpv.value.(string)
 	return res, ok
 }
+func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsTargetValue() (*probing_target.Reference, bool) {
+	res, ok := fpv.value.(*probing_target.Reference)
+	return res, ok
+}
 func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsSizeBytesValue() (int32, bool) {
 	res, ok := fpv.value.(int32)
 	return res, ok
@@ -546,6 +573,8 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) SetTo(target **RunPingTest
 		(*target).Source = fpv.value.(string)
 	case RunPingTestRequest_FieldPathSelectorDestination:
 		(*target).Destination = fpv.value.(string)
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		(*target).Target = fpv.value.(*probing_target.Reference)
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		(*target).SizeBytes = fpv.value.(int32)
 	case RunPingTestRequest_FieldPathSelectorCount:
@@ -612,6 +641,25 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) CompareWith(source *RunPin
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		leftValue := fpv.value.(*probing_target.Reference)
+		rightValue := source.GetTarget()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
 			return -1, true
 		} else {
 			return 1, true
@@ -844,6 +892,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
+	case RunPingTestRequest_FieldPathSelectorTarget:
+		for _, v := range fpaov.values.([]*probing_target.Reference) {
+			values = append(values, v)
+		}
 	case RunPingTestRequest_FieldPathSelectorSizeBytes:
 		for _, v := range fpaov.values.([]int32) {
 			values = append(values, v)
@@ -893,6 +945,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsSourceArrayOfV
 }
 func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsDestinationArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_target.Reference)
 	return res, ok
 }
 func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsSizeBytesArrayOfValues() ([]int32, bool) {

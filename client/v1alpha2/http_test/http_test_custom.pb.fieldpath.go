@@ -26,6 +26,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -53,6 +54,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 // FieldPath provides implementation to handle
@@ -76,16 +78,17 @@ type RunHTTPTestRequest_FieldPathSelector int32
 const (
 	RunHTTPTestRequest_FieldPathSelectorName                 RunHTTPTestRequest_FieldPathSelector = 0
 	RunHTTPTestRequest_FieldPathSelectorUrl                  RunHTTPTestRequest_FieldPathSelector = 1
-	RunHTTPTestRequest_FieldPathSelectorRequestHeaders       RunHTTPTestRequest_FieldPathSelector = 2
-	RunHTTPTestRequest_FieldPathSelectorRequestMethod        RunHTTPTestRequest_FieldPathSelector = 3
-	RunHTTPTestRequest_FieldPathSelectorTimeout              RunHTTPTestRequest_FieldPathSelector = 4
-	RunHTTPTestRequest_FieldPathSelectorRequestBody          RunHTTPTestRequest_FieldPathSelector = 5
-	RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod RunHTTPTestRequest_FieldPathSelector = 6
-	RunHTTPTestRequest_FieldPathSelectorUsername             RunHTTPTestRequest_FieldPathSelector = 7
-	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 8
-	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 9
-	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 10
-	RunHTTPTestRequest_FieldPathSelectorIpVersion            RunHTTPTestRequest_FieldPathSelector = 11
+	RunHTTPTestRequest_FieldPathSelectorTarget               RunHTTPTestRequest_FieldPathSelector = 2
+	RunHTTPTestRequest_FieldPathSelectorRequestHeaders       RunHTTPTestRequest_FieldPathSelector = 3
+	RunHTTPTestRequest_FieldPathSelectorRequestMethod        RunHTTPTestRequest_FieldPathSelector = 4
+	RunHTTPTestRequest_FieldPathSelectorTimeout              RunHTTPTestRequest_FieldPathSelector = 5
+	RunHTTPTestRequest_FieldPathSelectorRequestBody          RunHTTPTestRequest_FieldPathSelector = 6
+	RunHTTPTestRequest_FieldPathSelectorAuthenticationMethod RunHTTPTestRequest_FieldPathSelector = 7
+	RunHTTPTestRequest_FieldPathSelectorUsername             RunHTTPTestRequest_FieldPathSelector = 8
+	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 9
+	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 10
+	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 11
+	RunHTTPTestRequest_FieldPathSelectorIpVersion            RunHTTPTestRequest_FieldPathSelector = 12
 )
 
 func (s RunHTTPTestRequest_FieldPathSelector) String() string {
@@ -94,6 +97,8 @@ func (s RunHTTPTestRequest_FieldPathSelector) String() string {
 		return "name"
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		return "url"
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		return "target"
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return "request_headers"
 	case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -129,6 +134,8 @@ func BuildRunHTTPTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTest
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorName}, nil
 		case "url":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorUrl}, nil
+		case "target":
+			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorTarget}, nil
 		case "request_headers", "requestHeaders", "request-headers":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorRequestHeaders}, nil
 		case "request_method", "requestMethod", "request-method":
@@ -208,6 +215,10 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) Get(source *RunHTTPTestRequest) 
 			}
 		case RunHTTPTestRequest_FieldPathSelectorUrl:
 			values = append(values, source.Url)
+		case RunHTTPTestRequest_FieldPathSelectorTarget:
+			if source.Target != nil {
+				values = append(values, source.Target)
+			}
 		case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 			values = append(values, source.RequestHeaders)
 		case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -249,6 +260,9 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetSingle(source *RunHTTPTestReq
 		return res, res != nil
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		return source.GetUrl(), source != nil
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		res := source.GetTarget()
+		return res, res != nil
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		res := source.GetRequestHeaders()
 		return res, res != nil
@@ -287,6 +301,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*probe.Reference)(nil)
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		return ""
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		return (*probing_target.Reference)(nil)
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return (map[string]string)(nil)
 	case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -319,6 +335,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) ClearValue(item *RunHTTPTestRequ
 			item.Name = nil
 		case RunHTTPTestRequest_FieldPathSelectorUrl:
 			item.Url = ""
+		case RunHTTPTestRequest_FieldPathSelectorTarget:
+			item.Target = nil
 		case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 			item.RequestHeaders = nil
 		case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -353,6 +371,7 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) ClearValueRaw(item proto.Message
 func (fp *RunHTTPTestRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == RunHTTPTestRequest_FieldPathSelectorName ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorUrl ||
+		fp.selector == RunHTTPTestRequest_FieldPathSelectorTarget ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorRequestHeaders ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorRequestMethod ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorTimeout ||
@@ -375,6 +394,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(map[string]string)}
 	case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -411,6 +432,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]map[string]string)}
 	case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -631,6 +654,10 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsUrlValue() (string, bool
 	res, ok := fpv.value.(string)
 	return res, ok
 }
+func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsTargetValue() (*probing_target.Reference, bool) {
+	res, ok := fpv.value.(*probing_target.Reference)
+	return res, ok
+}
 func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsRequestHeadersValue() (map[string]string, bool) {
 	res, ok := fpv.value.(map[string]string)
 	return res, ok
@@ -682,6 +709,8 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) SetTo(target **RunHTTPTest
 		(*target).Name = fpv.value.(*probe.Reference)
 	case RunHTTPTestRequest_FieldPathSelectorUrl:
 		(*target).Url = fpv.value.(string)
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		(*target).Target = fpv.value.(*probing_target.Reference)
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		(*target).RequestHeaders = fpv.value.(map[string]string)
 	case RunHTTPTestRequest_FieldPathSelectorRequestMethod:
@@ -740,6 +769,25 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) CompareWith(source *RunHTT
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		leftValue := fpv.value.(*probing_target.Reference)
+		rightValue := source.GetTarget()
+		if leftValue == nil {
+			if rightValue != nil {
+				return -1, true
+			}
+			return 0, true
+		}
+		if rightValue == nil {
+			return 1, true
+		}
+		if leftValue.String() == rightValue.String() {
+			return 0, true
+		} else if leftValue.String() < rightValue.String() {
 			return -1, true
 		} else {
 			return 1, true
@@ -1020,6 +1068,10 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
+	case RunHTTPTestRequest_FieldPathSelectorTarget:
+		for _, v := range fpaov.values.([]*probing_target.Reference) {
+			values = append(values, v)
+		}
 	case RunHTTPTestRequest_FieldPathSelectorRequestHeaders:
 		for _, v := range fpaov.values.([]map[string]string) {
 			values = append(values, v)
@@ -1069,6 +1121,10 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsNameArrayOfVal
 }
 func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsUrlArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {
+	res, ok := fpaov.values.([]*probing_target.Reference)
 	return res, ok
 }
 func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsRequestHeadersArrayOfValues() ([]map[string]string, bool) {

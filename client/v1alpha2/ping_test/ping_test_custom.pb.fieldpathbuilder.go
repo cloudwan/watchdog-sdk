@@ -21,6 +21,8 @@ import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
+	probing_target_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target_group"
 	project "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/project"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -51,6 +53,8 @@ var (
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 	_ = &probe_group.ProbeGroup{}
+	_ = &probing_target.ProbingTarget{}
+	_ = &probing_target_group.ProbingTargetGroup{}
 	_ = &project.Project{}
 )
 
@@ -67,6 +71,9 @@ func (RunPingTestRequestFieldPathBuilder) Source() RunPingTestRequestPathSelecto
 }
 func (RunPingTestRequestFieldPathBuilder) Destination() RunPingTestRequestPathSelectorDestination {
 	return RunPingTestRequestPathSelectorDestination{}
+}
+func (RunPingTestRequestFieldPathBuilder) Target() RunPingTestRequestPathSelectorTarget {
+	return RunPingTestRequestPathSelectorTarget{}
 }
 func (RunPingTestRequestFieldPathBuilder) SizeBytes() RunPingTestRequestPathSelectorSizeBytes {
 	return RunPingTestRequestPathSelectorSizeBytes{}
@@ -135,6 +142,20 @@ func (s RunPingTestRequestPathSelectorDestination) WithValue(value string) *RunP
 }
 
 func (s RunPingTestRequestPathSelectorDestination) WithArrayOfValues(values []string) *RunPingTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunPingTestRequestPathSelectorTarget struct{}
+
+func (RunPingTestRequestPathSelectorTarget) FieldPath() *RunPingTestRequest_FieldTerminalPath {
+	return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTarget}
+}
+
+func (s RunPingTestRequestPathSelectorTarget) WithValue(value *probing_target.Reference) *RunPingTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunPingTestRequestPathSelectorTarget) WithArrayOfValues(values []*probing_target.Reference) *RunPingTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
 }
 

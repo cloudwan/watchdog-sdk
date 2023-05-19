@@ -22,6 +22,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	probing_target "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probing_target"
 	duration "github.com/golang/protobuf/ptypes/duration"
 )
 
@@ -45,6 +46,7 @@ var (
 	_ = &duration.Duration{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
+	_ = &probing_target.ProbingTarget{}
 )
 
 type RunPingTestRequest_FieldMask struct {
@@ -56,6 +58,7 @@ func FullRunPingTestRequest_FieldMask() *RunPingTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorName})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorSource})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorDestination})
+	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTarget})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorSizeBytes})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorCount})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorInterval})
@@ -108,7 +111,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 12)
+	presentSelectors := make([]bool, 13)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunPingTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -138,7 +141,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunPingTestRequest_FieldMask) Subtract(other *RunPingTestRequest_FieldMask) *RunPingTestRequest_FieldMask {
 	result := &RunPingTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 12)
+	removedSelectors := make([]bool, 13)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -298,6 +301,8 @@ func (fieldMask *RunPingTestRequest_FieldMask) Project(source *RunPingTestReques
 				result.Source = source.Source
 			case RunPingTestRequest_FieldPathSelectorDestination:
 				result.Destination = source.Destination
+			case RunPingTestRequest_FieldPathSelectorTarget:
+				result.Target = source.Target
 			case RunPingTestRequest_FieldPathSelectorSizeBytes:
 				result.SizeBytes = source.SizeBytes
 			case RunPingTestRequest_FieldPathSelectorCount:
