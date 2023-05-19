@@ -372,7 +372,7 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 	case ProbingTarget_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case ProbingTarget_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	case ProbingTarget_FieldPathSelectorAddress:
 		return ""
 	case ProbingTarget_FieldPathSelectorCategory:
@@ -414,7 +414,7 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 		case ProbingTarget_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case ProbingTarget_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case ProbingTarget_FieldPathSelectorAddress:
 			item.Address = ""
 		case ProbingTarget_FieldPathSelectorCategory:

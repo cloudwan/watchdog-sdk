@@ -100,6 +100,9 @@ func (o *RunHTTPTestRequest) MakeDiffFieldMask(other *RunHTTPTestRequest) *RunHT
 	if o.GetOutputFormat() != other.GetOutputFormat() {
 		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat})
 	}
+	if o.GetIpVersion() != other.GetIpVersion() {
+		res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorIpVersion})
+	}
 	return res
 }
 
@@ -135,6 +138,7 @@ func (o *RunHTTPTestRequest) Clone() *RunHTTPTestRequest {
 	result.Password = o.Password
 	result.SourceIp = o.SourceIp
 	result.OutputFormat = o.OutputFormat
+	result.IpVersion = o.IpVersion
 	return result
 }
 
@@ -177,6 +181,7 @@ func (o *RunHTTPTestRequest) Merge(source *RunHTTPTestRequest) {
 	o.Password = source.GetPassword()
 	o.SourceIp = source.GetSourceIp()
 	o.OutputFormat = source.GetOutputFormat()
+	o.IpVersion = source.GetIpVersion()
 }
 
 func (o *RunHTTPTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {

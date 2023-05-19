@@ -314,7 +314,7 @@ func (fp *ReportHopsRequest_FieldTerminalPath) GetDefault() interface{} {
 	case ReportHopsRequest_FieldPathSelectorTargetIpAddress:
 		return ""
 	case ReportHopsRequest_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	case ReportHopsRequest_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case ReportHopsRequest_FieldPathSelectorTraceType:
@@ -346,7 +346,7 @@ func (fp *ReportHopsRequest_FieldTerminalPath) ClearValue(item *ReportHopsReques
 		case ReportHopsRequest_FieldPathSelectorTargetIpAddress:
 			item.TargetIpAddress = ""
 		case ReportHopsRequest_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case ReportHopsRequest_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case ReportHopsRequest_FieldPathSelectorTraceType:
@@ -3654,7 +3654,7 @@ func (fp *HopsReport_FieldTerminalPath) GetDefault() interface{} {
 	case HopsReport_FieldPathSelectorTargetIpAddress:
 		return ""
 	case HopsReport_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	case HopsReport_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3676,7 +3676,7 @@ func (fp *HopsReport_FieldTerminalPath) ClearValue(item *HopsReport) {
 		case HopsReport_FieldPathSelectorTargetIpAddress:
 			item.TargetIpAddress = ""
 		case HopsReport_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case HopsReport_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case HopsReport_FieldPathSelectorTraceType:

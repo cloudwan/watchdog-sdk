@@ -64,6 +64,7 @@ func FullRunHTTPTestRequest_FieldMask() *RunHTTPTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorPassword})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorSourceIp})
 	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat})
+	res.Paths = append(res.Paths, &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorIpVersion})
 	return res
 }
 
@@ -107,7 +108,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 11)
+	presentSelectors := make([]bool, 12)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHTTPTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -137,7 +138,7 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHTTPTestRequest_FieldMask) Subtract(other *RunHTTPTestRequest_FieldMask) *RunHTTPTestRequest_FieldMask {
 	result := &RunHTTPTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 11)
+	removedSelectors := make([]bool, 12)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -316,6 +317,8 @@ func (fieldMask *RunHTTPTestRequest_FieldMask) Project(source *RunHTTPTestReques
 				result.SourceIp = source.SourceIp
 			case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 				result.OutputFormat = source.OutputFormat
+			case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+				result.IpVersion = source.IpVersion
 			}
 		case *RunHTTPTestRequest_FieldPathMap:
 			switch tp.selector {

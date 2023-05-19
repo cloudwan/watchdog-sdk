@@ -1394,7 +1394,7 @@ func (m *Probe_Spec_TargetServers) GetTargetIpVersion() common.IpVersion {
 	if m != nil {
 		return m.TargetIpVersion
 	}
-	return common.IpVersion_IP_VERSION_UNSPECIFIED
+	return common.IpVersion_IPVERSION_ANY
 }
 
 func (m *Probe_Spec_TargetServers) SetIcmpTarget(fv *Probe_Spec_TargetServers_IcmpTarget) {

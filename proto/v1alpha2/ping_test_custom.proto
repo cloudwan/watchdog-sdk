@@ -65,6 +65,10 @@ message RunPingTestRequest {
   // Default is Text format similar to cli ping command. Json is for internal
   // use only
   OnDemandTestResponseFormat output_format = 11;
+
+  // Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+  // Helpful when using domain name for tests.
+  IpVersion ip_version = 12;
 }
 
 // Response message for method [RunPingTest][ntt.watchdog.v1alpha2.RunPingTest]

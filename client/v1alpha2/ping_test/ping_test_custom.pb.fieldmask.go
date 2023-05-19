@@ -64,6 +64,7 @@ func FullRunPingTestRequest_FieldMask() *RunPingTestRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTtl})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTos})
 	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat})
+	res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorIpVersion})
 	return res
 }
 
@@ -107,7 +108,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 11)
+	presentSelectors := make([]bool, 12)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunPingTestRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -137,7 +138,7 @@ func (fieldMask *RunPingTestRequest_FieldMask) Reset() {
 
 func (fieldMask *RunPingTestRequest_FieldMask) Subtract(other *RunPingTestRequest_FieldMask) *RunPingTestRequest_FieldMask {
 	result := &RunPingTestRequest_FieldMask{}
-	removedSelectors := make([]bool, 11)
+	removedSelectors := make([]bool, 12)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -313,6 +314,8 @@ func (fieldMask *RunPingTestRequest_FieldMask) Project(source *RunPingTestReques
 				result.Tos = source.Tos
 			case RunPingTestRequest_FieldPathSelectorOutputFormat:
 				result.OutputFormat = source.OutputFormat
+			case RunPingTestRequest_FieldPathSelectorIpVersion:
+				result.IpVersion = source.IpVersion
 			}
 		}
 	}

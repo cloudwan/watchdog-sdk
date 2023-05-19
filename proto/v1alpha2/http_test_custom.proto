@@ -55,6 +55,10 @@ message RunHTTPTestRequest {
   // Json is for internal use only
   OnDemandTestResponseFormat output_format = 12;
 
+  // Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+  // Helpful when using domain name for tests.
+  IpVersion ip_version = 13;
+
   reserved 8;
 }
 

@@ -5389,7 +5389,7 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) GetDefault() interface{} {
 	case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 		return Probe_Spec_TargetServers_EXTERNAL_IP
 	case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 	}
@@ -5407,7 +5407,7 @@ func (fp *ProbeSpecTargetServers_FieldTerminalPath) ClearValue(item *Probe_Spec_
 		case ProbeSpecTargetServers_FieldPathSelectorTargetAddressType:
 			item.TargetAddressType = Probe_Spec_TargetServers_EXTERNAL_IP
 		case ProbeSpecTargetServers_FieldPathSelectorTargetIpVersion:
-			item.TargetIpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.TargetIpVersion = common.IpVersion_IPVERSION_ANY
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Spec_TargetServers: %d", fp.selector))
 		}

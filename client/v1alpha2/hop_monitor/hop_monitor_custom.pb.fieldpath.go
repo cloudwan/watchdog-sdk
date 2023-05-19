@@ -80,6 +80,7 @@ const (
 	RunHopMonitorRequest_FieldPathSelectorAttempts     RunHopMonitorRequest_FieldPathSelector = 3
 	RunHopMonitorRequest_FieldPathSelectorMode         RunHopMonitorRequest_FieldPathSelector = 4
 	RunHopMonitorRequest_FieldPathSelectorOutputFormat RunHopMonitorRequest_FieldPathSelector = 5
+	RunHopMonitorRequest_FieldPathSelectorIpVersion    RunHopMonitorRequest_FieldPathSelector = 6
 )
 
 func (s RunHopMonitorRequest_FieldPathSelector) String() string {
@@ -96,6 +97,8 @@ func (s RunHopMonitorRequest_FieldPathSelector) String() string {
 		return "mode"
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		return "output_format"
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		return "ip_version"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", s))
 	}
@@ -119,6 +122,8 @@ func BuildRunHopMonitorRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHopMon
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode}, nil
 		case "output_format", "outputFormat", "output-format":
 			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat}, nil
+		case "ip_version", "ipVersion", "ip-version":
+			return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorIpVersion}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunHopMonitorRequest", fp)
@@ -180,6 +185,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) Get(source *RunHopMonitorReque
 			values = append(values, source.Mode)
 		case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 			values = append(values, source.OutputFormat)
+		case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+			values = append(values, source.IpVersion)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 		}
@@ -208,6 +215,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetSingle(source *RunHopMonito
 		return source.GetMode(), source != nil
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		return source.GetOutputFormat(), source != nil
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		return source.GetIpVersion(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -232,6 +241,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) GetDefault() interface{} {
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		return common.OnDemandTestResponseFormat_TEXT
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		return common.IpVersion_IPVERSION_ANY
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -252,6 +263,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) ClearValue(item *RunHopMonitor
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
+		case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 		}
@@ -269,7 +282,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorDestination ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorAttempts ||
 		fp.selector == RunHopMonitorRequest_FieldPathSelectorMode ||
-		fp.selector == RunHopMonitorRequest_FieldPathSelectorOutputFormat
+		fp.selector == RunHopMonitorRequest_FieldPathSelectorOutputFormat ||
+		fp.selector == RunHopMonitorRequest_FieldPathSelectorIpVersion
 }
 
 func (fp *RunHopMonitorRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -290,6 +304,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIValue(value interface{}) 
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		return &RunHopMonitorRequest_FieldTerminalPathValue{RunHopMonitorRequest_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -314,6 +330,8 @@ func (fp *RunHopMonitorRequest_FieldTerminalPath) WithIArrayOfValues(values inte
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		return &RunHopMonitorRequest_FieldTerminalPathArrayOfValues{RunHopMonitorRequest_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fp.selector))
 	}
@@ -398,6 +416,10 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsOutputFormatValue() (c
 	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
 	return res, ok
 }
+func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunHopMonitorRequest
 func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMonitorRequest) {
@@ -417,6 +439,8 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) SetTo(target **RunHopMon
 		(*target).Mode = fpv.value.(common.ProbingMode)
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		(*target).IpVersion = fpv.value.(common.IpVersion)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorRequest: %d", fpv.selector))
 	}
@@ -501,6 +525,16 @@ func (fpv *RunHopMonitorRequest_FieldTerminalPathValue) CompareWith(source *RunH
 	case RunHopMonitorRequest_FieldPathSelectorOutputFormat:
 		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
 		rightValue := source.GetOutputFormat()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetIpVersion()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -640,6 +674,10 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
 			values = append(values, v)
 		}
+	case RunHopMonitorRequest_FieldPathSelectorIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -665,6 +703,10 @@ func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsModeArrayOfV
 }
 func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
 	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
+	return res, ok
+}
+func (fpaov *RunHopMonitorRequest_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
 	return res, ok
 }
 
@@ -1465,7 +1507,7 @@ func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) GetDefault() inte
 	case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
 		return (map[string]*common.HopInfo)(nil)
 	case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
 	}
@@ -1481,7 +1523,7 @@ func (fp *RunHopMonitorResponseJsonResponse_FieldTerminalPath) ClearValue(item *
 		case RunHopMonitorResponseJsonResponse_FieldPathSelectorHopInfo:
 			item.HopInfo = nil
 		case RunHopMonitorResponseJsonResponse_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHopMonitorResponse_JsonResponse: %d", fp.selector))
 		}

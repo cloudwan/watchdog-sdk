@@ -3057,7 +3057,7 @@ func (fp *HTTPStat_FieldTerminalPath) GetDefault() interface{} {
 	case HTTPStat_FieldPathSelectorServerIpAddress:
 		return ""
 	case HTTPStat_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return HTTPStat_no_failure
 	case HTTPStat_FieldPathSelectorTime:
@@ -3093,7 +3093,7 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValue(item *HTTPStat) {
 		case HTTPStat_FieldPathSelectorServerIpAddress:
 			item.ServerIpAddress = ""
 		case HTTPStat_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case HTTPStat_FieldPathSelectorFailedStage:
 			item.FailedStage = HTTPStat_no_failure
 		case HTTPStat_FieldPathSelectorTime:

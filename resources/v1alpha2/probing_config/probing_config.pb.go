@@ -324,7 +324,7 @@ func (m *ProbingConfig_ProbingSession) GetIpVersion() common.IpVersion {
 	if m != nil {
 		return m.IpVersion
 	}
-	return common.IpVersion_IP_VERSION_UNSPECIFIED
+	return common.IpVersion_IPVERSION_ANY
 }
 
 func (m *ProbingConfig_ProbingSession) GetAddress() string {

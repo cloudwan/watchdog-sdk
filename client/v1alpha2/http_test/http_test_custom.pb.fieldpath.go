@@ -85,6 +85,7 @@ const (
 	RunHTTPTestRequest_FieldPathSelectorPassword             RunHTTPTestRequest_FieldPathSelector = 8
 	RunHTTPTestRequest_FieldPathSelectorSourceIp             RunHTTPTestRequest_FieldPathSelector = 9
 	RunHTTPTestRequest_FieldPathSelectorOutputFormat         RunHTTPTestRequest_FieldPathSelector = 10
+	RunHTTPTestRequest_FieldPathSelectorIpVersion            RunHTTPTestRequest_FieldPathSelector = 11
 )
 
 func (s RunHTTPTestRequest_FieldPathSelector) String() string {
@@ -111,6 +112,8 @@ func (s RunHTTPTestRequest_FieldPathSelector) String() string {
 		return "source_ip"
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		return "output_format"
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		return "ip_version"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", s))
 	}
@@ -144,6 +147,8 @@ func BuildRunHTTPTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunHTTPTest
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorSourceIp}, nil
 		case "output_format", "outputFormat", "output-format":
 			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorOutputFormat}, nil
+		case "ip_version", "ipVersion", "ip-version":
+			return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorIpVersion}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -223,6 +228,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) Get(source *RunHTTPTestRequest) 
 			values = append(values, source.SourceIp)
 		case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 			values = append(values, source.OutputFormat)
+		case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+			values = append(values, source.IpVersion)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 		}
@@ -262,6 +269,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetSingle(source *RunHTTPTestReq
 		return source.GetSourceIp(), source != nil
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		return source.GetOutputFormat(), source != nil
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		return source.GetIpVersion(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -296,6 +305,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		return common.OnDemandTestResponseFormat_TEXT
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		return common.IpVersion_IPVERSION_ANY
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -326,6 +337,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) ClearValue(item *RunHTTPTestRequ
 			item.SourceIp = ""
 		case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
+		case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 		}
@@ -348,7 +361,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorUsername ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorPassword ||
 		fp.selector == RunHTTPTestRequest_FieldPathSelectorSourceIp ||
-		fp.selector == RunHTTPTestRequest_FieldPathSelectorOutputFormat
+		fp.selector == RunHTTPTestRequest_FieldPathSelectorOutputFormat ||
+		fp.selector == RunHTTPTestRequest_FieldPathSelectorIpVersion
 }
 
 func (fp *RunHTTPTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -379,6 +393,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		return &RunHTTPTestRequest_FieldTerminalPathValue{RunHTTPTestRequest_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -413,6 +429,8 @@ func (fp *RunHTTPTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		return &RunHTTPTestRequest_FieldTerminalPathArrayOfValues{RunHTTPTestRequest_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fp.selector))
 	}
@@ -649,6 +667,10 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsOutputFormatValue() (com
 	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
 	return res, ok
 }
+func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunHTTPTestRequest
 func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) SetTo(target **RunHTTPTestRequest) {
@@ -678,6 +700,8 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) SetTo(target **RunHTTPTest
 		(*target).SourceIp = fpv.value.(string)
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		(*target).IpVersion = fpv.value.(common.IpVersion)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunHTTPTestRequest: %d", fpv.selector))
 	}
@@ -804,6 +828,16 @@ func (fpv *RunHTTPTestRequest_FieldTerminalPathValue) CompareWith(source *RunHTT
 	case RunHTTPTestRequest_FieldPathSelectorOutputFormat:
 		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
 		rightValue := source.GetOutputFormat()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetIpVersion()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -1022,6 +1056,10 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
 			values = append(values, v)
 		}
+	case RunHTTPTestRequest_FieldPathSelectorIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1067,6 +1105,10 @@ func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsSourceIpArrayO
 }
 func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
 	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
+	return res, ok
+}
+func (fpaov *RunHTTPTestRequest_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
 	return res, ok
 }
 

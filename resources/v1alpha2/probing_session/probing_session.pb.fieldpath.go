@@ -1322,7 +1322,7 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) GetDefault() interface{} {
 	case ProbingSessionSpec_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case ProbingSessionSpec_FieldPathSelectorIpVersion:
-		return common.IpVersion_IP_VERSION_UNSPECIFIED
+		return common.IpVersion_IPVERSION_ANY
 	case ProbingSessionSpec_FieldPathSelectorAddress:
 		return ""
 	case ProbingSessionSpec_FieldPathSelectorAddresses:
@@ -1366,7 +1366,7 @@ func (fp *ProbingSessionSpec_FieldTerminalPath) ClearValue(item *ProbingSession_
 		case ProbingSessionSpec_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case ProbingSessionSpec_FieldPathSelectorIpVersion:
-			item.IpVersion = common.IpVersion_IP_VERSION_UNSPECIFIED
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case ProbingSessionSpec_FieldPathSelectorAddress:
 			item.Address = ""
 		case ProbingSessionSpec_FieldPathSelectorAddresses:

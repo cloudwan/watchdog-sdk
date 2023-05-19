@@ -373,7 +373,7 @@ message TimeInterval {
 }
 
 enum IpVersion {
-  IP_VERSION_UNSPECIFIED = 0;
+  IPVERSION_ANY = 0;
 
   IPV4 = 1;
 

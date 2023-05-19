@@ -92,6 +92,9 @@ func (RunHTTPTestRequestFieldPathBuilder) SourceIp() RunHTTPTestRequestPathSelec
 func (RunHTTPTestRequestFieldPathBuilder) OutputFormat() RunHTTPTestRequestPathSelectorOutputFormat {
 	return RunHTTPTestRequestPathSelectorOutputFormat{}
 }
+func (RunHTTPTestRequestFieldPathBuilder) IpVersion() RunHTTPTestRequestPathSelectorIpVersion {
+	return RunHTTPTestRequestPathSelectorIpVersion{}
+}
 
 type RunHTTPTestRequestPathSelectorName struct{}
 
@@ -264,6 +267,20 @@ func (s RunHTTPTestRequestPathSelectorOutputFormat) WithValue(value common.OnDem
 }
 
 func (s RunHTTPTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunHTTPTestRequestPathSelectorIpVersion struct{}
+
+func (RunHTTPTestRequestPathSelectorIpVersion) FieldPath() *RunHTTPTestRequest_FieldTerminalPath {
+	return &RunHTTPTestRequest_FieldTerminalPath{selector: RunHTTPTestRequest_FieldPathSelectorIpVersion}
+}
+
+func (s RunHTTPTestRequestPathSelectorIpVersion) WithValue(value common.IpVersion) *RunHTTPTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHTTPTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunHTTPTestRequestPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHTTPTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHTTPTestRequest_FieldTerminalPathArrayOfValues)
 }
 

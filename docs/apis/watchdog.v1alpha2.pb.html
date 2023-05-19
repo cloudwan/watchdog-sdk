@@ -4096,6 +4096,14 @@ One of Destination or Target is required as input</p>
 <tr><td class="description"><p>Default is Text format similar to traceroute command. Json is for internal
 use only</p>
 </td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"><p>Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+Helpful when using domain name for tests.</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -4377,6 +4385,14 @@ empty.</p>
 </tr>
 <tr><td class="description"><p>Default is Text format similar to curl command, but with added metrics.
 Json is for internal use only</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"><p>Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+Helpful when using domain name for tests.</p>
 </td></tr>
  
 </tbody>
@@ -4835,6 +4851,14 @@ stack.</p>
 </tr>
 <tr><td class="description"><p>Default is Text format similar to cli ping command. Json is for internal
 use only</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">ip_version</th>
+<td class="type"><pre><a href="#enum-IpVersion">IpVersion</a></pre></td>
+</tr>
+<tr><td class="description"><p>Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+Helpful when using domain name for tests.</p>
 </td></tr>
  
 </tbody>
@@ -21758,7 +21782,7 @@ later than the end time.</p>
 <thead><tr><th colspan="2">Values</th></tr></thead>
 <tbody>
 <tr>
-<th>IP_VERSION_UNSPECIFIED</th>
+<th>IPVERSION_ANY</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

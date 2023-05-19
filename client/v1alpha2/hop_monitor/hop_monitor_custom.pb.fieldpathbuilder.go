@@ -81,6 +81,9 @@ func (RunHopMonitorRequestFieldPathBuilder) Mode() RunHopMonitorRequestPathSelec
 func (RunHopMonitorRequestFieldPathBuilder) OutputFormat() RunHopMonitorRequestPathSelectorOutputFormat {
 	return RunHopMonitorRequestPathSelectorOutputFormat{}
 }
+func (RunHopMonitorRequestFieldPathBuilder) IpVersion() RunHopMonitorRequestPathSelectorIpVersion {
+	return RunHopMonitorRequestPathSelectorIpVersion{}
+}
 
 type RunHopMonitorRequestPathSelectorName struct{}
 
@@ -163,6 +166,20 @@ func (s RunHopMonitorRequestPathSelectorOutputFormat) WithValue(value common.OnD
 }
 
 func (s RunHopMonitorRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunHopMonitorRequestPathSelectorIpVersion struct{}
+
+func (RunHopMonitorRequestPathSelectorIpVersion) FieldPath() *RunHopMonitorRequest_FieldTerminalPath {
+	return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorIpVersion}
+}
+
+func (s RunHopMonitorRequestPathSelectorIpVersion) WithValue(value common.IpVersion) *RunHopMonitorRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorRequest_FieldTerminalPathValue)
+}
+
+func (s RunHopMonitorRequestPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
 }
 

@@ -85,6 +85,7 @@ const (
 	RunPingTestRequest_FieldPathSelectorTtl          RunPingTestRequest_FieldPathSelector = 8
 	RunPingTestRequest_FieldPathSelectorTos          RunPingTestRequest_FieldPathSelector = 9
 	RunPingTestRequest_FieldPathSelectorOutputFormat RunPingTestRequest_FieldPathSelector = 10
+	RunPingTestRequest_FieldPathSelectorIpVersion    RunPingTestRequest_FieldPathSelector = 11
 )
 
 func (s RunPingTestRequest_FieldPathSelector) String() string {
@@ -111,6 +112,8 @@ func (s RunPingTestRequest_FieldPathSelector) String() string {
 		return "tos"
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		return "output_format"
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		return "ip_version"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", s))
 	}
@@ -144,6 +147,8 @@ func BuildRunPingTestRequest_FieldPath(fp gotenobject.RawFieldPath) (RunPingTest
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorTos}, nil
 		case "output_format", "outputFormat", "output-format":
 			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat}, nil
+		case "ip_version", "ipVersion", "ip-version":
+			return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorIpVersion}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunPingTestRequest", fp)
@@ -217,6 +222,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) Get(source *RunPingTestRequest) 
 			values = append(values, source.Tos)
 		case RunPingTestRequest_FieldPathSelectorOutputFormat:
 			values = append(values, source.OutputFormat)
+		case RunPingTestRequest_FieldPathSelectorIpVersion:
+			values = append(values, source.IpVersion)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 		}
@@ -256,6 +263,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetSingle(source *RunPingTestReq
 		return source.GetTos(), source != nil
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		return source.GetOutputFormat(), source != nil
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		return source.GetIpVersion(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -290,6 +299,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) GetDefault() interface{} {
 		return int32(0)
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		return common.OnDemandTestResponseFormat_TEXT
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		return common.IpVersion_IPVERSION_ANY
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -320,6 +331,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) ClearValue(item *RunPingTestRequ
 			item.Tos = int32(0)
 		case RunPingTestRequest_FieldPathSelectorOutputFormat:
 			item.OutputFormat = common.OnDemandTestResponseFormat_TEXT
+		case RunPingTestRequest_FieldPathSelectorIpVersion:
+			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 		}
@@ -342,7 +355,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunPingTestRequest_FieldPathSelectorDontFragment ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorTtl ||
 		fp.selector == RunPingTestRequest_FieldPathSelectorTos ||
-		fp.selector == RunPingTestRequest_FieldPathSelectorOutputFormat
+		fp.selector == RunPingTestRequest_FieldPathSelectorOutputFormat ||
+		fp.selector == RunPingTestRequest_FieldPathSelectorIpVersion
 }
 
 func (fp *RunPingTestRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -373,6 +387,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIValue(value interface{}) Ru
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(int32)}
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(common.OnDemandTestResponseFormat)}
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		return &RunPingTestRequest_FieldTerminalPathValue{RunPingTestRequest_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -407,6 +423,8 @@ func (fp *RunPingTestRequest_FieldTerminalPath) WithIArrayOfValues(values interf
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]int32)}
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]common.OnDemandTestResponseFormat)}
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		return &RunPingTestRequest_FieldTerminalPathArrayOfValues{RunPingTestRequest_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fp.selector))
 	}
@@ -511,6 +529,10 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsOutputFormatValue() (com
 	res, ok := fpv.value.(common.OnDemandTestResponseFormat)
 	return res, ok
 }
+func (fpv *RunPingTestRequest_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersion, bool) {
+	res, ok := fpv.value.(common.IpVersion)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunPingTestRequest
 func (fpv *RunPingTestRequest_FieldTerminalPathValue) SetTo(target **RunPingTestRequest) {
@@ -540,6 +562,8 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) SetTo(target **RunPingTest
 		(*target).Tos = fpv.value.(int32)
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		(*target).OutputFormat = fpv.value.(common.OnDemandTestResponseFormat)
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		(*target).IpVersion = fpv.value.(common.IpVersion)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunPingTestRequest: %d", fpv.selector))
 	}
@@ -683,6 +707,16 @@ func (fpv *RunPingTestRequest_FieldTerminalPathValue) CompareWith(source *RunPin
 	case RunPingTestRequest_FieldPathSelectorOutputFormat:
 		leftValue := fpv.value.(common.OnDemandTestResponseFormat)
 		rightValue := source.GetOutputFormat()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		leftValue := fpv.value.(common.IpVersion)
+		rightValue := source.GetIpVersion()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -842,6 +876,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) GetRawValues() (
 		for _, v := range fpaov.values.([]common.OnDemandTestResponseFormat) {
 			values = append(values, v)
 		}
+	case RunPingTestRequest_FieldPathSelectorIpVersion:
+		for _, v := range fpaov.values.([]common.IpVersion) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -887,6 +925,10 @@ func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsTosArrayOfValu
 }
 func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsOutputFormatArrayOfValues() ([]common.OnDemandTestResponseFormat, bool) {
 	res, ok := fpaov.values.([]common.OnDemandTestResponseFormat)
+	return res, ok
+}
+func (fpaov *RunPingTestRequest_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
+	res, ok := fpaov.values.([]common.IpVersion)
 	return res, ok
 }
 

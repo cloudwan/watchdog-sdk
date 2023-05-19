@@ -91,6 +91,9 @@ func (o *RunPingTestRequest) MakeDiffFieldMask(other *RunPingTestRequest) *RunPi
 	if o.GetOutputFormat() != other.GetOutputFormat() {
 		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorOutputFormat})
 	}
+	if o.GetIpVersion() != other.GetIpVersion() {
+		res.Paths = append(res.Paths, &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorIpVersion})
+	}
 	return res
 }
 
@@ -123,6 +126,7 @@ func (o *RunPingTestRequest) Clone() *RunPingTestRequest {
 	result.Ttl = o.Ttl
 	result.Tos = o.Tos
 	result.OutputFormat = o.OutputFormat
+	result.IpVersion = o.IpVersion
 	return result
 }
 
@@ -163,6 +167,7 @@ func (o *RunPingTestRequest) Merge(source *RunPingTestRequest) {
 	o.Ttl = source.GetTtl()
 	o.Tos = source.GetTos()
 	o.OutputFormat = source.GetOutputFormat()
+	o.IpVersion = source.GetIpVersion()
 }
 
 func (o *RunPingTestRequest) MergeRaw(source gotenobject.GotenObjectExt) {

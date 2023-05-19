@@ -92,6 +92,9 @@ func (RunPingTestRequestFieldPathBuilder) Tos() RunPingTestRequestPathSelectorTo
 func (RunPingTestRequestFieldPathBuilder) OutputFormat() RunPingTestRequestPathSelectorOutputFormat {
 	return RunPingTestRequestPathSelectorOutputFormat{}
 }
+func (RunPingTestRequestFieldPathBuilder) IpVersion() RunPingTestRequestPathSelectorIpVersion {
+	return RunPingTestRequestPathSelectorIpVersion{}
+}
 
 type RunPingTestRequestPathSelectorName struct{}
 
@@ -244,6 +247,20 @@ func (s RunPingTestRequestPathSelectorOutputFormat) WithValue(value common.OnDem
 }
 
 func (s RunPingTestRequestPathSelectorOutputFormat) WithArrayOfValues(values []common.OnDemandTestResponseFormat) *RunPingTestRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunPingTestRequestPathSelectorIpVersion struct{}
+
+func (RunPingTestRequestPathSelectorIpVersion) FieldPath() *RunPingTestRequest_FieldTerminalPath {
+	return &RunPingTestRequest_FieldTerminalPath{selector: RunPingTestRequest_FieldPathSelectorIpVersion}
+}
+
+func (s RunPingTestRequestPathSelectorIpVersion) WithValue(value common.IpVersion) *RunPingTestRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunPingTestRequest_FieldTerminalPathValue)
+}
+
+func (s RunPingTestRequestPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunPingTestRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunPingTestRequest_FieldTerminalPathArrayOfValues)
 }
 

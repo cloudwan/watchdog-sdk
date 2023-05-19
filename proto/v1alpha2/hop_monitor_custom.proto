@@ -39,6 +39,10 @@ message RunHopMonitorRequest {
   // use only
   OnDemandTestResponseFormat output_format = 8;
 
+  // Flag to force IPv4/IPv6. Default is IPVERSION_ANY.
+  // Helpful when using domain name for tests.
+  IpVersion ip_version = 9;
+
   reserved 2, 5;
 }
 
