@@ -84,6 +84,9 @@ func (RunHopMonitorRequestFieldPathBuilder) OutputFormat() RunHopMonitorRequestP
 func (RunHopMonitorRequestFieldPathBuilder) IpVersion() RunHopMonitorRequestPathSelectorIpVersion {
 	return RunHopMonitorRequestPathSelectorIpVersion{}
 }
+func (RunHopMonitorRequestFieldPathBuilder) MaxHops() RunHopMonitorRequestPathSelectorMaxHops {
+	return RunHopMonitorRequestPathSelectorMaxHops{}
+}
 
 type RunHopMonitorRequestPathSelectorName struct{}
 
@@ -180,6 +183,20 @@ func (s RunHopMonitorRequestPathSelectorIpVersion) WithValue(value common.IpVers
 }
 
 func (s RunHopMonitorRequestPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
+}
+
+type RunHopMonitorRequestPathSelectorMaxHops struct{}
+
+func (RunHopMonitorRequestPathSelectorMaxHops) FieldPath() *RunHopMonitorRequest_FieldTerminalPath {
+	return &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMaxHops}
+}
+
+func (s RunHopMonitorRequestPathSelectorMaxHops) WithValue(value int32) *RunHopMonitorRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunHopMonitorRequest_FieldTerminalPathValue)
+}
+
+func (s RunHopMonitorRequestPathSelectorMaxHops) WithArrayOfValues(values []int32) *RunHopMonitorRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunHopMonitorRequest_FieldTerminalPathArrayOfValues)
 }
 

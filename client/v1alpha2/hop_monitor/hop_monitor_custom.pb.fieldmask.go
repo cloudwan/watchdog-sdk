@@ -60,6 +60,7 @@ func FullRunHopMonitorRequest_FieldMask() *RunHopMonitorRequest_FieldMask {
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMode})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorOutputFormat})
 	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorIpVersion})
+	res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMaxHops})
 	return res
 }
 
@@ -103,7 +104,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 8)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunHopMonitorRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -133,7 +134,7 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Reset() {
 
 func (fieldMask *RunHopMonitorRequest_FieldMask) Subtract(other *RunHopMonitorRequest_FieldMask) *RunHopMonitorRequest_FieldMask {
 	result := &RunHopMonitorRequest_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 8)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -301,6 +302,8 @@ func (fieldMask *RunHopMonitorRequest_FieldMask) Project(source *RunHopMonitorRe
 				result.OutputFormat = source.OutputFormat
 			case RunHopMonitorRequest_FieldPathSelectorIpVersion:
 				result.IpVersion = source.IpVersion
+			case RunHopMonitorRequest_FieldPathSelectorMaxHops:
+				result.MaxHops = source.MaxHops
 			}
 		}
 	}

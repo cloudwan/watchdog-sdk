@@ -43,6 +43,10 @@ message RunHopMonitorRequest {
   // Helpful when using domain name for tests.
   IpVersion ip_version = 9;
 
+  // Maximum number of hops to discover (Max TTL to use).
+  // If not set or set to 0, a value of 40 will be used.
+  int32 max_hops = 10;
+
   reserved 2, 5;
 }
 

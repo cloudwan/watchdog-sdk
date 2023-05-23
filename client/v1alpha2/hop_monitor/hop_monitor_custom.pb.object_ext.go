@@ -79,6 +79,9 @@ func (o *RunHopMonitorRequest) MakeDiffFieldMask(other *RunHopMonitorRequest) *R
 	if o.GetIpVersion() != other.GetIpVersion() {
 		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorIpVersion})
 	}
+	if o.GetMaxHops() != other.GetMaxHops() {
+		res.Paths = append(res.Paths, &RunHopMonitorRequest_FieldTerminalPath{selector: RunHopMonitorRequest_FieldPathSelectorMaxHops})
+	}
 	return res
 }
 
@@ -116,6 +119,7 @@ func (o *RunHopMonitorRequest) Clone() *RunHopMonitorRequest {
 	result.Mode = o.Mode
 	result.OutputFormat = o.OutputFormat
 	result.IpVersion = o.IpVersion
+	result.MaxHops = o.MaxHops
 	return result
 }
 
@@ -153,6 +157,7 @@ func (o *RunHopMonitorRequest) Merge(source *RunHopMonitorRequest) {
 	o.Mode = source.GetMode()
 	o.OutputFormat = source.GetOutputFormat()
 	o.IpVersion = source.GetIpVersion()
+	o.MaxHops = source.GetMaxHops()
 }
 
 func (o *RunHopMonitorRequest) MergeRaw(source gotenobject.GotenObjectExt) {
