@@ -13,6 +13,7 @@ import (
 import (
 	activation_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation"
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
+	agent_log_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_log"
 	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
@@ -133,6 +134,7 @@ func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
 	return []gotenclient.ApiDescriptor{
 		activation_client.GetActivationServiceDescriptor(),
 		admin_area_client.GetAdminAreaServiceDescriptor(),
+		agent_log_client.GetAgentLogServiceDescriptor(),
 		dns_query_test_client.GetDNSQueryTestServiceDescriptor(),
 		geo_resolver_client.GetGeoResolverServiceDescriptor(),
 		http_metrics_client.GetHTTPMetricsServiceDescriptor(),

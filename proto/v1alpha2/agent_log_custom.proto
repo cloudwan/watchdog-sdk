@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "google/protobuf/timestamp.proto";
+import "watchdog-sdk/proto/v1alpha2/common.proto";
+import "watchdog-sdk/proto/v1alpha2/probe.proto";
+import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_log;agent_log_client";
+option java_multiple_files = false;
+option java_outer_classname = "AgentLogCustomProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// Request message for method
+// [ReportAgentLog][ntt.watchdog.v1alpha2.ReportAgentLog]
+message ReportAgentLogRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string name = 1;
+
+  repeated LogEntry log_entries = 2;
+}
+
+// Request message for method [GetAgentLogs][ntt.watchdog.v1alpha2.GetAgentLogs]
+message GetAgentLogsRequest {
+  //  reference of ntt.watchdog.v1alpha2.Probe
+  string probe = 1;
+
+  // Interval for which the logs is required
+  TimeInterval interval = 2;
+
+  // Optional filter for log level
+  string log_level = 3;
+
+  // A positive number that is the maximum number of results to return. If
+  // `page_size` is empty or more than 100,000 results, the effective
+  // `page_size` is 100,000 results.
+  int32 page_size = 4;
+
+  // If this field is not empty then it must contain the `nextPageToken` value
+  // returned by a previous call to this method.  Using this field causes the
+  // method to return additional results from the previous method call.
+  string page_token = 5;
+}
+
+// Response message for method
+// [GetAgentLogs][ntt.watchdog.v1alpha2.GetAgentLogs]
+message GetAgentLogsResponse {
+  // Content of the logs
+  repeated LogEntry log_entries = 1;
+
+  // If there are more results than have been returned, then this field is set
+  // to a non-empty value.  To see the additional results,
+  // use that value as `pageToken` in the next call to this method.
+  string next_page_token = 2;
+}
+
+message LogEntry {
+  // Timestamp for the log entry
+  google.protobuf.Timestamp Time = 1;
+
+  // Log level for the log entry
+  LogLevel level = 2;
+
+  // Payload of the log entry
+  bytes payload = 3;
+}
+
+// For internal use only (transforming for better representation in cuttle)
+// Not exposed in API
+message GetAgentLogsResponseStringFormat {
+  // Content of the logs
+  repeated LogEntryStringFormat log_entries = 1;
+
+  // If there are more results than have been returned, then this field is set
+  // to a non-empty value.  To see the additional results,
+  // use that value as `pageToken` in the next call to this method.
+  string next_page_token = 2;
+}
+
+// For internal use only (transforming for better representation in cuttle)
+// Not exposed in API
+message LogEntryStringFormat {
+  // Timestamp for the log entry
+  google.protobuf.Timestamp Time = 1;
+
+  // Log level for the log entry
+  LogLevel level = 2;
+
+  // Payload of the log entry
+  string payload = 3;
+}
+
+enum LogLevel {
+  PanicLevel = 0;
+
+  FatalLevel = 1;
+
+  ErrorLevel = 2;
+
+  WarnLevel = 3;
+
+  InfoLevel = 4;
+
+  DebugLevel = 5;
+
+  TraceLevel = 6;
+}

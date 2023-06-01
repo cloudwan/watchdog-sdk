@@ -2162,6 +2162,31 @@ Equivalent REST API:
 
 
 <div class="operation">
+<h5 id="operation-ReportAgentLog">ReportAgentLog</h5>
+
+<pre class="signature">rpc ReportAgentLog(<a href="#message-ReportAgentLogRequest">ReportAgentLogRequest</a>) returns (Empty)</pre>
+
+<div class="description">
+<p>ReportAgentLog</p>
+
+</div>
+
+
+
+
+<div class="rest">
+Equivalent REST API:
+
+<pre>POST /v1alpha2/{name=projects/*/regions/*/probes/*}:reportAgentLog </pre>
+
+</div>
+
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-RunDNSQueryTest">RunDNSQueryTest</h5>
 
 <pre class="signature">rpc RunDNSQueryTest(<a href="#message-RunDNSQueryTestRequest">RunDNSQueryTestRequest</a>) returns (<a href="#message-RunDNSQueryTestResponse">RunDNSQueryTestResponse</a>)</pre>
@@ -3606,6 +3631,33 @@ after lock timestamp is exceeded, new clients may override cookie.</p>
 </tr>
 <tr><td class="description"><p>Target probe</p>
 </td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-ReportAgentLogRequest">ReportAgentLogRequest</h5>
+
+<p>Request message for method
+[ReportAgentLog][ntt.watchdog.v1alpha2.ReportAgentLog]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">name</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">log_entries</th>
+<td class="type"><pre>repeated <a href="#message-LogEntry">LogEntry</a></pre></td>
+</tr>
+<tr><td class="description"></td></tr>
  
 </tbody>
 </table>
@@ -17128,6 +17180,20 @@ compare.</p>
 
 
 <div class="operation">
+<h5 id="operation-GetAgentLogs">GetAgentLogs</h5>
+
+<pre class="signature">rpc GetAgentLogs(<a href="#message-GetAgentLogsRequest">GetAgentLogsRequest</a>) returns (<a href="#message-GetAgentLogsResponse">GetAgentLogsResponse</a>)</pre>
+
+<div class="description">
+<p>GetAgentLogs</p>
+
+</div>
+
+</div>
+
+
+
+<div class="operation">
 <h5 id="operation-GetHTTPMetrics">GetHTTPMetrics</h5>
 
 <pre class="signature">rpc GetHTTPMetrics(<a href="#message-GetHTTPMetricsRequest">GetHTTPMetricsRequest</a>) returns (<a href="#message-GetHTTPMetricsResponse">GetHTTPMetricsResponse</a>)</pre>
@@ -17966,6 +18032,118 @@ watch type.</p>
 <td class="type"><pre><a href="#message-BBox">BBox</a></pre></td>
 </tr>
 <tr><td class="description"></td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetAgentLogsRequest">GetAgentLogsRequest</h5>
+
+<p>Request message for method [GetAgentLogs][ntt.watchdog.v1alpha2.GetAgentLogs]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">probe</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>reference of ntt.watchdog.v1alpha2.Probe</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">interval</th>
+<td class="type"><pre><a href="#message-TimeInterval">TimeInterval</a></pre></td>
+</tr>
+<tr><td class="description"><p>Interval for which the logs is required</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">log_level</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Optional filter for log level</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_size</th>
+<td class="type"><pre>int32</pre></td>
+</tr>
+<tr><td class="description"><p>A positive number that is the maximum number of results to return. If
+<code>page_size</code> is empty or more than 100,000 results, the effective
+<code>page_size</code> is 100,000 results.</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>If this field is not empty then it must contain the <code>nextPageToken</code> value
+returned by a previous call to this method.  Using this field causes the
+method to return additional results from the previous method call.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetAgentLogsResponse">GetAgentLogsResponse</h5>
+
+<p>Response message for method
+[GetAgentLogs][ntt.watchdog.v1alpha2.GetAgentLogs]</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">log_entries</th>
+<td class="type"><pre>repeated <a href="#message-LogEntry">LogEntry</a></pre></td>
+</tr>
+<tr><td class="description"><p>Content of the logs</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>If there are more results than have been returned, then this field is set
+to a non-empty value.  To see the additional results,
+use that value as <code>pageToken</code> in the next call to this method.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-GetAgentLogsResponseStringFormat">GetAgentLogsResponseStringFormat</h5>
+
+<p>For internal use only (transforming for better representation in cuttle)
+Not exposed in API</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">log_entries</th>
+<td class="type"><pre>repeated <a href="#message-LogEntryStringFormat">LogEntryStringFormat</a></pre></td>
+</tr>
+<tr><td class="description"><p>Content of the logs</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">next_page_token</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>If there are more results than have been returned, then this field is set
+to a non-empty value.  To see the additional results,
+use that value as <code>pageToken</code> in the next call to this method.</p>
+</td></tr>
  
 </tbody>
 </table>
@@ -18813,6 +18991,74 @@ stateless watch type.</p>
 </tr>
 <tr><td class="description"><p>Discovered address won't be reported as Active, unless accuracy value is
 below or equal to this threshold When it's not set, 100m is used.</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-LogEntry">LogEntry</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">Time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"><p>Timestamp for the log entry</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">level</th>
+<td class="type"><pre><a href="#enum-LogLevel">LogLevel</a></pre></td>
+</tr>
+<tr><td class="description"><p>Log level for the log entry</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">payload</th>
+<td class="type"><pre>bytes</pre></td>
+</tr>
+<tr><td class="description"><p>Payload of the log entry</p>
+</td></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="message-LogEntryStringFormat">LogEntryStringFormat</h5>
+
+<p>For internal use only (transforming for better representation in cuttle)
+Not exposed in API</p>
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Fields</th></tr></thead>
+<tbody>
+<tr>
+<th rowspan="2">Time</th>
+<td class="type"><pre>.google.protobuf.Timestamp</pre></td>
+</tr>
+<tr><td class="description"><p>Timestamp for the log entry</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">level</th>
+<td class="type"><pre><a href="#enum-LogLevel">LogLevel</a></pre></td>
+</tr>
+<tr><td class="description"><p>Log level for the log entry</p>
+</td></tr>
+
+<tr>
+<th rowspan="2">payload</th>
+<td class="type"><pre>string</pre></td>
+</tr>
+<tr><td class="description"><p>Payload of the log entry</p>
 </td></tr>
  
 </tbody>
@@ -21895,6 +22141,60 @@ later than the end time.</p>
 
 <tr>
 <th>ANYCAST</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+ 
+</tbody>
+</table>
+
+
+
+<h5 id="enum-LogLevel">LogLevel</h5>
+
+
+
+<table class="fields">
+<thead><tr><th colspan="2">Values</th></tr></thead>
+<tbody>
+<tr>
+<th>PanicLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>FatalLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>ErrorLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>WarnLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>InfoLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>DebugLevel</th>
+<td class="description"></td>
+</tr>
+<tr></tr>
+
+<tr>
+<th>TraceLevel</th>
 <td class="description"></td>
 </tr>
 <tr></tr>

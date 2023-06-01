@@ -12,6 +12,7 @@ import (
 import (
 	activation_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation"
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
+	agent_log_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_log"
 	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
@@ -88,6 +89,7 @@ var (
 type WatchdogClient interface {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
+	agent_log_client.AgentLogServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
@@ -116,6 +118,7 @@ type WatchdogClient interface {
 type watchdogClient struct {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
+	agent_log_client.AgentLogServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
@@ -145,6 +148,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 	return &watchdogClient{
 		ActivationServiceClient:            activation_client.NewActivationServiceClient(cc),
 		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
+		AgentLogServiceClient:              agent_log_client.NewAgentLogServiceClient(cc),
 		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
 		HTTPMetricsServiceClient:           http_metrics_client.NewHTTPMetricsServiceClient(cc),
