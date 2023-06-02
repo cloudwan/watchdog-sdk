@@ -50,7 +50,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AgentLogServiceClient interface {
 	ReportAgentLog(ctx context.Context, in *ReportAgentLogRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	GetAgentLogs(ctx context.Context, in *GetAgentLogsRequest, opts ...grpc.CallOption) (*GetAgentLogsResponse, error)
+	GetAgentLogs(ctx context.Context, in *GetAgentLogsRequest, opts ...grpc.CallOption) (GetAgentLogsClientStream, error)
 }
 
 type client struct {
@@ -70,11 +70,39 @@ func (c *client) ReportAgentLog(ctx context.Context, in *ReportAgentLogRequest, 
 	return out, nil
 }
 
-func (c *client) GetAgentLogs(ctx context.Context, in *GetAgentLogsRequest, opts ...grpc.CallOption) (*GetAgentLogsResponse, error) {
-	out := new(GetAgentLogsResponse)
-	err := c.cc.Invoke(ctx, "/ntt.watchdog.v1alpha2.AgentLogService/GetAgentLogs", in, out, opts...)
+func (c *client) GetAgentLogs(ctx context.Context, in *GetAgentLogsRequest, opts ...grpc.CallOption) (GetAgentLogsClientStream, error) {
+	stream, err := c.cc.NewStream(ctx,
+		&grpc.StreamDesc{
+			StreamName:    "GetAgentLogs",
+			ServerStreams: true,
+		},
+		"/ntt.watchdog.v1alpha2.AgentLogService/GetAgentLogs", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &getAgentLogsGetAgentLogsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type GetAgentLogsClientStream interface {
+	Recv() (*GetAgentLogsResponse, error)
+	grpc.ClientStream
+}
+
+type getAgentLogsGetAgentLogsClient struct {
+	grpc.ClientStream
+}
+
+func (x *getAgentLogsGetAgentLogsClient) Recv() (*GetAgentLogsResponse, error) {
+	m := new(GetAgentLogsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }

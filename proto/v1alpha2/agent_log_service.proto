@@ -31,7 +31,7 @@ service AgentLogService {
   }
 
   // GetAgentLogs
-  rpc GetAgentLogs(GetAgentLogsRequest) returns (GetAgentLogsResponse) {
+  rpc GetAgentLogs(GetAgentLogsRequest) returns (stream GetAgentLogsResponse) {
     option (google.api.http) = {
       get : "/v1alpha2:getAgentLogs"
     };

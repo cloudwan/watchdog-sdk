@@ -219,7 +219,7 @@ func (d *GetAgentLogsDescriptor) NewEmptyServerMsg() proto.Message {
 }
 
 func (d *GetAgentLogsDescriptor) IsUnary() bool {
-	return true
+	return false
 }
 
 func (d *GetAgentLogsDescriptor) IsClientStream() bool {
@@ -227,7 +227,7 @@ func (d *GetAgentLogsDescriptor) IsClientStream() bool {
 }
 
 func (d *GetAgentLogsDescriptor) IsServerStream() bool {
-	return false
+	return true
 }
 
 func (d *GetAgentLogsDescriptor) IsCollection() bool {
