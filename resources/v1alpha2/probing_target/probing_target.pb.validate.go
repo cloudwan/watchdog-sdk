@@ -88,6 +88,11 @@ func (obj *ProbingTarget) GotenValidate() error {
 			return gotenvalidate.NewValidationError("ProbingTarget", "httpProbingConfig", obj.HttpProbingConfig, "nested object validation failed", err)
 		}
 	}
+	if subobj, ok := interface{}(obj.ProxyConfiguration).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ProbingTarget", "proxyConfiguration", obj.ProxyConfiguration, "nested object validation failed", err)
+		}
+	}
 	if !(obj.UdpPort >= 0 && obj.UdpPort <= 65535) {
 		return gotenvalidate.NewValidationError("ProbingTarget", "udpPort", obj.UdpPort, "field must be in range [0, 65535]", nil)
 	}

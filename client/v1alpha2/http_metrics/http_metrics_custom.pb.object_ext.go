@@ -505,6 +505,9 @@ func (o *HTTPStat) MakeDiffFieldMask(other *HTTPStat) *HTTPStat_FieldMask {
 	if o.GetTcpConnectTime() != other.GetTcpConnectTime() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTcpConnectTime})
 	}
+	if o.GetProxyConnectTime() != other.GetProxyConnectTime() {
+		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorProxyConnectTime})
+	}
 	if o.GetTlsHandshakeTime() != other.GetTlsHandshakeTime() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTlsHandshakeTime})
 	}
@@ -535,6 +538,9 @@ func (o *HTTPStat) MakeDiffFieldMask(other *HTTPStat) *HTTPStat_FieldMask {
 	if o.GetFailedStage() != other.GetFailedStage() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorFailedStage})
 	}
+	if o.GetError() != other.GetError() {
+		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorError})
+	}
 	if !proto.Equal(o.GetTime(), other.GetTime()) {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTime})
 	}
@@ -555,6 +561,7 @@ func (o *HTTPStat) Clone() *HTTPStat {
 	result := &HTTPStat{}
 	result.DnsLookupTime = o.DnsLookupTime
 	result.TcpConnectTime = o.TcpConnectTime
+	result.ProxyConnectTime = o.ProxyConnectTime
 	result.TlsHandshakeTime = o.TlsHandshakeTime
 	result.RequestSendTime = o.RequestSendTime
 	result.TimeToFirstByte = o.TimeToFirstByte
@@ -565,6 +572,7 @@ func (o *HTTPStat) Clone() *HTTPStat {
 	result.ServerIpAddress = o.ServerIpAddress
 	result.IpVersion = o.IpVersion
 	result.FailedStage = o.FailedStage
+	result.Error = o.Error
 	result.Time = proto.Clone(o.Time).(*timestamp.Timestamp)
 	if o.Target == nil {
 		result.Target = nil
@@ -586,6 +594,7 @@ func (o *HTTPStat) CloneRaw() gotenobject.GotenObjectExt {
 func (o *HTTPStat) Merge(source *HTTPStat) {
 	o.DnsLookupTime = source.GetDnsLookupTime()
 	o.TcpConnectTime = source.GetTcpConnectTime()
+	o.ProxyConnectTime = source.GetProxyConnectTime()
 	o.TlsHandshakeTime = source.GetTlsHandshakeTime()
 	o.RequestSendTime = source.GetRequestSendTime()
 	o.TimeToFirstByte = source.GetTimeToFirstByte()
@@ -596,6 +605,7 @@ func (o *HTTPStat) Merge(source *HTTPStat) {
 	o.ServerIpAddress = source.GetServerIpAddress()
 	o.IpVersion = source.GetIpVersion()
 	o.FailedStage = source.GetFailedStage()
+	o.Error = source.GetError()
 	if source.GetTime() != nil {
 		if o.Time == nil {
 			o.Time = new(timestamp.Timestamp)

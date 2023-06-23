@@ -70,6 +70,8 @@ message HTTPStat {
 
   double tcp_connect_time = 2;
 
+  double proxy_connect_time = 15;
+
   double tls_handshake_time = 3;
 
   double request_send_time = 4;
@@ -90,6 +92,8 @@ message HTTPStat {
 
   FailedStage failed_stage = 11;
 
+  string error = 16;
+
   google.protobuf.Timestamp time = 12;
 
   string target = 13;
@@ -100,6 +104,8 @@ message HTTPStat {
     dns_failed = 1;
 
     tcp_connect_failed = 2;
+
+    proxy_connect_failed = 9;
 
     tls_handshake_failed = 3;
 

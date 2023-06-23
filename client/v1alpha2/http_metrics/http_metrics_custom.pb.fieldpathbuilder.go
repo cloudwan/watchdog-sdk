@@ -125,6 +125,10 @@ func (ReportHTTPMetricsRequestPathSelectorHttpStats) TcpConnectTime() ReportHTTP
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsTcpConnectTime{}
 }
 
+func (ReportHTTPMetricsRequestPathSelectorHttpStats) ProxyConnectTime() ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime {
+	return ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime{}
+}
+
 func (ReportHTTPMetricsRequestPathSelectorHttpStats) TlsHandshakeTime() ReportHTTPMetricsRequestPathSelectorHttpStatsTlsHandshakeTime {
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsTlsHandshakeTime{}
 }
@@ -163,6 +167,10 @@ func (ReportHTTPMetricsRequestPathSelectorHttpStats) IpVersion() ReportHTTPMetri
 
 func (ReportHTTPMetricsRequestPathSelectorHttpStats) FailedStage() ReportHTTPMetricsRequestPathSelectorHttpStatsFailedStage {
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsFailedStage{}
+}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStats) Error() ReportHTTPMetricsRequestPathSelectorHttpStatsError {
+	return ReportHTTPMetricsRequestPathSelectorHttpStatsError{}
 }
 
 func (ReportHTTPMetricsRequestPathSelectorHttpStats) Time() ReportHTTPMetricsRequestPathSelectorHttpStatsTime {
@@ -204,6 +212,23 @@ func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTcpConnectTime) WithValue(v
 }
 
 func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTcpConnectTime) WithArrayOfValues(values []float64) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
+}
+
+type ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime struct{}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
+	return &ReportHTTPMetricsRequest_FieldSubPath{
+		selector: ReportHTTPMetricsRequest_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().ProxyConnectTime().FieldPath(),
+	}
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime) WithValue(value float64) *ReportHTTPMetricsRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHTTPMetricsRequest_FieldSubPathValue)
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsProxyConnectTime) WithArrayOfValues(values []float64) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
 }
 
@@ -374,6 +399,23 @@ func (s ReportHTTPMetricsRequestPathSelectorHttpStatsFailedStage) WithValue(valu
 }
 
 func (s ReportHTTPMetricsRequestPathSelectorHttpStatsFailedStage) WithArrayOfValues(values []HTTPStat_FailedStage) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
+}
+
+type ReportHTTPMetricsRequestPathSelectorHttpStatsError struct{}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStatsError) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
+	return &ReportHTTPMetricsRequest_FieldSubPath{
+		selector: ReportHTTPMetricsRequest_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().Error().FieldPath(),
+	}
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsError) WithValue(value string) *ReportHTTPMetricsRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHTTPMetricsRequest_FieldSubPathValue)
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsError) WithArrayOfValues(values []string) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
 }
 
@@ -680,6 +722,10 @@ func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) TcpConnectTime() G
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTcpConnectTime{}
 }
 
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) ProxyConnectTime() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime {
+	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime{}
+}
+
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) TlsHandshakeTime() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTlsHandshakeTime {
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTlsHandshakeTime{}
 }
@@ -718,6 +764,10 @@ func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) IpVersion() GetHTT
 
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) FailedStage() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsFailedStage {
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsFailedStage{}
+}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) Error() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError {
+	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError{}
 }
 
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) Time() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTime {
@@ -759,6 +809,23 @@ func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTcpConnectTime) Wi
 }
 
 func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTcpConnectTime) WithArrayOfValues(values []float64) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime struct{}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
+	return &GetHTTPMetricsResponse_FieldSubPath{
+		selector: GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics,
+		subPath:  NewGetHTTPMetricsResponseHTTPMetricsPerAgentTargetPairFieldPathBuilder().HttpStats().ProxyConnectTime().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime) WithValue(value float64) *GetHTTPMetricsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponse_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsProxyConnectTime) WithArrayOfValues(values []float64) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
 }
 
@@ -932,6 +999,23 @@ func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsFailedStage) WithA
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
 }
 
+type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError struct{}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
+	return &GetHTTPMetricsResponse_FieldSubPath{
+		selector: GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics,
+		subPath:  NewGetHTTPMetricsResponseHTTPMetricsPerAgentTargetPairFieldPathBuilder().HttpStats().Error().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError) WithValue(value string) *GetHTTPMetricsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponse_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsError) WithArrayOfValues(values []string) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
+}
+
 type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTime struct{}
 
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTime) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
@@ -1064,6 +1148,10 @@ func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats)
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTcpConnectTime{}
 }
 
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) ProxyConnectTime() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime {
+	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime{}
+}
+
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) TlsHandshakeTime() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTlsHandshakeTime {
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTlsHandshakeTime{}
 }
@@ -1102,6 +1190,10 @@ func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats)
 
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) FailedStage() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsFailedStage {
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsFailedStage{}
+}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) Error() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError {
+	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError{}
 }
 
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) Time() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTime {
@@ -1143,6 +1235,23 @@ func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStat
 }
 
 func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTcpConnectTime) WithArrayOfValues(values []float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime struct{}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
+	return &GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath{
+		selector: GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().ProxyConnectTime().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime) WithValue(value float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsProxyConnectTime) WithArrayOfValues(values []float64) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
 }
 
@@ -1316,6 +1425,23 @@ func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStat
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
 }
 
+type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError struct{}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
+	return &GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath{
+		selector: GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().Error().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError) WithValue(value string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsError) WithArrayOfValues(values []string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
+}
+
 type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTime struct{}
 
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTime) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
@@ -1361,6 +1487,9 @@ func (HTTPStatFieldPathBuilder) DnsLookupTime() HTTPStatPathSelectorDnsLookupTim
 func (HTTPStatFieldPathBuilder) TcpConnectTime() HTTPStatPathSelectorTcpConnectTime {
 	return HTTPStatPathSelectorTcpConnectTime{}
 }
+func (HTTPStatFieldPathBuilder) ProxyConnectTime() HTTPStatPathSelectorProxyConnectTime {
+	return HTTPStatPathSelectorProxyConnectTime{}
+}
 func (HTTPStatFieldPathBuilder) TlsHandshakeTime() HTTPStatPathSelectorTlsHandshakeTime {
 	return HTTPStatPathSelectorTlsHandshakeTime{}
 }
@@ -1390,6 +1519,9 @@ func (HTTPStatFieldPathBuilder) IpVersion() HTTPStatPathSelectorIpVersion {
 }
 func (HTTPStatFieldPathBuilder) FailedStage() HTTPStatPathSelectorFailedStage {
 	return HTTPStatPathSelectorFailedStage{}
+}
+func (HTTPStatFieldPathBuilder) Error() HTTPStatPathSelectorError {
+	return HTTPStatPathSelectorError{}
 }
 func (HTTPStatFieldPathBuilder) Time() HTTPStatPathSelectorTime {
 	return HTTPStatPathSelectorTime{}
@@ -1423,6 +1555,20 @@ func (s HTTPStatPathSelectorTcpConnectTime) WithValue(value float64) *HTTPStat_F
 }
 
 func (s HTTPStatPathSelectorTcpConnectTime) WithArrayOfValues(values []float64) *HTTPStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
+}
+
+type HTTPStatPathSelectorProxyConnectTime struct{}
+
+func (HTTPStatPathSelectorProxyConnectTime) FieldPath() *HTTPStat_FieldTerminalPath {
+	return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorProxyConnectTime}
+}
+
+func (s HTTPStatPathSelectorProxyConnectTime) WithValue(value float64) *HTTPStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HTTPStat_FieldTerminalPathValue)
+}
+
+func (s HTTPStatPathSelectorProxyConnectTime) WithArrayOfValues(values []float64) *HTTPStat_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
 }
 
@@ -1563,6 +1709,20 @@ func (s HTTPStatPathSelectorFailedStage) WithValue(value HTTPStat_FailedStage) *
 }
 
 func (s HTTPStatPathSelectorFailedStage) WithArrayOfValues(values []HTTPStat_FailedStage) *HTTPStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
+}
+
+type HTTPStatPathSelectorError struct{}
+
+func (HTTPStatPathSelectorError) FieldPath() *HTTPStat_FieldTerminalPath {
+	return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorError}
+}
+
+func (s HTTPStatPathSelectorError) WithValue(value string) *HTTPStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HTTPStat_FieldTerminalPathValue)
+}
+
+func (s HTTPStatPathSelectorError) WithArrayOfValues(values []string) *HTTPStat_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
 }
 

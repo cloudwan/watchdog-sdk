@@ -97,6 +97,9 @@ func (ProbingTargetFieldPathBuilder) Location() ProbingTargetPathSelectorLocatio
 func (ProbingTargetFieldPathBuilder) HttpProbingConfig() ProbingTargetPathSelectorHttpProbingConfig {
 	return ProbingTargetPathSelectorHttpProbingConfig{}
 }
+func (ProbingTargetFieldPathBuilder) ProxyConfiguration() ProbingTargetPathSelectorProxyConfiguration {
+	return ProbingTargetPathSelectorProxyConfiguration{}
+}
 func (ProbingTargetFieldPathBuilder) Agent() ProbingTargetPathSelectorAgent {
 	return ProbingTargetPathSelectorAgent{}
 }
@@ -1860,6 +1863,120 @@ func (s ProbingTargetPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExp
 }
 
 func (s ProbingTargetPathSelectorHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorProxyConfiguration struct{}
+
+func (ProbingTargetPathSelectorProxyConfiguration) FieldPath() *ProbingTarget_FieldTerminalPath {
+	return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration}
+}
+
+func (s ProbingTargetPathSelectorProxyConfiguration) WithValue(value *common.ProxyConfiguration) *ProbingTarget_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldTerminalPathValue)
+}
+
+func (s ProbingTargetPathSelectorProxyConfiguration) WithArrayOfValues(values []*common.ProxyConfiguration) *ProbingTarget_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldTerminalPathArrayOfValues)
+}
+
+func (ProbingTargetPathSelectorProxyConfiguration) WithSubPath(subPath common.ProxyConfiguration_FieldPath) *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration, subPath: subPath}
+}
+
+func (s ProbingTargetPathSelectorProxyConfiguration) WithSubValue(subPathValue common.ProxyConfiguration_FieldPathValue) *ProbingTarget_FieldSubPathValue {
+	return &ProbingTarget_FieldSubPathValue{ProbingTarget_FieldPath: s.WithSubPath(subPathValue), subPathValue: subPathValue}
+}
+
+func (s ProbingTargetPathSelectorProxyConfiguration) WithSubArrayOfValues(subPathArrayOfValues common.ProxyConfiguration_FieldPathArrayOfValues) *ProbingTarget_FieldSubPathArrayOfValues {
+	return &ProbingTarget_FieldSubPathArrayOfValues{ProbingTarget_FieldPath: s.WithSubPath(subPathArrayOfValues), subPathArrayOfValues: subPathArrayOfValues}
+}
+
+func (s ProbingTargetPathSelectorProxyConfiguration) WithSubArrayItemValue(subPathArrayItemValue common.ProxyConfiguration_FieldPathArrayItemValue) *ProbingTarget_FieldSubPathArrayItemValue {
+	return &ProbingTarget_FieldSubPathArrayItemValue{ProbingTarget_FieldPath: s.WithSubPath(subPathArrayItemValue), subPathItemValue: subPathArrayItemValue}
+}
+
+func (ProbingTargetPathSelectorProxyConfiguration) ProxySetting() ProbingTargetPathSelectorProxyConfigurationProxySetting {
+	return ProbingTargetPathSelectorProxyConfigurationProxySetting{}
+}
+
+func (ProbingTargetPathSelectorProxyConfiguration) HttpProxy() ProbingTargetPathSelectorProxyConfigurationHttpProxy {
+	return ProbingTargetPathSelectorProxyConfigurationHttpProxy{}
+}
+
+func (ProbingTargetPathSelectorProxyConfiguration) HttpsProxy() ProbingTargetPathSelectorProxyConfigurationHttpsProxy {
+	return ProbingTargetPathSelectorProxyConfigurationHttpsProxy{}
+}
+
+func (ProbingTargetPathSelectorProxyConfiguration) NoProxy() ProbingTargetPathSelectorProxyConfigurationNoProxy {
+	return ProbingTargetPathSelectorProxyConfigurationNoProxy{}
+}
+
+type ProbingTargetPathSelectorProxyConfigurationProxySetting struct{}
+
+func (ProbingTargetPathSelectorProxyConfigurationProxySetting) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().ProxySetting().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationProxySetting) WithValue(value common.ProxySetting) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationProxySetting) WithArrayOfValues(values []common.ProxySetting) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorProxyConfigurationHttpProxy struct{}
+
+func (ProbingTargetPathSelectorProxyConfigurationHttpProxy) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpProxy().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationHttpProxy) WithValue(value string) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationHttpProxy) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorProxyConfigurationHttpsProxy struct{}
+
+func (ProbingTargetPathSelectorProxyConfigurationHttpsProxy) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().HttpsProxy().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationHttpsProxy) WithValue(value string) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationHttpsProxy) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
+}
+
+type ProbingTargetPathSelectorProxyConfigurationNoProxy struct{}
+
+func (ProbingTargetPathSelectorProxyConfigurationNoProxy) FieldPath() *ProbingTarget_FieldSubPath {
+	return &ProbingTarget_FieldSubPath{
+		selector: ProbingTarget_FieldPathSelectorProxyConfiguration,
+		subPath:  common.NewProxyConfigurationFieldPathBuilder().NoProxy().FieldPath(),
+	}
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationNoProxy) WithValue(value string) *ProbingTarget_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbingTarget_FieldSubPathValue)
+}
+
+func (s ProbingTargetPathSelectorProxyConfigurationNoProxy) WithArrayOfValues(values []string) *ProbingTarget_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbingTarget_FieldSubPathArrayOfValues)
 }
 

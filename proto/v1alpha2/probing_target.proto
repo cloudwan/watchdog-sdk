@@ -54,6 +54,9 @@ message ProbingTarget {
   // Additional configuration for http probing
   HTTPProbingConfig http_probing_config = 19;
 
+  // Proxy override configuration for http probing
+  ProxyConfiguration proxy_configuration = 26;
+
   string agent = 20;
 
   // addresses list the list of IP addresses that this target is reachable on

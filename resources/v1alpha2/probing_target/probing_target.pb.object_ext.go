@@ -119,6 +119,16 @@ func (o *ProbingTarget) MakeDiffFieldMask(other *ProbingTarget) *ProbingTarget_F
 			}
 		}
 	}
+	{
+		subMask := o.GetProxyConfiguration().MakeDiffFieldMask(other.GetProxyConfiguration())
+		if subMask.IsFull() {
+			res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration})
+		} else {
+			for _, subpath := range subMask.Paths {
+				res.Paths = append(res.Paths, &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration, subPath: subpath})
+			}
+		}
+	}
 	if o.GetAgent().String() != other.GetAgent().String() {
 		res.Paths = append(res.Paths, &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent})
 	}
@@ -185,6 +195,7 @@ func (o *ProbingTarget) Clone() *ProbingTarget {
 	result.LocationType = o.LocationType
 	result.Location = o.Location.Clone()
 	result.HttpProbingConfig = o.HttpProbingConfig.Clone()
+	result.ProxyConfiguration = o.ProxyConfiguration.Clone()
 	if o.Agent == nil {
 		result.Agent = nil
 	} else if data, err := o.Agent.ProtoString(); err != nil {
@@ -258,6 +269,12 @@ func (o *ProbingTarget) Merge(source *ProbingTarget) {
 			o.HttpProbingConfig = new(common.HTTPProbingConfig)
 		}
 		o.HttpProbingConfig.Merge(source.GetHttpProbingConfig())
+	}
+	if source.GetProxyConfiguration() != nil {
+		if o.ProxyConfiguration == nil {
+			o.ProxyConfiguration = new(common.ProxyConfiguration)
+		}
+		o.ProxyConfiguration.Merge(source.GetProxyConfiguration())
 	}
 	if source.GetAgent() != nil {
 		if data, err := source.GetAgent().ProtoString(); err != nil {

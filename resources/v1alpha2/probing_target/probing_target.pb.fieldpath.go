@@ -78,23 +78,24 @@ type ProbingTarget_FieldPath interface {
 type ProbingTarget_FieldPathSelector int32
 
 const (
-	ProbingTarget_FieldPathSelectorName              ProbingTarget_FieldPathSelector = 0
-	ProbingTarget_FieldPathSelectorDisplayName       ProbingTarget_FieldPathSelector = 1
-	ProbingTarget_FieldPathSelectorMetadata          ProbingTarget_FieldPathSelector = 2
-	ProbingTarget_FieldPathSelectorGroup             ProbingTarget_FieldPathSelector = 3
-	ProbingTarget_FieldPathSelectorGroupName         ProbingTarget_FieldPathSelector = 4
-	ProbingTarget_FieldPathSelectorMode              ProbingTarget_FieldPathSelector = 5
-	ProbingTarget_FieldPathSelectorIpVersion         ProbingTarget_FieldPathSelector = 6
-	ProbingTarget_FieldPathSelectorAddress           ProbingTarget_FieldPathSelector = 7
-	ProbingTarget_FieldPathSelectorCategory          ProbingTarget_FieldPathSelector = 8
-	ProbingTarget_FieldPathSelectorLocationType      ProbingTarget_FieldPathSelector = 9
-	ProbingTarget_FieldPathSelectorLocation          ProbingTarget_FieldPathSelector = 10
-	ProbingTarget_FieldPathSelectorHttpProbingConfig ProbingTarget_FieldPathSelector = 11
-	ProbingTarget_FieldPathSelectorAgent             ProbingTarget_FieldPathSelector = 12
-	ProbingTarget_FieldPathSelectorAddresses         ProbingTarget_FieldPathSelector = 13
-	ProbingTarget_FieldPathSelectorTargetType        ProbingTarget_FieldPathSelector = 14
-	ProbingTarget_FieldPathSelectorUdpPort           ProbingTarget_FieldPathSelector = 15
-	ProbingTarget_FieldPathSelectorSpeedtestTcpPort  ProbingTarget_FieldPathSelector = 16
+	ProbingTarget_FieldPathSelectorName               ProbingTarget_FieldPathSelector = 0
+	ProbingTarget_FieldPathSelectorDisplayName        ProbingTarget_FieldPathSelector = 1
+	ProbingTarget_FieldPathSelectorMetadata           ProbingTarget_FieldPathSelector = 2
+	ProbingTarget_FieldPathSelectorGroup              ProbingTarget_FieldPathSelector = 3
+	ProbingTarget_FieldPathSelectorGroupName          ProbingTarget_FieldPathSelector = 4
+	ProbingTarget_FieldPathSelectorMode               ProbingTarget_FieldPathSelector = 5
+	ProbingTarget_FieldPathSelectorIpVersion          ProbingTarget_FieldPathSelector = 6
+	ProbingTarget_FieldPathSelectorAddress            ProbingTarget_FieldPathSelector = 7
+	ProbingTarget_FieldPathSelectorCategory           ProbingTarget_FieldPathSelector = 8
+	ProbingTarget_FieldPathSelectorLocationType       ProbingTarget_FieldPathSelector = 9
+	ProbingTarget_FieldPathSelectorLocation           ProbingTarget_FieldPathSelector = 10
+	ProbingTarget_FieldPathSelectorHttpProbingConfig  ProbingTarget_FieldPathSelector = 11
+	ProbingTarget_FieldPathSelectorProxyConfiguration ProbingTarget_FieldPathSelector = 12
+	ProbingTarget_FieldPathSelectorAgent              ProbingTarget_FieldPathSelector = 13
+	ProbingTarget_FieldPathSelectorAddresses          ProbingTarget_FieldPathSelector = 14
+	ProbingTarget_FieldPathSelectorTargetType         ProbingTarget_FieldPathSelector = 15
+	ProbingTarget_FieldPathSelectorUdpPort            ProbingTarget_FieldPathSelector = 16
+	ProbingTarget_FieldPathSelectorSpeedtestTcpPort   ProbingTarget_FieldPathSelector = 17
 )
 
 func (s ProbingTarget_FieldPathSelector) String() string {
@@ -123,6 +124,8 @@ func (s ProbingTarget_FieldPathSelector) String() string {
 		return "location"
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return "http_probing_config"
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return "proxy_configuration"
 	case ProbingTarget_FieldPathSelectorAgent:
 		return "agent"
 	case ProbingTarget_FieldPathSelectorAddresses:
@@ -168,6 +171,8 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorLocation}, nil
 		case "http_probing_config", "httpProbingConfig", "http-probing-config":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig}, nil
+		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
+			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration}, nil
 		case "agent":
 			return &ProbingTarget_FieldTerminalPath{selector: ProbingTarget_FieldPathSelectorAgent}, nil
 		case "addresses":
@@ -198,6 +203,12 @@ func BuildProbingTarget_FieldPath(fp gotenobject.RawFieldPath) (ProbingTarget_Fi
 				return nil, err
 			} else {
 				return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorHttpProbingConfig, subPath: subpath}, nil
+			}
+		case "proxy_configuration", "proxyConfiguration", "proxy-configuration":
+			if subpath, err := common.BuildProxyConfiguration_FieldPath(fp[1:]); err != nil {
+				return nil, err
+			} else {
+				return &ProbingTarget_FieldSubPath{selector: ProbingTarget_FieldPathSelectorProxyConfiguration, subPath: subpath}, nil
 			}
 		}
 	}
@@ -278,6 +289,10 @@ func (fp *ProbingTarget_FieldTerminalPath) Get(source *ProbingTarget) (values []
 			if source.HttpProbingConfig != nil {
 				values = append(values, source.HttpProbingConfig)
 			}
+		case ProbingTarget_FieldPathSelectorProxyConfiguration:
+			if source.ProxyConfiguration != nil {
+				values = append(values, source.ProxyConfiguration)
+			}
 		case ProbingTarget_FieldPathSelectorAgent:
 			if source.Agent != nil {
 				values = append(values, source.Agent)
@@ -335,6 +350,9 @@ func (fp *ProbingTarget_FieldTerminalPath) GetSingle(source *ProbingTarget) (int
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		res := source.GetHttpProbingConfig()
 		return res, res != nil
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		res := source.GetProxyConfiguration()
+		return res, res != nil
 	case ProbingTarget_FieldPathSelectorAgent:
 		res := source.GetAgent()
 		return res, res != nil
@@ -383,6 +401,8 @@ func (fp *ProbingTarget_FieldTerminalPath) GetDefault() interface{} {
 		return (*common.Location)(nil)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return (*common.HTTPProbingConfig)(nil)
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return (*common.ProxyConfiguration)(nil)
 	case ProbingTarget_FieldPathSelectorAgent:
 		return (*probe.Reference)(nil)
 	case ProbingTarget_FieldPathSelectorAddresses:
@@ -425,6 +445,8 @@ func (fp *ProbingTarget_FieldTerminalPath) ClearValue(item *ProbingTarget) {
 			item.Location = nil
 		case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 			item.HttpProbingConfig = nil
+		case ProbingTarget_FieldPathSelectorProxyConfiguration:
+			item.ProxyConfiguration = nil
 		case ProbingTarget_FieldPathSelectorAgent:
 			item.Agent = nil
 		case ProbingTarget_FieldPathSelectorAddresses:
@@ -493,6 +515,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIValue(value interface{}) Probing
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.Location)}
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.HTTPProbingConfig)}
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*common.ProxyConfiguration)}
 	case ProbingTarget_FieldPathSelectorAgent:
 		return &ProbingTarget_FieldTerminalPathValue{ProbingTarget_FieldTerminalPath: *fp, value: value.(*probe.Reference)}
 	case ProbingTarget_FieldPathSelectorAddresses:
@@ -539,6 +563,8 @@ func (fp *ProbingTarget_FieldTerminalPath) WithIArrayOfValues(values interface{}
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.Location)}
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.HTTPProbingConfig)}
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*common.ProxyConfiguration)}
 	case ProbingTarget_FieldPathSelectorAgent:
 		return &ProbingTarget_FieldTerminalPathArrayOfValues{ProbingTarget_FieldTerminalPath: *fp, values: values.([]*probe.Reference)}
 	case ProbingTarget_FieldPathSelectorAddresses:
@@ -594,6 +620,10 @@ func (fps *ProbingTarget_FieldSubPath) AsHttpProbingConfigSubPath() (common.HTTP
 	res, ok := fps.subPath.(common.HTTPProbingConfig_FieldPath)
 	return res, ok
 }
+func (fps *ProbingTarget_FieldSubPath) AsProxyConfigurationSubPath() (common.ProxyConfiguration_FieldPath, bool) {
+	res, ok := fps.subPath.(common.ProxyConfiguration_FieldPath)
+	return res, ok
+}
 
 // String returns path representation in proto convention
 func (fps *ProbingTarget_FieldSubPath) String() string {
@@ -614,6 +644,8 @@ func (fps *ProbingTarget_FieldSubPath) Get(source *ProbingTarget) (values []inte
 		values = append(values, fps.subPath.GetRaw(source.GetLocation())...)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		values = append(values, fps.subPath.GetRaw(source.GetHttpProbingConfig())...)
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		values = append(values, fps.subPath.GetRaw(source.GetProxyConfiguration())...)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fps.selector))
 	}
@@ -642,6 +674,11 @@ func (fps *ProbingTarget_FieldSubPath) GetSingle(source *ProbingTarget) (interfa
 			return nil, false
 		}
 		return fps.subPath.GetSingleRaw(source.GetHttpProbingConfig())
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		if source.GetProxyConfiguration() == nil {
+			return nil, false
+		}
+		return fps.subPath.GetSingleRaw(source.GetProxyConfiguration())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fps.selector))
 	}
@@ -665,6 +702,8 @@ func (fps *ProbingTarget_FieldSubPath) ClearValue(item *ProbingTarget) {
 			fps.subPath.ClearValueRaw(item.Location)
 		case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 			fps.subPath.ClearValueRaw(item.HttpProbingConfig)
+		case ProbingTarget_FieldPathSelectorProxyConfiguration:
+			fps.subPath.ClearValueRaw(item.ProxyConfiguration)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fps.selector))
 		}
@@ -797,6 +836,10 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) AsHttpProbingConfigValue() (*co
 	res, ok := fpv.value.(*common.HTTPProbingConfig)
 	return res, ok
 }
+func (fpv *ProbingTarget_FieldTerminalPathValue) AsProxyConfigurationValue() (*common.ProxyConfiguration, bool) {
+	res, ok := fpv.value.(*common.ProxyConfiguration)
+	return res, ok
+}
 func (fpv *ProbingTarget_FieldTerminalPathValue) AsAgentValue() (*probe.Reference, bool) {
 	res, ok := fpv.value.(*probe.Reference)
 	return res, ok
@@ -848,6 +891,8 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) SetTo(target **ProbingTarget) {
 		(*target).Location = fpv.value.(*common.Location)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		(*target).HttpProbingConfig = fpv.value.(*common.HTTPProbingConfig)
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		(*target).ProxyConfiguration = fpv.value.(*common.ProxyConfiguration)
 	case ProbingTarget_FieldPathSelectorAgent:
 		(*target).Agent = fpv.value.(*probe.Reference)
 	case ProbingTarget_FieldPathSelectorAddresses:
@@ -985,6 +1030,8 @@ func (fpv *ProbingTarget_FieldTerminalPathValue) CompareWith(source *ProbingTarg
 		return 0, false
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return 0, false
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return 0, false
 	case ProbingTarget_FieldPathSelectorAgent:
 		leftValue := fpv.value.(*probe.Reference)
 		rightValue := source.GetAgent()
@@ -1064,6 +1111,10 @@ func (fpvs *ProbingTarget_FieldSubPathValue) AsHttpProbingConfigPathValue() (com
 	res, ok := fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue)
 	return res, ok
 }
+func (fpvs *ProbingTarget_FieldSubPathValue) AsProxyConfigurationPathValue() (common.ProxyConfiguration_FieldPathValue, bool) {
+	res, ok := fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue)
+	return res, ok
+}
 
 func (fpvs *ProbingTarget_FieldSubPathValue) SetTo(target **ProbingTarget) {
 	if *target == nil {
@@ -1076,6 +1127,8 @@ func (fpvs *ProbingTarget_FieldSubPathValue) SetTo(target **ProbingTarget) {
 		fpvs.subPathValue.(common.Location_FieldPathValue).SetTo(&(*target).Location)
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).SetTo(&(*target).HttpProbingConfig)
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).SetTo(&(*target).ProxyConfiguration)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpvs.Selector()))
 	}
@@ -1098,6 +1151,8 @@ func (fpvs *ProbingTarget_FieldSubPathValue) CompareWith(source *ProbingTarget) 
 		return fpvs.subPathValue.(common.Location_FieldPathValue).CompareWith(source.GetLocation())
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return fpvs.subPathValue.(common.HTTPProbingConfig_FieldPathValue).CompareWith(source.GetHttpProbingConfig())
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return fpvs.subPathValue.(common.ProxyConfiguration_FieldPathValue).CompareWith(source.GetProxyConfiguration())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpvs.Selector()))
 	}
@@ -1196,6 +1251,10 @@ func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsHttpProbingConfigPathI
 	res, ok := fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue)
 	return res, ok
 }
+func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) AsProxyConfigurationPathItemValue() (common.ProxyConfiguration_FieldPathArrayItemValue, bool) {
+	res, ok := fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue)
+	return res, ok
+}
 
 // Contains returns a boolean indicating if value that is being held is present in given 'ProbingTarget'
 func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) ContainsValue(source *ProbingTarget) bool {
@@ -1206,6 +1265,8 @@ func (fpaivs *ProbingTarget_FieldSubPathArrayItemValue) ContainsValue(source *Pr
 		return fpaivs.subPathItemValue.(common.Location_FieldPathArrayItemValue).ContainsValue(source.GetLocation())
 	case ProbingTarget_FieldPathSelectorHttpProbingConfig:
 		return fpaivs.subPathItemValue.(common.HTTPProbingConfig_FieldPathArrayItemValue).ContainsValue(source.GetHttpProbingConfig())
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		return fpaivs.subPathItemValue.(common.ProxyConfiguration_FieldPathArrayItemValue).ContainsValue(source.GetProxyConfiguration())
 	default:
 		panic(fmt.Sprintf("Invalid selector for ProbingTarget: %d", fpaivs.Selector()))
 	}
@@ -1294,6 +1355,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) GetRawValues() (value
 		for _, v := range fpaov.values.([]*common.HTTPProbingConfig) {
 			values = append(values, v)
 		}
+	case ProbingTarget_FieldPathSelectorProxyConfiguration:
+		for _, v := range fpaov.values.([]*common.ProxyConfiguration) {
+			values = append(values, v)
+		}
 	case ProbingTarget_FieldPathSelectorAgent:
 		for _, v := range fpaov.values.([]*probe.Reference) {
 			values = append(values, v)
@@ -1365,6 +1430,10 @@ func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsHttpProbingConfigAr
 	res, ok := fpaov.values.([]*common.HTTPProbingConfig)
 	return res, ok
 }
+func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsProxyConfigurationArrayOfValues() ([]*common.ProxyConfiguration, bool) {
+	res, ok := fpaov.values.([]*common.ProxyConfiguration)
+	return res, ok
+}
 func (fpaov *ProbingTarget_FieldTerminalPathArrayOfValues) AsAgentArrayOfValues() ([]*probe.Reference, bool) {
 	res, ok := fpaov.values.([]*probe.Reference)
 	return res, ok
@@ -1406,5 +1475,9 @@ func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsLocationPathArrayOfValu
 }
 func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsHttpProbingConfigPathArrayOfValues() (common.HTTPProbingConfig_FieldPathArrayOfValues, bool) {
 	res, ok := fpsaov.subPathArrayOfValues.(common.HTTPProbingConfig_FieldPathArrayOfValues)
+	return res, ok
+}
+func (fpsaov *ProbingTarget_FieldSubPathArrayOfValues) AsProxyConfigurationPathArrayOfValues() (common.ProxyConfiguration_FieldPathArrayOfValues, bool) {
+	res, ok := fpsaov.subPathArrayOfValues.(common.ProxyConfiguration_FieldPathArrayOfValues)
 	return res, ok
 }

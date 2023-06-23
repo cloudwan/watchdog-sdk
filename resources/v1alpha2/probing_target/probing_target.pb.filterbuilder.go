@@ -254,6 +254,10 @@ func (b *filterCndBuilder) HttpProbingConfig() *filterCndBuilderHttpProbingConfi
 	return &filterCndBuilderHttpProbingConfig{builder: b.builder}
 }
 
+func (b *filterCndBuilder) ProxyConfiguration() *filterCndBuilderProxyConfiguration {
+	return &filterCndBuilderProxyConfiguration{builder: b.builder}
+}
+
 func (b *filterCndBuilder) Agent() *filterCndBuilderAgent {
 	return &filterCndBuilderAgent{builder: b.builder}
 }
@@ -5622,6 +5626,317 @@ func (b *filterCndBuilderHttpProbingConfigAuthConfigTokenResponseBodyExpiryKey) 
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:                     op,
 		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().HttpProbingConfig().AuthConfig().TokenResponseBodyExpiryKey().WithValue(value),
+	})
+}
+
+type filterCndBuilderProxyConfiguration struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProxyConfiguration) Eq(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) Neq(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) Gt(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) Gte(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) Lt(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) Lte(value *common.ProxyConfiguration) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProxyConfiguration) In(values []*common.ProxyConfiguration) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfiguration) NotIn(values []*common.ProxyConfiguration) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfiguration) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfiguration) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfiguration) compare(op gotenfilter.CompareOperator, value *common.ProxyConfiguration) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().ProxyConfiguration().WithValue(value),
+	})
+}
+
+func (b *filterCndBuilderProxyConfiguration) ProxySetting() *filterCndBuilderProxyConfigurationProxySetting {
+	return &filterCndBuilderProxyConfigurationProxySetting{builder: b.builder}
+}
+
+func (b *filterCndBuilderProxyConfiguration) HttpProxy() *filterCndBuilderProxyConfigurationHttpProxy {
+	return &filterCndBuilderProxyConfigurationHttpProxy{builder: b.builder}
+}
+
+func (b *filterCndBuilderProxyConfiguration) HttpsProxy() *filterCndBuilderProxyConfigurationHttpsProxy {
+	return &filterCndBuilderProxyConfigurationHttpsProxy{builder: b.builder}
+}
+
+func (b *filterCndBuilderProxyConfiguration) NoProxy() *filterCndBuilderProxyConfigurationNoProxy {
+	return &filterCndBuilderProxyConfigurationNoProxy{builder: b.builder}
+}
+
+type filterCndBuilderProxyConfigurationProxySetting struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Eq(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Neq(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Gt(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Gte(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Lt(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) Lte(value common.ProxySetting) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) In(values []common.ProxySetting) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().ProxySetting().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) NotIn(values []common.ProxySetting) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().ProxySetting().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().ProxySetting().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationProxySetting) compare(op gotenfilter.CompareOperator, value common.ProxySetting) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().ProxyConfiguration().ProxySetting().WithValue(value),
+	})
+}
+
+type filterCndBuilderProxyConfigurationHttpProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpProxy().WithValue(value),
+	})
+}
+
+type filterCndBuilderProxyConfigurationHttpsProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpsProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpsProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpsProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationHttpsProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().ProxyConfiguration().HttpsProxy().WithValue(value),
+	})
+}
+
+type filterCndBuilderProxyConfigurationNoProxy struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().NoProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		ProbingTarget_FieldPathArrayOfValues: NewProbingTargetFieldPathBuilder().ProxyConfiguration().NoProxy().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbingTargetFieldPathBuilder().ProxyConfiguration().NoProxy().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderProxyConfigurationNoProxy) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:                     op,
+		ProbingTarget_FieldPathValue: NewProbingTargetFieldPathBuilder().ProxyConfiguration().NoProxy().WithValue(value),
 	})
 }
 

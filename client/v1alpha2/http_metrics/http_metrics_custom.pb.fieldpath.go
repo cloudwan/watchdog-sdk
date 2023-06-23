@@ -2820,18 +2820,20 @@ type HTTPStat_FieldPathSelector int32
 const (
 	HTTPStat_FieldPathSelectorDnsLookupTime        HTTPStat_FieldPathSelector = 0
 	HTTPStat_FieldPathSelectorTcpConnectTime       HTTPStat_FieldPathSelector = 1
-	HTTPStat_FieldPathSelectorTlsHandshakeTime     HTTPStat_FieldPathSelector = 2
-	HTTPStat_FieldPathSelectorRequestSendTime      HTTPStat_FieldPathSelector = 3
-	HTTPStat_FieldPathSelectorTimeToFirstByte      HTTPStat_FieldPathSelector = 4
-	HTTPStat_FieldPathSelectorTtfbAfterRequestSend HTTPStat_FieldPathSelector = 5
-	HTTPStat_FieldPathSelectorContentDownloadTime  HTTPStat_FieldPathSelector = 6
-	HTTPStat_FieldPathSelectorTotalResponseTime    HTTPStat_FieldPathSelector = 7
-	HTTPStat_FieldPathSelectorResponseCode         HTTPStat_FieldPathSelector = 8
-	HTTPStat_FieldPathSelectorServerIpAddress      HTTPStat_FieldPathSelector = 9
-	HTTPStat_FieldPathSelectorIpVersion            HTTPStat_FieldPathSelector = 10
-	HTTPStat_FieldPathSelectorFailedStage          HTTPStat_FieldPathSelector = 11
-	HTTPStat_FieldPathSelectorTime                 HTTPStat_FieldPathSelector = 12
-	HTTPStat_FieldPathSelectorTarget               HTTPStat_FieldPathSelector = 13
+	HTTPStat_FieldPathSelectorProxyConnectTime     HTTPStat_FieldPathSelector = 2
+	HTTPStat_FieldPathSelectorTlsHandshakeTime     HTTPStat_FieldPathSelector = 3
+	HTTPStat_FieldPathSelectorRequestSendTime      HTTPStat_FieldPathSelector = 4
+	HTTPStat_FieldPathSelectorTimeToFirstByte      HTTPStat_FieldPathSelector = 5
+	HTTPStat_FieldPathSelectorTtfbAfterRequestSend HTTPStat_FieldPathSelector = 6
+	HTTPStat_FieldPathSelectorContentDownloadTime  HTTPStat_FieldPathSelector = 7
+	HTTPStat_FieldPathSelectorTotalResponseTime    HTTPStat_FieldPathSelector = 8
+	HTTPStat_FieldPathSelectorResponseCode         HTTPStat_FieldPathSelector = 9
+	HTTPStat_FieldPathSelectorServerIpAddress      HTTPStat_FieldPathSelector = 10
+	HTTPStat_FieldPathSelectorIpVersion            HTTPStat_FieldPathSelector = 11
+	HTTPStat_FieldPathSelectorFailedStage          HTTPStat_FieldPathSelector = 12
+	HTTPStat_FieldPathSelectorError                HTTPStat_FieldPathSelector = 13
+	HTTPStat_FieldPathSelectorTime                 HTTPStat_FieldPathSelector = 14
+	HTTPStat_FieldPathSelectorTarget               HTTPStat_FieldPathSelector = 15
 )
 
 func (s HTTPStat_FieldPathSelector) String() string {
@@ -2840,6 +2842,8 @@ func (s HTTPStat_FieldPathSelector) String() string {
 		return "dns_lookup_time"
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
 		return "tcp_connect_time"
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		return "proxy_connect_time"
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		return "tls_handshake_time"
 	case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -2860,6 +2864,8 @@ func (s HTTPStat_FieldPathSelector) String() string {
 		return "ip_version"
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return "failed_stage"
+	case HTTPStat_FieldPathSelectorError:
+		return "error"
 	case HTTPStat_FieldPathSelectorTime:
 		return "time"
 	case HTTPStat_FieldPathSelectorTarget:
@@ -2879,6 +2885,8 @@ func BuildHTTPStat_FieldPath(fp gotenobject.RawFieldPath) (HTTPStat_FieldPath, e
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorDnsLookupTime}, nil
 		case "tcp_connect_time", "tcpConnectTime", "tcp-connect-time":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTcpConnectTime}, nil
+		case "proxy_connect_time", "proxyConnectTime", "proxy-connect-time":
+			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorProxyConnectTime}, nil
 		case "tls_handshake_time", "tlsHandshakeTime", "tls-handshake-time":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTlsHandshakeTime}, nil
 		case "request_send_time", "requestSendTime", "request-send-time":
@@ -2899,6 +2907,8 @@ func BuildHTTPStat_FieldPath(fp gotenobject.RawFieldPath) (HTTPStat_FieldPath, e
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorIpVersion}, nil
 		case "failed_stage", "failedStage", "failed-stage":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorFailedStage}, nil
+		case "error":
+			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorError}, nil
 		case "time":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTime}, nil
 		case "target":
@@ -2952,6 +2962,8 @@ func (fp *HTTPStat_FieldTerminalPath) Get(source *HTTPStat) (values []interface{
 			values = append(values, source.DnsLookupTime)
 		case HTTPStat_FieldPathSelectorTcpConnectTime:
 			values = append(values, source.TcpConnectTime)
+		case HTTPStat_FieldPathSelectorProxyConnectTime:
+			values = append(values, source.ProxyConnectTime)
 		case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 			values = append(values, source.TlsHandshakeTime)
 		case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -2972,6 +2984,8 @@ func (fp *HTTPStat_FieldTerminalPath) Get(source *HTTPStat) (values []interface{
 			values = append(values, source.IpVersion)
 		case HTTPStat_FieldPathSelectorFailedStage:
 			values = append(values, source.FailedStage)
+		case HTTPStat_FieldPathSelectorError:
+			values = append(values, source.Error)
 		case HTTPStat_FieldPathSelectorTime:
 			if source.Time != nil {
 				values = append(values, source.Time)
@@ -2998,6 +3012,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetSingle(source *HTTPStat) (interface{}, 
 		return source.GetDnsLookupTime(), source != nil
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
 		return source.GetTcpConnectTime(), source != nil
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		return source.GetProxyConnectTime(), source != nil
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		return source.GetTlsHandshakeTime(), source != nil
 	case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -3018,6 +3034,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetSingle(source *HTTPStat) (interface{}, 
 		return source.GetIpVersion(), source != nil
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return source.GetFailedStage(), source != nil
+	case HTTPStat_FieldPathSelectorError:
+		return source.GetError(), source != nil
 	case HTTPStat_FieldPathSelectorTime:
 		res := source.GetTime()
 		return res, res != nil
@@ -3040,6 +3058,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetDefault() interface{} {
 		return float64(0)
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
 		return float64(0)
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		return float64(0)
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		return float64(0)
 	case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -3060,6 +3080,8 @@ func (fp *HTTPStat_FieldTerminalPath) GetDefault() interface{} {
 		return common.IpVersion_IPVERSION_ANY
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return HTTPStat_no_failure
+	case HTTPStat_FieldPathSelectorError:
+		return ""
 	case HTTPStat_FieldPathSelectorTime:
 		return (*timestamp.Timestamp)(nil)
 	case HTTPStat_FieldPathSelectorTarget:
@@ -3076,6 +3098,8 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValue(item *HTTPStat) {
 			item.DnsLookupTime = float64(0)
 		case HTTPStat_FieldPathSelectorTcpConnectTime:
 			item.TcpConnectTime = float64(0)
+		case HTTPStat_FieldPathSelectorProxyConnectTime:
+			item.ProxyConnectTime = float64(0)
 		case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 			item.TlsHandshakeTime = float64(0)
 		case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -3096,6 +3120,8 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValue(item *HTTPStat) {
 			item.IpVersion = common.IpVersion_IPVERSION_ANY
 		case HTTPStat_FieldPathSelectorFailedStage:
 			item.FailedStage = HTTPStat_no_failure
+		case HTTPStat_FieldPathSelectorError:
+			item.Error = ""
 		case HTTPStat_FieldPathSelectorTime:
 			item.Time = nil
 		case HTTPStat_FieldPathSelectorTarget:
@@ -3114,6 +3140,7 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValueRaw(item proto.Message) {
 func (fp *HTTPStat_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == HTTPStat_FieldPathSelectorDnsLookupTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTcpConnectTime ||
+		fp.selector == HTTPStat_FieldPathSelectorProxyConnectTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTlsHandshakeTime ||
 		fp.selector == HTTPStat_FieldPathSelectorRequestSendTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTimeToFirstByte ||
@@ -3124,6 +3151,7 @@ func (fp *HTTPStat_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HTTPStat_FieldPathSelectorServerIpAddress ||
 		fp.selector == HTTPStat_FieldPathSelectorIpVersion ||
 		fp.selector == HTTPStat_FieldPathSelectorFailedStage ||
+		fp.selector == HTTPStat_FieldPathSelectorError ||
 		fp.selector == HTTPStat_FieldPathSelectorTime ||
 		fp.selector == HTTPStat_FieldPathSelectorTarget
 }
@@ -3137,6 +3165,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIValue(value interface{}) HTTPStat_Fie
 	case HTTPStat_FieldPathSelectorDnsLookupTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
+		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(float64)}
@@ -3158,6 +3188,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIValue(value interface{}) HTTPStat_Fie
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(HTTPStat_FailedStage)}
+	case HTTPStat_FieldPathSelectorError:
+		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(string)}
 	case HTTPStat_FieldPathSelectorTime:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	case HTTPStat_FieldPathSelectorTarget:
@@ -3177,6 +3209,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIArrayOfValues(values interface{}) HTT
 	case HTTPStat_FieldPathSelectorDnsLookupTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
+		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]float64)}
@@ -3198,6 +3232,8 @@ func (fp *HTTPStat_FieldTerminalPath) WithIArrayOfValues(values interface{}) HTT
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
 	case HTTPStat_FieldPathSelectorFailedStage:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]HTTPStat_FailedStage)}
+	case HTTPStat_FieldPathSelectorError:
+		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]string)}
 	case HTTPStat_FieldPathSelectorTime:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	case HTTPStat_FieldPathSelectorTarget:
@@ -3270,6 +3306,10 @@ func (fpv *HTTPStat_FieldTerminalPathValue) AsTcpConnectTimeValue() (float64, bo
 	res, ok := fpv.value.(float64)
 	return res, ok
 }
+func (fpv *HTTPStat_FieldTerminalPathValue) AsProxyConnectTimeValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
 func (fpv *HTTPStat_FieldTerminalPathValue) AsTlsHandshakeTimeValue() (float64, bool) {
 	res, ok := fpv.value.(float64)
 	return res, ok
@@ -3310,6 +3350,10 @@ func (fpv *HTTPStat_FieldTerminalPathValue) AsFailedStageValue() (HTTPStat_Faile
 	res, ok := fpv.value.(HTTPStat_FailedStage)
 	return res, ok
 }
+func (fpv *HTTPStat_FieldTerminalPathValue) AsErrorValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 func (fpv *HTTPStat_FieldTerminalPathValue) AsTimeValue() (*timestamp.Timestamp, bool) {
 	res, ok := fpv.value.(*timestamp.Timestamp)
 	return res, ok
@@ -3329,6 +3373,8 @@ func (fpv *HTTPStat_FieldTerminalPathValue) SetTo(target **HTTPStat) {
 		(*target).DnsLookupTime = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
 		(*target).TcpConnectTime = fpv.value.(float64)
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		(*target).ProxyConnectTime = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		(*target).TlsHandshakeTime = fpv.value.(float64)
 	case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -3349,6 +3395,8 @@ func (fpv *HTTPStat_FieldTerminalPathValue) SetTo(target **HTTPStat) {
 		(*target).IpVersion = fpv.value.(common.IpVersion)
 	case HTTPStat_FieldPathSelectorFailedStage:
 		(*target).FailedStage = fpv.value.(HTTPStat_FailedStage)
+	case HTTPStat_FieldPathSelectorError:
+		(*target).Error = fpv.value.(string)
 	case HTTPStat_FieldPathSelectorTime:
 		(*target).Time = fpv.value.(*timestamp.Timestamp)
 	case HTTPStat_FieldPathSelectorTarget:
@@ -3379,6 +3427,16 @@ func (fpv *HTTPStat_FieldTerminalPathValue) CompareWith(source *HTTPStat) (int, 
 	case HTTPStat_FieldPathSelectorTcpConnectTime:
 		leftValue := fpv.value.(float64)
 		rightValue := source.GetTcpConnectTime()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetProxyConnectTime()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -3479,6 +3537,16 @@ func (fpv *HTTPStat_FieldTerminalPathValue) CompareWith(source *HTTPStat) (int, 
 	case HTTPStat_FieldPathSelectorFailedStage:
 		leftValue := fpv.value.(HTTPStat_FailedStage)
 		rightValue := source.GetFailedStage()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HTTPStat_FieldPathSelectorError:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetError()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -3640,6 +3708,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) GetRawValues() (values []i
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
 		}
+	case HTTPStat_FieldPathSelectorProxyConnectTime:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
 	case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 		for _, v := range fpaov.values.([]float64) {
 			values = append(values, v)
@@ -3680,6 +3752,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) GetRawValues() (values []i
 		for _, v := range fpaov.values.([]HTTPStat_FailedStage) {
 			values = append(values, v)
 		}
+	case HTTPStat_FieldPathSelectorError:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	case HTTPStat_FieldPathSelectorTime:
 		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
 			values = append(values, v)
@@ -3696,6 +3772,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsDnsLookupTimeArrayOfValu
 	return res, ok
 }
 func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTcpConnectTimeArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
+	return res, ok
+}
+func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsProxyConnectTimeArrayOfValues() ([]float64, bool) {
 	res, ok := fpaov.values.([]float64)
 	return res, ok
 }
@@ -3737,6 +3817,10 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues()
 }
 func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsFailedStageArrayOfValues() ([]HTTPStat_FailedStage, bool) {
 	res, ok := fpaov.values.([]HTTPStat_FailedStage)
+	return res, ok
+}
+func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsErrorArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {

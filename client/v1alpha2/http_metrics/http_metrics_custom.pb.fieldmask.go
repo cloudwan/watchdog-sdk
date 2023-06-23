@@ -1247,6 +1247,7 @@ func FullHTTPStat_FieldMask() *HTTPStat_FieldMask {
 	res := &HTTPStat_FieldMask{}
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorDnsLookupTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTcpConnectTime})
+	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorProxyConnectTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTlsHandshakeTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorRequestSendTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTimeToFirstByte})
@@ -1257,6 +1258,7 @@ func FullHTTPStat_FieldMask() *HTTPStat_FieldMask {
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorServerIpAddress})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorIpVersion})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorFailedStage})
+	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorError})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTarget})
 	return res
@@ -1302,7 +1304,7 @@ func (fieldMask *HTTPStat_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 14)
+	presentSelectors := make([]bool, 16)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*HTTPStat_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1332,7 +1334,7 @@ func (fieldMask *HTTPStat_FieldMask) Reset() {
 
 func (fieldMask *HTTPStat_FieldMask) Subtract(other *HTTPStat_FieldMask) *HTTPStat_FieldMask {
 	result := &HTTPStat_FieldMask{}
-	removedSelectors := make([]bool, 14)
+	removedSelectors := make([]bool, 16)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1490,6 +1492,8 @@ func (fieldMask *HTTPStat_FieldMask) Project(source *HTTPStat) *HTTPStat {
 				result.DnsLookupTime = source.DnsLookupTime
 			case HTTPStat_FieldPathSelectorTcpConnectTime:
 				result.TcpConnectTime = source.TcpConnectTime
+			case HTTPStat_FieldPathSelectorProxyConnectTime:
+				result.ProxyConnectTime = source.ProxyConnectTime
 			case HTTPStat_FieldPathSelectorTlsHandshakeTime:
 				result.TlsHandshakeTime = source.TlsHandshakeTime
 			case HTTPStat_FieldPathSelectorRequestSendTime:
@@ -1510,6 +1514,8 @@ func (fieldMask *HTTPStat_FieldMask) Project(source *HTTPStat) *HTTPStat {
 				result.IpVersion = source.IpVersion
 			case HTTPStat_FieldPathSelectorFailedStage:
 				result.FailedStage = source.FailedStage
+			case HTTPStat_FieldPathSelectorError:
+				result.Error = source.Error
 			case HTTPStat_FieldPathSelectorTime:
 				result.Time = source.Time
 			case HTTPStat_FieldPathSelectorTarget:
