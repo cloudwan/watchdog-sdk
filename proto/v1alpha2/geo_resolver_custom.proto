@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package ntt.watchdog.v1alpha2;
 
+import "google/type/latlng.proto";
 import "watchdog-sdk/proto/v1alpha2/common.proto";
 import "watchdog-sdk/proto/v1alpha2/probe.proto";
 import "watchdog-sdk/proto/v1alpha2/probe_change.proto";
@@ -71,6 +72,10 @@ message ResolveEnvironmentRequest {
   string address = 2;
 
   repeated WLAN wlans = 3;
+
+  google.type.LatLng device_reported_coordinates = 4;
+
+  double device_reported_accuracy = 5;
 }
 
 // Response message for method

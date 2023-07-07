@@ -2454,6 +2454,12 @@ func (ResolveEnvironmentRequestFieldPathBuilder) Address() ResolveEnvironmentReq
 func (ResolveEnvironmentRequestFieldPathBuilder) Wlans() ResolveEnvironmentRequestPathSelectorWlans {
 	return ResolveEnvironmentRequestPathSelectorWlans{}
 }
+func (ResolveEnvironmentRequestFieldPathBuilder) DeviceReportedCoordinates() ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates {
+	return ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates{}
+}
+func (ResolveEnvironmentRequestFieldPathBuilder) DeviceReportedAccuracy() ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy {
+	return ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy{}
+}
 
 type ResolveEnvironmentRequestPathSelectorName struct{}
 
@@ -2556,6 +2562,34 @@ func (s ResolveEnvironmentRequestPathSelectorWlansSignal) WithValue(value int32)
 
 func (s ResolveEnvironmentRequestPathSelectorWlansSignal) WithArrayOfValues(values []int32) *ResolveEnvironmentRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentRequest_FieldSubPathArrayOfValues)
+}
+
+type ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates struct{}
+
+func (ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates) FieldPath() *ResolveEnvironmentRequest_FieldTerminalPath {
+	return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates}
+}
+
+func (s ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates) WithValue(value *latlng.LatLng) *ResolveEnvironmentRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentRequest_FieldTerminalPathValue)
+}
+
+func (s ResolveEnvironmentRequestPathSelectorDeviceReportedCoordinates) WithArrayOfValues(values []*latlng.LatLng) *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues)
+}
+
+type ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy struct{}
+
+func (ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy) FieldPath() *ResolveEnvironmentRequest_FieldTerminalPath {
+	return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy}
+}
+
+func (s ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy) WithValue(value float64) *ResolveEnvironmentRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ResolveEnvironmentRequest_FieldTerminalPathValue)
+}
+
+func (s ResolveEnvironmentRequestPathSelectorDeviceReportedAccuracy) WithArrayOfValues(values []float64) *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues)
 }
 
 type ResolveEnvironmentResponseFieldPathBuilder struct{}

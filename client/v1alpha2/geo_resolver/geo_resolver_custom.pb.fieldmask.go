@@ -22,6 +22,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
 
 // ensure the imports are used
@@ -41,6 +42,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &latlng.LatLng{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
@@ -1513,6 +1515,8 @@ func FullResolveEnvironmentRequest_FieldMask() *ResolveEnvironmentRequest_FieldM
 	res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorName})
 	res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorAddress})
 	res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorWlans})
+	res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates})
+	res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy})
 	return res
 }
 
@@ -1556,7 +1560,7 @@ func (fieldMask *ResolveEnvironmentRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ResolveEnvironmentRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1586,7 +1590,7 @@ func (fieldMask *ResolveEnvironmentRequest_FieldMask) Reset() {
 
 func (fieldMask *ResolveEnvironmentRequest_FieldMask) Subtract(other *ResolveEnvironmentRequest_FieldMask) *ResolveEnvironmentRequest_FieldMask {
 	result := &ResolveEnvironmentRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ResolveEnvironmentRequest_FieldPathSelector]gotenobject.FieldMask{
 		ResolveEnvironmentRequest_FieldPathSelectorWlans: &common.WLAN_FieldMask{},
 	}
@@ -1775,6 +1779,10 @@ func (fieldMask *ResolveEnvironmentRequest_FieldMask) Project(source *ResolveEnv
 			case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 				result.Wlans = source.Wlans
 				wholeWlansAccepted = true
+			case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+				result.DeviceReportedCoordinates = source.DeviceReportedCoordinates
+			case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+				result.DeviceReportedAccuracy = source.DeviceReportedAccuracy
 			}
 		case *ResolveEnvironmentRequest_FieldSubPath:
 			switch tp.selector {

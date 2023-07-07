@@ -26,6 +26,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
 
 // ensure the imports are used
@@ -49,6 +50,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &latlng.LatLng{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
@@ -3189,9 +3191,11 @@ type ResolveEnvironmentRequest_FieldPath interface {
 type ResolveEnvironmentRequest_FieldPathSelector int32
 
 const (
-	ResolveEnvironmentRequest_FieldPathSelectorName    ResolveEnvironmentRequest_FieldPathSelector = 0
-	ResolveEnvironmentRequest_FieldPathSelectorAddress ResolveEnvironmentRequest_FieldPathSelector = 1
-	ResolveEnvironmentRequest_FieldPathSelectorWlans   ResolveEnvironmentRequest_FieldPathSelector = 2
+	ResolveEnvironmentRequest_FieldPathSelectorName                      ResolveEnvironmentRequest_FieldPathSelector = 0
+	ResolveEnvironmentRequest_FieldPathSelectorAddress                   ResolveEnvironmentRequest_FieldPathSelector = 1
+	ResolveEnvironmentRequest_FieldPathSelectorWlans                     ResolveEnvironmentRequest_FieldPathSelector = 2
+	ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates ResolveEnvironmentRequest_FieldPathSelector = 3
+	ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy    ResolveEnvironmentRequest_FieldPathSelector = 4
 )
 
 func (s ResolveEnvironmentRequest_FieldPathSelector) String() string {
@@ -3202,6 +3206,10 @@ func (s ResolveEnvironmentRequest_FieldPathSelector) String() string {
 		return "address"
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		return "wlans"
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		return "device_reported_coordinates"
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		return "device_reported_accuracy"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", s))
 	}
@@ -3219,6 +3227,10 @@ func BuildResolveEnvironmentRequest_FieldPath(fp gotenobject.RawFieldPath) (Reso
 			return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorAddress}, nil
 		case "wlans":
 			return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorWlans}, nil
+		case "device_reported_coordinates", "deviceReportedCoordinates", "device-reported-coordinates":
+			return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates}, nil
+		case "device_reported_accuracy", "deviceReportedAccuracy", "device-reported-accuracy":
+			return &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -3283,6 +3295,12 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) Get(source *ResolveEnviro
 			for _, value := range source.GetWlans() {
 				values = append(values, value)
 			}
+		case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+			if source.DeviceReportedCoordinates != nil {
+				values = append(values, source.DeviceReportedCoordinates)
+			}
+		case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+			values = append(values, source.DeviceReportedAccuracy)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 		}
@@ -3305,6 +3323,11 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) GetSingle(source *Resolve
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		res := source.GetWlans()
 		return res, res != nil
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		res := source.GetDeviceReportedCoordinates()
+		return res, res != nil
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		return source.GetDeviceReportedAccuracy(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 	}
@@ -3323,6 +3346,10 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) GetDefault() interface{} 
 		return ""
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		return ([]*common.WLAN)(nil)
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		return (*latlng.LatLng)(nil)
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		return float64(0)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 	}
@@ -3337,6 +3364,10 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) ClearValue(item *ResolveE
 			item.Address = ""
 		case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 			item.Wlans = nil
+		case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+			item.DeviceReportedCoordinates = nil
+		case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+			item.DeviceReportedAccuracy = float64(0)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 		}
@@ -3350,7 +3381,9 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) ClearValueRaw(item proto.
 // IsLeaf - whether field path is holds simple value
 func (fp *ResolveEnvironmentRequest_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ResolveEnvironmentRequest_FieldPathSelectorName ||
-		fp.selector == ResolveEnvironmentRequest_FieldPathSelectorAddress
+		fp.selector == ResolveEnvironmentRequest_FieldPathSelectorAddress ||
+		fp.selector == ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates ||
+		fp.selector == ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy
 }
 
 func (fp *ResolveEnvironmentRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -3365,6 +3398,10 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) WithIValue(value interfac
 		return &ResolveEnvironmentRequest_FieldTerminalPathValue{ResolveEnvironmentRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		return &ResolveEnvironmentRequest_FieldTerminalPathValue{ResolveEnvironmentRequest_FieldTerminalPath: *fp, value: value.([]*common.WLAN)}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		return &ResolveEnvironmentRequest_FieldTerminalPathValue{ResolveEnvironmentRequest_FieldTerminalPath: *fp, value: value.(*latlng.LatLng)}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		return &ResolveEnvironmentRequest_FieldTerminalPathValue{ResolveEnvironmentRequest_FieldTerminalPath: *fp, value: value.(float64)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 	}
@@ -3383,6 +3420,10 @@ func (fp *ResolveEnvironmentRequest_FieldTerminalPath) WithIArrayOfValues(values
 		return &ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues{ResolveEnvironmentRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		return &ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues{ResolveEnvironmentRequest_FieldTerminalPath: *fp, values: values.([][]*common.WLAN)}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		return &ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues{ResolveEnvironmentRequest_FieldTerminalPath: *fp, values: values.([]*latlng.LatLng)}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		return &ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues{ResolveEnvironmentRequest_FieldTerminalPath: *fp, values: values.([]float64)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fp.selector))
 	}
@@ -3573,6 +3614,14 @@ func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) AsWlansValue() ([]*
 	res, ok := fpv.value.([]*common.WLAN)
 	return res, ok
 }
+func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) AsDeviceReportedCoordinatesValue() (*latlng.LatLng, bool) {
+	res, ok := fpv.value.(*latlng.LatLng)
+	return res, ok
+}
+func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) AsDeviceReportedAccuracyValue() (float64, bool) {
+	res, ok := fpv.value.(float64)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ResolveEnvironmentRequest
 func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) SetTo(target **ResolveEnvironmentRequest) {
@@ -3586,6 +3635,10 @@ func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) SetTo(target **Reso
 		(*target).Address = fpv.value.(string)
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		(*target).Wlans = fpv.value.([]*common.WLAN)
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		(*target).DeviceReportedCoordinates = fpv.value.(*latlng.LatLng)
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		(*target).DeviceReportedAccuracy = fpv.value.(float64)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fpv.selector))
 	}
@@ -3630,6 +3683,18 @@ func (fpv *ResolveEnvironmentRequest_FieldTerminalPathValue) CompareWith(source 
 		}
 	case ResolveEnvironmentRequest_FieldPathSelectorWlans:
 		return 0, false
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		return 0, false
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		leftValue := fpv.value.(float64)
+		rightValue := source.GetDeviceReportedAccuracy()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ResolveEnvironmentRequest: %d", fpv.selector))
 	}
@@ -3824,6 +3889,14 @@ func (fpaov *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues) GetRawVal
 		for _, v := range fpaov.values.([][]*common.WLAN) {
 			values = append(values, v)
 		}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates:
+		for _, v := range fpaov.values.([]*latlng.LatLng) {
+			values = append(values, v)
+		}
+	case ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy:
+		for _, v := range fpaov.values.([]float64) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -3837,6 +3910,14 @@ func (fpaov *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues) AsAddress
 }
 func (fpaov *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues) AsWlansArrayOfValues() ([][]*common.WLAN, bool) {
 	res, ok := fpaov.values.([][]*common.WLAN)
+	return res, ok
+}
+func (fpaov *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues) AsDeviceReportedCoordinatesArrayOfValues() ([]*latlng.LatLng, bool) {
+	res, ok := fpaov.values.([]*latlng.LatLng)
+	return res, ok
+}
+func (fpaov *ResolveEnvironmentRequest_FieldTerminalPathArrayOfValues) AsDeviceReportedAccuracyArrayOfValues() ([]float64, bool) {
+	res, ok := fpaov.values.([]float64)
 	return res, ok
 }
 

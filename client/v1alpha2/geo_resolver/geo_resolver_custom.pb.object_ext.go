@@ -18,6 +18,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
 
 // ensure the imports are used
@@ -33,6 +34,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &latlng.LatLng{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
@@ -546,6 +548,12 @@ func (o *ResolveEnvironmentRequest) MakeDiffFieldMask(other *ResolveEnvironmentR
 	} else {
 		res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorWlans})
 	}
+	if !proto.Equal(o.GetDeviceReportedCoordinates(), other.GetDeviceReportedCoordinates()) {
+		res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedCoordinates})
+	}
+	if o.GetDeviceReportedAccuracy() != other.GetDeviceReportedAccuracy() {
+		res.Paths = append(res.Paths, &ResolveEnvironmentRequest_FieldTerminalPath{selector: ResolveEnvironmentRequest_FieldPathSelectorDeviceReportedAccuracy})
+	}
 	return res
 }
 
@@ -573,6 +581,8 @@ func (o *ResolveEnvironmentRequest) Clone() *ResolveEnvironmentRequest {
 	for i, sourceValue := range o.Wlans {
 		result.Wlans[i] = sourceValue.Clone()
 	}
+	result.DeviceReportedCoordinates = proto.Clone(o.DeviceReportedCoordinates).(*latlng.LatLng)
+	result.DeviceReportedAccuracy = o.DeviceReportedAccuracy
 	return result
 }
 
@@ -612,6 +622,13 @@ func (o *ResolveEnvironmentRequest) Merge(source *ResolveEnvironmentRequest) {
 		}
 	}
 
+	if source.GetDeviceReportedCoordinates() != nil {
+		if o.DeviceReportedCoordinates == nil {
+			o.DeviceReportedCoordinates = new(latlng.LatLng)
+		}
+		proto.Merge(o.DeviceReportedCoordinates, source.GetDeviceReportedCoordinates())
+	}
+	o.DeviceReportedAccuracy = source.GetDeviceReportedAccuracy()
 }
 
 func (o *ResolveEnvironmentRequest) MergeRaw(source gotenobject.GotenObjectExt) {

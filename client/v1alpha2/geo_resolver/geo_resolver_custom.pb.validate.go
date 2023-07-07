@@ -25,6 +25,7 @@ import (
 import (
 	common "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/common"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
+	latlng "google.golang.org/genproto/googleapis/type/latlng"
 )
 
 var (
@@ -44,6 +45,7 @@ var (
 
 // make sure we're using proto imports
 var (
+	_ = &latlng.LatLng{}
 	_ = &common.SoftwareVersion{}
 	_ = &probe.Probe{}
 )
@@ -145,6 +147,11 @@ func (obj *ResolveEnvironmentRequest) GotenValidate() error {
 			if err := subobj.GotenValidate(); err != nil {
 				return gotenvalidate.NewValidationError("ResolveEnvironmentRequest", "wlans", obj.Wlans[idx], "nested object validation failed", err)
 			}
+		}
+	}
+	if subobj, ok := interface{}(obj.DeviceReportedCoordinates).(gotenvalidate.Validator); ok {
+		if err := subobj.GotenValidate(); err != nil {
+			return gotenvalidate.NewValidationError("ResolveEnvironmentRequest", "deviceReportedCoordinates", obj.DeviceReportedCoordinates, "nested object validation failed", err)
 		}
 	}
 	if cvobj, ok := interface{}(obj).(gotenvalidate.CustomValidator); ok {
