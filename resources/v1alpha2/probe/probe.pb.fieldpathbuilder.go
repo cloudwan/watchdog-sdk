@@ -3866,6 +3866,10 @@ func (ProbePathSelectorStatusActivationLastInvitation) Sender() ProbePathSelecto
 	return ProbePathSelectorStatusActivationLastInvitationSender{}
 }
 
+func (ProbePathSelectorStatusActivationLastInvitation) SendFailureMessage() ProbePathSelectorStatusActivationLastInvitationSendFailureMessage {
+	return ProbePathSelectorStatusActivationLastInvitationSendFailureMessage{}
+}
+
 type ProbePathSelectorStatusActivationLastInvitationSentDate struct{}
 
 func (ProbePathSelectorStatusActivationLastInvitationSentDate) FieldPath() *Probe_FieldSubPath {
@@ -3897,6 +3901,23 @@ func (s ProbePathSelectorStatusActivationLastInvitationSender) WithValue(value s
 }
 
 func (s ProbePathSelectorStatusActivationLastInvitationSender) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
+}
+
+type ProbePathSelectorStatusActivationLastInvitationSendFailureMessage struct{}
+
+func (ProbePathSelectorStatusActivationLastInvitationSendFailureMessage) FieldPath() *Probe_FieldSubPath {
+	return &Probe_FieldSubPath{
+		selector: Probe_FieldPathSelectorStatus,
+		subPath:  NewProbeStatusFieldPathBuilder().Activation().LastInvitation().SendFailureMessage().FieldPath(),
+	}
+}
+
+func (s ProbePathSelectorStatusActivationLastInvitationSendFailureMessage) WithValue(value string) *Probe_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*Probe_FieldSubPathValue)
+}
+
+func (s ProbePathSelectorStatusActivationLastInvitationSendFailureMessage) WithArrayOfValues(values []string) *Probe_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*Probe_FieldSubPathArrayOfValues)
 }
 
@@ -7514,6 +7535,10 @@ func (Probe_StatusPathSelectorActivationLastInvitation) Sender() Probe_StatusPat
 	return Probe_StatusPathSelectorActivationLastInvitationSender{}
 }
 
+func (Probe_StatusPathSelectorActivationLastInvitation) SendFailureMessage() Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage {
+	return Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage{}
+}
+
 type Probe_StatusPathSelectorActivationLastInvitationSentDate struct{}
 
 func (Probe_StatusPathSelectorActivationLastInvitationSentDate) FieldPath() *ProbeStatus_FieldSubPath {
@@ -7545,6 +7570,23 @@ func (s Probe_StatusPathSelectorActivationLastInvitationSender) WithValue(value 
 }
 
 func (s Probe_StatusPathSelectorActivationLastInvitationSender) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
+}
+
+type Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage struct{}
+
+func (Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage) FieldPath() *ProbeStatus_FieldSubPath {
+	return &ProbeStatus_FieldSubPath{
+		selector: ProbeStatus_FieldPathSelectorActivation,
+		subPath:  NewProbeStatusActivationStateFieldPathBuilder().LastInvitation().SendFailureMessage().FieldPath(),
+	}
+}
+
+func (s Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage) WithValue(value string) *ProbeStatus_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatus_FieldSubPathValue)
+}
+
+func (s Probe_StatusPathSelectorActivationLastInvitationSendFailureMessage) WithArrayOfValues(values []string) *ProbeStatus_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatus_FieldSubPathArrayOfValues)
 }
 
@@ -8839,6 +8881,10 @@ func (Probe_Status_ActivationStatePathSelectorLastInvitation) Sender() Probe_Sta
 	return Probe_Status_ActivationStatePathSelectorLastInvitationSender{}
 }
 
+func (Probe_Status_ActivationStatePathSelectorLastInvitation) SendFailureMessage() Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage {
+	return Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage{}
+}
+
 type Probe_Status_ActivationStatePathSelectorLastInvitationSentDate struct{}
 
 func (Probe_Status_ActivationStatePathSelectorLastInvitationSentDate) FieldPath() *ProbeStatusActivationState_FieldSubPath {
@@ -8870,6 +8916,23 @@ func (s Probe_Status_ActivationStatePathSelectorLastInvitationSender) WithValue(
 }
 
 func (s Probe_Status_ActivationStatePathSelectorLastInvitationSender) WithArrayOfValues(values []string) *ProbeStatusActivationState_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusActivationState_FieldSubPathArrayOfValues)
+}
+
+type Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage struct{}
+
+func (Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage) FieldPath() *ProbeStatusActivationState_FieldSubPath {
+	return &ProbeStatusActivationState_FieldSubPath{
+		selector: ProbeStatusActivationState_FieldPathSelectorLastInvitation,
+		subPath:  NewProbeStatusActivationStateInvitationStateFieldPathBuilder().SendFailureMessage().FieldPath(),
+	}
+}
+
+func (s Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage) WithValue(value string) *ProbeStatusActivationState_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusActivationState_FieldSubPathValue)
+}
+
+func (s Probe_Status_ActivationStatePathSelectorLastInvitationSendFailureMessage) WithArrayOfValues(values []string) *ProbeStatusActivationState_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusActivationState_FieldSubPathArrayOfValues)
 }
 
@@ -9253,6 +9316,9 @@ func (ProbeStatusActivationStateInvitationStateFieldPathBuilder) SentDate() Prob
 func (ProbeStatusActivationStateInvitationStateFieldPathBuilder) Sender() Probe_Status_ActivationState_InvitationStatePathSelectorSender {
 	return Probe_Status_ActivationState_InvitationStatePathSelectorSender{}
 }
+func (ProbeStatusActivationStateInvitationStateFieldPathBuilder) SendFailureMessage() Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage {
+	return Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage{}
+}
 
 type Probe_Status_ActivationState_InvitationStatePathSelectorSentDate struct{}
 
@@ -9279,5 +9345,19 @@ func (s Probe_Status_ActivationState_InvitationStatePathSelectorSender) WithValu
 }
 
 func (s Probe_Status_ActivationState_InvitationStatePathSelectorSender) WithArrayOfValues(values []string) *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage struct{}
+
+func (Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage) FieldPath() *ProbeStatusActivationStateInvitationState_FieldTerminalPath {
+	return &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage}
+}
+
+func (s Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage) WithValue(value string) *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusActivationStateInvitationState_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_ActivationState_InvitationStatePathSelectorSendFailureMessage) WithArrayOfValues(values []string) *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues)
 }

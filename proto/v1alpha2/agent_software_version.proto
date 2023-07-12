@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package ntt.watchdog.v1alpha2;
+
+import "edgelq-sdk/common/types/meta.proto";
+import "google/api/resource.proto";
+
+option go_package = "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/agent_software_version;agent_software_version";
+option java_multiple_files = true;
+option java_outer_classname = "AgentSoftwareVersionProto";
+option java_package = "com.ntt.watchdog.pb.v1alpha2";
+
+// AgentSoftwareVersion Resource
+message AgentSoftwareVersion {
+  option (google.api.resource) = {
+    type : "watchdog.edgelq.com/AgentSoftwareVersion"
+    pattern : "agentSoftwareVersions/{agent_software_version}"
+  };
+
+  // Name of AgentSoftwareVersion
+  string name = 1;
+
+  // Linux agent version
+  string linux = 2;
+
+  // Windows agent version
+  string windows = 3;
+
+  // Mac agent version
+  string mac = 4;
+
+  // Android agent version
+  string android = 5;
+
+  // Metadata
+  ntt.types.Meta metadata = 6;
+}

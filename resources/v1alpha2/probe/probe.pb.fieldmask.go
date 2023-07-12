@@ -5169,6 +5169,7 @@ func FullProbe_Status_ActivationState_InvitationState_FieldMask() *Probe_Status_
 	res := &Probe_Status_ActivationState_InvitationState_FieldMask{}
 	res.Paths = append(res.Paths, &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate})
 	res.Paths = append(res.Paths, &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSender})
+	res.Paths = append(res.Paths, &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage})
 	return res
 }
 
@@ -5212,7 +5213,7 @@ func (fieldMask *Probe_Status_ActivationState_InvitationState_FieldMask) IsFull(
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 2)
+	presentSelectors := make([]bool, 3)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatusActivationStateInvitationState_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -5242,7 +5243,7 @@ func (fieldMask *Probe_Status_ActivationState_InvitationState_FieldMask) Reset()
 
 func (fieldMask *Probe_Status_ActivationState_InvitationState_FieldMask) Subtract(other *Probe_Status_ActivationState_InvitationState_FieldMask) *Probe_Status_ActivationState_InvitationState_FieldMask {
 	result := &Probe_Status_ActivationState_InvitationState_FieldMask{}
-	removedSelectors := make([]bool, 2)
+	removedSelectors := make([]bool, 3)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -5400,6 +5401,8 @@ func (fieldMask *Probe_Status_ActivationState_InvitationState_FieldMask) Project
 				result.SentDate = source.SentDate
 			case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 				result.Sender = source.Sender
+			case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+				result.SendFailureMessage = source.SendFailureMessage
 			}
 		}
 	}

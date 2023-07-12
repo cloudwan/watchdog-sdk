@@ -1888,6 +1888,10 @@ func (RegisterProbeRequestPathSelectorStatusActivationLastInvitation) Sender() R
 	return RegisterProbeRequestPathSelectorStatusActivationLastInvitationSender{}
 }
 
+func (RegisterProbeRequestPathSelectorStatusActivationLastInvitation) SendFailureMessage() RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage {
+	return RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage{}
+}
+
 type RegisterProbeRequestPathSelectorStatusActivationLastInvitationSentDate struct{}
 
 func (RegisterProbeRequestPathSelectorStatusActivationLastInvitationSentDate) FieldPath() *RegisterProbeRequest_FieldSubPath {
@@ -1919,6 +1923,23 @@ func (s RegisterProbeRequestPathSelectorStatusActivationLastInvitationSender) Wi
 }
 
 func (s RegisterProbeRequestPathSelectorStatusActivationLastInvitationSender) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
+}
+
+type RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage struct{}
+
+func (RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage) FieldPath() *RegisterProbeRequest_FieldSubPath {
+	return &RegisterProbeRequest_FieldSubPath{
+		selector: RegisterProbeRequest_FieldPathSelectorStatus,
+		subPath:  probe.NewProbeStatusFieldPathBuilder().Activation().LastInvitation().SendFailureMessage().FieldPath(),
+	}
+}
+
+func (s RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage) WithValue(value string) *RegisterProbeRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*RegisterProbeRequest_FieldSubPathValue)
+}
+
+func (s RegisterProbeRequestPathSelectorStatusActivationLastInvitationSendFailureMessage) WithArrayOfValues(values []string) *RegisterProbeRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RegisterProbeRequest_FieldSubPathArrayOfValues)
 }
 

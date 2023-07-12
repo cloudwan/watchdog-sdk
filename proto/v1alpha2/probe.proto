@@ -293,6 +293,9 @@ message Probe {
 
         // sender TODO: make it a formal reference
         string sender = 2;
+
+        // details of error on send invitation
+        string send_failure_message = 3;
       }
 
       enum Status {

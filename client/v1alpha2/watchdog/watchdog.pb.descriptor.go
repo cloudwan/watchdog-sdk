@@ -14,6 +14,7 @@ import (
 	activation_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation"
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
 	agent_log_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_log"
+	agent_software_version_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_software_version"
 	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
@@ -38,6 +39,7 @@ import (
 	speed_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/speed_test"
 	tag_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/tag"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
+	agent_software_version "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/agent_software_version"
 	internet_quality_rating "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/internet_quality_rating"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
@@ -62,6 +64,8 @@ var (
 var (
 	_ = &admin_area.BBox{}
 	_ = &admin_area_client.GetAdminAreaRequest{}
+	_ = &agent_software_version.AgentSoftwareVersion{}
+	_ = &agent_software_version_client.GetAgentSoftwareVersionRequest{}
 	_ = &internet_quality_rating.InternetQualityRating{}
 	_ = &internet_quality_rating_client.GetInternetQualityRatingRequest{}
 	_ = &probe.Probe{}
@@ -115,6 +119,7 @@ func (d *WatchdogDescriptor) GetNextVersion() string {
 func (d *WatchdogDescriptor) AllResourceDescriptors() []gotenresource.Descriptor {
 	return []gotenresource.Descriptor{
 		admin_area.GetDescriptor(),
+		agent_software_version.GetDescriptor(),
 		internet_quality_rating.GetDescriptor(),
 		probe.GetDescriptor(),
 		probe_group.GetDescriptor(),
@@ -135,6 +140,7 @@ func (d *WatchdogDescriptor) AllApiDescriptors() []gotenclient.ApiDescriptor {
 		activation_client.GetActivationServiceDescriptor(),
 		admin_area_client.GetAdminAreaServiceDescriptor(),
 		agent_log_client.GetAgentLogServiceDescriptor(),
+		agent_software_version_client.GetAgentSoftwareVersionServiceDescriptor(),
 		dns_query_test_client.GetDNSQueryTestServiceDescriptor(),
 		geo_resolver_client.GetGeoResolverServiceDescriptor(),
 		http_metrics_client.GetHTTPMetricsServiceDescriptor(),

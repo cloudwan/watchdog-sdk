@@ -13,6 +13,7 @@ import (
 	activation_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/activation"
 	admin_area_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/admin_area"
 	agent_log_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_log"
+	agent_software_version_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/agent_software_version"
 	dns_query_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/dns_query_test"
 	geo_resolver_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/geo_resolver"
 	hop_monitor_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/hop_monitor"
@@ -37,6 +38,7 @@ import (
 	speed_test_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/speed_test"
 	tag_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/tag"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
+	agent_software_version "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/agent_software_version"
 	internet_quality_rating "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/internet_quality_rating"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
@@ -60,6 +62,8 @@ var (
 var (
 	_ = &admin_area.BBox{}
 	_ = &admin_area_client.GetAdminAreaRequest{}
+	_ = &agent_software_version.AgentSoftwareVersion{}
+	_ = &agent_software_version_client.GetAgentSoftwareVersionRequest{}
 	_ = &internet_quality_rating.InternetQualityRating{}
 	_ = &internet_quality_rating_client.GetInternetQualityRatingRequest{}
 	_ = &probe.Probe{}
@@ -90,6 +94,7 @@ type WatchdogClient interface {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
 	agent_log_client.AgentLogServiceClient
+	agent_software_version_client.AgentSoftwareVersionServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
@@ -119,6 +124,7 @@ type watchdogClient struct {
 	activation_client.ActivationServiceClient
 	admin_area_client.AdminAreaServiceClient
 	agent_log_client.AgentLogServiceClient
+	agent_software_version_client.AgentSoftwareVersionServiceClient
 	dns_query_test_client.DNSQueryTestServiceClient
 	geo_resolver_client.GeoResolverServiceClient
 	http_metrics_client.HTTPMetricsServiceClient
@@ -149,6 +155,7 @@ func NewWatchdogClient(cc grpc.ClientConnInterface) WatchdogClient {
 		ActivationServiceClient:            activation_client.NewActivationServiceClient(cc),
 		AdminAreaServiceClient:             admin_area_client.NewAdminAreaServiceClient(cc),
 		AgentLogServiceClient:              agent_log_client.NewAgentLogServiceClient(cc),
+		AgentSoftwareVersionServiceClient:  agent_software_version_client.NewAgentSoftwareVersionServiceClient(cc),
 		DNSQueryTestServiceClient:          dns_query_test_client.NewDNSQueryTestServiceClient(cc),
 		GeoResolverServiceClient:           geo_resolver_client.NewGeoResolverServiceClient(cc),
 		HTTPMetricsServiceClient:           http_metrics_client.NewHTTPMetricsServiceClient(cc),

@@ -1891,6 +1891,9 @@ func (o *Probe_Status_ActivationState_InvitationState) MakeDiffFieldMask(other *
 	if o.GetSender() != other.GetSender() {
 		res.Paths = append(res.Paths, &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSender})
 	}
+	if o.GetSendFailureMessage() != other.GetSendFailureMessage() {
+		res.Paths = append(res.Paths, &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage})
+	}
 	return res
 }
 
@@ -1905,6 +1908,7 @@ func (o *Probe_Status_ActivationState_InvitationState) Clone() *Probe_Status_Act
 	result := &Probe_Status_ActivationState_InvitationState{}
 	result.SentDate = proto.Clone(o.SentDate).(*timestamp.Timestamp)
 	result.Sender = o.Sender
+	result.SendFailureMessage = o.SendFailureMessage
 	return result
 }
 
@@ -1920,6 +1924,7 @@ func (o *Probe_Status_ActivationState_InvitationState) Merge(source *Probe_Statu
 		proto.Merge(o.SentDate, source.GetSentDate())
 	}
 	o.Sender = source.GetSender()
+	o.SendFailureMessage = source.GetSendFailureMessage()
 }
 
 func (o *Probe_Status_ActivationState_InvitationState) MergeRaw(source gotenobject.GotenObjectExt) {

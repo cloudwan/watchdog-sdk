@@ -8,6 +8,7 @@ import (
 	gotenresource "github.com/cloudwan/goten-sdk/runtime/resource"
 
 	admin_area_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/admin_area"
+	agent_software_version_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/agent_software_version"
 	internet_quality_rating_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/internet_quality_rating"
 	probe_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probe"
 	probe_group_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/probe_group"
@@ -22,6 +23,7 @@ import (
 	tag_access "github.com/cloudwan/watchdog-sdk/access/v1alpha2/tag"
 	watchdog_client "github.com/cloudwan/watchdog-sdk/client/v1alpha2/watchdog"
 	admin_area "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/admin_area"
+	agent_software_version "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/agent_software_version"
 	internet_quality_rating "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/internet_quality_rating"
 	probe "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe"
 	probe_group "github.com/cloudwan/watchdog-sdk/resources/v1alpha2/probe_group"
@@ -40,6 +42,7 @@ type WatchdogApiAccess interface {
 	gotenresource.Access
 
 	admin_area.AdminAreaAccess
+	agent_software_version.AgentSoftwareVersionAccess
 	internet_quality_rating.InternetQualityRatingAccess
 	probe.ProbeAccess
 	probe_group.ProbeGroupAccess
@@ -58,6 +61,7 @@ type apiWatchdogAccess struct {
 	gotenresource.Access
 
 	admin_area.AdminAreaAccess
+	agent_software_version.AgentSoftwareVersionAccess
 	internet_quality_rating.InternetQualityRatingAccess
 	probe.ProbeAccess
 	probe_group.ProbeGroupAccess
@@ -75,6 +79,7 @@ type apiWatchdogAccess struct {
 func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 
 	adminAreaAccess := admin_area_access.NewApiAdminAreaAccess(client)
+	agentSoftwareVersionAccess := agent_software_version_access.NewApiAgentSoftwareVersionAccess(client)
 	internetQualityRatingAccess := internet_quality_rating_access.NewApiInternetQualityRatingAccess(client)
 	probeAccess := probe_access.NewApiProbeAccess(client)
 	probeGroupAccess := probe_group_access.NewApiProbeGroupAccess(client)
@@ -92,6 +97,7 @@ func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 		Access: gotenresource.NewCompositeAccess(
 
 			admin_area.AsAnyCastAccess(adminAreaAccess),
+			agent_software_version.AsAnyCastAccess(agentSoftwareVersionAccess),
 			internet_quality_rating.AsAnyCastAccess(internetQualityRatingAccess),
 			probe.AsAnyCastAccess(probeAccess),
 			probe_group.AsAnyCastAccess(probeGroupAccess),
@@ -107,6 +113,7 @@ func NewApiAccess(client watchdog_client.WatchdogClient) WatchdogApiAccess {
 		),
 
 		AdminAreaAccess:             adminAreaAccess,
+		AgentSoftwareVersionAccess:  agentSoftwareVersionAccess,
 		InternetQualityRatingAccess: internetQualityRatingAccess,
 		ProbeAccess:                 probeAccess,
 		ProbeGroupAccess:            probeGroupAccess,

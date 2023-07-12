@@ -13,6 +13,8 @@ import "watchdog-sdk/proto/v1alpha2/admin_area.proto";
 import "watchdog-sdk/proto/v1alpha2/admin_area_service.proto";
 import "watchdog-sdk/proto/v1alpha2/agent_log_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/agent_log_service.proto";
+import "watchdog-sdk/proto/v1alpha2/agent_software_version.proto";
+import "watchdog-sdk/proto/v1alpha2/agent_software_version_service.proto";
 import "watchdog-sdk/proto/v1alpha2/dns_query_test_custom.proto";
 import "watchdog-sdk/proto/v1alpha2/dns_query_test_service.proto";
 import "watchdog-sdk/proto/v1alpha2/geo_resolver_custom.proto";

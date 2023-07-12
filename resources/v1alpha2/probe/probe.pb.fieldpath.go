@@ -11940,8 +11940,9 @@ type ProbeStatusActivationStateInvitationState_FieldPath interface {
 type ProbeStatusActivationStateInvitationState_FieldPathSelector int32
 
 const (
-	ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate ProbeStatusActivationStateInvitationState_FieldPathSelector = 0
-	ProbeStatusActivationStateInvitationState_FieldPathSelectorSender   ProbeStatusActivationStateInvitationState_FieldPathSelector = 1
+	ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate           ProbeStatusActivationStateInvitationState_FieldPathSelector = 0
+	ProbeStatusActivationStateInvitationState_FieldPathSelectorSender             ProbeStatusActivationStateInvitationState_FieldPathSelector = 1
+	ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage ProbeStatusActivationStateInvitationState_FieldPathSelector = 2
 )
 
 func (s ProbeStatusActivationStateInvitationState_FieldPathSelector) String() string {
@@ -11950,6 +11951,8 @@ func (s ProbeStatusActivationStateInvitationState_FieldPathSelector) String() st
 		return "sent_date"
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 		return "sender"
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		return "send_failure_message"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", s))
 	}
@@ -11965,6 +11968,8 @@ func BuildProbeStatusActivationStateInvitationState_FieldPath(fp gotenobject.Raw
 			return &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate}, nil
 		case "sender":
 			return &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSender}, nil
+		case "send_failure_message", "sendFailureMessage", "send-failure-message":
+			return &ProbeStatusActivationStateInvitationState_FieldTerminalPath{selector: ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Status_ActivationState_InvitationState", fp)
@@ -12016,6 +12021,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) Get(sourc
 			}
 		case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 			values = append(values, source.Sender)
+		case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+			values = append(values, source.SendFailureMessage)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
 		}
@@ -12035,6 +12042,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) GetSingle
 		return res, res != nil
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 		return source.GetSender(), source != nil
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		return source.GetSendFailureMessage(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
 	}
@@ -12051,6 +12060,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) GetDefaul
 		return (*timestamp.Timestamp)(nil)
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 		return ""
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
 	}
@@ -12063,6 +12074,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) ClearValu
 			item.SentDate = nil
 		case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 			item.Sender = ""
+		case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+			item.SendFailureMessage = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
 		}
@@ -12076,7 +12089,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) ClearValu
 // IsLeaf - whether field path is holds simple value
 func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate ||
-		fp.selector == ProbeStatusActivationStateInvitationState_FieldPathSelectorSender
+		fp.selector == ProbeStatusActivationStateInvitationState_FieldPathSelectorSender ||
+		fp.selector == ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage
 }
 
 func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -12088,6 +12102,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) WithIValu
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate:
 		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathValue{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
+		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathValue{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, value: value.(string)}
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
 		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathValue{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
@@ -12104,6 +12120,8 @@ func (fp *ProbeStatusActivationStateInvitationState_FieldTerminalPath) WithIArra
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSentDate:
 		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
+		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, values: values.([]string)}
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
 		return &ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues{ProbeStatusActivationStateInvitationState_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fp.selector))
@@ -12173,6 +12191,10 @@ func (fpv *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue) AsS
 	res, ok := fpv.value.(string)
 	return res, ok
 }
+func (fpv *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue) AsSendFailureMessageValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object InvitationState
 func (fpv *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue) SetTo(target **Probe_Status_ActivationState_InvitationState) {
@@ -12184,6 +12206,8 @@ func (fpv *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue) Set
 		(*target).SentDate = fpv.value.(*timestamp.Timestamp)
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 		(*target).Sender = fpv.value.(string)
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		(*target).SendFailureMessage = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_ActivationState_InvitationState: %d", fpv.selector))
 	}
@@ -12219,6 +12243,16 @@ func (fpv *ProbeStatusActivationStateInvitationState_FieldTerminalPathValue) Com
 	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSender:
 		leftValue := fpv.value.(string)
 		rightValue := source.GetSender()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSendFailureMessage()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -12342,6 +12376,10 @@ func (fpaov *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfV
 		for _, v := range fpaov.values.([]string) {
 			values = append(values, v)
 		}
+	case ProbeStatusActivationStateInvitationState_FieldPathSelectorSendFailureMessage:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -12350,6 +12388,10 @@ func (fpaov *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfV
 	return res, ok
 }
 func (fpaov *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues) AsSenderArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ProbeStatusActivationStateInvitationState_FieldTerminalPathArrayOfValues) AsSendFailureMessageArrayOfValues() ([]string, bool) {
 	res, ok := fpaov.values.([]string)
 	return res, ok
 }

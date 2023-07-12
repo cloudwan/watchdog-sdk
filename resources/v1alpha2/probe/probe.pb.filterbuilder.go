@@ -11597,6 +11597,10 @@ func (b *filterCndBuilderStatusActivationLastInvitation) Sender() *filterCndBuil
 	return &filterCndBuilderStatusActivationLastInvitationSender{builder: b.builder}
 }
 
+func (b *filterCndBuilderStatusActivationLastInvitation) SendFailureMessage() *filterCndBuilderStatusActivationLastInvitationSendFailureMessage {
+	return &filterCndBuilderStatusActivationLastInvitationSendFailureMessage{builder: b.builder}
+}
+
 type filterCndBuilderStatusActivationLastInvitationSentDate struct {
 	builder *FilterBuilder
 }
@@ -11712,6 +11716,65 @@ func (b *filterCndBuilderStatusActivationLastInvitationSender) compare(op gotenf
 	return b.builder.addCond(&FilterConditionCompare{
 		Operator:             op,
 		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().Sender().WithValue(value),
+	})
+}
+
+type filterCndBuilderStatusActivationLastInvitationSendFailureMessage struct {
+	builder *FilterBuilder
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Eq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Eq, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Neq(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Neq, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Gt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gt, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Gte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Gte, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Lt(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lt, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) Lte(value string) *FilterBuilder {
+	return b.compare(gotenfilter.Lte, value)
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) In(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().SendFailureMessage().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) NotIn(values []string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionNotIn{
+		Probe_FieldPathArrayOfValues: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().SendFailureMessage().WithArrayOfValues(values),
+	})
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) IsNull() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNull{
+		FieldPath: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().SendFailureMessage().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) IsNan() *FilterBuilder {
+	return b.builder.addCond(&FilterConditionIsNaN{
+		FieldPath: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().SendFailureMessage().FieldPath(),
+	})
+}
+
+func (b *filterCndBuilderStatusActivationLastInvitationSendFailureMessage) compare(op gotenfilter.CompareOperator, value string) *FilterBuilder {
+	return b.builder.addCond(&FilterConditionCompare{
+		Operator:             op,
+		Probe_FieldPathValue: NewProbeFieldPathBuilder().Status().Activation().LastInvitation().SendFailureMessage().WithValue(value),
 	})
 }
 
