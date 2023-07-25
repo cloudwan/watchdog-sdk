@@ -40,6 +40,11 @@ message ReportHopsRequest {
   string trace_reason_description = 11;
 
   google.protobuf.Timestamp time = 12;
+
+  // Local Interface IP Address
+  string source_ip_address = 13;
+
+  string source_interface_name = 14;
 }
 
 // Response message for method [ReportHops][ntt.watchdog.v1alpha2.ReportHops]
@@ -91,6 +96,11 @@ message HopsReport {
   string target_ip_address = 3;
 
   IpVersion ip_version = 4;
+
+  // Local Interface IP Address
+  string source_ip_address = 8;
+
+  string source_interface_name = 9;
 
   ProbingMode mode = 5;
 

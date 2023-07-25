@@ -547,6 +547,12 @@ func (o *HTTPStat) MakeDiffFieldMask(other *HTTPStat) *HTTPStat_FieldMask {
 	if o.GetTarget().String() != other.GetTarget().String() {
 		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTarget})
 	}
+	if o.GetSourceIpAddress() != other.GetSourceIpAddress() {
+		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceIpAddress})
+	}
+	if o.GetSourceInterfaceName() != other.GetSourceInterfaceName() {
+		res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceInterfaceName})
+	}
 	return res
 }
 
@@ -584,6 +590,8 @@ func (o *HTTPStat) Clone() *HTTPStat {
 			panic(err)
 		}
 	}
+	result.SourceIpAddress = o.SourceIpAddress
+	result.SourceInterfaceName = o.SourceInterfaceName
 	return result
 }
 
@@ -624,6 +632,8 @@ func (o *HTTPStat) Merge(source *HTTPStat) {
 	} else {
 		o.Target = nil
 	}
+	o.SourceIpAddress = source.GetSourceIpAddress()
+	o.SourceInterfaceName = source.GetSourceInterfaceName()
 }
 
 func (o *HTTPStat) MergeRaw(source gotenobject.GotenObjectExt) {

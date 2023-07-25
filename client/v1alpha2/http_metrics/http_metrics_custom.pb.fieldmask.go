@@ -1261,6 +1261,8 @@ func FullHTTPStat_FieldMask() *HTTPStat_FieldMask {
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorError})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTime})
 	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTarget})
+	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceIpAddress})
+	res.Paths = append(res.Paths, &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceInterfaceName})
 	return res
 }
 
@@ -1304,7 +1306,7 @@ func (fieldMask *HTTPStat_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 16)
+	presentSelectors := make([]bool, 18)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*HTTPStat_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1334,7 +1336,7 @@ func (fieldMask *HTTPStat_FieldMask) Reset() {
 
 func (fieldMask *HTTPStat_FieldMask) Subtract(other *HTTPStat_FieldMask) *HTTPStat_FieldMask {
 	result := &HTTPStat_FieldMask{}
-	removedSelectors := make([]bool, 16)
+	removedSelectors := make([]bool, 18)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -1520,6 +1522,10 @@ func (fieldMask *HTTPStat_FieldMask) Project(source *HTTPStat) *HTTPStat {
 				result.Time = source.Time
 			case HTTPStat_FieldPathSelectorTarget:
 				result.Target = source.Target
+			case HTTPStat_FieldPathSelectorSourceIpAddress:
+				result.SourceIpAddress = source.SourceIpAddress
+			case HTTPStat_FieldPathSelectorSourceInterfaceName:
+				result.SourceInterfaceName = source.SourceInterfaceName
 			}
 		}
 	}

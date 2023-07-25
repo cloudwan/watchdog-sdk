@@ -4130,6 +4130,10 @@ func FullProbe_Status_NetworkInterface_FieldMask() *Probe_Status_NetworkInterfac
 	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV4})
 	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV6})
 	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6})
+	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute})
+	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute})
+	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute})
+	res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute})
 	return res
 }
 
@@ -4173,7 +4177,7 @@ func (fieldMask *Probe_Status_NetworkInterface_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 5)
+	presentSelectors := make([]bool, 9)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ProbeStatusNetworkInterface_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -4203,7 +4207,7 @@ func (fieldMask *Probe_Status_NetworkInterface_FieldMask) Reset() {
 
 func (fieldMask *Probe_Status_NetworkInterface_FieldMask) Subtract(other *Probe_Status_NetworkInterface_FieldMask) *Probe_Status_NetworkInterface_FieldMask {
 	result := &Probe_Status_NetworkInterface_FieldMask{}
-	removedSelectors := make([]bool, 5)
+	removedSelectors := make([]bool, 9)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -4367,6 +4371,14 @@ func (fieldMask *Probe_Status_NetworkInterface_FieldMask) Project(source *Probe_
 				result.IpAddressV6 = source.IpAddressV6
 			case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 				result.ExternalIpAddressV6 = source.ExternalIpAddressV6
+			case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+				result.HasV4DefaultRoute = source.HasV4DefaultRoute
+			case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+				result.HasV6DefaultRoute = source.HasV6DefaultRoute
+			case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+				result.HasBestV4DefaultRoute = source.HasBestV4DefaultRoute
+			case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+				result.HasBestV6DefaultRoute = source.HasBestV6DefaultRoute
 			}
 		}
 	}

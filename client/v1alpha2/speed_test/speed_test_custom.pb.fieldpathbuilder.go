@@ -165,6 +165,12 @@ func (RunSpeedTestResponseFieldPathBuilder) ProbingSession() RunSpeedTestRespons
 func (RunSpeedTestResponseFieldPathBuilder) Target() RunSpeedTestResponsePathSelectorTarget {
 	return RunSpeedTestResponsePathSelectorTarget{}
 }
+func (RunSpeedTestResponseFieldPathBuilder) LocalIp() RunSpeedTestResponsePathSelectorLocalIp {
+	return RunSpeedTestResponsePathSelectorLocalIp{}
+}
+func (RunSpeedTestResponseFieldPathBuilder) LocalInterface() RunSpeedTestResponsePathSelectorLocalInterface {
+	return RunSpeedTestResponsePathSelectorLocalInterface{}
+}
 
 type RunSpeedTestResponsePathSelectorDirection struct{}
 
@@ -275,6 +281,34 @@ func (s RunSpeedTestResponsePathSelectorTarget) WithValue(value *probing_target.
 }
 
 func (s RunSpeedTestResponsePathSelectorTarget) WithArrayOfValues(values []*probing_target.Reference) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestResponsePathSelectorLocalIp struct{}
+
+func (RunSpeedTestResponsePathSelectorLocalIp) FieldPath() *RunSpeedTestResponse_FieldTerminalPath {
+	return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalIp}
+}
+
+func (s RunSpeedTestResponsePathSelectorLocalIp) WithValue(value string) *RunSpeedTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestResponsePathSelectorLocalIp) WithArrayOfValues(values []string) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestResponsePathSelectorLocalInterface struct{}
+
+func (RunSpeedTestResponsePathSelectorLocalInterface) FieldPath() *RunSpeedTestResponse_FieldTerminalPath {
+	return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalInterface}
+}
+
+func (s RunSpeedTestResponsePathSelectorLocalInterface) WithValue(value string) *RunSpeedTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestResponsePathSelectorLocalInterface) WithArrayOfValues(values []string) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
 }
 

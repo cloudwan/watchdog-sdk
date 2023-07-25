@@ -1577,6 +1577,18 @@ func (o *Probe_Status_NetworkInterface) MakeDiffFieldMask(other *Probe_Status_Ne
 	} else {
 		res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6})
 	}
+	if o.GetHasV4DefaultRoute() != other.GetHasV4DefaultRoute() {
+		res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute})
+	}
+	if o.GetHasV6DefaultRoute() != other.GetHasV6DefaultRoute() {
+		res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute})
+	}
+	if o.GetHasBestV4DefaultRoute() != other.GetHasBestV4DefaultRoute() {
+		res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute})
+	}
+	if o.GetHasBestV6DefaultRoute() != other.GetHasBestV6DefaultRoute() {
+		res.Paths = append(res.Paths, &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute})
+	}
 	return res
 }
 
@@ -1606,6 +1618,10 @@ func (o *Probe_Status_NetworkInterface) Clone() *Probe_Status_NetworkInterface {
 	for i, sourceValue := range o.ExternalIpAddressV6 {
 		result.ExternalIpAddressV6[i] = sourceValue
 	}
+	result.HasV4DefaultRoute = o.HasV4DefaultRoute
+	result.HasV6DefaultRoute = o.HasV6DefaultRoute
+	result.HasBestV4DefaultRoute = o.HasBestV4DefaultRoute
+	result.HasBestV6DefaultRoute = o.HasBestV6DefaultRoute
 	return result
 }
 
@@ -1675,6 +1691,10 @@ func (o *Probe_Status_NetworkInterface) Merge(source *Probe_Status_NetworkInterf
 		}
 	}
 
+	o.HasV4DefaultRoute = source.GetHasV4DefaultRoute()
+	o.HasV6DefaultRoute = source.GetHasV6DefaultRoute()
+	o.HasBestV4DefaultRoute = source.GetHasBestV4DefaultRoute()
+	o.HasBestV6DefaultRoute = source.GetHasBestV6DefaultRoute()
 }
 
 func (o *Probe_Status_NetworkInterface) MergeRaw(source gotenobject.GotenObjectExt) {

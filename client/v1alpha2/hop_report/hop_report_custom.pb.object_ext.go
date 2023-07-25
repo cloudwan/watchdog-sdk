@@ -123,6 +123,12 @@ func (o *ReportHopsRequest) MakeDiffFieldMask(other *ReportHopsRequest) *ReportH
 	if !proto.Equal(o.GetTime(), other.GetTime()) {
 		res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTime})
 	}
+	if o.GetSourceIpAddress() != other.GetSourceIpAddress() {
+		res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceIpAddress})
+	}
+	if o.GetSourceInterfaceName() != other.GetSourceInterfaceName() {
+		res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceInterfaceName})
+	}
 	return res
 }
 
@@ -174,6 +180,8 @@ func (o *ReportHopsRequest) Clone() *ReportHopsRequest {
 	result.TraceReason = o.TraceReason
 	result.TraceReasonDescription = o.TraceReasonDescription
 	result.Time = proto.Clone(o.Time).(*timestamp.Timestamp)
+	result.SourceIpAddress = o.SourceIpAddress
+	result.SourceInterfaceName = o.SourceInterfaceName
 	return result
 }
 
@@ -262,6 +270,8 @@ func (o *ReportHopsRequest) Merge(source *ReportHopsRequest) {
 		}
 		proto.Merge(o.Time, source.GetTime())
 	}
+	o.SourceIpAddress = source.GetSourceIpAddress()
+	o.SourceInterfaceName = source.GetSourceInterfaceName()
 }
 
 func (o *ReportHopsRequest) MergeRaw(source gotenobject.GotenObjectExt) {
@@ -594,6 +604,12 @@ func (o *HopsReport) MakeDiffFieldMask(other *HopsReport) *HopsReport_FieldMask 
 	if o.GetIpVersion() != other.GetIpVersion() {
 		res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorIpVersion})
 	}
+	if o.GetSourceIpAddress() != other.GetSourceIpAddress() {
+		res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceIpAddress})
+	}
+	if o.GetSourceInterfaceName() != other.GetSourceInterfaceName() {
+		res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceInterfaceName})
+	}
 	if o.GetMode() != other.GetMode() {
 		res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorMode})
 	}
@@ -646,6 +662,8 @@ func (o *HopsReport) Clone() *HopsReport {
 	}
 	result.TargetIpAddress = o.TargetIpAddress
 	result.IpVersion = o.IpVersion
+	result.SourceIpAddress = o.SourceIpAddress
+	result.SourceInterfaceName = o.SourceInterfaceName
 	result.Mode = o.Mode
 	result.TraceType = o.TraceType
 	result.PathStats = make([]*PathStats, len(o.PathStats))
@@ -686,6 +704,8 @@ func (o *HopsReport) Merge(source *HopsReport) {
 	}
 	o.TargetIpAddress = source.GetTargetIpAddress()
 	o.IpVersion = source.GetIpVersion()
+	o.SourceIpAddress = source.GetSourceIpAddress()
+	o.SourceInterfaceName = source.GetSourceInterfaceName()
 	o.Mode = source.GetMode()
 	o.TraceType = source.GetTraceType()
 	for _, sourceValue := range source.GetPathStats() {

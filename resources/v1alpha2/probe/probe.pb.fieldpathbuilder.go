@@ -9047,6 +9047,18 @@ func (ProbeStatusNetworkInterfaceFieldPathBuilder) IpAddressV6() Probe_Status_Ne
 func (ProbeStatusNetworkInterfaceFieldPathBuilder) ExternalIpAddressV6() Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6 {
 	return Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6{}
 }
+func (ProbeStatusNetworkInterfaceFieldPathBuilder) HasV4DefaultRoute() Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute {
+	return Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute{}
+}
+func (ProbeStatusNetworkInterfaceFieldPathBuilder) HasV6DefaultRoute() Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute {
+	return Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute{}
+}
+func (ProbeStatusNetworkInterfaceFieldPathBuilder) HasBestV4DefaultRoute() Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute {
+	return Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute{}
+}
+func (ProbeStatusNetworkInterfaceFieldPathBuilder) HasBestV6DefaultRoute() Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute {
+	return Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute{}
+}
 
 type Probe_Status_NetworkInterfacePathSelectorInterfaceName struct{}
 
@@ -9132,6 +9144,62 @@ func (s Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6) WithArrayO
 
 func (s Probe_Status_NetworkInterfacePathSelectorExternalIpAddressV6) WithItemValue(value string) *ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue {
 	return s.FieldPath().WithIArrayItemValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayItemValue)
+}
+
+type Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute struct{}
+
+func (Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute) FieldPath() *ProbeStatusNetworkInterface_FieldTerminalPath {
+	return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute}
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute) WithValue(value bool) *ProbeStatusNetworkInterface_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasV4DefaultRoute) WithArrayOfValues(values []bool) *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute struct{}
+
+func (Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute) FieldPath() *ProbeStatusNetworkInterface_FieldTerminalPath {
+	return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute}
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute) WithValue(value bool) *ProbeStatusNetworkInterface_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasV6DefaultRoute) WithArrayOfValues(values []bool) *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute struct{}
+
+func (Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute) FieldPath() *ProbeStatusNetworkInterface_FieldTerminalPath {
+	return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute}
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute) WithValue(value bool) *ProbeStatusNetworkInterface_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasBestV4DefaultRoute) WithArrayOfValues(values []bool) *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues)
+}
+
+type Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute struct{}
+
+func (Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute) FieldPath() *ProbeStatusNetworkInterface_FieldTerminalPath {
+	return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute}
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute) WithValue(value bool) *ProbeStatusNetworkInterface_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ProbeStatusNetworkInterface_FieldTerminalPathValue)
+}
+
+func (s Probe_Status_NetworkInterfacePathSelectorHasBestV6DefaultRoute) WithArrayOfValues(values []bool) *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues)
 }
 
 type ProbeStatusProxyConfigFieldPathBuilder struct{}

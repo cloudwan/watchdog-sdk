@@ -2834,6 +2834,8 @@ const (
 	HTTPStat_FieldPathSelectorError                HTTPStat_FieldPathSelector = 13
 	HTTPStat_FieldPathSelectorTime                 HTTPStat_FieldPathSelector = 14
 	HTTPStat_FieldPathSelectorTarget               HTTPStat_FieldPathSelector = 15
+	HTTPStat_FieldPathSelectorSourceIpAddress      HTTPStat_FieldPathSelector = 16
+	HTTPStat_FieldPathSelectorSourceInterfaceName  HTTPStat_FieldPathSelector = 17
 )
 
 func (s HTTPStat_FieldPathSelector) String() string {
@@ -2870,6 +2872,10 @@ func (s HTTPStat_FieldPathSelector) String() string {
 		return "time"
 	case HTTPStat_FieldPathSelectorTarget:
 		return "target"
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		return "source_ip_address"
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		return "source_interface_name"
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", s))
 	}
@@ -2913,6 +2919,10 @@ func BuildHTTPStat_FieldPath(fp gotenobject.RawFieldPath) (HTTPStat_FieldPath, e
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTime}, nil
 		case "target":
 			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorTarget}, nil
+		case "source_ip_address", "sourceIpAddress", "source-ip-address":
+			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceIpAddress}, nil
+		case "source_interface_name", "sourceInterfaceName", "source-interface-name":
+			return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceInterfaceName}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object HTTPStat", fp)
@@ -2994,6 +3004,10 @@ func (fp *HTTPStat_FieldTerminalPath) Get(source *HTTPStat) (values []interface{
 			if source.Target != nil {
 				values = append(values, source.Target)
 			}
+		case HTTPStat_FieldPathSelectorSourceIpAddress:
+			values = append(values, source.SourceIpAddress)
+		case HTTPStat_FieldPathSelectorSourceInterfaceName:
+			values = append(values, source.SourceInterfaceName)
 		default:
 			panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 		}
@@ -3042,6 +3056,10 @@ func (fp *HTTPStat_FieldTerminalPath) GetSingle(source *HTTPStat) (interface{}, 
 	case HTTPStat_FieldPathSelectorTarget:
 		res := source.GetTarget()
 		return res, res != nil
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		return source.GetSourceIpAddress(), source != nil
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		return source.GetSourceInterfaceName(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 	}
@@ -3086,6 +3104,10 @@ func (fp *HTTPStat_FieldTerminalPath) GetDefault() interface{} {
 		return (*timestamp.Timestamp)(nil)
 	case HTTPStat_FieldPathSelectorTarget:
 		return (*probing_target.Reference)(nil)
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		return ""
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 	}
@@ -3126,6 +3148,10 @@ func (fp *HTTPStat_FieldTerminalPath) ClearValue(item *HTTPStat) {
 			item.Time = nil
 		case HTTPStat_FieldPathSelectorTarget:
 			item.Target = nil
+		case HTTPStat_FieldPathSelectorSourceIpAddress:
+			item.SourceIpAddress = ""
+		case HTTPStat_FieldPathSelectorSourceInterfaceName:
+			item.SourceInterfaceName = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 		}
@@ -3153,7 +3179,9 @@ func (fp *HTTPStat_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HTTPStat_FieldPathSelectorFailedStage ||
 		fp.selector == HTTPStat_FieldPathSelectorError ||
 		fp.selector == HTTPStat_FieldPathSelectorTime ||
-		fp.selector == HTTPStat_FieldPathSelectorTarget
+		fp.selector == HTTPStat_FieldPathSelectorTarget ||
+		fp.selector == HTTPStat_FieldPathSelectorSourceIpAddress ||
+		fp.selector == HTTPStat_FieldPathSelectorSourceInterfaceName
 }
 
 func (fp *HTTPStat_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -3194,6 +3222,10 @@ func (fp *HTTPStat_FieldTerminalPath) WithIValue(value interface{}) HTTPStat_Fie
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
 	case HTTPStat_FieldPathSelectorTarget:
 		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(string)}
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		return &HTTPStat_FieldTerminalPathValue{HTTPStat_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 	}
@@ -3238,6 +3270,10 @@ func (fp *HTTPStat_FieldTerminalPath) WithIArrayOfValues(values interface{}) HTT
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
 	case HTTPStat_FieldPathSelectorTarget:
 		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]string)}
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		return &HTTPStat_FieldTerminalPathArrayOfValues{HTTPStat_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fp.selector))
 	}
@@ -3362,6 +3398,14 @@ func (fpv *HTTPStat_FieldTerminalPathValue) AsTargetValue() (*probing_target.Ref
 	res, ok := fpv.value.(*probing_target.Reference)
 	return res, ok
 }
+func (fpv *HTTPStat_FieldTerminalPathValue) AsSourceIpAddressValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *HTTPStat_FieldTerminalPathValue) AsSourceInterfaceNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object HTTPStat
 func (fpv *HTTPStat_FieldTerminalPathValue) SetTo(target **HTTPStat) {
@@ -3401,6 +3445,10 @@ func (fpv *HTTPStat_FieldTerminalPathValue) SetTo(target **HTTPStat) {
 		(*target).Time = fpv.value.(*timestamp.Timestamp)
 	case HTTPStat_FieldPathSelectorTarget:
 		(*target).Target = fpv.value.(*probing_target.Reference)
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		(*target).SourceIpAddress = fpv.value.(string)
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		(*target).SourceInterfaceName = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fpv.selector))
 	}
@@ -3592,6 +3640,26 @@ func (fpv *HTTPStat_FieldTerminalPathValue) CompareWith(source *HTTPStat) (int, 
 		} else {
 			return 1, true
 		}
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceIpAddress()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceInterfaceName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for HTTPStat: %d", fpv.selector))
 	}
@@ -3764,6 +3832,14 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) GetRawValues() (values []i
 		for _, v := range fpaov.values.([]*probing_target.Reference) {
 			values = append(values, v)
 		}
+	case HTTPStat_FieldPathSelectorSourceIpAddress:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case HTTPStat_FieldPathSelectorSourceInterfaceName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -3829,5 +3905,13 @@ func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTimeArrayOfValues() ([]*
 }
 func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {
 	res, ok := fpaov.values.([]*probing_target.Reference)
+	return res, ok
+}
+func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsSourceIpAddressArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *HTTPStat_FieldTerminalPathArrayOfValues) AsSourceInterfaceNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }

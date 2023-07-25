@@ -323,6 +323,8 @@ func FullRunSpeedTestResponse_FieldMask() *RunSpeedTestResponse_FieldMask {
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage})
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession})
 	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget})
+	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalIp})
+	res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalInterface})
 	return res
 }
 
@@ -366,7 +368,7 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 8)
+	presentSelectors := make([]bool, 10)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*RunSpeedTestResponse_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -396,7 +398,7 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) Reset() {
 
 func (fieldMask *RunSpeedTestResponse_FieldMask) Subtract(other *RunSpeedTestResponse_FieldMask) *RunSpeedTestResponse_FieldMask {
 	result := &RunSpeedTestResponse_FieldMask{}
-	removedSelectors := make([]bool, 8)
+	removedSelectors := make([]bool, 10)
 
 	for _, path := range other.GetPaths() {
 		switch tp := path.(type) {
@@ -566,6 +568,10 @@ func (fieldMask *RunSpeedTestResponse_FieldMask) Project(source *RunSpeedTestRes
 				result.ProbingSession = source.ProbingSession
 			case RunSpeedTestResponse_FieldPathSelectorTarget:
 				result.Target = source.Target
+			case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+				result.LocalIp = source.LocalIp
+			case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+				result.LocalInterface = source.LocalInterface
 			}
 		}
 	}

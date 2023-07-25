@@ -99,6 +99,12 @@ func (ReportHopsRequestFieldPathBuilder) TraceReasonDescription() ReportHopsRequ
 func (ReportHopsRequestFieldPathBuilder) Time() ReportHopsRequestPathSelectorTime {
 	return ReportHopsRequestPathSelectorTime{}
 }
+func (ReportHopsRequestFieldPathBuilder) SourceIpAddress() ReportHopsRequestPathSelectorSourceIpAddress {
+	return ReportHopsRequestPathSelectorSourceIpAddress{}
+}
+func (ReportHopsRequestFieldPathBuilder) SourceInterfaceName() ReportHopsRequestPathSelectorSourceInterfaceName {
+	return ReportHopsRequestPathSelectorSourceInterfaceName{}
+}
 
 type ReportHopsRequestPathSelectorName struct{}
 
@@ -349,6 +355,34 @@ func (s ReportHopsRequestPathSelectorTime) WithValue(value *timestamp.Timestamp)
 }
 
 func (s ReportHopsRequestPathSelectorTime) WithArrayOfValues(values []*timestamp.Timestamp) *ReportHopsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHopsRequest_FieldTerminalPathArrayOfValues)
+}
+
+type ReportHopsRequestPathSelectorSourceIpAddress struct{}
+
+func (ReportHopsRequestPathSelectorSourceIpAddress) FieldPath() *ReportHopsRequest_FieldTerminalPath {
+	return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceIpAddress}
+}
+
+func (s ReportHopsRequestPathSelectorSourceIpAddress) WithValue(value string) *ReportHopsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHopsRequest_FieldTerminalPathValue)
+}
+
+func (s ReportHopsRequestPathSelectorSourceIpAddress) WithArrayOfValues(values []string) *ReportHopsRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHopsRequest_FieldTerminalPathArrayOfValues)
+}
+
+type ReportHopsRequestPathSelectorSourceInterfaceName struct{}
+
+func (ReportHopsRequestPathSelectorSourceInterfaceName) FieldPath() *ReportHopsRequest_FieldTerminalPath {
+	return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceInterfaceName}
+}
+
+func (s ReportHopsRequestPathSelectorSourceInterfaceName) WithValue(value string) *ReportHopsRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHopsRequest_FieldTerminalPathValue)
+}
+
+func (s ReportHopsRequestPathSelectorSourceInterfaceName) WithArrayOfValues(values []string) *ReportHopsRequest_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ReportHopsRequest_FieldTerminalPathArrayOfValues)
 }
 
@@ -679,6 +713,12 @@ func (HopsReportFieldPathBuilder) TargetIpAddress() HopsReportPathSelectorTarget
 func (HopsReportFieldPathBuilder) IpVersion() HopsReportPathSelectorIpVersion {
 	return HopsReportPathSelectorIpVersion{}
 }
+func (HopsReportFieldPathBuilder) SourceIpAddress() HopsReportPathSelectorSourceIpAddress {
+	return HopsReportPathSelectorSourceIpAddress{}
+}
+func (HopsReportFieldPathBuilder) SourceInterfaceName() HopsReportPathSelectorSourceInterfaceName {
+	return HopsReportPathSelectorSourceInterfaceName{}
+}
 func (HopsReportFieldPathBuilder) Mode() HopsReportPathSelectorMode {
 	return HopsReportPathSelectorMode{}
 }
@@ -742,6 +782,34 @@ func (s HopsReportPathSelectorIpVersion) WithValue(value common.IpVersion) *Hops
 }
 
 func (s HopsReportPathSelectorIpVersion) WithArrayOfValues(values []common.IpVersion) *HopsReport_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopsReport_FieldTerminalPathArrayOfValues)
+}
+
+type HopsReportPathSelectorSourceIpAddress struct{}
+
+func (HopsReportPathSelectorSourceIpAddress) FieldPath() *HopsReport_FieldTerminalPath {
+	return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceIpAddress}
+}
+
+func (s HopsReportPathSelectorSourceIpAddress) WithValue(value string) *HopsReport_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopsReport_FieldTerminalPathValue)
+}
+
+func (s HopsReportPathSelectorSourceIpAddress) WithArrayOfValues(values []string) *HopsReport_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HopsReport_FieldTerminalPathArrayOfValues)
+}
+
+type HopsReportPathSelectorSourceInterfaceName struct{}
+
+func (HopsReportPathSelectorSourceInterfaceName) FieldPath() *HopsReport_FieldTerminalPath {
+	return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceInterfaceName}
+}
+
+func (s HopsReportPathSelectorSourceInterfaceName) WithValue(value string) *HopsReport_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HopsReport_FieldTerminalPathValue)
+}
+
+func (s HopsReportPathSelectorSourceInterfaceName) WithArrayOfValues(values []string) *HopsReport_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*HopsReport_FieldTerminalPathArrayOfValues)
 }
 
@@ -1027,6 +1095,14 @@ func (GetHopReportsResponsePathSelectorHopsReport) IpVersion() GetHopReportsResp
 	return GetHopReportsResponsePathSelectorHopsReportIpVersion{}
 }
 
+func (GetHopReportsResponsePathSelectorHopsReport) SourceIpAddress() GetHopReportsResponsePathSelectorHopsReportSourceIpAddress {
+	return GetHopReportsResponsePathSelectorHopsReportSourceIpAddress{}
+}
+
+func (GetHopReportsResponsePathSelectorHopsReport) SourceInterfaceName() GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName {
+	return GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName{}
+}
+
 func (GetHopReportsResponsePathSelectorHopsReport) Mode() GetHopReportsResponsePathSelectorHopsReportMode {
 	return GetHopReportsResponsePathSelectorHopsReportMode{}
 }
@@ -1104,6 +1180,40 @@ func (s GetHopReportsResponsePathSelectorHopsReportIpVersion) WithValue(value co
 }
 
 func (s GetHopReportsResponsePathSelectorHopsReportIpVersion) WithArrayOfValues(values []common.IpVersion) *GetHopReportsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHopReportsResponse_FieldSubPathArrayOfValues)
+}
+
+type GetHopReportsResponsePathSelectorHopsReportSourceIpAddress struct{}
+
+func (GetHopReportsResponsePathSelectorHopsReportSourceIpAddress) FieldPath() *GetHopReportsResponse_FieldSubPath {
+	return &GetHopReportsResponse_FieldSubPath{
+		selector: GetHopReportsResponse_FieldPathSelectorHopsReport,
+		subPath:  NewHopsReportFieldPathBuilder().SourceIpAddress().FieldPath(),
+	}
+}
+
+func (s GetHopReportsResponsePathSelectorHopsReportSourceIpAddress) WithValue(value string) *GetHopReportsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHopReportsResponse_FieldSubPathValue)
+}
+
+func (s GetHopReportsResponsePathSelectorHopsReportSourceIpAddress) WithArrayOfValues(values []string) *GetHopReportsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHopReportsResponse_FieldSubPathArrayOfValues)
+}
+
+type GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName struct{}
+
+func (GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName) FieldPath() *GetHopReportsResponse_FieldSubPath {
+	return &GetHopReportsResponse_FieldSubPath{
+		selector: GetHopReportsResponse_FieldPathSelectorHopsReport,
+		subPath:  NewHopsReportFieldPathBuilder().SourceInterfaceName().FieldPath(),
+	}
+}
+
+func (s GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName) WithValue(value string) *GetHopReportsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHopReportsResponse_FieldSubPathValue)
+}
+
+func (s GetHopReportsResponsePathSelectorHopsReportSourceInterfaceName) WithArrayOfValues(values []string) *GetHopReportsResponse_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHopReportsResponse_FieldSubPathArrayOfValues)
 }
 

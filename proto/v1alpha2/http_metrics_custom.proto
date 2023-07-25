@@ -98,6 +98,11 @@ message HTTPStat {
 
   string target = 13;
 
+  // Local Interface IP Address
+  string source_ip_address = 17;
+
+  string source_interface_name = 18;
+
   enum FailedStage {
     no_failure = 0;
 

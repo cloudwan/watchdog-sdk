@@ -67,6 +67,8 @@ func FullReportHopsRequest_FieldMask() *ReportHopsRequest_FieldMask {
 	res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTraceReason})
 	res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTraceReasonDescription})
 	res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTime})
+	res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceIpAddress})
+	res.Paths = append(res.Paths, &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceInterfaceName})
 	return res
 }
 
@@ -110,7 +112,7 @@ func (fieldMask *ReportHopsRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 12)
+	presentSelectors := make([]bool, 14)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ReportHopsRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -140,7 +142,7 @@ func (fieldMask *ReportHopsRequest_FieldMask) Reset() {
 
 func (fieldMask *ReportHopsRequest_FieldMask) Subtract(other *ReportHopsRequest_FieldMask) *ReportHopsRequest_FieldMask {
 	result := &ReportHopsRequest_FieldMask{}
-	removedSelectors := make([]bool, 12)
+	removedSelectors := make([]bool, 14)
 	otherSubMasks := map[ReportHopsRequest_FieldPathSelector]gotenobject.FieldMask{
 		ReportHopsRequest_FieldPathSelectorPaths: &common.Path_FieldMask{},
 	}
@@ -353,6 +355,10 @@ func (fieldMask *ReportHopsRequest_FieldMask) Project(source *ReportHopsRequest)
 				result.TraceReasonDescription = source.TraceReasonDescription
 			case ReportHopsRequest_FieldPathSelectorTime:
 				result.Time = source.Time
+			case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+				result.SourceIpAddress = source.SourceIpAddress
+			case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+				result.SourceInterfaceName = source.SourceInterfaceName
 			}
 		case *ReportHopsRequest_FieldSubPath:
 			switch tp.selector {
@@ -1285,6 +1291,8 @@ func FullHopsReport_FieldMask() *HopsReport_FieldMask {
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorTarget})
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorTargetIpAddress})
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorIpVersion})
+	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceIpAddress})
+	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceInterfaceName})
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorMode})
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorTraceType})
 	res.Paths = append(res.Paths, &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorPathStats})
@@ -1331,7 +1339,7 @@ func (fieldMask *HopsReport_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 7)
+	presentSelectors := make([]bool, 9)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*HopsReport_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -1361,7 +1369,7 @@ func (fieldMask *HopsReport_FieldMask) Reset() {
 
 func (fieldMask *HopsReport_FieldMask) Subtract(other *HopsReport_FieldMask) *HopsReport_FieldMask {
 	result := &HopsReport_FieldMask{}
-	removedSelectors := make([]bool, 7)
+	removedSelectors := make([]bool, 9)
 	otherSubMasks := map[HopsReport_FieldPathSelector]gotenobject.FieldMask{
 		HopsReport_FieldPathSelectorPathStats: &PathStats_FieldMask{},
 	}
@@ -1551,6 +1559,10 @@ func (fieldMask *HopsReport_FieldMask) Project(source *HopsReport) *HopsReport {
 				result.TargetIpAddress = source.TargetIpAddress
 			case HopsReport_FieldPathSelectorIpVersion:
 				result.IpVersion = source.IpVersion
+			case HopsReport_FieldPathSelectorSourceIpAddress:
+				result.SourceIpAddress = source.SourceIpAddress
+			case HopsReport_FieldPathSelectorSourceInterfaceName:
+				result.SourceInterfaceName = source.SourceInterfaceName
 			case HopsReport_FieldPathSelectorMode:
 				result.Mode = source.Mode
 			case HopsReport_FieldPathSelectorTraceType:

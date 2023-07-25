@@ -181,6 +181,14 @@ func (ReportHTTPMetricsRequestPathSelectorHttpStats) Target() ReportHTTPMetricsR
 	return ReportHTTPMetricsRequestPathSelectorHttpStatsTarget{}
 }
 
+func (ReportHTTPMetricsRequestPathSelectorHttpStats) SourceIpAddress() ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress {
+	return ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress{}
+}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStats) SourceInterfaceName() ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName {
+	return ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName{}
+}
+
 type ReportHTTPMetricsRequestPathSelectorHttpStatsDnsLookupTime struct{}
 
 func (ReportHTTPMetricsRequestPathSelectorHttpStatsDnsLookupTime) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
@@ -450,6 +458,40 @@ func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTarget) WithValue(value *pr
 }
 
 func (s ReportHTTPMetricsRequestPathSelectorHttpStatsTarget) WithArrayOfValues(values []*probing_target.Reference) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
+}
+
+type ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress struct{}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
+	return &ReportHTTPMetricsRequest_FieldSubPath{
+		selector: ReportHTTPMetricsRequest_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().SourceIpAddress().FieldPath(),
+	}
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress) WithValue(value string) *ReportHTTPMetricsRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHTTPMetricsRequest_FieldSubPathValue)
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsSourceIpAddress) WithArrayOfValues(values []string) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
+}
+
+type ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName struct{}
+
+func (ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName) FieldPath() *ReportHTTPMetricsRequest_FieldSubPath {
+	return &ReportHTTPMetricsRequest_FieldSubPath{
+		selector: ReportHTTPMetricsRequest_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().SourceInterfaceName().FieldPath(),
+	}
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName) WithValue(value string) *ReportHTTPMetricsRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ReportHTTPMetricsRequest_FieldSubPathValue)
+}
+
+func (s ReportHTTPMetricsRequestPathSelectorHttpStatsSourceInterfaceName) WithArrayOfValues(values []string) *ReportHTTPMetricsRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ReportHTTPMetricsRequest_FieldSubPathArrayOfValues)
 }
 
@@ -778,6 +820,14 @@ func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) Target() GetHTTPMe
 	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTarget{}
 }
 
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) SourceIpAddress() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress {
+	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress{}
+}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStats) SourceInterfaceName() GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName {
+	return GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName{}
+}
+
 type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsDnsLookupTime struct{}
 
 func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsDnsLookupTime) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
@@ -1050,6 +1100,40 @@ func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsTarget) WithArrayO
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
 }
 
+type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress struct{}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
+	return &GetHTTPMetricsResponse_FieldSubPath{
+		selector: GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics,
+		subPath:  NewGetHTTPMetricsResponseHTTPMetricsPerAgentTargetPairFieldPathBuilder().HttpStats().SourceIpAddress().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress) WithValue(value string) *GetHTTPMetricsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponse_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceIpAddress) WithArrayOfValues(values []string) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName struct{}
+
+func (GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName) FieldPath() *GetHTTPMetricsResponse_FieldSubPath {
+	return &GetHTTPMetricsResponse_FieldSubPath{
+		selector: GetHTTPMetricsResponse_FieldPathSelectorHttpMetrics,
+		subPath:  NewGetHTTPMetricsResponseHTTPMetricsPerAgentTargetPairFieldPathBuilder().HttpStats().SourceInterfaceName().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName) WithValue(value string) *GetHTTPMetricsResponse_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponse_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponsePathSelectorHttpMetricsHttpStatsSourceInterfaceName) WithArrayOfValues(values []string) *GetHTTPMetricsResponse_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponse_FieldSubPathArrayOfValues)
+}
+
 type GetHTTPMetricsResponsePathSelectorNextPageToken struct{}
 
 func (GetHTTPMetricsResponsePathSelectorNextPageToken) FieldPath() *GetHTTPMetricsResponse_FieldTerminalPath {
@@ -1202,6 +1286,14 @@ func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats)
 
 func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) Target() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTarget {
 	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsTarget{}
+}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) SourceIpAddress() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress {
+	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress{}
+}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStats) SourceInterfaceName() GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName {
+	return GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName{}
 }
 
 type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsDnsLookupTime struct{}
@@ -1476,6 +1568,40 @@ func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStat
 	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
 }
 
+type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress struct{}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
+	return &GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath{
+		selector: GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().SourceIpAddress().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress) WithValue(value string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceIpAddress) WithArrayOfValues(values []string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
+}
+
+type GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName struct{}
+
+func (GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName) FieldPath() *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath {
+	return &GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPath{
+		selector: GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldPathSelectorHttpStats,
+		subPath:  NewHTTPStatFieldPathBuilder().SourceInterfaceName().FieldPath(),
+	}
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName) WithValue(value string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathValue)
+}
+
+func (s GetHTTPMetricsResponse_HTTPMetricsPerAgentTargetPairPathSelectorHttpStatsSourceInterfaceName) WithArrayOfValues(values []string) *GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*GetHTTPMetricsResponseHTTPMetricsPerAgentTargetPair_FieldSubPathArrayOfValues)
+}
+
 type HTTPStatFieldPathBuilder struct{}
 
 func NewHTTPStatFieldPathBuilder() HTTPStatFieldPathBuilder {
@@ -1528,6 +1654,12 @@ func (HTTPStatFieldPathBuilder) Time() HTTPStatPathSelectorTime {
 }
 func (HTTPStatFieldPathBuilder) Target() HTTPStatPathSelectorTarget {
 	return HTTPStatPathSelectorTarget{}
+}
+func (HTTPStatFieldPathBuilder) SourceIpAddress() HTTPStatPathSelectorSourceIpAddress {
+	return HTTPStatPathSelectorSourceIpAddress{}
+}
+func (HTTPStatFieldPathBuilder) SourceInterfaceName() HTTPStatPathSelectorSourceInterfaceName {
+	return HTTPStatPathSelectorSourceInterfaceName{}
 }
 
 type HTTPStatPathSelectorDnsLookupTime struct{}
@@ -1751,5 +1883,33 @@ func (s HTTPStatPathSelectorTarget) WithValue(value *probing_target.Reference) *
 }
 
 func (s HTTPStatPathSelectorTarget) WithArrayOfValues(values []*probing_target.Reference) *HTTPStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
+}
+
+type HTTPStatPathSelectorSourceIpAddress struct{}
+
+func (HTTPStatPathSelectorSourceIpAddress) FieldPath() *HTTPStat_FieldTerminalPath {
+	return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceIpAddress}
+}
+
+func (s HTTPStatPathSelectorSourceIpAddress) WithValue(value string) *HTTPStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HTTPStat_FieldTerminalPathValue)
+}
+
+func (s HTTPStatPathSelectorSourceIpAddress) WithArrayOfValues(values []string) *HTTPStat_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
+}
+
+type HTTPStatPathSelectorSourceInterfaceName struct{}
+
+func (HTTPStatPathSelectorSourceInterfaceName) FieldPath() *HTTPStat_FieldTerminalPath {
+	return &HTTPStat_FieldTerminalPath{selector: HTTPStat_FieldPathSelectorSourceInterfaceName}
+}
+
+func (s HTTPStatPathSelectorSourceInterfaceName) WithValue(value string) *HTTPStat_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*HTTPStat_FieldTerminalPathValue)
+}
+
+func (s HTTPStatPathSelectorSourceInterfaceName) WithArrayOfValues(values []string) *HTTPStat_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*HTTPStat_FieldTerminalPathArrayOfValues)
 }

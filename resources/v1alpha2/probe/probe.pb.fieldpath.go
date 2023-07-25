@@ -9988,11 +9988,15 @@ type ProbeStatusNetworkInterface_FieldPath interface {
 type ProbeStatusNetworkInterface_FieldPathSelector int32
 
 const (
-	ProbeStatusNetworkInterface_FieldPathSelectorInterfaceName       ProbeStatusNetworkInterface_FieldPathSelector = 0
-	ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV4         ProbeStatusNetworkInterface_FieldPathSelector = 1
-	ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV4 ProbeStatusNetworkInterface_FieldPathSelector = 2
-	ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV6         ProbeStatusNetworkInterface_FieldPathSelector = 3
-	ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6 ProbeStatusNetworkInterface_FieldPathSelector = 4
+	ProbeStatusNetworkInterface_FieldPathSelectorInterfaceName         ProbeStatusNetworkInterface_FieldPathSelector = 0
+	ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV4           ProbeStatusNetworkInterface_FieldPathSelector = 1
+	ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV4   ProbeStatusNetworkInterface_FieldPathSelector = 2
+	ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV6           ProbeStatusNetworkInterface_FieldPathSelector = 3
+	ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6   ProbeStatusNetworkInterface_FieldPathSelector = 4
+	ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute     ProbeStatusNetworkInterface_FieldPathSelector = 5
+	ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute     ProbeStatusNetworkInterface_FieldPathSelector = 6
+	ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute ProbeStatusNetworkInterface_FieldPathSelector = 7
+	ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute ProbeStatusNetworkInterface_FieldPathSelector = 8
 )
 
 func (s ProbeStatusNetworkInterface_FieldPathSelector) String() string {
@@ -10007,6 +10011,14 @@ func (s ProbeStatusNetworkInterface_FieldPathSelector) String() string {
 		return "ip_address_v6"
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		return "external_ip_address_v6"
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		return "has_v4_default_route"
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		return "has_v6_default_route"
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		return "has_best_v4_default_route"
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		return "has_best_v6_default_route"
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", s))
 	}
@@ -10028,6 +10040,14 @@ func BuildProbeStatusNetworkInterface_FieldPath(fp gotenobject.RawFieldPath) (Pr
 			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV6}, nil
 		case "external_ip_address_v6", "externalIpAddressV6", "external-ip-address-v6":
 			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6}, nil
+		case "has_v4_default_route", "hasV4DefaultRoute", "has-v4-default-route":
+			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute}, nil
+		case "has_v6_default_route", "hasV6DefaultRoute", "has-v6-default-route":
+			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute}, nil
+		case "has_best_v4_default_route", "hasBestV4DefaultRoute", "has-best-v4-default-route":
+			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute}, nil
+		case "has_best_v6_default_route", "hasBestV6DefaultRoute", "has-best-v6-default-route":
+			return &ProbeStatusNetworkInterface_FieldTerminalPath{selector: ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object Probe_Status_NetworkInterface", fp)
@@ -10091,6 +10111,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) Get(source *Probe_Statu
 			for _, value := range source.GetExternalIpAddressV6() {
 				values = append(values, value)
 			}
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+			values = append(values, source.HasV4DefaultRoute)
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+			values = append(values, source.HasV6DefaultRoute)
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+			values = append(values, source.HasBestV4DefaultRoute)
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+			values = append(values, source.HasBestV6DefaultRoute)
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 		}
@@ -10119,6 +10147,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) GetSingle(source *Probe
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		res := source.GetExternalIpAddressV6()
 		return res, res != nil
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		return source.GetHasV4DefaultRoute(), source != nil
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		return source.GetHasV6DefaultRoute(), source != nil
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		return source.GetHasBestV4DefaultRoute(), source != nil
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		return source.GetHasBestV6DefaultRoute(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 	}
@@ -10141,6 +10177,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) GetDefault() interface{
 		return ([]string)(nil)
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		return ([]string)(nil)
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		return false
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		return false
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		return false
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 	}
@@ -10159,6 +10203,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) ClearValue(item *Probe_
 			item.IpAddressV6 = nil
 		case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 			item.ExternalIpAddressV6 = nil
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+			item.HasV4DefaultRoute = false
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+			item.HasV6DefaultRoute = false
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+			item.HasBestV4DefaultRoute = false
+		case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+			item.HasBestV6DefaultRoute = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 		}
@@ -10175,7 +10227,11 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV4 ||
 		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV4 ||
 		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorIpAddressV6 ||
-		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6
+		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6 ||
+		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute ||
+		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute ||
+		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute ||
+		fp.selector == ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute
 }
 
 func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -10194,6 +10250,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) WithIValue(value interf
 		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.([]string)}
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.([]string)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.(bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathValue{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 	}
@@ -10216,6 +10280,14 @@ func (fp *ProbeStatusNetworkInterface_FieldTerminalPath) WithIArrayOfValues(valu
 		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([][]string)}
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([][]string)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([]bool)}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		return &ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues{ProbeStatusNetworkInterface_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fp.selector))
 	}
@@ -10304,6 +10376,22 @@ func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) AsExternalIpAddre
 	res, ok := fpv.value.([]string)
 	return res, ok
 }
+func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) AsHasV4DefaultRouteValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) AsHasV6DefaultRouteValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) AsHasBestV4DefaultRouteValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
+func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) AsHasBestV6DefaultRouteValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object NetworkInterface
 func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) SetTo(target **Probe_Status_NetworkInterface) {
@@ -10321,6 +10409,14 @@ func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) SetTo(target **Pr
 		(*target).IpAddressV6 = fpv.value.([]string)
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		(*target).ExternalIpAddressV6 = fpv.value.([]string)
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		(*target).HasV4DefaultRoute = fpv.value.(bool)
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		(*target).HasV6DefaultRoute = fpv.value.(bool)
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		(*target).HasBestV4DefaultRoute = fpv.value.(bool)
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		(*target).HasBestV6DefaultRoute = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fpv.selector))
 	}
@@ -10352,6 +10448,46 @@ func (fpv *ProbeStatusNetworkInterface_FieldTerminalPathValue) CompareWith(sourc
 		return 0, false
 	case ProbeStatusNetworkInterface_FieldPathSelectorExternalIpAddressV6:
 		return 0, false
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetHasV4DefaultRoute()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetHasV6DefaultRoute()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetHasBestV4DefaultRoute()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetHasBestV6DefaultRoute()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for Probe_Status_NetworkInterface: %d", fpv.selector))
 	}
@@ -10496,6 +10632,22 @@ func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) GetRawV
 		for _, v := range fpaov.values.([][]string) {
 			values = append(values, v)
 		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV4DefaultRoute:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasV6DefaultRoute:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV4DefaultRoute:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
+	case ProbeStatusNetworkInterface_FieldPathSelectorHasBestV6DefaultRoute:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -10517,6 +10669,22 @@ func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsIpAdd
 }
 func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsExternalIpAddressV6ArrayOfValues() ([][]string, bool) {
 	res, ok := fpaov.values.([][]string)
+	return res, ok
+}
+func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsHasV4DefaultRouteArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsHasV6DefaultRouteArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsHasBestV4DefaultRouteArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
+	return res, ok
+}
+func (fpaov *ProbeStatusNetworkInterface_FieldTerminalPathArrayOfValues) AsHasBestV6DefaultRouteArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

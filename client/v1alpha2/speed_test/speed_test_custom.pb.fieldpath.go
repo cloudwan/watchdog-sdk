@@ -623,6 +623,8 @@ const (
 	RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage RunSpeedTestResponse_FieldPathSelector = 5
 	RunSpeedTestResponse_FieldPathSelectorProbingSession             RunSpeedTestResponse_FieldPathSelector = 6
 	RunSpeedTestResponse_FieldPathSelectorTarget                     RunSpeedTestResponse_FieldPathSelector = 7
+	RunSpeedTestResponse_FieldPathSelectorLocalIp                    RunSpeedTestResponse_FieldPathSelector = 8
+	RunSpeedTestResponse_FieldPathSelectorLocalInterface             RunSpeedTestResponse_FieldPathSelector = 9
 )
 
 func (s RunSpeedTestResponse_FieldPathSelector) String() string {
@@ -643,6 +645,10 @@ func (s RunSpeedTestResponse_FieldPathSelector) String() string {
 		return "probing_session"
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		return "target"
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		return "local_ip"
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		return "local_interface"
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", s))
 	}
@@ -670,6 +676,10 @@ func BuildRunSpeedTestResponse_FieldPath(fp gotenobject.RawFieldPath) (RunSpeedT
 			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorProbingSession}, nil
 		case "target":
 			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorTarget}, nil
+		case "local_ip", "localIp", "local-ip":
+			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalIp}, nil
+		case "local_interface", "localInterface", "local-interface":
+			return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalInterface}, nil
 		}
 	}
 	return nil, status.Errorf(codes.InvalidArgument, "unknown field path '%s' for object RunSpeedTestResponse", fp)
@@ -735,6 +745,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) Get(source *RunSpeedTestRespon
 			if source.Target != nil {
 				values = append(values, source.Target)
 			}
+		case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+			values = append(values, source.LocalIp)
+		case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+			values = append(values, source.LocalInterface)
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 		}
@@ -767,6 +781,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) GetSingle(source *RunSpeedTest
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		res := source.GetTarget()
 		return res, res != nil
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		return source.GetLocalIp(), source != nil
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		return source.GetLocalInterface(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -795,6 +813,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) GetDefault() interface{} {
 		return (*probing_session.Reference)(nil)
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		return (*probing_target.Reference)(nil)
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		return ""
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -819,6 +841,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) ClearValue(item *RunSpeedTestR
 			item.ProbingSession = nil
 		case RunSpeedTestResponse_FieldPathSelectorTarget:
 			item.Target = nil
+		case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+			item.LocalIp = ""
+		case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+			item.LocalInterface = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 		}
@@ -838,7 +864,9 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerLatency ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorServerRetransmitPercentage ||
 		fp.selector == RunSpeedTestResponse_FieldPathSelectorProbingSession ||
-		fp.selector == RunSpeedTestResponse_FieldPathSelectorTarget
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorTarget ||
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorLocalIp ||
+		fp.selector == RunSpeedTestResponse_FieldPathSelectorLocalInterface
 }
 
 func (fp *RunSpeedTestResponse_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -863,6 +891,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIValue(value interface{}) 
 		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(*probing_session.Reference)}
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(*probing_target.Reference)}
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(string)}
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		return &RunSpeedTestResponse_FieldTerminalPathValue{RunSpeedTestResponse_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -891,6 +923,10 @@ func (fp *RunSpeedTestResponse_FieldTerminalPath) WithIArrayOfValues(values inte
 		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]*probing_session.Reference)}
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]*probing_target.Reference)}
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]string)}
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		return &RunSpeedTestResponse_FieldTerminalPathArrayOfValues{RunSpeedTestResponse_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fp.selector))
 	}
@@ -983,6 +1019,14 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsTargetValue() (*probin
 	res, ok := fpv.value.(*probing_target.Reference)
 	return res, ok
 }
+func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsLocalIpValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) AsLocalInterfaceValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object RunSpeedTestResponse
 func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) SetTo(target **RunSpeedTestResponse) {
@@ -1006,6 +1050,10 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) SetTo(target **RunSpeedT
 		(*target).ProbingSession = fpv.value.(*probing_session.Reference)
 	case RunSpeedTestResponse_FieldPathSelectorTarget:
 		(*target).Target = fpv.value.(*probing_target.Reference)
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		(*target).LocalIp = fpv.value.(string)
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		(*target).LocalInterface = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for RunSpeedTestResponse: %d", fpv.selector))
 	}
@@ -1113,6 +1161,26 @@ func (fpv *RunSpeedTestResponse_FieldTerminalPathValue) CompareWith(source *RunS
 		if leftValue.String() == rightValue.String() {
 			return 0, true
 		} else if leftValue.String() < rightValue.String() {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetLocalIp()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetLocalInterface()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -1257,6 +1325,14 @@ func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) GetRawValues()
 		for _, v := range fpaov.values.([]*probing_target.Reference) {
 			values = append(values, v)
 		}
+	case RunSpeedTestResponse_FieldPathSelectorLocalIp:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case RunSpeedTestResponse_FieldPathSelectorLocalInterface:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1290,6 +1366,14 @@ func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsProbingSessi
 }
 func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsTargetArrayOfValues() ([]*probing_target.Reference, bool) {
 	res, ok := fpaov.values.([]*probing_target.Reference)
+	return res, ok
+}
+func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsLocalIpArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *RunSpeedTestResponse_FieldTerminalPathArrayOfValues) AsLocalInterfaceArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 

@@ -88,6 +88,8 @@ const (
 	ReportHopsRequest_FieldPathSelectorTraceReason            ReportHopsRequest_FieldPathSelector = 9
 	ReportHopsRequest_FieldPathSelectorTraceReasonDescription ReportHopsRequest_FieldPathSelector = 10
 	ReportHopsRequest_FieldPathSelectorTime                   ReportHopsRequest_FieldPathSelector = 11
+	ReportHopsRequest_FieldPathSelectorSourceIpAddress        ReportHopsRequest_FieldPathSelector = 12
+	ReportHopsRequest_FieldPathSelectorSourceInterfaceName    ReportHopsRequest_FieldPathSelector = 13
 )
 
 func (s ReportHopsRequest_FieldPathSelector) String() string {
@@ -116,6 +118,10 @@ func (s ReportHopsRequest_FieldPathSelector) String() string {
 		return "trace_reason_description"
 	case ReportHopsRequest_FieldPathSelectorTime:
 		return "time"
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		return "source_ip_address"
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		return "source_interface_name"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", s))
 	}
@@ -151,6 +157,10 @@ func BuildReportHopsRequest_FieldPath(fp gotenobject.RawFieldPath) (ReportHopsRe
 			return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTraceReasonDescription}, nil
 		case "time":
 			return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorTime}, nil
+		case "source_ip_address", "sourceIpAddress", "source-ip-address":
+			return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceIpAddress}, nil
+		case "source_interface_name", "sourceInterfaceName", "source-interface-name":
+			return &ReportHopsRequest_FieldTerminalPath{selector: ReportHopsRequest_FieldPathSelectorSourceInterfaceName}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -251,6 +261,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) Get(source *ReportHopsRequest) (v
 			if source.Time != nil {
 				values = append(values, source.Time)
 			}
+		case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+			values = append(values, source.SourceIpAddress)
+		case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+			values = append(values, source.SourceInterfaceName)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 		}
@@ -295,6 +309,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) GetSingle(source *ReportHopsReque
 	case ReportHopsRequest_FieldPathSelectorTime:
 		res := source.GetTime()
 		return res, res != nil
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		return source.GetSourceIpAddress(), source != nil
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		return source.GetSourceInterfaceName(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 	}
@@ -331,6 +349,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case ReportHopsRequest_FieldPathSelectorTime:
 		return (*timestamp.Timestamp)(nil)
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		return ""
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 	}
@@ -363,6 +385,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) ClearValue(item *ReportHopsReques
 			item.TraceReasonDescription = ""
 		case ReportHopsRequest_FieldPathSelectorTime:
 			item.Time = nil
+		case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+			item.SourceIpAddress = ""
+		case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+			item.SourceInterfaceName = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 		}
@@ -383,7 +409,9 @@ func (fp *ReportHopsRequest_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == ReportHopsRequest_FieldPathSelectorTraceType ||
 		fp.selector == ReportHopsRequest_FieldPathSelectorTraceReason ||
 		fp.selector == ReportHopsRequest_FieldPathSelectorTraceReasonDescription ||
-		fp.selector == ReportHopsRequest_FieldPathSelectorTime
+		fp.selector == ReportHopsRequest_FieldPathSelectorTime ||
+		fp.selector == ReportHopsRequest_FieldPathSelectorSourceIpAddress ||
+		fp.selector == ReportHopsRequest_FieldPathSelectorSourceInterfaceName
 }
 
 func (fp *ReportHopsRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -416,6 +444,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) WithIValue(value interface{}) Rep
 		return &ReportHopsRequest_FieldTerminalPathValue{ReportHopsRequest_FieldTerminalPath: *fp, value: value.(string)}
 	case ReportHopsRequest_FieldPathSelectorTime:
 		return &ReportHopsRequest_FieldTerminalPathValue{ReportHopsRequest_FieldTerminalPath: *fp, value: value.(*timestamp.Timestamp)}
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		return &ReportHopsRequest_FieldTerminalPathValue{ReportHopsRequest_FieldTerminalPath: *fp, value: value.(string)}
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		return &ReportHopsRequest_FieldTerminalPathValue{ReportHopsRequest_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 	}
@@ -452,6 +484,10 @@ func (fp *ReportHopsRequest_FieldTerminalPath) WithIArrayOfValues(values interfa
 		return &ReportHopsRequest_FieldTerminalPathArrayOfValues{ReportHopsRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	case ReportHopsRequest_FieldPathSelectorTime:
 		return &ReportHopsRequest_FieldTerminalPathArrayOfValues{ReportHopsRequest_FieldTerminalPath: *fp, values: values.([]*timestamp.Timestamp)}
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		return &ReportHopsRequest_FieldTerminalPathArrayOfValues{ReportHopsRequest_FieldTerminalPath: *fp, values: values.([]string)}
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		return &ReportHopsRequest_FieldTerminalPathArrayOfValues{ReportHopsRequest_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fp.selector))
 	}
@@ -828,6 +864,14 @@ func (fpv *ReportHopsRequest_FieldTerminalPathValue) AsTimeValue() (*timestamp.T
 	res, ok := fpv.value.(*timestamp.Timestamp)
 	return res, ok
 }
+func (fpv *ReportHopsRequest_FieldTerminalPathValue) AsSourceIpAddressValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *ReportHopsRequest_FieldTerminalPathValue) AsSourceInterfaceNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object ReportHopsRequest
 func (fpv *ReportHopsRequest_FieldTerminalPathValue) SetTo(target **ReportHopsRequest) {
@@ -859,6 +903,10 @@ func (fpv *ReportHopsRequest_FieldTerminalPathValue) SetTo(target **ReportHopsRe
 		(*target).TraceReasonDescription = fpv.value.(string)
 	case ReportHopsRequest_FieldPathSelectorTime:
 		(*target).Time = fpv.value.(*timestamp.Timestamp)
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		(*target).SourceIpAddress = fpv.value.(string)
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		(*target).SourceInterfaceName = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ReportHopsRequest: %d", fpv.selector))
 	}
@@ -991,6 +1039,26 @@ func (fpv *ReportHopsRequest_FieldTerminalPathValue) CompareWith(source *ReportH
 		if leftValue.AsTime().Equal(rightValue.AsTime()) {
 			return 0, true
 		} else if leftValue.AsTime().Before(rightValue.AsTime()) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceIpAddress()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceInterfaceName()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
 			return -1, true
 		} else {
 			return 1, true
@@ -1287,6 +1355,14 @@ func (fpaov *ReportHopsRequest_FieldTerminalPathArrayOfValues) GetRawValues() (v
 		for _, v := range fpaov.values.([]*timestamp.Timestamp) {
 			values = append(values, v)
 		}
+	case ReportHopsRequest_FieldPathSelectorSourceIpAddress:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case ReportHopsRequest_FieldPathSelectorSourceInterfaceName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1336,6 +1412,14 @@ func (fpaov *ReportHopsRequest_FieldTerminalPathArrayOfValues) AsTraceReasonDesc
 }
 func (fpaov *ReportHopsRequest_FieldTerminalPathArrayOfValues) AsTimeArrayOfValues() ([]*timestamp.Timestamp, bool) {
 	res, ok := fpaov.values.([]*timestamp.Timestamp)
+	return res, ok
+}
+func (fpaov *ReportHopsRequest_FieldTerminalPathArrayOfValues) AsSourceIpAddressArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *ReportHopsRequest_FieldTerminalPathArrayOfValues) AsSourceInterfaceNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 
@@ -3480,13 +3564,15 @@ type HopsReport_FieldPath interface {
 type HopsReport_FieldPathSelector int32
 
 const (
-	HopsReport_FieldPathSelectorProbe           HopsReport_FieldPathSelector = 0
-	HopsReport_FieldPathSelectorTarget          HopsReport_FieldPathSelector = 1
-	HopsReport_FieldPathSelectorTargetIpAddress HopsReport_FieldPathSelector = 2
-	HopsReport_FieldPathSelectorIpVersion       HopsReport_FieldPathSelector = 3
-	HopsReport_FieldPathSelectorMode            HopsReport_FieldPathSelector = 4
-	HopsReport_FieldPathSelectorTraceType       HopsReport_FieldPathSelector = 5
-	HopsReport_FieldPathSelectorPathStats       HopsReport_FieldPathSelector = 6
+	HopsReport_FieldPathSelectorProbe               HopsReport_FieldPathSelector = 0
+	HopsReport_FieldPathSelectorTarget              HopsReport_FieldPathSelector = 1
+	HopsReport_FieldPathSelectorTargetIpAddress     HopsReport_FieldPathSelector = 2
+	HopsReport_FieldPathSelectorIpVersion           HopsReport_FieldPathSelector = 3
+	HopsReport_FieldPathSelectorSourceIpAddress     HopsReport_FieldPathSelector = 4
+	HopsReport_FieldPathSelectorSourceInterfaceName HopsReport_FieldPathSelector = 5
+	HopsReport_FieldPathSelectorMode                HopsReport_FieldPathSelector = 6
+	HopsReport_FieldPathSelectorTraceType           HopsReport_FieldPathSelector = 7
+	HopsReport_FieldPathSelectorPathStats           HopsReport_FieldPathSelector = 8
 )
 
 func (s HopsReport_FieldPathSelector) String() string {
@@ -3499,6 +3585,10 @@ func (s HopsReport_FieldPathSelector) String() string {
 		return "target_ip_address"
 	case HopsReport_FieldPathSelectorIpVersion:
 		return "ip_version"
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		return "source_ip_address"
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		return "source_interface_name"
 	case HopsReport_FieldPathSelectorMode:
 		return "mode"
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3524,6 +3614,10 @@ func BuildHopsReport_FieldPath(fp gotenobject.RawFieldPath) (HopsReport_FieldPat
 			return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorTargetIpAddress}, nil
 		case "ip_version", "ipVersion", "ip-version":
 			return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorIpVersion}, nil
+		case "source_ip_address", "sourceIpAddress", "source-ip-address":
+			return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceIpAddress}, nil
+		case "source_interface_name", "sourceInterfaceName", "source-interface-name":
+			return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorSourceInterfaceName}, nil
 		case "mode":
 			return &HopsReport_FieldTerminalPath{selector: HopsReport_FieldPathSelectorMode}, nil
 		case "trace_type", "traceType", "trace-type":
@@ -3596,6 +3690,10 @@ func (fp *HopsReport_FieldTerminalPath) Get(source *HopsReport) (values []interf
 			values = append(values, source.TargetIpAddress)
 		case HopsReport_FieldPathSelectorIpVersion:
 			values = append(values, source.IpVersion)
+		case HopsReport_FieldPathSelectorSourceIpAddress:
+			values = append(values, source.SourceIpAddress)
+		case HopsReport_FieldPathSelectorSourceInterfaceName:
+			values = append(values, source.SourceInterfaceName)
 		case HopsReport_FieldPathSelectorMode:
 			values = append(values, source.Mode)
 		case HopsReport_FieldPathSelectorTraceType:
@@ -3628,6 +3726,10 @@ func (fp *HopsReport_FieldTerminalPath) GetSingle(source *HopsReport) (interface
 		return source.GetTargetIpAddress(), source != nil
 	case HopsReport_FieldPathSelectorIpVersion:
 		return source.GetIpVersion(), source != nil
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		return source.GetSourceIpAddress(), source != nil
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		return source.GetSourceInterfaceName(), source != nil
 	case HopsReport_FieldPathSelectorMode:
 		return source.GetMode(), source != nil
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3655,6 +3757,10 @@ func (fp *HopsReport_FieldTerminalPath) GetDefault() interface{} {
 		return ""
 	case HopsReport_FieldPathSelectorIpVersion:
 		return common.IpVersion_IPVERSION_ANY
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		return ""
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		return ""
 	case HopsReport_FieldPathSelectorMode:
 		return common.ProbingMode_PROBING_MODE_UNSPECIFIED
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3677,6 +3783,10 @@ func (fp *HopsReport_FieldTerminalPath) ClearValue(item *HopsReport) {
 			item.TargetIpAddress = ""
 		case HopsReport_FieldPathSelectorIpVersion:
 			item.IpVersion = common.IpVersion_IPVERSION_ANY
+		case HopsReport_FieldPathSelectorSourceIpAddress:
+			item.SourceIpAddress = ""
+		case HopsReport_FieldPathSelectorSourceInterfaceName:
+			item.SourceInterfaceName = ""
 		case HopsReport_FieldPathSelectorMode:
 			item.Mode = common.ProbingMode_PROBING_MODE_UNSPECIFIED
 		case HopsReport_FieldPathSelectorTraceType:
@@ -3699,6 +3809,8 @@ func (fp *HopsReport_FieldTerminalPath) IsLeaf() bool {
 		fp.selector == HopsReport_FieldPathSelectorTarget ||
 		fp.selector == HopsReport_FieldPathSelectorTargetIpAddress ||
 		fp.selector == HopsReport_FieldPathSelectorIpVersion ||
+		fp.selector == HopsReport_FieldPathSelectorSourceIpAddress ||
+		fp.selector == HopsReport_FieldPathSelectorSourceInterfaceName ||
 		fp.selector == HopsReport_FieldPathSelectorMode ||
 		fp.selector == HopsReport_FieldPathSelectorTraceType
 }
@@ -3717,6 +3829,10 @@ func (fp *HopsReport_FieldTerminalPath) WithIValue(value interface{}) HopsReport
 		return &HopsReport_FieldTerminalPathValue{HopsReport_FieldTerminalPath: *fp, value: value.(string)}
 	case HopsReport_FieldPathSelectorIpVersion:
 		return &HopsReport_FieldTerminalPathValue{HopsReport_FieldTerminalPath: *fp, value: value.(common.IpVersion)}
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		return &HopsReport_FieldTerminalPathValue{HopsReport_FieldTerminalPath: *fp, value: value.(string)}
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		return &HopsReport_FieldTerminalPathValue{HopsReport_FieldTerminalPath: *fp, value: value.(string)}
 	case HopsReport_FieldPathSelectorMode:
 		return &HopsReport_FieldTerminalPathValue{HopsReport_FieldTerminalPath: *fp, value: value.(common.ProbingMode)}
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3743,6 +3859,10 @@ func (fp *HopsReport_FieldTerminalPath) WithIArrayOfValues(values interface{}) H
 		return &HopsReport_FieldTerminalPathArrayOfValues{HopsReport_FieldTerminalPath: *fp, values: values.([]string)}
 	case HopsReport_FieldPathSelectorIpVersion:
 		return &HopsReport_FieldTerminalPathArrayOfValues{HopsReport_FieldTerminalPath: *fp, values: values.([]common.IpVersion)}
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		return &HopsReport_FieldTerminalPathArrayOfValues{HopsReport_FieldTerminalPath: *fp, values: values.([]string)}
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		return &HopsReport_FieldTerminalPathArrayOfValues{HopsReport_FieldTerminalPath: *fp, values: values.([]string)}
 	case HopsReport_FieldPathSelectorMode:
 		return &HopsReport_FieldTerminalPathArrayOfValues{HopsReport_FieldTerminalPath: *fp, values: values.([]common.ProbingMode)}
 	case HopsReport_FieldPathSelectorTraceType:
@@ -3943,6 +4063,14 @@ func (fpv *HopsReport_FieldTerminalPathValue) AsIpVersionValue() (common.IpVersi
 	res, ok := fpv.value.(common.IpVersion)
 	return res, ok
 }
+func (fpv *HopsReport_FieldTerminalPathValue) AsSourceIpAddressValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
+func (fpv *HopsReport_FieldTerminalPathValue) AsSourceInterfaceNameValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 func (fpv *HopsReport_FieldTerminalPathValue) AsModeValue() (common.ProbingMode, bool) {
 	res, ok := fpv.value.(common.ProbingMode)
 	return res, ok
@@ -3970,6 +4098,10 @@ func (fpv *HopsReport_FieldTerminalPathValue) SetTo(target **HopsReport) {
 		(*target).TargetIpAddress = fpv.value.(string)
 	case HopsReport_FieldPathSelectorIpVersion:
 		(*target).IpVersion = fpv.value.(common.IpVersion)
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		(*target).SourceIpAddress = fpv.value.(string)
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		(*target).SourceInterfaceName = fpv.value.(string)
 	case HopsReport_FieldPathSelectorMode:
 		(*target).Mode = fpv.value.(common.ProbingMode)
 	case HopsReport_FieldPathSelectorTraceType:
@@ -4040,6 +4172,26 @@ func (fpv *HopsReport_FieldTerminalPathValue) CompareWith(source *HopsReport) (i
 	case HopsReport_FieldPathSelectorIpVersion:
 		leftValue := fpv.value.(common.IpVersion)
 		rightValue := source.GetIpVersion()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceIpAddress()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetSourceInterfaceName()
 		if (leftValue) == (rightValue) {
 			return 0, true
 		} else if (leftValue) < (rightValue) {
@@ -4267,6 +4419,14 @@ func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) GetRawValues() (values [
 		for _, v := range fpaov.values.([]common.IpVersion) {
 			values = append(values, v)
 		}
+	case HopsReport_FieldPathSelectorSourceIpAddress:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
+	case HopsReport_FieldPathSelectorSourceInterfaceName:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	case HopsReport_FieldPathSelectorMode:
 		for _, v := range fpaov.values.([]common.ProbingMode) {
 			values = append(values, v)
@@ -4296,6 +4456,14 @@ func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) AsTargetIpAddressArrayOf
 }
 func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) AsIpVersionArrayOfValues() ([]common.IpVersion, bool) {
 	res, ok := fpaov.values.([]common.IpVersion)
+	return res, ok
+}
+func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) AsSourceIpAddressArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
+	return res, ok
+}
+func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) AsSourceInterfaceNameArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 func (fpaov *HopsReport_FieldTerminalPathArrayOfValues) AsModeArrayOfValues() ([]common.ProbingMode, bool) {

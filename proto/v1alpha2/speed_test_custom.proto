@@ -48,6 +48,10 @@ message RunSpeedTestResponse {
   string probing_session = 7;
 
   string target = 8;
+
+  string local_ip = 9;
+
+  string local_interface = 10;
 }
 
 message RunSpeedTestRequestToProbe {
