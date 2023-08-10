@@ -45,8 +45,8 @@ var (
 	_ = &ntt_meta.Meta{}
 )
 
-var adminArea_RegexpId = regexp.MustCompile("^(?P<admin_area_id>[\\w][\\w.-]{0,127})$")
-var regexPath = regexp.MustCompile("^adminAreas/(?P<admin_area_id>-|[\\w][\\w.-]{0,127})$")
+var adminArea_RegexpId = regexp.MustCompile("^(?P<admin_area_id>[a-zA-Z0-9_.-]{1,128})$")
+var regexPath = regexp.MustCompile("^adminAreas/(?P<admin_area_id>-|[a-zA-Z0-9_.-]{1,128})$")
 
 func (r *AdminArea) MaybePopulateDefaults() error {
 	adminAreaInterface := interface{}(r)
