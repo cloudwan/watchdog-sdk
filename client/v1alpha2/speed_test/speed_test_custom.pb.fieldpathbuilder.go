@@ -171,6 +171,9 @@ func (RunSpeedTestResponseFieldPathBuilder) LocalIp() RunSpeedTestResponsePathSe
 func (RunSpeedTestResponseFieldPathBuilder) LocalInterface() RunSpeedTestResponsePathSelectorLocalInterface {
 	return RunSpeedTestResponsePathSelectorLocalInterface{}
 }
+func (RunSpeedTestResponseFieldPathBuilder) BytesTransferred() RunSpeedTestResponsePathSelectorBytesTransferred {
+	return RunSpeedTestResponsePathSelectorBytesTransferred{}
+}
 
 type RunSpeedTestResponsePathSelectorDirection struct{}
 
@@ -309,6 +312,20 @@ func (s RunSpeedTestResponsePathSelectorLocalInterface) WithValue(value string) 
 }
 
 func (s RunSpeedTestResponsePathSelectorLocalInterface) WithArrayOfValues(values []string) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
+}
+
+type RunSpeedTestResponsePathSelectorBytesTransferred struct{}
+
+func (RunSpeedTestResponsePathSelectorBytesTransferred) FieldPath() *RunSpeedTestResponse_FieldTerminalPath {
+	return &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorBytesTransferred}
+}
+
+func (s RunSpeedTestResponsePathSelectorBytesTransferred) WithValue(value int64) *RunSpeedTestResponse_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*RunSpeedTestResponse_FieldTerminalPathValue)
+}
+
+func (s RunSpeedTestResponsePathSelectorBytesTransferred) WithArrayOfValues(values []int64) *RunSpeedTestResponse_FieldTerminalPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*RunSpeedTestResponse_FieldTerminalPathArrayOfValues)
 }
 

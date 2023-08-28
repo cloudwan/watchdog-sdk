@@ -52,6 +52,8 @@ message RunSpeedTestResponse {
   string local_ip = 9;
 
   string local_interface = 10;
+
+  int64 bytes_transferred = 11;
 }
 
 message RunSpeedTestRequestToProbe {

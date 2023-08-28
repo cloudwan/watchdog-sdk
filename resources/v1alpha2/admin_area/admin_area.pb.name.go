@@ -377,7 +377,7 @@ func (ref *Reference) ResolveRaw(res gotenresource.Resource) error {
 }
 
 func (ref *Reference) Resolved() bool {
-	return ref.adminArea != nil
+	return ref != nil && ref.adminArea != nil
 }
 
 func (ref *Reference) ClearCached() {
@@ -385,10 +385,16 @@ func (ref *Reference) ClearCached() {
 }
 
 func (ref *Reference) GetAdminArea() *AdminArea {
+	if ref == nil {
+		return nil
+	}
 	return ref.adminArea
 }
 
 func (ref *Reference) GetRawResource() gotenresource.Resource {
+	if ref == nil {
+		return (*AdminArea)(nil)
+	}
 	return ref.adminArea
 }
 

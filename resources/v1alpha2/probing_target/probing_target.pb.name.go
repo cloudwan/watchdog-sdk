@@ -420,7 +420,7 @@ func (ref *Reference) ResolveRaw(res gotenresource.Resource) error {
 }
 
 func (ref *Reference) Resolved() bool {
-	return ref.probingTarget != nil
+	return ref != nil && ref.probingTarget != nil
 }
 
 func (ref *Reference) ClearCached() {
@@ -428,10 +428,16 @@ func (ref *Reference) ClearCached() {
 }
 
 func (ref *Reference) GetProbingTarget() *ProbingTarget {
+	if ref == nil {
+		return nil
+	}
 	return ref.probingTarget
 }
 
 func (ref *Reference) GetRawResource() gotenresource.Resource {
+	if ref == nil {
+		return (*ProbingTarget)(nil)
+	}
 	return ref.probingTarget
 }
 

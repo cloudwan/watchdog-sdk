@@ -213,6 +213,9 @@ func (o *RunSpeedTestResponse) MakeDiffFieldMask(other *RunSpeedTestResponse) *R
 	if o.GetLocalInterface() != other.GetLocalInterface() {
 		res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorLocalInterface})
 	}
+	if o.GetBytesTransferred() != other.GetBytesTransferred() {
+		res.Paths = append(res.Paths, &RunSpeedTestResponse_FieldTerminalPath{selector: RunSpeedTestResponse_FieldPathSelectorBytesTransferred})
+	}
 	return res
 }
 
@@ -253,6 +256,7 @@ func (o *RunSpeedTestResponse) Clone() *RunSpeedTestResponse {
 	}
 	result.LocalIp = o.LocalIp
 	result.LocalInterface = o.LocalInterface
+	result.BytesTransferred = o.BytesTransferred
 	return result
 }
 
@@ -293,6 +297,7 @@ func (o *RunSpeedTestResponse) Merge(source *RunSpeedTestResponse) {
 	}
 	o.LocalIp = source.GetLocalIp()
 	o.LocalInterface = source.GetLocalInterface()
+	o.BytesTransferred = source.GetBytesTransferred()
 }
 
 func (o *RunSpeedTestResponse) MergeRaw(source gotenobject.GotenObjectExt) {
