@@ -6578,9 +6578,10 @@ type UpdateSharedTokenRequest_FieldPath interface {
 type UpdateSharedTokenRequest_FieldPathSelector int32
 
 const (
-	UpdateSharedTokenRequest_FieldPathSelectorSharedToken UpdateSharedTokenRequest_FieldPathSelector = 0
-	UpdateSharedTokenRequest_FieldPathSelectorUpdateMask  UpdateSharedTokenRequest_FieldPathSelector = 1
-	UpdateSharedTokenRequest_FieldPathSelectorCas         UpdateSharedTokenRequest_FieldPathSelector = 2
+	UpdateSharedTokenRequest_FieldPathSelectorSharedToken  UpdateSharedTokenRequest_FieldPathSelector = 0
+	UpdateSharedTokenRequest_FieldPathSelectorUpdateMask   UpdateSharedTokenRequest_FieldPathSelector = 1
+	UpdateSharedTokenRequest_FieldPathSelectorCas          UpdateSharedTokenRequest_FieldPathSelector = 2
+	UpdateSharedTokenRequest_FieldPathSelectorAllowMissing UpdateSharedTokenRequest_FieldPathSelector = 3
 )
 
 func (s UpdateSharedTokenRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateSharedTokenRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateSharedTokenRequest_FieldPath(fp gotenobject.RawFieldPath) (Updat
 			return &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) Get(source *UpdateSharedTo
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) GetSingle(source *UpdateSh
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*shared_token.SharedToken_FieldMask)(nil)
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		return (*UpdateSharedTokenRequest_CAS)(nil)
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) ClearValue(item *UpdateSha
 			item.UpdateMask = nil
 		case UpdateSharedTokenRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) ClearValueRaw(item proto.M
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateSharedTokenRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateSharedTokenRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateSharedTokenRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateSharedTokenRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateSharedTokenRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) WithIValue(value interface
 		return &UpdateSharedTokenRequest_FieldTerminalPathValue{UpdateSharedTokenRequest_FieldTerminalPath: *fp, value: value.(*shared_token.SharedToken_FieldMask)}
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		return &UpdateSharedTokenRequest_FieldTerminalPathValue{UpdateSharedTokenRequest_FieldTerminalPath: *fp, value: value.(*UpdateSharedTokenRequest_CAS)}
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		return &UpdateSharedTokenRequest_FieldTerminalPathValue{UpdateSharedTokenRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateSharedTokenRequest_FieldTerminalPath) WithIArrayOfValues(values 
 		return &UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues{UpdateSharedTokenRequest_FieldTerminalPath: *fp, values: values.([]*shared_token.SharedToken_FieldMask)}
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		return &UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues{UpdateSharedTokenRequest_FieldTerminalPath: *fp, values: values.([]*UpdateSharedTokenRequest_CAS)}
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		return &UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues{UpdateSharedTokenRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateSharedTokenRequest_FieldTerminalPathValue) AsCasValue() (*Updat
 	res, ok := fpv.value.(*UpdateSharedTokenRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateSharedTokenRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateSharedTokenRequest
 func (fpv *UpdateSharedTokenRequest_FieldTerminalPathValue) SetTo(target **UpdateSharedTokenRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateSharedTokenRequest_FieldTerminalPathValue) SetTo(target **Updat
 		(*target).UpdateMask = fpv.value.(*shared_token.SharedToken_FieldMask)
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateSharedTokenRequest_CAS)
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateSharedTokenRequest_FieldTerminalPathValue) CompareWith(source *
 		return 0, false
 	case UpdateSharedTokenRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateSharedTokenRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues) GetRawValu
 		for _, v := range fpaov.values.([]*UpdateSharedTokenRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues) AsUpdateMa
 }
 func (fpaov *UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateSharedTokenRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateSharedTokenRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

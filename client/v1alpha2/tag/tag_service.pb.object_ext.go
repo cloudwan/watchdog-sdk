@@ -1372,6 +1372,9 @@ func (o *UpdateTagRequest) MakeDiffFieldMask(other *UpdateTagRequest) *UpdateTag
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateTagRequest_FieldTerminalPath{selector: UpdateTagRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1387,6 +1390,7 @@ func (o *UpdateTagRequest) Clone() *UpdateTagRequest {
 	result.Tag = o.Tag.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*tag.Tag_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1416,6 +1420,7 @@ func (o *UpdateTagRequest) Merge(source *UpdateTagRequest) {
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateTagRequest) MergeRaw(source gotenobject.GotenObjectExt) {

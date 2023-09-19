@@ -1295,6 +1295,9 @@ func (o *UpdateAdminAreaRequest) MakeDiffFieldMask(other *UpdateAdminAreaRequest
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateAdminAreaRequest_FieldTerminalPath{selector: UpdateAdminAreaRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1310,6 +1313,7 @@ func (o *UpdateAdminAreaRequest) Clone() *UpdateAdminAreaRequest {
 	result.AdminArea = o.AdminArea.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*admin_area.AdminArea_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1339,6 +1343,7 @@ func (o *UpdateAdminAreaRequest) Merge(source *UpdateAdminAreaRequest) {
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateAdminAreaRequest) MergeRaw(source gotenobject.GotenObjectExt) {

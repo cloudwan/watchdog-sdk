@@ -6581,6 +6581,7 @@ const (
 	UpdateInternetQualityRatingRequest_FieldPathSelectorInternetQualityRating UpdateInternetQualityRatingRequest_FieldPathSelector = 0
 	UpdateInternetQualityRatingRequest_FieldPathSelectorUpdateMask            UpdateInternetQualityRatingRequest_FieldPathSelector = 1
 	UpdateInternetQualityRatingRequest_FieldPathSelectorCas                   UpdateInternetQualityRatingRequest_FieldPathSelector = 2
+	UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing          UpdateInternetQualityRatingRequest_FieldPathSelector = 3
 )
 
 func (s UpdateInternetQualityRatingRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateInternetQualityRatingRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateInternetQualityRatingRequest_FieldPath(fp gotenobject.RawFieldPa
 			return &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) Get(source *Upda
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) GetSingle(source
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) GetDefault() int
 		return (*internet_quality_rating.InternetQualityRating_FieldMask)(nil)
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		return (*UpdateInternetQualityRatingRequest_CAS)(nil)
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) ClearValue(item 
 			item.UpdateMask = nil
 		case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) ClearValueRaw(it
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateInternetQualityRatingRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateInternetQualityRatingRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) WithIValue(value
 		return &UpdateInternetQualityRatingRequest_FieldTerminalPathValue{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, value: value.(*internet_quality_rating.InternetQualityRating_FieldMask)}
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		return &UpdateInternetQualityRatingRequest_FieldTerminalPathValue{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, value: value.(*UpdateInternetQualityRatingRequest_CAS)}
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		return &UpdateInternetQualityRatingRequest_FieldTerminalPathValue{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateInternetQualityRatingRequest_FieldTerminalPath) WithIArrayOfValu
 		return &UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, values: values.([]*internet_quality_rating.InternetQualityRating_FieldMask)}
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		return &UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, values: values.([]*UpdateInternetQualityRatingRequest_CAS)}
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		return &UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues{UpdateInternetQualityRatingRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateInternetQualityRatingRequest_FieldTerminalPathValue) AsCasValue
 	res, ok := fpv.value.(*UpdateInternetQualityRatingRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateInternetQualityRatingRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateInternetQualityRatingRequest
 func (fpv *UpdateInternetQualityRatingRequest_FieldTerminalPathValue) SetTo(target **UpdateInternetQualityRatingRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateInternetQualityRatingRequest_FieldTerminalPathValue) SetTo(targ
 		(*target).UpdateMask = fpv.value.(*internet_quality_rating.InternetQualityRating_FieldMask)
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateInternetQualityRatingRequest_CAS)
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateInternetQualityRatingRequest_FieldTerminalPathValue) CompareWit
 		return 0, false
 	case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateInternetQualityRatingRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues) 
 		for _, v := range fpaov.values.([]*UpdateInternetQualityRatingRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues) 
 }
 func (fpaov *UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateInternetQualityRatingRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateInternetQualityRatingRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

@@ -6415,9 +6415,10 @@ type UpdateAdminAreaRequest_FieldPath interface {
 type UpdateAdminAreaRequest_FieldPathSelector int32
 
 const (
-	UpdateAdminAreaRequest_FieldPathSelectorAdminArea  UpdateAdminAreaRequest_FieldPathSelector = 0
-	UpdateAdminAreaRequest_FieldPathSelectorUpdateMask UpdateAdminAreaRequest_FieldPathSelector = 1
-	UpdateAdminAreaRequest_FieldPathSelectorCas        UpdateAdminAreaRequest_FieldPathSelector = 2
+	UpdateAdminAreaRequest_FieldPathSelectorAdminArea    UpdateAdminAreaRequest_FieldPathSelector = 0
+	UpdateAdminAreaRequest_FieldPathSelectorUpdateMask   UpdateAdminAreaRequest_FieldPathSelector = 1
+	UpdateAdminAreaRequest_FieldPathSelectorCas          UpdateAdminAreaRequest_FieldPathSelector = 2
+	UpdateAdminAreaRequest_FieldPathSelectorAllowMissing UpdateAdminAreaRequest_FieldPathSelector = 3
 )
 
 func (s UpdateAdminAreaRequest_FieldPathSelector) String() string {
@@ -6428,6 +6429,8 @@ func (s UpdateAdminAreaRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", s))
 	}
@@ -6445,6 +6448,8 @@ func BuildUpdateAdminAreaRequest_FieldPath(fp gotenobject.RawFieldPath) (UpdateA
 			return &UpdateAdminAreaRequest_FieldTerminalPath{selector: UpdateAdminAreaRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateAdminAreaRequest_FieldTerminalPath{selector: UpdateAdminAreaRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateAdminAreaRequest_FieldTerminalPath{selector: UpdateAdminAreaRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6517,6 +6522,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) Get(source *UpdateAdminAreaR
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 		}
@@ -6540,6 +6547,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) GetSingle(source *UpdateAdmi
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 	}
@@ -6558,6 +6567,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*admin_area.AdminArea_FieldMask)(nil)
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		return (*UpdateAdminAreaRequest_CAS)(nil)
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 	}
@@ -6572,6 +6583,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) ClearValue(item *UpdateAdmin
 			item.UpdateMask = nil
 		case UpdateAdminAreaRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 		}
@@ -6584,7 +6597,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) ClearValueRaw(item proto.Mes
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateAdminAreaRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateAdminAreaRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateAdminAreaRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateAdminAreaRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateAdminAreaRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6599,6 +6613,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) WithIValue(value interface{}
 		return &UpdateAdminAreaRequest_FieldTerminalPathValue{UpdateAdminAreaRequest_FieldTerminalPath: *fp, value: value.(*admin_area.AdminArea_FieldMask)}
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		return &UpdateAdminAreaRequest_FieldTerminalPathValue{UpdateAdminAreaRequest_FieldTerminalPath: *fp, value: value.(*UpdateAdminAreaRequest_CAS)}
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		return &UpdateAdminAreaRequest_FieldTerminalPathValue{UpdateAdminAreaRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 	}
@@ -6617,6 +6633,8 @@ func (fp *UpdateAdminAreaRequest_FieldTerminalPath) WithIArrayOfValues(values in
 		return &UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues{UpdateAdminAreaRequest_FieldTerminalPath: *fp, values: values.([]*admin_area.AdminArea_FieldMask)}
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		return &UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues{UpdateAdminAreaRequest_FieldTerminalPath: *fp, values: values.([]*UpdateAdminAreaRequest_CAS)}
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		return &UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues{UpdateAdminAreaRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fp.selector))
 	}
@@ -6814,6 +6832,10 @@ func (fpv *UpdateAdminAreaRequest_FieldTerminalPathValue) AsCasValue() (*UpdateA
 	res, ok := fpv.value.(*UpdateAdminAreaRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateAdminAreaRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateAdminAreaRequest
 func (fpv *UpdateAdminAreaRequest_FieldTerminalPathValue) SetTo(target **UpdateAdminAreaRequest) {
@@ -6827,6 +6849,8 @@ func (fpv *UpdateAdminAreaRequest_FieldTerminalPathValue) SetTo(target **UpdateA
 		(*target).UpdateMask = fpv.value.(*admin_area.AdminArea_FieldMask)
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateAdminAreaRequest_CAS)
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fpv.selector))
 	}
@@ -6846,6 +6870,16 @@ func (fpv *UpdateAdminAreaRequest_FieldTerminalPathValue) CompareWith(source *Up
 		return 0, false
 	case UpdateAdminAreaRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAdminAreaRequest: %d", fpv.selector))
 	}
@@ -7050,6 +7084,10 @@ func (fpaov *UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues) GetRawValues
 		for _, v := range fpaov.values.([]*UpdateAdminAreaRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateAdminAreaRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7063,6 +7101,10 @@ func (fpaov *UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues) AsUpdateMask
 }
 func (fpaov *UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateAdminAreaRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateAdminAreaRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

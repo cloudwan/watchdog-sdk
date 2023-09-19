@@ -400,6 +400,7 @@ func FullActivationRequest_Activate_FieldMask() *ActivationRequest_Activate_Fiel
 	res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorClientCookie})
 	res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorProbe})
 	res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorMetadata})
+	res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorPublicKeyData})
 	return res
 }
 
@@ -443,7 +444,7 @@ func (fieldMask *ActivationRequest_Activate_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 4)
+	presentSelectors := make([]bool, 5)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*ActivationRequestActivate_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -473,7 +474,7 @@ func (fieldMask *ActivationRequest_Activate_FieldMask) Reset() {
 
 func (fieldMask *ActivationRequest_Activate_FieldMask) Subtract(other *ActivationRequest_Activate_FieldMask) *ActivationRequest_Activate_FieldMask {
 	result := &ActivationRequest_Activate_FieldMask{}
-	removedSelectors := make([]bool, 4)
+	removedSelectors := make([]bool, 5)
 	otherSubMasks := map[ActivationRequestActivate_FieldPathSelector]gotenobject.FieldMask{
 		ActivationRequestActivate_FieldPathSelectorProbe: &probe.Probe_FieldMask{},
 	}
@@ -685,6 +686,8 @@ func (fieldMask *ActivationRequest_Activate_FieldMask) Project(source *Activatio
 			case ActivationRequestActivate_FieldPathSelectorMetadata:
 				result.Metadata = source.Metadata
 				wholeMetadataAccepted = true
+			case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+				result.PublicKeyData = source.PublicKeyData
 			}
 		case *ActivationRequestActivate_FieldSubPath:
 			switch tp.selector {

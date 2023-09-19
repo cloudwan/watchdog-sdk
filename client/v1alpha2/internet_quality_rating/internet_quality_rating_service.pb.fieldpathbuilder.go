@@ -3072,6 +3072,9 @@ func (UpdateInternetQualityRatingRequestFieldPathBuilder) UpdateMask() UpdateInt
 func (UpdateInternetQualityRatingRequestFieldPathBuilder) Cas() UpdateInternetQualityRatingRequestPathSelectorCas {
 	return UpdateInternetQualityRatingRequestPathSelectorCas{}
 }
+func (UpdateInternetQualityRatingRequestFieldPathBuilder) AllowMissing() UpdateInternetQualityRatingRequestPathSelectorAllowMissing {
+	return UpdateInternetQualityRatingRequestPathSelectorAllowMissing{}
+}
 
 type UpdateInternetQualityRatingRequestPathSelectorInternetQualityRating struct{}
 
@@ -4525,6 +4528,20 @@ func (s UpdateInternetQualityRatingRequestPathSelectorCasFieldMask) WithValue(va
 
 func (s UpdateInternetQualityRatingRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*internet_quality_rating.InternetQualityRating_FieldMask) *UpdateInternetQualityRatingRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateInternetQualityRatingRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateInternetQualityRatingRequestPathSelectorAllowMissing struct{}
+
+func (UpdateInternetQualityRatingRequestPathSelectorAllowMissing) FieldPath() *UpdateInternetQualityRatingRequest_FieldTerminalPath {
+	return &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateInternetQualityRatingRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateInternetQualityRatingRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateInternetQualityRatingRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateInternetQualityRatingRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateInternetQualityRatingRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateInternetQualityRatingRequestCASFieldPathBuilder struct{}

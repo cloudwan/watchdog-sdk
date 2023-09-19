@@ -3161,6 +3161,7 @@ func FullUpdateInternetQualityRatingRequest_FieldMask() *UpdateInternetQualityRa
 	res.Paths = append(res.Paths, &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorInternetQualityRating})
 	res.Paths = append(res.Paths, &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateInternetQualityRatingRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateInternetQualityRatingRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateInternetQualityRatingRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateInternetQualityRatingRequest_FieldMask) Subtract(other *UpdateInternetQualityRatingRequest_FieldMask) *UpdateInternetQualityRatingRequest_FieldMask {
 	result := &UpdateInternetQualityRatingRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateInternetQualityRatingRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateInternetQualityRatingRequest_FieldPathSelectorInternetQualityRating: &internet_quality_rating.InternetQualityRating_FieldMask{},
 		UpdateInternetQualityRatingRequest_FieldPathSelectorCas:                   &UpdateInternetQualityRatingRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateInternetQualityRatingRequest_FieldMask) Project(source *U
 			case UpdateInternetQualityRatingRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateInternetQualityRatingRequest_FieldSubPath:
 			switch tp.selector {

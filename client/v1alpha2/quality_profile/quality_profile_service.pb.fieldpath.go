@@ -6581,6 +6581,7 @@ const (
 	UpdateQualityProfileRequest_FieldPathSelectorQualityProfile UpdateQualityProfileRequest_FieldPathSelector = 0
 	UpdateQualityProfileRequest_FieldPathSelectorUpdateMask     UpdateQualityProfileRequest_FieldPathSelector = 1
 	UpdateQualityProfileRequest_FieldPathSelectorCas            UpdateQualityProfileRequest_FieldPathSelector = 2
+	UpdateQualityProfileRequest_FieldPathSelectorAllowMissing   UpdateQualityProfileRequest_FieldPathSelector = 3
 )
 
 func (s UpdateQualityProfileRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateQualityProfileRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateQualityProfileRequest_FieldPath(fp gotenobject.RawFieldPath) (Up
 			return &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) Get(source *UpdateQuali
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) GetSingle(source *Updat
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) GetDefault() interface{
 		return (*quality_profile.QualityProfile_FieldMask)(nil)
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		return (*UpdateQualityProfileRequest_CAS)(nil)
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) ClearValue(item *Update
 			item.UpdateMask = nil
 		case UpdateQualityProfileRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) ClearValueRaw(item prot
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateQualityProfileRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateQualityProfileRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateQualityProfileRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateQualityProfileRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateQualityProfileRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) WithIValue(value interf
 		return &UpdateQualityProfileRequest_FieldTerminalPathValue{UpdateQualityProfileRequest_FieldTerminalPath: *fp, value: value.(*quality_profile.QualityProfile_FieldMask)}
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		return &UpdateQualityProfileRequest_FieldTerminalPathValue{UpdateQualityProfileRequest_FieldTerminalPath: *fp, value: value.(*UpdateQualityProfileRequest_CAS)}
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		return &UpdateQualityProfileRequest_FieldTerminalPathValue{UpdateQualityProfileRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateQualityProfileRequest_FieldTerminalPath) WithIArrayOfValues(valu
 		return &UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues{UpdateQualityProfileRequest_FieldTerminalPath: *fp, values: values.([]*quality_profile.QualityProfile_FieldMask)}
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		return &UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues{UpdateQualityProfileRequest_FieldTerminalPath: *fp, values: values.([]*UpdateQualityProfileRequest_CAS)}
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		return &UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues{UpdateQualityProfileRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateQualityProfileRequest_FieldTerminalPathValue) AsCasValue() (*Up
 	res, ok := fpv.value.(*UpdateQualityProfileRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateQualityProfileRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateQualityProfileRequest
 func (fpv *UpdateQualityProfileRequest_FieldTerminalPathValue) SetTo(target **UpdateQualityProfileRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateQualityProfileRequest_FieldTerminalPathValue) SetTo(target **Up
 		(*target).UpdateMask = fpv.value.(*quality_profile.QualityProfile_FieldMask)
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateQualityProfileRequest_CAS)
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateQualityProfileRequest_FieldTerminalPathValue) CompareWith(sourc
 		return 0, false
 	case UpdateQualityProfileRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateQualityProfileRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues) GetRawV
 		for _, v := range fpaov.values.([]*UpdateQualityProfileRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues) AsUpdat
 }
 func (fpaov *UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateQualityProfileRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateQualityProfileRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

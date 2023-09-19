@@ -6418,6 +6418,7 @@ const (
 	UpdateAgentSoftwareVersionRequest_FieldPathSelectorAgentSoftwareVersion UpdateAgentSoftwareVersionRequest_FieldPathSelector = 0
 	UpdateAgentSoftwareVersionRequest_FieldPathSelectorUpdateMask           UpdateAgentSoftwareVersionRequest_FieldPathSelector = 1
 	UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas                  UpdateAgentSoftwareVersionRequest_FieldPathSelector = 2
+	UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing         UpdateAgentSoftwareVersionRequest_FieldPathSelector = 3
 )
 
 func (s UpdateAgentSoftwareVersionRequest_FieldPathSelector) String() string {
@@ -6428,6 +6429,8 @@ func (s UpdateAgentSoftwareVersionRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", s))
 	}
@@ -6445,6 +6448,8 @@ func BuildUpdateAgentSoftwareVersionRequest_FieldPath(fp gotenobject.RawFieldPat
 			return &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6517,6 +6522,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) Get(source *Updat
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 		}
@@ -6540,6 +6547,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) GetSingle(source 
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 	}
@@ -6558,6 +6567,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) GetDefault() inte
 		return (*agent_software_version.AgentSoftwareVersion_FieldMask)(nil)
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		return (*UpdateAgentSoftwareVersionRequest_CAS)(nil)
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 	}
@@ -6572,6 +6583,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) ClearValue(item *
 			item.UpdateMask = nil
 		case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 		}
@@ -6584,7 +6597,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) ClearValueRaw(ite
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateAgentSoftwareVersionRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateAgentSoftwareVersionRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6599,6 +6613,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) WithIValue(value 
 		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, value: value.(*agent_software_version.AgentSoftwareVersion_FieldMask)}
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, value: value.(*UpdateAgentSoftwareVersionRequest_CAS)}
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 	}
@@ -6617,6 +6633,8 @@ func (fp *UpdateAgentSoftwareVersionRequest_FieldTerminalPath) WithIArrayOfValue
 		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, values: values.([]*agent_software_version.AgentSoftwareVersion_FieldMask)}
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, values: values.([]*UpdateAgentSoftwareVersionRequest_CAS)}
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues{UpdateAgentSoftwareVersionRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fp.selector))
 	}
@@ -6814,6 +6832,10 @@ func (fpv *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue) AsCasValue(
 	res, ok := fpv.value.(*UpdateAgentSoftwareVersionRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateAgentSoftwareVersionRequest
 func (fpv *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue) SetTo(target **UpdateAgentSoftwareVersionRequest) {
@@ -6827,6 +6849,8 @@ func (fpv *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue) SetTo(targe
 		(*target).UpdateMask = fpv.value.(*agent_software_version.AgentSoftwareVersion_FieldMask)
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateAgentSoftwareVersionRequest_CAS)
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fpv.selector))
 	}
@@ -6846,6 +6870,16 @@ func (fpv *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue) CompareWith
 		return 0, false
 	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateAgentSoftwareVersionRequest: %d", fpv.selector))
 	}
@@ -7050,6 +7084,10 @@ func (fpaov *UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues) G
 		for _, v := range fpaov.values.([]*UpdateAgentSoftwareVersionRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7063,6 +7101,10 @@ func (fpaov *UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues) A
 }
 func (fpaov *UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateAgentSoftwareVersionRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateAgentSoftwareVersionRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

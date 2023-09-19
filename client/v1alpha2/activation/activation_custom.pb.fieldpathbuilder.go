@@ -114,6 +114,10 @@ func (ActivationRequestPathSelectorActivate) Metadata() ActivationRequestPathSel
 	return ActivationRequestPathSelectorActivateMetadata{}
 }
 
+func (ActivationRequestPathSelectorActivate) PublicKeyData() ActivationRequestPathSelectorActivatePublicKeyData {
+	return ActivationRequestPathSelectorActivatePublicKeyData{}
+}
+
 type ActivationRequestPathSelectorActivateToken struct{}
 
 func (ActivationRequestPathSelectorActivateToken) FieldPath() *ActivationRequest_FieldSubPath {
@@ -4443,6 +4447,23 @@ func (s ActivationRequestMapPathSelectorActivateMetadata) WithArrayOfValues(valu
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
 }
 
+type ActivationRequestPathSelectorActivatePublicKeyData struct{}
+
+func (ActivationRequestPathSelectorActivatePublicKeyData) FieldPath() *ActivationRequest_FieldSubPath {
+	return &ActivationRequest_FieldSubPath{
+		selector: ActivationRequest_FieldPathSelectorActivate,
+		subPath:  NewActivationRequestActivateFieldPathBuilder().PublicKeyData().FieldPath(),
+	}
+}
+
+func (s ActivationRequestPathSelectorActivatePublicKeyData) WithValue(value string) *ActivationRequest_FieldSubPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequest_FieldSubPathValue)
+}
+
+func (s ActivationRequestPathSelectorActivatePublicKeyData) WithArrayOfValues(values []string) *ActivationRequest_FieldSubPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequest_FieldSubPathArrayOfValues)
+}
+
 type ActivationRequestPathSelectorConfirmActivation struct{}
 
 func (ActivationRequestPathSelectorConfirmActivation) FieldPath() *ActivationRequest_FieldTerminalPath {
@@ -4510,6 +4531,9 @@ func (ActivationRequestActivateFieldPathBuilder) Probe() ActivationRequest_Activ
 }
 func (ActivationRequestActivateFieldPathBuilder) Metadata() ActivationRequest_ActivatePathSelectorMetadata {
 	return ActivationRequest_ActivatePathSelectorMetadata{}
+}
+func (ActivationRequestActivateFieldPathBuilder) PublicKeyData() ActivationRequest_ActivatePathSelectorPublicKeyData {
+	return ActivationRequest_ActivatePathSelectorPublicKeyData{}
 }
 
 type ActivationRequest_ActivatePathSelectorToken struct{}
@@ -8840,6 +8864,20 @@ func (s ActivationRequest_ActivateMapPathSelectorMetadata) WithValue(value strin
 
 func (s ActivationRequest_ActivateMapPathSelectorMetadata) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldPathMapArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldPathMapArrayOfValues)
+}
+
+type ActivationRequest_ActivatePathSelectorPublicKeyData struct{}
+
+func (ActivationRequest_ActivatePathSelectorPublicKeyData) FieldPath() *ActivationRequestActivate_FieldTerminalPath {
+	return &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorPublicKeyData}
+}
+
+func (s ActivationRequest_ActivatePathSelectorPublicKeyData) WithValue(value string) *ActivationRequestActivate_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*ActivationRequestActivate_FieldTerminalPathValue)
+}
+
+func (s ActivationRequest_ActivatePathSelectorPublicKeyData) WithArrayOfValues(values []string) *ActivationRequestActivate_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*ActivationRequestActivate_FieldTerminalPathArrayOfValues)
 }
 
 type ActivationRequestConfirmActivationFieldPathBuilder struct{}

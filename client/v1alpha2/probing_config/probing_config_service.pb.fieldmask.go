@@ -3161,6 +3161,7 @@ func FullUpdateProbingConfigRequest_FieldMask() *UpdateProbingConfigRequest_Fiel
 	res.Paths = append(res.Paths, &UpdateProbingConfigRequest_FieldTerminalPath{selector: UpdateProbingConfigRequest_FieldPathSelectorProbingConfig})
 	res.Paths = append(res.Paths, &UpdateProbingConfigRequest_FieldTerminalPath{selector: UpdateProbingConfigRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateProbingConfigRequest_FieldTerminalPath{selector: UpdateProbingConfigRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateProbingConfigRequest_FieldTerminalPath{selector: UpdateProbingConfigRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateProbingConfigRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateProbingConfigRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateProbingConfigRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateProbingConfigRequest_FieldMask) Subtract(other *UpdateProbingConfigRequest_FieldMask) *UpdateProbingConfigRequest_FieldMask {
 	result := &UpdateProbingConfigRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateProbingConfigRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateProbingConfigRequest_FieldPathSelectorProbingConfig: &probing_config.ProbingConfig_FieldMask{},
 		UpdateProbingConfigRequest_FieldPathSelectorCas:           &UpdateProbingConfigRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateProbingConfigRequest_FieldMask) Project(source *UpdatePro
 			case UpdateProbingConfigRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateProbingConfigRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateProbingConfigRequest_FieldSubPath:
 			switch tp.selector {

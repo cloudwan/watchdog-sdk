@@ -1295,6 +1295,9 @@ func (o *UpdateAgentSoftwareVersionRequest) MakeDiffFieldMask(other *UpdateAgent
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1310,6 +1313,7 @@ func (o *UpdateAgentSoftwareVersionRequest) Clone() *UpdateAgentSoftwareVersionR
 	result.AgentSoftwareVersion = o.AgentSoftwareVersion.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*agent_software_version.AgentSoftwareVersion_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1339,6 +1343,7 @@ func (o *UpdateAgentSoftwareVersionRequest) Merge(source *UpdateAgentSoftwareVer
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateAgentSoftwareVersionRequest) MergeRaw(source gotenobject.GotenObjectExt) {

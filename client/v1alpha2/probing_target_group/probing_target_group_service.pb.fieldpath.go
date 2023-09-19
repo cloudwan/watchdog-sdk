@@ -6581,6 +6581,7 @@ const (
 	UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup UpdateProbingTargetGroupRequest_FieldPathSelector = 0
 	UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask         UpdateProbingTargetGroupRequest_FieldPathSelector = 1
 	UpdateProbingTargetGroupRequest_FieldPathSelectorCas                UpdateProbingTargetGroupRequest_FieldPathSelector = 2
+	UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing       UpdateProbingTargetGroupRequest_FieldPathSelector = 3
 )
 
 func (s UpdateProbingTargetGroupRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateProbingTargetGroupRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateProbingTargetGroupRequest_FieldPath(fp gotenobject.RawFieldPath)
 			return &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) Get(source *UpdateP
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) GetSingle(source *U
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) GetDefault() interf
 		return (*probing_target_group.ProbingTargetGroup_FieldMask)(nil)
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		return (*UpdateProbingTargetGroupRequest_CAS)(nil)
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) ClearValue(item *Up
 			item.UpdateMask = nil
 		case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) ClearValueRaw(item 
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) WithIValue(value in
 		return &UpdateProbingTargetGroupRequest_FieldTerminalPathValue{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, value: value.(*probing_target_group.ProbingTargetGroup_FieldMask)}
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		return &UpdateProbingTargetGroupRequest_FieldTerminalPathValue{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, value: value.(*UpdateProbingTargetGroupRequest_CAS)}
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingTargetGroupRequest_FieldTerminalPathValue{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateProbingTargetGroupRequest_FieldTerminalPath) WithIArrayOfValues(
 		return &UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, values: values.([]*probing_target_group.ProbingTargetGroup_FieldMask)}
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		return &UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, values: values.([]*UpdateProbingTargetGroupRequest_CAS)}
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbingTargetGroupRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateProbingTargetGroupRequest_FieldTerminalPathValue) AsCasValue() 
 	res, ok := fpv.value.(*UpdateProbingTargetGroupRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateProbingTargetGroupRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateProbingTargetGroupRequest
 func (fpv *UpdateProbingTargetGroupRequest_FieldTerminalPathValue) SetTo(target **UpdateProbingTargetGroupRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateProbingTargetGroupRequest_FieldTerminalPathValue) SetTo(target 
 		(*target).UpdateMask = fpv.value.(*probing_target_group.ProbingTargetGroup_FieldMask)
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateProbingTargetGroupRequest_CAS)
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateProbingTargetGroupRequest_FieldTerminalPathValue) CompareWith(s
 		return 0, false
 	case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingTargetGroupRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues) Get
 		for _, v := range fpaov.values.([]*UpdateProbingTargetGroupRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues) AsU
 }
 func (fpaov *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateProbingTargetGroupRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateProbingTargetGroupRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateProbingTargetGroupRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

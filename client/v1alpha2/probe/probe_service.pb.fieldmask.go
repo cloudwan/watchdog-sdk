@@ -3161,6 +3161,7 @@ func FullUpdateProbeRequest_FieldMask() *UpdateProbeRequest_FieldMask {
 	res.Paths = append(res.Paths, &UpdateProbeRequest_FieldTerminalPath{selector: UpdateProbeRequest_FieldPathSelectorProbe})
 	res.Paths = append(res.Paths, &UpdateProbeRequest_FieldTerminalPath{selector: UpdateProbeRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateProbeRequest_FieldTerminalPath{selector: UpdateProbeRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateProbeRequest_FieldTerminalPath{selector: UpdateProbeRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateProbeRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateProbeRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateProbeRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateProbeRequest_FieldMask) Subtract(other *UpdateProbeRequest_FieldMask) *UpdateProbeRequest_FieldMask {
 	result := &UpdateProbeRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateProbeRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateProbeRequest_FieldPathSelectorProbe: &probe.Probe_FieldMask{},
 		UpdateProbeRequest_FieldPathSelectorCas:   &UpdateProbeRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateProbeRequest_FieldMask) Project(source *UpdateProbeReques
 			case UpdateProbeRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateProbeRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateProbeRequest_FieldSubPath:
 			switch tp.selector {

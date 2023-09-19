@@ -3235,6 +3235,9 @@ func (UpdateProbeGroupRequestFieldPathBuilder) UpdateMask() UpdateProbeGroupRequ
 func (UpdateProbeGroupRequestFieldPathBuilder) Cas() UpdateProbeGroupRequestPathSelectorCas {
 	return UpdateProbeGroupRequestPathSelectorCas{}
 }
+func (UpdateProbeGroupRequestFieldPathBuilder) AllowMissing() UpdateProbeGroupRequestPathSelectorAllowMissing {
+	return UpdateProbeGroupRequestPathSelectorAllowMissing{}
+}
 
 type UpdateProbeGroupRequestPathSelectorProbeGroup struct{}
 
@@ -4818,6 +4821,20 @@ func (s UpdateProbeGroupRequestPathSelectorCasFieldMask) WithValue(value *probe_
 
 func (s UpdateProbeGroupRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*probe_group.ProbeGroup_FieldMask) *UpdateProbeGroupRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeGroupRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbeGroupRequestPathSelectorAllowMissing struct{}
+
+func (UpdateProbeGroupRequestPathSelectorAllowMissing) FieldPath() *UpdateProbeGroupRequest_FieldTerminalPath {
+	return &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateProbeGroupRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateProbeGroupRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbeGroupRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateProbeGroupRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateProbeGroupRequestCASFieldPathBuilder struct{}

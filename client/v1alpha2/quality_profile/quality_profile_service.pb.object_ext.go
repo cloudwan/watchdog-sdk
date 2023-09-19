@@ -1372,6 +1372,9 @@ func (o *UpdateQualityProfileRequest) MakeDiffFieldMask(other *UpdateQualityProf
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1387,6 +1390,7 @@ func (o *UpdateQualityProfileRequest) Clone() *UpdateQualityProfileRequest {
 	result.QualityProfile = o.QualityProfile.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*quality_profile.QualityProfile_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1416,6 +1420,7 @@ func (o *UpdateQualityProfileRequest) Merge(source *UpdateQualityProfileRequest)
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateQualityProfileRequest) MergeRaw(source gotenobject.GotenObjectExt) {

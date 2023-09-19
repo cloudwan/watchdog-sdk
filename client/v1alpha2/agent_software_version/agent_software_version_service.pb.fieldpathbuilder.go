@@ -3111,6 +3111,9 @@ func (UpdateAgentSoftwareVersionRequestFieldPathBuilder) UpdateMask() UpdateAgen
 func (UpdateAgentSoftwareVersionRequestFieldPathBuilder) Cas() UpdateAgentSoftwareVersionRequestPathSelectorCas {
 	return UpdateAgentSoftwareVersionRequestPathSelectorCas{}
 }
+func (UpdateAgentSoftwareVersionRequestFieldPathBuilder) AllowMissing() UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing {
+	return UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing{}
+}
 
 type UpdateAgentSoftwareVersionRequestPathSelectorAgentSoftwareVersion struct{}
 
@@ -4648,6 +4651,20 @@ func (s UpdateAgentSoftwareVersionRequestPathSelectorCasFieldMask) WithValue(val
 
 func (s UpdateAgentSoftwareVersionRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*agent_software_version.AgentSoftwareVersion_FieldMask) *UpdateAgentSoftwareVersionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAgentSoftwareVersionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing struct{}
+
+func (UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing) FieldPath() *UpdateAgentSoftwareVersionRequest_FieldTerminalPath {
+	return &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAgentSoftwareVersionRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateAgentSoftwareVersionRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAgentSoftwareVersionRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateAgentSoftwareVersionRequestCASFieldPathBuilder struct{}

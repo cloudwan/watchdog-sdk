@@ -753,10 +753,11 @@ type ActivationRequestActivate_FieldPath interface {
 type ActivationRequestActivate_FieldPathSelector int32
 
 const (
-	ActivationRequestActivate_FieldPathSelectorToken        ActivationRequestActivate_FieldPathSelector = 0
-	ActivationRequestActivate_FieldPathSelectorClientCookie ActivationRequestActivate_FieldPathSelector = 1
-	ActivationRequestActivate_FieldPathSelectorProbe        ActivationRequestActivate_FieldPathSelector = 2
-	ActivationRequestActivate_FieldPathSelectorMetadata     ActivationRequestActivate_FieldPathSelector = 3
+	ActivationRequestActivate_FieldPathSelectorToken         ActivationRequestActivate_FieldPathSelector = 0
+	ActivationRequestActivate_FieldPathSelectorClientCookie  ActivationRequestActivate_FieldPathSelector = 1
+	ActivationRequestActivate_FieldPathSelectorProbe         ActivationRequestActivate_FieldPathSelector = 2
+	ActivationRequestActivate_FieldPathSelectorMetadata      ActivationRequestActivate_FieldPathSelector = 3
+	ActivationRequestActivate_FieldPathSelectorPublicKeyData ActivationRequestActivate_FieldPathSelector = 4
 )
 
 func (s ActivationRequestActivate_FieldPathSelector) String() string {
@@ -769,6 +770,8 @@ func (s ActivationRequestActivate_FieldPathSelector) String() string {
 		return "probe"
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		return "metadata"
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		return "public_key_data"
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", s))
 	}
@@ -788,6 +791,8 @@ func BuildActivationRequestActivate_FieldPath(fp gotenobject.RawFieldPath) (Acti
 			return &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorProbe}, nil
 		case "metadata":
 			return &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorMetadata}, nil
+		case "public_key_data", "publicKeyData", "public-key-data":
+			return &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorPublicKeyData}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -857,6 +862,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) Get(source *ActivationReq
 			}
 		case ActivationRequestActivate_FieldPathSelectorMetadata:
 			values = append(values, source.Metadata)
+		case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+			values = append(values, source.PublicKeyData)
 		default:
 			panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 		}
@@ -881,6 +888,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) GetSingle(source *Activat
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		res := source.GetMetadata()
 		return res, res != nil
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		return source.GetPublicKeyData(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 	}
@@ -901,6 +910,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) GetDefault() interface{} 
 		return (*probe.Probe)(nil)
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		return (map[string]string)(nil)
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		return ""
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 	}
@@ -917,6 +928,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) ClearValue(item *Activati
 			item.Probe = nil
 		case ActivationRequestActivate_FieldPathSelectorMetadata:
 			item.Metadata = nil
+		case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+			item.PublicKeyData = ""
 		default:
 			panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 		}
@@ -931,7 +944,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) ClearValueRaw(item proto.
 func (fp *ActivationRequestActivate_FieldTerminalPath) IsLeaf() bool {
 	return fp.selector == ActivationRequestActivate_FieldPathSelectorToken ||
 		fp.selector == ActivationRequestActivate_FieldPathSelectorClientCookie ||
-		fp.selector == ActivationRequestActivate_FieldPathSelectorMetadata
+		fp.selector == ActivationRequestActivate_FieldPathSelectorMetadata ||
+		fp.selector == ActivationRequestActivate_FieldPathSelectorPublicKeyData
 }
 
 func (fp *ActivationRequestActivate_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -948,6 +962,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) WithIValue(value interfac
 		return &ActivationRequestActivate_FieldTerminalPathValue{ActivationRequestActivate_FieldTerminalPath: *fp, value: value.(*probe.Probe)}
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		return &ActivationRequestActivate_FieldTerminalPathValue{ActivationRequestActivate_FieldTerminalPath: *fp, value: value.(map[string]string)}
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		return &ActivationRequestActivate_FieldTerminalPathValue{ActivationRequestActivate_FieldTerminalPath: *fp, value: value.(string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 	}
@@ -968,6 +984,8 @@ func (fp *ActivationRequestActivate_FieldTerminalPath) WithIArrayOfValues(values
 		return &ActivationRequestActivate_FieldTerminalPathArrayOfValues{ActivationRequestActivate_FieldTerminalPath: *fp, values: values.([]*probe.Probe)}
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		return &ActivationRequestActivate_FieldTerminalPathArrayOfValues{ActivationRequestActivate_FieldTerminalPath: *fp, values: values.([]map[string]string)}
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		return &ActivationRequestActivate_FieldTerminalPathArrayOfValues{ActivationRequestActivate_FieldTerminalPath: *fp, values: values.([]string)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fp.selector))
 	}
@@ -1288,6 +1306,10 @@ func (fpv *ActivationRequestActivate_FieldTerminalPathValue) AsMetadataValue() (
 	res, ok := fpv.value.(map[string]string)
 	return res, ok
 }
+func (fpv *ActivationRequestActivate_FieldTerminalPathValue) AsPublicKeyDataValue() (string, bool) {
+	res, ok := fpv.value.(string)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object Activate
 func (fpv *ActivationRequestActivate_FieldTerminalPathValue) SetTo(target **ActivationRequest_Activate) {
@@ -1303,6 +1325,8 @@ func (fpv *ActivationRequestActivate_FieldTerminalPathValue) SetTo(target **Acti
 		(*target).Probe = fpv.value.(*probe.Probe)
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		(*target).Metadata = fpv.value.(map[string]string)
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		(*target).PublicKeyData = fpv.value.(string)
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fpv.selector))
 	}
@@ -1340,6 +1364,16 @@ func (fpv *ActivationRequestActivate_FieldTerminalPathValue) CompareWith(source 
 		return 0, false
 	case ActivationRequestActivate_FieldPathSelectorMetadata:
 		return 0, false
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		leftValue := fpv.value.(string)
+		rightValue := source.GetPublicKeyData()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if (leftValue) < (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for ActivationRequest_Activate: %d", fpv.selector))
 	}
@@ -1593,6 +1627,10 @@ func (fpaov *ActivationRequestActivate_FieldTerminalPathArrayOfValues) GetRawVal
 		for _, v := range fpaov.values.([]map[string]string) {
 			values = append(values, v)
 		}
+	case ActivationRequestActivate_FieldPathSelectorPublicKeyData:
+		for _, v := range fpaov.values.([]string) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -1610,6 +1648,10 @@ func (fpaov *ActivationRequestActivate_FieldTerminalPathArrayOfValues) AsProbeAr
 }
 func (fpaov *ActivationRequestActivate_FieldTerminalPathArrayOfValues) AsMetadataArrayOfValues() ([]map[string]string, bool) {
 	res, ok := fpaov.values.([]map[string]string)
+	return res, ok
+}
+func (fpaov *ActivationRequestActivate_FieldTerminalPathArrayOfValues) AsPublicKeyDataArrayOfValues() ([]string, bool) {
+	res, ok := fpaov.values.([]string)
 	return res, ok
 }
 

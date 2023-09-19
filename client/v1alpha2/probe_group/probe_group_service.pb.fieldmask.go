@@ -3161,6 +3161,7 @@ func FullUpdateProbeGroupRequest_FieldMask() *UpdateProbeGroupRequest_FieldMask 
 	res.Paths = append(res.Paths, &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorProbeGroup})
 	res.Paths = append(res.Paths, &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateProbeGroupRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateProbeGroupRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateProbeGroupRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateProbeGroupRequest_FieldMask) Subtract(other *UpdateProbeGroupRequest_FieldMask) *UpdateProbeGroupRequest_FieldMask {
 	result := &UpdateProbeGroupRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateProbeGroupRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateProbeGroupRequest_FieldPathSelectorProbeGroup: &probe_group.ProbeGroup_FieldMask{},
 		UpdateProbeGroupRequest_FieldPathSelectorCas:        &UpdateProbeGroupRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateProbeGroupRequest_FieldMask) Project(source *UpdateProbeG
 			case UpdateProbeGroupRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateProbeGroupRequest_FieldSubPath:
 			switch tp.selector {

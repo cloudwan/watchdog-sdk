@@ -4253,6 +4253,9 @@ func (UpdateAdminAreaRequestFieldPathBuilder) UpdateMask() UpdateAdminAreaReques
 func (UpdateAdminAreaRequestFieldPathBuilder) Cas() UpdateAdminAreaRequestPathSelectorCas {
 	return UpdateAdminAreaRequestPathSelectorCas{}
 }
+func (UpdateAdminAreaRequestFieldPathBuilder) AllowMissing() UpdateAdminAreaRequestPathSelectorAllowMissing {
+	return UpdateAdminAreaRequestPathSelectorAllowMissing{}
+}
 
 type UpdateAdminAreaRequestPathSelectorAdminArea struct{}
 
@@ -6550,6 +6553,20 @@ func (s UpdateAdminAreaRequestPathSelectorCasFieldMask) WithValue(value *admin_a
 
 func (s UpdateAdminAreaRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*admin_area.AdminArea_FieldMask) *UpdateAdminAreaRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateAdminAreaRequestPathSelectorAllowMissing struct{}
+
+func (UpdateAdminAreaRequestPathSelectorAllowMissing) FieldPath() *UpdateAdminAreaRequest_FieldTerminalPath {
+	return &UpdateAdminAreaRequest_FieldTerminalPath{selector: UpdateAdminAreaRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateAdminAreaRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateAdminAreaRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateAdminAreaRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateAdminAreaRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateAdminAreaRequestCASFieldPathBuilder struct{}

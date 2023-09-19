@@ -14953,6 +14953,9 @@ func (UpdateProbingConfigRequestFieldPathBuilder) UpdateMask() UpdateProbingConf
 func (UpdateProbingConfigRequestFieldPathBuilder) Cas() UpdateProbingConfigRequestPathSelectorCas {
 	return UpdateProbingConfigRequestPathSelectorCas{}
 }
+func (UpdateProbingConfigRequestFieldPathBuilder) AllowMissing() UpdateProbingConfigRequestPathSelectorAllowMissing {
+	return UpdateProbingConfigRequestPathSelectorAllowMissing{}
+}
 
 type UpdateProbingConfigRequestPathSelectorProbingConfig struct{}
 
@@ -24324,6 +24327,20 @@ func (s UpdateProbingConfigRequestPathSelectorCasFieldMask) WithValue(value *pro
 
 func (s UpdateProbingConfigRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*probing_config.ProbingConfig_FieldMask) *UpdateProbingConfigRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingConfigRequestPathSelectorAllowMissing struct{}
+
+func (UpdateProbingConfigRequestPathSelectorAllowMissing) FieldPath() *UpdateProbingConfigRequest_FieldTerminalPath {
+	return &UpdateProbingConfigRequest_FieldTerminalPath{selector: UpdateProbingConfigRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateProbingConfigRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateProbingConfigRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingConfigRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateProbingConfigRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateProbingConfigRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingConfigRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateProbingConfigRequestCASFieldPathBuilder struct{}

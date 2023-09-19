@@ -6650,6 +6650,9 @@ func (UpdateSharedTokenRequestFieldPathBuilder) UpdateMask() UpdateSharedTokenRe
 func (UpdateSharedTokenRequestFieldPathBuilder) Cas() UpdateSharedTokenRequestPathSelectorCas {
 	return UpdateSharedTokenRequestPathSelectorCas{}
 }
+func (UpdateSharedTokenRequestFieldPathBuilder) AllowMissing() UpdateSharedTokenRequestPathSelectorAllowMissing {
+	return UpdateSharedTokenRequestPathSelectorAllowMissing{}
+}
 
 type UpdateSharedTokenRequestPathSelectorSharedToken struct{}
 
@@ -10487,6 +10490,20 @@ func (s UpdateSharedTokenRequestPathSelectorCasFieldMask) WithValue(value *share
 
 func (s UpdateSharedTokenRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*shared_token.SharedToken_FieldMask) *UpdateSharedTokenRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateSharedTokenRequestPathSelectorAllowMissing struct{}
+
+func (UpdateSharedTokenRequestPathSelectorAllowMissing) FieldPath() *UpdateSharedTokenRequest_FieldTerminalPath {
+	return &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateSharedTokenRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateSharedTokenRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateSharedTokenRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateSharedTokenRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateSharedTokenRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateSharedTokenRequestCASFieldPathBuilder struct{}

@@ -6578,9 +6578,10 @@ type UpdateProbeGroupRequest_FieldPath interface {
 type UpdateProbeGroupRequest_FieldPathSelector int32
 
 const (
-	UpdateProbeGroupRequest_FieldPathSelectorProbeGroup UpdateProbeGroupRequest_FieldPathSelector = 0
-	UpdateProbeGroupRequest_FieldPathSelectorUpdateMask UpdateProbeGroupRequest_FieldPathSelector = 1
-	UpdateProbeGroupRequest_FieldPathSelectorCas        UpdateProbeGroupRequest_FieldPathSelector = 2
+	UpdateProbeGroupRequest_FieldPathSelectorProbeGroup   UpdateProbeGroupRequest_FieldPathSelector = 0
+	UpdateProbeGroupRequest_FieldPathSelectorUpdateMask   UpdateProbeGroupRequest_FieldPathSelector = 1
+	UpdateProbeGroupRequest_FieldPathSelectorCas          UpdateProbeGroupRequest_FieldPathSelector = 2
+	UpdateProbeGroupRequest_FieldPathSelectorAllowMissing UpdateProbeGroupRequest_FieldPathSelector = 3
 )
 
 func (s UpdateProbeGroupRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateProbeGroupRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateProbeGroupRequest_FieldPath(fp gotenobject.RawFieldPath) (Update
 			return &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateProbeGroupRequest_FieldTerminalPath{selector: UpdateProbeGroupRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) Get(source *UpdateProbeGrou
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) GetSingle(source *UpdatePro
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*probe_group.ProbeGroup_FieldMask)(nil)
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		return (*UpdateProbeGroupRequest_CAS)(nil)
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) ClearValue(item *UpdateProb
 			item.UpdateMask = nil
 		case UpdateProbeGroupRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) ClearValueRaw(item proto.Me
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateProbeGroupRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateProbeGroupRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateProbeGroupRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateProbeGroupRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateProbeGroupRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) WithIValue(value interface{
 		return &UpdateProbeGroupRequest_FieldTerminalPathValue{UpdateProbeGroupRequest_FieldTerminalPath: *fp, value: value.(*probe_group.ProbeGroup_FieldMask)}
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		return &UpdateProbeGroupRequest_FieldTerminalPathValue{UpdateProbeGroupRequest_FieldTerminalPath: *fp, value: value.(*UpdateProbeGroupRequest_CAS)}
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbeGroupRequest_FieldTerminalPathValue{UpdateProbeGroupRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateProbeGroupRequest_FieldTerminalPath) WithIArrayOfValues(values i
 		return &UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbeGroupRequest_FieldTerminalPath: *fp, values: values.([]*probe_group.ProbeGroup_FieldMask)}
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		return &UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbeGroupRequest_FieldTerminalPath: *fp, values: values.([]*UpdateProbeGroupRequest_CAS)}
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues{UpdateProbeGroupRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateProbeGroupRequest_FieldTerminalPathValue) AsCasValue() (*Update
 	res, ok := fpv.value.(*UpdateProbeGroupRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateProbeGroupRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateProbeGroupRequest
 func (fpv *UpdateProbeGroupRequest_FieldTerminalPathValue) SetTo(target **UpdateProbeGroupRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateProbeGroupRequest_FieldTerminalPathValue) SetTo(target **Update
 		(*target).UpdateMask = fpv.value.(*probe_group.ProbeGroup_FieldMask)
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateProbeGroupRequest_CAS)
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateProbeGroupRequest_FieldTerminalPathValue) CompareWith(source *U
 		return 0, false
 	case UpdateProbeGroupRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbeGroupRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues) GetRawValue
 		for _, v := range fpaov.values.([]*UpdateProbeGroupRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateProbeGroupRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues) AsUpdateMas
 }
 func (fpaov *UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateProbeGroupRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateProbeGroupRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateProbeGroupRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

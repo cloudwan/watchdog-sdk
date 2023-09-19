@@ -8091,6 +8091,9 @@ func (UpdateProbingSessionRequestFieldPathBuilder) UpdateMask() UpdateProbingSes
 func (UpdateProbingSessionRequestFieldPathBuilder) Cas() UpdateProbingSessionRequestPathSelectorCas {
 	return UpdateProbingSessionRequestPathSelectorCas{}
 }
+func (UpdateProbingSessionRequestFieldPathBuilder) AllowMissing() UpdateProbingSessionRequestPathSelectorAllowMissing {
+	return UpdateProbingSessionRequestPathSelectorAllowMissing{}
+}
 
 type UpdateProbingSessionRequestPathSelectorProbingSession struct{}
 
@@ -12886,6 +12889,20 @@ func (s UpdateProbingSessionRequestPathSelectorCasFieldMask) WithValue(value *pr
 
 func (s UpdateProbingSessionRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*probing_session.ProbingSession_FieldMask) *UpdateProbingSessionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingSessionRequestPathSelectorAllowMissing struct{}
+
+func (UpdateProbingSessionRequestPathSelectorAllowMissing) FieldPath() *UpdateProbingSessionRequest_FieldTerminalPath {
+	return &UpdateProbingSessionRequest_FieldTerminalPath{selector: UpdateProbingSessionRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateProbingSessionRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateProbingSessionRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingSessionRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateProbingSessionRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateProbingSessionRequestCASFieldPathBuilder struct{}

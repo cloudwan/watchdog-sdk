@@ -1372,6 +1372,9 @@ func (o *UpdateProbingTargetRequest) MakeDiffFieldMask(other *UpdateProbingTarge
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateProbingTargetRequest_FieldTerminalPath{selector: UpdateProbingTargetRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1387,6 +1390,7 @@ func (o *UpdateProbingTargetRequest) Clone() *UpdateProbingTargetRequest {
 	result.ProbingTarget = o.ProbingTarget.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*probing_target.ProbingTarget_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1416,6 +1420,7 @@ func (o *UpdateProbingTargetRequest) Merge(source *UpdateProbingTargetRequest) {
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateProbingTargetRequest) MergeRaw(source gotenobject.GotenObjectExt) {

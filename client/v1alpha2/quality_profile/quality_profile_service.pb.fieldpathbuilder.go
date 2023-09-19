@@ -4187,6 +4187,9 @@ func (UpdateQualityProfileRequestFieldPathBuilder) UpdateMask() UpdateQualityPro
 func (UpdateQualityProfileRequestFieldPathBuilder) Cas() UpdateQualityProfileRequestPathSelectorCas {
 	return UpdateQualityProfileRequestPathSelectorCas{}
 }
+func (UpdateQualityProfileRequestFieldPathBuilder) AllowMissing() UpdateQualityProfileRequestPathSelectorAllowMissing {
+	return UpdateQualityProfileRequestPathSelectorAllowMissing{}
+}
 
 type UpdateQualityProfileRequestPathSelectorQualityProfile struct{}
 
@@ -6402,6 +6405,20 @@ func (s UpdateQualityProfileRequestPathSelectorCasFieldMask) WithValue(value *qu
 
 func (s UpdateQualityProfileRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*quality_profile.QualityProfile_FieldMask) *UpdateQualityProfileRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateQualityProfileRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateQualityProfileRequestPathSelectorAllowMissing struct{}
+
+func (UpdateQualityProfileRequestPathSelectorAllowMissing) FieldPath() *UpdateQualityProfileRequest_FieldTerminalPath {
+	return &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateQualityProfileRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateQualityProfileRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateQualityProfileRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateQualityProfileRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateQualityProfileRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateQualityProfileRequestCASFieldPathBuilder struct{}

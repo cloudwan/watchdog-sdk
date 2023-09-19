@@ -6581,6 +6581,7 @@ const (
 	UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution UpdateProbingDistributionRequest_FieldPathSelector = 0
 	UpdateProbingDistributionRequest_FieldPathSelectorUpdateMask          UpdateProbingDistributionRequest_FieldPathSelector = 1
 	UpdateProbingDistributionRequest_FieldPathSelectorCas                 UpdateProbingDistributionRequest_FieldPathSelector = 2
+	UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing        UpdateProbingDistributionRequest_FieldPathSelector = 3
 )
 
 func (s UpdateProbingDistributionRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateProbingDistributionRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateProbingDistributionRequest_FieldPath(fp gotenobject.RawFieldPath
 			return &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) Get(source *Update
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) GetSingle(source *
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) GetDefault() inter
 		return (*probing_distribution.ProbingDistribution_FieldMask)(nil)
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		return (*UpdateProbingDistributionRequest_CAS)(nil)
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) ClearValue(item *U
 			item.UpdateMask = nil
 		case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) ClearValueRaw(item
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateProbingDistributionRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateProbingDistributionRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) WithIValue(value i
 		return &UpdateProbingDistributionRequest_FieldTerminalPathValue{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, value: value.(*probing_distribution.ProbingDistribution_FieldMask)}
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		return &UpdateProbingDistributionRequest_FieldTerminalPathValue{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, value: value.(*UpdateProbingDistributionRequest_CAS)}
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingDistributionRequest_FieldTerminalPathValue{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateProbingDistributionRequest_FieldTerminalPath) WithIArrayOfValues
 		return &UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, values: values.([]*probing_distribution.ProbingDistribution_FieldMask)}
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		return &UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, values: values.([]*UpdateProbingDistributionRequest_CAS)}
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues{UpdateProbingDistributionRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateProbingDistributionRequest_FieldTerminalPathValue) AsCasValue()
 	res, ok := fpv.value.(*UpdateProbingDistributionRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateProbingDistributionRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateProbingDistributionRequest
 func (fpv *UpdateProbingDistributionRequest_FieldTerminalPathValue) SetTo(target **UpdateProbingDistributionRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateProbingDistributionRequest_FieldTerminalPathValue) SetTo(target
 		(*target).UpdateMask = fpv.value.(*probing_distribution.ProbingDistribution_FieldMask)
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateProbingDistributionRequest_CAS)
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateProbingDistributionRequest_FieldTerminalPathValue) CompareWith(
 		return 0, false
 	case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingDistributionRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues) Ge
 		for _, v := range fpaov.values.([]*UpdateProbingDistributionRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues) As
 }
 func (fpaov *UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateProbingDistributionRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateProbingDistributionRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

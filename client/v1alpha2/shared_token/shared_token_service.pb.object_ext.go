@@ -1372,6 +1372,9 @@ func (o *UpdateSharedTokenRequest) MakeDiffFieldMask(other *UpdateSharedTokenReq
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1387,6 +1390,7 @@ func (o *UpdateSharedTokenRequest) Clone() *UpdateSharedTokenRequest {
 	result.SharedToken = o.SharedToken.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*shared_token.SharedToken_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1416,6 +1420,7 @@ func (o *UpdateSharedTokenRequest) Merge(source *UpdateSharedTokenRequest) {
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateSharedTokenRequest) MergeRaw(source gotenobject.GotenObjectExt) {

@@ -6581,6 +6581,7 @@ const (
 	UpdateProbingSessionRequest_FieldPathSelectorProbingSession UpdateProbingSessionRequest_FieldPathSelector = 0
 	UpdateProbingSessionRequest_FieldPathSelectorUpdateMask     UpdateProbingSessionRequest_FieldPathSelector = 1
 	UpdateProbingSessionRequest_FieldPathSelectorCas            UpdateProbingSessionRequest_FieldPathSelector = 2
+	UpdateProbingSessionRequest_FieldPathSelectorAllowMissing   UpdateProbingSessionRequest_FieldPathSelector = 3
 )
 
 func (s UpdateProbingSessionRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateProbingSessionRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateProbingSessionRequest_FieldPath(fp gotenobject.RawFieldPath) (Up
 			return &UpdateProbingSessionRequest_FieldTerminalPath{selector: UpdateProbingSessionRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateProbingSessionRequest_FieldTerminalPath{selector: UpdateProbingSessionRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateProbingSessionRequest_FieldTerminalPath{selector: UpdateProbingSessionRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) Get(source *UpdateProbi
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) GetSingle(source *Updat
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) GetDefault() interface{
 		return (*probing_session.ProbingSession_FieldMask)(nil)
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		return (*UpdateProbingSessionRequest_CAS)(nil)
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) ClearValue(item *Update
 			item.UpdateMask = nil
 		case UpdateProbingSessionRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) ClearValueRaw(item prot
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateProbingSessionRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateProbingSessionRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateProbingSessionRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateProbingSessionRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateProbingSessionRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) WithIValue(value interf
 		return &UpdateProbingSessionRequest_FieldTerminalPathValue{UpdateProbingSessionRequest_FieldTerminalPath: *fp, value: value.(*probing_session.ProbingSession_FieldMask)}
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		return &UpdateProbingSessionRequest_FieldTerminalPathValue{UpdateProbingSessionRequest_FieldTerminalPath: *fp, value: value.(*UpdateProbingSessionRequest_CAS)}
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingSessionRequest_FieldTerminalPathValue{UpdateProbingSessionRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateProbingSessionRequest_FieldTerminalPath) WithIArrayOfValues(valu
 		return &UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues{UpdateProbingSessionRequest_FieldTerminalPath: *fp, values: values.([]*probing_session.ProbingSession_FieldMask)}
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		return &UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues{UpdateProbingSessionRequest_FieldTerminalPath: *fp, values: values.([]*UpdateProbingSessionRequest_CAS)}
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		return &UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues{UpdateProbingSessionRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateProbingSessionRequest_FieldTerminalPathValue) AsCasValue() (*Up
 	res, ok := fpv.value.(*UpdateProbingSessionRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateProbingSessionRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateProbingSessionRequest
 func (fpv *UpdateProbingSessionRequest_FieldTerminalPathValue) SetTo(target **UpdateProbingSessionRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateProbingSessionRequest_FieldTerminalPathValue) SetTo(target **Up
 		(*target).UpdateMask = fpv.value.(*probing_session.ProbingSession_FieldMask)
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateProbingSessionRequest_CAS)
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateProbingSessionRequest_FieldTerminalPathValue) CompareWith(sourc
 		return 0, false
 	case UpdateProbingSessionRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateProbingSessionRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues) GetRawV
 		for _, v := range fpaov.values.([]*UpdateProbingSessionRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateProbingSessionRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues) AsUpdat
 }
 func (fpaov *UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateProbingSessionRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateProbingSessionRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateProbingSessionRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

@@ -3161,6 +3161,7 @@ func FullUpdateSharedTokenRequest_FieldMask() *UpdateSharedTokenRequest_FieldMas
 	res.Paths = append(res.Paths, &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorSharedToken})
 	res.Paths = append(res.Paths, &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateSharedTokenRequest_FieldTerminalPath{selector: UpdateSharedTokenRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateSharedTokenRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateSharedTokenRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateSharedTokenRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateSharedTokenRequest_FieldMask) Subtract(other *UpdateSharedTokenRequest_FieldMask) *UpdateSharedTokenRequest_FieldMask {
 	result := &UpdateSharedTokenRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateSharedTokenRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateSharedTokenRequest_FieldPathSelectorSharedToken: &shared_token.SharedToken_FieldMask{},
 		UpdateSharedTokenRequest_FieldPathSelectorCas:         &UpdateSharedTokenRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateSharedTokenRequest_FieldMask) Project(source *UpdateShare
 			case UpdateSharedTokenRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateSharedTokenRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateSharedTokenRequest_FieldSubPath:
 			switch tp.selector {

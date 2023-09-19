@@ -3150,6 +3150,7 @@ func FullUpdateAgentSoftwareVersionRequest_FieldMask() *UpdateAgentSoftwareVersi
 	res.Paths = append(res.Paths, &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorAgentSoftwareVersion})
 	res.Paths = append(res.Paths, &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateAgentSoftwareVersionRequest_FieldTerminalPath{selector: UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3193,7 +3194,7 @@ func (fieldMask *UpdateAgentSoftwareVersionRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateAgentSoftwareVersionRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3223,7 +3224,7 @@ func (fieldMask *UpdateAgentSoftwareVersionRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateAgentSoftwareVersionRequest_FieldMask) Subtract(other *UpdateAgentSoftwareVersionRequest_FieldMask) *UpdateAgentSoftwareVersionRequest_FieldMask {
 	result := &UpdateAgentSoftwareVersionRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateAgentSoftwareVersionRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateAgentSoftwareVersionRequest_FieldPathSelectorAgentSoftwareVersion: &agent_software_version.AgentSoftwareVersion_FieldMask{},
 		UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:                  &UpdateAgentSoftwareVersionRequest_CAS_FieldMask{},
@@ -3450,6 +3451,8 @@ func (fieldMask *UpdateAgentSoftwareVersionRequest_FieldMask) Project(source *Up
 			case UpdateAgentSoftwareVersionRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateAgentSoftwareVersionRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateAgentSoftwareVersionRequest_FieldSubPath:
 			switch tp.selector {

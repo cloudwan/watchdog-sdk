@@ -3492,6 +3492,9 @@ func (UpdateTagRequestFieldPathBuilder) UpdateMask() UpdateTagRequestPathSelecto
 func (UpdateTagRequestFieldPathBuilder) Cas() UpdateTagRequestPathSelectorCas {
 	return UpdateTagRequestPathSelectorCas{}
 }
+func (UpdateTagRequestFieldPathBuilder) AllowMissing() UpdateTagRequestPathSelectorAllowMissing {
+	return UpdateTagRequestPathSelectorAllowMissing{}
+}
 
 type UpdateTagRequestPathSelectorTag struct{}
 
@@ -5221,6 +5224,20 @@ func (s UpdateTagRequestPathSelectorCasFieldMask) WithValue(value *tag.Tag_Field
 
 func (s UpdateTagRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*tag.Tag_FieldMask) *UpdateTagRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateTagRequestPathSelectorAllowMissing struct{}
+
+func (UpdateTagRequestPathSelectorAllowMissing) FieldPath() *UpdateTagRequest_FieldTerminalPath {
+	return &UpdateTagRequest_FieldTerminalPath{selector: UpdateTagRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateTagRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateTagRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateTagRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateTagRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateTagRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateTagRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateTagRequestCASFieldPathBuilder struct{}

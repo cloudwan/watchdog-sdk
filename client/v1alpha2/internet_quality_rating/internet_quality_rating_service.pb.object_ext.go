@@ -1372,6 +1372,9 @@ func (o *UpdateInternetQualityRatingRequest) MakeDiffFieldMask(other *UpdateInte
 			}
 		}
 	}
+	if o.GetAllowMissing() != other.GetAllowMissing() {
+		res.Paths = append(res.Paths, &UpdateInternetQualityRatingRequest_FieldTerminalPath{selector: UpdateInternetQualityRatingRequest_FieldPathSelectorAllowMissing})
+	}
 	return res
 }
 
@@ -1387,6 +1390,7 @@ func (o *UpdateInternetQualityRatingRequest) Clone() *UpdateInternetQualityRatin
 	result.InternetQualityRating = o.InternetQualityRating.Clone()
 	result.UpdateMask = proto.Clone(o.UpdateMask).(*internet_quality_rating.InternetQualityRating_FieldMask)
 	result.Cas = o.Cas.Clone()
+	result.AllowMissing = o.AllowMissing
 	return result
 }
 
@@ -1416,6 +1420,7 @@ func (o *UpdateInternetQualityRatingRequest) Merge(source *UpdateInternetQuality
 		}
 		o.Cas.Merge(source.GetCas())
 	}
+	o.AllowMissing = source.GetAllowMissing()
 }
 
 func (o *UpdateInternetQualityRatingRequest) MergeRaw(source gotenobject.GotenObjectExt) {

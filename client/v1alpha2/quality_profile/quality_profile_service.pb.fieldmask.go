@@ -3161,6 +3161,7 @@ func FullUpdateQualityProfileRequest_FieldMask() *UpdateQualityProfileRequest_Fi
 	res.Paths = append(res.Paths, &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorQualityProfile})
 	res.Paths = append(res.Paths, &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateQualityProfileRequest_FieldTerminalPath{selector: UpdateQualityProfileRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateQualityProfileRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateQualityProfileRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateQualityProfileRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateQualityProfileRequest_FieldMask) Subtract(other *UpdateQualityProfileRequest_FieldMask) *UpdateQualityProfileRequest_FieldMask {
 	result := &UpdateQualityProfileRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateQualityProfileRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateQualityProfileRequest_FieldPathSelectorQualityProfile: &quality_profile.QualityProfile_FieldMask{},
 		UpdateQualityProfileRequest_FieldPathSelectorCas:            &UpdateQualityProfileRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateQualityProfileRequest_FieldMask) Project(source *UpdateQu
 			case UpdateQualityProfileRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateQualityProfileRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateQualityProfileRequest_FieldSubPath:
 			switch tp.selector {

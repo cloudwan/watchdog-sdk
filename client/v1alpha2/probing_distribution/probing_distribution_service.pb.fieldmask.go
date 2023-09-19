@@ -3161,6 +3161,7 @@ func FullUpdateProbingDistributionRequest_FieldMask() *UpdateProbingDistribution
 	res.Paths = append(res.Paths, &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution})
 	res.Paths = append(res.Paths, &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateProbingDistributionRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateProbingDistributionRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateProbingDistributionRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateProbingDistributionRequest_FieldMask) Subtract(other *UpdateProbingDistributionRequest_FieldMask) *UpdateProbingDistributionRequest_FieldMask {
 	result := &UpdateProbingDistributionRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateProbingDistributionRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateProbingDistributionRequest_FieldPathSelectorProbingDistribution: &probing_distribution.ProbingDistribution_FieldMask{},
 		UpdateProbingDistributionRequest_FieldPathSelectorCas:                 &UpdateProbingDistributionRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateProbingDistributionRequest_FieldMask) Project(source *Upd
 			case UpdateProbingDistributionRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateProbingDistributionRequest_FieldSubPath:
 			switch tp.selector {

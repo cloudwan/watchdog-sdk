@@ -3161,6 +3161,7 @@ func FullUpdateProbingTargetGroupRequest_FieldMask() *UpdateProbingTargetGroupRe
 	res.Paths = append(res.Paths, &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup})
 	res.Paths = append(res.Paths, &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorUpdateMask})
 	res.Paths = append(res.Paths, &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorCas})
+	res.Paths = append(res.Paths, &UpdateProbingTargetGroupRequest_FieldTerminalPath{selector: UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing})
 	return res
 }
 
@@ -3204,7 +3205,7 @@ func (fieldMask *UpdateProbingTargetGroupRequest_FieldMask) IsFull() bool {
 	if fieldMask == nil {
 		return false
 	}
-	presentSelectors := make([]bool, 3)
+	presentSelectors := make([]bool, 4)
 	for _, path := range fieldMask.Paths {
 		if asFinal, ok := path.(*UpdateProbingTargetGroupRequest_FieldTerminalPath); ok {
 			presentSelectors[int(asFinal.selector)] = true
@@ -3234,7 +3235,7 @@ func (fieldMask *UpdateProbingTargetGroupRequest_FieldMask) Reset() {
 
 func (fieldMask *UpdateProbingTargetGroupRequest_FieldMask) Subtract(other *UpdateProbingTargetGroupRequest_FieldMask) *UpdateProbingTargetGroupRequest_FieldMask {
 	result := &UpdateProbingTargetGroupRequest_FieldMask{}
-	removedSelectors := make([]bool, 3)
+	removedSelectors := make([]bool, 4)
 	otherSubMasks := map[UpdateProbingTargetGroupRequest_FieldPathSelector]gotenobject.FieldMask{
 		UpdateProbingTargetGroupRequest_FieldPathSelectorProbingTargetGroup: &probing_target_group.ProbingTargetGroup_FieldMask{},
 		UpdateProbingTargetGroupRequest_FieldPathSelectorCas:                &UpdateProbingTargetGroupRequest_CAS_FieldMask{},
@@ -3461,6 +3462,8 @@ func (fieldMask *UpdateProbingTargetGroupRequest_FieldMask) Project(source *Upda
 			case UpdateProbingTargetGroupRequest_FieldPathSelectorCas:
 				result.Cas = source.Cas
 				wholeCasAccepted = true
+			case UpdateProbingTargetGroupRequest_FieldPathSelectorAllowMissing:
+				result.AllowMissing = source.AllowMissing
 			}
 		case *UpdateProbingTargetGroupRequest_FieldSubPath:
 			switch tp.selector {

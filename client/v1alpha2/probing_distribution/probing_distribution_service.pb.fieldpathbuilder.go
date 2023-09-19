@@ -7126,6 +7126,9 @@ func (UpdateProbingDistributionRequestFieldPathBuilder) UpdateMask() UpdateProbi
 func (UpdateProbingDistributionRequestFieldPathBuilder) Cas() UpdateProbingDistributionRequestPathSelectorCas {
 	return UpdateProbingDistributionRequestPathSelectorCas{}
 }
+func (UpdateProbingDistributionRequestFieldPathBuilder) AllowMissing() UpdateProbingDistributionRequestPathSelectorAllowMissing {
+	return UpdateProbingDistributionRequestPathSelectorAllowMissing{}
+}
 
 type UpdateProbingDistributionRequestPathSelectorProbingDistribution struct{}
 
@@ -11279,6 +11282,20 @@ func (s UpdateProbingDistributionRequestPathSelectorCasFieldMask) WithValue(valu
 
 func (s UpdateProbingDistributionRequestPathSelectorCasFieldMask) WithArrayOfValues(values []*probing_distribution.ProbingDistribution_FieldMask) *UpdateProbingDistributionRequest_FieldSubPathArrayOfValues {
 	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldSubPathArrayOfValues)
+}
+
+type UpdateProbingDistributionRequestPathSelectorAllowMissing struct{}
+
+func (UpdateProbingDistributionRequestPathSelectorAllowMissing) FieldPath() *UpdateProbingDistributionRequest_FieldTerminalPath {
+	return &UpdateProbingDistributionRequest_FieldTerminalPath{selector: UpdateProbingDistributionRequest_FieldPathSelectorAllowMissing}
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorAllowMissing) WithValue(value bool) *UpdateProbingDistributionRequest_FieldTerminalPathValue {
+	return s.FieldPath().WithIValue(value).(*UpdateProbingDistributionRequest_FieldTerminalPathValue)
+}
+
+func (s UpdateProbingDistributionRequestPathSelectorAllowMissing) WithArrayOfValues(values []bool) *UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues {
+	return s.FieldPath().WithIArrayOfValues(values).(*UpdateProbingDistributionRequest_FieldTerminalPathArrayOfValues)
 }
 
 type UpdateProbingDistributionRequestCASFieldPathBuilder struct{}

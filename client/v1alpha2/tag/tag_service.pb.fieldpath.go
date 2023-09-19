@@ -6578,9 +6578,10 @@ type UpdateTagRequest_FieldPath interface {
 type UpdateTagRequest_FieldPathSelector int32
 
 const (
-	UpdateTagRequest_FieldPathSelectorTag        UpdateTagRequest_FieldPathSelector = 0
-	UpdateTagRequest_FieldPathSelectorUpdateMask UpdateTagRequest_FieldPathSelector = 1
-	UpdateTagRequest_FieldPathSelectorCas        UpdateTagRequest_FieldPathSelector = 2
+	UpdateTagRequest_FieldPathSelectorTag          UpdateTagRequest_FieldPathSelector = 0
+	UpdateTagRequest_FieldPathSelectorUpdateMask   UpdateTagRequest_FieldPathSelector = 1
+	UpdateTagRequest_FieldPathSelectorCas          UpdateTagRequest_FieldPathSelector = 2
+	UpdateTagRequest_FieldPathSelectorAllowMissing UpdateTagRequest_FieldPathSelector = 3
 )
 
 func (s UpdateTagRequest_FieldPathSelector) String() string {
@@ -6591,6 +6592,8 @@ func (s UpdateTagRequest_FieldPathSelector) String() string {
 		return "update_mask"
 	case UpdateTagRequest_FieldPathSelectorCas:
 		return "cas"
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		return "allow_missing"
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", s))
 	}
@@ -6608,6 +6611,8 @@ func BuildUpdateTagRequest_FieldPath(fp gotenobject.RawFieldPath) (UpdateTagRequ
 			return &UpdateTagRequest_FieldTerminalPath{selector: UpdateTagRequest_FieldPathSelectorUpdateMask}, nil
 		case "cas":
 			return &UpdateTagRequest_FieldTerminalPath{selector: UpdateTagRequest_FieldPathSelectorCas}, nil
+		case "allow_missing", "allowMissing", "allow-missing":
+			return &UpdateTagRequest_FieldTerminalPath{selector: UpdateTagRequest_FieldPathSelectorAllowMissing}, nil
 		}
 	} else {
 		switch fp[0] {
@@ -6680,6 +6685,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) Get(source *UpdateTagRequest) (val
 			if source.Cas != nil {
 				values = append(values, source.Cas)
 			}
+		case UpdateTagRequest_FieldPathSelectorAllowMissing:
+			values = append(values, source.AllowMissing)
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 		}
@@ -6703,6 +6710,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) GetSingle(source *UpdateTagRequest
 	case UpdateTagRequest_FieldPathSelectorCas:
 		res := source.GetCas()
 		return res, res != nil
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		return source.GetAllowMissing(), source != nil
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 	}
@@ -6721,6 +6730,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) GetDefault() interface{} {
 		return (*tag.Tag_FieldMask)(nil)
 	case UpdateTagRequest_FieldPathSelectorCas:
 		return (*UpdateTagRequest_CAS)(nil)
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		return false
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 	}
@@ -6735,6 +6746,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) ClearValue(item *UpdateTagRequest)
 			item.UpdateMask = nil
 		case UpdateTagRequest_FieldPathSelectorCas:
 			item.Cas = nil
+		case UpdateTagRequest_FieldPathSelectorAllowMissing:
+			item.AllowMissing = false
 		default:
 			panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 		}
@@ -6747,7 +6760,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) ClearValueRaw(item proto.Message) 
 
 // IsLeaf - whether field path is holds simple value
 func (fp *UpdateTagRequest_FieldTerminalPath) IsLeaf() bool {
-	return fp.selector == UpdateTagRequest_FieldPathSelectorUpdateMask
+	return fp.selector == UpdateTagRequest_FieldPathSelectorUpdateMask ||
+		fp.selector == UpdateTagRequest_FieldPathSelectorAllowMissing
 }
 
 func (fp *UpdateTagRequest_FieldTerminalPath) SplitIntoTerminalIPaths() []gotenobject.FieldPath {
@@ -6762,6 +6776,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) WithIValue(value interface{}) Upda
 		return &UpdateTagRequest_FieldTerminalPathValue{UpdateTagRequest_FieldTerminalPath: *fp, value: value.(*tag.Tag_FieldMask)}
 	case UpdateTagRequest_FieldPathSelectorCas:
 		return &UpdateTagRequest_FieldTerminalPathValue{UpdateTagRequest_FieldTerminalPath: *fp, value: value.(*UpdateTagRequest_CAS)}
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		return &UpdateTagRequest_FieldTerminalPathValue{UpdateTagRequest_FieldTerminalPath: *fp, value: value.(bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 	}
@@ -6780,6 +6796,8 @@ func (fp *UpdateTagRequest_FieldTerminalPath) WithIArrayOfValues(values interfac
 		return &UpdateTagRequest_FieldTerminalPathArrayOfValues{UpdateTagRequest_FieldTerminalPath: *fp, values: values.([]*tag.Tag_FieldMask)}
 	case UpdateTagRequest_FieldPathSelectorCas:
 		return &UpdateTagRequest_FieldTerminalPathArrayOfValues{UpdateTagRequest_FieldTerminalPath: *fp, values: values.([]*UpdateTagRequest_CAS)}
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		return &UpdateTagRequest_FieldTerminalPathArrayOfValues{UpdateTagRequest_FieldTerminalPath: *fp, values: values.([]bool)}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fp.selector))
 	}
@@ -6977,6 +6995,10 @@ func (fpv *UpdateTagRequest_FieldTerminalPathValue) AsCasValue() (*UpdateTagRequ
 	res, ok := fpv.value.(*UpdateTagRequest_CAS)
 	return res, ok
 }
+func (fpv *UpdateTagRequest_FieldTerminalPathValue) AsAllowMissingValue() (bool, bool) {
+	res, ok := fpv.value.(bool)
+	return res, ok
+}
 
 // SetTo stores value for selected field for object UpdateTagRequest
 func (fpv *UpdateTagRequest_FieldTerminalPathValue) SetTo(target **UpdateTagRequest) {
@@ -6990,6 +7012,8 @@ func (fpv *UpdateTagRequest_FieldTerminalPathValue) SetTo(target **UpdateTagRequ
 		(*target).UpdateMask = fpv.value.(*tag.Tag_FieldMask)
 	case UpdateTagRequest_FieldPathSelectorCas:
 		(*target).Cas = fpv.value.(*UpdateTagRequest_CAS)
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		(*target).AllowMissing = fpv.value.(bool)
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fpv.selector))
 	}
@@ -7009,6 +7033,16 @@ func (fpv *UpdateTagRequest_FieldTerminalPathValue) CompareWith(source *UpdateTa
 		return 0, false
 	case UpdateTagRequest_FieldPathSelectorCas:
 		return 0, false
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		leftValue := fpv.value.(bool)
+		rightValue := source.GetAllowMissing()
+		if (leftValue) == (rightValue) {
+			return 0, true
+		} else if !(leftValue) && (rightValue) {
+			return -1, true
+		} else {
+			return 1, true
+		}
 	default:
 		panic(fmt.Sprintf("Invalid selector for UpdateTagRequest: %d", fpv.selector))
 	}
@@ -7213,6 +7247,10 @@ func (fpaov *UpdateTagRequest_FieldTerminalPathArrayOfValues) GetRawValues() (va
 		for _, v := range fpaov.values.([]*UpdateTagRequest_CAS) {
 			values = append(values, v)
 		}
+	case UpdateTagRequest_FieldPathSelectorAllowMissing:
+		for _, v := range fpaov.values.([]bool) {
+			values = append(values, v)
+		}
 	}
 	return
 }
@@ -7226,6 +7264,10 @@ func (fpaov *UpdateTagRequest_FieldTerminalPathArrayOfValues) AsUpdateMaskArrayO
 }
 func (fpaov *UpdateTagRequest_FieldTerminalPathArrayOfValues) AsCasArrayOfValues() ([]*UpdateTagRequest_CAS, bool) {
 	res, ok := fpaov.values.([]*UpdateTagRequest_CAS)
+	return res, ok
+}
+func (fpaov *UpdateTagRequest_FieldTerminalPathArrayOfValues) AsAllowMissingArrayOfValues() ([]bool, bool) {
+	res, ok := fpaov.values.([]bool)
 	return res, ok
 }
 

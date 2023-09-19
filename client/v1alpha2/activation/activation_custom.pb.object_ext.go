@@ -193,6 +193,9 @@ func (o *ActivationRequest_Activate) MakeDiffFieldMask(other *ActivationRequest_
 	} else {
 		res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorMetadata})
 	}
+	if o.GetPublicKeyData() != other.GetPublicKeyData() {
+		res.Paths = append(res.Paths, &ActivationRequestActivate_FieldTerminalPath{selector: ActivationRequestActivate_FieldPathSelectorPublicKeyData})
+	}
 	return res
 }
 
@@ -212,6 +215,7 @@ func (o *ActivationRequest_Activate) Clone() *ActivationRequest_Activate {
 	for key, sourceValue := range o.Metadata {
 		result.Metadata[key] = sourceValue
 	}
+	result.PublicKeyData = o.PublicKeyData
 	return result
 }
 
@@ -236,6 +240,7 @@ func (o *ActivationRequest_Activate) Merge(source *ActivationRequest_Activate) {
 			o.Metadata[key] = sourceValue
 		}
 	}
+	o.PublicKeyData = source.GetPublicKeyData()
 }
 
 func (o *ActivationRequest_Activate) MergeRaw(source gotenobject.GotenObjectExt) {

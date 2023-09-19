@@ -35,6 +35,10 @@ message ActivationRequest {
     // Additional key value pairs to be used to substitute placeholders of
     // the probe generation template.
     map<string, string> metadata = 4;
+
+    // Public key for service account if the agent generates the keys
+    // IAM server will generate the keys if this is empty.
+    string public_key_data = 5;
   }
 
   message ConfirmActivation {
